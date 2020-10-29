@@ -1,0 +1,1 @@
+StaticAplaced = 1;

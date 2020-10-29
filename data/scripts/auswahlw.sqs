@@ -1,0 +1,4 @@
+	_dir = random 359;
+	player SetPos [(getMarkerPos "markerlkwwest" select 0)-15*sin(_dir),(getMarkerPos "markerlkwwest" select 1)-15*cos(_dir)];
+
+	exit

@@ -1,0 +1,17 @@
+	_dir = random 359
+
+//	player SetPosASL [(getMarkerPos "HMS-GITS" select 0)-15*sin(_dir),(getMarkerPos "HMS-GITS" select 1)-15*cos(_dir), 16.5]
+
+//latest
+//	player SetPosASL [(getMarkerPos "HMS-GITS" select 0),(getMarkerPos "HMS-GITS" select 1), 16.5]
+
+_zone = getmarkerpos "HMS-GITS";
+_base = "ZU23_CDF" createVehicleLocal [_zone select 0,_zone select 1,16.5];
+_base setVehicleAmmo 0;
+_base setposASL [_zone select 0,_zone select 1,16.5];
+player moveInCargo _base;
+player action ["Eject",_base];
+waitUntil {Vehicle player == player};
+deletevehicle _base;
+
+exit

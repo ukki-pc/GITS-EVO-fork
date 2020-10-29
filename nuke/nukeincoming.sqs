@@ -1,0 +1,55 @@
+//adding
+//_base = _this select 0;
+
+nukev = false;
+publicvariable "nukev"
+
+_path = "\ca\air2\cruisemissile\"; //"
+_pathS = _path + "data\scripts\"; //"
+
+_dropPosition = getpos Groundzero;
+"destination" setmarkerpos getpos Groundzero;
+_PlaneC1 = creategroup WEST;
+_cruise = createVehicle ["Chukar",_dropPosition,[], 0, "FLY"];
+_cruise setvectordir [ 0.1,- 1,+ 0.5];
+_cruise setPos [(getPos _cruise select 0),(getPos _cruise select 1),570];
+_cruise setVelocity [0,2,0] ;
+_cruise flyinHeight 570;
+_cruise setSpeedMode "FULL";
+
+~0.5 
+_dropPosX = _dropPosition select 0;
+_dropPosY = _dropPosition select 1;
+_dropPosZ = _dropPosition select 2;
+
+_droppos1 = [_dropPosX + 4, _dropPosY + 4, _dropPosZ];
+_droppos2 = [_dropPosX + 8, _dropPosY + 8, _dropPosZ];
+_droppos3 = [_dropPosX + 12, _dropPosY + 12, _dropPosZ];    
+
+_planespawnpos = [_dropPosX , _dropPosY , _dropPosZ + 600];
+
+_misFlare = createVehicle ["cruiseMissileFlare1",_planespawnpos,[], 0, "NONE"];
+_misFlare inflame true;
+_cruise setVariable ["cruisemissile_level", false];
+[_cruise, _misFlare] execVM (_pathS + "cruisemissileflare.sqf");
+_cruise setObjectTexture [0, _path + "data\exhaust_flame_ca"];
+[_cruise] execVM (_pathS + "exhaust1.sqf");
+~7
+_cruise say "incoming";
+
+#Check
+?!(alive _cruise) : goto "Detonation";
+goto "Check";
+
+
+#Detonation
+//det1 = "BO_GBU12_LGB" createvehicle [(getpos Groundzero select 0),(getpos Groundzero select 1), 0];
+//det2 =  createvehicle ["BO_GBU12_LGB",_droppos1,[], 0, "None"];
+//det3 =  createvehicle ["BO_GBU12_LGB",_droppos2,[], 0, "None"];
+nul = execVM "nuke\nuke.sqf";
+
+deletevehicle _cruise;
+//deletemarker "sub";
+//deletevehicle Launch;
+
+exit

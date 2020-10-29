@@ -1,0 +1,54 @@
+/*
+_base = _this select 0;
+
+nukev = false;
+publicvariable "nukev"
+
+/*
+Launch = "HeliHEmpty" createVehicle (position player);
+CMTarget = "HeliHEmpty" createVehicle (position Launch);
+sub = createMarker ["sub", position Launch];
+sub setMarkerType "Select";
+destination = createMarker ["destination", position Launch];
+*/
+
+CMTarget = "HeliHEmpty" createVehicle (position _base);
+destination = createMarker ["destination", position _base];
+setfire=true;
+
+/*
+titleText ["Click on the map to designate target-area","plain down"];
+onMapSingleClick "CMTarget setPos _pos; setfire=false";
+@!setfire;
+"destination" setmarkerpos getPos CMTarget;
+onMapSingleClick "";
+*/
+//adding
+//CMTarget setPos _base; 
+
+setfire=false;
+"destination" setmarkerpos getPos CMTarget;
+
+titleText ["", "plain down"];
+destination setMarkerType "Destroy";
+destination setMarkerText "Nuclear Bomb";
+destination setMarkerColor "ColorRed";
+
+[] exec "nuke\nukeincoming.sqs";
+~5
+hint "Nuclear Bomb impact in....";
+~1
+hint "Nuclear Bomb impact in  5";
+~1
+hint "Nuclear Bomb impact in  4";
+~1
+hint "Nuclear Bomb impact in  3";
+~1
+hint "Nuclear Bomb impact in  2";
+~1
+hint "Nuclear Bomb impact in  1";
+~1
+hint "Impact";
+
+exit
+*/

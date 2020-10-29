@@ -1,0 +1,7 @@
+//{_targblue = getmarkerpos "hospital"};
+//_hostage doMove (position safty);
+
+	_pos = getposASL inthotel_roof;
+	player SetPosASL [_pos select 0,_pos select 1,_pos select 2];
+	exit
+	//5816.3301,26.799999,3119.6499

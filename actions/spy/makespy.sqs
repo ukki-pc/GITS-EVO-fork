@@ -1,0 +1,44 @@
+if (not (local player)) exitwith {};
+
+//enable later
+if (Spymade == 1) exitwith {};
+
+_player = player;
+
+EGG_spyactive = 0;
+
+//if (Player distance fahne > 10) then {exitwith "Your spy uniform is at the main ammo crate"};
+
+BIS_EVO_pallammo = ["pipebomb","pipebomb","BAF_ied_v4","BAF_ied_v2","pipebomb","mine","HandGrenade_East","HandGrenade_East","SmokeShellOrange","Laserbatteries","8Rnd_9x18_MakarovSD","8Rnd_9x18_MakarovSD","8Rnd_9x18_MakarovSD","8Rnd_9x18_MakarovSD","8Rnd_9x18_MakarovSD","8Rnd_9x18_MakarovSD","8Rnd_9x18_MakarovSD","8Rnd_9x18_MakarovSD"];// The players default load out
+BIS_EVO_pweapons = ["MakarovSD","Laserdesignator","NVGoggles"]; // The players default load out
+
+removeAllWeapons _player;
+{_player addmagazine _x} forEach BIS_EVO_pallammo;
+{_player addweapon _x} forEach BIS_EVO_pweapons;
+
+if (count weapons _player > 5) then
+{
+  private['_type', '_muzzles'];
+
+  _type = ((weapons _player) select 5);
+  // check for multiple muzzles (eg: GL)
+  _muzzles = getArray(configFile >> "cfgWeapons" >> _type >> "muzzles");
+
+  if (count _muzzles > 1) then
+  {
+    _player selectWeapon (_muzzles select 0);
+  }
+  else
+  {
+    _player selectWeapon _type;
+  };
+};
+
+//_player selectweapon (handgun _player);
+
+EGG_spyactive = 1;
+Spymade = 1;
+_monitor = [] execVM "actions\spy\hidden.sqf"; 
+
+
+

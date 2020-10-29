@@ -1,0 +1,1 @@
+(_this select 3) setDir (getDir (_this select 3) - 180);

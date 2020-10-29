@@ -1,0 +1,254 @@
+/*%FSM<COMPILE "C:\Program Files (x86)\Bohemia Interactive\Tools\FSM Editor Personal Edition\scriptedFSM.cfg, halo">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"START",0,250,-325.000000,-675.000000,-225.000000,-625.000000,0.000000,"START"};
+item1[] = {"Falling",4,218,-325.000000,-600.000000,-225.000000,-550.000000,0.000000,"Falling"};
+item2[] = {"HALO",2,250,-325.000000,-525.000000,-225.000000,-475.000000,0.000000,"HALO"};
+item3[] = {"Next",8,218,-325.000000,-450.000000,-225.000000,-400.000000,0.000000,"Next"};
+item4[] = {"ALTITUDE",2,4346,-325.000000,-375.000000,-225.000000,-325.000000,0.000000,"ALTITUDE"};
+item5[] = {"Continue",4,218,-325.000000,0.000000,-225.000000,50.000000,0.000000,"Continue"};
+item6[] = {"END",1,250,-325.000000,75.000000,-225.000000,125.000000,0.000000,"END"};
+item7[] = {"Landed",4,218,-325.000000,-150.000000,-225.000000,-100.000000,0.000000,"Landed"};
+item8[] = {"END_HALO",2,250,-325.000000,-75.000000,-225.000000,-25.000000,0.000000,"END HALO"};
+item9[] = {"Opened",4,218,-325.000000,-300.000000,-225.000000,-250.000000,0.000000,"Opened"};
+item10[] = {"Parachute",2,250,-325.000000,-225.000000,-225.000000,-175.000000,0.000000,"Parachute"};
+item11[] = {"not__opend_",4,218,-100.000000,-250.000000,0.000000,-200.000000,0.000000,"not" \n " opend" \n ""};
+item12[] = {"killed_",4,218,-650.000000,-150.000000,-550.000000,-100.000000,0.000000,"killed" \n ""};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {2,12};
+link4[] = {3,4};
+link5[] = {4,9};
+link6[] = {4,11};
+link7[] = {4,12};
+link8[] = {5,6};
+link9[] = {7,8};
+link10[] = {8,5};
+link11[] = {9,10};
+link12[] = {10,7};
+link13[] = {10,12};
+link14[] = {11,8};
+link15[] = {12,8};
+globals[] = {25.000000,1,0,0,0,640,480,1,339,6316128,1,-823.139648,257.761230,325.160828,-810.675293,728,765,1};
+window[] = {0,-1,-1,-1,-1,1010,100,1792,100,1,746};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "halo";
+  class States
+  {
+    /*%FSM<STATE "START">*/
+    class START
+    {
+      name = "START";
+      init = /*%FSM<STATEINIT""">*/"_marker = ""HaloMarker"";" \n
+       "_rnd=Random(200);" \n
+       "_h=9000;" \n
+       "_pos = [getmarkerpos _marker select 0,getmarkerpos _marker select 1, _h+_rnd];" \n
+       "player setpos _pos;" \n
+       "player setvariable [""bis_fnc_halo_now"",true];" \n
+       "" \n
+       "player setdir 0;" \n
+       "" \n
+       "BIS_AdvHints_Header = """";" \n
+       "BIS_AdvHints_Text = """";" \n
+       "BIS_AdvHints_Footer = """";" \n
+       "BIS_AdvHints_Duration = -1;" \n
+       "BIS_AdvHints_ShowCond = ""true"";" \n
+       "BIS_AdvHints_ShowCode = """";" \n
+       "BIS_AdvHints_HideCond = """";" \n
+       "BIS_AdvHints_HideCode = """";" \n
+       "BIS_AdvHints_Silent = false;" \n
+       "BIS_AdvHints_Seamless = false;" \n
+       "BIS_AdvHints_KeyPress = """";	" \n
+       "BIS_AdvHints_CanSkip = true;" \n
+       "BIS_AdvHints_NoFooter = false;" \n
+       "" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Falling">*/
+        class Falling
+        {
+          priority = 0.000000;
+          to="HALO";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(position player select 2) > 1"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "HALO">*/
+    class HALO
+    {
+      name = "HALO";
+      init = /*%FSM<STATEINIT""">*/"player spawn bis_fnc_halo;" \n
+       "player setdir 0;" \n
+       "player setvelocity [0,120*0.8,0];" \n
+       "player allowdamage true;" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "killed_">*/
+        class killed_
+        {
+          priority = 0.000000;
+          to="END_HALO";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"not alive player"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Next">*/
+        class Next
+        {
+          priority = 0.000000;
+          to="ALTITUDE";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "ALTITUDE">*/
+    class ALTITUDE
+    {
+      name = "ALTITUDE";
+      init = /*%FSM<STATEINIT""">*/"call BIS_AdvHints_setDefaults;" \n
+       "BIS_AdvHints_THeader = ""ALTIMETER"";" \n
+       "BIS_AdvHints_TInfo = """";" \n
+       "BIS_AdvHints_TImp = localize ""STR_EP1_mission.fsmFSM_States_MFF0_0"";" \n
+       "BIS_AdvHints_TAction = """";" \n
+       "BIS_AdvHints_TBinds = """";" \n
+       "BIS_AdvHints_HideCond = ""false"";" \n
+       "BIS_AdvHints_Seamless = true;" \n
+       "BIS_AdvHints_Text = call BIS_AdvHints_formatText;" \n
+       "BIS_AdvHints_Dynamic = [" \n
+       "	{'MoveForward' call BIS_getKeyBind}," \n
+       "	{'MoveBack' call BIS_getKeyBind}," \n
+       "	{'TurnLeft' call BIS_getKeyBind}," \n
+       "	{'TurnRight' call BIS_getKeyBind}," \n
+       "	{round(position player select 2)}," \n
+       "	{round((position player select 2) * 3.28)}," \n
+       "	{'Action' call BIS_getKeyBind}" \n
+       "];" \n
+       "BIS_AdvHints_Spawn = [] spawn BIS_AdvHints_showHintSpawn;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "not__opend_">*/
+        class not__opend_
+        {
+          priority = 0.000000;
+          to="END_HALO";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"((vehicle player == player) && (position vehicle player select 2) < 5)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "killed_">*/
+        class killed_
+        {
+          priority = 0.000000;
+          to="END_HALO";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"not alive player"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Opened">*/
+        class Opened
+        {
+          priority = 0.000000;
+          to="Parachute";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"vehicle player != player"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "END">*/
+    class END
+    {
+      name = "END";
+      init = /*%FSM<STATEINIT""">*/"(FindDisplay 46) DisplaySetEventHandler [""keydown"",""if ((_this select 1) In actionKeys """"TeamSwitch"""") then {a = createDialog 'evoUI'}""];" \n
+       "" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "END_HALO">*/
+    class END_HALO
+    {
+      name = "END_HALO";
+      init = /*%FSM<STATEINIT""">*/"call BIS_AdvHints_setDefaults;" \n
+       "" \n
+       "//player setvariable [""bis_fnc_halo_terminate"",true];" \n
+       ""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Continue">*/
+        class Continue
+        {
+          priority = 0.000000;
+          to="END";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(scriptDone BIS_AdvHints_Spawn)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Parachute">*/
+    class Parachute
+    {
+      name = "Parachute";
+      init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "killed_">*/
+        class killed_
+        {
+          priority = 0.000000;
+          to="END_HALO";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"not alive player"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "Landed">*/
+        class Landed
+        {
+          priority = 0.000000;
+          to="END_HALO";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"vehicle player == player;"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="START";
+  finalStates[] =
+  {
+    "END",
+  };
+};
+/*%FSM</COMPILE>*/

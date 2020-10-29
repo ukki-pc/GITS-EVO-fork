@@ -1,0 +1,4 @@
+	_dir = random 359;
+	player SetPos [(getMarkerPos "airfmarker" select 0)-15*sin(_dir),(getMarkerPos "airfmarker" select 1)-15*cos(_dir)];
+
+	exit

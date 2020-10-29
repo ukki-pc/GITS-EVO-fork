@@ -1,0 +1,4 @@
+	_pos = getposASL inthotel_base;
+	player SetPosASL [_pos select 0,_pos select 1,_pos select 2];
+	exit
+	//5809.7046,16.173664,3114.5417

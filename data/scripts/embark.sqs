@@ -1,0 +1,16 @@
+//Inflatable Boat from carrier
+
+_zone = getmarkerpos "HMS-GITS";
+//_pos = [4165,1000,0]
+//position[]={4165.5059,16.73,986.09009};
+
+_pos = [(_zone select 0), (_zone select 1)-50, 0];
+
+_allvecs = ["RHIB","RHIB2Turret","SeaFox","Zodiac","Fishing_Boat"];
+_max = (count _allvecs)-1;
+_heli = createVehicle [_allvecs select (round random _max), _pos, [], 20, "NONE"];[_heli] call BIS_EVO_Lock;Sleep BIS_EVO_GlobalSleep;
+_spawne = [_heli] spawn {[_this select 0] call BIS_EVO_idelSVEC};
+
+Player MoveinDriver _heli;
+
+exit

@@ -1,0 +1,135 @@
+	//Shift pressed	
+	if (LDL_fixCam) then 
+	{
+		LDL_fixCam = false;
+		(_display displayctrl 1002) ctrlSetText "";
+	}
+	else
+	{
+		_objects = (nearestObjects [screenToWorld[0.5,0.5], ["LandVehicle","Air","Ship"], 5]);
+
+		if(count _objects > 0) then
+		{
+			LDL_fixPos = (_objects select 0);
+			(_display displayctrl 1002) ctrlSetText "Fixing Camera on target";
+			[format["%1", getText (configFile/"CfgVehicles"/(typeOf LDL_fixPos)/"displayName")], true]spawn LDL_ac130_warning;
+		}
+		else
+		{
+			LDL_fixPos = screenToWorld[0.5,0.5];
+			(_display displayctrl 1002) ctrlSetText "Fixing Camera on screen";
+		};
+
+		LDL_fixCam = true;
+		
+	};
+
+if (_dikCode == 50) then
+{
+	//M pressed		
+	if(!LDL_MapShown) then
+	{
+		[]spawn LDL_ac130_createMap;
+	}
+	else
+	{
+		closeDialog 2000;
+	};
+};
+
+showHelp
+
+/*
+$[
+	1.03,
+	[["safezoneX","safezoneY","safezoneW","safezoneH"],"safezoneW / 32","safezoneH / 20"],
+	[1000,"MyBackground",[1,"",["0.370238 * safezoneW + safezoneX","0.302381 * safezoneH + safezoneY","0.283929 * safezoneW","0.258095 * safezoneH"],[-1,-1,-1,-1],[0,0,0,0.5],[-1,-1,-1,-1],""],[]],
+	[1001,"MyHeader",[1,"Change Parameters",["0.370238 * safezoneW + safezoneX","0.303333 * safezoneH + safezoneY","0.283929 * safezoneW","0.0509524 * safezoneH"],[-1,-1,-1,-1],[0,0,0,0.5],[-1,-1,-1,-1],""],["style = ST_CENTER;"]],
+	[1400,"radiusEdit",[1,"",["0.42991 * safezoneW + safezoneX","0.382143 * safezoneH + safezoneY","0.060417 * safezoneW","0.0252381 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],["idc = 1234;"]],
+	[1701,"MyButtonBack",[1,"Cancel",["0.373511 * safezoneW + safezoneX","0.476905 * safezoneH + safezoneY","0.135267 * safezoneW","0.0790478 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],["onButtonClick = |((ctrlParent (_this select 0)) closeDisplay 3000);|;"]],
+	[1702,"",[1,"Ok",["0.516071 * safezoneW + safezoneX","0.477144 * safezoneH + safezoneY","0.134672 * safezoneW","0.077143 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],["onButtonClick = |((ctrlParent (_this select 0)) closeDisplay 3000);|;"]],
+	[1002,"radiusText",[1,"Radius:",["0.373214 * safezoneW + safezoneX","0.359047 * safezoneH + safezoneY","0.0583333 * safezoneW","0.07 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],
+	[1003,"heightText",[1,"Height:",["0.37381 * safezoneW + safezoneX","0.41619 * safezoneH + safezoneY","0.0583333 * safezoneW","0.07 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],
+	[1401,"heightEdit",[1,"",["0.431548 * safezoneW + safezoneX","0.44 * safezoneH + safezoneY","0.060417 * safezoneW","0.0252381 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],["idc = 1234;"]]
+]
+*/
+
+class MyBackground: RscText
+{
+	idc = 1000;
+	x = 0.370238 * safezoneW + safezoneX;
+	y = 0.302381 * safezoneH + safezoneY;
+	w = 0.283929 * safezoneW;
+	h = 0.258095 * safezoneH;
+	colorBackground[] = {0,0,0,0.5};
+};
+class MyHeader: RscText
+{
+	style = ST_CENTER;
+
+	idc = 1001;
+	text = "Change Parameters";
+	x = 0.370238 * safezoneW + safezoneX;
+	y = 0.303333 * safezoneH + safezoneY;
+	w = 0.283929 * safezoneW;
+	h = 0.0509524 * safezoneH;
+	colorBackground[] = {0,0,0,0.5};
+};
+class radiusEdit: RscEdit
+{
+	idc = 1234;
+
+	x = 0.42991 * safezoneW + safezoneX;
+	y = 0.382143 * safezoneH + safezoneY;
+	w = 0.060417 * safezoneW;
+	h = 0.0252381 * safezoneH;
+};
+class MyButtonBack: RscShortcutButton
+{
+	onButtonClick = "((ctrlParent (_this select 0)) closeDisplay 3000);";
+
+	idc = 1701;
+	text = "Cancel";
+	x = 0.373511 * safezoneW + safezoneX;
+	y = 0.476905 * safezoneH + safezoneY;
+	w = 0.135267 * safezoneW;
+	h = 0.0790478 * safezoneH;
+};
+class RscShortcutButton_1702: RscShortcutButton
+{
+	onButtonClick = "((ctrlParent (_this select 0)) closeDisplay 3000);";
+
+	idc = 1702;
+	text = "Ok";
+	x = 0.516071 * safezoneW + safezoneX;
+	y = 0.477144 * safezoneH + safezoneY;
+	w = 0.134672 * safezoneW;
+	h = 0.077143 * safezoneH;
+};
+class radiusText: RscText
+{
+	idc = 1002;
+	text = "Radius:";
+	x = 0.373214 * safezoneW + safezoneX;
+	y = 0.359047 * safezoneH + safezoneY;
+	w = 0.0583333 * safezoneW;
+	h = 0.07 * safezoneH;
+};
+class heightText: RscText
+{
+	idc = 1003;
+	text = "Height:";
+	x = 0.37381 * safezoneW + safezoneX;
+	y = 0.41619 * safezoneH + safezoneY;
+	w = 0.0583333 * safezoneW;
+	h = 0.07 * safezoneH;
+};
+class heightEdit: RscEdit
+{
+	idc = 1234;
+
+	x = 0.431548 * safezoneW + safezoneX;
+	y = 0.44 * safezoneH + safezoneY;
+	w = 0.060417 * safezoneW;
+	h = 0.0252381 * safezoneH;
+};

@@ -1,0 +1,4 @@
+GITSEvolutionV19UK.Takistan
+prefix=GITSEvolutionV19UK.Takistan
+Mikero=DePbo.dll
+Pbo Type is: Elite or Arma (missing residual bytes or mission.pbo)

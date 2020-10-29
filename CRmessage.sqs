@@ -1,0 +1,22 @@
+#start
+~35
+[West,"HQ"] sideChat "Welcome to Battlegroup -=XTRA=-"
+~60
+[West,"HQ"] sideChat "Press T / Task menu to: Call support, Recruit AI, Transfer Squads, and set viewdistance"
+~100
+[West,"HQ"] sideChat "Press M / Notes for info about the mission"
+~100
+[West,"HQ"] sideChat "Press T / Transfer /Join to squad-up with other players"
+~100
+[West,"HQ"] sideChat "Press G when STANDING to save loadout"
+~500
+[West,"HQ"] sideChat "Pilots: please support ground troops on request - avoid random bombing"
+~500
+[West,"HQ"] sideChat "Press T / Assignments for side missions that earn points"
+~500
+[West,"HQ"] sideChat "Find mission guides and tips on our website"
+~500
+[West,"HQ"] sideChat "Battlegroup -=XTRA=- Evolution www.battlegroup-xtra.eu"
+~1500
+goto "start"
+

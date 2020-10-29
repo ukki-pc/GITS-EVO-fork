@@ -1,0 +1,785 @@
+onLoadMission= XTRA E V O L U T I O N - U K v7;
+class Header
+{
+ gameType = COOP;
+ minPlayers = 1;
+ maxPlayers = 22; 
+ playerCountMultipleOf = 1;
+};
+
+// description.ext settings for revive
+///////////////////////////////////////////////////////////////////////////////////////////
+respawn = "BASE";
+respawndelay = 4;
+disabledAI = 1;
+
+enableItemsDropping = 0;
+
+//#include "revive_sqf\dialogs\config.cpp"
+#include "revive_sqf\dialogs\define.hpp"
+#include "revive_sqf\dialogs\rev_cam_dialog.hpp"
+#include "revive_sqf\dialogs\respawn_button_1.hpp"
+#include "revive_sqf\dialogs\respawn_button_2.hpp"
+#include "revive_sqf\dialogs\respawn_button_3.hpp"
+#include "revive_sqf\dialogs\respawn_button_4.hpp"
+#include "revive_sqf\dialogs\respawn_button_1b.hpp"
+#include "revive_sqf\dialogs\respawn_button_1c.hpp"
+#include "revive_sqf\dialogs\respawn_button_2b.hpp"
+#include "revive_sqf\dialogs\respawn_button_3b.hpp"
+#include "revive_sqf\dialogs\respawn_button_4b.hpp"
+#include "revive_sqf\dialogs\respawn_button_1map.hpp"
+#include "revive_sqf\dialogs\respawn_button_2map.hpp"
+#include "revive_sqf\dialogs\respawn_button_3map.hpp"
+#include "revive_sqf\dialogs\respawn_button_4map.hpp"
+#include "revive_sqf\dialogs\OK_map.hpp"
+#include "revive_sqf\dialogs\dead_cam_dialog.hpp"
+#include "revive_sqf\dialogs\rev_cam_dialog_blank.hpp"
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+//Arty and logistics
+#include "R3F_ARTY_AND_LOG\desc_include.h" 
+
+//describtion.ext for Lurchi's AC-130 Script
+//Dialog
+#include "LDL_ac130\Dialog\dialog.hpp"
+
+
+#include "evoUI.hpp"
+class CfgRadio
+{
+};
+
+class CfgSounds
+{
+	sounds[] = {reload,bash,kill,Fill,Siphon,Intro,Somalia_News,CityClear,Promotion,Goodjob,Rocket_Away,Incoming,incoming_Nuke,nblast,nsound,Explo_Large,Explo_Nuke,radzoneb,Recruitment,Resupply,MarkerSmoke,MortarBarrage,Airstrike,SmallArty,LargeArty,NapalmStrike,MortarDist,ArtyDist,ArtyDistLarge,SmokeScreenDist,MarkerSmokeDist};
+
+	class reload
+	{
+		name = "reload";
+		sound[] = {"Sound\reload.ogg", db - 8, 1.0};
+		titles[] = {};
+	};	
+	class bash
+	{
+		name = "bash";
+		sound[] = {"Sound\bash.ogg", db - 2, 1.0};
+		titles[] = {};
+	};	
+	class kill
+	{
+		name = "kill";
+		sound[] = {"Sound\kill.ogg", db - 2, 1.0};
+		titles[] = {};
+	};	
+	class Fill
+	{
+		name = "Fill";
+		sound[] = {"Sound\Fill.ogg", db - 2, 1.0};
+		titles[] = {};
+	};	
+	class Siphon
+	{
+		name = "Siphon";
+		sound[] = {"Sound\Siphon.ogg", db - 3, 1.0};
+		titles[] = {};
+	};
+	class Bayo_on
+	{
+		name = "Bayo_on";
+		sound[] = {"Sound\bayonet_on.ogg", db - 3, 1.0};
+		titles[] = {};
+	};
+	class Bayo_off
+	{
+		name = "Bayo_off";
+		sound[] = {"Sound\bayonet_off.ogg", db - 3, 1.0};
+		titles[] = {};
+	};
+	class Stab
+	{
+		name = "Stab";
+		sound[] = {"Sound\stab.ogg", db - 3, 1.0};
+		titles[] = {};
+	};
+	class Throw
+	{
+		name = "Throw";
+		sound[] = {"Sound\throw.ogg", db - 3, 1.0};
+		titles[] = {};
+	};
+	class Sil_on
+	{
+		name = "Sil_on";
+		sound[] = {"Sound\Sil_on.ogg", db - 1, 1.0};
+		titles[] = {};
+	};
+	class Intro
+	{
+		name = "Intro";
+		sound[] = {"Sound\BAFIntro.ogg", db - 3, 1.0};
+		titles[] = {};
+	};	
+	class Somalia_News
+	{
+		name = "Somalia_News";
+		sound[] = {"Sound\Somalia_News.ogg", db-5, 1.0};
+		titles[] = {};
+	};
+	class CityClear
+	{
+		name = "CityClear";
+		sound[] = {"Sound\CityClear.ogg", db-1, 1.0};
+		titles[] = {};
+	};
+	class Promotion
+	{
+		name = "Promotion";
+		sound[] = {"Sound\Promotion.ogg", db - 3, 1.0};
+		titles[] = {};
+	};
+	class Goodjob
+	{
+		name = "Goodjob";
+		sound[] = {"Sound\goodjob.ogg", db-1, 1.0};
+		titles[] = {};
+	};
+	class Rocket_Away
+	{
+		name = "Rocket_Away"; // Name for mission editor
+		sound[] = {"sound\Rocket_Away.ogg", db + 0, 1.0};
+		titles[] = {0, ""};
+	};
+	class Incoming
+	{
+		name = "Incoming";
+		sound[] = {"Sound\incoming.ogg", db-5, 1.0};
+		titles[] = {};
+	};	
+	class incoming_Nuke
+	{
+		name = "incoming_Nuke"; // Name for mission editor
+		sound[] = {"sound\incoming.ogg", db + 0, 1.0};
+		titles[] = {0, ""};
+	};
+	class nblast
+	{
+		name = "nblast"; // Name for mission editor
+		sound[] = {"sound\nuke.ogg", db + 0, 1.0};
+		titles[] = {0, ""};
+	};
+	class nsound
+	{
+		name = "nsound"; // Name for mission editor
+		sound[] = {"sound\nsound.ogg", db + 0, 1.0};
+		titles[] = {0, ""};
+	};
+	class Explo_Large
+	{
+		name = "Explo_Large"; // Name for mission editor
+		sound[] = {"sound\Explo_Large.ogg", db + 0, 1.0};
+		titles[] = {0, ""};
+	};
+	class Explo_Nuke
+	{
+		name = "Explo_Nuke"; // Name for mission editor
+		sound[] = {"sound\Explo_Large.ogg", db + 0, 1.0};
+		titles[] = {0, ""};
+	};
+	class radzoneb
+	{
+		name = "radzoneb"; // Name for mission editor
+		sound[] = {"sound\radiation.ogg", db + 0, 1.0};
+		titles[] = {0, ""};
+	};
+	class Recruitment
+	{
+		name = "Recruitment";
+		sound[] = {"Sound\Recruitment.ogg", db+1, 1.0};
+		titles[] = {};
+	};
+	class Resupply
+	{
+		name = "Resupply";
+		sound[] = {"Sound\Resupply.ogg", db-7, 1.0};
+		titles[] = {};
+	};
+	class MarkerSmoke
+	{
+		name = "MarkerSmoke";
+		sound[] = {"Sound\MarkerSmoke.ogg", db+2, 1.0};
+		titles[] = {};
+	};
+	class MortarBarrage
+	{
+		name = "MortarBarrage";
+		sound[] = {"Sound\MortarBarrage.ogg", db-14, 1.0};
+		titles[] = {};
+	};
+	class Airstrike
+	{
+		name = "Airstrike";
+		sound[] = {"Sound\Airstrike.ogg", db+9, 1.0};
+		titles[] = {};
+	};
+	class SmallArty
+	{
+		name = "SmallArty";
+		sound[] = {"Sound\SmallArty.ogg", db+15, 1.0};
+		titles[] = {};
+	};
+	class LargeArty
+	{
+		name = "LargeArty";
+		sound[] = {"Sound\LargeArty.ogg", db-14, 1.0};
+		titles[] = {};
+	};
+	class NapalmStrike
+	{
+		name = "NapalmStrike";
+		sound[] = {"Sound\NapalmStrike.ogg", db+9, 1.0};
+		titles[] = {};
+	};
+     class MortarDist
+	{
+		name = "MortarDist";
+		sound[] = {"Sound\MortarDist.ogg", db+9, 1.0};
+		titles[] = {};
+	};	
+	class ArtyDist
+	{
+		name = "ArtyDist";
+		sound[] = {"Sound\ArtyDist.ogg", db+9, 1.0};
+		titles[] = {};
+	};
+	class ArtyDistLarge
+	{
+		name = "ArtyDistLarge";
+		sound[] = {"Sound\ArtyDistLarge.ogg", db+9, 1.0};
+		titles[] = {};
+	};
+	class SmokeScreenDist
+	{
+		name = "SmokeScreenDist";
+		sound[] = {"Sound\SmokeScreenDist.ogg", db+9, 1.0};
+		titles[] = {};
+	};
+	class MarkerSmokeDist
+	{
+		name = "MarkerSmokeDist";
+		sound[] = {"Sound\MarkerSmokeDist.ogg", db+9, 1.0};
+		titles[] = {};
+	};
+	class Brian_Im_hit
+	{
+		name="Brian_Im_hit";
+		sound[]={"revive_sqf\sound\UNIV_v05.ogg",0.05,1.0};
+		titles[]={};
+	};
+	class Brian_Im_bleeding
+	{
+		name="Brian_Im_bleeding";
+		sound[]={"revive_sqf\sound\UNIV_v06.ogg",0.05,1.0};
+		titles[]={};
+	};
+	class Brian_Medic
+	{
+		name="Brian_Medic";
+		sound[]={"revive_sqf\sound\UNIV_v07.ogg",0.05,1.0};
+		titles[]={};
+	};
+	class Brian_Bastards
+	{
+		name="Brian_Bastards";
+	        sound[]={"revive_sqf\sound\UNIV_v10.ogg",0.05,1.0};
+	        titles[]={};
+	};
+	class Brian_Shit_Man_down
+	{
+		name="Brian_Shit_Man_down";
+	        sound[]={"revive_sqf\sound\UNIV_v11.ogg",0.05,1.0};
+	        titles[]={};
+	};
+	class Brian_Oh_no
+	{
+		name="Brian_Oh_no";
+		sound[]={"revive_sqf\sound\UNIV_v18.ogg",0.05,1.0};
+		titles[]={};
+	};
+	class Brian_Fuck
+	{
+		name="Brian_Fuck";
+		sound[]={"sound\UNIV_v24.ogg",0.05,1.0};
+		titles[]={};
+	};
+	class Brian_Fuck_it
+	{
+		name="Brian_Fuck_it";
+		sound[]={"revive_sqf\sound\UNIV_v25.ogg",0.05,1.0};
+		titles[]={};
+	};
+	class Brian_Shit
+	{
+		name="Brian_Shit";
+		sound[]={"revive_sqf\sound\UNIV_v31.ogg",0.05,1.0};
+		titles[]={};
+	};
+	class Brian_Need_help
+	{
+		name="Brian_Need_help";
+		sound[]={"revive_sqf\sound\UNIV_v50.ogg",0.05,1.0};
+		titles[]={};
+	};
+	class Brian_A_little_help_here
+	{
+		name="Brian_A_little_help_here";
+		sound[]={"revive_sqf\sound\UNIV_v51.ogg",0.05,1.0};
+		titles[]={};
+	};
+
+	#include "LDL_ac130\Sounds\CfgSounds.hpp"
+};
+
+
+class CfgIdentities
+{
+    class thedood
+    {
+        name = "thedood";
+        face = "Face20";
+        glasses = "None";
+        speaker = "Dan";
+        pitch = 1.1;
+    };  
+};
+
+class Border
+{
+    idc			= -1;
+    type		= 0;
+    style		= 0;
+    colorBackground[]	= {0.00, 0.00, 0.00, 0.20};
+    colorText[]		= {0.00, 0.00, 0.00, 1.00};
+    font		= "TahomaB";
+    sizeEx		= 0.023;
+    h			= 0.02;
+};
+class Border2
+{
+    idc			= -1;
+    type		= 0;
+    style		= 0;
+    colorBackground[]	= {0.00, 0.00, 0.00, 0.50};
+    colorText[]		= {0.00, 0.00, 0.00, 1.00};
+    font		= "TahomaB";
+    sizeEx		= 0.023;
+    h			= 0.02;
+};
+class Border3
+{
+    idc			= -1;
+    type		= 0;
+    style		= 0;
+    colorBackground[]	= {0.00, 0.00, 0.00, 0.00};
+    colorText[]		= {1.00, 1.00, 1.00, 1.00};
+    font		= "TahomaB";
+    sizeEx		= 0.023;
+    h			= 0.02;
+};
+
+
+
+
+class RscTitles
+{
+#include "R3F_ARTY_AND_LOG\desc_rsct_include.h"
+#include "mando_hitch\mando_hitch_titles.h"
+#include "LDL_ac130\RscTitles\RscTitles.hpp"
+
+	titles[] =
+	{
+		"Evo","DesertHeader","Objective1","Objective2","Objective3"
+
+	};
+	class Evo
+	{
+		idd=-1;
+		movingEnable = true;
+		duration=2;
+		fadein=1;
+		name = "Evo";
+		controls[]=
+		{
+			Picture
+		};   		
+		class Picture : RscPicture
+		{
+			x = 0.30; 
+			y = 0.50; 
+			w = 0.40; 
+			h = 0.05;
+			text = "data\evo.paa";
+			sizeEx = 0.04;	
+			style=48;
+		};
+	};
+	class DesertHeader
+	{
+		idd=-1;
+		movingEnable = true;
+		duration=7;
+		fadein=2;
+		fadeout=2;
+		name = "DesertHeader";
+		controls[]=
+		{
+			Picture
+		};   		
+		class Picture : RscPicture
+		{
+			x = 0; 
+			y = 0; 
+			w = 1; 
+			h = 1;
+			text = "data\DesertHeader.paa";
+		};
+	};
+	class Objective1
+	{
+		idd=-1;
+		movingEnable = true;
+		duration=7;
+		fadein=2;
+		name = "Objective1";
+		controls[]=
+		{
+			Picture
+		};   		
+		class Picture : RscPicture
+		{
+			x = 0; 
+			y = 0; 
+			w = 1; 
+			h = 1;
+			text = "data\Objective1.paa";
+		};
+	};
+	class Objective2
+	{
+		idd=-1;
+		movingEnable = true;
+		duration=7;
+		fadein=2;
+		name = "Objective2";
+		controls[]=
+		{
+			Picture
+		};   		
+		class Picture : RscPicture
+		{
+			x = 0; 
+			y = 0; 
+			w = 1; 
+			h = 1;
+			text = "data\Objective2.paa";
+		};
+	};
+	class Objective3
+	{
+		idd=-1;
+		movingEnable = true;
+		duration=5;
+		fadein=2;
+		name = "Objective3";
+		controls[]=
+		{
+			Picture
+		};   		
+		class Picture : RscPicture
+		{
+			x = 0; 
+			y = 0; 
+			w = 1; 
+			h = 1;
+			text = "data\Objective3.paa";
+		};
+	};
+};
+
+//BIGPICKLE	
+class BP_bloodScreen
+{
+     idd = -1;
+	movingEnable = 0;
+     duration = 2; //Displayed for 2 seconds
+	fadein = 0.1;
+	fadeout = 5;
+
+     class Controls
+	{
+     		class Splatter1
+		{
+			idc=-1;
+	           type = 0; 
+	           style = 48; 
+			font = "Bitstream";
+			sizeEx = 0.023;
+			x = "SafeZoneX";
+			y = "SafeZoneY";
+			w = "SafeZoneW + 0.05";
+			h = "SafeZoneH + 0.05";
+			text = "Data\blood1.paa";
+			colorBackground[] = {0, 0, 0, 0};
+			colorText[] = {0.9, 0.9, 0.9, 0.8}; //Last number is alpha
+		};
+		class Splatter2 : Splatter1 //Inherit values from Splatter1
+		{
+           	x = "SafeZoneX";
+			y = "SafeZoneY";
+			text = "Data\blood2.paa";
+		};
+		class Splatter3 : Splatter1 
+		{
+           	x = "SafeZoneX";
+			y = "SafeZoneY";
+			text = "Data\blood3.paa";
+		};
+		class Splatter4 : Splatter1 
+     		{
+	           x = "SafeZoneX";
+	           y = "SafeZoneY";
+	           text = "Data\ScreenDirt.paa";
+		};
+	};
+};
+
+
+class RscMisCam
+{
+	idd = 50001;
+	movingEnable = true;
+	controlsBackground[]=
+	{
+		Background1
+	};
+	class Background1 : RscPicture
+	{
+		idc = 1047001;
+		style = 128;
+		x = 0.02;
+		y = 0.02;
+		w = 1.00;
+		h = 1.00;
+		text = "";
+		colorBackground[] = {0, 0, 0, 0.0};
+	};
+};
+
+titleParam1="Respawn type";
+valuesParam1[]={1,0,2};
+defvalueParam1=2;
+textsParam1[]={"Revive/Base","Revive only","Base only"};
+
+titleParam2 = "Helicopter hitch and Arty System"; 
+valuesParam2[] = {0,1,2,3};
+defValueParam2 = 2; 
+textsParam2[] = {"Disabled","[R3F]Logistics","Mando Hitch & R3F","Mando Hitch"};
+
+class Params
+{
+	class Missiontime
+	{
+      //paramsArray[2]  
+      	title="Time Of Day";
+		values[]={2,4,6,9,12,15,18,21};
+		texts[]={"03:00","05:00","7:00","10:00","13:00","16:00","19:00","22:00"};	
+		default = 6;
+	};
+	
+      class Grass
+      {
+      //paramsArray[3]
+              title = "Grass";
+              values[] = {0,1,2,3,4};
+              texts[] = {"No Grass", "Default MP", "Default SP", "More", "Max"};
+              default = 1;
+	};
+      
+      class View
+      {
+      //paramsArray[4]
+      	title = "View distance";
+      	values[] = {500,800,1000,1300,1500,1800,2000,2300,2500,2800,3000,3300,3500,3800,4000,4300,4500,4800,5000,6000,7000,8000,9000,10000};
+      	texts[] = {"500 m","800 m","1000 m","1300 m","1500 m","1800 m","2000 m","2300 m","2500 m","2800 m","3000 m","3300 m","3500 m","3800 m","4000 m","4300 m","4500 m","4800 m","5000 m","6000 m","7000 m","8000 m","9000 m","10000 m"};
+      	default = 3000;
+	};
+            
+      class Mhqbeam
+      {
+      //paramsArray[5]
+		title = "Mobile HQ & respawns";
+		values[] = {0,1,2};
+		texts[] = {"Disabled", "MHQs Enabled", "MHQs, Farps & Docks"};
+		default = 1;
+	};
+	
+      class GLmod
+      {
+      //paramsArray[6]
+		title = "GITS mod (mod required)";
+		values[] = {0,1,2};
+		texts[] = {"Disabled", "Enabled", "Experimental"};
+		default = 1;
+	};
+		
+      class Pilotaccess
+      {
+      //paramsArray[7]
+		title = "Pilots Access Aircraft";
+		values[] = {0,1,2};
+		texts[] = {"Disabled", "Enabled", "Enabled at 150 points"};
+		default = 1;
+	};   
+	
+      class Vehiclelock
+      {
+      //paramsArray[8]
+		title = "Player Rank Lock";
+		values[] = {0,1,2,3};
+		texts[] = {"Locked", "Vehicles Locked Only", "Equipment Locked Only", "Unlocked"};
+		default = 2;
+	};  
+	
+	class Jail
+      {
+      //paramsArray[9]
+		title = "Point Punishment On Death";
+		values[] = {0,0.05,0.1};
+		texts[] = {"No punishment","5%","10%"};
+		default = 0.05;
+	};   
+	
+	class Rankscore
+      {
+      //paramsArray[10]
+		title = "Colonel Rank Points";
+		values[] = {20,30,40,50,60,80,90,100,150,200};
+		texts[] = {"120", "180", "240", "300", "360", "480", "540", "600", "900", "1200"};
+		default = 50;
+	};
+
+	class Helpers
+	{
+      //paramsArray[11]  
+      	title="AI Support";
+		values[]={0,1,2};
+		texts[]={"Off","On - Ranked","On - Unlocked"};
+		default = 1;
+	};
+
+	class Performance
+      {
+      //paramsArray[12]
+		title = "Performance";
+		values[] = {1,2};
+		texts[] = {"Sky + Environment ON", "Original EVO"};
+		default = 1;
+	};
+
+	class Perks
+      {
+      //paramsArray[13]
+		title = "Extra weapons: Aircraft & Static";
+		values[] = {1,2};
+		texts[] = {"On", "Off"};
+		default = 1;
+	};
+
+	class Artyscore
+      {
+      //paramsArray[14]
+		title = "Area Artillery Cost";
+		values[] = {1,2,3,4,5,6,7,8,9,10,1000};
+		texts[] = {"5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "Disabled"};
+		default = 4;
+	};
+
+	class Revive
+	{
+	// paramsArray[15]
+		title = "Number of Revives:";
+		values[] = {2000,1000,20,10,7,5};
+		texts[] = {"No Revive","Infinite - Cadet","20 - Easy ","10 - Normal","7  - Hard","5  - Extreme"};
+		default = 1000;
+        };
+
+	class Difficulty 
+	{
+		//paramsArray[16]
+		title = "Enemy Presence";
+		values[] = {3,2,1.5,1};
+		texts[] = {"Very Low", "Low", "Medium", "High"};
+		default = 1;
+	};
+	class Reinf
+	{
+		//paramsArray[17]
+		title = "Enemy Reinforcement Delay";
+		values[] = {120, 180, 240, 300,420,600};
+		texts[] = {"2 min", "3 min", "4 min", "5 min","7 min", "10 min"};
+		default = 180;
+	};
+	class EGG_vecmods
+	{
+      //paramsArray[18]  
+      	title="Air weapons";
+		values[]={0,1,2,3,4,5,9};
+		texts[]={"Off", "GITS", "RKSL", "PRACS", "UNSUNG", "GLT", "Arma3"};	
+		default = 1;
+	};
+	class EGG_unitwest
+	{
+		//paramsArray [19]
+		title = "BLUFOR faction";
+		values[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+		texts[] = {
+		"British Army Desert (BAF)", 
+		"British Army Woodland (BAF)", 
+		"US Army Desert", 
+		"USMC Woodland", 
+		"Czech Army Desert (ACR)", 
+		"Czech Army Woodland (ACR)", 
+		"Private Military Co. Desert (PMC)", 
+		"Private Military Co. Woodland (PMC)", 
+		"Sahrani Army (PRACS)", 
+		"US 25th Infantry Div. (65) (Unsung)",
+		"US 5th Spec. Forces Grp. (65) (Unsung)",
+		"USMC (65) (Unsung)",
+		"US 1st Infantry Div. (68) (Unsung)",
+		"USMC (68) (Unsung)",
+		"USMC Force Recon (68) (Unsung)",
+		"US 6th Spec. Forces Grp.(68) (Unsung)",
+		"US 1AC Long Range Recon Patrol LRRP (Unsung)",
+		"Civilian Irregular Defence Group CIDG (Unsung)",
+		"Afrenian Army (Isla Duala)",
+		"Army of the Republic of Lingor (ARL)",
+		"Arma 3"};
+
+		default = 0;
+	};
+	class EGG_vehPriceMultip
+	{
+      //paramsArray[20]  
+      	title="Vehicle price multiplier";
+		values[]={0,0.25,0.50,0.75,1,1.25,1.50,2};
+		texts[]={"FREE", "75% Off", "50% Off", "25% Off", "Base price", "25% Increase", "50% Increase","100% Increase"};	
+		default = 1;
+	};
+};
+
+//estimatedTimeLeft = 600;
+debriefing =1;
+showGPS=1;
+showRadio=1;
+//briefing=1;
+

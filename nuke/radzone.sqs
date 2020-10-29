@@ -1,0 +1,65 @@
+areaee = createMarker ["areaee", position Groundzero]
+"areaee" setMarkerShape "ELLIPSE"
+"areaee" setMarkerSize [1250, 1250]
+"areaee" setMarkerColor "ColorRed"
+destination setMarkerText "Nuclear Radiation";
+
+
+_cnt = 0
+_ctm = 2
+#loop
+?(_cnt == 120) : goto "loopend"
+
+_array = radarea nearObjects ["Man", (500)]
+{_x setdammage ((getdammage _x) + 0.03)} forEach _array
+
+_array = radarea nearObjects ["Tank", (500)]
+{_x setdammage ((getdammage _x) + 0.02)} forEach _array
+
+_array = radarea nearObjects ["Air", (500)]
+{_x setdammage ((getdammage _x) + 0.03)} forEach _array
+
+_array = radarea nearObjects ["Ship", (500)]
+{_x setdammage ((getdammage _x) + 0.02)} forEach _array
+
+_array = radarea nearObjects ["Car", (500)]
+{_x setdammage ((getdammage _x) + 0.03)} forEach _array
+
+~0.1
+
+_array = radarea nearObjects ["Man", (1250)]
+{_x setdammage ((getdammage _x) + 0.01)} forEach _array
+
+_array = radarea nearObjects ["Tank", (1250)]
+{_x setdammage ((getdammage _x) + 0.01)} forEach _array
+
+_array = radarea nearObjects ["Air", (1250)]
+{_x setdammage ((getdammage _x) + 0.01)} forEach _array
+
+_array = radarea nearObjects ["Ship", (1250)]
+{_x setdammage ((getdammage _x) + 0.01)} forEach _array
+
+_array = radarea nearObjects ["Car", (1250)]
+{_x setdammage ((getdammage _x) + 0.01)} forEach _array
+
+?(radarea distance player  < 1250) : hintsilent parseText "<t color='#ff3300' size='2.0' shadow='1' shadowColor='#000000' align='center'>RADIATION ZONE</t>"; goto "playsound"
+
+#continue
+_cnt = _cnt + 1
+~ 1.0
+goto "loop"
+
+#playsound
+_ctm = _ctm + 1
+?(_ctm == 3) : player say "radzoneb"; _ctm = 0
+goto "continue"
+
+
+#loopend
+deletevehicle radarea
+deletevehicle Groundzero
+deletemarker "destination"
+deletemarker "areaee"
+nukev = true
+publicvariable "nukev"
+exit

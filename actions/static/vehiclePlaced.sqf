@@ -1,0 +1,1 @@
+VehiclePlaced = 1;
