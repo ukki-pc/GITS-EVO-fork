@@ -13,7 +13,7 @@ BIS_EVO_VecRm =
 	_vecdir = vectorDir _vcl;
 	
 	_zone = createTrigger ["EmptyDetector", _respawnpoint ]; // Make a zone to detect when to cull
-	_zone setTriggerActivation ["WEST", "PRESENT", false];
+	_zone setTriggerActivation ["EAST", "PRESENT", false];
 	_zone setTriggerArea [300, 300, 0, true];
 	_zone setTriggerStatements ["this", "", ""];
 	

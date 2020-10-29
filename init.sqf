@@ -985,7 +985,7 @@ EB_twoseaterplanes = ["FRL_Su34_D_CAP","FRL_Su34_D_CAS","FRL_Su34_D_HCAS","FRL_S
 //////////////////////////////////
 //EDITOR use
 //if playing in editor rem out the next line with a // and manually set param below instead
-editor = 0; publicVariable "editor";
+editor = 1; publicVariable "editor";
 
 if (editor == 1) then
 {

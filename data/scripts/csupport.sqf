@@ -80,12 +80,12 @@ BIS_EVO_CountDead =
 	if(count _list > 0) then
 	{
 		{
-			if(_x isKindof "Man" and (side _x) == east) then {_men = _men + 1;_score = _score+1};
-			if(_x isKindof "Car" and (side _x) == east) then {_car = _car + 1;_score = _score+3};
-			if(_x isKindof "Tank" and (side _x) == east) then {_tank = _tank + 1;_score = _score+5};
-			if(_x isKindof "Man" and (side _x) == west) then {_men = _men - 1;_score = _score-1};
-			if(_x isKindof "Car" and (side _x) == west) then {_car = _car - 1;_score = _score-3};
-			if(_x isKindof "Tank" and (side _x) == west) then {_tank = _tank - 1;_score = _score-5};		
+			if(_x isKindof "Man" and (side _x) == west) then {_men = _men + 1;_score = _score+1};
+			if(_x isKindof "Car" and (side _x) == west) then {_car = _car + 1;_score = _score+3};
+			if(_x isKindof "Tank" and (side _x) == west) then {_tank = _tank + 1;_score = _score+5};
+			if(_x isKindof "Man" and (side _x) == east) then {_men = _men - 1;_score = _score-1};
+			if(_x isKindof "Car" and (side _x) == east) then {_car = _car - 1;_score = _score-3};
+			if(_x isKindof "Tank" and (side _x) == east) then {_tank = _tank - 1;_score = _score-5};		
 
 		} forEach _list;
 	};

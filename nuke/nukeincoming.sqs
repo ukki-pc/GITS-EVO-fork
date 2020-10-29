@@ -9,7 +9,7 @@ _pathS = _path + "data\scripts\"; //"
 
 _dropPosition = getpos Groundzero;
 "destination" setmarkerpos getpos Groundzero;
-_PlaneC1 = creategroup WEST;
+_PlaneC1 = creategroup EAST;
 _cruise = createVehicle ["Chukar",_dropPosition,[], 0, "FLY"];
 _cruise setvectordir [ 0.1,- 1,+ 0.5];
 _cruise setPos [(getPos _cruise select 0),(getPos _cruise select 1),570];

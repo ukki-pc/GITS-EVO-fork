@@ -1011,7 +1011,7 @@ if (player hasWeapon "ItemRadio") then
 		else
 		{
 			_unit = (GrpList select _index);
-			if(isNull _unit) then {_grp = creategroup (west)}else{_grp = group unit};
+			if(isNull _unit) then {_grp = creategroup (east)}else{_grp = group unit};
 			[player] join group _unit;
 		};	
 	};

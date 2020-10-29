@@ -9,8 +9,8 @@ BIS_EVO_Erec =
 	_stat = 0; 
 	_radio = objNull; 
 	_inf = round(((BIS_EVO_Infantry select _towncount) select 0)/2);
-	_mec = round(((BIS_EVO_Mechanized select _towncount) select 0)/2);
-	_stat = round((((BIS_EVO_Mechanized select _towncount) select 0)/2)/2);
+	_mec = round(((BIS_EVO_Mechanized select _towncount) select 0));
+	_stat = round((((BIS_EVO_Mechanized select _towncount) select 0)/2));
 	_radio = BIS_EVO_radios select _towncount;
 	_newunits = [];
 	_rds = [];
@@ -40,8 +40,8 @@ BIS_EVO_Erec =
 //Radio defence
 	if(_inf > 11) then
 	{
-		_grp = createGroup (east);
-		_type = EGG_EVO_east1 select 0;
+		_grp = createGroup (west);
+		_type = EGG_EVO_west1 select 0;
 		_unit = _grp createUnit [_type, position _radio, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
 		_unit addEventHandler ["killed", {handle = [_this select 0,"INF"] execVM "data\scripts\mobjbury.sqf"}];		
@@ -61,8 +61,8 @@ BIS_EVO_Erec =
 	if(_inf > 11) then
 	{
 		Sleep 1;
-		_grp = createGroup (east);
-		_type = EGG_EVO_east1 select 0;
+		_grp = createGroup (west);
+		_type = EGG_EVO_west1 select 0;
 		_unit = _grp createUnit [_type, position _offobj, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
 		_unit addEventHandler ["killed", {handle = [_this select 0,"INF"] execVM "data\scripts\mobjbury.sqf"}];		
@@ -82,8 +82,8 @@ BIS_EVO_Erec =
 	if(_inf > 11) then
 	{
 		Sleep 1;
-		_grp = createGroup (east);
-		_type = EGG_EVO_east1 select 0;
+		_grp = createGroup (west);
+		_type = EGG_EVO_west1 select 0;
 		_unit = _grp createUnit [_type, position _radio, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
 		_unit addEventHandler ["killed", {handle = [_this select 0,"INF"] execVM "data\scripts\mobjbury.sqf"}];
@@ -102,8 +102,8 @@ BIS_EVO_Erec =
 	Sleep 2;
 	while {_inf > 0} do 
 	{
-		_grp = createGroup (east);
-		_type = EGG_EVO_east1 select 0;
+		_grp = createGroup (west);
+		_type = EGG_EVO_west1 select 0;
 		_unit = _grp createUnit [_type, _pos, [], 300, "FORM"];Sleep BIS_EVO_GlobalSleep;
 		_rds = (_unit nearRoads 50);
 		if(count _rds > 0) then 
@@ -134,9 +134,9 @@ BIS_EVO_Erec =
 	Sleep 2;
 	while {_mec > 0} do 
 	{
-		_allvecs = EGG_EVO_eastveh7;
+		_allvecs = EGG_EVO_westveh7;
 		_max = (count _allvecs)-1;
-		_array = [_allvecs select (round random _max),_pos,(east),300,180,0] call BIS_EVO_CreateVehicle;
+		_array = [_allvecs select (round random _max),_pos,(west),300,180,0] call BIS_EVO_CreateVehicle;
 		_grp = _array select 0;
 		_vec = _array select 1;
 		_rds = (_vec nearRoads 20);
@@ -170,9 +170,9 @@ BIS_EVO_Erec =
 	while {_stat > 0} do 
 	{
 //added mortar etc
-		_allvecs = EGG_EVO_eastveh13;
+		_allvecs = EGG_EVO_westveh13;
 		_max = (count _allvecs)-1;
-		_array = [_allvecs select (round random _max),_pos,(east),200,180,0] call BIS_EVO_CreateVehicle;
+		_array = [_allvecs select (round random _max),_pos,(west),200,180,0] call BIS_EVO_CreateVehicle;
 		_grp = _array select 0;
 		{_x addEventHandler  ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}]} forEach (units _grp);
 		{_x setSkill skillfactor+(random 0.2);_x setDir 180} forEach (units _grp);
@@ -188,12 +188,12 @@ BIS_EVO_Erec =
 	{
 		Sleep 1;
 		_respawnpoint = _outpoints select _curpoint;
-		_allvecs = EGG_EVO_eastveh11;
+		_allvecs = EGG_EVO_westveh11;
 		_max = (count _allvecs)-1;
 		_vcl = createVehicle [(_allvecs select (round random _max)), _respawnpoint, [], 120, "NONE"];
 		_vcl setdir random 359;	
-		_grp = createGroup (east);
-		_type = EGG_EVO_east1 select 0;
+		_grp = createGroup (west);
+		_type = EGG_EVO_west1 select 0;
 		_unit1 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
 		_unit2 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
 		_unit3 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;

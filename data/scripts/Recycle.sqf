@@ -9,7 +9,7 @@ while {_i <= 1799} do
 	_i = _i+1;
 	if (_name == BIS_EVO_dunit) then {_i = 1800};
 	if (isNull _object) exitWith {};
-	if (side _object == west) exitWith {};
+	if (side _object == east) exitWith {};
 	sleep 1.0;
 };
 sleep 4.0;

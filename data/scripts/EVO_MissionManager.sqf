@@ -2,12 +2,12 @@
 _mkr = (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
 _pos = getMarkerPos _mkr;
 BIS_EVO_DetectEast = createTrigger ["EmptyDetector", _pos];
-BIS_EVO_DetectEast setTriggerActivation ["EAST", "PRESENT", true];
+BIS_EVO_DetectEast setTriggerActivation ["WEST", "PRESENT", true];
 BIS_EVO_DetectEast setTriggerArea [500, 500, 0, true];
 BIS_EVO_DetectEast setTriggerTimeout [2, 2, 2, true ];
 
 BIS_EVO_DetectWest = createTrigger ["EmptyDetector", _pos];
-BIS_EVO_DetectWest setTriggerActivation ["WEST", "PRESENT", true];
+BIS_EVO_DetectWest setTriggerActivation ["EAST", "PRESENT", true];
 BIS_EVO_DetectWest setTriggerArea [600, 600, 0, true];
 BIS_EVO_DetectWest setTriggerTimeout [2, 2, 2, true ];
 _count = (count BIS_EVO_MissionTowns);

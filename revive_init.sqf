@@ -125,13 +125,13 @@ _stabTime_tillDeath				= 0;				//array no.87 - NOT IMPLEMENTED //Time until deat
 // ==================================================================
 // ENEMY SIDE TO PLAYABLE UNITS
 _no_enemy_sides 				= 1;				//array no.22 - No of Enemy sides (0, 1 or 2). 
-_enemy_side_1 					= "EAST";			//array no.23 - Enemy sides can be "EAST", "WEST", "GUER" etc  
+_enemy_side_1 					= "WEST";			//array no.23 - Enemy sides can be "EAST", "WEST", "GUER" etc  
 _enemy_side_2 					= "";				//array no.24 
 _enemy_side_3 					= "";				//array no.88 - NOT IMPLEMENTED
 _enemy_side_4 					= "";				//array no.89 - NOT IMPLEMENTED
 // ==================================================================
 // FRIENDLY SIDE TO PLAYABLE UNITS
-_allied_side_1 					= "WEST";			//array no.42 - Friendly sides can be "EAST", "WEST","RESISTANCE" etc.  
+_allied_side_1 					= "EAST";			//array no.42 - Friendly sides can be "EAST", "WEST","RESISTANCE" etc.  
 _allied_side_2 					= "GUER";			//array no.43 - If all players are from the same side make sure you set the same side for both variables eg "WEST", "WEST"
 _allied_side_3 					= "";				//array no.90 - NOT IMPLEMENTED
 _allied_side_4 					= "";				//array no.91 - NOT IMPLEMENTED

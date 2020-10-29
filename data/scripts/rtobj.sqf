@@ -9,7 +9,7 @@ _search setMarkerColor "ColorRed";
 _search setMarkerSize [0.5, 0.5];
 
 _trgobj3 = createTrigger ["EmptyDetector", position _rt];
-_trgobj3 setTriggerActivation ["WEST", "PRESENT", true];
+_trgobj3 setTriggerActivation ["EAST", "PRESENT", true];
 _trgobj3 setTriggerArea [200, 200, 0, false];
 for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 {

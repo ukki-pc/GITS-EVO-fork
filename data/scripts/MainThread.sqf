@@ -82,7 +82,7 @@ _EVO_Clean =
 	_Objects = (getMarkerPos "ammob1") nearObjects 30;{if (_x isKindOf "WeaponHolder") then {deletevehicle _x}} forEach _Objects;
 	_Objects = (getMarkerPos "ammob2") nearObjects 30;{if (_x isKindOf "WeaponHolder") then {deletevehicle _x}} forEach _Objects;
 		{
-			if(side _x == west) then 
+			if(side _x == east) then 
 			{
 				if(not IsPlayer (leader _x)) then
 				{

@@ -14,7 +14,7 @@ if(Param1 == 4) then
 	_txtpassbody = format["%1 %2",BIS_EVO_lives,_txtcommon];
 	["#FF0000",_txtpasshead,_txtpassbody] call BIS_EVO_Message;
 };
-if(not (isPlayer _killer) and side _killer == west) then 
+if(not (isPlayer _killer) and side _killer == east) then 
 {
 	_txtpasshead = localize "STR_M04t85";
 	_txtpassbody = format[localize "STR_M04t87",name (leader _killer)];
