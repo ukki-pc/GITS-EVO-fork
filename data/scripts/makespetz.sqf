@@ -48,8 +48,8 @@ if(round (random 1) == 1) then {_targblue = getmarkerpos "hospital"};
 sleep 2;
 
 _spetz = createGroup (east);
-		_allvecsNG = EGG_EVO_eastveh14;
-		_allvecsG = EGG_EVO_eastveh6;
+		_allvecsNG = EGG_EVO_westveh9;
+		_allvecsG = EGG_EVO_westveh8;
 		_maxG = (count _allvecsG)-1;
 		_maxNG = (count _allvecsNG)-1;
 		_heli = createVehicle [_allvecsG select (round random _maxG), _pos1, [], 0, "NONE"];[_heli] call BIS_EVO_Lock;Sleep BIS_EVO_GlobalSleep;
@@ -104,7 +104,7 @@ sleep 0.2;
 (units _spetz select 5) moveInDriver _heli3;
 
 //_allunits = ["RUS_Soldier_GL","RUS_Soldier_Marksman","RUS_Commander","RUS_Soldier1","RUS_Soldier2","RUS_Soldier3","RUS_Soldier_TL"];
-_allunits = EGG_EVO_east3;
+_allunits = EGG_EVO_west3;
 _max = count _allunits;
 
 _allunits select (round random (_max - 1)) createUnit [_pos5, _spetz];Sleep BIS_EVO_GlobalSleep;

@@ -32,7 +32,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_Allspawns = [["parref","parrefa","parrefb"],["somref","somrefa","somrefb"],["cayref","cayrefa","cayrefb"],["dolref","dolrefa","dolrefb"],["ortref","ortrefa","ortrefb"],["corref","correfa","correfb"],["obrref","obrrefa","obrrefb"],["bagref","bagrefa","bagrefb"],["eporef","eporefa","eporefb"],["masref","masrefa","masrefb"],["pitref","pitrefa","pitrefb"]];
 		_radio = BIS_EVO_radios select BIS_EVO_MissionProgress;
 
-		_allunits = EGG_EVO_east2;
+		_allunits = EGG_EVO_west1;
 		_max = count _allunits;
 		_guardr = createGroup (east);
 		_spawns = _Allspawns select BIS_EVO_MissionProgress;
@@ -73,7 +73,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_max = objnull;
 		_maxv = objnull;
 		_alist = BIS_EVO_DetectWest;
-		_allunits2 = EGG_EVO_east3;
+		_allunits2 = EGG_EVO_west1;
 		_max = count _allunits2;
 		_radio = BIS_EVO_radios select BIS_EVO_MissionProgress;
 		_pos = position _radio;
@@ -153,7 +153,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_spawns = _Allspawns select BIS_EVO_MissionProgress;
 		_pos = GetMarkerPos (_spawns select (round random 2));
 		_tag = "MEC";
-		_allvec = EGG_EVO_eastarm; //mixed units reinforce
+		_allvec = EGG_EVO_westarm; //mixed units reinforce
 		_maxo = (count _allvec)-1;	
 		_rds = [];
 		_rds = (_pos nearRoads 10);

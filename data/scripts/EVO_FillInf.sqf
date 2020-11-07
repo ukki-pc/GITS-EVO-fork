@@ -4,28 +4,28 @@ BIS_EVO_FillInf =
 	_lpos = position leader _grp;
 
 	_r = (round random 4)+1;
-	_allunits = EGG_EVO_east10;
+	_allunits = EGG_EVO_west1;
 	switch (_r) do
 	{
 		case 1: //rebels low skill
 		{
-				_allunits = EGG_EVO_east5;
+				_allunits = EGG_EVO_west1;
 		};
 		case 2: //insurgents fair skill
 		{
-				_allunits = EGG_EVO_east4;
+				_allunits = EGG_EVO_west1;
 		};
 		case 3: //soldiers medium skill
 		{
-				_allunits = EGG_EVO_east1;
+				_allunits = EGG_EVO_west1;
 		};
 		case 4: // MVD good skill
 		{
-				_allunits = EGG_EVO_east2;
+				_allunits = EGG_EVO_west1;
 		};
 		case 5: // spetsnaz excellent skill
 		{
-				_allunits = EGG_EVO_east3;
+				_allunits = EGG_EVO_west1;
 		};
 	};
 
@@ -70,7 +70,7 @@ BIS_EVO_FillInfDummy =
 	_grp = _this select 0;
 	_lpos = position leader _grp;
 	_spawned = [];
-	_allunits = EGG_EVO_east10;	
+	_allunits = EGG_EVO_west1;	
 	_max = (count _allunits)-1;
 	_infcount = 11;
 	_j = 0;

@@ -601,7 +601,7 @@ EGG_EVO_magent = ["CIV_EuroWoman01_EP1","CIV_EuroWoman02_EP1","Rita_Ensler_EP1"]
 EGG_EVO_mfteam = EGG_EVO_west4;
 
 EGG_EVO_mepilot = ["TK_Soldier_Pilot_EP1"];
-EGG_EVO_meofficer = ["TK_Soldier_Officer_EP1","TK_Aziz_EP1","TK_Commander_EP1","TK_INS_Warlord_EP1"];
+EGG_EVO_meofficer = ["BAF_Soldier_Officer_MTP"];
 EGG_EVO_mecrew = ["TK_Soldier_Crew_EP1"];
 EGG_EVO_meguard = ["TK_Aziz_EP1","TK_Commander_EP1","TK_Soldier_MG_EP1","TK_Soldier_HAT_EP1"];
 EGG_EVO_meguardb = ["TK_Soldier_AMG_EP1","TK_Soldier_Sniper_EP1","TK_Special_Forces_TL_EP1"];
@@ -1308,6 +1308,8 @@ EGG_EVO_eastchopM = EGG_EVO_mevaira+EGG_EVO_eastveh3;
 EGG_EVO_eastplaneM = EGG_EVO_eastveh2+EGG_EVO_eastveh4;
 EGG_EVO_eastairM = EGG_EVO_eastchopM+EGG_EVO_eastplaneM;
 
+
+//Reinforce vehicles
 EGG_EVO_westarm = EGG_EVO_westveh6+EGG_EVO_westveh7;
 EGG_EVO_westlightM = EGG_EVO_westveh6+EGG_EVO_westveh9;
 EGG_EVO_westheavyM = EGG_EVO_westveh7+EGG_EVO_westveh10;
