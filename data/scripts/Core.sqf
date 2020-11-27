@@ -222,8 +222,8 @@ BIS_EVO_ListUpdate =
 
 	if (helpersparam == 1) then 
 	{
-		RecList = [[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_EP1" >> "DisplayName"), "US_Delta_Force_EP1", "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", ["US_Delta_Force_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_Medic_EP1" >> "DisplayName"), "US_Delta_Force_Medic_EP1", "\Ca\characters\data\Ico\i_med_ca.paa",["US_Delta_Force_Medic_EP1"] call _GetGuns]];
+		RecList = [[getText (configFile >> "CfgVehicles" >> "TK_Soldier_LAT_EP1" >> "DisplayName"), "TK_Soldier_LAT_EP1", "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", ["TK_Soldier_LAT_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_Medic_EP1" >> "DisplayName"), "TK_Soldier_Medic_EP1", "\Ca\characters\data\Ico\i_med_ca.paa",["TK_Soldier_Medic_EP1"] call _GetGuns]];
 	};
 
 /* developing parameter for artillery cost based on:
@@ -419,7 +419,7 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 	if (helpersparam == 2) then 
 	{
 		RecList = [];
-		RecList = [[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_EP1" >> "DisplayName"), "US_Delta_Force_EP1", "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", ["US_Delta_Force_EP1"] call _GetGuns]];
+		RecList = [[getText (configFile >> "CfgVehicles" >> "TK_Soldier_LAT_EP1" >> "DisplayName"), "TK_Soldier_LAT_EP1", "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", ["TK_Soldier_LAT_EP1"] call _GetGuns]];
 		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_Medic_EP1" >> "DisplayName"), "US_Delta_Force_Medic_EP1", "\Ca\characters\data\Ico\i_med_ca.paa",["US_Delta_Force_Medic_EP1"] call _GetGuns]];
 		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_AT_EP1" >> "DisplayName"), "US_Soldier_AT_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa", ["US_Soldier_AT_EP1"] call _GetGuns]];
 		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_Pilot_EP1" >> "DisplayName"), "US_Soldier_Pilot_EP1", "\Ca\characters\data\portraits\combarhead_usmc_pilot_ca",["US_Soldier_Pilot_EP1"] call _GetGuns]];

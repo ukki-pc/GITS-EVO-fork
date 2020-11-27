@@ -116,7 +116,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 				_unit setSkill skillfactor+(random 0.2);
 				_unit addEventHandler ["killed", {handle = [_this select 0,"INF"] execVM "data\scripts\mobjbury.sqf"}];
 				[_unit] join _para;
-				_vec = createVehicle ["ParachuteEast", _pos, [], 20, 'NONE'];
+				_vec = createVehicle ["ParachuteWest", _pos, [], 20, 'NONE'];
 				_vec setpos [_pos select 0,_pos select 1,(_pos select 2)- 12];
 				_unit MoveInDriver _vec;
 				sleep 0.7;

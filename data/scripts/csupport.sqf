@@ -247,7 +247,7 @@ ColorYellow		//WMD
 //BIGPICKLE
 		[-1, {_man = _this select 0; _man say "Resupply";},[player]] call cba_fnc_globalExecute;	
 		_pos = (position _base);
-		_obj_para = "ParachuteMediumWest_EP1" createVehicle [0,0,0];
+		_obj_para = "ParachuteMediumEast_EP1" createVehicle [0,0,0];
 		_obj_para setpos [_pos select 0,_pos select 1,(_pos select 2) +100];		
 		_tbox = "PRACS_Vehicle_AmmoBox" createVehicle _pos;
 		_tbox attachTo [_obj_para, [0,0,-1.6]];
@@ -297,7 +297,7 @@ switch (_ord) do
 //BIGPICKLE
 		[-1, {_man = _this select 0; _man say "Resupply";},[player]] call cba_fnc_globalExecute;	
 		_pos = (position _base);
-		_obj_para = "ParachuteMediumWest_EP1" createVehicle [0,0,0];
+		_obj_para = "ParachuteMediumEast_EP1" createVehicle [0,0,0];
 		_obj_para setpos [_pos select 0,_pos select 1,(_pos select 2) +100];		
 		_tbox = "USOrdnanceBox" createVehicle _pos;
 		_tbox attachTo [_obj_para, [0,0,-1.6]];
@@ -401,7 +401,7 @@ switch (_ord) do
 	{
 		[-1, {_man = _this select 0; _man say "Resupply"; }, [player]] call cba_fnc_globalExecute;	
 		_pos = (position _base);
-		_obj_para = "ParachuteMediumWest_EP1" createVehicle [0,0,0];
+		_obj_para = "ParachuteMediumEast_EP1" createVehicle [0,0,0];
 		_obj_para setpos [_pos select 0,_pos select 1,(_pos select 2) +100];		
 		_tbox = "M1030" createVehicle _pos;
 		_tbox attachTo [_obj_para, [0,0,-1.6]];
@@ -438,7 +438,7 @@ switch (_ord) do
 	{
 		[-1, {_man = _this select 0; _man say "Resupply"; }, [player]] call cba_fnc_globalExecute;	 
 		_pos = (position _base);
-		_obj_para = "ParachuteMediumWest_EP1" createVehicle [0,0,0];
+		_obj_para = "ParachuteMediumEast_EP1" createVehicle [0,0,0];
 		_obj_para setpos [_pos select 0,_pos select 1,(_pos select 2) +100];	
 		_tbox = "Zodiac" createVehicle _pos;
 
@@ -486,7 +486,7 @@ switch (_ord) do
 	{
 		[-1, {_man = _this select 0; _man say "Resupply"; }, [player]] call cba_fnc_globalExecute;	
 		_pos = (position _base);
-		_obj_para = "ParachuteMediumWest_EP1" createVehicle [0,0,0];
+		_obj_para = "ParachuteMediumEast_EP1" createVehicle [0,0,0];
 		_obj_para setpos [_pos select 0,_pos select 1,(_pos select 2) +100];	
 		_tbox = "2b14_82mm" createVehicle _pos;
 		_tbox attachTo [_obj_para, [0,0,-1.6]];
@@ -524,7 +524,7 @@ switch (_ord) do
 	{
 		[-1, {_man = _this select 0; _man say "Resupply"; }, [player]] call cba_fnc_globalExecute;	
 		_pos = (position _base);
-		_obj_para = "ParachuteMediumWest_EP1" createVehicle [0,0,0];
+		_obj_para = "ParachuteMediumEast_EP1" createVehicle [0,0,0];
 		_obj_para setpos [_pos select 0,_pos select 1,(_pos select 2) +100];	
 		_tbox = "pook_SOCR_H_M134b_US" createVehicle _pos;
 
@@ -546,7 +546,7 @@ switch (_ord) do
 	{
 		[-1, {_man = _this select 0; _man say "Resupply"; }, [player]] call cba_fnc_globalExecute;	
 		_pos = (position _base);
-		_obj_para = "ParachuteMediumWest_EP1" createVehicle [0,0,0];
+		_obj_para = "ParachuteMediumEast_EP1" createVehicle [0,0,0];
 		_obj_para setpos [_pos select 0,_pos select 1,(_pos select 2) +100];	
 		_tbox = "ZU23_TK_GUE_EP1" createVehicle _pos;
 		_tbox addmagazine "40Rnd_23mm_AZP85";
@@ -572,7 +572,7 @@ switch (_ord) do
 	{
 		[-1, {_man = _this select 0; _man say "Resupply"; }, [player]] call cba_fnc_globalExecute;	
 		_pos = (position _base);
-		_obj_para = "ParachuteMediumWest_EP1" createVehicle [0,0,0];
+		_obj_para = "ParachuteMediumEast_EP1" createVehicle [0,0,0];
 		_obj_para setpos [_pos select 0,_pos select 1,(_pos select 2) +100];	
 		_tbox = "M119_US_EP1" createVehicle _pos;
 		_tbox addmagazine "20Rnd_120mmSABOT_M1A2";
@@ -607,7 +607,7 @@ switch (_ord) do
 	{
 		[-1, {_man = _this select 0; _man say "Resupply"; }, [player]] call cba_fnc_globalExecute;	  
 		_pos = (position _base);
-		_obj_para = "ParachuteMediumWest_EP1" createVehicle [0,0,0];
+		_obj_para = "ParachuteMediumEast_EP1" createVehicle [0,0,0];
 		_obj_para setpos [_pos select 0,_pos select 1,(_pos select 2) +100];		
 		_tbox = "ATV_US_EP1" createVehicle _pos;
 		_tbox attachTo [_obj_para, [0,0,-1.6]];

@@ -59,7 +59,7 @@ _pos = position _player;
 _unit = group _player createUnit [_unitype, [0,0,0], [], 0, "NONE"];Sleep BIS_EVO_GlobalSleep;
 _unit setskill BIS_EVO_PlayerSkill;
 //_lone = [_unit] execVM 'data\scripts\nohuman.sqf';
-_vec = createVehicle ["ParachuteWest", _pos, [], 20, 'NONE'];Sleep BIS_EVO_GlobalSleep;
+_vec = createVehicle ["ParachuteEast", _pos, [], 20, 'NONE'];Sleep BIS_EVO_GlobalSleep;
 _vec setpos [_pos select 0,_pos select 1,(_pos select 2)+ 120];
 _unit MoveInDriver _vec;
 

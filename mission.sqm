@@ -30,16 +30,13 @@ class Mission
 		"caweapons_e",
 		"caweapons_acr_rbs70",
 		"cawheeled_acr_lr",
-		"ibr_isladuala",
 		"molatian_army",
 		"Afrenian_Army",
 		"pracs_static",
 		"pracs_boat",
 		"blx_ridgeback_base",
 		"eb_wheeled_blufor",
-		"eb_wheeled_opfor",
 		"eb_weapons",
-		"eb_armour_opfor",
 		"Chenowth",
 		"dpv",
 		"Trh_sct",
@@ -52,7 +49,8 @@ class Mission
 		"pracs_tracked",
 		"opxmisc",
 		"bmfayshkhabur",
-		"ibr_maule"
+		"ibr_maule",
+		"antonov225"
 	};
 	addOnsAuto[]=
 	{
@@ -94,6 +92,7 @@ class Mission
 		"caweapons_ammoboxes",
 		"blx_ridgeback_base",
 		"ibr_maule",
+		"antonov225",
 		"bmfayshkhabur"
 	};
 	randomSeed=11045191;
@@ -966,10 +965,10 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={16172.28,169.65118,15346.65};
+					position[]={16165.282,169.65118,15349.348};
 					id=233;
 					side="EAST";
-					vehicle="TK_INS_Warlord_EP1";
+					vehicle="TK_Commander_EP1";
 					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;
@@ -980,7 +979,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=171;
+		items=172;
 		class Item0
 		{
 			position[]={10146.172,267.48233,6365.8276};
@@ -2091,7 +2090,7 @@ class Mission
 		};
 		class Item116
 		{
-			position[]={16172.588,169.65118,15346.588};
+			position[]={16173.966,169.65118,15346.362};
 			azimut=230;
 			id=154;
 			side="EMPTY";
@@ -2628,6 +2627,16 @@ class Mission
 			id=232;
 			side="EMPTY";
 			vehicle="ibr_maule_M7";
+			leader=1;
+			skill=0.60000002;
+			init="veh = [this, 3600, 3600] execVM ""vehicle.sqf""";
+		};
+		class Item171
+		{
+			position[]={15973.12,169.64168,15448.413};
+			id=234;
+			side="EMPTY";
+			vehicle="Antonov225_2";
 			leader=1;
 			skill=0.60000002;
 			init="veh = [this, 3600, 3600] execVM ""vehicle.sqf""";
@@ -4791,7 +4800,6 @@ class Intro
 {
 	addOns[]=
 	{
-		"ibr_isladuala",
 		"bmfayshkhabur"
 	};
 	addOnsAuto[]=
@@ -4814,7 +4822,6 @@ class OutroWin
 {
 	addOns[]=
 	{
-		"ibr_isladuala",
 		"bmfayshkhabur"
 	};
 	addOnsAuto[]=
@@ -4837,7 +4844,6 @@ class OutroLoose
 {
 	addOns[]=
 	{
-		"ibr_isladuala",
 		"bmfayshkhabur"
 	};
 	addOnsAuto[]=
