@@ -453,7 +453,11 @@ EGG_EVO_westveh5 = ["BAF_ATV_D","BAF_Offroad_D","ATV_US_EP1","MTVR_DES_EP1","Mtv
 EGG_EVO_westveh6 = ["LandRover_Special_CZ_EP1","BAF_Jackal2_GMG_W","BAF_Jackal2_L2A1_W","BAF_Jackal2_GMG_D","BAF_Jackal2_L2A1_D","M113_UN_EP1","HMMWV_M1035_DES_EP1","HMMWV_M1151_M2_DES_EP1","HMMWV_M998_crows_M2_DES_EP1","HMMWV_M998_crows_MK19_DES_EP1","HMMWV_M998A2_SOV_DES_EP1","HMMWV_MK19_DES_EP1","HMMWV_TOW_DES_EP1"];
 //heavy armed
 //EGG_EVO_westveh7 = ["AAV","LAV25","M1A1","M1A2_TUSK_MG","BMP2_CDF","T72_CDF","MLRS","T34"];
-EGG_EVO_westveh7 = ["M1135_ATGMV_EP1","M1130_CV_EP1","M1126_ICV_M2_EP1","M1126_ICV_mk19_EP1","M1129_MC_EP1","M1128_MGS_EP1","M1A1_US_DES_EP1","M1A2_US_TUSK_MG_EP1","MLRS_DES_EP1","M2A2_EP1","M2A3_EP1","BAF_FV510_D","BAF_FV510_W"];
+
+//THESE ARMOR SPAWN ON TOWNS
+EGG_EVO_westveh7 = ["M1135_ATGMV_EP1","PRACS_LAV_IFV","EB_LAV25_D2","HMMWV_M998_crows_MK19_DES_EP1","M1130_CV_EP1","M1126_ICV_M2_EP1","M1126_ICV_mk19_EP1","M1129_MC_EP1","PRACS_LEO2A4","PRACS_LEO1A5","PRACS_M60A3","PRACS_M60A3_S2","M1128_MGS_EP1","M1A1_US_DES_EP1","M1A2_US_TUSK_MG_EP1","M2A2_EP1","M2A3_EP1","PRACS_FV107","BAF_FV510_D","PRACS_FV101"];
+
+
 //unarmed mod
 EGG_EVO_westveh8 = ["AFR_Pinz_police","ukf_110_des","ukf_110_wld"];
 //EGG_EVO_westveh8 = ["uns_truck_open","uns_truck_closed","uns_m37b1"];
@@ -463,22 +467,22 @@ EGG_EVO_westveh9 = ["M113","M113_RACS","Chenowth","vil_m113a2","vil_m113a3","sti
 //heavy armed mod
 EGG_EVO_westveh10 = ["vil_bradley_a1","vil_bradley_gr","vil_bradley_a2D","vil_bradley_a2","vil_m109_sph","sa_bmd2_cdf","sa_bmd2_chdkz"];
 //EGG_EVO_westveh10 = ["vil_m109_sph","sa_bmd2_cdf","sa_bmd2_chdkz","uns_m60a1","uns_m48a3","uns_m48a3_1","uns_m48a3_2"];
-//AA
-EGG_EVO_westveh11 = ["HMMWV_Avenger","ZSU_CDF"];
+
+//THESE AA SPAWN ON TOWNS
+EGG_EVO_westveh11 = ["HMMWV_Avenger","PRACS_m48_chapparal","PRACS_M163","PRACS_M460_SAM"];
+
+
 //EGG_EVO_westveh11 = ["HMMWV_Avenger","ZSU_CDF","M6_EP1"];
 //AA mod
 EGG_EVO_westveh12 = ["Vulcan","Vulcan_RACS","vil_bradley_a6","vil_bradley_a6D"];
 //EGG_EVO_westveh12 = ["uns_m163"];
 //statics
-EGG_EVO_westveh13 = ["Fort_Nest_M240","M2HD_mini_TriPod","M2StaticMG","DSHKM_CDF","DSHkM_Mini_TriPod_CDF","MK19_TriPod","AGS_CDF","2b14_82mm","2b14_82mm_CDF","M252","SPG9_CDF","M119","D30_CDF","TOW_TriPod","Stinger_Pod","ZU23_CDF"];
+EGG_EVO_westveh13 = ["Fort_Nest_M240","M2HD_mini_TriPod","M2StaticMG","DSHKM_CDF","DSHkM_Mini_TriPod_CDF","MK19_TriPod","AGS_CDF","2b14_82mm","2b14_82mm_CDF","M252","SPG9_CDF","M119","D30_CDF","TOW_TriPod","Stinger_Pod","ZU23_CDF","PRACS_HAWK","PRACS_Type74AAgun","PRACS_M266AAgun"];
 //EGG_EVO_westveh13 = ["BAF_GMG_Tripod_D","BAF_GPMG_Minitripod_D","BAF_L2A1_Minitripod_D","BAF_L2A1_Tripod_D","BAF_GMG_Tripod_W","BAF_GPMG_Minitripod_W","BAF_L2A1_Minitripod_W","BAF_L2A1_Tripod_W","Stinger_Pod_US_EP1","M119_US_EP1"];
 //EGG_EVO_westveh13 = ["Fort_Nest_M240","M2HD_mini_TriPod","M2StaticMG","DSHKM_CDF","DSHkM_Mini_TriPod_CDF","2b14_82mm","2b14_82mm_CDF","M252","SPG9_CDF","M119","D30_CDF","ZU23_CDF","uns_m2","uns_m2_2","uns_m2_3","CSJ_Quad50"];
 
 //Roaming Hips
 EGG_EVO_eastheli1 = ["UH1H_TK_EP1","ibr_gazelle_armed","FRL_Mi17_1_TAK","FRL_Mi17_TAK","FRL_Mi17_TVK_TAK","FRL_Mi17_TVK_TAK_AGM","FRL_Mi17_TVK_TAK_MR","FRL_Mi17_TVK_TAK_BMB","FRL_Mi24D_TK_CAP","FRL_Mi24D_TK_CAS","FRL_Mi24D_TK_HCAS","FRL_Mi24D_TK_AGM","FRL_Mi24D_TK_MR","FRL_Mi24D_TK_BMB","FRL_Mi24D_TK_LRCAS","FRL_Mi24D_TK_SEAD"];//makehip
-
-//["Mi24_D_TK_EP1","Mi17_TK_EP1","Mi17_Ins","Mi17_rockets_RU"];
-EGG_EVO_eastheli2 = ["FRL_Mi8_AMTSh_RUS","FRL_Mi8_AMTSh_RUS_HCAS","FRL_Mi8_AMTSh_AGM","FRL_Mi8_AMTSh_MR","FRL_Mi8_AMTSh_BMB","FRL_Mi8_MTV3_RUS","FRL_Mi8_MTV3_RUS_HCAS","FRL_Mi8_MTV3_RUS_AGM","FRL_Mi8_MTV3_RUS_MR","FRL_Mi8_MTV3_RUS_BMB","FRL_Mi24V_TK_CAP","FRL_Mi24V_TK_CAS","FRL_Mi24V_TK_HCAS","FRL_Mi24V_TK_AGM","FRL_Mi24V_TK_MR","FRL_Mi24V_TK_BMB","FRL_Mi24V_TK_LRCAS","FRL_Mi24V_TK_SEAD","FRL_Mi24P_TK_CAP","FRL_Mi24P_TK_CAS","FRL_Mi24P_TK_HCAS","FRL_Mi24P_TK_AGM","FRL_Mi24P_TK_MR","FRL_Mi24P_TK_BMB","FRL_Mi24P_TK_LRCAS","FRL_Mi24P_TK_SEAD"];//makehindp //"Mi24_P","Mi24_V","Mi24_D_TK_EP1"
 
 //Roaming hinds
 EGG_EVO_eastheli3 = ["FRL_Mi8_MTKO_RUS","FRL_Mi8_MTKO_RUS_HCAS","FRL_Mi8_MTKO_RUS_AGM","FRL_Mi8_MTKO_RUS_MR","FRL_Mi8_MTKO_RUS_BMB","FRL_Mi28D_TK_CAP","FRL_Mi28D_TK_CAS","FRL_Mi28D_TK_HCAS","FRL_Mi28D_TK_AGM","FRL_Mi28D_TK_MR","FRL_Mi28D_TK_BMB","FRL_Mi28D_TK_LRCAS","FRL_Mi28D_TK_SEAD","FRL_Ka52_CAP_D","FRL_Ka52_CAS_D","FRL_Ka52_HCAS_D","FRL_Ka52_AGM_D","FRL_Ka52_MR_D","FRL_Ka52_BMB_D","FRL_Ka52_LRCAS_D","FRL_Ka52_SEAD_D"];//makeka //"Ka52","UH1H_TK_EP1","ibr_gazelle_armed","CMA_Mi28_N_RUS"
@@ -600,7 +604,7 @@ EGG_EVO_magent = ["CIV_EuroWoman01_EP1","CIV_EuroWoman02_EP1","Rita_Ensler_EP1"]
 
 EGG_EVO_mfteam = EGG_EVO_west4;
 
-EGG_EVO_mepilot = ["TK_Soldier_Pilot_EP1"];
+EGG_EVO_mepilot = ["US_Soldier_Pilot_EP1"];
 EGG_EVO_meofficer = ["BAF_Soldier_Officer_MTP"];
 EGG_EVO_mecrew = ["TK_Soldier_Crew_EP1"];
 EGG_EVO_meguard = ["TK_Aziz_EP1","TK_Commander_EP1","TK_Soldier_MG_EP1","TK_Soldier_HAT_EP1"];
@@ -637,7 +641,7 @@ EGG_EVO_mevairb = ["L39_TK_EP1","Su25_TK_EP1"];
 //,"ibrPRACS_MiG21_AGmol","ibrPRACS_MiG21mol","mig15bis_4_tak","mig15bis_fighterBomber_tak","mig15bis_5_tak"
 
 //Reinforce paradrop vehicles
-EGG_EVO_mevair3 = ["An2_TK_EP1","Mi17_TK_EP1","Mi24_D_TK_EP1","UH1H_TK_EP1"];
+EGG_EVO_mevair3 = ["CH_47F_EP1","UH60M_MEV_EP1","BAF_Merlin_HC3_D","UH60M_EP1","UH1Y","PRACS_puma330_MG","PRACS_CH53"];
 
 EGG_EVO_mcvconvoya = ["Ikarus_TK_CIV_EP1","Ural_TK_CIV_EP1","V3S_Open_TK_CIV_EP1"];
 EGG_EVO_mcvconvoyb = ["Lada1_TK_CIV_EP1","Lada2_TK_CIV_EP1","LandRover_TK_CIV_EP1","hilux1_civil_3_open_EP1","S1203_TK_CIV_EP1","SUV_TK_CIV_EP1","UAZ_Unarmed_TK_CIV_EP1"];
@@ -984,8 +988,8 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 //Player unlocks
 buySpecialList =[];
 
-egg_evo_westAmb = ["EB_M1114_Armored_D"]; 
-egg_evo_westMHQ = ["PRACS_m577_MHQ"];
+egg_evo_westAmb = ["EB_BRDM2_HQ_TK"]; 
+egg_evo_westMHQ = ["EB_BTR90_HQ_TK"];
 EB_twoseaterplanes = ["FRL_Su34_D_CAP","FRL_Su34_D_CAS","FRL_Su34_D_HCAS","FRL_Su34_D_EHCAS","FRL_Su34_D_AGM","FRL_Su34_D_MR","FRL_Su34_D_LBMB","FRL_Su34_D_BMB","FRL_Su34_D_HBMB","FRL_Su34_D_LGB","FRL_Su34_D_SEAD","Su34","uns_F4_CAP","uns_F4Navy_CAP","uns_F4_CAS","uns_A6_Intruder_ECM","JS_FA18F","IkaR_F14_AIM_54","IkaR_F14_AGM_65","uns_f105F_WW"];
 
 //mod management EGG_vecmods //## modify desc
@@ -1172,23 +1176,23 @@ EGG_EVO_east5 = ["TK_Aziz_EP1","TK_Special_Forces_MG_EP1","TK_Special_Forces_EP1
 
 //makehip
 //choppers
-EGG_EVO_eastheli1 = ["UH1H_TK_EP1","ibr_gazelle_armed","FRL_Mi17_1_TAK","FRL_Mi17_TAK","FRL_Mi17_TVK_TAK","FRL_Mi17_TVK_TAK_AGM","FRL_Mi17_TVK_TAK_MR","FRL_Mi17_TVK_TAK_BMB","FRL_Mi24D_TK_CAP","FRL_Mi24D_TK_CAS","FRL_Mi24D_TK_HCAS","FRL_Mi24D_TK_AGM","FRL_Mi24D_TK_MR","FRL_Mi24D_TK_BMB","FRL_Mi24D_TK_LRCAS","FRL_Mi24D_TK_SEAD"];//makehip
+EGG_EVO_eastheli1 = ["PRACS_puma330_MG","PRACS_AH6J","CH_47F_EP1","UH60M_EP1","PRACS_AB212_CAS","ibr_as350_armed","Mi171Sh_rockets_CZ_EP1","AW159_Lynx_BAF","PRACS_RAH6","PRACS_AH1S","AH1Z","AH64D"];//makehip
 
 //makehindp
-EGG_EVO_eastheli2 = ["FRL_Mi8_AMTSh_RUS","FRL_Mi8_AMTSh_RUS_HCAS","FRL_Mi8_AMTSh_AGM","FRL_Mi8_AMTSh_MR","FRL_Mi8_AMTSh_BMB","FRL_Mi8_MTV3_RUS","FRL_Mi8_MTV3_RUS_HCAS","FRL_Mi8_MTV3_RUS_AGM","FRL_Mi8_MTV3_RUS_MR","FRL_Mi8_MTV3_RUS_BMB","FRL_Mi24V_TK_CAP","FRL_Mi24V_TK_CAS","FRL_Mi24V_TK_HCAS","FRL_Mi24V_TK_AGM","FRL_Mi24V_TK_MR","FRL_Mi24V_TK_BMB","FRL_Mi24V_TK_LRCAS","FRL_Mi24V_TK_SEAD","FRL_Mi24P_TK_CAP","FRL_Mi24P_TK_CAS","FRL_Mi24P_TK_HCAS","FRL_Mi24P_TK_AGM","FRL_Mi24P_TK_MR","FRL_Mi24P_TK_BMB","FRL_Mi24P_TK_LRCAS","FRL_Mi24P_TK_SEAD"];
+EGG_EVO_eastheli2 = ["PRACS_RAH6","PRACS_AB212_cas","FRL_AH6M_TOW_D","FRL_Lynx_MR","PRACS_AH1S","AH1Z","AH64D"];
 //makeka
-EGG_EVO_eastheli3 = ["FRL_Mi8_MTKO_RUS","FRL_Mi8_MTKO_RUS_HCAS","FRL_Mi8_MTKO_RUS_AGM","FRL_Mi8_MTKO_RUS_MR","FRL_Mi8_MTKO_RUS_BMB","FRL_Mi28D_TK_CAP","FRL_Mi28D_TK_CAS","FRL_Mi28D_TK_HCAS","FRL_Mi28D_TK_AGM","FRL_Mi28D_TK_MR","FRL_Mi28D_TK_BMB","FRL_Mi28D_TK_LRCAS","FRL_Mi28D_TK_SEAD","FRL_Ka52_CAP_D","FRL_Ka52_CAS_D","FRL_Ka52_HCAS_D","FRL_Ka52_AGM_D","FRL_Ka52_MR_D","FRL_Ka52_BMB_D","FRL_Ka52_LRCAS_D","FRL_Ka52_SEAD_D"];
+EGG_EVO_eastheli3 = ["FRL_UH60M_SPIKE","FRL_AH64D_HCAS","FRL_AH1W_AT","AH1Z"];
 
 //hindv
 EGG_EVO_mevaira = EGG_EVO_eastheli1+EGG_EVO_eastheli2+EGG_EVO_eastheli3;//hindv
 
 //planes
 //makesub
-	EGG_EVO_mevairb = ["FRL_Su25_TK_CAS","PRACS_TK_Su22_STA","PRACS_TK_MiG21","PRACS_TK_MiG21_AG","FRL_Su27_TAK_MR","FRL_Mig23B_TK_MR","FRL_Mig23B_TK_SEAD","FRL_Mig27M_TK_CAP","FRL_Mig35_TK_LGB","FRL_Mig29_TK_CAP"];
+	EGG_EVO_mevairb = ["SMAF_MF1_AGRESSOR_DESERT","PRACS_Etendard","Pracs_Mohawk","PRACS_Mirage3","F4M_Des","PRACS_A4","PRACS_F16_PHSTRK","JS_JC_FA18E_USMC","PRACS_F15","FRL_A10_MR"];
 
 //"RKTSU33B1","RKTSU33AG","RKTSU33AA","RKTSU33MR",
 //makesu
-	EGG_EVO_mevairc = ["FRL_Su34_D_HCAS","FRL_Su34_D_SEAD","PRACS_TK_Su24Fencer","PRACS_TK_Su24Fencer_STK","FRL_Su30_TK_CAP","FRL_Mig23C_TK_CAP","FRL_Mig23C_TK_HBMB","FRL_L39_CAS","FRL_L39_AGM"];
+	EGG_EVO_mevairc = ["F35B","FRL_AV8B_MR","FRL_GR4_D_CAP","pook_EF2000_BAF_D_MR"];
 //"RKTTU22M3C","RKTTU22M3D","RKTTU22M3B",
 	EGG_EVO_eastveh2 = EGG_EVO_mevairc+EGG_EVO_mevairb;
 
@@ -1323,6 +1327,7 @@ EGG_EVO_eastairM = EGG_EVO_eastchopM+EGG_EVO_eastplaneM;
 
 //Reinforce vehicles
 EGG_EVO_westarm = EGG_EVO_westveh6+EGG_EVO_westveh7;
+
 EGG_EVO_westlightM = EGG_EVO_westveh6+EGG_EVO_westveh9;
 EGG_EVO_westheavyM = EGG_EVO_westveh7+EGG_EVO_westveh10;
 EGG_EVO_westarmM = EGG_EVO_westlightM+EGG_EVO_westheavyM;

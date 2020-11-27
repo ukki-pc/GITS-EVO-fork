@@ -33,7 +33,7 @@ publicVariable "amb";
 //"LAV25_HQ"
 //HMMWV_M1151_M2_DES_EP1
 
-_amb_name = "HMMWV_M1151_M2_DES_EP1";
+_amb_name = "EB_BRDM2_HQ_TK";
 
 amb addAction ["Remove Recon HQ", "actions\removeamb.sqf",0,1,false,true];
 player moveInDriver amb;
