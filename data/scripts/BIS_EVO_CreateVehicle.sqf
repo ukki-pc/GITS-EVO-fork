@@ -35,21 +35,21 @@ BIS_EVO_CreateVehicle =
 	_vec setDir _dir;
 	_vec engineOn true;	
 	_vec setVelocity [(sin _dir*_vel),(cos _dir*_vel),0];
-	Sleep BIS_EVO_GlobalSleep;
+	Sleep BIS_EVO_GlobalSleep*3;
 
 	_crewtype = getArray (configFile >> "CfgVehicles" >> _type >> "typicalCargo");
+
+	_crewtype = EGG_EVO_west1;
 	_maxc = (count _crewtype)-1;
-	if (_maxc <1) then
-	{
-		_crewtype = EGG_EVO_west1;
-		_maxc = (count _crewtype)-1;
-	};
 	_maxcrew = 0;
+
+	/*
 	if (enemynumdiv==1) then 
 	{
 		_newmaxcrew = getNumber (configFile >> "CfgVehicles" >> _type >> "transportSoldier");
 		if (_newmaxcrew > 0) then {_maxcrew = _newmaxcrew};
 	};
+	*/
 
 	if((_vec emptyPositions "driver") > 0) then 
 	{

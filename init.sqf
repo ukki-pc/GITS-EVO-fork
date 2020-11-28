@@ -249,7 +249,11 @@ EGG_EVO_west7 = ["UK_SFM","UK_SFM1","UK_SFM2","UK_SFM3","UK_SFM4","UK_SFM5","UK_
 EGG_EVO_west8 = ["UK_SFMSKM","UK_SFMSKM","UK_SFMSM","UK_SFMSKM","UK_SFMSKM","UK_SFMSKM","UK_SFMSKM"];
 EGG_EVO_west9 = ["UK_SFT","UK_SFT1","UK_SFT2","UK_SFT3","UK_SFT4","UK_SFT5","UK_SFT6"];
 EGG_EVO_west10= ["UK_SFMSKT","UK_SFMSKT1","UK_SFMSKT","UK_SFMSKT","UK_SFMSKT","UK_SFMSKT","UK_SFMSKT"];
+
+//Main men
 EGG_EVO_west1= ["BAF_Soldier_AA_MTP","BAF_Soldier_AAA_MTP","BAF_Soldier_AAT_MTP","BAF_Soldier_AHAT_MTP","BAF_Soldier_AAR_MTP","BAF_Soldier_AMG_MTP","BAF_Soldier_AT_MTP","BAF_Soldier_HAT_MTP","BAF_Soldier_AR_MTP","BAF_Soldier_EN_MTP","BAF_Soldier_GL_MTP","BAF_Soldier_FAC_MTP","BAF_Soldier_MG_MTP","BAF_Soldier_scout_MTP","BAF_Soldier_Marksman_MTP","BAF_Soldier_Medic_MTP","BAF_Soldier_Officer_MTP","BAF_Soldier_MTP","BAF_ASoldier_MTP","BAF_Soldier_L_MTP","BAF_Soldier_N_MTP","BAF_Soldier_SL_MTP","BAF_Soldier_SniperN_MTP","BAF_Soldier_SniperH_MTP","BAF_Soldier_Sniper_MTP","BAF_Soldier_spotter_MTP","BAF_Soldier_spotterN_MTP","BAF_Soldier_TL_MTP"];
+EGG_EVO_defenders = ["PRACS_SNG_AT","PRACS_SNG_DMS","PRACS_SNG_SPR","PRACS_SNG","PRACS_SNG_ARM","PRACS_SNG_GNR","PRACS_SNG_MG","PRACS_SNG_MED","PRACS_SNG_O","PRACS_SNG_RTO","PRACS_SNG_AA"];
+EGG_EVO_OfficerDefenders = ["PRACS_Marine_AT","PRACS_Marine","PRACS_Marine_MG","PRACS_Marine_AA","PRACS_Marine_GNR"];
 
 EGG_EVO_civ1 = ["Damsel1","Damsel2","Damsel3","Damsel4","Damsel5","RU_Damsel1","RU_Damsel2","RU_Damsel3","RU_Damsel4","RU_Damsel5","Farmwife1","Farmwife2","Farmwife3","Farmwife4","Farmwife5","RU_Farmwife1","RU_Farmwife2","RU_Farmwife3","RU_Farmwife4","RU_Farmwife5"];
 EGG_EVO_civ2 = ["HouseWife1","HouseWife2","HouseWife3","HouseWife4","HouseWife5","RU_HouseWife1","RU_HouseWife2","RU_HouseWife3","RU_HouseWife4","RU_HouseWife5","Sportswoman1","Sportswoman2","Sportswoman3","Sportswoman4","Sportswoman5","RU_Sportswoman1","RU_Sportswoman2","RU_Sportswoman3","RU_Sportswoman4","RU_Sportswoman5","WorkWoman1","WorkWoman2","WorkWoman3","WorkWoman3","WorkWoman4","WorkWoman5","RU_WorkWoman1","RU_WorkWoman2","RU_WorkWoman3","RU_WorkWoman3","RU_WorkWoman4","RU_WorkWoman5"];
@@ -286,8 +290,9 @@ EGG_EVO_westveh5 = ["BAF_ATV_D","BAF_Offroad_D","ATV_US_EP1","MTVR_DES_EP1","Mtv
 //EGG_EVO_westveh7 = ["AAV","LAV25","M1A1","M1A2_TUSK_MG","BMP2_CDF","T72_CDF","MLRS","T34"];
 
 EGG_EVO_westveh6 = ["LandRover_Special_CZ_EP1","BAF_Jackal2_GMG_W","BAF_Jackal2_L2A1_W","BAF_Jackal2_GMG_D","BAF_Jackal2_L2A1_D","M113_UN_EP1","HMMWV_M1035_DES_EP1","HMMWV_M1151_M2_DES_EP1","HMMWV_M998_crows_M2_DES_EP1","HMMWV_M998_crows_MK19_DES_EP1","HMMWV_M998A2_SOV_DES_EP1","HMMWV_MK19_DES_EP1","HMMWV_TOW_DES_EP1"];
-EGG_EVO_westEasy = ["EB_M1114_Armored_D","M1114_AGS_ACR","M1114_DSK_ACR","HMMWV_M1151_M2_CZ_DES_EP1","HMMWV_TOW_DES_EP1","M1126_ICV_M2_EP1","M1126_ICV_mk19_EP1","M1129_MC_EP1"];
-EGG_EVO_westMedium = ["PRACS_LEO1A5","PRACS_M60A3","PRACS_M60A3_S2","M1128_MGS_EP1","M1135_ATGMV_EP1","EB_LAV25_D2","PRACS_FV107","M2A2_EP1","M2A3_EP1","BAF_FV510_D","PRACS_FV101"];
+
+EGG_EVO_westEasy = ["EB_M1114_Armored_D","PRACS_LAV_IFV","PRACS_LAV_MGS","PRACS_M113_FSV","PRACS_M113","PRACS_M113_IFV","PRACS_M113_M60","PRACS_LAV_ATGW","BAFX_Ridgeback_D","M1114_AGS_ACR","ibr_VAB_127","M1114_DSK_ACR","HMMWV_M1151_M2_CZ_DES_EP1","HMMWV_TOW_DES_EP1","M1126_ICV_M2_EP1","M1126_ICV_mk19_EP1","M1129_MC_EP1"];
+EGG_EVO_westMedium = ["PRACS_LEO1A5","PRACS_M901_ITV","PRACS_M60A3","PRACS_M60A3_S2","ibr_VAB_Mephisto","M1128_MGS_EP1","M1135_ATGMV_EP1","EB_LAV25_D2","PRACS_FV107","M2A2_EP1","M2A3_EP1","BAF_FV510_D","PRACS_FV101"];
 EGG_EVO_westHard = ["PRACS_LEO2A4","M1A1_US_DES_EP1","M1A2_US_TUSK_MG_EP1"];
 
 //THESE ARMOR SPAWN ON TOWNS
@@ -309,7 +314,8 @@ EGG_EVO_westveh10 = ["vil_bradley_a1","vil_bradley_gr","vil_bradley_a2D","vil_br
 
 //THESE AA SPAWN ON TOWNS
 EGG_EVO_westveh11 = ["HMMWV_Avenger","PRACS_m48_chapparal","PRACS_M163","PRACS_M460_SAM"];
-
+EGG_EVO_spAAeasy = ["HMMWV_Avenger","PRACS_LAV_SAM","PRACS_Sa6","PRACS_351_SAM","M6_EP1","PRACS_m48_chapparal"];
+EGG_EVO_spAAhard = ["PRACS_M163","PRACS_M302_SAM","PRACS_m48_chapparal","PRACS_M460_SAM"];
 
 //EGG_EVO_westveh11 = ["HMMWV_Avenger","ZSU_CDF","M6_EP1"];
 //AA mod
@@ -355,6 +361,7 @@ EGG_EVO_eastveh6 = ["LandRover_MG_TK_EP1","LandRover_SPG9_TK_EP1","UAZ_AGS30_TK_
 //EGG_EVO_eastveh7 = ["BMP2_INS","T72_INS","BMP3","BTR90","T90"];
 
 //EB_armour
+
 //Mechanized town initial defence
 EGG_EVO_eastveh7 = ["EB_BTR90_HQ_TK","EB_BTR90_TK","EB_GAZ_Vodnik_HMG_TK","EB_BMP3_TK","BMP2_TK_EP1","BVP1_TK_ACR","T72_INS","T72_RU","T72_TK_EP1","EB_T72B_RU","T90","T34_TK_EP1","EB_OT34_TK","EB_T34_76_TK","EB_T34_85_TK","T55_TK_EP1","EB_OT55_TK"];
 
@@ -472,7 +479,7 @@ EGG_EVO_mevheavyb = ["M113_TK_EP1","T72_TK_EP1","ZSU_TK_EP1","Mi24_D_TK_EP1","MA
 EGG_EVO_mevconvoya = ["UralRefuel_TK_EP1","UralRepair_TK_EP1","UralReammo_TK_EP1"];
 
 //Reinfocing infatry vehicles
-EGG_EVO_mevconvoyb = ["MTVR_DES_EP1","MTVR_DES_EP1"];
+EGG_EVO_mevconvoyb = ["MTVR_DES_EP1","ibr_VAB","PRACS_M250"];
 
 EGG_EVO_mevaira = ["Mi24_D_TK_EP1","Mi17_TK_EP1","UH1H_TK_EP1","Ka52","UH1H_TK_EP1"];
 //,"ibr_gazelle_armed","CMA_Mi28_N_RUS"
@@ -758,17 +765,17 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	["OWP_MI26cg",10],		
 	["FRL_Mi17_TVK_TAK",80],						// Mi-17
 	["FRL_Mi17_TVK_TAK_MR",90],						// Mi-17
-	["FRL_Mi24D_TK_MR",140],						// Mi-17
-	["FRL_Mi24V_TK_MR",145],						// Mi-17
+	["FRL_Mi24D_TK_MR",150],						// Mi-17
+	["FRL_Mi24V_TK_MR",150],						// Mi-17
 	["FRL_Mi24P_TK_MR",150],						// Mi-17
 	["FRL_Mi28D_TK_MR",170],						// Mi-17
 	["FRL_Ka52_MR_D",185],						// Mi-17
 							// Apache (AT)
 	/*---Planes---*/
 	["ibr_maule_M7",10],	
-	["ibr_tucano_lin",90],								// F35					
+	["ibr_tucano_lin",40],								// F35					
 	["RKTCoalerD",10],								// F35
-	["mig15bis_5_tak",80],								// F35 
+	["mig15bis_5_tak",50],								// F35 
 	["PRACS_TK_MiG21",100],								// F35
 	["PRACS_TK_MiG21_AG",110],	
 	["SMAF_MF1_TK_CAS",130],								// F35
@@ -793,29 +800,29 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	buyStatList = 
 	[
 	/*---Statics---*/
-	["EB_DSHKM_TK",2],
-	["EB_DSHKM_mini_tripod_TK",2],
-	["KORD_TK_EP1",2],
-	["KORD_HIGH",2],
-	["AGS_TK_Ep1",2],
-	["pook_m40_tk",2],
-	["pook_9m11_tk",2],
-	["metis_tk_ep1",2],
+	["EB_DSHKM_TK",3],
+	["EB_DSHKM_mini_tripod_TK",3],
+	["KORD_TK_EP1",3],
+	["KORD_HIGH",3],
+	["AGS_TK_Ep1",5],
+	["pook_m40_tk",8],
+	["pook_9m11_tk",8],
+	["metis_tk_ep1",10],
 	/*AA*/
-	["EB_DSHKx2_TK",2],		
-	["igla_aa_pod_tk_ep1",2],			
-	["POOK_zpu4_tak",2],					
-	["POOK_s60_tk",2],		
-	["pook_type74_tk",2],				
-	["POOK_ks12_tak",2],			
-	["POOK_ks19_tak",2],
-	["pracs_tk_sa2",2],
-	["pook_sa3_static_tak",2],
-	["pook_sa20_static_tak",2],
+	["EB_DSHKx2_TK",6],		
+	["igla_aa_pod_tk_ep1",10],			
+	["POOK_zpu4_tak",8],					
+	["POOK_s60_tk",10],		
+	["pook_type74_tk",12],				
+	["POOK_ks12_tak",12],			
+	["POOK_ks19_tak",12],
+	["pracs_tk_sa2",10],
+	["pook_sa3_static_tak",15],
+	["pook_sa20_static_tak",20],
 	/*ARTY*/
-	["2b14_82mm_tk_ep1",2],
-	["EB_D20_TK",2],		
-	["D30_TK_EP1",2]
+	["2b14_82mm_tk_ep1",10],
+	["EB_D20_TK",50],		
+	["D30_TK_EP1",60]
 	];
 
 	for [{_loop=0}, {_loop<count buyStatList}, {_loop=_loop+1}] do 
@@ -839,7 +846,7 @@ EB_twoseaterplanes = ["FRL_Su34_D_CAP","FRL_Su34_D_CAS","FRL_Su34_D_HCAS","FRL_S
 //////////////////////////////////
 //EDITOR use
 //if playing in editor rem out the next line with a // and manually set param below instead
-editor = 1; publicVariable "editor";
+editor = 0; publicVariable "editor";
 
 if (editor == 1) then
 {
@@ -868,7 +875,7 @@ if (editor == 1) then
 	EGG_EVO_Artycost =4;
 	//Note from Tox1m: paramsArray select 15 used by Revive script
 	enemynumdiv = 1;
-	reinfdelay = 30;
+	reinfdelay = 60;
 	EGG_highCommand = 0;
 	EX_EVO_vehPriceMultiplier = 1;
 	EVO_incomeFrequency = 120;

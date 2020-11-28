@@ -18,7 +18,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 	_curtownMec = round(((BIS_EVO_Mechanized select BIS_EVO_MissionProgress) select 0)/enemynumdiv);
 	_basetownMec = round(((BIS_EVO_Mechanized select BIS_EVO_MissionProgress) select 1)/enemynumdiv);
 
-	systemChat format["CI:%1 BI:%2 CM:%3 BM:%4 ",_curtownInf,_basetownInf,_curtownMec,_basetownMec];
+	//systemChat format["CI:%1 BI:%2 CM:%3 BM:%4 ",_curtownInf,_basetownInf,_curtownMec,_basetownMec];
 	sleep 1;
 
 	BIS_EVO_mKamazOpen =
@@ -53,12 +53,17 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		Sleep 0.2;
 		_unit = _guardr createUnit [(_allunits select round random (_max - 1)), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
 		Sleep 0.2;
-		_sumark = [_ural] execVM "data\scripts\sumarker.sqf";
 		[position _alist,_guardr,_radio,_alist] call BIS_EVO_Erefway;
 		[_guardr, 1] setWaypointType "GETOUT";
 		{_x addEventHandler ["killed", {handle = [_this select 0,"INF"] execVM "data\scripts\mobjbury.sqf"}]; _x addmagazine ["EB_molotov_mag",2];} forEach (units _guardr);	
 		_recy = [objnull,_guardr] execVM "data\scripts\grecycle.sqf";
 		_guardr setFormation "COLUMN";
+		[_guardr, 1] setWaypointCombatMode "RED";	
+		[_guardr, 1] setWaypointSpeed "NORMAL";	
+
+			
+
+
 		sleep 300;
 		deleteVehicle _ural;
 	};
@@ -154,9 +159,8 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_pos = GetMarkerPos (_spawns select (round random 2));
 		_tag = "MEC";
 
-		//Random number with base between 1-10 and mission progress added to the value so minimum is 2 and max is 20
-		_rng = round random(8)+1 + BIS_EVO_MissionProgress+1;
-
+		//Increasing aggression
+		_rng = round(random(9)+1 + (BIS_EVO_MissionProgress+1)*0.66);
 		 if(_rng < 6) then 
 		 {
 		 	_allvec = EGG_EVO_westEasy; //mixed units reinforce
@@ -169,7 +173,8 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		 {
 		 	_allvec = EGG_EVO_westHard; //mixed units reinforce
 		};
-		systemchat format ["Random number was: %1", _rng];
+
+		//systemchat format ["Random number was: %1", _rng];
 		_maxo = (count _allvec)-1;	
 		_rds = [];
 		_rds = (_pos nearRoads 10);
@@ -184,7 +189,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 
 		_guardm = _array select 0;
 		_vec = _array select 1;
-		systemchat format ["spawned: %1", typeof _vec];
+	///	systemchat format ["spawned: %1", typeof _vec];
 		[position _alist,_guardm,_radio,_alist] call BIS_EVO_Erefway;
 		[_guardm, 1] setWaypointCombatMode "RED";		
 		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC"] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guardm);
@@ -196,7 +201,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 
 if ( (_curtownInf <= _basetownInf) and (alive _radio) ) then 
 {
-	systemChat "reinforcing infantry";
+//	systemChat "reinforcing infantry";
 	_tag = "INF";	
 	[] spawn BIS_EVO_mKamazOpen;
 	[] spawn BIS_EVO_MI17support;
@@ -204,11 +209,11 @@ if ( (_curtownInf <= _basetownInf) and (alive _radio) ) then
 	sleep 1;
 };
 
-sleep 30;
-	(BIS_EVO_Mechanized select BIS_EVO_MissionProgress) set [0, 0];
+sleep 15;
+
 if( (_curtownMec <= _basetownMec) and (alive _radio) ) then 
 {
-	systemChat "reinforcing mechanized";
+//	systemChat "reinforcing mechanized";
 	[] spawn EGG_EVO_mecreinf;
 	(BIS_EVO_Mechanized select BIS_EVO_MissionProgress) set [0, (_curtownMec*enemynumdiv)+1];
 	sleep 1;

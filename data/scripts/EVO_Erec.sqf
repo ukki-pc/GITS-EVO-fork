@@ -25,6 +25,7 @@ BIS_EVO_Erec =
 	_pos2 = [(_pos select 0),(_pos select 1)+300,(_pos select 2)];
 	_pos3 = [(_pos select 0)-300,(_pos select 1),(_pos select 2)];
 	_pos4 = [(_pos select 0),(_pos select 1)-300,(_pos select 2)];
+	private ["_rng","_allvec"]; 
 
 	_outpoints = [_pos1,_pos2,_pos3,_pos4];	
 
@@ -41,7 +42,7 @@ BIS_EVO_Erec =
 	if(_inf > 11) then
 	{
 		_grp = createGroup (west);
-		_type = EGG_EVO_west1 select 0;
+		_type = EGG_EVO_defenders select 0;
 		_unit = _grp createUnit [_type, position _radio, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
 		_unit addEventHandler ["killed", {handle = [_this select 0,"INF"] execVM "data\scripts\mobjbury.sqf"}];		
@@ -62,7 +63,7 @@ BIS_EVO_Erec =
 	{
 		Sleep 1;
 		_grp = createGroup (west);
-		_type = EGG_EVO_west1 select 0;
+		_type = EGG_EVO_OfficerDefenders select 0;
 		_unit = _grp createUnit [_type, position _offobj, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
 		_unit addEventHandler ["killed", {handle = [_this select 0,"INF"] execVM "data\scripts\mobjbury.sqf"}];		
@@ -83,7 +84,7 @@ BIS_EVO_Erec =
 	{
 		Sleep 1;
 		_grp = createGroup (west);
-		_type = EGG_EVO_west1 select 0;
+		_type = EGG_EVO_defenders select 0;
 		_unit = _grp createUnit [_type, position _radio, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
 		_unit addEventHandler ["killed", {handle = [_this select 0,"INF"] execVM "data\scripts\mobjbury.sqf"}];
@@ -103,7 +104,7 @@ BIS_EVO_Erec =
 	while {_inf > 0} do 
 	{
 		_grp = createGroup (west);
-		_type = EGG_EVO_west1 select 0;
+		_type = EGG_EVO_defenders select 0;
 		_unit = _grp createUnit [_type, _pos, [], 300, "FORM"];Sleep BIS_EVO_GlobalSleep;
 		_rds = (_unit nearRoads 50);
 		if(count _rds > 0) then 
@@ -134,9 +135,23 @@ BIS_EVO_Erec =
 	Sleep 2;
 	while {_mec > 0} do 
 	{
-		_allvecs = EGG_EVO_westveh7;
-		_max = (count _allvecs)-1;
-		_array = [_allvecs select (round random _max),_pos,(west),300,180,0] call BIS_EVO_CreateVehicle;
+		//Increasing aggression
+		_rng = round(random(9)+1 + (BIS_EVO_MissionProgress+1)*0.66);
+		 if(_rng < 6) then 
+		 {
+		 	_allvec = EGG_EVO_westEasy; //mixed units reinforce
+		 };
+		if(_rng > 5 && _rng < 10) then 
+		 {
+		 	_allvec = EGG_EVO_westMedium; //mixed units reinforce
+		 };
+	 	if(_rng > 9) then 
+		 {
+		 	_allvec = EGG_EVO_westHard; //mixed units reinforce
+		};
+		
+		_max = (count _allvec)-1;
+		_array = [_allvec select (round random _max),_pos,(west),300,180,0] call BIS_EVO_CreateVehicle;
 		_grp = _array select 0;
 		_vec = _array select 1;
 		_rds = (_vec nearRoads 20);
@@ -182,13 +197,21 @@ BIS_EVO_Erec =
 		Sleep 1;
 	};
 
-// ANTI-AIR defence
+// SP ANTI-AIR defence
 	Sleep 1;
 	_MakeAA =
 	{
 		Sleep 1;
 		_respawnpoint = _outpoints select _curpoint;
-		_allvecs = EGG_EVO_westveh11;
+		_rng = round(random(9)+1 + (BIS_EVO_MissionProgress+1)*0.66);
+		 if(_rng < 10) then 
+		 {
+		 	_allvecs = EGG_EVO_spAAeasy;
+		 }
+		 else {
+			 _allvecs = EGG_EVO_spAAhard;
+		 };
+		
 		_max = (count _allvecs)-1;
 		_vcl = createVehicle [(_allvecs select (round random _max)), _respawnpoint, [], 120, "NONE"];
 		_vcl setdir random 359;	
