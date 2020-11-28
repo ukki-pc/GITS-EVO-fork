@@ -765,11 +765,10 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	["OWP_MI26cg",10],		
 	["FRL_Mi17_TVK_TAK",80],						// Mi-17
 	["FRL_Mi17_TVK_TAK_MR",90],						// Mi-17
-	["FRL_Mi24D_TK_MR",150],						// Mi-17
-	["FRL_Mi24V_TK_MR",150],						// Mi-17
-	["FRL_Mi24P_TK_MR",150],						// Mi-17
-	["FRL_Mi28D_TK_MR",170],						// Mi-17
-	["FRL_Ka52_MR_D",185],						// Mi-17
+	["FRL_Mi24V_TK_MR",130],						// Mi-17
+	["FRL_Mi24D_TK_MR",140],						// Mi-17
+	["FRL_Mi28_MR",160],						// Mi-17
+	["FRL_Ka52_MR_D",175],						// Mi-17
 							// Apache (AT)
 	/*---Planes---*/
 	["ibr_maule_M7",10],	
@@ -846,7 +845,7 @@ EB_twoseaterplanes = ["FRL_Su34_D_CAP","FRL_Su34_D_CAS","FRL_Su34_D_HCAS","FRL_S
 //////////////////////////////////
 //EDITOR use
 //if playing in editor rem out the next line with a // and manually set param below instead
-editor = 0; publicVariable "editor";
+editor = 1; publicVariable "editor";
 
 if (editor == 1) then
 {
