@@ -775,6 +775,14 @@ class Params
 		texts[]={"FREE", "75% Off", "50% Off", "25% Off", "Base price", "25% Increase", "50% Increase","100% Increase"};	
 		default = 1;
 	};
+	class EVO_IncomeFrequency
+	{
+      //paramsArray[20]  
+      	title="Passive income";
+		values[]={60,120,180,240,300};
+		texts[]={"1 per minute", "1 per 2 minutes", "1 per 3 minutes", "1 per 4 minutes", "1 per 5 minutes"};	
+		default = 1;
+	};
 };
 
 //estimatedTimeLeft = 600;

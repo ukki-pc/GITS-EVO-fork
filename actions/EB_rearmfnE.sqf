@@ -56,8 +56,8 @@ EB_airfn7=-1;
 _weapons = weapons _vec;
 {_vec removeweapon _x}forEach _weapons;
 _magazines = magazines _vec;
-//{if !(_x == "120Rnd_CMFlare_Chaff_Magazine") then {_vec removemagazine _x}}forEach _magazines;
-{_vec removemagazine _x}forEach _magazines;
+{if ((_x == "120Rnd_CMFlare_Chaff_Magazine")||(_x=="eb_uv26_flarelauncher")||(_x=="eb_flarelauncher")) then {_vec removemagazine _x}}forEach _magazines;
+//{_vec removemagazine _x}forEach _magazines;
 
 if ( (_vec isKindof "Helicopter") || (_type in  EB_twoseaterplanes) ) then
 {
@@ -80,20 +80,7 @@ player selectWeapon "CMFlareLauncher";
 _muzzles = getArray(configFile>>"cfgWeapons" >> "CMFlareLauncher" >> "muzzles");
 player selectWeapon (_muzzles select 0);
 
-if ( (_vec isKindof "Helicopter") || (_type in  EB_twoseaterplanes) ) then
-{
-	if (_vec isKindof "Helicopter") then
-	{
-		_vec removeMagazine "LaserBatteries";
-		_vec addMagazine "LaserBatteries";
-		if(not ("LaserDesignator_mounted" in _weapons)) then {_vec addweapon "LaserDesignator_mounted"};
-	};
-	_vec addMagazineTurret ["120Rnd_CMFlare_Chaff_Magazine",[-1]];
-	_vec addweapon "CMFlareLauncher";
-	player selectWeapon "CMFlareLauncher";
-	_muzzles = getArray(configFile>>"cfgWeapons" >> "CMFlareLauncher" >> "muzzles");
-	player selectWeapon (_muzzles select 0);
-};
+
 
 _i = 0;
 if (editor == 1) then 
@@ -7053,6 +7040,7 @@ if (_i < 1000) then
 	};
   };
 };
+
 
 /*
 

@@ -1,8 +1,12 @@
 enableEnvironment true;
 //creating center east/ setting relations
-_SideHQ = createCenter east;
+_SideHQ = createCenter west;
 EAST setFriend [WEST, 0]; 
+EAST setFriend [RESISTANCE, 0]; 
 WEST setFriend [EAST, 0];
+WEST setFriend [RESISTANCE, 1];
+RESISTANCE setFriend [WEST, 1];
+RESISTANCE setFriend [EAST, 0];
 
 //rug_dsai settings [EAST, WEST, GUER, CIV, sideEnemy]
 RUG_DSAI_SIDES = ["RUG_DSAIArab","RUG_DSAI","RUG_DSAIArab","RUG_DSAIArab","RUG_DSAIArab"];
@@ -79,6 +83,7 @@ EGG_vecmods = paramsArray select 18;
 //temp
 EGG_unitwest = paramsArray select 19;
 EX_EVO_vehPriceMultiplier = paramsArray select 20;
+EVO_incomeFrequency = paramsArray select 21;
 //Respawn settings
 publicVariable "spawntype"; 
 if (spawntype == 0 or spawntype == 1) then {server execVM "revive_init.sqf"};
@@ -208,179 +213,6 @@ BIS_EVO_IdelSVEC =
 	};
 };
 
-//sending player to valley to sort out type
-//plays = [player] execVM "data\scripts\selectplayer.sqf";
-
-//adding typical unit, vehicle, weapon and missile arrays
-//#######################################################
-
-//desert BAF
-EGG_EVO_westplayer = ["BAF_Soldier_EN_DDPM","BAF_Soldier_EN_DDPM","BAF_Soldier_EN_DDPM","BAF_Soldier_EN_DDPM","BAF_Soldier_Officer_DDPM","BAF_Soldier_GL_DDPM","TK_CIV_Takistani04_EP1","BAF_Soldier_GL_DDPM","BAF_Soldier_AA_DDPM","BAF_Soldier_MG_DDPM","BAF_Soldier_AT_DDPM","BAF_Pilot_DDPM","BAF_Soldier_HAT_DDPM","BAF_Soldier_MG_DDPM","CIV_EuroMan02_EP1","BAF_Pilot_DDPM","BAF_Soldier_AAA_DDPM","BAF_Soldier_scout_DDPM","BAF_Soldier_Medic_DDPM","BAF_Soldier_SniperH_MTP","BAF_Soldier_Medic_DDPM","BAF_Soldier_Medic_DDPM","Dr_Hladik_EP1"];
-
-//woodland BAF
-if (EGG_unitwest == 1) then 
-{
-	EGG_EVO_westplayer = ["BAF_Soldier_EN_W","BAF_Soldier_EN_W","BAF_Soldier_EN_W","BAF_Soldier_EN_W","BAF_Soldier_Officer_W","BAF_Soldier_GL_W","Rocker4","BAF_Soldier_GL_W","BAF_Soldier_AA_W","BAF_Soldier_MG_W","BAF_Soldier_AT_W","BAF_Pilot_W","BAF_Soldier_HAT_W","BAF_Soldier_MG_W","Villager1","BAF_Pilot_W","BAF_Soldier_AAA_W","BAF_Soldier_scout_W","BAF_Soldier_Medic_W","BAF_Soldier_SniperH_W","BAF_Soldier_Medic_W","BAF_Soldier_Medic_W","Dr_Hladik_EP1"];
-};
-
-//US desert
-if (EGG_unitwest == 2) then 
-{
-	EGG_EVO_westplayer =["US_Soldier_Engineer_EP1","US_Soldier_Engineer_EP1","US_Soldier_Engineer_EP1","US_Soldier_Engineer_EP1","US_Soldier_Officer_EP1","US_Soldier_GL_EP1","TK_CIV_Takistani04_EP1","US_Soldier_GL_EP1","US_Soldier_AA_EP1","US_Soldier_MG_EP1","US_Soldier_AT_EP1","US_Soldier_Pilot_EP1","US_Soldier_HAT_EP1","US_Delta_Force_MG_EP1","CIV_EuroMan02_EP1","US_Soldier_Pilot_EP1","US_Soldier_AA_EP1","US_Delta_Force_Marksman_EP1","US_Delta_Force_Medic_EP1","US_Soldier_SniperH_EP1","US_Soldier_Medic_EP1","US_Soldier_Medic_EP1","Dr_Hladik_EP1"];
-};
-
-//USMC woodland
-if (EGG_unitwest == 3) then 
-{
-	EGG_EVO_westplayer = ["USMC_SoldierS_Engineer","USMC_SoldierS_Engineer","FR_Sapper","FR_Sapper","FR_Commander","FR_Assault_GL","Villager1","USMC_Soldier_GL","USMC_Soldier_AA","FR_AR","USMC_Soldier_AT","USMC_Soldier_Pilot","USMC_Soldier_HAT","USMC_Soldier_MG","Rocker4","USMC_Soldier_Pilot","USMC_Soldier_AA","FR_Marksman","FR_Corpsman","USMC_SoldierS_Sniper","USMC_Soldier_Medic","USMC_Soldier_Medic","Dr_Hladik_EP1"];
-};
-
-//ACR desert
-if (EGG_unitwest == 4) then 
-{
-	EGG_EVO_westplayer = ["CZ_Soldier_Engineer_Dst_ACR","CZ_Soldier_Engineer_Dst_ACR","CZ_Soldier_Spec_Demo_Dst_ACR","CZ_Soldier_Spec_Demo_Dst_ACR","CZ_Special_Forces_TL_DES_EP1","CZ_Special_Forces_GL_DES_EP1","TK_CIV_Takistani04_EP1","CZ_Soldier_805g_Dst_ACR","CZ_Soldier_Spotter_ACR","CZ_Special_Forces_MG_DES_EP1","CZ_Soldier_RPG_Dst_ACR","CZ_Soldier_Pilot_EP1","CZ_Soldier_AT_DES_EP1","CZ_Soldier_MG_DES_EP1","CIV_EuroMan02_EP1","CZ_Soldier_Pilot_EP1","CZ_Soldier_Spotter_ACR","CZ_Special_Forces_Scout_DES_EP1","CZ_Soldier_medik_DES_EP1","CZ_Sharpshooter_DES_ACR","CZ_Soldier_medik_DES_EP1","CZ_Soldier_medik_DES_EP1","Dr_Hladik_EP1"];
-};
-
-//ACR woodland
-if (EGG_unitwest == 5) then 
-{
-	EGG_EVO_westplayer = ["CZ_Soldier_Engineer_Wdl_ACR","CZ_Soldier_Engineer_Wdl_ACR","CZ_Soldier_Spec_Demo_Wdl_ACR","CZ_Soldier_Spec_Demo_Wdl_ACR","CZ_Soldier_Officer_Wdl_ACR","CZ_Soldier_805g_Wdl_ACR","Villager1","CZ_Soldier_805g_Wdl_ACR","CZ_Soldier_Recon_Wdl_ACR","CZ_Soldier_MG_Wdl_ACR","CZ_Soldier_RPG_Wdl_ACR","CZ_Soldier_Pilot_Wdl_ACR","CZ_Soldier_AT_Wdl_ACR","CZ_Soldier_MG2_Wdl_ACR","Rocker4","CZ_Soldier_Pilot_Wdl_ACR","CZ_Soldier_Recon_Wdl_ACR","CZ_Sharpshooter_Wdl_ACR","CZ_Soldier_Medic_Wdl_ACR","CZ_Soldier_Spec2_Wdl_ACR","CZ_Soldier_Medic_Wdl_ACR","CZ_Soldier_Medic_Wdl_ACR","Dr_Hladik_EP1"];
-};
-
-//PMC/DE desert
-if (EGG_unitwest == 6) then 
-{
-	EGG_EVO_westplayer = ["Soldier_Engineer_PMC","Soldier_Engineer_PMC","Soldier_Engineer_PMC","Soldier_Engineer_PMC","Soldier_TL_PMC","Soldier_GL_M16A2_PMC","TK_CIV_Takistani04_EP1","Soldier_GL_PMC","Soldier_AA_PMC","GER_Soldier_MG_EP1","Soldier_AT_PMC","Soldier_Pilot_PMC","Soldier_AT_PMC","Soldier_MG_PMC","CIV_EuroMan02_EP1","Soldier_Pilot_PMC","Soldier_AA_PMC","GER_Soldier_Scout_EP1","GER_Soldier_Medic_EP1","Soldier_Sniper_KSVK_PMC","GER_Soldier_Medic_EP1",
-"GER_Soldier_Medic_EP1","Dr_Hladik_EP1"];
-};
-
-//PMC woodland+CDF
-if (EGG_unitwest == 7) then 
-{
-
-	EGG_EVO_westplayer = ["Soldier_Engineer_PMC","Soldier_Engineer_PMC","UN_CDF_Soldier_B_EP1","UN_CDF_Soldier_B_EP1","UN_CDF_Soldier_Officer_EP1","Soldier_GL_M16A2_PMC","Villager1","UN_CDF_Soldier_EP1","Soldier_AA_PMC","UN_CDF_Soldier_MG_EP1","UN_CDF_Soldier_AT_EP1","UN_CDF_Soldier_Pilot_EP1","Soldier_AT_PMC","Soldier_MG_PKM_PMC","Rocker4","Soldier_Pilot_PMC","Soldier_Bodyguard_AA12_PMC","Soldier_Sniper_PMC","GER_Soldier_Medic_EP1","Soldier_Sniper_KSVK_PMC","Soldier_Medic_PMC","Soldier_Medic_PMC","Dr_Hladik_EP1"];
-};
-
-//PRACS
-if (EGG_unitwest == 8) then 
-{
-	EGG_EVO_westplayer = ["PRACS_Paratrooper_ENG","PRACS_Paratrooper_ENG","PRACS_Regular_ENG","PRACS_Regular_ENG","PRACS_Paratrooper_O","PRACS_Paratrooper_GRE","Villager1","PRACS_Regular_GRE","PRACS_Paratrooper_AA","PRACS_Paratrooper_MG","PRACS_Paratrooper_AT","PRACS_Attack_Heli_pilot","PRACS_Paratrooper_HAT","PRACS_Paratrooper_ARM","Rocker4","PRACS_F16_Pilot","PRACS_Regular_AA","PRACS_Paratrooper_NVS","PRACS_Paratrooper_MED","PRACS_Sniper_TWS","PRACS_Regular_MED","PRACS_Regular_MED","Dr_Hladik_EP1"];
-};
-
-//########################################################
-//new unsung factions
-
-//		"US 25th Infantry Div. (65) (Unsung)",
-
-if (EGG_unitwest == 9) then 
-{
-	EGG_EVO_westplayer = ["uns_US_25ID_ENG","uns_US_25ID_ENG","uns_US_25ID_DEM","uns_US_25ID_SAP","uns_US_25ID_PL","uns_US_25ID_GL","uns_civilian3","uns_US_25ID_MTSG","uns_US_25ID_RTO","uns_US_25ID_HMG","uns_US_25ID_SL","uns_pil1","uns_US_25ID_AT","uns_US_25ID_AHMG","uns_civilian1","uns_pilot5","uns_US_25ID_RTO","uns_US_25ID_SCT","uns_US_25ID_MED","uns_US_25ID_MRK","uns_US_25ID_MED","uns_US_25ID_MED","Dr_Hladik_EP1"];
-
-//AI recruits
-	EGG_EVO_west1 =["uns_US_25ID_TRI","uns_US_25ID_MED","uns_US_25ID_ENG","uns_US_25ID_RTO","uns_US_25ID_HMG","uns_US_25ID_AT","uns_pilot5","uns_US_25ID_MGSG","uns_US_25ID_MRK","uns_US_25ID_GL","uns_US_25ID_MTSG","uns_US_25ID_SLSG"];
-
-};
-
-//		"US 5th Spec. Forces Grp. (65) (Unsung)",
-if (EGG_unitwest == 10) then 
-{
-	EGG_EVO_westplayer = ["uns_men_US_5SFG_ENG","uns_men_US_5SFG_ENG","uns_men_US_5SFG_DEM","uns_men_US_5SFG_SAP","uns_men_US_5SFG_PL","uns_men_US_5SFG_GL","uns_civilian3","uns_men_US_5SFG_GL2","uns_men_US_5SFG_RTO","uns_men_US_5SFG_HMG","uns_men_US_5SFG_SL","uns_pilot6","uns_men_US_5SFG_AT","uns_men_US_5SFG_AHMG","uns_civilian1","uns_pil1","uns_men_US_5SFG_RTO","uns_men_US_5SFG_SCT","uns_men_US_5SFG_MED","uns_men_US_5SFG_MRK","uns_men_US_5SFG_MED","uns_men_US_5SFG_MED","Dr_Hladik_EP1"];
-
-//AI recruits
-	EGG_EVO_west1 =["uns_men_US_5SFG_TRI","uns_men_US_5SFG_MED","uns_men_US_5SFG_ENG","uns_men_US_5SFG_RTO","uns_men_US_5SFG_HMG","uns_men_US_5SFG_AT","uns_pilot6","uns_men_US_5SFG_MGSG","uns_men_US_5SFG_MRK","uns_men_US_5SFG_GL2","uns_men_US_5SFG_MTSG","uns_men_US_5SFG_Mk18"];
-
-};
-
-//		"USMC (65) (Unsung)",
-if (EGG_unitwest == 11) then 
-{
-	EGG_EVO_westplayer = ["uns_men_USMC_65_ENG","uns_men_USMC_65_ENG","uns_men_USMC_65_DEM","uns_men_USMC_65_SAP","uns_men_USMC_65_PL","uns_men_USMC_65_GL","uns_civilian3","uns_men_USMC_65_MTSG","uns_men_USMC_65_RTO","uns_men_USMC_65_HMG","uns_men_USMC_65_SL","uns_pilot3","uns_men_USMC_65_AT","uns_men_USMC_65_AHMG","uns_civilian1","uns_pilN2","uns_men_USMC_65_RTO","uns_men_USMC_65_SCT","uns_men_USMC_65_MED","uns_men_USMC_65_MRK","uns_men_USMC_65_MED","uns_men_USMC_65_MED","Dr_Hladik_EP1"];
-
-//AI recruits
-	EGG_EVO_west1 =["uns_men_USMC_65_TRI","uns_men_USMC_65_MED","uns_men_USMC_65_ENG","uns_men_USMC_65_RTO","uns_men_USMC_65_HMG","uns_men_USMC_65_AT","uns_pilot3","uns_men_USMC_65_MGSG","uns_men_USMC_65_MRK","uns_men_USMC_65_GL","uns_men_USMC_65_MTSG","uns_men_USMC_65_SLSG"];
-
-};
-
-//		"US 1st Infantry Div. (68) (Unsung)",
-if (EGG_unitwest == 12) then 
-{
-	EGG_EVO_westplayer = ["uns_US_1ID_ENG","uns_US_1ID_ENG","uns_US_1ID_DEM","uns_US_1ID_SAP","uns_US_1ID_PL","uns_US_1ID_GL","uns_civilian3","uns_US_1ID_MTSG","uns_US_1ID_RTO","uns_US_1ID_HMG","uns_US_1ID_SL","uns_pil2","uns_US_1ID_AT","uns_US_1ID_AHMG","uns_civilian1","uns_pilot5","uns_US_1ID_RTO","uns_US_1ID_SCT","uns_US_1ID_MED","uns_US_1ID_MRK","uns_US_1ID_MED","uns_US_1ID_MED","Dr_Hladik_EP1"];
-
-//AI recruits
-	EGG_EVO_west1 =["uns_US_1ID_TRI","uns_US_1ID_MED","uns_US_1ID_ENG","uns_US_1ID_RTO","uns_US_1ID_HMG","uns_US_1ID_AT","uns_pilot5","uns_US_1ID_MGSG","uns_US_1ID_MRK","uns_US_1ID_GL","uns_US_1ID_MTSG","uns_US_1ID_SLSG"];
-
-};
-
-//		"USMC (68) (Unsung)",
-
-if (EGG_unitwest == 13) then 
-{
-	EGG_EVO_westplayer = ["uns_men_USMC_68_ENG","uns_men_USMC_68_ENG","uns_men_USMC_68_DEM","uns_men_USMC_68_SAP","uns_men_USMC_68_PL","uns_men_USMC_68_GL","uns_civilian3","uns_men_USMC_68_MTSG","uns_men_USMC_68_RTO","uns_men_USMC_68_HMG","uns_men_USMC_68_SL","uns_pilN1","uns_men_USMC_68_AT","uns_men_USMC_68_AHMG","uns_civilian1","uns_pilot4","uns_men_USMC_68_RTO","uns_men_USMC_68_SCT","uns_men_USMC_68_MED","uns_men_USMC_68_MRK","uns_men_USMC_68_MED","uns_men_USMC_68_MED","Dr_Hladik_EP1"];
-
-//AI recruits
-	EGG_EVO_west1 =["uns_men_USMC_68_TRI","uns_men_USMC_68_MED","uns_men_USMC_68_ENG","uns_men_USMC_68_RTO","uns_men_USMC_68_HMG","uns_men_USMC_68_AT","uns_pilot4","uns_men_USMC_68_MGSG","uns_men_USMC_68_MRK","uns_men_USMC_68_GL","uns_men_USMC_68_MTSG","uns_men_USMC_68_SLSG"];
-
-};
-
-//		"USMC Force Recon (68) (Unsung)",
-
-if (EGG_unitwest == 14) then 
-{
-	EGG_EVO_westplayer = ["uns_men_US_3FRC_ENG","uns_men_US_3FRC_ENG","uns_men_US_3FRC_DEM","uns_men_US_3FRC_SAP","uns_men_US_3FRC_PL","uns_men_US_3FRC_GL","uns_civilian3","uns_men_US_3FRC_MTSG","uns_men_US_3FRC_RTO","uns_men_US_3FRC_HMG","uns_men_US_3FRC_SL","uns_pilN1","uns_men_US_3FRC_AT","uns_men_US_3FRC_AHMG","uns_civilian1","uns_pilot3","uns_men_US_3FRC_RTO","uns_men_US_3FRC_SCT","uns_men_US_3FRC_MED","uns_men_US_3FRC_MRK","uns_men_US_3FRC_MED","uns_men_US_3FRC_MED","Dr_Hladik_EP1"];
-
-//AI recruits
-	EGG_EVO_west1 =["uns_men_US_3FRC_TRI","uns_men_US_3FRC_MED","uns_men_US_3FRC_ENG","uns_men_US_3FRC_RTO","uns_men_US_3FRC_HMG","uns_men_US_3FRC_AT","uns_pilot3","uns_men_US_3FRC_MGSG","uns_men_US_3FRC_MRK","uns_men_US_3FRC_GL","uns_men_US_3FRC_MTSG","uns_men_US_3FRC_SAP"];
-
-};
-
-//		"US 6th Spec. Forces Grp.(68) (Unsung)",
-
-if (EGG_unitwest == 15) then 
-{
-	EGG_EVO_westplayer = ["uns_men_US_6SFG_ENG","uns_men_US_6SFG_ENG","uns_men_US_6SFG_DEM","uns_men_US_6SFG_SAP","uns_men_US_6SFG_PL","uns_men_US_6SFG_GL","uns_civilian3","uns_men_US_6SFG_GL2","uns_men_US_6SFG_RTO","uns_men_US_6SFG_HMG","uns_men_US_6SFG_SL","uns_pil1","uns_men_US_6SFG_AT","uns_men_US_6SFG_AHMG","uns_civilian1","uns_pilot6","uns_men_US_6SFG_RTO","uns_men_US_6SFG_SCT","uns_men_US_6SFG_MED","uns_men_US_6SFG_MRK","uns_men_US_6SFG_MED","uns_men_US_6SFG_MED","Dr_Hladik_EP1"];
-
-//AI recruits
-	EGG_EVO_west1 =["uns_men_US_6SFG_TRI","uns_men_US_6SFG_MED","uns_men_US_6SFG_ENG","uns_men_US_6SFG_RTO","uns_men_US_6SFG_HMG","uns_men_US_6SFG_AT","uns_pilot6","uns_men_US_6SFG_MGSG","uns_men_US_6SFG_MRK","uns_men_US_6SFG_GL2","uns_men_US_6SFG_MTSG","uns_men_US_6SFG_Mk18"];
-
-};
-
-//		"US 1AC Long Range Recon Patrol LRRP (Unsung)",
-
-if (EGG_unitwest == 16) then 
-{
-	EGG_EVO_westplayer = ["uns_men_US_1AC_ENG","uns_men_US_1AC_ENG","uns_men_US_1AC_DEM","uns_men_US_1AC_SAP","uns_men_US_1AC_PL","uns_men_US_1AC_GL","uns_civilian3","uns_men_US_1AC_GL2","uns_men_US_1AC_RTO","uns_men_US_1AC_HMG","uns_men_US_1AC_SL","uns_pil1","uns_men_US_1AC_AT","uns_men_US_1AC_AHMG","uns_civilian1","uns_pilot2","uns_men_US_1AC_RTO","uns_men_US_1AC_SCT","uns_men_US_1AC_MED","uns_men_US_1AC_MRK","uns_men_US_1AC_MED","uns_men_US_1AC_MED","Dr_Hladik_EP1"];
-
-//AI recruits
-	EGG_EVO_west1 =["uns_men_US_1AC_TRI","uns_men_US_1AC_MED","uns_men_US_1AC_ENG","uns_men_US_1AC_RTO","uns_men_US_1AC_HMG","uns_men_US_1AC_AT","uns_pilot2","uns_men_US_1AC_MGSG","uns_men_US_1AC_MRK","uns_men_US_1AC_GL2","uns_men_US_1AC_MTSG","uns_men_US_1AC_SAP"];
-
-};
-
-//		"Civilian Irregular Defence Group CIDG (Unsung)",
-
-if (EGG_unitwest == 17) then 
-{
-	EGG_EVO_westplayer = ["uns_men_CIDG_ENG","uns_men_CIDG_ENG","uns_men_CIDG_DEM","uns_men_CIDG_SAP","uns_men_CIDG_PL","uns_men_CIDG_GL","uns_civilian3","uns_men_CIDG_GL","uns_men_CIDG_RTO","uns_men_CIDG_HMG","uns_men_CIDG_SL","uns_pilot1","uns_men_CIDG_AT","uns_men_CIDG_HMG","uns_civilian1","uns_pil2","uns_men_CIDG_RTO","uns_men_CIDG_SCT","uns_men_CIDG_MED","uns_men_CIDG_MRK","uns_men_CIDG_MED","uns_men_CIDG_MED","Dr_Hladik_EP1"];
-
-//AI recruits
-	EGG_EVO_west1 =["uns_men_CIDG_S1","uns_men_CIDG_MED","uns_men_CIDG_ENG","uns_men_CIDG_RTO","uns_men_CIDG_HMG","uns_men_CIDG_AT","uns_pilot1","uns_men_CIDG_S4","uns_men_CIDG_MRK","uns_men_CIDG_GL","uns_men_CIDG_S7","uns_men_CIDG_SAP"];
-
-};
-
-//Duala/Afrenian desert was 10
-if (EGG_unitwest == 18) then 
-{
-	EGG_EVO_westplayer = ["AFR_Soldier_Engineer","AFR_Soldier_Engineer","AFR_Soldier_Engineer","AFR_Guard_M1014","AFR_Soldier_Officer","AFR_Soldier_GL","ibr_africaman1","AFR_Guard_M16","AFR_Guard_AA","AFR_Soldier_MG","AFR_Soldier_AT","AFR_Soldier_Pilot","AFR_Soldier_HAT","AFR_Guard_AR","ibr_africaman2","AFR_Soldier_Stinger","AFR_Guard_Marksman","AFR_Soldier_Medic","AFR_Soldier_Sniper","AFR_Soldier_Medic","AFR_Soldier_Medic","Dr_Hladik_EP1"];
-};
-
-//Lingor woodland was 11
-if (EGG_unitwest == 19) then 
-{
-	EGG_EVO_westplayer = ["LIN_Soldier_Engineer","LIN_Soldier_Engineer","LIN_Soldier_Engineer","LIN_Soldier_Engineer","LIN_Officer","LIN_Soldier_GL","ibr_lingorman1","LIN_Soldier_GL","LIN_Soldier_AA","LIN_Soldier_MG","LIN_Soldier_LAT","LIN_Soldier_Pilot","LIN_Soldier_HAT","LIN_Soldier_AR","ibr_lingorman2","LIN_Soldier_AA","LIN_Soldier_Spotter","LIN_Soldier_Medic","LIN_Soldier_Sniper","LIN_Soldier_Medic","LIN_Soldier_Medic","Dr_Hladik_EP1"];
-};
-
-
-//////////////////////////////////////////////
-
 
 EGG_problemcraft =  ["PRACS_TK_Su22","PRACS_TK_Su22_BMB","PRACS_TK_Su22_MSL","PRACS_TK_Su22_IND","PRACS_T K_Su22_STA","PRACS_TK_Su24Fencer","PRACS_TK_Su24Fencer_GBU","PRACS_TK_Su24Fencer_STK","PRACS_TK_MiG21"];
 
@@ -450,13 +282,20 @@ EGG_EVO_westveh4 = ["EP3_A10_CAS","EP3_A10_CBU","EP3_A10","GLT_Falcon_mk82","GLT
 EGG_EVO_westveh5 = ["BAF_ATV_D","BAF_Offroad_D","ATV_US_EP1","MTVR_DES_EP1","MtvrReammo_DES_EP1","MtvrRefuel_DES_EP1","MtvrRepair_DES_EP1","M1133_MEV_EP1","SUV_PMC_BAF","SUV_UN_EP1"];
 //light armed
 //EGG_EVO_westveh6 = ["HMMWV_Armored","HMMWV_M2","HMMWV_MK19","HMMWV_TOW","LAV25_HQ","UAZ_MG_CDF","UAZ_AGS30_CDF","BRDM2_CDF","BRDM2_ATGM_CDF","BMP2_HQ_CDF","GRAD_CDF"];
-EGG_EVO_westveh6 = ["LandRover_Special_CZ_EP1","BAF_Jackal2_GMG_W","BAF_Jackal2_L2A1_W","BAF_Jackal2_GMG_D","BAF_Jackal2_L2A1_D","M113_UN_EP1","HMMWV_M1035_DES_EP1","HMMWV_M1151_M2_DES_EP1","HMMWV_M998_crows_M2_DES_EP1","HMMWV_M998_crows_MK19_DES_EP1","HMMWV_M998A2_SOV_DES_EP1","HMMWV_MK19_DES_EP1","HMMWV_TOW_DES_EP1"];
 //heavy armed
 //EGG_EVO_westveh7 = ["AAV","LAV25","M1A1","M1A2_TUSK_MG","BMP2_CDF","T72_CDF","MLRS","T34"];
 
-//THESE ARMOR SPAWN ON TOWNS
-EGG_EVO_westveh7 = ["M1135_ATGMV_EP1","PRACS_LAV_IFV","EB_LAV25_D2","HMMWV_M998_crows_MK19_DES_EP1","M1130_CV_EP1","M1126_ICV_M2_EP1","M1126_ICV_mk19_EP1","M1129_MC_EP1","PRACS_LEO2A4","PRACS_LEO1A5","PRACS_M60A3","PRACS_M60A3_S2","M1128_MGS_EP1","M1A1_US_DES_EP1","M1A2_US_TUSK_MG_EP1","M2A2_EP1","M2A3_EP1","PRACS_FV107","BAF_FV510_D","PRACS_FV101"];
+EGG_EVO_westveh6 = ["LandRover_Special_CZ_EP1","BAF_Jackal2_GMG_W","BAF_Jackal2_L2A1_W","BAF_Jackal2_GMG_D","BAF_Jackal2_L2A1_D","M113_UN_EP1","HMMWV_M1035_DES_EP1","HMMWV_M1151_M2_DES_EP1","HMMWV_M998_crows_M2_DES_EP1","HMMWV_M998_crows_MK19_DES_EP1","HMMWV_M998A2_SOV_DES_EP1","HMMWV_MK19_DES_EP1","HMMWV_TOW_DES_EP1"];
+EGG_EVO_westEasy = ["EB_M1114_Armored_D","M1114_AGS_ACR","M1114_DSK_ACR","HMMWV_M1151_M2_CZ_DES_EP1","HMMWV_TOW_DES_EP1","M1126_ICV_M2_EP1","M1126_ICV_mk19_EP1","M1129_MC_EP1"];
+EGG_EVO_westMedium = ["PRACS_LEO1A5","PRACS_M60A3","PRACS_M60A3_S2","M1128_MGS_EP1","M1135_ATGMV_EP1","EB_LAV25_D2","PRACS_FV107","M2A2_EP1","M2A3_EP1","BAF_FV510_D","PRACS_FV101"];
+EGG_EVO_westHard = ["PRACS_LEO2A4","M1A1_US_DES_EP1","M1A2_US_TUSK_MG_EP1"];
 
+//THESE ARMOR SPAWN ON TOWNS
+//EGG_EVO_westveh7 = EGG_EVO_westEasy + EGG_EVO_westMedium + EGG_EVO_westHard;
+
+//Reinforce vehicles
+//EGG_EVO_westarm = EGG_EVO_westveh6+EGG_EVO_westveh7;
+EGG_EVO_westarm = EGG_EVO_westEasy + EGG_EVO_westMedium + EGG_EVO_westHard;
 
 //unarmed mod
 EGG_EVO_westveh8 = ["AFR_Pinz_police","ukf_110_des","ukf_110_wld"];
@@ -477,7 +316,7 @@ EGG_EVO_westveh11 = ["HMMWV_Avenger","PRACS_m48_chapparal","PRACS_M163","PRACS_M
 EGG_EVO_westveh12 = ["Vulcan","Vulcan_RACS","vil_bradley_a6","vil_bradley_a6D"];
 //EGG_EVO_westveh12 = ["uns_m163"];
 //statics
-EGG_EVO_westveh13 = ["Fort_Nest_M240","M2HD_mini_TriPod","M2StaticMG","DSHKM_CDF","DSHkM_Mini_TriPod_CDF","MK19_TriPod","AGS_CDF","2b14_82mm","2b14_82mm_CDF","M252","SPG9_CDF","M119","D30_CDF","TOW_TriPod","Stinger_Pod","ZU23_CDF","PRACS_HAWK","PRACS_Type74AAgun","PRACS_M266AAgun"];
+EGG_EVO_westveh13 = ["Fort_Nest_M240","M2HD_mini_TriPod","M2StaticMG","DSHKM_CDF","DSHkM_Mini_TriPod_CDF","MK19_TriPod","AGS_CDF","2b14_82mm_CDF","M252","SPG9_CDF","M119","D30_CDF","TOW_TriPod","ZU23_CDF","PRACS_HAWK","PRACS_Type74AAgun","PRACS_M266AAgun"];
 //EGG_EVO_westveh13 = ["BAF_GMG_Tripod_D","BAF_GPMG_Minitripod_D","BAF_L2A1_Minitripod_D","BAF_L2A1_Tripod_D","BAF_GMG_Tripod_W","BAF_GPMG_Minitripod_W","BAF_L2A1_Minitripod_W","BAF_L2A1_Tripod_W","Stinger_Pod_US_EP1","M119_US_EP1"];
 //EGG_EVO_westveh13 = ["Fort_Nest_M240","M2HD_mini_TriPod","M2StaticMG","DSHKM_CDF","DSHkM_Mini_TriPod_CDF","2b14_82mm","2b14_82mm_CDF","M252","SPG9_CDF","M119","D30_CDF","ZU23_CDF","uns_m2","uns_m2_2","uns_m2_3","CSJ_Quad50"];
 
@@ -633,7 +472,7 @@ EGG_EVO_mevheavyb = ["M113_TK_EP1","T72_TK_EP1","ZSU_TK_EP1","Mi24_D_TK_EP1","MA
 EGG_EVO_mevconvoya = ["UralRefuel_TK_EP1","UralRepair_TK_EP1","UralReammo_TK_EP1"];
 
 //Reinfocing infatry vehicles
-EGG_EVO_mevconvoyb = ["V3S_TK_EP1","V3S_Open_TK_EP1"];
+EGG_EVO_mevconvoyb = ["MTVR_DES_EP1","MTVR_DES_EP1"];
 
 EGG_EVO_mevaira = ["Mi24_D_TK_EP1","Mi17_TK_EP1","UH1H_TK_EP1","Ka52","UH1H_TK_EP1"];
 //,"ibr_gazelle_armed","CMA_Mi28_N_RUS"
@@ -823,26 +662,27 @@ buyCarList =
 	["FFAA_nissan_carga",0],
 	["V3S_TK_EP1",0],
 	["PRACS_TK_URAL_OPEN",0],
-	["FFAA_nissan_pk",0],
-	["FFAA_toyota_dshk",0],
-	["FFAA_toyota_katiuska",0],
-	["FFAA_toyota_spg9",0],
-	["FFAA_toyota_strela",0],
-	["LandRover_MG_TK_EP1",2],	
-	["UAZ_AGS30_TK_EP1",2],
-	["EB_LR_SPG9_PK_TK",4],
-	["eb_gaz_vodnik_tk",4],
-	["eb_gaz_vodnik_hmg_tk",4],
-	["pook_btr40_twinMG_tak",4],
-	["pook_btr152_zpu_tak",4],
-	["pook_btr40_zu23_tak",4],
-	["pook_BTR40_RR106_TAK",4],
-	["pook_btr40_mortar_tak",4],
-	["pook_brdm2aa_tkins",4],
-	["pook_brdm2_Sa9_tak",4],
-	["pracs_tk_ural_sam",4],
-	["Ural_ZU23_TK_EP1",4],
-	["pook_ural_s60_tak",4]
+	["FFAA_nissan_pk",3],
+	["FFAA_toyota_dshk",5],
+	["FFAA_toyota_spg9",12],
+	["FFAA_toyota_strela",12],
+	["FFAA_toyota_katiuska",15],
+	["LandRover_MG_TK_EP1",8],	
+	["UAZ_AGS30_TK_EP1",10],
+	["EB_LR_SPG9_PK_TK",12],
+	["eb_gaz_vodnik_tk",13],
+	["eb_gaz_vodnik_hmg_tk",15],
+	["pook_btr40_twinMG_tak",10],
+	["pook_btr152_zpu_tak",15],
+	["pook_btr40_zu23_tak",18],
+	["pook_BTR40_RR106_TAK",20],
+	["pook_btr40_mortar_tak",22],
+	["pook_brdm2aa_tkins",25],
+	["pook_brdm2_Sa9_tak",28],
+	["pracs_tk_ural_sam",10],
+	["Ural_ZU23_TK_EP1",14],
+	["pook_ural_s60_tak",16],
+	["UralRepair_TK_EP1",5]
 	];
 
 for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
@@ -858,47 +698,47 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 	buyTankList = 
 	[
 	/*---APCs---*/
-	["pracs_TK_type63",4],
-	["pracs_TK_mtlb_apc",4],
-	["brdm2_tk_ep1",4],
-	["pook_brdm2ags_tak",4],
-	["pook_brdm2rkt_tkins",4],
-	["pook_brdm2at2_tak",4],
-	["pook_brdm2at5_tak",4],
-	["btr60_tk_ep1",4],
-	["pook_btr2a42_tak",4],
-	["pook_btrMWS_tak",4],
-	["eb_btr90_tk",4],
+	["pracs_TK_type63",12],
+	["pracs_TK_mtlb_apc",14],
+	["brdm2_tk_ep1",12],
+	["pook_brdm2ags_tak",14],
+	["pook_brdm2rkt_tkins",18],
+	["pook_brdm2at2_tak",20],
+	["pook_brdm2at5_tak",24],
+	["btr60_tk_ep1",20],
+	["pook_btr2a42_tak",22],
+	["pook_btrMWS_tak",24],
+	["eb_btr90_tk",25],
 	/*Tanks*/
-	["sa_bmd_1_iraq",4],
-	["VIL_BMP1_TKS",12],						
-	["BMP2_TK_EP1",12],						
-	["EB_BMP3_TK",12],						
-	["T34_tk_ep1",12],	
-	["pook_t54_tak",12],
-	["t55_tk_EP1",12],
-	["vil_t62m",12],	
-	["ch_t72_desert",12],
-	["ch_t72_2_desert",12],
-	["pook_to55_tak",12],
-	["pracs_tk_t80b",12],
+	["sa_bmd_1_iraq",20],
+	["VIL_BMP1_TKS",20],						
+	["BMP2_TK_EP1",24],						
+	["EB_BMP3_TK",25],						
+	["T34_tk_ep1",30],	
+	["pook_t54_tak",32],
+	["t55_tk_EP1",38],
+	["vil_t62m",40],	
+	["ch_t72_desert",42],
+	["ch_t72_2_desert",50],
+	["pook_to55_tak",50],
+	["pracs_tk_t80b",60],
 	/*AA*/
-	["pook_zsu57_tak",12],
-	["zsu_tk_ep1",12],
-	["pook_zsum4_tak",12],
-	["pracs_tk_sa13",12],
-	["pracs_sa6_tk",12],
-	["pracs_tk_sa8",12],
-	["pook_9k317_tak",12],
-	["pook_9k317m3_tak",12],
-	["pook_9k331_tak",12],
-	["pook_9k37_tak",12],
-	["pook_96k6_tak",12],
-	["eb_2S6M_Tunguska_D",12],
-	["pook_5P85S_TAK",12],
+	["pook_zsu57_tak",25],
+	["zsu_tk_ep1",30],
+	["pook_zsum4_tak",30],
+	["pracs_tk_sa13",32],
+	["pracs_sa6_tk",32],
+	["pracs_tk_sa8",35],
+	["pook_9k317_tak",36],
+	["pook_9k317m3_tak",38],
+	["pook_9k331_tak",40],
+	["pook_9k37_tak",42],
+	["pook_96k6_tak",45],
+	["eb_2S6M_Tunguska_D",50],
+	["pook_5P85S_TAK",50],
 	/*ARTY*/
-	["pracs_2s1_tk",12],
-	["grad_tk_ep1",12]
+	["pracs_2s1_tk",120],
+	["grad_tk_ep1",160]
 	];
 
 for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
@@ -911,30 +751,28 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 		/*---Helicopters---*/
 	["ibr_gazelle",10],						// Mi-17
 	["UH1H_TK_EP1",10],						// Mi-17
-	["ibr_as350_armed",10],						// Mi-17
-	["FRL_Bo105pah_LRCAS_TAK",10],						// Mi-17
-	["ibr_gazelle_armed",10],						// Mi-17
 	["FRL_Mi17_TAK",10],						// Mi-17
+	["ibr_as350_armed",30],						// Mi-17
+	["FRL_Bo105pah_MR_TK_GUE",50],						// Mi-17
+	["ibr_gazelle_armed",70],						// Mi-17
 	["OWP_MI26cg",10],		
-	["FRL_Mi17_TVK_TAK",10],						// Mi-17
-	["FRL_Mi17_TVK_TAK_AGM",10],						// Mi-17
-	["FRL_Mi17_TVK_TAK_BMB",10],						// Mi-17
-	["FRL_Mi17_TVK_TAK_MR",10],						// Mi-17
-	["FRL_Mi24D_TK_AGM",10],						// Mi-17
-	["FRL_Mi24P_TK_MR",10],						// Mi-17
-	["Mi24_D_TK_EP1",10],						// Mi-17
-	["FRL_Mi28D_TK_MR",10],						// Mi-17
-	["FRL_Ka52_MR_D",10],						// Mi-17
+	["FRL_Mi17_TVK_TAK",80],						// Mi-17
+	["FRL_Mi17_TVK_TAK_MR",90],						// Mi-17
+	["FRL_Mi24D_TK_MR",140],						// Mi-17
+	["FRL_Mi24V_TK_MR",145],						// Mi-17
+	["FRL_Mi24P_TK_MR",150],						// Mi-17
+	["FRL_Mi28D_TK_MR",170],						// Mi-17
+	["FRL_Ka52_MR_D",185],						// Mi-17
 							// Apache (AT)
 	/*---Planes---*/
-	["ibr_maule_M7",60],	
-	["ibr_tucano_lin",100],								// F35					
-	["RKTCoalerD",130],								// F35
-	["mig15bis_5_tak",130],								// F35 
-	["PRACS_TK_MiG21",140],								// F35
-	["PRACS_TK_MiG21_AG",140],	
-	["SMAF_MF1_TK_CAS",160],								// F35
-	["PRACS_TK_Su22",170],								// F35
+	["ibr_maule_M7",10],	
+	["ibr_tucano_lin",90],								// F35					
+	["RKTCoalerD",10],								// F35
+	["mig15bis_5_tak",80],								// F35 
+	["PRACS_TK_MiG21",100],								// F35
+	["PRACS_TK_MiG21_AG",110],	
+	["SMAF_MF1_TK_CAS",130],								// F35
+	["PRACS_TK_Su22",150],								// F35
 	["PRACS_TK_Su24Fencer",170],	
 	["FRL_L39_CBU",170],								// F35
 	["FRL_L59_MR",170],								// F35
@@ -942,8 +780,8 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	["FRL_Su27_TK_CAP",180],								// AV8B
 	["FRL_Su30MKM_TAK_MR",185],								// AV8B
 	["FRL_Su34_D_LGB",185],								// AV8B
-	["FRL_Mig35_TAK_MR",60],	
-	["FRL_Mig29_TAK_MR",100],								// F35					
+	["FRL_Mig35_TAK_MR",150],	
+	["FRL_Mig29_TAK_MR",120],								// F35					
 	["pook_MIG25_TAK_SEAD",130],								// F35
 	["FRL_Mig27M_TK_HBMB",130],								// F35 
 	["FRL_Mig23B_TK_MR",140]								// F35
@@ -1033,6 +871,7 @@ if (editor == 1) then
 	reinfdelay = 30;
 	EGG_highCommand = 0;
 	EX_EVO_vehPriceMultiplier = 1;
+	EVO_incomeFrequency = 120;
 };
 basebeam = 2;
 //EGG_vecmods = paramsArray select 18;
@@ -1215,7 +1054,6 @@ EGG_EVO_mevlighta = ["BRDM2_ATGM_INS","UAZ_AGS30_INS","UAZ_AGS30_RU","UAZ_SPG9_I
 	EGG_EVO_mevheavya = ["T72_INS","BMP3","ZSU_INS","BMP2_MOL","T72_MOL","ibr_T55"];
 	EGG_EVO_mevheavyb = ["2S6M_Tunguska","Mi24_P","FRL_Mi8_MTV3_RUS_AGM","BMP2_MOL","T72_MOL","ibr_T55"];
 	EGG_EVO_mevconvoya = ["UralSupply_TK_EP1","UralSalvage_TK_EP1","UralReammo_TK_EP1","UralRefuel_TK_EP1","UralRepair_TK_EP1"];
-	EGG_EVO_mevconvoyb = ["Ural_INS","V3S_TK_EP1","V3S_Open_TK_EP1"];
 
 };
 
@@ -1324,9 +1162,6 @@ EGG_EVO_eastchopM = EGG_EVO_mevaira+EGG_EVO_eastveh3;
 EGG_EVO_eastplaneM = EGG_EVO_eastveh2+EGG_EVO_eastveh4;
 EGG_EVO_eastairM = EGG_EVO_eastchopM+EGG_EVO_eastplaneM;
 
-
-//Reinforce vehicles
-EGG_EVO_westarm = EGG_EVO_westveh6+EGG_EVO_westveh7;
 
 EGG_EVO_westlightM = EGG_EVO_westveh6+EGG_EVO_westveh9;
 EGG_EVO_westheavyM = EGG_EVO_westveh7+EGG_EVO_westveh10;

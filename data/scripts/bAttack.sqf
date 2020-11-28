@@ -35,7 +35,7 @@ BIS_EVO_makeGb =
 		_rndy = random 500;		
 	};
 	_ppos = [(_pos select 0)-200 +_rndx,(_pos select 1)-200+_rndy,0];
-	_guardb = createGroup (east);
+	_guardb = createGroup (west);
 	_allunits = EGG_EVO_meguarde;
 	_max = (count _allunits)-1;	
 	_dcountc = 15;

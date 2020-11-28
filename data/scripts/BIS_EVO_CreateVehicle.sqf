@@ -41,7 +41,7 @@ BIS_EVO_CreateVehicle =
 	_maxc = (count _crewtype)-1;
 	if (_maxc <1) then
 	{
-		_crewtype = EGG_EVO_meguardc;
+		_crewtype = EGG_EVO_west1;
 		_maxc = (count _crewtype)-1;
 	};
 	_maxcrew = 0;
@@ -59,15 +59,15 @@ BIS_EVO_CreateVehicle =
 	};
 	Sleep BIS_EVO_GlobalSleep;
 
-///////////////////finding turrets
+///////////////////finding turrets *REMOVED DUE TO BUG BELOW*
 
-	_vtarray = [_vec] call EGG_fnc_commonTurrets;
-	_ctr = count _vtarray;
+	//_vtarray = [_vec] call EGG_fnc_commonTurrets;
+	//_ctr = count _vtarray;
 
 //	_vtarraystr = str (_vtarray);
 //	hint format ["vec %1 nt: %2 turr: %3",_type, _ctr, _vtarraystr];
-/////////////filling turrets
-
+/////////////filling turrets *REMOVED DUE TO SOME MEN NOT GOING INTO THE VEH*
+/*
 	if (_ctr > 0) then
 	{
 		_n = 0;
@@ -79,6 +79,7 @@ BIS_EVO_CreateVehicle =
 			Sleep 0.1;
 		};
 	};
+*/
 //////////////////////////
 	if((_vec emptyPositions "gunner") > 0) then 
 	{

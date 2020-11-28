@@ -13,7 +13,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	_startsb = ["EnemyAir01","EnemyAir02","EnemyAir03","EnemyAir04","EnemyAir05","EnemyAir06","EnemyAir07","EnemyAir08"];
 	_poscreate = getmarkerpos (_startsb select (round random 7));
 
-	_pilot = createGroup (east);
+	_pilot = createGroup (west);
 
 	_rndx = random 600;
 	_rndy = random 600;
