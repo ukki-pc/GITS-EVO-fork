@@ -20,6 +20,7 @@ removeAllWeapons _player;
 {player addmagazine _x} forEach BIS_EVO_pallammo;
 {player addweapon _x} forEach BIS_EVO_pweapons;
 
+
 //backpacks
 if  (rucksack != "") then 
 {
@@ -50,7 +51,7 @@ Sleep 0.2;
 player setSkill BIS_EVO_PlayerSkill;
 
 _player addEventHandler ["killed", {handle = [(_this select 0),(_this select 1)] execVM "data\scripts\killed.sqf"}];
-_player addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+_player addEventHandler ["killed", {handle = [(_this select 0),(_this select 1)] execVM "data\scripts\rmScore.sqf"}];
 Sleep 0.2;
 0 setFog 0.0;
 0 setOvercast 0.0;

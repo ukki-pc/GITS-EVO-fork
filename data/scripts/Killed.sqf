@@ -21,9 +21,6 @@ if(not (isPlayer _killer) and side _killer == east) then
 	["#FF0000",_txtpasshead,_txtpassbody] call BIS_EVO_Message;
 };
 
-_removeScore = abs(score _player * deathScorePenalty)*-1;
-["jed_addscore", [_player, _removeScore]] call CBA_fnc_globalEvent;
-
 if ((date select 3) < 4 or (date select 3) > 20) then {camUseNVG true} else {camUseNVG false};
 
 _camera = "camera" camCreate [(position _player select 0)-0.75, (position _player select 1)-0.75,(position _player select 2) + 0.5];

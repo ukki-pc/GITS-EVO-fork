@@ -56,7 +56,6 @@ class Mission
 		"CA_Modules_ARTY",
 		"ca_modules_functions",
 		"ca_modules_clouds",
-		"opxmisc",
 		"b1b",
 		"mis_isis_terrorists",
 		"FRL_Bo105"
@@ -74,7 +73,6 @@ class Mission
 		"CAAir2",
 		"CABuildings",
 		"cadata",
-		"opxmisc",
 		"eb_arty",
 		"CATracked_BAF",
 		"cawheeled_e_v3s",
@@ -599,8 +597,8 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={9450.707,139.98311,10098.862};
-					azimut=90.532997;
+					position[]={9452.7725,139.98311,10104.345};
+					azimut=-92.384155;
 					id=175;
 					side="EAST";
 					vehicle="TK_Commander_EP1";
@@ -779,7 +777,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={9450.2949,139.98311,10104.084};
+					position[]={9450.1816,139.98311,10104.37};
 					azimut=90.533005;
 					id=184;
 					side="EAST";

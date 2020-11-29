@@ -595,6 +595,7 @@ EGG_vecmods = 1;
 
 if (isServer) then 
 {
+	_plyIncome = [] execVM "data\scripts\plyIncome.sqf";
 	{_x addEventHandler ["hit", {if((_this select 1) != BIS_EVO_latk) then {(_this select 0) setdamage 0}}]} forEach BIS_EVO_radios;
 //blazes
 	onplayerconnected "
@@ -948,9 +949,9 @@ EGG_EVO_westveh10 = ["Stinger_Pod_US_EP1","ZU23_TK_GUE_EP1","Rbs70_ACR","HMMWV_A
 	];
 
 //Server side score addition
-if (isServer) then {
+
    ["jed_addscore", {(_this select 0) addScore (_this select 1)}] call CBA_fnc_addEventHandler;
-};
+
 
 
 //////////////////////////////////
