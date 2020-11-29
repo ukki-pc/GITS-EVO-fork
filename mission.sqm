@@ -600,11 +600,11 @@ class Mission
 				class Item0
 				{
 					position[]={9450.707,139.98311,10098.862};
-					azimut=90.533005;
+					azimut=90.532997;
 					id=175;
 					side="EAST";
 					vehicle="TK_Commander_EP1";
-					player="PLAY CDG";
+					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;
 					text="eng5";
@@ -884,7 +884,7 @@ class Mission
 					id=189;
 					side="EAST";
 					vehicle="TK_Soldier_Engineer_EP1";
-					player="PLAYER COMMANDER";
+					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
 					text="eng3";
@@ -4392,7 +4392,7 @@ class Mission
 		};
 		class Item47
 		{
-			position[]={1329.6422,0.2685813,573.19214};
+			position[]={2111.606,0.68020213,799.71924};
 			a=0;
 			b=0;
 			repeating=1;
@@ -4541,7 +4541,7 @@ class Mission
 		};
 		class Item57
 		{
-			position[]={2028.2618,0.34293595,972.79297};
+			position[]={2080.1128,0.72449559,864.40186};
 			a=0;
 			b=0;
 			repeating=1;
@@ -4630,7 +4630,7 @@ class Mission
 		};
 		class Item63
 		{
-			position[]={1944.1965,0.2295994,815.93506};
+			position[]={1956.8711,0.71574926,815.36011};
 			a=0;
 			b=0;
 			repeating=1;
@@ -4651,8 +4651,8 @@ class Mission
 			age="UNKNOWN";
 			text="Transfer to FARP Echo";
 			expCond="Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50";
-			expActiv="ID_Beamx = Player addAction [""~Transfer to FARP Echo"",""data\scripts\dock.sqs""]";
-			expDesactiv="Player removeAction ID_Beamx";
+			expActiv="ID_Beamz = Player addAction [""~Transfer to FARP Echo"",""data\scripts\dock.sqs""]";
+			expDesactiv="Player removeAction ID_Beamz";
 			class Effects
 			{
 			};
