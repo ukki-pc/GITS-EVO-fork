@@ -12,7 +12,7 @@ RESISTANCE setFriend [EAST, 0];
 RUG_DSAI_SIDES = ["RUG_DSAIArab","RUG_DSAI","RUG_DSAIArab","RUG_DSAIArab","RUG_DSAIArab"];
 
 EGG_sinit = 0;publicVariable "EGG_sinit";
-
+hint "hiki";
 //Air units respawn frequency for use with type of unit - multiplied by difficulty 60,30,10,5 (hardest)
 BIS_EVO_airspawnfreqa = 60; //longest sleep = easier
 BIS_EVO_airspawnfreqb = 45;
