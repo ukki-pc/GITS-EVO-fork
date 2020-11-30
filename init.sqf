@@ -18,6 +18,10 @@ BIS_EVO_airspawnfreqa = 60; //longest sleep = easier
 BIS_EVO_airspawnfreqb = 45;
 BIS_EVO_airspawnfreqa = 30;// shortest sleep = harder
 
+//Counters for identifying player strategy
+EGG_EVO_airAggression = 0;
+EGG_EVO_groundAggression = 0;
+
 /////////////////Dwarden fixing fire in the sky bug
 
 BIS_Effects_EH_Killed=compile preprocessFileLineNumbers "new_effects\killed.sqf";
@@ -596,6 +600,7 @@ EGG_vecmods = 1;
 if (isServer) then 
 {
 	_plyIncome = [] execVM "data\scripts\plyIncome.sqf";
+
 	{_x addEventHandler ["hit", {if((_this select 1) != BIS_EVO_latk) then {(_this select 0) setdamage 0}}]} forEach BIS_EVO_radios;
 //blazes
 	onplayerconnected "
@@ -661,13 +666,11 @@ extra_bombs = ["GLT_AGM154A_Launcher","GLT_AGM154A1_Launcher"];
 EGG_missiles =[];// EB_PLmissiles +extra_missiles;
 EGG_bombs =  EB_PLbombs + GLT_bombs+ extra_bombs;
 
-
-
 //////////////////////////////////////////////
 buyCarList = 
 	[
 	/*---Military cars---*/
-	["FFAA_nissan_carga",0],
+	["ffaa_Nissan_carga",0],
 	["V3S_TK_EP1",0],
 	["PRACS_TK_URAL_OPEN",0],
 	["FFAA_nissan_pk",3],
@@ -751,8 +754,10 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 
 for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	buyTankList set [_loop,[(buyTankList select _loop) select 0, (buyTankList select _loop) select 1,0]];
+//	hikiCarList set [_loop,(buyTankList select _loop) select 0 ];
 };
 
+hikiAirList = ["FRL_Mig23B_TK_MR","FRL_L59_MR","FRL_Su25_TK_CAS","FRL_Su27_TK_CAP","FRL_Su30MKM_TAK_MR","FRL_Su34_D_LGB","FRL_Mig35_TAK_MR","FRL_Mig29_TAK_MR","pook_MIG25_TAK_SEAD","FRL_Mig27M_TK_HBMB","ibr_maule_M7","ibr_tucano_lin","mig15bis_5_tak","PRACS_TK_MiG21","PRACS_TK_MiG21_AG","SMAF_MF1_TK_CAS","PRACS_TK_Su22","PRACS_TK_Su24Fencer","FRL_L39_CBU"];
 
 	buyAirList = 
 	[
@@ -770,7 +775,7 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	["FRL_Mi24D_TK_MR",140],						// Mi-17
 	["FRL_Mi28_MR",160],						// Mi-17
 	["FRL_Ka52_MR_D",175],						// Mi-17
-							// Apache (AT)
+
 	/*---Planes---*/
 	["ibr_maule_M7",10],	
 	["ibr_tucano_lin",40],								// F35					
@@ -881,6 +886,8 @@ if (editor == 1) then
 	EVO_incomeFrequency = 120;
 };
 basebeam = 2;
+
+	
 //EGG_vecmods = paramsArray select 18;
 
 //to use in Editor - include the line below for RKSL (load the RKSL mod on server/client in your game command line etc) as the editor does not run the parameters dialog in description.ext

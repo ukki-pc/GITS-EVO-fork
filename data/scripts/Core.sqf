@@ -1571,6 +1571,7 @@ deleteMarkerLocal "btarg";
 
 if (editor == 1) then
 {
+
 	onMapSingleClick "if (_alt) then {vehicle player setpos _pos;{vehicle _x setpos _pos} forEach _units}";
 	player allowDamage false;
 };

@@ -194,7 +194,6 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		[_guardm, 1] setWaypointCombatMode "RED";		
 		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC"] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guardm);
 		_guardm setFormation "COLUMN";
-		_sumark = [_vec] execVM "data\scripts\sumarker.sqf";
 		//adding
 		_recy = [objnull,_guardm] execVM "data\scripts\grecycle.sqf";
 	};

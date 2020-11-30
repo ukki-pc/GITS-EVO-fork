@@ -1,13 +1,15 @@
+private ["_alive"];
 //makes roaming fighters
 for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 {
+	_alive = true;
 	//RESPAWN DELAY - half at start and half at end of function
 	//a=60,b=45,c=30 respawn frequency fortype multiplied by
 	//diffparam = difficulty values {60,45,30,15} {"Minimum", "Normal", "Hard", "Extreme"}
-	_rv=BIS_EVO_airspawnfreqa;
 //	_rf = 0.5*((_rv*10)+(4*(600/diffparam))+random 150); // varies from 1950 jets in easy to 750 hinds in extreme
+	systemChat format ["plane alive: %1",_alive];
 	_rf = 2600 + (random 1200);
-	sleep _rf;
+
 	_startsa = ["EnemyAir01","EnemyAir02","EnemyAir03","EnemyAir04","EnemyAir05","EnemyAir06","EnemyAir07","EnemyAir08"];
 	_poscreate = getmarkerpos (_startsa select (round random 7));
 
@@ -87,9 +89,10 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	sleep 1.0;
 	if (alive _heli) then {_heli setdammage 1};
 	if (alive _heli1) then {_heli1 setdammage 1};
+	_alive = false;
+	[_alive] spawn CAPdown;
+
 	sleep _rf;
 	{if (alive _x) then {_x setdammage 1}} forEach (units _pilot);
-
-
 };
 

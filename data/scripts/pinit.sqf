@@ -58,6 +58,9 @@ _rain = [] execVM "data\scripts\rain.sqf";
 _arm = [] execVM "data\scripts\EB_ARM.sqf";
 //_fog = [] execVM "data\scripts\fog.sqf";
 _cthread = [] execVM "data\scripts\MainThreadC.sqf";
+
+//CLIENT SIDED ATM
+_sResp = [] execVM "data\scripts\strategicResponse.sqf";
 //Ctraffic = [] execVM "data\scripts\BIS_EVO_CivTraffic.sqf";
 
 
