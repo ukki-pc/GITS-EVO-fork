@@ -1,4 +1,4 @@
-private ["_who","_stattype","_laction1","_zvector","_dist","_zfactor","_inrepairzone"];
+private ["_who","_stattype","_laction1","_zvector","_dist","_zfactor","_vec","_inrepairzone"];
 
 _stattype = _this select 1;
 _who = _this select 0;
@@ -6,6 +6,7 @@ _dist = 8;
 _zfactor = 0;
 _inrepairzone = true;
 _type = _stattype;
+cstatA removeaction wcam;
 _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 
 
@@ -48,3 +49,7 @@ _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 	};
 		cstatA lock false;
 		_who removeAction _laction1;
+	
+	if(cstatA isKindOf "Air") then {
+		wcam = cstatA addaction ["Weapon Camera On", "actions\wepcam.sqf",0,1, false, true,"test2"];
+		};

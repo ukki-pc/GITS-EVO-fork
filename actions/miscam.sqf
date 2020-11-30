@@ -4,10 +4,9 @@ _unit = _this select 0;
 _type = _this select 1;
 _pos = [0,0,0];
 
-if not ( (_type in EGG_EVO_miscamwepsM) || (_type in EGG_EVO_miscamwepsB) ) exitwith {};
+if !( (_type in EGG_EVO_miscamwepsM) || (_type in EGG_EVO_miscamwepsB) ) exitwith {};
 
 if ((date select 3) < 6 or (date select 3) > 18) then {camUseNVG true} else {camUseNVG false};
-
 _hud = false;
 _hud = createDialog "RscMisCam";
 
