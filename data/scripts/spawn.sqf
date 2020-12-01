@@ -57,11 +57,23 @@ Sleep 0.2;
 0 setOvercast 0.0;
 0 setRain 0.0;
 
+
+
+
+
+
 _playertype = typeOf (vehicle player);
 Sleep 0.2;
+
+//Initial player skills
+if (_playertype in EGG_EVO_PlayerOff) then {allowRhq = true;};
+
+
+
 if (_playertype in EGG_EVO_PlayerMedic) then {_actionId8 = player addAction [localize "STR_M04t52", "data\scripts\mtent.sqf",0,1, false, true,"test2"]};
 if (_playertype in EGG_EVO_PlayerEng) then {_actionId8 = player addAction [localize "STR_M04t53", "data\scripts\etent.sqf",0,1, false, true,"test2"]};
-if (_playertype in EGG_EVO_PlayerOff) then {_actionId8 = player addAction ["Deploy Recon HQ", "actions\ambtent.sqf",0,1, false, true,"test2"]};
+
+if (allowRhq) then {_actionId8 = player addAction ["Deploy Recon HQ", "actions\ambtent.sqf",0,1, false, true,"test2"]};
 if ((_playertype in EGG_EVO_PlayerSniper) and (perkparam == 1)) then {_actionId8 = player addAction ["Short Ladder", "actions\static\makestatic.sqf",[_this,0],1, false, true,"test2"]};
 if ((_playertype in EGG_EVO_PlayerSniper) and (perkparam == 1)) then {_actionId8 = player addAction ["Long Ladder", "actions\static\makestatic.sqf",[_this,1],1,false, true,"test2"]};
 if ((_playertype in EGG_EVO_PlayerGL) and (perkparam == 1)) then {_actionId8 = player addAction ["Build MK19 Nest", "actions\static\makestatic.sqf",[_this,2],1, false, true,"test2"]};

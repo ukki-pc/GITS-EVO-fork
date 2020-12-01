@@ -127,7 +127,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=27;
+		items=28;
 		class Item0
 		{
 			side="WEST";
@@ -598,11 +598,11 @@ class Mission
 				class Item0
 				{
 					position[]={9452.7725,139.98311,10104.345};
-					azimut=-92.384155;
+					azimut=-92.384201;
 					id=175;
 					side="EAST";
 					vehicle="TK_Commander_EP1";
-					player="PLAYER COMMANDER";
+					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
 					text="eng5";
@@ -718,11 +718,10 @@ class Mission
 				class Item0
 				{
 					position[]={9448.958,139.98311,10101.287};
-					azimut=90.533005;
+					azimut=90.532997;
 					id=181;
 					side="EAST";
 					vehicle="TK_Soldier_AA_EP1";
-					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
 					text="eng9";
@@ -778,7 +777,7 @@ class Mission
 				class Item0
 				{
 					position[]={9450.1816,139.98311,10104.37};
-					azimut=90.533005;
+					azimut=90.532997;
 					id=184;
 					side="EAST";
 					vehicle="TK_Soldier_GL_EP1";
@@ -946,6 +945,26 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="eng21";
+				};
+			};
+		};
+		class Item27
+		{
+			side="EAST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={9451.501,139.98311,10103.725};
+					azimut=90.532997;
+					id=214;
+					side="EAST";
+					vehicle="TK_Soldier_Sniper_EP1";
+					player="PLAYER COMMANDER";
+					leader=1;
+					skill=0.60000002;
+					text="eng3_1";
 				};
 			};
 		};
@@ -2014,7 +2033,6 @@ class Mission
 		class Item109
 		{
 			position[]={9425.6924,139.98311,10102.716};
-			azimut=0.92515308;
 			id=148;
 			side="EMPTY";
 			vehicle="PRACS_AS";
@@ -2035,7 +2053,6 @@ class Mission
 		class Item111
 		{
 			position[]={9398.2217,139.98311,10102.923};
-			azimut=0.92515308;
 			id=150;
 			side="EMPTY";
 			vehicle="PRACS_AS";
@@ -2047,7 +2064,6 @@ class Mission
 		class Item112
 		{
 			position[]={9368.165,139.98311,10102.975};
-			azimut=0.92515308;
 			id=151;
 			side="EMPTY";
 			vehicle="PRACS_AS";
@@ -2058,8 +2074,8 @@ class Mission
 		};
 		class Item113
 		{
-			position[]={9337.0947,139.98311,10103.035};
-			azimut=180.92516;
+			position[]={9330.5889,151.81459,10103.035};
+			azimut=-179.15962;
 			id=152;
 			side="EMPTY";
 			vehicle="PRACS_HAS_Heavy";
@@ -2160,7 +2176,7 @@ class Mission
 		};
 		class Item123
 		{
-			position[]={9508.6904,139.98311,10079.824};
+			position[]={9507.4023,139.98311,10080.147};
 			azimut=90.925171;
 			id=162;
 			side="EMPTY";
@@ -4335,13 +4351,13 @@ class Mission
 		};
 		class Item43
 		{
-			position[]={1292.0133,0.33743781,573.69312};
+			position[]={2303.1262,0.84005439,785.91357};
 			a=0;
 			b=0;
 			repeating=1;
 			age="UNKNOWN";
 			text="HALO";
-			expCond="Player distance fahne < 10";
+			expCond="(Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50)  ";
 			expActiv="ID_BeamH = Player addAction [""~HALO"",""data\scripts\parajump.sqf""]";
 			expDesactiv="Player removeAction ID_BeamH";
 			class Effects
@@ -4390,14 +4406,14 @@ class Mission
 		};
 		class Item47
 		{
-			position[]={2111.606,0.68020213,799.71924};
+			position[]={2240.0527,0.70461696,774.80713};
 			a=0;
 			b=0;
 			repeating=1;
 			age="UNKNOWN";
 			text="Respawn at Recon HQ";
-			expCond="Player distance LAVHQf < 10 && basebeam >0 && not (isNull amb)";
-			expActiv="ID_Beamx = Player addAction [""~Respawn Recon HQ"",""data\scripts\ambx.sqs""]";
+			expCond="(player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50 or Player distance TruckW1 < 5 or Player distance TruckW2 < 5 or Player distance TruckW3 < 5 or Player distance TruckW4 < 5 or Player distance TruckW5 < 5 or Player distance TruckW6 < 5 or Player distance TruckW7 < 5 or Player distance TruckW8 < 5 or Player distance TruckW9 < 5 or Player distance TruckW10 < 5 or Player distance TruckW11 < 5)";
+			expActiv="ID_Beamx = Player addAction [""~Respawn Recon HQ"",""data\scripts\ambx.sqs"",[""""], 10]";
 			expDesactiv="Player removeAction ID_Beamx";
 			class Effects
 			{
@@ -4524,13 +4540,13 @@ class Mission
 		};
 		class Item56
 		{
-			position[]={1995.9543,0.2326324,869.67346};
+			position[]={2195.3032,0.64896172,759.36584};
 			a=0;
 			b=0;
 			repeating=1;
 			age="UNKNOWN";
 			text="Respawn MHQ Ambulance";
-			expCond="Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50";
+			expCond="(Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50) ";
 			expActiv="ID_Beamw = Player addAction [""~Respawn MHQ Ambulance"",""data\scripts\auswahlw.sqs""]";
 			expDesactiv="Player removeAction ID_Beamw";
 			class Effects
@@ -4539,13 +4555,14 @@ class Mission
 		};
 		class Item57
 		{
-			position[]={2080.1128,0.72449559,864.40186};
+			position[]={2191.1899,0.72103643,699.93652};
 			a=0;
 			b=0;
 			repeating=1;
 			age="UNKNOWN";
-			expCond="Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50 or Player distance TruckW1 < 5 or Player distance TruckW2 < 5 or Player distance TruckW3 < 5 or Player distance TruckW4 < 5 or Player distance TruckW5 < 5 or Player distance TruckW6 < 5 or Player distance TruckW7 < 5 or Player distance TruckW8 < 5 or Player distance TruckW9 < 5 or Player distance TruckW10 < 5 or Player distance TruckW11 < 5";
-			expActiv="ID_Beamy = Player addAction [""~Respawn Airfield"",""data\scripts\airf.sqs""]";
+			text="Airfield";
+			expCond="(player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50 or Player distance TruckW1 < 5 or Player distance TruckW2 < 5 or Player distance TruckW3 < 5 or Player distance TruckW4 < 5 or Player distance TruckW5 < 5 or Player distance TruckW6 < 5 or Player distance TruckW7 < 5 or Player distance TruckW8 < 5 or Player distance TruckW9 < 5 or Player distance TruckW10 < 5 or Player distance TruckW11 < 5)";
+			expActiv="ID_Beamy = Player addAction [""~Respawn Airfield"",""data\scripts\airf.sqs"",[""""], 9];";
 			expDesactiv="Player removeAction ID_Beamy";
 			class Effects
 			{
@@ -4553,14 +4570,14 @@ class Mission
 		};
 		class Item58
 		{
-			position[]={2053.7917,0.31548777,751.83386};
+			position[]={2192.1516,0.69548911,664.07507};
 			a=0;
 			b=0;
 			repeating=1;
 			age="UNKNOWN";
 			text="Transfer to FARP Alpha";
-			expCond="Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50";
-			expActiv="ID_Beama = Player addAction [""~Transfer to FARP Alpha"",""data\scripts\alpha.sqs""]";
+			expCond="(Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50) ";
+			expActiv="ID_Beama = Player addAction [""~Transfer to FARP Alpha"",""data\scripts\alpha.sqs"",[""""], 8];";
 			expDesactiv="Player removeAction ID_Beama";
 			class Effects
 			{
@@ -4568,14 +4585,14 @@ class Mission
 		};
 		class Item59
 		{
-			position[]={1957.2092,0.13888472,749.99597};
+			position[]={2192.3562,0.7103864,632.98425};
 			a=0;
 			b=0;
 			repeating=1;
 			age="UNKNOWN";
 			text="Transfer to FARP Bravo";
-			expCond="Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50";
-			expActiv="ID_Beamb = Player addAction [""~Transfer to FARP Bravo"",""data\scripts\bravo.sqs""]";
+			expCond="(Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50)";
+			expActiv="ID_Beamb = Player addAction [""~Transfer to FARP Bravo"",""data\scripts\bravo.sqs"",[""""], 7];";
 			expDesactiv="Player removeAction ID_Beamb";
 			class Effects
 			{
@@ -4583,14 +4600,14 @@ class Mission
 		};
 		class Item60
 		{
-			position[]={2138.6057,0.34841108,910.04736};
+			position[]={2196.4182,0.69656366,603.87061};
 			a=0;
 			b=0;
 			repeating=1;
 			age="UNKNOWN";
 			text="Transfer to FARP Charlie";
-			expCond="Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50";
-			expActiv="ID_Beamc = Player addAction [""~Transfer to FARP Charlie"",""data\scripts\charly.sqs""]";
+			expCond="(player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50) ";
+			expActiv="ID_Beamc = Player addAction [""~Transfer to FARP Charlie"",""data\scripts\charly.sqs"",[""""], 6];";
 			expDesactiv="Player removeAction ID_Beamc";
 			class Effects
 			{
@@ -4598,14 +4615,14 @@ class Mission
 		};
 		class Item61
 		{
-			position[]={2142.1599,0.83509475,837.89502};
+			position[]={2192.8267,0.84622008,570.07031};
 			a=0;
 			b=0;
 			repeating=1;
 			age="UNKNOWN";
-			text="Transfer to Airshow";
-			expCond="Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50";
-			expActiv="ID_Beamd = Player addAction [""~Transfer To Farp Delta"",""data\scripts\island.sqs""];";
+			text="Transfer to Farp Delta";
+			expCond="(Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50) ";
+			expActiv="ID_Beamd = Player addAction [""~Transfer To Farp Delta"",""data\scripts\island.sqs"",[""""], 5];";
 			expDesactiv="Player removeAction ID_Beamd; Player removeAction cityAction;";
 			class Effects
 			{
@@ -4642,14 +4659,14 @@ class Mission
 		};
 		class Item64
 		{
-			position[]={2156.4673,0.10087568,757.96912};
+			position[]={2194.792,0.88534677,536.29797};
 			a=0;
 			b=0;
 			repeating=1;
 			age="UNKNOWN";
 			text="Transfer to FARP Echo";
-			expCond="Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50";
-			expActiv="ID_Beamz = Player addAction [""~Transfer to FARP Echo"",""data\scripts\dock.sqs""]";
+			expCond="(Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50)  ";
+			expActiv="ID_Beamz = Player addAction [""~Transfer to FARP Echo"",""data\scripts\dock.sqs"",[""""], 4];";
 			expDesactiv="Player removeAction ID_Beamz";
 			class Effects
 			{

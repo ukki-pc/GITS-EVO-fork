@@ -43,8 +43,14 @@ _pos = position epad;
 _pos2 = [_pos select 0,(_pos select 1) - 18,_pos select 2];
 etent = "Camp" createVehicle _pos2;
 _pos3 = [(_pos2 select 0)+3,(_pos2 select 1)+3,_pos2 select 2];
+_pos4 = [(_pos2 select 0)+5,(_pos2 select 1)+5,_pos2 select 2];
 ebox = "USBasicAmmunitionBox" createVehicle _pos3;
-BIS_EVO_EngZone setpos _pos;	
+_tbox = "PRACS_Vehicle_AmmoBox" createVehicle _pos4;
+_tbox setAmmoCargo 0.2;
+_tbox setRepairCargo 0.2;
+//ebox = "TKVehicleBox_EP1" createVehicle _pos3;
+
+//BIS_EVO_EngZone setpos _pos;	
 
 etent addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
 ebox addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];

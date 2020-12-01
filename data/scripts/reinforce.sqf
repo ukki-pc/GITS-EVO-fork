@@ -191,6 +191,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_vec = _array select 1;
 	///	systemchat format ["spawned: %1", typeof _vec];
 		[position _alist,_guardm,_radio,_alist] call BIS_EVO_Erefway;
+		_vec lock 2;
 		[_guardm, 1] setWaypointCombatMode "RED";		
 		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC"] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guardm);
 		_guardm setFormation "COLUMN";
@@ -207,7 +208,7 @@ if ( (_curtownInf <= _basetownInf) and (alive _radio) ) then
 	(BIS_EVO_Infantry select BIS_EVO_MissionProgress) set [0, (_curtownInf*enemynumdiv)+12];
 	sleep 1;
 };
-
+	(BIS_EVO_Mechanized select BIS_EVO_MissionProgress) set [0,0];
 sleep 15;
 
 if( (_curtownMec <= _basetownMec) and (alive _radio) ) then 

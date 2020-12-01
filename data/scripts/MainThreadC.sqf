@@ -4,86 +4,156 @@ _rankmes = localize "STR_M04t82";
 _currentprog = 0;
 _EGG_stations = [];
 EB_airload1=-1;
+EB_fieldRepair=-1;
+repairStrength = 25;
 
+ countPerkLevel = 
+ {
+ 	_perk = _this select 0;
+ 	_currentLevel = count(perkList select _perk);
+ 	_count = 0;
+ 	for [{_loop=0}, {_loop<(count(perkList select _perk))}, {_loop=_loop + 1}] do
+ 	 	{
+ 			 if (!(((perkList select _perk) select _loop) select 2 )) then 
+ 			 {
+ 				_currentLevel = _loop;
+ 				_loop =  (count(perkList select _perk)-1);
+ 		 	 };
+// 			 systemChat str (((perkList select _perk) select _loop) select 2 );
+ 		 };
+	_currentLevel;
+ };
 
-// countPerkLevel = 
-// {
-// 	_perk = _this select 0;
-// 	_currentLevel = count(perkList select _perk);
-// 	_count = 0;
-// 	for [{_loop=0}, {_loop<(count(perkList select _perk))}, {_loop=_loop + 1}] do
-// 	 	{
-// 			 if (!(((perkList select _perk) select _loop) select 2 )) then 
-// 			 {
-// 				_currentLevel = _loop;
-// 				_loop =  (count(perkList select _perk)-1);
-// 		 	 };
-// 			 //systemChat str (((perkList select _perk) select _loop) select 2 );
-// 		 };
+ setPerkLevel = 
+ {
+ 	_perk = _this select 0;
+ 	_currentLevel = count(perkList select _perk);
+ 	_count = 0;
+ 	for [{_loop=0}, {_loop<(count(perkList select _perk))}, {_loop=_loop + 1}] do
+ 	 	{
+ 			 if (!(((perkList select _perk) select _loop) select 2 )) then 
+ 			 {
+ 				_currentLevel = _loop;
+ 				_loop =  (count(perkList select _perk)-1);
+ 		 	 };
+ 			// systemChat str (((perkList select _perk) select _loop) select 2 );
+ 		 };
 
-// 			//PERKS
-// 			// if (_perk == 0) then // First perk
-// 			// {
-// 			// 	switch (_currentLevel) do
-// 			// 	{
-// 			// 		case 1:
-// 			// 		{
-// 			// 			egg_evo_westAmb = ["HMMWV_M1151_M2_DES_EP1"];
-// 			// 		};
-// 			// 		case 2:
-// 			// 		{
-// 			// 			egg_evo_westAmb = ["HMMWV_M998_crows_M2_DES_EP1"];
-// 			// 		};
-// 			// 		case 3:
-// 			// 		{
-// 			// 			egg_evo_westAmb = ["BAFX_Ridgeback_D"];
-// 			// 		};
-// 			// 		case 4:
-// 			// 		{
-// 			// 			egg_evo_westAmb = ["EB_LAV25_D2"];
-// 			// 		};
-// 			// 	};
-// 			// };
-// 			/*
-// 			EB_PLbombs = ["EB_Mk81_Launcher","EB_Mk82_Launcher","EB_Mk83_Launcher","EB_Mk84_Launcher","EB_Mk77_Launcher","EB_Mk770_Launcher","EB_BombLauncher_fab250","EB_BombLauncher_fab500","EB_CBU78B_Launcher","EB_CBU87B_Launcher","RKTR27Launcher","EB_R77_Launcher","EB_CBU89B_Launcher","EB_CBU100_Launcher","EB_GBU12_Launcher","EB_GBU16_Launcher","EB_GBU10_Launcher","EB_BombLauncher_kab250","EB_BombLauncher_kab500"];
-// 			EB_PLmissiles = ["","EB_AIM120_Launcher","EB_AIM9X_Launcher","EB_AIM7E_Launcher","EB_METEOR_Launcher","EB_AIM132_Launcher","EB_R60_Launcher","EB_R73_Launcher","EB_AT2_Launcher","EB_KH29D_Launcher","EB_KH29L_Launcher","EB_AGM65E_Launcher","EB_AGM114K_Launcher","EB_AGM88_Launcher"];
-// 			GLT_bombs = ["GLT_GBU24_Launcher","GLT_GBU53_Launcher","GLT_GBU39_Launcher","GLT_KAB1500_Launcher"];
-// 			GLT_missiles = ["GLT_AIM120_Launcher","GLT_AIM54_Launcher","GLT_R550_Launcher","GLT_AIM132_Launcher","GLT_METEOR_Launcher","GLT_AGM84_Launcher","GLT_AGM154A1_Launcher","GLT_AM39_Launcher","GLT_R3_Launcher","GLT_R27_Launcher","GLT_R77_Launcher","GLT_CH15S_Launcher","GLT_CH29T_Launcher","GLT_CH59_Launcher","GLT_CH31P_Launcher"];
-// 			rksl_missiles= ["RKSL_iristLauncher","RKSL_BrimstoneLauncher","RKSL_ALARM_Launcher","RKSL_stormshadow_Launcher","RKSL_agm119mk3_Launcher"];
-// 			extra_missiles = ["GLT_AM39_Launcher"];
-// 			EB_turrets = ["M197","EB_GAU8"];
-// 			extra_bombs = ["GLT_AGM154A_Launcher","GLT_AGM154A1_Launcher"];
-// 			 EB_PLmissiles +extra_missiles;
-// 			*/
-// 			_tempMissiles = [];
-// 			if (_perk == 1) then // First perk
-// 			{
-// 				switch (_currentLevel) do
-// 				{
-// 					case 1:
-// 					{
-// 						//Tier 1
-// 						_tempMissiles = _tempMissiles +  ["EB_AIM9M_Launcher","EB_AIM120_Launcher","EB_AIM9X_Launcher","EB_AIM7E_Launcher","EB_METEOR_Launcher","EB_AIM132_Launcher","EB_R60_Launcher","EB_R73_Launcher","EB_AT2_Launcher","EB_KH29D_Launcher","EB_KH29L_Launcher","EB_AGM65E_Launcher","EB_AGM114K_Launcher","EB_AGM88_Launcher"];
-// 						EGG_maxMissiles = 9;
-// 					};
-// 					case 2:
-// 					{	//Tier 1
-// 						_tempMissiles = _tempMissiles +  ["EB_AIM9M_Launcher","EB_AIM120_Launcher","EB_AIM9X_Launcher","EB_AIM7E_Launcher","EB_METEOR_Launcher","EB_AIM132_Launcher","EB_R60_Launcher","EB_R73_Launcher","EB_AT2_Launcher","EB_KH29D_Launcher","EB_KH29L_Launcher","EB_AGM65E_Launcher","EB_AGM114K_Launcher","EB_AGM88_Launcher"];
-// 						EGG_maxMissiles = 12;
-// 					};
-// 					case 3:
-// 					{
-// 						//Tier 1
-// 						_tempMissiles = _tempMissiles +  ["EB_AIM9M_Launcher","EB_AIM120_Launcher","EB_AIM9X_Launcher","EB_AIM7E_Launcher","EB_METEOR_Launcher","EB_AIM132_Launcher","EB_R60_Launcher","EB_R73_Launcher","EB_AT2_Launcher","EB_KH29D_Launcher","EB_KH29L_Launcher","EB_AGM65E_Launcher","EB_AGM114K_Launcher","EB_AGM88_Launcher"];
-// 						EGG_maxMissiles = 15;
-// 					};
-// 				};
-// 				EGG_missiles = _tempMissiles;
-// 			};
+ 			 if (_perk == 0) then  
+ 			 {
+ 			 	switch (_currentLevel) do
+ 			 	{
+ 			 		case 1:
+ 			 		{
+ 			 			egg_evo_westAmb = ["TK_WarfareBUAVterminal_Base_EP1"];
 
+						  if !(allowRhq) then {
+							_actionId8 = player addAction ["Deploy Recon HQ", "actions\ambtent.sqf",0,1, false, true,"test2"];
+						 	 allowRHQ = true;
+						  };
+ 			 		};
+ 			 		case 2:
+ 			 		{
+ 			 			egg_evo_westAmb = ["EB_BRDM2_HQ_TK"];
+ 			 		};
+ 			 		case 3:
+ 			 		{
+ 			 			egg_evo_westAmb = ["BAFX_Ridgeback_D"];
+ 			 		};
+ 			 		case 4:
+ 			 		{
+ 			 			egg_evo_westAmb = ["EB_LAV25_D2"];
+ 			 		};
+ 			 	};
+ 			 };
+ 			/*
+ 			EB_PLbombs = ["EB_Mk81_Launcher","EB_Mk82_Launcher","EB_Mk83_Launcher","EB_Mk84_Launcher","EB_Mk77_Launcher","EB_Mk770_Launcher","EB_BombLauncher_fab250","EB_BombLauncher_fab500","EB_CBU78B_Launcher","EB_CBU87B_Launcher","RKTR27Launcher","EB_R77_Launcher","EB_CBU89B_Launcher","EB_CBU100_Launcher","EB_GBU12_Launcher","EB_GBU16_Launcher","EB_GBU10_Launcher","EB_BombLauncher_kab250","EB_BombLauncher_kab500"];
+ 			EB_PLmissiles = ["","EB_AIM120_Launcher","EB_AIM9X_Launcher","EB_AIM7E_Launcher","EB_METEOR_Launcher","EB_AIM132_Launcher","EB_R60_Launcher","EB_R73_Launcher","EB_AT2_Launcher","EB_KH29D_Launcher","EB_KH29L_Launcher","EB_AGM65E_Launcher","EB_AGM114K_Launcher","EB_AGM88_Launcher"];
+ 			GLT_bombs = ["GLT_GBU24_Launcher","GLT_GBU53_Launcher","GLT_GBU39_Launcher","GLT_KAB1500_Launcher"];
+ 			GLT_missiles = ["GLT_AIM120_Launcher","GLT_AIM54_Launcher","GLT_R550_Launcher","GLT_AIM132_Launcher","GLT_METEOR_Launcher","GLT_AGM84_Launcher","GLT_AGM154A1_Launcher","GLT_AM39_Launcher","GLT_R3_Launcher","GLT_R27_Launcher","GLT_R77_Launcher","GLT_CH15S_Launcher","GLT_CH29T_Launcher","GLT_CH59_Launcher","GLT_CH31P_Launcher"];
+ 			rksl_missiles= ["RKSL_iristLauncher","RKSL_BrimstoneLauncher","RKSL_ALARM_Launcher","RKSL_stormshadow_Launcher","RKSL_agm119mk3_Launcher"];
+ 			extra_missiles = ["GLT_AM39_Launcher"];
+ 			EB_turrets = ["M197","EB_GAU8"];
+ 			extra_bombs = ["GLT_AGM154A_Launcher","GLT_AGM154A1_Launcher"];
+ 			 EB_PLmissiles +extra_missiles;
+ 			*/
+ 			_tempMissiles = [];
+ 			if (_perk == 1) then  
+ 			{
+ 				switch (_currentLevel) do
+ 				{
+ 					case 1:
+ 					{
 
-// 	_currentLevel;
-// };
+ 						_tempMissiles = _tempMissiles +  ["EB_AIM9M_Launcher","EB_AIM120_Launcher","EB_AIM9X_Launcher","EB_AIM7E_Launcher","EB_METEOR_Launcher","EB_AIM132_Launcher","EB_R60_Launcher","EB_R73_Launcher","EB_AT2_Launcher","EB_KH29D_Launcher","EB_KH29L_Launcher","EB_AGM65E_Launcher","EB_AGM114K_Launcher","EB_AGM88_Launcher"];
+ 						EGG_maxMissiles = 9;
+ 					};
+ 					case 2:
+ 					{	
+ 						_tempMissiles = _tempMissiles +  ["EB_AIM9M_Launcher","EB_AIM120_Launcher","EB_AIM9X_Launcher","EB_AIM7E_Launcher","EB_METEOR_Launcher","EB_AIM132_Launcher","EB_R60_Launcher","EB_R73_Launcher","EB_AT2_Launcher","EB_KH29D_Launcher","EB_KH29L_Launcher","EB_AGM65E_Launcher","EB_AGM114K_Launcher","EB_AGM88_Launcher"];
+ 						EGG_maxMissiles = 12;
+ 					};
+ 					case 3:
+ 					{
+ 						_tempMissiles = _tempMissiles +  ["EB_AIM9M_Launcher","EB_AIM120_Launcher","EB_AIM9X_Launcher","EB_AIM7E_Launcher","EB_METEOR_Launcher","EB_AIM132_Launcher","EB_R60_Launcher","EB_R73_Launcher","EB_AT2_Launcher","EB_KH29D_Launcher","EB_KH29L_Launcher","EB_AGM65E_Launcher","EB_AGM114K_Launcher","EB_AGM88_Launcher"];
+ 						EGG_maxMissiles = 15;
+ 					};
+ 				};
+ 				EGG_missiles = _tempMissiles;
+ 			};
+
+			if (_perk == 3) then  
+ 			 {
+ 			 	switch (_currentLevel) do
+ 			 	{
+ 			 		case 1:
+ 			 		{
+						repairStrength = 50;
+						systemChat "repstrengh increasedsa";
+ 			 		};
+ 			 		case 2:
+ 			 		{ 
+
+ 			 		};
+ 			 		case 3:
+ 			 		{
+
+ 			 		};
+ 			 		case 4:
+ 			 		{
+ 			 		};
+ 			 	};
+ 			 };
+						if (_perk ==2) then  
+ 			 {
+ 			 	switch (_currentLevel) do
+ 			 	{
+ 			 		case 1:
+ 			 		{
+						buyTankList set [count buyTankList,["pook_brdm2_Sa9_tak",28,0]];
+						sleep BIS_EVO_GlobalSleep;
+						buyTankList set [count buyTankList,["pracs_tk_sa13",32,0]];
+						sleep BIS_EVO_GlobalSleep;
+						systemChat "sa9 and sa 13unlock";
+ 			 		};
+ 			 		case 2:
+ 			 		{ 
+						buyTankList set [count buyTankList,["pracs_sa6_tk",32,0]];
+						sleep BIS_EVO_GlobalSleep;
+						buyTankList set [count buyTankList,["pracs_tk_sa8",35,0]];
+						sleep BIS_EVO_GlobalSleep;
+						systemChat "sa6 and sa8 unlock"; //	["pracs_tk_sa8",35],
+ 			 		};
+ 			 		case 3:
+ 			 		{
+
+ 			 		};
+ 			 		case 4:
+ 			 		{
+ 			 		};
+ 			 	};
+ 			 };
+ };
 
 BIS_EVO_CWeath =
 {
@@ -94,6 +164,40 @@ BIS_EVO_CWeath =
 	"rainmarkt3" setMarkerPosLocal getMarkerPos "rainmark3";
 
 //	"fogmarkt" setMarkerPosLocal getMarkerPos "fogmark";
+};
+
+// FIELD REPAIRS
+
+		rmv_fieldRepair = {
+			_tveh = _this select 0;
+			_tveh removeAction EB_fieldRepair;
+			EB_fieldRepair = 1;
+		};
+
+		enb_fieldRepair =
+		{
+			EB_fieldRepair = -1;
+		};
+
+EGG_EVO_fieldRepair = 
+{
+   	_nearestCar = getPos player nearestObject "Car";
+	_proximity =  player distance _nearestCar;
+	_displayName = getText(configFile >> "CfgVehicles" >> (typeof _nearestCar) >> "displayName");
+	_repStr = format["Field repair: %1",_displayName];
+	
+		if(((vehicle player) == player) && (_proximity < 5) && (getDammage _nearestCar > (1-( repairStrength*0.01))))then{
+			if(EB_fieldRepair < 0) then
+			{
+				EB_fieldRepair = _nearestCar addAction [_repStr, "actions\repair.sqf", [_nearestCar,player,repairStrength], 10, false, true, "", ""];	
+			};		
+		}
+		else {
+			if(EB_fieldRepair > 0) then {
+				[_nearestCar] call rmv_fieldRepair;
+				[] call enb_fieldRepair;
+				};
+		};
 };
 
 EGG_EVO_stationRepair = 
@@ -621,6 +725,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	//[] call BIS_EVO_CWeath;
 //	sleep 1.011;
 	[] call BIS_EVO_Repair;
+	[] call EGG_EVO_fieldRepair;
 	sleep 1.011;
 	[] call EGG_EVO_stationRepair;
 	sleep 1.011;

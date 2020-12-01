@@ -623,6 +623,7 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 		{
 			_curLevel = 0;
 			_curLevel = [_i] call countPerkLevel;
+		//	systemChat str _curLevel;
 			_name = ((perkList select _i) select _curLevel) select 0;
 			_description =  ((perkList select _i) select _curlevel) select 1;
 			_maxLevel = count (perkList select _i)-1;
@@ -758,7 +759,7 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 					_name = ((buyCarList select _i) select 0);
 					_stored = ((buyCarList select _i) select 2);
 					_displayName = getText(configFile >> "CfgVehicles" >> _name >> "displayName");
-					_salesString = format["[%1] %2",_stored,_displayName];
+					_salesString = format["[%1] %2 ",_stored,_displayName];
 					_index = lbAdd[2000, _salesString];
 					//_index = lbSetPicture [2000, _i, _pic];
 					_i = _i + 1;
@@ -1077,22 +1078,22 @@ if (player hasWeapon "ItemRadio") then
 								case 1:
 								{
 									buyCarList set [_index,[(buyCarList select _index) select 0,(buyCarList select _index) select 1,((buyCarList select _index) select 2)-1]];
-									publicVariable "buyCarList";
+									//publicVariable "buyCarList";
 								};
 								case 2:
 								{
 									buyTankList set [_index,[(buyTankList select _index) select 0,(buyTankList select _index) select 1,((buyTankList select _index) select 2)-1]];
-									publicVariable "buyTankList";	
+									//publicVariable "buyTankList";	
 								};
 								case 3:
 								{
 									buyAirList set [_index,[(buyAirList select _index) select 0,(buyAirList select _index) select 1,((buyAirList select _index) select 2)-1]];
-									publicVariable "buyAirList";	
+								//	publicVariable "buyAirList";	
 								};
 								case 4:
 								{
 									buyStatList set [_index,[(buyStatList select _index) select 0,(buyStatList select _index) select 1,((buyStatList select _index) select 2)-1]];
-									publicVariable "buyStatList";	
+								//	publicVariable "buyStatList";	
 								};
 								case 5:
 								{
@@ -1118,22 +1119,22 @@ if (player hasWeapon "ItemRadio") then
 								case 1:
 								{
 									buyCarList set [_index,[(buyCarList select _index) select 0,(buyCarList select _index) select 1,1]];
-									publicVariable "buyCarList";
+							//		publicVariable "buyCarList";
 								};
 								case 2:
 								{
 									buyTankList set [_index,[(buyTankList select _index) select 0,(buyTankList select _index) select 1,1]];
-									publicVariable "buyTankList";	
+							//		publicVariable "buyTankList";	
 								};
 								case 3:
 								{
 									buyAirList set [_index,[(buyAirList select _index) select 0,(buyAirList select _index) select 1,1]];
-									publicVariable "buyAirList";	
+							//		publicVariable "buyAirList";	
 								};
 								case 4:
 								{
 									buyStatList set [_index,[(buyStatList select _index) select 0,(buyStatList select _index) select 1,1]];
-									publicVariable "buyStatList";	
+						//			publicVariable "buyStatList";	
 								};
 							};
 								// _pic = "img\support\lock_on_ca.paa";
@@ -1165,21 +1166,21 @@ if (player hasWeapon "ItemRadio") then
 		ctrlShow [2208,false];
 
 			_maxLevel = count (perkList select _index);
-			// systemChat str _maxLevel;
 			_curLevel = [_index] call countPerkLevel;
 			_name = ((perkList select _index) select _curLevel) select 0;
 
-	if(_curlevel <  (count(perkList select _index))) then 
+	if(_curlevel <  (count(perkList select _index)-1)) then 
 	{
 		_curLevel = [_index] call countPerkLevel;
-		//hint str _curLevel;
 
 	//	perkList set [_index,[_curLevel,[((perkList select _index) select _curLevel) select 0,( (perkList select _index) select _curLevel) select 1,TRUE,((perkList select _index) select _curLevel)select 3]]];
 		_perks = (perkList select _index);
 		_perks set [_curLevel,[(_perks select _curLevel) select 0,(_perks select _curLevel) select 1,true]];
+				_asd = [_index] call setPerkLevel;
 		perkList set [_index,_perks];
 		//[] call BIS_EVO_PerkUpdate;
 		[] call BIS_EVO_ListUpdate;
+
 		};
 	}; 
 	if (_vecPage) then 
@@ -1510,6 +1511,7 @@ if (_perkPage) then
 			_description =  ((perkList select _x) select _curlevel) select 1;
 			_maxLevel = count (perkList select _x)-1;
 			_text = format["%1 %2/%3",_name,_curLevel,_maxLevel];
+
 		ctrlSetText [2202, "Perks"];
 		ctrlSetText [2201, "Pick"];
 		ctrlShow [6056,true];
@@ -1518,7 +1520,7 @@ if (_perkPage) then
 		// {
 		// 	ctrlBut1 ctrlSetText localize "STR_M04t103";
 		// };
-		ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",((perkList select _x) select 3)]];//Cost
+	//	ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",((perkList select _x) select 3)]];//Cost
 		ctrlSetText [2002,""];
 		ctrlSetText [2010,_name];
 		ctrlSetText [2011,_description];

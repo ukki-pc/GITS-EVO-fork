@@ -36,6 +36,7 @@ publicVariable "amb";
 _amb_name = "EB_BRDM2_HQ_TK";
 
 amb addAction ["Remove Recon HQ", "actions\removeamb.sqf",0,1,false,true];
+publicVariable "amb";
 player moveInDriver amb;
 
 if (true) exitWith {};

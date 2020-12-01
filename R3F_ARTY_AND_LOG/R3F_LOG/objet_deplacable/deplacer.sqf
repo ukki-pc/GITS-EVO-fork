@@ -1,8 +1,8 @@
 /**
- * Fait déplacer un objet par le joueur. Il garde l'objet tant qu'il ne le relâche pas ou ne meurt pas.
- * L'objet est relaché quand la variable R3F_LOG_joueur_deplace_objet passe à objNull ce qui terminera le script
+ * Fait dï¿½placer un objet par le joueur. Il garde l'objet tant qu'il ne le relï¿½che pas ou ne meurt pas.
+ * L'objet est relachï¿½ quand la variable R3F_LOG_joueur_deplace_objet passe ï¿½ objNull ce qui terminera le script
  * 
- * @param 0 l'objet à déplacer
+ * @param 0 l'objet ï¿½ dï¿½placer
  * 
  * Copyright (C) 2010 madbull ~R3F~
  * 
@@ -25,7 +25,7 @@ else
 	
 	_objet = _this select 0;
 	
-	// Si l'objet est un calculateur d'artillerie, on laisse le script spécialisé gérer
+	// Si l'objet est un calculateur d'artillerie, on laisse le script spï¿½cialisï¿½ gï¿½rer
 	_est_calculateur = _objet getVariable "R3F_ARTY_est_calculateur";
 	if !(isNil "_est_calculateur") then
 	{
@@ -56,7 +56,6 @@ else
 			// Car attachTo de "charger" positionne l'objet en altitude :
 			_objet setPos [getPos _objet select 0, getPos _objet select 1, 0];
 			_objet setVelocity [0, 0, 0];
-			
 			R3F_LOG_mutex_local_verrou = false;
 		}
 		else
@@ -66,13 +65,13 @@ else
 				(((boundingBox _objet select 1 select 1) max (-(boundingBox _objet select 0 select 1))) max ((boundingBox _objet select 1 select 0) max (-(boundingBox _objet select 0 select 0)))) + 1,
 				1]
 			];
-			
+			VehiclePlaced = 0;
 			if (count (weapons _objet) > 0) then
 			{
 				// Le canon doit pointer devant nous (sinon on a l'impression de se faire empaler)
 				_azimut_canon = ((_objet weaponDirection (weapons _objet select 0)) select 0) atan2 ((_objet weaponDirection (weapons _objet select 0)) select 1);
 				
-				// On est obligé de demander au serveur de tourner le canon pour nous
+				// On est obligï¿½ de demander au serveur de tourner le canon pour nous
 				R3F_ARTY_AND_LOG_PUBVAR_setDir = [_objet, (getDir _objet)-_azimut_canon];
 				if (isServer) then
 				{
@@ -88,7 +87,7 @@ else
 			
 			_action_menu = player addAction [("<t color=""#dddd00"">" + STR_R3F_LOG_action_relacher_objet + "</t>"), "R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\relacher.sqf", nil, 5, true, true];
 			
-			// On limite la vitesse de marche et on interdit de monter dans un véhicule tant que l'objet est porté
+			// On limite la vitesse de marche et on interdit de monter dans un vï¿½hicule tant que l'objet est portï¿½
 			while {!isNull R3F_LOG_joueur_deplace_objet && alive player} do
 			{
 				if (vehicle player != player) then
@@ -108,7 +107,8 @@ else
 				sleep 0.25;
 			};
 			
-			// L'objet n'est plus porté, on le repose
+			// L'objet n'est plus portï¿½, on le repose
+			VehiclePlaced = 1;
 			detach _objet;
 			_objet setPos [getPos _objet select 0, getPos _objet select 1, 0];
 			_objet setVelocity [0, 0, 0];

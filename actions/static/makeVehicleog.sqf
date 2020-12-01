@@ -17,17 +17,25 @@ _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 		cstatA lock true;
 		_laction1 = _who addAction ["Place Vehicle","actions\static\vehiclePlaced.sqf"];
 
-			cstatA attachTo [player, [
-				0,
-				(((boundingBox cstatA select 1 select 1) max (-(boundingBox cstatA select 0 select 1))) max ((boundingBox cstatA select 1 select 0) max (-(boundingBox cstatA select 0 select 0)))) +2,
-				1]
-			];
-		sleep 0.5;
-		waitUntil{vehiclePlaced == 1};
-		cstatA setPos [getPos cstatA select 0, getPos cstatA select 1, 0];
-		cstatA setVelocity [0, 0, 0];
+		WHILE {VehiclePlaced == 0 && _inrepairzone} DO
+		{
+			_inrepairzone = ((_who in list AirportIn) or (_who in list farp1) or (_who in list farp2) or (_who in list farp3) or (_who in list farp4) or (_who in list dock1) or (_who in list LHDin));
+			_zvector = ((_who weaponDirection (primaryWeapon _who)) select 2) * 3;
+			cstatA setposATL [(getposATL _who select 0) + (sin(getdir _who) * _dist), (getposATL _who select 1) + (cos(getdir _who) * _dist), (getposATL _who select 2) + _zvector + _zfactor];
+			cstatA setDir (getDir _who+90);
+			sleep 0.05;
+			/*
+			//adding to fix rocket bug
+			if not(vehicle player == player) then 
+			{
+				deletevehicle cstatA;
+				VehiclePlaced =1;
+				player setpos [(getpos _who select 0), (getpos _who select 1),0];
+			};
+			*/
+		};
 		
-	detach cstatA;
+
 	cstatA enableSimulation true;
 	_who allowDamage true;
 	

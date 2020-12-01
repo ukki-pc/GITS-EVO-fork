@@ -282,14 +282,14 @@ class evoUI
 				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,true,false,false,0,false,false];[] call BIS_EVO_ListUpdate";
 	      };
 		  
-		// class BUpgrades: RscIGUIShortcutButton
-	    //   {
-		//  idc = 669;
-		// 		x = 0.29;
-		// 		y = 0.863977;
-		// 		text = "Perks";
-		// 		onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,true,false];[] call BIS_EVO_ListUpdate";
-	    //   };
+		 class BUpgrades: RscIGUIShortcutButton
+	       {
+		  idc = 669;
+		 		x = 0.29;
+				y = 0.863977;
+		 		text = "Perks";
+		 		onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,true,false];[] call BIS_EVO_ListUpdate";
+	       };
 		  
 	      class BOptions: RscIGUIShortcutButton
 	      {

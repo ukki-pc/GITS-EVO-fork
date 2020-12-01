@@ -1,9 +1,9 @@
-private ["_tempAgr","_veh","_pVec","_handle","_respInterceptor","_it"];
-_respInterceptor = false;
+private ["_tempAgr","_veh","_pVec","respInterceptor","_handle","_it"];
 _it = 0;
-
+respInterceptor = false;
 capdown = {
-	_respInterceptor = false;
+	respInterceptor = false;
+	publicVariable "respInterceptor";
 	hint "ded";
 };
 
@@ -32,8 +32,8 @@ while {true} do {
 	};
 
 
-	if((_tempAgr > 10) && !(_respInterceptor)) then {
-		_respInterceptor = true;
+	if((_tempAgr > 10) && !(respInterceptor)) then {
+		respInterceptor = true;
 		systemChat "Interceptor responding";
 		_handle = [] execVM "data\scripts\makesu.sqf";
 	};

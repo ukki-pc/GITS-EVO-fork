@@ -111,6 +111,9 @@ BIS_EVO_sobj1=false;
 BIS_EVO_radios = [parso1,somso1,cayso1,dolso1,ortso1,corso1,obrso1,bagso1,eposo1,masso1,pitso1]; // Each radio in each town
 BIS_EVO_MissionTowns = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11"];// Each mission objectives town marker.
 
+
+paska = false;
+
 //adding strings for city names
 //BIS_EVO_Townnames = ["CAINNA WIND","CAMARRA","KINSELLA","DJOLAN","KWAKO","DENDALA DISTRICT","BOLABONGO","ENGOR","CANTO","NUBAK","NUMBO"];// Each mission name used in eventsc, mainthreadc, sorew, briefing, used as _city = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
 
@@ -520,11 +523,11 @@ EGG_EVO_GLweapons = ["M16A2GL","M16A4_GL","M16A4_ACG_GL","M4A1_HWS_GL","M4A1_RCO
 //All weapons that class as a tripwire or trap (requires uns_traps)
 EGG_EVO_Trapweapons = ["uns_Tripwire1a","uns_Tripwire1a_2","uns_Tripwire1b","uns_Tripwire1b_2","uns_Tripwire2a","uns_Tripwire2a_2","uns_Tripwire2b","uns_Tripwire2b_2","uns_m16apmine","uns_Punji1","uns_Punji1_b","uns_Punji2","uns_Punji2_b","uns_punji3","uns_artilleryround1a","uns_artilleryround1b","uns_artilleryround1c","uns_TripwireM49","uns_TripwireM49_2"];
 
-//all missiles
-EGG_EVO_miscamwepsM = ["PRACS_TK_AA8","EB_M_AT2_AT","M_Sidewinder_AA","M_Sidewinder_AA_F35","M_Strela_AA","M_Igla_AA","M_Stinger_AA","M_AT2_AT","M_AT6_AT","M_AT9_AT","M_AT5_AT","M_AT10_AT","M_AT11_AT","M_AT13_AT","M_TOW_AT","M_TOW2_AT","M_Hellfire_AT","M_Maverick_AT","M_Vikhr_AT","M_Ch29_AT","M_R73_AA","M_9M311_AA","GLT_AIM9M_AA","GLT_AIM9X_AA","GLT_AIM120_AA","GLT_AIM7_AA","GLT_AIM54_AA","GLT_R3_AA","GLT_R27_AA","GLT_R73_AA","GLT_R77_AA","GLT_R550_AA","IkaR_F14_AIM9_ir","IkaR_F14_AIM54_ir","RKTF15_AIM9","RKTF15_AIM120","ffaa_Mistral_AA","GLT_Sidewinder_AA","GLT_SidewinderX_AA","GLT_AIM7E_AA","GLT_Maverick_AG","GLT_Harpoon_LGM","GLT_AGM65_AG","GLT_AGM84_AG","GLT_AGM88_AG","GLT_AGM114_AG","GLT_CH15_AG","GLT_CH29L_AG","GLT_CH29T_AG","GLT_CH59_AG","GLT_CH31_AG","GLT_AM39_AG","GLT_AS4_AG","IkaR_F14_AGM65_ir","ffaa_spike_AT","RKTF4HarmRaila","RKTF4SparrowRaila","RKT_Kitchen","RKT_Ch29_AT","RKT_R27_AA","RKT_R73_AA","RKSL_LYNX_TOW_AT","M_AT9_Mi28","RKSL_brimstone_rack","RKSL_harpoon","rksl_agm119mk3","rksl_aim9m","rksl_aim132","rksl_irist","rksl_aim120","rksl_meteor","RKSL_stormshadow","RKSL_ALARM"];
+//all missiles, added missiles for hind at2 and havok missile and mig21 missile
+EGG_EVO_miscamwepsM = ["M_Toophan_AT","EB_M_AT3_AT","EB_M_AT9_AT","EB_M_AT9F_AT","PRACS_TK_AA8","EB_M_AT2_AT","M_Sidewinder_AA","M_Sidewinder_AA_F35","M_Strela_AA","M_Igla_AA","M_Stinger_AA","M_AT2_AT","M_AT6_AT","M_AT9_AT","M_AT5_AT","M_AT10_AT","M_AT11_AT","M_AT13_AT","M_TOW_AT","M_TOW2_AT","M_Hellfire_AT","M_Maverick_AT","M_Vikhr_AT","M_Ch29_AT","M_R73_AA","M_9M311_AA","GLT_AIM9M_AA","GLT_AIM9X_AA","GLT_AIM120_AA","GLT_AIM7_AA","GLT_AIM54_AA","GLT_R3_AA","GLT_R27_AA","GLT_R73_AA","GLT_R77_AA","GLT_R550_AA","IkaR_F14_AIM9_ir","IkaR_F14_AIM54_ir","RKTF15_AIM9","RKTF15_AIM120","ffaa_Mistral_AA","GLT_Sidewinder_AA","GLT_SidewinderX_AA","GLT_AIM7E_AA","GLT_Maverick_AG","GLT_Harpoon_LGM","GLT_AGM65_AG","GLT_AGM84_AG","GLT_AGM88_AG","GLT_AGM114_AG","GLT_CH15_AG","GLT_CH29L_AG","GLT_CH29T_AG","GLT_CH59_AG","GLT_CH31_AG","GLT_AM39_AG","GLT_AS4_AG","IkaR_F14_AGM65_ir","ffaa_spike_AT","RKTF4HarmRaila","RKTF4SparrowRaila","RKT_Kitchen","RKT_Ch29_AT","RKT_R27_AA","RKT_R73_AA","RKSL_LYNX_TOW_AT","M_AT9_Mi28","RKSL_brimstone_rack","RKSL_harpoon","rksl_agm119mk3","rksl_aim9m","rksl_aim132","rksl_irist","rksl_aim120","rksl_meteor","RKSL_stormshadow","RKSL_ALARM"];
 
 //all airborne bombs
-EGG_EVO_miscamwepsB = ["Bo_GBU12_LGB","Bo_GBU12_LGB_F35","Bo_FAB_250","RKTF4BLUBomb","RKTF4BombRaila","Bo_kb500_LGB","Bo_fb250_FFB","RKSL_PAVE2_500","RKSL_PAVE4_500","RKSL_PAVE2_1000","RKSL_GP_500","RKSL_GP_500RET","RKSL_GP_1000","RKSL_GP_1000RET","GLT_FAB250_Bo","GLT_FAB500_Bo","GLT_MK81_Bo","GLT_MK82_Bo","GLT_MK82_Bo","GLT_MK84_Bo","GLT_AGM154_LGB","GLT_GBU12_LGB","GLT_GBU53_LGB","GLT_KAB250_LGB","GLT_KAB500_LGB","GLT_KAB1500_LGB","IkaR_F14_GBU12_ir","RKTF15E_GBU10Bomb","RKTF15E_mk82Bomb","RKTF15E_cbuBomb","RKTF15E_mk84Bomb"];
+EGG_EVO_miscamwepsB = ["EB_Bo_FAB250","Bo_GBU12_LGB","Bo_GBU12_LGB_F35","Bo_FAB_250","RKTF4BLUBomb","RKTF4BombRaila","Bo_kb500_LGB","Bo_fb250_FFB","RKSL_PAVE2_500","RKSL_PAVE4_500","RKSL_PAVE2_1000","RKSL_GP_500","RKSL_GP_500RET","RKSL_GP_1000","RKSL_GP_1000RET","GLT_FAB250_Bo","GLT_FAB500_Bo","GLT_MK81_Bo","GLT_MK82_Bo","GLT_MK82_Bo","GLT_MK84_Bo","GLT_AGM154_LGB","GLT_GBU12_LGB","GLT_GBU53_LGB","GLT_KAB250_LGB","GLT_KAB500_LGB","GLT_KAB1500_LGB","IkaR_F14_GBU12_ir","RKTF15E_GBU10Bomb","RKTF15E_mk82Bomb","RKTF15E_cbuBomb","RKTF15E_mk84Bomb"];
 
 //all laser guided weapons
 EGG_EVO_LaserLauncher = ["EB_AT2_Launcher","BombLauncher","BombLauncherF35","BombLauncherA10","HellfireLauncher","GLT_GBU12_Launcher","GLT_AGM154_Launcher","GLT_GBU53_Launcher","GLT_FFARLauncher_laser","GLT_Ch29LauncherLaser"];
@@ -624,19 +627,6 @@ if (isServer) then
 //	[EGG_vecmods,18] execVM "data\scripts\makeLHD.sqf";
 };
 
-if ((helicopterhitch ==2) || (helicopterhitch ==3) ) then
-{
-	mando_hitch_no_check_for_drop = true;
-	mando_hitch_types = ["Landvehicle","ship", "Air", "ReammoBox", "StaticWeapon"]; //, "Static"
-	[24]execVM"mando_hitch\mando_hitch.sqf";
-	[["UH1Y","MV22","MH60S","AH1Z","Ka52","Ka52Black","Mi24_D","Mi24_P","Mi24_V","Mi17_Civilian","Mi17_medevac_CDF","Mi17_CDF","Mi17_medevac_RU","Mi17_rockets_RU","Mi17_medevac_Ins","Mi17_Ins","AH64D","AH64D_Sidewinders","CMA_Mi28_N_RUS","CMA_Mi28_RUS","rksl_lynx_ah7_gpmg","rksl_lynx_ah7_1gpmg","rksl_lynx_ah7_4tow","rksl_lynx_ah9_1","MH6","AH6","UH60MG","UH60","MH6_RACS","AH6_racs","UH60MGRACS","UH60Racs","RAF_Chin47","AH64D_EP1","AH6J_EP1","CH_47F_EP1","MH6J_EP1","UH60M_EP1","BAF_Apache_AH1_D","CH_47F_BAF","BAF_Merlin_HC3_D","AW159_Lynx_BAF","UH1H_TK_EP1","UH1H_TK_GUE_EP1","ffaa_famet_tigre_AT","ffaa_famet_tigre","Ka60_PMC","Ka60_GL_PMC","Mi171Sh_rockets_CZ_EP1","Mi24_D_TK_EP1","Mi17_TK_EP1","ibr_as350","ibr_as350_armed","ibr_as350_specops","ibr_gazelle_armed","ibr_as350_jungle","TIG_UH1H","Mi171Sh_CZ_EP1","AH6X_EP1","ad_hh60g","ad_mh60k","ad_mh60k_black","ad_mh60k_erfs","ad_mh60k_erfs_black","PRACS_AH1S","PRACS_MH6J","PRACS_AH6J","PRACS_CH53","PRACS_CH46","PRACS_puma330_MG","PRACS_puma330_Marine","PRACS_puma330_MED","PRACS_UH1H","PRACS_AB212","PRACS_AB212_M","PRACS_AB212_cas","PRACS_AB212_CAS_M","PRACS_AB212_CAS_MAT","uns_ch34","uns_ch34army","uns_ch47","uns_ch53","uns_oh58a","uns_oh58b","CSJ_UH1transport","CSJ_UH1med","CSJ_oh6","CSJ_oh6a","csj_ch46","CSJ_UH1Slick","CSJ_UH1supply","csj_uh1gun","csj_ghornet","CSJ_AH1g","Mi24_D_CZ_ACR","FRL_Mi24D_CAP","FRL_Mi24D_CAS","FRL_Mi24D_HCAS","FRL_Mi24D_AGM","FRL_Mi24D_MR","FRL_Mi24D_BMB","FRL_Mi24D_LRCAS","FRL_Mi24D_SEAD","FRL_Mi24D_D_CAP","FRL_Mi24D_D_CAS","FRL_Mi24D_D_HCAS","FRL_Mi24D_D_AGM","FRL_Mi24D_D_MR","FRL_Mi24D_D_BMB","FRL_Mi24D_D_LRCAS","FRL_Mi24D_D_SEAD","FRL_Mi24D_CDF_CAP","FRL_Mi24D_CDF_CAS","FRL_Mi24D_CDF_HCAS","FRL_Mi24D_CDF_AGM","FRL_Mi24D_CDF_MR","FRL_Mi24D_CDF_BMB","FRL_Mi24D_CDF_LRCAS","FRL_Mi24D_CDF_SEAD","FRL_Mi24D_TK_CAP","FRL_Mi24D_TK_CAS","FRL_Mi24D_TK_HCAS","FRL_Mi24D_TK_AGM","FRL_Mi24D_TK_MR","FRL_Mi24D_TK_BMB","FRL_Mi24D_TK_LRCAS","FRL_Mi24D_TK_SEAD","FRL_Mi24V_CAP","FRL_Mi24V_CAS","FRL_Mi24V_HCAS","FRL_Mi24V_AGM","FRL_Mi24V_MR","FRL_Mi24V_BMB","FRL_Mi24V_LRCAS","FRL_Mi24V_SEAD","FRL_Mi24V_D_CAP","FRL_Mi24V_D_CAS","FRL_Mi24V_D_HCAS","FRL_Mi24V_D_AGM","FRL_Mi24V_D_MR","FRL_Mi24V_D_BMB","FRL_Mi24V_D_LRCAS","FRL_Mi24V_D_SEAD","FRL_Mi24V_CDF_CAP","FRL_Mi24V_CDF_CAS","FRL_Mi24V_CDF_HCAS","FRL_Mi24V_CDF_AGM","FRL_Mi24V_CDF_MR","FRL_Mi24V_CDF_BMB","FRL_Mi24V_CDF_LRCAS","FRL_Mi24V_CDF_SEAD","FRL_Mi24V_TK_CAP","FRL_Mi24V_TK_CAS","FRL_Mi24V_TK_HCAS","FRL_Mi24V_TK_AGM","FRL_Mi24V_TK_MR","FRL_Mi24V_TK_BMB","FRL_Mi24V_TK_LRCAS","FRL_Mi24V_TK_SEAD","FRL_Mi24P_CAP","FRL_Mi24P_CAS","FRL_Mi24P_HCAS","FRL_Mi24P_AGM","FRL_Mi24P_MR","FRL_Mi24P_BMB","FRL_Mi24P_LRCAS","FRL_Mi24P_SEAD","FRL_Mi24P_D_CAP","FRL_Mi24P_D_CAS","FRL_Mi24P_D_HCAS","FRL_Mi24P_D_AGM","FRL_Mi24P_D_MR","FRL_Mi24P_D_BMB","FRL_Mi24P_D_LRCAS","FRL_Mi24P_D_SEAD","FRL_Mi24P_CDF_CAP","FRL_Mi24P_CDF_CAS","FRL_Mi24P_CDF_HCAS","FRL_Mi24P_CDF_AGM","FRL_Mi24P_CDF_MR","FRL_Mi24P_CDF_BMB","FRL_Mi24P_CDF_LRCAS","FRL_Mi24P_CDF_SEAD","FRL_Mi24P_TK_CAP","FRL_Mi24P_TK_CAS","FRL_Mi24P_TK_HCAS","FRL_Mi24P_TK_AGM","FRL_Mi24P_TK_MR","FRL_Mi24P_TK_BMB","FRL_Mi24P_TK_LRCAS","FRL_Mi24P_TK_SEAD","FRL_Mi8_MB_RUS","FRL_Mi17_1VA_INS","FRL_Mi17_1VA_CDF","FRL_Mi17_1VA_CIV","FRL_Mi17_1VA_CIV_D","FRL_Mi17_1VA_TAK","FRL_Mi17_1VA_UN","FRL_Mi17_1VA_CZ","FRL_Mi17_1VA_GUE","FRL_Mi8_MT_RUS","FRL_Mi17_INS","FRL_Mi17_CDF","FRL_Mi17_CIV","FRL_Mi17_CIV_D","FRL_Mi17_TAK","FRL_Mi17_UN","FRL_Mi17_CZ","FRL_Mi17_GUE","FRL_Mi8_AMT_RUS","FRL_Mi17_1_INS","FRL_Mi17_1_CDF","FRL_Mi17_1_TAK","FRL_Mi17_1_UN","FRL_Mi17_1_CZ","FRL_Mi8_TBK_RUS","FRL_Mi8_TBK_RUS_AGM","FRL_Mi8_TBK_RUS_MR","FRL_Mi8_TBK_RUS_BMB","FRL_Mi17_TVK_TAK","FRL_Mi17_TVK_TAK_AGM","FRL_Mi17_TVK_TAK_MR","FRL_Mi17_TVK_TAK_BMB","FRL_Mi17_TVK_INS","FRL_Mi17_TVK_CDF","FRL_Mi17_TVK_GUE","FRL_Mi8_AMTSh_RUS","FRL_Mi8_AMTSh_RUS_HCAS","FRL_Mi8_AMTSh_AGM","FRL_Mi8_AMTSh_MR","FRL_Mi8_AMTSh_RUS_MR","FRL_Mi8_AMTSh_BMB","FRL_Mi17_1Sh_INS","FRL_Mi17_1Sh_CDF","FRL_Mi17_1Sh_CZ","FRL_Mi8_MTV3_RUS","FRL_Mi8_MTV3_RUS_HCAS","FRL_Mi8_MTV3_RUS_AGM","FRL_Mi8_MTV3_RUS_MR","FRL_Mi8_MTV3_RUS_BMB","FRL_Mi8_MTV3_RUS_D","FRL_Mi17_V3_CZ","FRL_Mi17_V3_PMC",	"FRL_Mi8_MTKO_RUS","FRL_Mi8_MTKO_RUS_HCAS","FRL_Mi8_MTKO_RUS_AGM","FRL_Mi8_MTKO_RUS_MR","FRL_Mi8_MTKO_RUS_BMB","FRL_Mi8_MTKO_RUS_D","FRL_Mi17_N_CZ","FRL_Mi17_N_PMC","FRL_Mi28_CAP","FRL_Mi28_CAS","FRL_Mi28_HCAS","FRL_Mi28_AGM","FRL_Mi28_MR","FRL_Mi28_BMB","FRL_Mi28_LRCAS","FRL_Mi28_SEAD","FRL_Mi28_INS_CAP","FRL_Mi28_INS_CAS","FRL_Mi28_INS_HCAS","FRL_Mi28_INS_AGM","FRL_Mi28_INS_MR","FRL_Mi28_INS_BMB","FRL_Mi28_INS_LRCAS","FRL_Mi28_INS_SEAD","FRL_Mi28D_TK_CAP","FRL_Mi28D_TK_CAS","FRL_Mi28D_TK_HCAS","FRL_Mi28D_TK_AGM","FRL_Mi28D_TK_MR","FRL_Mi28D_TK_BMB","FRL_Mi28D_TK_LRCAS","FRL_Mi28D_TK_SEAD","FRL_Mi28NE_CDF_CAP","FRL_Mi28NE_CDF_CAS","FRL_Mi28NE_CDF_HCAS","FRL_Mi28NE_CDF_AGM","FRL_Mi28NE_CDF_MR","FRL_Mi28NE_CDF_BMB","FRL_Mi28NE_CDF_LRCAS","FRL_Mi28NE_CDF_SEAD","pook_MV22_baf","pook_CV22","pook_MV22_M240","pook_MV22_idws_baf","pook_MV22_idws","pook_MV22"]]execVM"mando_hitch\mando_add_hitch.sqf";
-};
-
-//Arty and logistics
-if ((helicopterhitch == 1) || (helicopterhitch == 2)) then
-{
-	execVM "R3F_ARTY_AND_LOG\init.sqf";
-};
 
 //////////////////////////////////
 //GITS air combat scripts
@@ -688,8 +678,6 @@ buyCarList =
 	["pook_btr40_zu23_tak",18],
 	["pook_BTR40_RR106_TAK",20],
 	["pook_btr40_mortar_tak",22],
-	["pook_brdm2aa_tkins",25],
-	["pook_brdm2_Sa9_tak",28],
 	["pracs_tk_ural_sam",10],
 	["Ural_ZU23_TK_EP1",14],
 	["pook_ural_s60_tak",16],
@@ -716,6 +704,8 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 	["pook_brdm2rkt_tkins",18],
 	["pook_brdm2at2_tak",20],
 	["pook_brdm2at5_tak",24],
+	["pook_brdm2aa_tkins",25],
+//	["pook_brdm2_Sa9_tak",28], //AA PERK 1
 	["btr60_tk_ep1",20],
 	["pook_btr2a42_tak",22],
 	["pook_btrMWS_tak",24],
@@ -737,9 +727,9 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 	["pook_zsu57_tak",25],
 	["zsu_tk_ep1",30],
 	["pook_zsum4_tak",30],
-	["pracs_tk_sa13",32],
-	["pracs_sa6_tk",32],
-	["pracs_tk_sa8",35],
+	//["pracs_tk_sa13",32], // AA PERK 1
+	//["pracs_sa6_tk",32], // AA PERK 2
+	//["pracs_tk_sa8",35],
 	["pook_9k317_tak",36],
 	["pook_9k317m3_tak",38],
 	["pook_9k331_tak",40],
@@ -835,12 +825,14 @@ hikiAirList = ["FRL_Mig23B_TK_MR","FRL_L59_MR","FRL_Su25_TK_CAS","FRL_Su27_TK_CA
 		buyStatList set [_loop,[(buyStatList select _loop) select 0, (buyStatList select _loop) select 1,0]];
 	};
 
+
 //Player unlocks
 buySpecialList =[];
-
-egg_evo_westAmb = ["EB_BRDM2_HQ_TK"]; 
+egg_evo_westAmb = ["TK_WarfareBUAVterminal_Base_EP1"]; 
 egg_evo_westMHQ = ["EB_BTR90_HQ_TK"];
 EB_twoseaterplanes = ["FRL_Su34_D_CAP","FRL_Su34_D_CAS","FRL_Su34_D_HCAS","FRL_Su34_D_EHCAS","FRL_Su34_D_AGM","FRL_Su34_D_MR","FRL_Su34_D_LBMB","FRL_Su34_D_BMB","FRL_Su34_D_HBMB","FRL_Su34_D_LGB","FRL_Su34_D_SEAD","Su34","uns_F4_CAP","uns_F4Navy_CAP","uns_F4_CAS","uns_A6_Intruder_ECM","JS_FA18F","IkaR_F14_AIM_54","IkaR_F14_AGM_65","uns_f105F_WW"];
+allowRHQ = false;
+
 
 //mod management EGG_vecmods //## modify desc
 //0,1,2,3,4,5,9 
@@ -880,12 +872,26 @@ if (editor == 1) then
 	EGG_EVO_Artycost =4;
 	//Note from Tox1m: paramsArray select 15 used by Revive script
 	enemynumdiv = 1;
-	reinfdelay = 60;
+	reinfdelay = 30;
 	EGG_highCommand = 0;
 	EX_EVO_vehPriceMultiplier = 1;
 	EVO_incomeFrequency = 120;
 };
-basebeam = 2;
+
+if ((helicopterhitch ==2) || (helicopterhitch ==3) ) then
+{
+	mando_hitch_no_check_for_drop = true;
+	mando_hitch_types = ["Landvehicle","ship", "Air", "ReammoBox", "StaticWeapon"]; //, "Static"
+	[24]execVM"mando_hitch\mando_hitch.sqf";
+	[["UH1Y","MV22","MH60S","AH1Z","Ka52","Ka52Black","Mi24_D","Mi24_P","Mi24_V","Mi17_Civilian","Mi17_medevac_CDF","Mi17_CDF","Mi17_medevac_RU","Mi17_rockets_RU","Mi17_medevac_Ins","Mi17_Ins","AH64D","AH64D_Sidewinders","CMA_Mi28_N_RUS","CMA_Mi28_RUS","rksl_lynx_ah7_gpmg","rksl_lynx_ah7_1gpmg","rksl_lynx_ah7_4tow","rksl_lynx_ah9_1","MH6","AH6","UH60MG","UH60","MH6_RACS","AH6_racs","UH60MGRACS","UH60Racs","RAF_Chin47","AH64D_EP1","AH6J_EP1","CH_47F_EP1","MH6J_EP1","UH60M_EP1","BAF_Apache_AH1_D","CH_47F_BAF","BAF_Merlin_HC3_D","AW159_Lynx_BAF","UH1H_TK_EP1","UH1H_TK_GUE_EP1","ffaa_famet_tigre_AT","ffaa_famet_tigre","Ka60_PMC","Ka60_GL_PMC","Mi171Sh_rockets_CZ_EP1","Mi24_D_TK_EP1","Mi17_TK_EP1","ibr_as350","ibr_as350_armed","ibr_as350_specops","ibr_gazelle_armed","ibr_as350_jungle","TIG_UH1H","Mi171Sh_CZ_EP1","AH6X_EP1","ad_hh60g","ad_mh60k","ad_mh60k_black","ad_mh60k_erfs","ad_mh60k_erfs_black","PRACS_AH1S","PRACS_MH6J","PRACS_AH6J","PRACS_CH53","PRACS_CH46","PRACS_puma330_MG","PRACS_puma330_Marine","PRACS_puma330_MED","PRACS_UH1H","PRACS_AB212","PRACS_AB212_M","PRACS_AB212_cas","PRACS_AB212_CAS_M","PRACS_AB212_CAS_MAT","uns_ch34","uns_ch34army","uns_ch47","uns_ch53","uns_oh58a","uns_oh58b","CSJ_UH1transport","CSJ_UH1med","CSJ_oh6","CSJ_oh6a","csj_ch46","CSJ_UH1Slick","CSJ_UH1supply","csj_uh1gun","csj_ghornet","CSJ_AH1g","Mi24_D_CZ_ACR","FRL_Mi24D_CAP","FRL_Mi24D_CAS","FRL_Mi24D_HCAS","FRL_Mi24D_AGM","FRL_Mi24D_MR","FRL_Mi24D_BMB","FRL_Mi24D_LRCAS","FRL_Mi24D_SEAD","FRL_Mi24D_D_CAP","FRL_Mi24D_D_CAS","FRL_Mi24D_D_HCAS","FRL_Mi24D_D_AGM","FRL_Mi24D_D_MR","FRL_Mi24D_D_BMB","FRL_Mi24D_D_LRCAS","FRL_Mi24D_D_SEAD","FRL_Mi24D_CDF_CAP","FRL_Mi24D_CDF_CAS","FRL_Mi24D_CDF_HCAS","FRL_Mi24D_CDF_AGM","FRL_Mi24D_CDF_MR","FRL_Mi24D_CDF_BMB","FRL_Mi24D_CDF_LRCAS","FRL_Mi24D_CDF_SEAD","FRL_Mi24D_TK_CAP","FRL_Mi24D_TK_CAS","FRL_Mi24D_TK_HCAS","FRL_Mi24D_TK_AGM","FRL_Mi24D_TK_MR","FRL_Mi24D_TK_BMB","FRL_Mi24D_TK_LRCAS","FRL_Mi24D_TK_SEAD","FRL_Mi24V_CAP","FRL_Mi24V_CAS","FRL_Mi24V_HCAS","FRL_Mi24V_AGM","FRL_Mi24V_MR","FRL_Mi24V_BMB","FRL_Mi24V_LRCAS","FRL_Mi24V_SEAD","FRL_Mi24V_D_CAP","FRL_Mi24V_D_CAS","FRL_Mi24V_D_HCAS","FRL_Mi24V_D_AGM","FRL_Mi24V_D_MR","FRL_Mi24V_D_BMB","FRL_Mi24V_D_LRCAS","FRL_Mi24V_D_SEAD","FRL_Mi24V_CDF_CAP","FRL_Mi24V_CDF_CAS","FRL_Mi24V_CDF_HCAS","FRL_Mi24V_CDF_AGM","FRL_Mi24V_CDF_MR","FRL_Mi24V_CDF_BMB","FRL_Mi24V_CDF_LRCAS","FRL_Mi24V_CDF_SEAD","FRL_Mi24V_TK_CAP","FRL_Mi24V_TK_CAS","FRL_Mi24V_TK_HCAS","FRL_Mi24V_TK_AGM","FRL_Mi24V_TK_MR","FRL_Mi24V_TK_BMB","FRL_Mi24V_TK_LRCAS","FRL_Mi24V_TK_SEAD","FRL_Mi24P_CAP","FRL_Mi24P_CAS","FRL_Mi24P_HCAS","FRL_Mi24P_AGM","FRL_Mi24P_MR","FRL_Mi24P_BMB","FRL_Mi24P_LRCAS","FRL_Mi24P_SEAD","FRL_Mi24P_D_CAP","FRL_Mi24P_D_CAS","FRL_Mi24P_D_HCAS","FRL_Mi24P_D_AGM","FRL_Mi24P_D_MR","FRL_Mi24P_D_BMB","FRL_Mi24P_D_LRCAS","FRL_Mi24P_D_SEAD","FRL_Mi24P_CDF_CAP","FRL_Mi24P_CDF_CAS","FRL_Mi24P_CDF_HCAS","FRL_Mi24P_CDF_AGM","FRL_Mi24P_CDF_MR","FRL_Mi24P_CDF_BMB","FRL_Mi24P_CDF_LRCAS","FRL_Mi24P_CDF_SEAD","FRL_Mi24P_TK_CAP","FRL_Mi24P_TK_CAS","FRL_Mi24P_TK_HCAS","FRL_Mi24P_TK_AGM","FRL_Mi24P_TK_MR","FRL_Mi24P_TK_BMB","FRL_Mi24P_TK_LRCAS","FRL_Mi24P_TK_SEAD","FRL_Mi8_MB_RUS","FRL_Mi17_1VA_INS","FRL_Mi17_1VA_CDF","FRL_Mi17_1VA_CIV","FRL_Mi17_1VA_CIV_D","FRL_Mi17_1VA_TAK","FRL_Mi17_1VA_UN","FRL_Mi17_1VA_CZ","FRL_Mi17_1VA_GUE","FRL_Mi8_MT_RUS","FRL_Mi17_INS","FRL_Mi17_CDF","FRL_Mi17_CIV","FRL_Mi17_CIV_D","FRL_Mi17_TAK","FRL_Mi17_UN","FRL_Mi17_CZ","FRL_Mi17_GUE","FRL_Mi8_AMT_RUS","FRL_Mi17_1_INS","FRL_Mi17_1_CDF","FRL_Mi17_1_TAK","FRL_Mi17_1_UN","FRL_Mi17_1_CZ","FRL_Mi8_TBK_RUS","FRL_Mi8_TBK_RUS_AGM","FRL_Mi8_TBK_RUS_MR","FRL_Mi8_TBK_RUS_BMB","FRL_Mi17_TVK_TAK","FRL_Mi17_TVK_TAK_AGM","FRL_Mi17_TVK_TAK_MR","FRL_Mi17_TVK_TAK_BMB","FRL_Mi17_TVK_INS","FRL_Mi17_TVK_CDF","FRL_Mi17_TVK_GUE","FRL_Mi8_AMTSh_RUS","FRL_Mi8_AMTSh_RUS_HCAS","FRL_Mi8_AMTSh_AGM","FRL_Mi8_AMTSh_MR","FRL_Mi8_AMTSh_RUS_MR","FRL_Mi8_AMTSh_BMB","FRL_Mi17_1Sh_INS","FRL_Mi17_1Sh_CDF","FRL_Mi17_1Sh_CZ","FRL_Mi8_MTV3_RUS","FRL_Mi8_MTV3_RUS_HCAS","FRL_Mi8_MTV3_RUS_AGM","FRL_Mi8_MTV3_RUS_MR","FRL_Mi8_MTV3_RUS_BMB","FRL_Mi8_MTV3_RUS_D","FRL_Mi17_V3_CZ","FRL_Mi17_V3_PMC",	"FRL_Mi8_MTKO_RUS","FRL_Mi8_MTKO_RUS_HCAS","FRL_Mi8_MTKO_RUS_AGM","FRL_Mi8_MTKO_RUS_MR","FRL_Mi8_MTKO_RUS_BMB","FRL_Mi8_MTKO_RUS_D","FRL_Mi17_N_CZ","FRL_Mi17_N_PMC","FRL_Mi28_CAP","FRL_Mi28_CAS","FRL_Mi28_HCAS","FRL_Mi28_AGM","FRL_Mi28_MR","FRL_Mi28_BMB","FRL_Mi28_LRCAS","FRL_Mi28_SEAD","FRL_Mi28_INS_CAP","FRL_Mi28_INS_CAS","FRL_Mi28_INS_HCAS","FRL_Mi28_INS_AGM","FRL_Mi28_INS_MR","FRL_Mi28_INS_BMB","FRL_Mi28_INS_LRCAS","FRL_Mi28_INS_SEAD","FRL_Mi28D_TK_CAP","FRL_Mi28D_TK_CAS","FRL_Mi28D_TK_HCAS","FRL_Mi28D_TK_AGM","FRL_Mi28D_TK_MR","FRL_Mi28D_TK_BMB","FRL_Mi28D_TK_LRCAS","FRL_Mi28D_TK_SEAD","FRL_Mi28NE_CDF_CAP","FRL_Mi28NE_CDF_CAS","FRL_Mi28NE_CDF_HCAS","FRL_Mi28NE_CDF_AGM","FRL_Mi28NE_CDF_MR","FRL_Mi28NE_CDF_BMB","FRL_Mi28NE_CDF_LRCAS","FRL_Mi28NE_CDF_SEAD","pook_MV22_baf","pook_CV22","pook_MV22_M240","pook_MV22_idws_baf","pook_MV22_idws","pook_MV22"]]execVM"mando_hitch\mando_add_hitch.sqf";
+};
+
+//Arty and logistics
+if ((helicopterhitch == 1) || (helicopterhitch == 2)) then
+{
+	execVM "R3F_ARTY_AND_LOG\init.sqf";
+};
+
 
 	
 //EGG_vecmods = paramsArray select 18;
@@ -940,18 +946,31 @@ EGG_EVO_westveh10 = ["Stinger_Pod_US_EP1","ZU23_TK_GUE_EP1","Rbs70_ACR","HMMWV_A
 	[
 		//Perk 1
 		[
-			["Recon HQ level 1","Upgrade recon HQ to HUMVEE M2",FALSE],
-			["Recon HQ level 2","Upgrade recon HQ to HUMVEE M2 CROWS",FALSE],
-			["Recon HQ level 3","Upgrade recon HQ to Ridgeback MRAP",FALSE],
-			["Recon HQ level 4","Upgrade recon HQ to LAV APC",FALSE],
-			["Recon HQ Max","Maximum level reached",FALSE]
+			["Recon HQ","Upgrade recon HQ to HUMVEE M2",FALSE],
+			["Recon HQ","Upgrade recon HQ to HUMVEE M2 CROWS",FALSE],
+			["Recon HQ","Upgrade recon HQ to Ridgeback MRAP",FALSE],
+			["Recon HQ","Upgrade recon HQ to LAV APC",FALSE],
+			["Recon HQ","Maximum level reached",FALSE]
 		],
 		//Perk 2
 		[
-			["Pilot level 1","New armament and 3 extra missiles",FALSE],
-			["Pilot level 2","New armament and 3 extra missiles",FALSE],
-			["Pilot level 3","New armament and 3 extra missiles",FALSE],
-			["Maximum","This the maximum perk level",FALSE]
+			["Pilot","New armament and 3 extra missiles",FALSE],
+			["Pilot","New armament and 3 extra missiles",FALSE],
+			["Pilot","New armament and 3 extra missiles",FALSE],
+			["Pilot","This the maximum perk level",FALSE]
+		],
+		//Perk 3
+		[
+			["Anti Air","Unlock stuff",FALSE],
+			["Anti Air","",FALSE],
+			["Anti Air","",FALSE],
+			["Anti Air","",FALSE]
+		],
+		[
+			["Engineer","Unlock stuff",FALSE],
+			["Engineer","",FALSE],
+			["Engineer","",FALSE],
+			["Engineer","",FALSE]
 		]
 	];
 

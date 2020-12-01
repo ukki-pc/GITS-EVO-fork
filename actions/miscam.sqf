@@ -22,7 +22,7 @@ _cam camSetRelPos [2,2,2];
 _cam camSetFOV 1.0;
 showCinemaBorder false;
 _cam camCommit 0;
-
+_unit action ["Land", _unit];
 
 for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 {	
@@ -48,6 +48,7 @@ if (_type in EGG_EVO_miscamwepsB) then
 };
 
 sleep 2.01;
+_unit action ["cancelLand", _unit];
 deleteVehicle _base;
 camUseNVG false;
 camdestroy _cam;
