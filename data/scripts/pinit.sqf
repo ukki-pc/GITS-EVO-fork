@@ -60,7 +60,7 @@ _arm = [] execVM "data\scripts\EB_ARM.sqf";
 _cthread = [] execVM "data\scripts\MainThreadC.sqf";
 
 //CLIENT SIDED ATM
-_sResp = [] execVM "data\scripts\strategicResponse.sqf";
+//_sResp = [] execVM "data\scripts\strategicResponse.sqf"; //WIP
 //Ctraffic = [] execVM "data\scripts\BIS_EVO_CivTraffic.sqf";
 
 

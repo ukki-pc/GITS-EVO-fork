@@ -109,7 +109,7 @@ repairStrength = 25;
  			 		case 1:
  			 		{
 						repairStrength = 50;
-						systemChat "repstrengh increasedsa";
+
  			 		};
  			 		case 2:
  			 		{ 
@@ -130,17 +130,17 @@ repairStrength = 25;
  			 	{
  			 		case 1:
  			 		{
-						buyTankList set [count buyTankList,["pook_brdm2_Sa9_tak",28,0]];
+						buySpecialList set [count buySpecialList,["pook_brdm2_Sa9_tak",0,28]];
 						sleep BIS_EVO_GlobalSleep;
-						buyTankList set [count buyTankList,["pracs_tk_sa13",32,0]];
+						buySpecialList set [count buySpecialList,["pracs_tk_sa13",0,32]];
 						sleep BIS_EVO_GlobalSleep;
 						systemChat "sa9 and sa 13unlock";
  			 		};
  			 		case 2:
  			 		{ 
-						buyTankList set [count buyTankList,["pracs_sa6_tk",32,0]];
+						buySpecialList set [count buySpecialList,["pracs_sa6_tk",0,32]];
 						sleep BIS_EVO_GlobalSleep;
-						buyTankList set [count buyTankList,["pracs_tk_sa8",35,0]];
+						buySpecialList set [count buySpecialList,["pracs_tk_sa8",0,35]];
 						sleep BIS_EVO_GlobalSleep;
 						systemChat "sa6 and sa8 unlock"; //	["pracs_tk_sa8",35],
  			 		};

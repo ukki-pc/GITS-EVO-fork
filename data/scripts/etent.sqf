@@ -50,7 +50,7 @@ _tbox setAmmoCargo 0.2;
 _tbox setRepairCargo 0.2;
 //ebox = "TKVehicleBox_EP1" createVehicle _pos3;
 
-//BIS_EVO_EngZone setpos _pos;	
+BIS_EVO_EngZone setpos _pos;	
 
 etent addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
 ebox addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];

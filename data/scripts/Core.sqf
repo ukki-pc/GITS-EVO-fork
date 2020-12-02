@@ -654,7 +654,7 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 		ctrlShow [672,true]; //Missile page
 		ctrlShow [673,true]; //Loadout page
 
-		_i = 0;
+
 		lbClear 2000;
 
 	
@@ -675,7 +675,8 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 				case 2:
 				{
 					_index = lbAdd [2000, "Remove weapons"];
-					while {_i < count EB_turrets} do 
+					//while {_i < count EB_turrets} do 
+					for [{_i=0}, {_i< count EB_turrets}, {_i=_i+1}] do
 					{
 						_class = EB_turrets select _i;
 						_magazineArray = getArray (configFile >> "CfgWeapons" >> _class >> "magazines");
@@ -688,13 +689,12 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 						ctrlSetText [2010,_name];
 						ctrlSetText [2011,_description];
 						_index = lbAdd [2000, _name];
-						_i = _i + 1;
 					};
 				};
 				case 3:
 				{
 					_index = lbAdd [2000, "Remove weapons"];
-					while {_i < count EGG_missiles} do 
+					for [{_i=0}, {_i< count EGG_missiles}, {_i=_i+1}] do
 					{
 						_class = EGG_missiles select _i;
 						_magazineArray = getArray (configFile >> "CfgWeapons" >> _class >> "magazines");
@@ -707,7 +707,6 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 						ctrlSetText [2010,_name];
 						ctrlSetText [2011,_description];
 						_index = lbAdd [2000, _name];
-						_i = _i + 1;
 					};
 				};
 			};
@@ -1078,22 +1077,22 @@ if (player hasWeapon "ItemRadio") then
 								case 1:
 								{
 									buyCarList set [_index,[(buyCarList select _index) select 0,(buyCarList select _index) select 1,((buyCarList select _index) select 2)-1]];
-									//publicVariable "buyCarList";
+									publicVariable "buyCarList";
 								};
 								case 2:
 								{
 									buyTankList set [_index,[(buyTankList select _index) select 0,(buyTankList select _index) select 1,((buyTankList select _index) select 2)-1]];
-									//publicVariable "buyTankList";	
+									publicVariable "buyTankList";	
 								};
 								case 3:
 								{
 									buyAirList set [_index,[(buyAirList select _index) select 0,(buyAirList select _index) select 1,((buyAirList select _index) select 2)-1]];
-								//	publicVariable "buyAirList";	
+									publicVariable "buyAirList";	
 								};
 								case 4:
 								{
 									buyStatList set [_index,[(buyStatList select _index) select 0,(buyStatList select _index) select 1,((buyStatList select _index) select 2)-1]];
-								//	publicVariable "buyStatList";	
+									publicVariable "buyStatList";	
 								};
 								case 5:
 								{
@@ -1119,22 +1118,22 @@ if (player hasWeapon "ItemRadio") then
 								case 1:
 								{
 									buyCarList set [_index,[(buyCarList select _index) select 0,(buyCarList select _index) select 1,1]];
-							//		publicVariable "buyCarList";
+									publicVariable "buyCarList";
 								};
 								case 2:
 								{
 									buyTankList set [_index,[(buyTankList select _index) select 0,(buyTankList select _index) select 1,1]];
-							//		publicVariable "buyTankList";	
+									publicVariable "buyTankList";	
 								};
 								case 3:
 								{
 									buyAirList set [_index,[(buyAirList select _index) select 0,(buyAirList select _index) select 1,1]];
-							//		publicVariable "buyAirList";	
+									publicVariable "buyAirList";	
 								};
 								case 4:
 								{
 									buyStatList set [_index,[(buyStatList select _index) select 0,(buyStatList select _index) select 1,1]];
-						//			publicVariable "buyStatList";	
+									publicVariable "buyStatList";	
 								};
 							};
 								// _pic = "img\support\lock_on_ca.paa";
@@ -1176,7 +1175,7 @@ if (player hasWeapon "ItemRadio") then
 	//	perkList set [_index,[_curLevel,[((perkList select _index) select _curLevel) select 0,( (perkList select _index) select _curLevel) select 1,TRUE,((perkList select _index) select _curLevel)select 3]]];
 		_perks = (perkList select _index);
 		_perks set [_curLevel,[(_perks select _curLevel) select 0,(_perks select _curLevel) select 1,true]];
-				_asd = [_index] call setPerkLevel;
+				//_asd = [_index] call setPerkLevel;
 		perkList set [_index,_perks];
 		//[] call BIS_EVO_PerkUpdate;
 		[] call BIS_EVO_ListUpdate;
@@ -1187,7 +1186,7 @@ if (player hasWeapon "ItemRadio") then
 	{
 		if (vehicle player isKindOf  "Air") then 
 		{
-			if(_index < 0) then 
+			if(_index < 1) then 
 			{
 				execVM "data\scripts\EB_removeWeapons.sqf";
 			} 
@@ -1197,15 +1196,14 @@ if (player hasWeapon "ItemRadio") then
 				{
 					case 2:
 					{
-					_class = EB_turrets select _index;
-					hint str _class;
+					_class = EB_turrets select _index -1;
 					_magazineArray = getArray (configFile >> "CfgWeapons" >> _class >> "magazines");
 					_armament = _magazinearray select 0;
-					[_armament, _class] call armTurret;
+					[ _class] call armTurret;
 					};
 					case 3:
 					{
-					_class = EGG_missiles select _index;
+					_class = EGG_missiles select _index - 1;
 					_magazineArray = getArray (configFile >> "CfgWeapons" >> _class >> "magazines");
 					_armament = _magazinearray select 0;
 					[_armament, _class] call armWeapon;

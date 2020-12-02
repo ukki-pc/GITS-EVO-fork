@@ -540,14 +540,16 @@ BIS_EVO_aaweapons = ["M_Vikhr_AT","M_9M311_AA","M_R73_AA","M_Strela_AA","M_Igla_
 // The players default load out
 BIS_EVO_PlayerModel = "BAF_Soldier_W"; 
 	BIS_EVO_pallammo = ["pipebomb","LWS_Laserbatteries","HandGrenade_West","HandGrenade_West","30Rnd_556x45_G36SD","30Rnd_556x45_G36SD"];
-	BIS_EVO_pweapons = ["DM_CAMO_M4_CCO_IR_FG","Laserdesignator","EB_S10","EB_ItemSil_hgun","EB_ItemSil_rifle","EB_ItemSiphon"];
+
+	BIS_EVO_pweapons = ["DM_CAMO_M4_CCO_IR_FG","Laserdesignator","EB_S10","EB_ItemSiphon"];
+
 
 // The players default Model
 
 if (gitsnades == 1) then 
 {
-	BIS_EVO_pallammo = ["pipebomb","LWS_Laserbatteries","HandGrenade_West","HandGrenade_West","30Rnd_556x45_G36SD","30Rnd_556x45_G36SD"];
-	BIS_EVO_pweapons = ["DM_CAMO_M4_CCO_IR_FG","Laserdesignator","EB_S10","EB_ItemSiphon"];
+//	BIS_EVO_pallammo = ["pipebomb","LWS_Laserbatteries","HandGrenade_West","HandGrenade_West","30Rnd_556x45_G36SD","30Rnd_556x45_G36SD"];
+//	BIS_EVO_pweapons = ["DM_CAMO_M4_CCO_IR_FG","Laserdesignator","EB_S10","EB_ItemSiphon"];
 //	BIS_EVO_pallammo = ["pipebomb","EB_m67gren","EB_m61gren","EB_M118_mag_remote","LWS_Laserbatteries","EB_m34gren","30Rnd_556x45_G36SD","30Rnd_556x45_G36SD","17Rnd_9x19_glock17","17Rnd_9x19_glock17","EB_SmokeShellChem"];
 //	BIS_EVO_pweapons = ["M4A3_CCO_EP1","glock17_EP1","Laserdesignator","EB_S10","EB_ItemSil_hgun","EB_ItemSil_rifle","EB_ItemSiphon"];
 //EB_resources mod - knife and fuel
@@ -650,10 +652,10 @@ GLT_bombs = ["GLT_GBU24_Launcher","GLT_GBU53_Launcher","GLT_GBU39_Launcher","GLT
 GLT_missiles = ["GLT_AIM120_Launcher","GLT_AIM54_Launcher","GLT_R550_Launcher","GLT_AIM132_Launcher","GLT_METEOR_Launcher","GLT_AGM84_Launcher","GLT_AGM154A1_Launcher","GLT_AM39_Launcher","GLT_R3_Launcher","GLT_R27_Launcher","GLT_R77_Launcher","GLT_CH15S_Launcher","GLT_CH29T_Launcher","GLT_CH59_Launcher","GLT_CH31P_Launcher"];
 rksl_missiles= ["RKSL_iristLauncher","RKSL_BrimstoneLauncher","RKSL_ALARM_Launcher","RKSL_stormshadow_Launcher","RKSL_agm119mk3_Launcher"];
 extra_missiles = ["GLT_AM39_Launcher"];
-EB_turrets = ["M197","EB_GAU8"];
+EB_turrets = ["M197","M621","2A42","YakB","M230","M168","EB_GAU8","GAU8","GAU12","ZPL_20","GSh301","GSh302","GSh23L","GSh23L","SMAF_MF1_DEFA_553","EB_GAU22","EB_M61A1","GLT_M61A1","EB_GP9","EB_NR30","EB_N37"];
 extra_bombs = ["GLT_AGM154A_Launcher","GLT_AGM154A1_Launcher"];
 
-EGG_missiles =[];// EB_PLmissiles +extra_missiles;
+EGG_missiles = EB_PLmissiles + extra_missiles;// EB_PLmissiles +extra_missiles;
 EGG_bombs =  EB_PLbombs + GLT_bombs+ extra_bombs;
 
 //////////////////////////////////////////////
@@ -705,7 +707,7 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 	["pook_brdm2at2_tak",20],
 	["pook_brdm2at5_tak",24],
 	["pook_brdm2aa_tkins",25],
-//	["pook_brdm2_Sa9_tak",28], //AA PERK 1
+	["pook_brdm2_Sa9_tak",28], //AA PERK 1
 	["btr60_tk_ep1",20],
 	["pook_btr2a42_tak",22],
 	["pook_btrMWS_tak",24],
@@ -727,9 +729,9 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 	["pook_zsu57_tak",25],
 	["zsu_tk_ep1",30],
 	["pook_zsum4_tak",30],
-	//["pracs_tk_sa13",32], // AA PERK 1
-	//["pracs_sa6_tk",32], // AA PERK 2
-	//["pracs_tk_sa8",35],
+	["pracs_tk_sa13",32], // AA PERK 1
+	["pracs_sa6_tk",32], // AA PERK 2
+	["pracs_tk_sa8",35],
 	["pook_9k317_tak",36],
 	["pook_9k317m3_tak",38],
 	["pook_9k331_tak",40],
@@ -744,7 +746,6 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 
 for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	buyTankList set [_loop,[(buyTankList select _loop) select 0, (buyTankList select _loop) select 1,0]];
-//	hikiCarList set [_loop,(buyTankList select _loop) select 0 ];
 };
 
 hikiAirList = ["FRL_Mig23B_TK_MR","FRL_L59_MR","FRL_Su25_TK_CAS","FRL_Su27_TK_CAP","FRL_Su30MKM_TAK_MR","FRL_Su34_D_LGB","FRL_Mig35_TAK_MR","FRL_Mig29_TAK_MR","pook_MIG25_TAK_SEAD","FRL_Mig27M_TK_HBMB","ibr_maule_M7","ibr_tucano_lin","mig15bis_5_tak","PRACS_TK_MiG21","PRACS_TK_MiG21_AG","SMAF_MF1_TK_CAS","PRACS_TK_Su22","PRACS_TK_Su24Fencer","FRL_L39_CBU"];
@@ -828,7 +829,9 @@ hikiAirList = ["FRL_Mig23B_TK_MR","FRL_L59_MR","FRL_Su25_TK_CAS","FRL_Su27_TK_CA
 
 //Player unlocks
 buySpecialList =[];
-egg_evo_westAmb = ["TK_WarfareBUAVterminal_Base_EP1"]; 
+
+perkPoints = 0;
+egg_evo_westAmb = ["EB_BRDM2_HQ_TK"]; 
 egg_evo_westMHQ = ["EB_BTR90_HQ_TK"];
 EB_twoseaterplanes = ["FRL_Su34_D_CAP","FRL_Su34_D_CAS","FRL_Su34_D_HCAS","FRL_Su34_D_EHCAS","FRL_Su34_D_AGM","FRL_Su34_D_MR","FRL_Su34_D_LBMB","FRL_Su34_D_BMB","FRL_Su34_D_HBMB","FRL_Su34_D_LGB","FRL_Su34_D_SEAD","Su34","uns_F4_CAP","uns_F4Navy_CAP","uns_F4_CAS","uns_A6_Intruder_ECM","JS_FA18F","IkaR_F14_AIM_54","IkaR_F14_AGM_65","uns_f105F_WW"];
 allowRHQ = false;
@@ -843,7 +846,7 @@ allowRHQ = false;
 //////////////////////////////////
 //EDITOR use
 //if playing in editor rem out the next line with a // and manually set param below instead
-editor = 1; publicVariable "editor";
+editor = 0; publicVariable "editor";
 
 if (editor == 1) then
 {

@@ -127,7 +127,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=28;
+		items=27;
 		class Item0
 		{
 			side="WEST";
@@ -602,7 +602,7 @@ class Mission
 					id=175;
 					side="EAST";
 					vehicle="TK_Commander_EP1";
-					player="PLAY CDG";
+					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;
 					text="eng5";
@@ -722,6 +722,7 @@ class Mission
 					id=181;
 					side="EAST";
 					vehicle="TK_Soldier_AA_EP1";
+					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
 					text="eng9";
@@ -945,26 +946,6 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="eng21";
-				};
-			};
-		};
-		class Item27
-		{
-			side="EAST";
-			class Vehicles
-			{
-				items=1;
-				class Item0
-				{
-					position[]={9451.501,139.98311,10103.725};
-					azimut=90.532997;
-					id=214;
-					side="EAST";
-					vehicle="TK_Soldier_Sniper_EP1";
-					player="PLAYER COMMANDER";
-					leader=1;
-					skill=0.60000002;
-					text="eng3_1";
 				};
 			};
 		};
@@ -1492,7 +1473,7 @@ class Mission
 		};
 		class Item58
 		{
-			position[]={9465.3105,139.98311,10101.26};
+			position[]={9465.0449,139.98311,10101.438};
 			azimut=270.92532;
 			id=94;
 			side="EMPTY";
@@ -2052,7 +2033,7 @@ class Mission
 		};
 		class Item111
 		{
-			position[]={9398.2217,139.98311,10102.923};
+			position[]={9396.7617,149.42233,10102.586};
 			id=150;
 			side="EMPTY";
 			vehicle="PRACS_AS";
@@ -2063,7 +2044,7 @@ class Mission
 		};
 		class Item112
 		{
-			position[]={9368.165,139.98311,10102.975};
+			position[]={9366.8164,149.44086,10102.411};
 			id=151;
 			side="EMPTY";
 			vehicle="PRACS_AS";
@@ -2074,8 +2055,8 @@ class Mission
 		};
 		class Item113
 		{
-			position[]={9330.5889,151.81459,10103.035};
-			azimut=-179.15962;
+			position[]={9332.2754,151.81305,10103.035};
+			azimut=180;
 			id=152;
 			side="EMPTY";
 			vehicle="PRACS_HAS_Heavy";

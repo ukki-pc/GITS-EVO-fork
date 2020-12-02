@@ -39,7 +39,7 @@ _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 	};
 	if(_stattype isKindOf "Air") then 
 	{
-	cstatA setVehicleInit "veh = [this, 900, 0, 0, FALSE, FALSE] execVM ""vehicle.sqf""";
+	cstatA addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\addToPurList.sqf"}];
 	processInitCommands;
 	};
 		cstatA lock false;

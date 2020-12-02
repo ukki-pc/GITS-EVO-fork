@@ -20,12 +20,12 @@ _events = [] execVM "data\scripts\EVO_MissionManager.sqf";
 //_reinf = [] execVM "data\scripts\reinforce.sqf";
 
 _handle = [] execVM "data\scripts\makespetz.sqf";
-// _handle = [] execVM "data\scripts\makesuB.sqf";
-// _handle = [] execVM "data\scripts\makehindv.sqf";
-// _handle = [] execVM "data\scripts\makesu.sqf";
-// _handle = [] execVM "data\scripts\makeka.sqf";
-// _handle = [] execVM "data\scripts\makehindp.sqf";
-// _handle = [] execVM "data\scripts\makehip.sqf";
+ _handle = [] execVM "data\scripts\makesuB.sqf";
+ _handle = [] execVM "data\scripts\makehindv.sqf";
+ _handle = [] execVM "data\scripts\makesu.sqf";
+ _handle = [] execVM "data\scripts\makeka.sqf";
+ _handle = [] execVM "data\scripts\makehindp.sqf";
+ _handle = [] execVM "data\scripts\makehip.sqf";
 
 _allPlayers = call BIS_fnc_listPlayers;
 {["jed_addscore", [_x, 10]] call CBA_fnc_globalEvent}forEach _allPlayers;

@@ -346,24 +346,24 @@ class evoUI
 				//text = "Recruitment(L)";
 				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,1,false,false];[] call BIS_EVO_ListUpdate";
 	      };
-		// class BTurretM: RscIGUIShortcutButton
-	    //   {
-		//  idc = 671;
-		//  		x = 0.11;
-		// 		y = 0.69;
-		// 		text = "Turret";
-		// 		//text = "Recruitment(L)";
-		// 		onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,true,2];[] call BIS_EVO_ListUpdate";
-	    //   };
-		// class BMissileM: RscIGUIShortcutButton
-	    //   {
-		//  idc = 672;
-		//  	 	x = 0.11;
-		// 		y = 0.735;
-		// 		text = "Missiles";
-		// 		//text = "Recruitment(L)";
-		// 		onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,true,3];[] call BIS_EVO_ListUpdate";
-	    //   };
+		 class BTurretM: RscIGUIShortcutButton
+	       {
+		  idc = 671;
+		  		x = 0.11;
+		 		y = 0.69;
+				text = "Turret";
+				//text = "Recruitment(L)";
+		 		onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,true,2];[] call BIS_EVO_ListUpdate";
+	       };
+		 class BMissileM: RscIGUIShortcutButton
+	       {
+		 idc = 672;
+		  	 	x = 0.11;
+		 		y = 0.735;
+		 		text = "Missiles";
+		 		//text = "Recruitment(L)";
+		 		onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,true,3];[] call BIS_EVO_ListUpdate";
+	       };
 		class BLoadouts: RscIGUIShortcutButton
 	      {
 		 idc = 673;

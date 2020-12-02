@@ -62,27 +62,30 @@ _found = false;
 		};	
 	};
 	
-	if(!_found) then
-	{
-		//Search the car
-		for [{_loop=0}, {_loop < (count buySpecialList)}, {_loop=_loop+1}] do 
-		{
-			_checkVeh =  ((buySpecialList select _loop) select 0);	
-			if (_type == _checkVeh) then 
-			{
-			buySpecialList set [_loop,[(buySpecialList select _loop) select 0,((buySpecialList select _loop) select 1)+1]];
-			_loop = count buySpecialList;
-			_found = true;
-			};
-		};
-		_index = count buySpecialList;
-		if(!_found)then{
-		hint format ["Added %1 to Special list",_displayName];
-		buySpecialList set [_index,[_type,1]];
-		publicVariable "buySpecialList";
-		_found = true;
-		};
-	};
+	// if(!_found) then
+	// {
+	// 	//Search the car
+	// 	for [{_loop=0}, {_loop < (count buySpecialList)}, {_loop=_loop+1}] do 
+	// 	{
+	// 		_checkVeh =  ((buySpecialList select _loop) select 0);	
+	// 		if (_type == _checkVeh) then 
+	// 		{
+	// 		buySpecialList set [_loop,[(buySpecialList select _loop) select 0,((buySpecialList select _loop) select 1)+1]];
+	// 		_loop = count buySpecialList;
+	// 		_found = true;
+	// 		};
+	// 	};
+	// 	_index = count buySpecialList;
+	// 	if(!_found)then{
+	// 	hint format ["Added %1 to Special list",_displayName];
+	// 	buySpecialList set [_index,[_type,1]];
+	// 	publicVariable "buySpecialList";
+	// 	_found = true;
+	// 	};
+	// };
+
+		if(!_found) exitWith {hint "You cannot store this vehicle..."};
+	
 	
 deleteVehicle _veh;
 
