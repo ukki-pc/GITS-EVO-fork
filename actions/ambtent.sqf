@@ -26,7 +26,6 @@ amb setdir _dir;
 amb_pos = position amb;
 
 
-publicVariable "amb";
 
 //rksl_foxhound_lppv
 //"HMMWV_Ambulance"

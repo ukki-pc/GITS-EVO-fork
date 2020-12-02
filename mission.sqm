@@ -4351,7 +4351,7 @@ class Mission
 		};
 		class Item43
 		{
-			position[]={2303.1262,0.84005439,785.91357};
+			position[]={2270.1685,0.84384751,757.32837};
 			a=0;
 			b=0;
 			repeating=1;
@@ -4406,7 +4406,7 @@ class Mission
 		};
 		class Item47
 		{
-			position[]={2240.0527,0.70461696,774.80713};
+			position[]={2238.5881,0.80426663,760.88135};
 			a=0;
 			b=0;
 			repeating=1;
@@ -4540,7 +4540,7 @@ class Mission
 		};
 		class Item56
 		{
-			position[]={2195.3032,0.64896172,759.36584};
+			position[]={2195.3032,0.62334502,759.36584};
 			a=0;
 			b=0;
 			repeating=1;
