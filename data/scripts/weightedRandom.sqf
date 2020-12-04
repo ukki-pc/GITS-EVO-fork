@@ -1,3 +1,11 @@
+cleanUpGenerator = {
+prec = nil;
+negation = nil;
+result = nil;
+total = nil;
+num = nil;
+};
+
 // (LENGTH, %MIDDLEPOS, NEGATION(true of false), Y OFFSET +,PRECISION (DEFAULT 100)) 
 weightedRandom = 
 {

@@ -1,4 +1,4 @@
-/*
+
 //Selects random vehicles
 for [{_loop=0}, {_loop<4}, {_loop=_loop+1}] do {
 
@@ -27,7 +27,7 @@ publicVariable "buyAirList";
 	};
 	publicVariable "buyStatList";
 
-*/
+	_clean = []call cleanUpGenerator;
 
 
 
