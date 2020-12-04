@@ -5,7 +5,6 @@ _currentprog = 0;
 _EGG_stations = [];
 EB_airload1=-1;
 EB_fieldRepair=-1;
-repairStrength = 50;
 
  countPerkLevel = 
  {
@@ -181,15 +180,17 @@ BIS_EVO_CWeath =
 
 EGG_EVO_fieldRepair = 
 {
+	_hasKit = "EB_ItemRepairKit" in (magazines player) or "EB_ItemRepairKit" in ((getMagazineCargo unitBackpack player) select 0);
+	//_packpack = "EB_ItemRepairKit" in ((getMagazineCargo unitBackpack player) select 0);
    	_nearestCar = getPos player nearestObject "Car";
 	_proximity =  player distance _nearestCar;
 	_displayName = getText(configFile >> "CfgVehicles" >> (typeof _nearestCar) >> "displayName");
 	_repStr = format["Field repair: %1",_displayName];
-	
-		if(((vehicle player) == player) && (_proximity < 5) && (getDammage _nearestCar > (1-( repairStrength*0.01))))then{
+	systemChat str _hasKit;
+		if(((vehicle player) == player) && (_proximity < 5) && (getDammage _nearestCar > 0) && (_hasKit))then{
 			if(EB_fieldRepair < 0) then
 			{
-				EB_fieldRepair = _nearestCar addAction [_repStr, "actions\repair.sqf", [_nearestCar,player,repairStrength], 10, false, true, "", ""];	
+				EB_fieldRepair = _nearestCar addAction [_repStr, "actions\repair.sqf", [_nearestCar,player], 10, false, true, "", ""];	
 			};		
 		}
 		else {

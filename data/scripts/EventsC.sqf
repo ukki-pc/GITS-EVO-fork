@@ -328,6 +328,7 @@ BIS_EVO_AmmoBoxR = // Creates and fills local rank based ammo box of Russian Wea
 			_vecRu addmagazinecargo ["EB_knife",12];
 			_vecRu addmagazinecargo ["EB_kabar",12];
 			_vecRu addmagazinecargo ["EB_ItemFuelcanEmpty",12];
+			_vecRu addmagazinecargo ["EB_ItemRepairKit",12];
 			_vecRu AddWeaponCargo ["EB_ItemSiphon",2];
 			_vecRu AddWeaponCargo ["EB_ItemSil_hgun",12];
 			_vecRu AddWeaponCargo ["EB_ItemSil_rifle",12];

@@ -11,7 +11,7 @@ veh = [this, 100, 0, 0, false, false, "_id = this addAction [""Repair"", ""scrip
 
 _vehicle = _this select 0;		// this is the vehicle.
 _playerUnit = _this select 1;		// this is the repairing player.
-_repStrength = (_this select 3) select 2;
+//_repStrength = (_this select 3) select 2;
 
 //systemChat format ["1: %1, 2: %2 3: %3",_vehicle,_playerUnit,_repStrength];
 if(vehicle player != player) exitWith {hint "Must be on foot while repairing."; [_vehicle] call rmv_fieldRepair;[] call enb_fieldRepair;};
@@ -22,7 +22,7 @@ _playerUnit playMove "AinvPknlMstpSlayWrflDnon_medic";		// here the player start
 sleep 3;
 WaitUntil {animationState player != "AinvPknlMstpSlayWrflDnon_medic"};		// some sleep time for the repairs to take place
 if(vehicle player != player) exitWith {hint "Must be on foot while repairing."; [_vehicle] call rmv_fieldRepair;[] call enb_fieldRepair;};
-_vehicle setDammage (1-(_repStrength*0.01));	// here we reset the damage of the vehicle to 0.
+_vehicle setDammage (getDammage _vehicle)-0.3;	// here we reset the damage of the vehicle to 0.
 hint "Vehicle repaired!";
 [] call enb_fieldRepair;
 

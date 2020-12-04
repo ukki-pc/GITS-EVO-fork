@@ -15,9 +15,12 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	_player = player;
 	_vehicle = vehicle _player;
 	_inVehicle = (_vehicle != _player);
-	_hasFuelE = "EB_ItemFuelcanEmpty" in (magazines _player);
-	_hasFuel = "EB_ItemFuelcan" in (magazines _player);
-	_hasSiphon = "EB_ItemSiphon" in (items _player);
+	_hasFuelE = "EB_ItemFuelcanEmpty" in (magazines _player) or "EB_ItemFuelcanEmpty" in ((getMagazineCargo unitBackpack _player) select 0);
+	sleep BIS_EVO_GlobalSleep;
+	_hasFuel = "EB_ItemFuelcan" in (magazines _player) or "EB_ItemFuelcan" in ((getMagazineCargo unitBackpack _player) select 0);
+	sleep BIS_EVO_GlobalSleep;
+	_hasSiphon = "EB_ItemSiphon" in (items _player)  or "EB_ItemSiphon" in ((getMagazineCargo unitBackpack _player) select 0);
+	sleep BIS_EVO_GlobalSleep;
 	_equipped = (_hasFuelE or _hasfuel);
 	//if (_hasSiphon) then {hintsilent "has siphon"};
 
