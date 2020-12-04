@@ -411,6 +411,14 @@ class evoUI
 				text = "Store vehicle";
 				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,6,false,false];[] call BIS_EVO_ListUpdate";
 	      };
+		class saveLoadout: BRecruit
+	      {
+		 idc = 675;
+				y = 0.825;
+				x = 0.771248;
+				text = "Save loadout";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[true,false,false,false,false,false,7,false,false];[] call BIS_EVO_ListUpdate";
+	      };
 		class GPSgmap: RscMapControl
 		  {
 			idc = 895;

@@ -3666,7 +3666,7 @@ class Mission
 	};
 	class Sensors
 	{
-		items=65;
+		items=64;
 		class Item0
 		{
 			position[]={9821.8516,139.98311,10040.239};
@@ -4352,20 +4352,6 @@ class Mission
 		};
 		class Item44
 		{
-			position[]={1245.5621,0.45451126,837.49976};
-			repeating=1;
-			interruptable=1;
-			age="UNKNOWN";
-			text="LoadoutRecorder";
-			expCond="animationState player == ""amovpercmstpslowwrfldnon_gear"" or animationState player == ""amovpercmstpsraswrfldnon_gear""";
-			expActiv="hint""Weapons Saved"";";
-			expDesactiv="loadrec=[] execVM ""data\scripts\loadoutrecorder.sqf""";
-			class Effects
-			{
-			};
-		};
-		class Item45
-		{
 			position[]={1332.5426,0.22728811,521.36206};
 			a=0;
 			b=0;
@@ -4377,7 +4363,7 @@ class Mission
 			{
 			};
 		};
-		class Item46
+		class Item45
 		{
 			position[]={1122.4508,0.27172837,927.96069};
 			repeating=1;
@@ -4390,7 +4376,7 @@ class Mission
 			{
 			};
 		};
-		class Item47
+		class Item46
 		{
 			position[]={2238.5881,0.80426663,760.88135};
 			a=0;
@@ -4405,7 +4391,7 @@ class Mission
 			{
 			};
 		};
-		class Item48
+		class Item47
 		{
 			position[]={1254.9938,0.18419239,747.41187};
 			a=10;
@@ -4425,7 +4411,7 @@ class Mission
 			{
 			};
 		};
-		class Item49
+		class Item48
 		{
 			position[]={1797.2898,0.2759099,750.3396};
 			a=0;
@@ -4439,7 +4425,7 @@ class Mission
 			{
 			};
 		};
-		class Item50
+		class Item49
 		{
 			position[]={1825.8894,0.42295688,746.82788};
 			a=0;
@@ -4453,7 +4439,7 @@ class Mission
 			{
 			};
 		};
-		class Item51
+		class Item50
 		{
 			position[]={1211.7906,0.28540707,482.68823};
 			a=0;
@@ -4468,7 +4454,7 @@ class Mission
 			{
 			};
 		};
-		class Item52
+		class Item51
 		{
 			position[]={1106.4176,0.27060217,492.94409};
 			a=0;
@@ -4483,7 +4469,7 @@ class Mission
 			{
 			};
 		};
-		class Item53
+		class Item52
 		{
 			position[]={1853.9167,0.38918674,746.82593};
 			a=0;
@@ -4496,7 +4482,7 @@ class Mission
 			{
 			};
 		};
-		class Item54
+		class Item53
 		{
 			position[]={1144.0465,0.13719812,1046.9275};
 			a=0;
@@ -4510,7 +4496,7 @@ class Mission
 			{
 			};
 		};
-		class Item55
+		class Item54
 		{
 			position[]={1237.2692,0.27016896,1032.2107};
 			a=0;
@@ -4524,7 +4510,7 @@ class Mission
 			{
 			};
 		};
-		class Item56
+		class Item55
 		{
 			position[]={2195.3032,0.62334502,759.36584};
 			a=0;
@@ -4539,7 +4525,7 @@ class Mission
 			{
 			};
 		};
-		class Item57
+		class Item56
 		{
 			position[]={2191.1899,0.72103643,699.93652};
 			a=0;
@@ -4554,7 +4540,7 @@ class Mission
 			{
 			};
 		};
-		class Item58
+		class Item57
 		{
 			position[]={2192.1516,0.69548911,664.07507};
 			a=0;
@@ -4569,7 +4555,7 @@ class Mission
 			{
 			};
 		};
-		class Item59
+		class Item58
 		{
 			position[]={2192.3562,0.7103864,632.98425};
 			a=0;
@@ -4584,7 +4570,7 @@ class Mission
 			{
 			};
 		};
-		class Item60
+		class Item59
 		{
 			position[]={2196.4182,0.69656366,603.87061};
 			a=0;
@@ -4599,7 +4585,7 @@ class Mission
 			{
 			};
 		};
-		class Item61
+		class Item60
 		{
 			position[]={2192.8267,0.84622008,570.07031};
 			a=0;
@@ -4614,7 +4600,7 @@ class Mission
 			{
 			};
 		};
-		class Item62
+		class Item61
 		{
 			position[]={2035.1296,0.13658202,906.91064};
 			a=0;
@@ -4629,7 +4615,7 @@ class Mission
 			{
 			};
 		};
-		class Item63
+		class Item62
 		{
 			position[]={1956.8711,0.71574926,815.36011};
 			a=0;
@@ -4643,7 +4629,7 @@ class Mission
 			{
 			};
 		};
-		class Item64
+		class Item63
 		{
 			position[]={2194.792,0.88534677,536.29797};
 			a=0;

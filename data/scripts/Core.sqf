@@ -28,6 +28,7 @@ uiNamespace setVariable ["vehUpgTur1", (uiNamespace getVariable "displayVendor")
 uiNamespace setVariable ["vehUpgMis1", (uiNamespace getVariable "displayVendor") displayCtrl 672];
 uiNamespace setVariable ["vehLoadout", (uiNamespace getVariable "displayVendor") displayCtrl 673];
 uiNamespace setVariable ["storeVeh", (uiNamespace getVariable "displayVendor") displayCtrl 674];
+uiNamespace setVariable ["saveLoadout", (uiNamespace getVariable "displayVendor") displayCtrl 675];
 uiNamespace setVariable ["ctrlVis", (uiNamespace getVariable "displayVendor") displayCtrl 6057];
 uiNamespace setVariable ["ctrlAirvis", (uiNamespace getVariable "displayVendor") displayCtrl 6058];
 uiNamespace setVariable ["ctrlTervis", (uiNamespace getVariable "displayVendor") displayCtrl 6059];
@@ -39,7 +40,6 @@ uiNamespace setVariable ["ctrlTTitle", (uiNamespace getVariable "displayVendor")
 uiNamespace setVariable ["ctrlTactive", (uiNamespace getVariable "displayVendor") displayCtrl 2208];
 uiNamespace setVariable ["ctrlName", (uiNamespace getVariable "displayVendor") displayCtrl 500];
 uiNamespace setVariable ["ctrlPicture", (uiNamespace getVariable "displayVendor") displayCtrl 501];
-
 
 sliderSetRange [6057, 100, 10000];
 sliderSetPosition [6057, BIS_EVO_vdist];
@@ -80,6 +80,7 @@ ctrlShow [671,false]; //Turret page
 ctrlShow [672,false]; //Weapon page
 ctrlShow [673,false]; //Loadout page
 ctrlShow [674,false]; //Storeveh page
+ctrlShow [675,true]; //Loadout btn
 
 if ((vehicle player isKindOf  "Air" ) ) then
 {
@@ -207,8 +208,6 @@ BIS_EVO_ListUpdate =
 	_perkPage = Mpage select 7;
 	_vecPage = Mpage select 8;
 	_vecSubPage = Mpage select 9;
-
-
 
 	ctrlShow [6057,false];
 	ctrlShow [6058,false];
@@ -445,7 +444,7 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 
 	if (_recpage) then 
 	{
-//
+		ctrlShow [675,true]; //Loadout btn
 		ctrlShow [6057,false];
 		ctrlShow [6058,false];
 		ctrlShow [6059,false];
@@ -654,6 +653,7 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 		ctrlShow [671,true]; //Turret page
 		ctrlShow [672,true]; //Missile page
 		ctrlShow [673,true]; //Loadout page
+		ctrlShow [675,false];
 
 
 		lbClear 2000;
@@ -738,6 +738,7 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 		ctrlShow [657,false];
 		ctrlShow [658,false];
 		ctrlShow [659,false];
+		ctrlShow [675,false];
 		//ctrlSetText [2012,format["Cooldown: %1 seconds.",buyCoolDown]];
 
 		if(vehicle player != player) then {
@@ -845,6 +846,12 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 		};		
 	};
 	_index = lbSetCurSel [2000, 0];
+
+		if((_buySubPage == 7) && (_recpage)) then {
+			loadrec=[] execVM "data\scripts\loadoutrecorder.sqf";
+			hint "Weapons Saved!";
+			_buySubPage = 0;
+		};
 };	
 //Endlsts
 
