@@ -4343,12 +4343,12 @@ BIS_EVO_Mrew =
 	_bscore = 0;
 	_unit = player;
 	if (score _unit <= BIS_EVO_rank1 and _bscore < 2) then{_bscore = 14};
-	// if (score _unit > BIS_EVO_rank1 and _bscore < 4) then{_bscore = 4};
-	// if (score _unit > BIS_EVO_rank2 and _bscore < 6) then{_bscore = 6};
-	// if (score _unit > BIS_EVO_rank3 and _bscore < 8) then{_bscore = 8};
-	// if (score _unit > BIS_EVO_rank4 and _bscore < 10) then{_bscore = 10};
-	// if (score _unit > BIS_EVO_rank5 and _bscore < 12) then {_bscore = 12};
-	// if (score _unit >= BIS_EVO_rank6 and _bscore < 14) then{_bscore = 14};
+	 if (score _unit > BIS_EVO_rank1 and _bscore < 4) then{_bscore = 4};
+	 if (score _unit > BIS_EVO_rank2 and _bscore < 6) then{_bscore = 6};
+	 if (score _unit > BIS_EVO_rank3 and _bscore < 8) then{_bscore = 8};
+	 if (score _unit > BIS_EVO_rank4 and _bscore < 10) then{_bscore = 10};
+	 if (score _unit > BIS_EVO_rank5 and _bscore < 12) then {_bscore = 12};
+	 if (score _unit >= BIS_EVO_rank6 and _bscore < 14) then{_bscore = 14};
 	BIS_EVO_punitC = player;
 	BIS_EVO_prewC  = _bscore;
 	publicVariable "BIS_EVO_prewC";

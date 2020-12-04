@@ -715,6 +715,7 @@ hikiAirList = ["FRL_Mig23B_TK_MR","FRL_L59_MR","FRL_Su25_TK_CAS","FRL_Su27_TK_CA
 buySpecialList =[];
 
 perkPoints = 0;
+pointsSpent = 0;
 egg_evo_westAmb = ["EB_BRDM2_HQ_TK"]; 
 egg_evo_westMHQ = ["EB_BTR90_HQ_TK"];
 EB_twoseaterplanes = ["FRL_Su34_D_CAP","FRL_Su34_D_CAS","FRL_Su34_D_HCAS","FRL_Su34_D_EHCAS","FRL_Su34_D_AGM","FRL_Su34_D_MR","FRL_Su34_D_LBMB","FRL_Su34_D_BMB","FRL_Su34_D_HBMB","FRL_Su34_D_LGB","FRL_Su34_D_SEAD","Su34","uns_F4_CAP","uns_F4Navy_CAP","uns_F4_CAS","uns_A6_Intruder_ECM","JS_FA18F","IkaR_F14_AIM_54","IkaR_F14_AGM_65","uns_f105F_WW"];
@@ -730,7 +731,7 @@ allowRHQ = false;
 //////////////////////////////////
 //EDITOR use
 //if playing in editor rem out the next line with a // and manually set param below instead
-editor = 1; publicVariable "editor";
+editor = 0; publicVariable "editor";
 
 if (editor == 1) then
 {

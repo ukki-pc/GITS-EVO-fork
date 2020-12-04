@@ -8,12 +8,12 @@ _forcerecon = [[],[],[],[],["FR_Assault_R","FR_AR","FR_GL"],["FR_TL","FR_Marksma
 _command = [[],[],[],["USMC_Soldier_TL"],[],["USMC_Soldier_SL"],["USMC_Soldier_Officer"]];
 _rank = 0;
 _newstring = "";
-	if (score player >= BIS_EVO_rank1) then {_rank = 6};
-	// if (score player >= BIS_EVO_rank2 && _rank == 1) then {_rank = 2};
-	// if (score player >= BIS_EVO_rank3 && _rank == 2) then {_rank = 3};
-	// if (score player >= BIS_EVO_rank4 && _rank == 3) then {_rank = 4};
-	// if (score player >= BIS_EVO_rank5 && _rank == 4) then {_rank = 5};
-	// if (score player >= BIS_EVO_rank6 && _rank == 5) then {_rank = 6};
+	if (score player >= BIS_EVO_rank1-pointsSpent) then {_rank = 6};
+	 if (score player >= BIS_EVO_rank2-pointsSpent && _rank == 1) then {_rank = 2};
+	 if (score player >= BIS_EVO_rank3-pointsSpent && _rank == 2) then {_rank = 3};
+	 if (score player >= BIS_EVO_rank4-pointsSpent && _rank == 3) then {_rank = 4};
+	 if (score player >= BIS_EVO_rank5-pointsSpent && _rank == 4) then {_rank = 5};
+	 if (score player >= BIS_EVO_rank6-pointsSpent && _rank == 5) then {_rank = 6};
 
 _assemblelist =  
 {
@@ -120,7 +120,7 @@ AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to securit
 //recruit
 RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "USMC_Soldier" >> "DisplayName"), "USMC_Soldier", "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", ["USMC_Soldier"] call _GetGuns]];
 
-if(_sco >= BIS_EVO_rank1) then 
+if(_sco >= BIS_EVO_rank1-pointsSpent) then 
 {
 	mrank = BIS_EVO_rank1;
 
@@ -136,7 +136,7 @@ if(_sco >= BIS_EVO_rank1) then
 		SupList = SupList +[[localize "STR_M04t106",localize "STR_M04t107",20,5,10,"data\sup01.paa",2]];
 	SupList = SupList +[[localize "str_dn_motorcycle","Cost: 5 Emergency transport for two",20,5,10,"data\sup01.paa",8]];
 };
-if(_sco >= BIS_EVO_rank2) then 
+if(_sco >= BIS_EVO_rank2-pointsSpent) then 
 {
 	mrank = BIS_EVO_rank2;
 
@@ -164,7 +164,7 @@ AssList = AssList +[[localize "str_lib_chal_assassination","Crossroad reports a 
 AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to security.  One of the CDF's top agents has been captured.  Locate him, eliminate ALL hostiles, extract him to HMS GITS.","data\sabotage.paa",20,14]];
 
 };
-if(_sco >= BIS_EVO_rank3) then 
+if(_sco >= BIS_EVO_rank3-pointsSpent) then 
 {
 	mrank = BIS_EVO_rank3;
 
@@ -179,7 +179,7 @@ if(_sco >= BIS_EVO_rank3) then
 		SupList = SupList +[[localize "STR_M04t110",localize "STR_M04t111",50,15,20,"data\sup01.paa",4]];
 	
 };
-if(_sco >= BIS_EVO_rank4) then 
+if(_sco >= BIS_EVO_rank4-pointsSpent) then 
 {
 	mrank = BIS_EVO_rank4;
 
@@ -192,7 +192,7 @@ if(_sco >= BIS_EVO_rank4) then
 //large arty
 		SupList = SupList +[[localize "STR_M04t112",localize "STR_M04t113",100,25,30,"data\sup01.paa",5]];
 };
-if(_sco >= BIS_EVO_rank5) then 
+if(_sco >= BIS_EVO_rank5-pointsSpent) then 
 {
 	mrank = BIS_EVO_rank5;
 
@@ -220,7 +220,7 @@ AssList = AssList +[[localize "str_lib_chal_assassination","Crossroad reports a 
 AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to security.  One of the CDF's top agents has been captured.  Locate him, eliminate ALL hostiles, extract him to HMS GITS.","data\sabotage.paa",20,14]];
 
 };
-if(_sco >= BIS_EVO_rank6) then 
+if(_sco >= BIS_EVO_rank6-pointsSpent) then 
 {
 	mrank = BIS_EVO_rank6;
 

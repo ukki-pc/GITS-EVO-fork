@@ -98,6 +98,8 @@ bmark setMarkerTypeLocal "Destroy";
 bmark setMarkerColorLocal "ColorGreen";
 bmark setMarkerSizeLocal [0.5, 0.5];
 
+onMapSingleClick {"btarg" setMarkerPos _pos;bplace=true};
+
 (FindDisplay 46) DisplaySetEventHandler ["keydown","if ((_this select 1) In actionKeys ""TeamSwitch"") then {closeDialog 0}"];
 
 mrole = "";
@@ -122,14 +124,14 @@ BIS_EVO_ListUpdate =
 	_forcerecon = [[],[],[],[],[],["FR_R"],[]];
 	_command = [[],[],[],[],[],[],[]];
 */
-	_rank = 6;
+	_rank = 0;
 	_newstring = "";
-	// if (score player >= BIS_EVO_rank1 && _rank == 0) then {_rank = 1};
-	// if (score player >= BIS_EVO_rank2 && _rank == 1) then {_rank = 2};
-	// if (score player >= BIS_EVO_rank3 && _rank == 2) then {_rank = 3};
-	// if (score player >= BIS_EVO_rank4 && _rank == 3) then {_rank = 4};
-	// if (score player >= BIS_EVO_rank5 && _rank == 4) then {_rank = 5};
-	// if (score player >= BIS_EVO_rank6 && _rank == 5) then {_rank = 6};
+	 if (score player >= BIS_EVO_rank1-pointsSpent && _rank == 0) then {_rank = 1};
+	 if (score player >= BIS_EVO_rank2-pointsSpent && _rank == 1) then {_rank = 2};
+	 if (score player >= BIS_EVO_rank3-pointsSpent && _rank == 2) then {_rank = 3};
+	 if (score player >= BIS_EVO_rank4-pointsSpent && _rank == 3) then {_rank = 4};
+	 if (score player >= BIS_EVO_rank5-pointsSpent && _rank == 4) then {_rank = 5};
+	 if (score player >= BIS_EVO_rank6-pointsSpent && _rank == 5) then {_rank = 6};
 
 	_assemblelist =  
 	{
@@ -262,7 +264,7 @@ AssList = AssList +[[localize "str_lib_chal_assassination","Crossroad reports a 
 AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to security.  One of the CDF's top agents has been captured.  Locate him, eliminate ALL hostiles, extract him to HMS GITS.","data\sabotage.paa",20,14]];
 
 
-	if(_sco >= BIS_EVO_rank1) then 
+	if(_sco >= BIS_EVO_rank1-pointsSpent) then 
 	{
 		mrank = BIS_EVO_rank1;
 
@@ -281,7 +283,7 @@ AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to securit
 //place traps
 		if (gitsnades == 2) then {SupList = SupList +[["Set traps","Ideal for protecting an area against infantry",50,(EGG_EVO_Artycost*2),5,"data\sup01.paa",24]]};
 	};
-	if(_sco >= BIS_EVO_rank2) then 
+	if(_sco >= BIS_EVO_rank2-pointsSpent) then 
 	{
 		mrank = BIS_EVO_rank2;
 
@@ -312,7 +314,7 @@ AssList = AssList +[["Ambush troop convoy","Crossroad reports satellite recon ha
 AssList = AssList +[[localize "str_lib_chal_assassination","Crossroad reports a senior enemy general is approaching Chernogorsk, hoping to escape Chernarus by boat.  Position your sniper team on the roof of the International Hotel andtake him out.","data\sabotage.paa",20,13]];
 AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to security.  One of the CDF's top agents has been captured.  Locate him, eliminate ALL hostiles, extract him to HMS GITS.","data\sabotage.paa",20,14]];
 	};
-	if(_sco >= BIS_EVO_rank3) then 
+	if(_sco >= BIS_EVO_rank3-pointsSpent) then 
 	{
 		mrank = BIS_EVO_rank3;
 
@@ -330,7 +332,7 @@ AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to securit
 //cluster bomb
 		SupList = SupList +[[localize "STR_M04t110",localize "STR_M04t111",50,(EGG_EVO_Artycost*6),20,"data\sup01.paa",4]];
 	};
-	if(_sco >= BIS_EVO_rank4) then 
+	if(_sco >= BIS_EVO_rank4-pointsSpent) then 
 	{
 		mrank = BIS_EVO_rank4;
 
@@ -348,7 +350,7 @@ AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to securit
 //large arty
 		SupList = SupList +[[localize "STR_M04t112",localize "STR_M04t113",100,(EGG_EVO_Artycost*8),30,"data\sup01.paa",5]];
 	};
-	if(_sco >= BIS_EVO_rank5) then 
+	if(_sco >= BIS_EVO_rank5-pointsSpent) then 
 	{
 		mrank = BIS_EVO_rank5;
 
@@ -379,7 +381,7 @@ AssList = AssList +[[localize "str_lib_chal_assassination","Crossroad reports a 
 AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to security.  One of the CDF's top agents has been captured.  Locate him, eliminate ALL hostiles, extract him to HMS GITS.","data\sabotage.paa",20,14]];
 AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault is imminent - secure the air space and eliminate ALL hostiles.  Good hunting!","data\sabotage.paa",40,15]];
 	};
-	if(_sco >= BIS_EVO_rank6) then 
+	if(_sco >= BIS_EVO_rank6-pointsSpent) then 
 	{
 		mrank = BIS_EVO_rank6;
 
@@ -948,6 +950,7 @@ if (player hasWeapon "ItemRadio") then
 						publicVariable "BIS_EVO_punitC";
 					//adding
 					player addscore -mcost;
+					pointsSpent = pointsSpent +  round (mcost*EX_EVO_vehPriceMultiplier);
 					ctrlSetText [2003,Format ["%1: %2",localize "STR_M04t134",(score player)]];//Score
 
 					};
@@ -1117,6 +1120,7 @@ if (player hasWeapon "ItemRadio") then
 								// _pic = "img\support\lock_on_ca.paa";
 								// lbSetPicture [2000, _index, _pic];
 								["jed_addscore", [_ap, ( round -(mcost*EX_EVO_vehPriceMultiplier))]] call CBA_fnc_globalEvent;
+								pointsSpent = pointsSpent +  round (mcost*EX_EVO_vehPriceMultiplier);
 
 								//player addscore round -(mcost*EX_EVO_vehPriceMultiplier);
 								//[] call BIS_EVO_ListUpdate;
@@ -1169,6 +1173,7 @@ if (player hasWeapon "ItemRadio") then
 								ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",0]];//Cost
 								ctrlSetText [2011,format["You bought: %1",getText(configFile >> "CfgVehicles" >> _item >> "displayName")]];
 								["jed_addscore", [_ap, ( round -(mcost*EX_EVO_vehPriceMultiplier))]] call CBA_fnc_globalEvent;
+								pointsSpent = pointsSpent +  round (mcost*EX_EVO_vehPriceMultiplier);
 								//player addscore round -(mcost*EX_EVO_vehPriceMultiplier);
 								ctrlSetText [2003,Format ["%1: %2",localize "STR_M04t134",(score _ap)]];//Score
 								[] call BIS_EVO_ListUpdate;

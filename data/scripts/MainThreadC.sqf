@@ -181,12 +181,10 @@ BIS_EVO_CWeath =
 EGG_EVO_fieldRepair = 
 {
 	_hasKit = "EB_ItemRepairKit" in (magazines player) or "EB_ItemRepairKit" in ((getMagazineCargo unitBackpack player) select 0);
-	//_packpack = "EB_ItemRepairKit" in ((getMagazineCargo unitBackpack player) select 0);
    	_nearestCar = getPos player nearestObject "Car";
 	_proximity =  player distance _nearestCar;
 	_displayName = getText(configFile >> "CfgVehicles" >> (typeof _nearestCar) >> "displayName");
-	_repStr = format["Field repair: %1",_displayName];
-	systemChat str _hasKit;
+	_repStr = format["Toolkit repair: %1",_displayName];
 		if(((vehicle player) == player) && (_proximity < 5) && (getDammage _nearestCar > 0) && (_hasKit))then{
 			if(EB_fieldRepair < 0) then
 			{
@@ -329,57 +327,13 @@ BIS_EVO_Rdisp =
 	hint _txt;
 };
 
-
 BIS_EVO_Rank = 
 {
 	_name = name player;
 	_score = score player;
 	_rank = rank player;
-	if (_rank != "COLONEL")  exitWith  
-	{
-		_rname = format["Col.%1",_name];
-		_hint =  format[_rankmes,_rname];
-		["col","COLONEL",_hint] call BIS_EVO_Rdisp;		
-		playSound "Paycall";
-		[6] call BIS_EVO_AmmoBox;
-		[6] call BIS_EVO_AmmoBoxR;
-		BIS_EVO_PlayerSkill = 1;
-		player SetSkill BIS_EVO_PlayerSkill;		
-		BIS_EVO_aunit = player;
-		BIS_EVO_arank = "COLONEL";
-		player setUnitRank BIS_EVO_arank;
-		publicVariable "BIS_EVO_aunit";
-		publicVariable "BIS_EVO_arank";
-		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
-	};
-};
-/*
-
-BIS_EVO_Rank = 
-{
-	_name = name player;
-	_score = score player;
-	_rank = rank player;
-	if (_score < BIS_EVO_rank1 and _rank == "SERGEANT")  exitWith  
-	{	
-				systemChat format ["rankUpd"];
-		_rname = format["Pvt.%1",_name];
-		_hint =  format[_rankmes,_rname];
-		["pvt","PRIVATE",_hint] call BIS_EVO_Rdisp;		
-		playSound "Paycall";
-		[0] call BIS_EVO_AmmoBox;
-		[0] call BIS_EVO_AmmoBoxR;
-		BIS_EVO_PlayerSkill = 0.0;
-		player SetSkill BIS_EVO_PlayerSkill;
-		BIS_EVO_aunit = player;
-		BIS_EVO_arank = "PRIVATE";
-		player setUnitRank BIS_EVO_arank;
-		publicVariable "BIS_EVO_aunit";
-		publicVariable "BIS_EVO_arank";	
-		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
-
-	};
-	if (_score < BIS_EVO_rank2 and _score >= BIS_EVO_rank1 and _rank == "PRIVATE")  exitWith  
+	systemChat format ["rankUpd"];
+	if (_score < BIS_EVO_rank2-pointsSpent and _score >= BIS_EVO_rank1-pointsSpent and _rank == "PRIVATE")  exitWith  
 	{
 				systemChat format ["rankUpd"];
 		_rname = format["Corp.%1",_name];
@@ -397,7 +351,7 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_arank";
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
 	};
-	if (_score < BIS_EVO_rank3 and _score >= BIS_EVO_rank2 and _rank == "CORPORAL")  exitWith  
+	if (_score < BIS_EVO_rank3-pointsSpent and _score >= BIS_EVO_rank2-pointsSpent and _rank == "CORPORAL")  exitWith  
 	{
 		_rname = format["Sgt.%1",_name];
 		_hint =  format[_rankmes,_rname];
@@ -414,7 +368,7 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_arank";		
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
 	};
-	if (_score < BIS_EVO_rank4 and _score >= BIS_EVO_rank3 and _rank  == "SERGEANT")  exitWith  
+	if (_score < BIS_EVO_rank4-pointsSpent and _score >= BIS_EVO_rank3-pointsSpent and _rank  == "SERGEANT")  exitWith  
 	{	
 		_rname = format["Ltn.%1",_name];
 		_hint =  format[_rankmes,_rname];
@@ -431,7 +385,7 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_arank";	
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
 	};
-	if (_score < BIS_EVO_rank5 and _score >= BIS_EVO_rank4 and _rank  == "LIUEUTENANT")  exitWith  
+	if (_score < BIS_EVO_rank5-pointsSpent and _score >= BIS_EVO_rank4-pointsSpent and _rank  == "LIEUTENANT")  exitWith  
 	{
 		_rname = format["Cpt.%1",_name];
 		_hint =  format[_rankmes,_rname];
@@ -448,7 +402,7 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_arank";	
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
 	};
-	if (_score < BIS_EVO_rank6 and _score >= BIS_EVO_rank5 and _rank == "CAPTAIN")  exitWith  
+	if (_score < BIS_EVO_rank6-pointsSpent and _score >= BIS_EVO_rank5-pointsSpent and _rank == "CAPTAIN")  exitWith  
 	{	
 		_rname = format["Mjr.%1",_name];
 		_hint =  format[_rankmes,_rname];
@@ -465,7 +419,7 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_arank";	
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
 	};
-	if (_score >= BIS_EVO_rank6 and _rank  == "MAJOR")  exitWith  
+	if (_score >= BIS_EVO_rank6-pointsSpent and _rank  == "MAJOR")  exitWith  
 	{
 		_rname = format["Col.%1",_name];
 		_hint =  format[_rankmes,_rname];
@@ -485,7 +439,7 @@ BIS_EVO_Rank =
 	_tscore = score player;
 	
 };
-*/
+
 /*
 BIS_EVO_Rank = 
 {
