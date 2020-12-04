@@ -29,4 +29,7 @@ _handle = [] execVM "data\scripts\makespetz.sqf";
 
 _allPlayers = call BIS_fnc_listPlayers;
 {["jed_addscore", [_x, 10]] call CBA_fnc_globalEvent}forEach _allPlayers;
+if(editor == 1) then {
+systemChat "sinit done";
+};
 Sleep 10.0;

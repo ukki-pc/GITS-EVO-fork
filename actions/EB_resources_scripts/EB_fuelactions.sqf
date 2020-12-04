@@ -49,7 +49,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 				_fstring0 = format[Localize "str_action_refuel",_text];
 				_ficon = "<img image='\ca\ui\data\ui_action_refuel_ca.paa' size='1.0' shadow='false' />";
 				_fstring = format ["<t color='#f79b31'>" +"%1 %2"+ "</t>",_ficon,_fstring0];
-				EB_player_fillfuel = _player addAction [_fstring, "Actions\EB_resources_scripts\actions\Fuelcan_fill.sqf",[], 3, true, true,"",""];
+				EB_player_fillfuel = EB_myCursorTarget addAction [_fstring, "Actions\EB_resources_scripts\actions\Fuelcan_fill.sqf",[], 3, true, true,"",""];
 			};
 		} else 
 		{
@@ -112,11 +112,11 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 ///////##################################
 	{
 		EB_myCursorTarget2 removeAction EB_player_refuelAction; EB_myCursorTarget2 = objNull;
-		_player removeAction EB_player_fillfuel; EB_player_fillfuel = -1;
+		EB_myCursorTarget removeAction EB_player_fillfuel; EB_player_fillfuel = -1;
 		EB_myCursorTarget removeAction EB_player_siphonfuel; EB_player_siphonfuel = -1;
 
 while {EB_player_refuelAction >= 0} do	{
-	_player removeAction EB_player_refuelAction;
+	EB_myCursorTarget removeAction EB_player_refuelAction;
 	EB_player_refuelAction = EB_player_refuelAction - 1;
 };
 	};

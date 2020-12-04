@@ -77,3 +77,7 @@ _boxR = [0] call BIS_EVO_AmmoBoxR;
 //player addweapon "ItemWatch";
 
 //spawn = player execVM "data\scripts\spawn.sqf";
+
+if(editor == 1) then {
+systemChat "pinit done";
+};

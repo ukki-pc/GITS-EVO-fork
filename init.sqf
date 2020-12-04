@@ -843,7 +843,7 @@ allowRHQ = false;
 //////////////////////////////////
 //EDITOR use
 //if playing in editor rem out the next line with a // and manually set param below instead
-editor = 0; publicVariable "editor";
+editor = 1; publicVariable "editor";
 
 if (editor == 1) then
 {
