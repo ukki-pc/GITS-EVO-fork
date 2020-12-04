@@ -332,10 +332,8 @@ BIS_EVO_Rank =
 	_name = name player;
 	_score = score player;
 	_rank = rank player;
-	systemChat format ["rankUpd"];
 	if (_score < BIS_EVO_rank2-pointsSpent and _score >= BIS_EVO_rank1-pointsSpent and _rank == "PRIVATE")  exitWith  
 	{
-				systemChat format ["rankUpd"];
 		_rname = format["Corp.%1",_name];
 		_hint =  format[_rankmes,_rname];
 		["corp","CORPORAL",_hint] call BIS_EVO_Rdisp;

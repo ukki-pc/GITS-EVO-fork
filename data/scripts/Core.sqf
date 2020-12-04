@@ -271,8 +271,8 @@ AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to securit
 //recruit
 	if (helpersparam == 1) then 
 	{
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_AT_EP1" >> "DisplayName"), "US_Soldier_AT_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa", ["US_Soldier_AT_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_Pilot_EP1" >> "DisplayName"), "US_Soldier_Pilot_EP1", "\Ca\characters\data\portraits\combarhead_usmc_pilot_ca",["US_Soldier_Pilot_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TYR_Soldier_AT3" >> "DisplayName"), "TYR_Soldier_AT3", "\Ca\weapons\data\Ico\i_at_CA.paa", ["TYR_Soldier_AT3"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_Pilot_EP1" >> "DisplayName"), "TK_Soldier_Pilot_EP1", "\Ca\characters\data\portraits\combarhead_usmc_pilot_ca",["TK_Soldier_Pilot_EP1"] call _GetGuns]];
 	};
 //support
 	SupList = SupList +[[localize "str_dn_30rnd_105mmsmoke_m119","Cost: 3 Ideal for masking your movement",20,3,5,"data\sup01.paa",11]];
@@ -290,9 +290,8 @@ AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to securit
 //recruit
 	if (helpersparam == 1) then 
 	{
-
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_MG_EP1" >> "DisplayName"), "US_Delta_Force_MG_EP1", "\Ca\weapons\data\Ico\i_mg_CA.paa",["US_Delta_Force_MG_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_GL_EP1" >> "DisplayName"), "US_Soldier_GL_EP1", "\Ca\characters\data\Ico\i_sf_ca.paa", ["US_Soldier_GL_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_MG_EP1" >> "DisplayName"), "TK_Soldier_MG_EP1", "\Ca\weapons\data\Ico\i_mg_CA.paa",["TK_Soldier_MG_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_GL_EP1" >> "DisplayName"), "TK_Soldier_GL_EP1", "\Ca\characters\data\Ico\i_sf_ca.paa", ["TK_Soldier_GL_EP1"] call _GetGuns]];
 	};
 
 //support
@@ -321,9 +320,9 @@ AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to securit
 //recruit
 	if (helpersparam == 1) then 
 	{
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_AA_EP1" >> "DisplayName"), "US_Soldier_AA_EP1", "\Ca\weapons\data\Ico\i_aa_CA.paa",["US_Soldier_AA_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_SniperH_EP1" >> "DisplayName"), "US_Soldier_SniperH_EP1", "\Ca\weapons\data\Ico\i_sniper_CA.paa",["US_Soldier_SniperH_EP1"] call _GetGuns]];
-	};
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_AA_EP1" >> "DisplayName"), "TK_Soldier_AA_EP1", "\Ca\weapons\data\Ico\i_aa_CA.paa",["TK_Soldier_AA_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_Sniper_EP1" >> "DisplayName"), "TK_Soldier_Sniper_EP1", "\Ca\weapons\data\Ico\i_sniper_CA.paa",["TK_Soldier_Sniper_EP1"] call _GetGuns]];
+		};
 
 //support
 
@@ -339,8 +338,8 @@ AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to securit
 //recruit
 	if (helpersparam == 1) then 
 	{
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "CZ_Soldier_AT_DES_EP1" >> "DisplayName"), "CZ_Soldier_AT_DES_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa", ["CZ_Soldier_AT_DES_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "CZ_Special_Forces_MG_DES_EP1" >> "DisplayName"), "CZ_Special_Forces_MG_DES_EP1", "\Ca\weapons\data\Ico\i_mg_CA.paa",["CZ_Special_Forces_MG_DES_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TYR_Soldier_AT2" >> "DisplayName"), "TYR_Soldier_AT2", "\Ca\weapons\data\Ico\i_at_CA.paa", ["TYR_Soldier_AT2"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TYR_Soldier_MG2" >> "DisplayName"), "TYR_Soldier_MG2", "\Ca\weapons\data\Ico\i_mg_CA.paa",["TYR_Soldier_MG2"] call _GetGuns]];
 	};
 
 //support	
@@ -357,7 +356,7 @@ AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to securit
 //recruit
 	if (helpersparam == 1) then 
 	{
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_SD_EP1" >> "DisplayName"), "US_Delta_Force_SD_EP1", "\Ca\characters\data\Ico\i_sf_ca.paa",["US_Delta_Force_SD_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TYR_SF_4" >> "DisplayName"), "TYR_SF_4", "\Ca\characters\data\Ico\i_sf_ca.paa",["TYR_SF_4"] call _GetGuns]];
 	};
 
 //support
