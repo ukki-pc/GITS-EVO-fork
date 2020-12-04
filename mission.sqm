@@ -58,11 +58,7 @@ class Mission
 		"ca_modules_clouds",
 		"b1b",
 		"mis_isis_terrorists",
-		"FRL_Bo105",
-		"EB_resources",
-		"EB_weapons",
-		"eb_missilebox",
-		"caweapons_e_ammoboxes"
+		"FRL_Bo105"
 	};
 	addOnsAuto[]=
 	{
@@ -114,10 +110,6 @@ class Mission
 		"cawater2_fregata",
 		"FRL_Bo105",
 		"mis_isis_terrorists",
-		"EB_resources",
-		"EB_weapons",
-		"eb_missilebox",
-		"caweapons_e_ammoboxes",
 		"smd_sahrani_a2"
 	};
 	randomSeed=8800876;
@@ -492,6 +484,7 @@ class Mission
 				items=1;
 				class Item0
 				{
+					presenceCondition="false";
 					position[]={3933.6841,0.27644107,11916.771};
 					azimut=70;
 					id=133;
@@ -959,7 +952,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=158;
+		items=154;
 		class Item0
 		{
 			position[]={9661.3125,139.98311,10084.463};
@@ -1910,6 +1903,7 @@ class Mission
 		};
 		class Item98
 		{
+			presence=0;
 			position[]={3924.6333,0.32203779,11908.327};
 			azimut=20;
 			id=137;
@@ -1920,6 +1914,7 @@ class Mission
 		};
 		class Item99
 		{
+			presence=0;
 			position[]={3917.2329,0.37137076,11904.798};
 			azimut=340;
 			id=138;
@@ -1930,6 +1925,7 @@ class Mission
 		};
 		class Item100
 		{
+			presence=0;
 			position[]={3856.6333,0.46547133,11865.548};
 			azimut=20;
 			id=139;
@@ -1940,6 +1936,7 @@ class Mission
 		};
 		class Item101
 		{
+			presence=0;
 			position[]={3885.5317,0.26293653,11924.468};
 			azimut=340;
 			id=140;
@@ -1951,6 +1948,7 @@ class Mission
 		};
 		class Item102
 		{
+			presence=0;
 			position[]={3887.938,0.27810287,11888.522};
 			id=141;
 			side="EMPTY";
@@ -2474,46 +2472,6 @@ class Mission
 			lock="UNLOCKED";
 			skill=0.60000002;
 			init="this allowDamage false";
-		};
-		class Item154
-		{
-			position[]={9457.918,139.98311,10109.436};
-			azimut=90.532997;
-			id=214;
-			side="EMPTY";
-			vehicle="EB_Fuel_dump";
-			leader=1;
-			skill=0.60000002;
-		};
-		class Item155
-		{
-			position[]={9455.3184,139.98311,10111.73};
-			azimut=90.532997;
-			id=215;
-			side="EMPTY";
-			vehicle="EB_Ammo_crate";
-			leader=1;
-			skill=0.60000002;
-		};
-		class Item156
-		{
-			position[]={9459.416,139.98311,10111.775};
-			azimut=90.532997;
-			id=216;
-			side="EMPTY";
-			vehicle="pook_BLU_Vehiclebox";
-			leader=1;
-			skill=0.60000002;
-		};
-		class Item157
-		{
-			position[]={9453.5117,139.98311,10110.275};
-			azimut=90.532997;
-			id=217;
-			side="EMPTY";
-			vehicle="TKBasicAmmunitionBox_EP1";
-			leader=1;
-			skill=0.60000002;
 		};
 	};
 	class Markers
@@ -3645,7 +3603,7 @@ class Mission
 		};
 		class Item147
 		{
-			position[]={17537.781,0.36315554,3066.1147};
+			position[]={17537.781,0.85378504,3066.1147};
 			name="rainmark3";
 			markerType="ELLIPSE";
 			type="Flag";

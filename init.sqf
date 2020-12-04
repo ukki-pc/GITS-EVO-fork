@@ -330,86 +330,6 @@ EGG_EVO_westveh13 = ["Fort_Nest_M240","M2HD_mini_TriPod","M2StaticMG","DSHKM_CDF
 //EGG_EVO_westveh13 = ["BAF_GMG_Tripod_D","BAF_GPMG_Minitripod_D","BAF_L2A1_Minitripod_D","BAF_L2A1_Tripod_D","BAF_GMG_Tripod_W","BAF_GPMG_Minitripod_W","BAF_L2A1_Minitripod_W","BAF_L2A1_Tripod_W","Stinger_Pod_US_EP1","M119_US_EP1"];
 //EGG_EVO_westveh13 = ["Fort_Nest_M240","M2HD_mini_TriPod","M2StaticMG","DSHKM_CDF","DSHkM_Mini_TriPod_CDF","2b14_82mm","2b14_82mm_CDF","M252","SPG9_CDF","M119","D30_CDF","ZU23_CDF","uns_m2","uns_m2_2","uns_m2_3","CSJ_Quad50"];
 
-//Roaming Hips
-EGG_EVO_eastheli1 = ["UH1H_TK_EP1","ibr_gazelle_armed","FRL_Mi17_1_TAK","FRL_Mi17_TAK","FRL_Mi17_TVK_TAK","FRL_Mi17_TVK_TAK_AGM","FRL_Mi17_TVK_TAK_MR","FRL_Mi17_TVK_TAK_BMB","FRL_Mi24D_TK_CAP","FRL_Mi24D_TK_CAS","FRL_Mi24D_TK_HCAS","FRL_Mi24D_TK_AGM","FRL_Mi24D_TK_MR","FRL_Mi24D_TK_BMB","FRL_Mi24D_TK_LRCAS","FRL_Mi24D_TK_SEAD"];//makehip
-
-//Roaming hinds
-EGG_EVO_eastheli3 = ["FRL_Mi8_MTKO_RUS","FRL_Mi8_MTKO_RUS_HCAS","FRL_Mi8_MTKO_RUS_AGM","FRL_Mi8_MTKO_RUS_MR","FRL_Mi8_MTKO_RUS_BMB","FRL_Mi28D_TK_CAP","FRL_Mi28D_TK_CAS","FRL_Mi28D_TK_HCAS","FRL_Mi28D_TK_AGM","FRL_Mi28D_TK_MR","FRL_Mi28D_TK_BMB","FRL_Mi28D_TK_LRCAS","FRL_Mi28D_TK_SEAD","FRL_Ka52_CAP_D","FRL_Ka52_CAS_D","FRL_Ka52_HCAS_D","FRL_Ka52_AGM_D","FRL_Ka52_MR_D","FRL_Ka52_BMB_D","FRL_Ka52_LRCAS_D","FRL_Ka52_SEAD_D"];//makeka //"Ka52","UH1H_TK_EP1","ibr_gazelle_armed","CMA_Mi28_N_RUS"
-
-EGG_EVO_mevaira = EGG_EVO_eastheli1+EGG_EVO_eastheli2+EGG_EVO_eastheli3;//hindv
-//planes
-EGG_EVO_mevairb = ["Su25_TK_EP1","ibrPRACS_MiG21_AGmol","ibrPRACS_MiG21mol","mig15bis_4_tak","mig15bis_fighterBomber_tak","mig15bis_5_tak"];//makesub
-
-EGG_EVO_mevairc = ["FRL_Su34_D_CAP","FRL_Su34_D_CAS","FRL_Su34_D_HCAS","FRL_Su34_D_EHCAS","FRL_Su34_D_AGM","FRL_Su34_D_MR","FRL_Su34_D_LBMB","FRL_Su34_D_BMB","FRL_Su34_D_HBMB","FRL_Su34_D_LGB","FRL_Su34_D_SEAD","An2_TK_EP1","PRACS_Su24Fencer","ibr_viggen1","ibr_viggen4","ibr_viggen3"];//makesu
-EGG_EVO_eastveh2 = EGG_EVO_mevairc+EGG_EVO_mevairb;
-
-//EGG_EVO_eastveh1 = ["Mi24_D_TK_EP1","Mi17_TK_EP1","UH1H_TK_EP1"];
-//EGG_EVO_eastveh2 = ["An2_TK_EP1","L39_TK_EP1","Su25_TK_EP1"];
-//mod choppers
-EGG_EVO_eastveh3 = ["CMA_Mi28_N_RUS","KA50"];
-//mod planes
-EGG_EVO_eastveh4 = ["RKTSU33B1","RKTSU33MR","RKTSU33AA","RKTSU33AG","IkaR_F14_AIM_54_ir","IkaR_F14_AGM_65_ir","IkaR_F14_GBU_12_ir"];
-//EGG_EVO_eastveh4 = ["GLT_Su34_TAK_Bomber","GLT_Su34_TAK_Fighter"];
-//unarmed
-//EGG_EVO_eastveh5 = ["UAZ_INS","UralOpen_INS","Ural_INS","UralRepair_INS","UralReammo_INS","UralRefuel_INS","EB_GAZ_Vodnik_MedEvac_TK","Kamaz","KamazOpen","KamazRepair","KamazReammo","KamazRefuel","BMP2_Ambul_INS"];
-
-//EB armour
-EGG_EVO_eastveh5 = ["TT650_TK_EP1","SUV_TK_EP1","UAZ_Unarmed_TK_EP1","V3S_TK_EP1","V3S_Open_TK_EP1","Old_bike_TK_INS_EP1","M113Ambul_TK_EP1","UralSupply_TK_EP1","UralSalvage_TK_EP1","UralReammo_TK_EP1","UralRefuel_TK_EP1","UralRepair_TK_EP1","EB_BMP2_Ambul_TK","EB_GAZ_Vodnik_MedEvac_TK"];
-
-//light armed
-//EGG_EVO_eastveh6 = ["UAZ_MG_INS","UAZ_AGS30_INS","UAZ_AGS30_RU","UAZ_SPG9_INS","Offroad_DSHKM_INS","Pickup_PK_INS","BRDM2_INS","BRDM2_ATGM_INS","BMP2_HQ_INS","EB_GAZ_Vodnik_HMG_TK","EB_GAZ_Vodnik_TK","Ural_ZU23_INS","GRAD_INS","BTR90_HQ"];
-
-EGG_EVO_eastveh6 = ["LandRover_MG_TK_EP1","LandRover_SPG9_TK_EP1","UAZ_AGS30_TK_EP1","UAZ_MG_TK_EP1","Ural_ZU23_TK_EP1","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1","BRDM2_TK_EP1","BRDM2_ATGM_TK_EP1","BTR60_TK_EP1","M113_TK_EP1","BTR40_TK_INS_EP1","BTR40_MG_TK_INS_EP1","BMP2_HQ_TK_EP1","EB_GAZ_Vodnik_TK","GRAD_TK_EP1","pook_brdm2AGS_TKINS","pook_brdm2AA_TKINS","pook_brdm2RKT_TKINS","pook_brdm2PKM_TAK","pook_brdm2HQcomm_TAK","pook_brdm2HQ_TKINS","pook_brdm2DSHK_TAK","pook_brdm2AT5_TAK","pook_brdm2AT3c_TKINS","pook_brdm2AT3_TKINS","pook_brdm2AT2_TKINS","pook_brdm2M_TAK","pook_brdm2_TAK","pook_brdm2_sa9_TAK"];
-
-//heavy armed
-//EGG_EVO_eastveh7 = ["BMP2_INS","T72_INS","BMP3","BTR90","T90"];
-
-//EB_armour
-
-//Mechanized town initial defence
-EGG_EVO_eastveh7 = ["EB_BTR90_HQ_TK","EB_BTR90_TK","EB_GAZ_Vodnik_HMG_TK","EB_BMP3_TK","BMP2_TK_EP1","BVP1_TK_ACR","T72_INS","T72_RU","T72_TK_EP1","EB_T72B_RU","T90","T34_TK_EP1","EB_OT34_TK","EB_T34_76_TK","EB_T34_85_TK","T55_TK_EP1","EB_OT55_TK"];
-
-//,"vil_bmp1","vil_bmp1p","vil_bmp2d","vil_2s1","vil_t55","vil_t55m_pol","vil_t62m","vil_t64","vil_t64bv","vil_t72M_nsv","vil_t80b","vil_t80bv_c2","vil_t80U_C","sa_bmd2_rus1","sa_bmd2_rus2","sa_bmd2_rus3","sa_bmd2_rus4","sa_bmd2_des","sa_bmd2k","sa_bmd2k_rus1","sa_bmd2k_rus2","sa_bmd2k_rus3","sa_bmd2k_rus4","sa_bmdk_des","vil_t90_1"
-
-//unarmed mod
-EGG_EVO_eastveh8 = ["AFR_Pinz"];
-//EGG_EVO_eastveh8 = ["uns_nvatruck_open","uns_nvatruck_refuel","uns_nvatruck_reammo"];
-//light armed mod
-EGG_EVO_eastveh9 = ["Mech_BTR70M","Mech_BTR70"];
-//heavy armed mod
-EGG_EVO_eastveh10 = ["ibr_T55","vil_bmp1","vil_bmp1p","vil_bmp2d","vil_2s1_easy_arty","vil_2s1","vil_t55","vil_t55m_pol","vil_t62m","vil_t64","vil_t64bv","vil_t72M_nsv","vil_t80b","vil_t80bv_c2","vil_t80U_C","sa_bmd2","sa_bmd2_rus1","sa_bmd2_rus2","sa_bmd2_rus3","sa_bmd2_rus4","sa_bmd2_des","sa_bmd2_ua","sa_bmd2_peace","sa_bmd2k","sa_bmd2k_rus1","sa_bmd2k_rus2","sa_bmd2k_rus3","sa_bmd2k_rus4","sa_bmdk_des","sa_bmd2k_peace"];
-//AA
-//EGG_EVO_eastveh11 = ["ZSU_INS","2S6M_Tunguska"];
-
-//Town inital aa defence
-EGG_EVO_eastveh11 = ["ZU23_TK_INS_EP1","Ural_ZU23_TK_EP1","ZSU_TK_EP1","ZU23_TK_EP1","pook_brdm2AA_TKINS","pook_brdm2_sa9_TAK"];
-//AA mod
-EGG_EVO_eastveh12 = ["3LB_SA6_des","3LB_SA6_olv"];
-//statics
-//EGG_EVO_eastveh13 = ["INS_WarfareBMGNest_PK","DSHKM_Ins","DSHkM_Mini_TriPod","KORD","AGS_RU","AGS_Ins","2b14_82mm_INS","SPG9_Ins","D30_Ins","D30_RU","Metis","ZU23_Ins","Igla_AA_pod_East"];
-
-//Town initial staic defence
-EGG_EVO_eastveh13 = ["Igla_AA_pod_TK_EP1","AGS_TK_EP1","D30_TK_EP1","KORD_high_TK_EP1","KORD_TK_EP1","Metis_TK_EP1","2b14_82mm_TK_EP1","AGS_TK_INS_EP1","D30_TK_INS_EP1","DSHKM_TK_INS_EP1","DSHkM_Mini_TriPod_TK_INS_EP1","2b14_82mm_TK_INS_EP1","SPG9_TK_INS_EP1"];
-
-//used in makespetz
-EGG_EVO_eastveh14 = ["BTR40_MG_TK_INS_EP1","BRDM2_TK_GUE_EP1","BTR40_TK_GUE_EP1","BTR60_TK_EP1","M113_TK_EP1","BMP2_INS","UAZ_MG_INS","pook_brdm2AGS_TKINS","pook_brdm2RKT_TKINS","pook_brdm2PKM_TAK","pook_brdm2HQ_TKINS","pook_brdm2DSHK_TAK","pook_brdm2M_TAK","pook_brdm2_TAK"];
-
-EGG_EVO_eastveh15 = ["UralOpen_INS","Ural_INS","Kamaz","KamazOpen"];
-
-//civ 1 seater
-//EGG_EVO_civveh1 = ["tractor","MMT_Civ","TT650_Civ"];
-EGG_EVO_civveh1 = ["TT650_TK_CIV_EP1","Old_bike_TK_CIV_EP1","Old_moto_TK_Civ_EP1"];
-//civ multi seater
-//EGG_EVO_civveh2 = ["Skoda","SkodaBlue","SkodaRed","SkodaGreen","datsun1_civil_1_open","datsun1_civil_2_covered","datsun1_civil_3_open","hilux1_civil_1_open","hilux1_civil_2_covered","hilux1_civil_3_open","car_hatchback","Lada1","car_sedan","Lada2","LadaLM","car_hatchback","VWGolf"];
-EGG_EVO_civveh2 = ["Lada1_TK_CIV_EP1","Lada2_TK_CIV_EP1","LandRover_TK_CIV_EP1","hilux1_civil_3_open_EP1","S1203_TK_CIV_EP1","SUV_TK_CIV_EP1","UAZ_Unarmed_TK_CIV_EP1","Volha_1_TK_CIV_EP1","Volha_2_TK_CIV_EP1","VolhaLimo_TK_CIV_EP1","S1203_ambulance_EP1"];
-//EGG_EVO_civveh3 = ["Ikarus","UralCivil2","UralCivil","V3S_Civ"];
-EGG_EVO_civveh3 = ["Ikarus_TK_CIV_EP1","Ural_TK_CIV_EP1","V3S_Open_TK_CIV_EP1"];
-EGG_EVO_civall = EGG_EVO_civveh1+EGG_EVO_civveh2+EGG_EVO_civveh3;
-
-//moved hybrid arrays
-
-//adding soldier class types for data/scripts/spawn.sqf
-
 //officer classes
 EGG_EVO_playerOff = ["TK_Commander_EP1","uns_men_US_Arty_XO","uns_men_US_Arty_AXO","uns_men_CIDG_COM","uns_men_CIDG_PL","uns_men_US_1AC_COM","uns_men_US_1AC_PL","uns_US_25ID_COM","uns_US_25ID_PL","uns_US_1ID_COM","uns_US_1ID_PL","uns_men_USMC_65_COM","uns_men_USMC_65_PL","uns_men_USMC_68_COM","uns_men_USMC_68_PL","uns_men_US_3FRC_COM","uns_men_US_3FRC_PL","uns_men_US_5SFG_COM","uns_men_US_5SFG_PL","uns_men_US_6SFG_COM","uns_men_US_6SFG_PL","UN_CDF_Soldier_Officer_EP1","BAF_Soldier_Officer_W","BAF_Soldier_Officer_DDPM","CZ_Soldier_Office_DES_EP1","CZ_Soldier_SL_DES_EP1","CZ_Soldier_Officer_Wdl_ACR","CZ_Soldier_Leader_Wdl_ACR","CZ_Special_Forces_TL_DES_EP1","CZ_Soldier_Spec1_Wdl_ACR","US_Soldier_Officer_EP1","Soldier_TL_PMC","GER_Soldier_TL_EP1","CDF_Commander","CDF_Soldier_TL","USMC_Soldier_Officer","FR_Commander","FR_TL","USMC_Soldier_TL","USMC_Soldier_SL","RU_Soldier_Officer","RU_Commander","RUS_Commander","RUS_Soldier_TL","Ins_Commander","Ins_Soldier_CO","Ins_Bardak","Ins_Lopotev","MVD_Soldier_TL","mas_gru_spet_tl_gd","mas_gru_spet_tl_ge","mas_gru_spet_tl_kb","mas_gru_spet_tl_iz","UK_SFMSKD1","AFR_Officer","AFR_Soldier_Officer","MOL_officer","MOL_Soldier_Officer","BAF_Soldier_Officer_MTP","TK_Soldier_Officer_EP1","TK_Aziz_EP1","TK_Commander_EP1","TK_INS_Warlord_EP1","TK_Special_Forces_TL_EP1","TK_INS_Soldier_TL_EP1","uns_nva1","uns_nva1a","uns_nva1b","uns_nva1c","uns_nva9b","uns_nva9c","uns_rf_vc1","uns_rf_vc9a","uns_mf_vc1a","uns_mf_vc1b","uns_mf_vc2a","uns_mf_vc9a","uns_guerrilla1","uns_usmc_1a","uns_usmc_1b","uns_usmc_1c","uns_usmc_1d","uns_usmc_1e","uns_usmc_1f","uns_army_1a","uns_army_1aa","uns_army_2a","uns_army_2aa","uns_army_3a","uns_army_3aa","uns_lrrp_1a","uns_lrrp_1aa","uns_lrrp_2a","uns_lrrp_2aa","uns_sf_1a","uns_sf_1aa","uns_sf_2a","uns_sf_2aa","s_tigerian1","s_tigerian2"]; 
 
@@ -540,40 +460,6 @@ BIS_EVO_PlayerModel = "BAF_Soldier_W";
 
 	BIS_EVO_pweapons = ["DM_CAMO_M4_CCO_IR_FG","Laserdesignator","EB_S10","EB_ItemSiphon"];
 
-
-// The players default Model
-
-if (gitsnades == 1) then 
-{
-//	BIS_EVO_pallammo = ["pipebomb","LWS_Laserbatteries","HandGrenade_West","HandGrenade_West","30Rnd_556x45_G36SD","30Rnd_556x45_G36SD"];
-//	BIS_EVO_pweapons = ["DM_CAMO_M4_CCO_IR_FG","Laserdesignator","EB_S10","EB_ItemSiphon"];
-//	BIS_EVO_pallammo = ["pipebomb","EB_m67gren","EB_m61gren","EB_M118_mag_remote","LWS_Laserbatteries","EB_m34gren","30Rnd_556x45_G36SD","30Rnd_556x45_G36SD","17Rnd_9x19_glock17","17Rnd_9x19_glock17","EB_SmokeShellChem"];
-//	BIS_EVO_pweapons = ["M4A3_CCO_EP1","glock17_EP1","Laserdesignator","EB_S10","EB_ItemSil_hgun","EB_ItemSil_rifle","EB_ItemSiphon"];
-//EB_resources mod - knife and fuel
-
-	EB_player_fillfuel = 	-1;
-	EB_player_siphonfuel = -1;
-	EB_player_refuelAction = -1;
-	EB_myCursorTarget = objNull;
-	EB_myCursorTarget2 = objNull;
-	EB_myCursorTarget3 = objNull;
-	EB_player_kill = -1;
-	EB_player_bkill = -1;
-	EB_player_ckill = -1;
-//set up bayonet class weapons
-	EB_player_foldbayo =-1;
-	EB_player_fixbayo =-1;
-//set up silenced class weapons
-	EB_player_rmvhsil =-1;
-	EB_player_fixhsil =-1;
-	EB_player_rmvrsil =-1;
-	EB_player_fixrsil =-1;
-
-	EGG_rsilweps = [["AKS_74_U","AKS_74_UN_kobra"],["Bizon","bizon_silenced"],["G36C","G36_C_SD_eotech"],["M4A1_Aim_camo","M4A1_AIM_SD_camo"],["M4A1_HWS_GL_camo","M4A1_HWS_GL_SD_Camo"],["MP5A5","MP5SD"],["G36C_camo","G36_C_SD_camo"],["SCAR_H_CQC_CCO","SCAR_H_CQC_CCO_SD"],["SCAR_H_LNG_Sniper","SCAR_H_LNG_Sniper_SD"],["Scar_L_CQC","Scar_L_CQC_CCO_SD"],["m8_carbine","m8_holo_sd"],["m8_tws","m8_tws_sd"],["Evo_ACR","evo_sd_ACR"],["CZ805_A2_ACR","CZ805_A2_SD_ACR"],["RH_bizon","RH_bizonsd"],["R3F_Famas_F1_EOT","R3F_Famas_F1_EOT_HG_SD"],["R3F_Famas_F1_J4_M203","R3F_Famas_F1_J4_M203_SD"],["R3F_Famas_surb_AIM_HG","R3F_Famas_surb_AIM_SD"],["R3F_Famas_surb","R3F_Famas_surb_EOT_SD"],["R3F_HK417S_EOT_HG","R3F_HK417S_HG_SD"],["R3F_FRF2_J8","R3F_FRF2_J8_SD"],["LEN_L119A1_Acog_HG","LEN_L119A1_Acog_CQB_SD_HG"],["LEN_L119A1_EOT_CQB","LEN_L119A1_EOT_CQB_SD"],["LEN_L119A1_EOT_PF","LEN_L119A1_EOT_PF_SD"],["C1987_MP7","C1987_MP7_sd"],["C1987_MP7_eot_t","C1987_MP7_eot_sd_t"],["C1987_MP7_acog","C1987_MP7_acog_sd"],["C1987_MP7_t","C1987_MP7_sd_t"],["C1987_MP7_eot","C1987_MP7_eot_sd"],["C1987_MP7_zp_t","C1987_MP7_zp_sd_t"],["C1987_MP7_acog_t","C1987_MP7_acog_sd_t"],["FHQ_RSASS_TAN","FHQ_RSASS_SD_TAN"],["FHQ_RSASS_TWS_TAN","FHQ_RSASS_TWS_SD_TAN"],["FHQ_XM2010_DESERT","FHQ_XM2010_SD_DESERT"],["FHQ_XM2010_NV_DESERT","FHQ_XM2010_NV_SD_DESERT"],["FHQ_XM2010_TWS_DESERT","FHQ_XM2010_TWS_SD_DESERT"],["FHQ_MSR_DESERT","FHQ_MSR_SD_DESERT"],["FHQ_MSR_NV_DESERT","FHQ_MSR_NV_SD_DESERT"],["FHQ_MSR_TWS_DESERT","FHQ_MSR_TWS_SD_DESERT"],["FHQ_ACR_WDL_IRN_F","FHQ_ACR_WDL_IRN_SD_F"],["FHQ_ACR_WDL_RCO_F","FHQ_ACR_WDL_RCO_SD_F"],["FHQ_ACR_WDL_HWS_F","FHQ_ACR_WDL_HWS_SD_F"],["FHQ_ACR_WDL_G33_F","FHQ_ACR_WDL_G33_SD_F"],["FHQ_ACR_WDL_HAMR_F","FHQ_ACR_WDL_HAMR_SD_F"],["FHQ_ACR_WDL_HAMR_GL_F","FHQ_ACR_WDL_HAMR_GL_SD_F"],["FHQ_ACR_WDL_CCO_F","FHQ_ACR_WDL_CCO_SD_F"],["FHQ_ACR_WDL_IRN_GL_F","FHQ_ACR_WDL_IRN_GL_SD_F"],["FHQ_ACR_WDL_RCO_GL_F","FHQ_ACR_WDL_RCO_GL_SD_F"],["FHQ_ACR_WDL_CCO_GL_F","FHQ_ACR_WDL_CCO_GL_SD_F"],["FHQ_ACR_WDL_HWS_GL_F","FHQ_ACR_WDL_HWS_GL_SD_F"],["FHQ_ACR_WDL_G33_GL_F","FHQ_ACR_WDL_G33_GL_SD_F"],["RH_tmp","RH_tmpsd"],["RH_tmpaim","RH_tmpsdaim"],["RH_uzi","RH_uzisd"],["RH_mp7aim","RH_mp7sdaim"],["RH_mp7eot","RH_mp7sdeot"],["RH_mk14","RH_mk14SD"],["RH_mk14t","RH_mk14tsd"],["RH_MK14AIM","RH_MK14SDAIM"],["RH_MK14EOTECH","RH_MK14SDEOTECH"],["RH_m4","RH_m4sd"],["RH_m4a1eotech","RH_m4sdeotech"],["RH_mk18","RH_mk18sd"],["RH_Mk18aim","RH_Mk18sdaim"],["RH_mk18eot","RH_mk18sdeot"],["RH_Mk18acog","RH_Mk18sdacog"],["RH_m21","RH_MK21A5SD"],["RH_p90i","RH_p90isd"],["RH_p90aim","RH_p90sdaim"],["RH_ump","RH_umpsd"],["RH_umpaim","RH_umpsdaim"],["RH_umpeot","RH_umpsdeot"],["RH_kriss","RH_krisssd"],["RH_krisseot","RH_krisssdeot"],["RH_mk12mod1","RH_mk12sd"],["RH_M14EBRSP","RH_M14EBRSP_SD"],["RH_akms","RH_akmssd"],["RH_oc14sp","RH_oc14sdsp"],["RH_rk95aim","RH_rk95sdaim"],["RH_gr1sp","RH_gr1sdsp"],["SUD_AK74m_F","SUD_AK74m_s_f"],["SUD_AK74m_F_1p78","SUD_AK74m_s_1p78"],["SUD_AK74m_F_pso","SUD_AK74m_s_f_pso"],["SUD_AK74m_TB","SUD_AK74m_s_tb"],["SUD_AK74m_F_C","SUD_AK74m_s_f_c"],["SUD_AK74m_TB_C","SUD_AK74m_s_tb_c"],["SUD_AK74m_tb_1p78","SUD_AK74m_s_tb_1p78"],["SUD_AK74m_tb_pso","SUD_AK74m_s_tb_pso"],["SUD_AK74m_F_n","SUD_AK74m_s_f_n"],["SUD_AK74m_tb_n","SUD_AK74m_s_tb_n"],["DM_CAMO_M4_EO_IR_FG","DM_CAMO_M4_EO_IR_SIL_FG"],["DM_CAMO_M4_EO_IR_GL","DM_CAMO_M4_EO_IR_SIL_GL"],["DM_CAMO_M4_EO_LP_FG","DM_CAMO_M4_EO_LP_SIL_FG"],["DM_CAMO_M4_EO_LP_GL","DM_CAMO_M4_EO_LP_SIL_GL"],["DM_CAMO_M4_CCO_IR_FG","DM_CAMO_M4_CCO_IR_SIL_FG"],["DM_CAMO_M4_CCO_IR_GL","DM_CAMO_M4_CCO_IR_SIL_GL"],["DM_CAMO_M4_CCO_LP_FG","DM_CAMO_M4_CCO_LP_SIL_FG"],["DM_CAMO_M4_CCO_LP_GL","DM_CAMO_M4_CCO_LP_SIL_GL"],["DM_CAMO_M4_RCO_IR_FG","DM_CAMO_M4_RCO_IR_SIL_FG"],["DM_CAMO_M4_RCO_IR_GL","DM_CAMO_M4_RCO_IR_SIL_GL"],["DM_CAMO_M4_RCO_LP_FG","DM_CAMO_M4_RCO_LP_SIL_FG"],["DM_CAMO_M4_RCO_LP_GL","DM_CAMO_M4_RCO_LP_SIL_GL"]];
-	EGG_hsilweps = [["Colt1911","EB_m1911SD"],["UZI_EP1","UZI_SD_EP1"],["M9","M9SD"],["Makarov","MakarovSD"],["CZ_75_SP_01_PHANTOM","CZ_75_SP_01_PHANTOM_SD"],["RH_pm","RH_pmsd"],["RH_aps","RH_apssd"],["C1987_P99_green","C1987_P99_green_sd"],["C1987_P99_green_laser","C1987_P99_green_laser_sd"],["RH_m1911","RH_m1911sd"],["RH_usp","RH_uspsd"],["ACR_GLOCK17","ACR_GLOCK17SD"],["RH_m9","RH_m9sd"],["RH_mk22v","RH_mk22vsd"]];
-	EGG_bayoweps = [["AK_47_M","AK_47_S"],["M16A2","M16A4"],["AK_74","AKS_74"],["Sa58P_EP1","Sa58V_EP1"],["M4A1","M4A1_Aim"]];
-
-};
 
 
 //Tasks
@@ -893,27 +779,6 @@ if ((helicopterhitch == 1) || (helicopterhitch == 2)) then
 };
 
 
-	
-//EGG_vecmods = paramsArray select 18;
-
-//to use in Editor - include the line below for RKSL (load the RKSL mod on server/client in your game command line etc) as the editor does not run the parameters dialog in description.ext
-//EGG_vecmods = 2;
-
-//to enable PRACS in editor
-//EGG_vecmods = 3;
-
-//EB_Air (+duala, pracs and rksl!!)
-//EGG_vecmods = 1;
-//EGG_vecmods = paramsArray select 18;
-
-//to use in Editor - include the line below for RKSL (load the RKSL mod on server/client in your game command line etc) as the editor does not run the parameters dialog in description.ext
-//EGG_vecmods = 2;
-
-//to enable PRACS in editor
-//EGG_vecmods = 3;
-
-//EB_Air (+duala, pracs and rksl!!)
-//EGG_vecmods = 1;
 
 //////////////////////////////////
 //set spawnarrays for makebase
@@ -982,9 +847,6 @@ EGG_EVO_westveh10 = ["Stinger_Pod_US_EP1","ZU23_TK_GUE_EP1","Rbs70_ACR","HMMWV_A
 
 //////////////////////////////////
 
-//customised for #duala baf
-if (EGG_vecmods == 1) then
-{
 //	execVM "addons\GITS.sqf";
 //	execVM "addons\RKSL.sqf";
 //	execVM "addons\PRACS.sqf";
@@ -1088,100 +950,6 @@ EGG_EVO_mevlighta = ["BRDM2_ATGM_INS","UAZ_AGS30_INS","UAZ_AGS30_RU","UAZ_SPG9_I
 	EGG_EVO_mevheavyb = ["2S6M_Tunguska","Mi24_P","FRL_Mi8_MTV3_RUS_AGM","BMP2_MOL","T72_MOL","ibr_T55"];
 	EGG_EVO_mevconvoya = ["UralSupply_TK_EP1","UralSalvage_TK_EP1","UralReammo_TK_EP1","UralRefuel_TK_EP1","UralRepair_TK_EP1"];
 
-};
-
-if (EGG_vecmods == 2) then
-{
-	execVM "addons\RKSL.sqf";
-
-//heli unarmed
-
-	EGG_EVO_westveh1 = ["ad_mh60k_black","UH60M_EP1","CH_47F_BAF","BAF_Merlin_HC3_D"];
-
-//heli armed
-
-	EGG_EVO_westveh2 = ["AH1Z","AH1Z","BAF_Apache_AH1_D","BAF_Apache_AH1_D","rksl_lynx_ah7se_gpmg","rksl_lynx_ah7se_gpmg","AW159_Lynx_BAF","AW159_Lynx_BAF"];
-
-	EGG_EVO_westvehM2 = ["AH6J_EP1","AH6J_EP1","GazelleD","GazelleD"];
-
-	EGG_EVO_westlhdheli1 =["BAF_Apache_AH1_D","BAF_Apache_AH1_D","AH1Z","AW159_Lynx_BAF","rksl_lynx_ah7se_gpmg","Gazelle1"];
-
-//planes
-
-	EGG_EVO_westveh9 = ["AV8B","AV8B2","STI_A10_DESERT","STI_A10_SHARK_GREEN","L159_ACR","L159_ACR","3lb_f22","3lb_f22","An2_2_TK_CIV_EP1","C130J_US_EP1"];
-
-	EGG_EVO_westvehM9 =["JS_FA18E","JS_FA18E","JS_FA18F","JS_FA18F","rksl_efa_fgr4_1","rksl_efa_fgr4_1"];
-
-	EGG_EVO_westlhdplane1 = ["AV8B","AV8B2","F35B"];
-
-	EGG_EVO_HANGARS =["Land_Mil_hangar_EP1","Land_Mil_hangar_EP1"];
-
-//helipad types
-	EGG_EVO_HELIPAD =["HeliHEmpty","HeliH","HeliHRescue"];
-
-	EGG_EVO_westveh10 = ["PRACS_Type66_Gun","PRACS_M266AAgun","PRACS_Type74AAgun","PRACS_HAWK","PRACS_M429_CRAM","PRACS_M302_SAM","PRACS_351_SAM","PRACS_M460_SAM","PRACS_LAV_SAM"];
-
-};
-
-if (EGG_vecmods == 3) then
-{
-	execVM "addons\PRACS.sqf";
-	EGG_EVO_westveh9 = ["AV8B","AV8B2","A10","A10_US_EP1","F35B","PRACS_F15","PRACS_F16_PHSTRK","PRACS_F16_AT","PRACS_Mohawk","PRACS_C130"];
-	EGG_EVO_westvehM9 =["PRACS_Etendard_ATK","PRACS_Etendard_GBU","PRACS_Mirage3_ATK","PRACS_Mirage3_BMB","PRACS_A4_ATK","PRACS_A4_HBMB"];
-
-//heli unarmed
-	EGG_EVO_westveh1 = ["PRACS_MH6J","PRACS_CH53","PRACS_CH46","PRACS_puma330_MG","PRACS_UH1H","PRACS_puma330_Marine","PRACS_puma330_MED"];
-
-	EGG_EVO_westveh2 = ["AH64D","AH64D_EP1","PRACS_AB212_CAS_M","PRACS_AB212_CAS_MAT","AH1Z","AH1Z","AW159_Lynx_BAF","AH6J_EP1"];
-	EGG_EVO_westvehM2 = ["PRACS_AH1S","PRACS_AH1S_2","PRACS_RAH6","PRACS_AB212_cas"];
-
-	EB_PRACS_hydra = ["PRACS_F16_AT","PRACS_Mirage3_ATK","PRACS_Etendard_ATK","PRACS_A4_ATK","PRACS_AH6J","IkaR_F14_AGM_65"];
-
-	EB_PRACS_nohydra = ["PRACS_F16_PHSTRK","PRACS_Mirage3_BMB","PRACS_Etendard_GBU","PRACS_A4_HBMB","PRACS_RAH6","IkaR_F14_AIM_54"];
-
-EGG_EVO_westveh10 = ["PRACS_Type66_Gun","PRACS_M266AAgun","PRACS_Type74AAgun","PRACS_HAWK","PRACS_M429_CRAM","PRACS_M302_SAM","PRACS_351_SAM","PRACS_M460_SAM","PRACS_LAV_SAM"];
-
-EGG_EVO_westlhdheli1 =["PRACS_AH1S","PRACS_AH1S_2","PRACS_RAH6","PRACS_AB212_cas","PRACS_AB212_CAS_M","PRACS_AB212_CAS_MAT"];
-
-EGG_EVO_westlhdplane1 = ["PRACS_F16_PHSTRK","PRACS_F16_AT","PRACS_Mirage3_BMB"];
-
-};
-
-//unsung
-if (EGG_vecmods == 4) then
-{
-	execVM "addons\unsung.sqf";
-
-//heli unarmed x4
-	EGG_EVO_westveh1 = ["uns_ch34army","uns_ch47","csj_ch46","uns_ch53"];
-//heli armed x8
-	EGG_EVO_westveh2 = ["CSJ_UH1supply","CSJ_UH1transport","CSJ_UH1med","CSJ_UH1Slick","CSJ_oh6","CSJ_oh6a","uns_oh58a","uns_oh58b"];
-//mod heli x4
-	EGG_EVO_westvehM2 = ["CSJ_UH1Slick","csj_uh1gun","csj_ghornet","CSJ_AH1g"];
-
-//planes 4x2+2
-	EGG_EVO_westveh9 = ["uns_A1J","uns_A1J","uns_A7_CAP","uns_A7_CAP","uns_f100b_CAP","uns_f100b_CAP","uns_F4_CAP","uns_F4_CAP","CSJ_O1","CSJ_C123"];
-//mod planes 3x2
-	EGG_EVO_westvehM9 =["A6_Intruder","uns_F4_CAS","uns_mig17_CAP","uns_mig17_CAS","uns_Mig21_CAP","uns_Mig21_CAS"];
-//carrier planes x3
-	EGG_EVO_westlhdplane1 = ["uns_A7N_CAP","uns_F4Navy_CAP","uns_F4Navy_CAP"];
-
-//carrier  heli 4 attack and 2 trans
-	EGG_EVO_westlhdheli1 =["CSJ_UH1Slick","csj_uh1gun","csj_ghornet","CSJ_AH1g","uns_ch53","uns_ch34"];
-
-	EGG_EVO_westveh10 = ["CSJ_Quad50","uns_guntruckM55"];
-
-	EB_unsung_hydra = ["uns_F4_CAS","uns_mig17_CAS","uns_Mig21_CAS"];
-
-	EB_unsung_nohydra = ["uns_F4_CAP","uns_F4Navy_CAP","uns_mig17_CAP","uns_Mig21_CAP"];
-
-};
-
-if (EGG_vecmods == 5) then
-{
-	execVM "addons\GLT.sqf";
-	EGG_EVO_westvehM9 =["GLT_Falcon_mk82","GLT_Falcon_CAP","GLT_Falcon_MR","GLT_Falcon_AGM","GLT_Falcon_GBU","GLT_Falcon_euro_mk82","GLT_Falcon_euro_cap","GLT_Falcon_euro","GLT_Falcon_euro_AGM","GLT_Falcon_euro_GBU"];
-};
 
 //adding for reinforcements script
 //hybrid arrays - used in modded missions scripts: side missions, convoys, reinforcements, etc
