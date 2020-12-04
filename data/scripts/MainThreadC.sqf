@@ -5,7 +5,7 @@ _currentprog = 0;
 _EGG_stations = [];
 EB_airload1=-1;
 EB_fieldRepair=-1;
-repairStrength = 25;
+repairStrength = 50;
 
  countPerkLevel = 
  {

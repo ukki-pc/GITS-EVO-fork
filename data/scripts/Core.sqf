@@ -237,6 +237,7 @@ SupList = SupList +[[localize "STR_M04t106",localize "STR_M04t107",20,(EGG_EVO_A
 //support
 	SupList = SupList +[[localize "str_dn_ammocrate","Cost: 5 All the ammo you need",10,5,10,"data\sup01.paa",1]];
 	SupList = SupList +[["Vehicle ammo crate","Cost: 10 All the Vehicle ammo you need",10,10,10,"data\sup01.paa",25]];
+	SupList = SupList +[["Fuel barrels","Cost: 10 All the fuel you need",10,10,10,"data\sup01.paa",26]];
 	SupList = SupList +[[localize "strwfsmokegreen","Cost: 0 Mark a location with white/green smoke",10,0,3,"data\sup01.paa",9]];
 	SupList = SupList +[[localize "str_dn_bike"
 ,"Emergency transport",20,0,10,"data\sup01.paa",19]];

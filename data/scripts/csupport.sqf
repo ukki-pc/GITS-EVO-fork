@@ -264,6 +264,27 @@ ColorYellow		//WMD
 		_tbox setVehicleInit "[this] call BIS_EVO_DropBox";
 		processInitCommands;	
 	};
+		 case 26: // Fuel barrels
+	{
+//BIGPICKLE
+		[-1, {_man = _this select 0; _man say "Resupply";},[player]] call cba_fnc_globalExecute;	
+		_pos = (position _base);
+		_obj_para = "ParachuteMediumEast_EP1" createVehicle [0,0,0];
+		_obj_para setpos [_pos select 0,_pos select 1,(_pos select 2) +100];		
+		_tbox = "Barrels" createVehicle _pos;
+		_tbox attachTo [_obj_para, [0,0,-1.6]];
+		sleep 1.0;
+		WaitUntil{(getpos _tbox select 2) < 0.01};
+		detach _tbox;
+		
+		deletevehicle _tbox;
+		_pos = position _tbox;
+		_tbox = "Barrels" createVehicle _pos;
+		_tbox setpos getpos _tbox;
+		[_tbox] execVM "data\scripts\dropdel.sqf";
+		_tbox setVehicleInit "[this] call BIS_EVO_DropBox";
+		processInitCommands;	
+	};
 
 };
 

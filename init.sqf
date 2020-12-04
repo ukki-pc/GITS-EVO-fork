@@ -111,16 +111,13 @@ BIS_EVO_sobj1=false;
 BIS_EVO_radios = [parso1,somso1,cayso1,dolso1,ortso1,corso1,obrso1,bagso1,eposo1,masso1,pitso1]; // Each radio in each town
 BIS_EVO_MissionTowns = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11"];// Each mission objectives town marker.
 
-
-paska = false;
-
 //adding strings for city names
 //BIS_EVO_Townnames = ["CAINNA WIND","CAMARRA","KINSELLA","DJOLAN","KWAKO","DENDALA DISTRICT","BOLABONGO","ENGOR","CANTO","NUBAK","NUMBO"];// Each mission name used in eventsc, mainthreadc, sorew, briefing, used as _city = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
 
 BIS_EVO_Townnames = ["LARENGA","URSANA","KIRABO","CANTO","ZEELOR","MANGOMAK","ENGOR","BOLABONGO","SWONTO","PINLEY","KINSELLA"];// Each mission name used in eventsc, mainthreadc, sorew, briefing, used as _city = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
 
-BIS_EVO_Infantry = [[58,44],[60,48],[65,50],[68,52],[70,56],[75,60],[77,65],[80,68],[85,70],[88,73],[92,76]];//[Actual number of groups,Base number of groups]
-BIS_EVO_Mechanized = [[19,14],[19,14],[19,14],[19,14],[19,14],[19,14],[19,14],[21,15],[21,17],[23,18],[23,20]];//[Actual number of groups,Base number of groups]
+BIS_EVO_Infantry = [[42,40],[50,48],[65,50],[68,52],[70,56],[75,60],[77,65],[80,68],[85,70],[88,73],[92,76]];//[Actual number of groups,Base number of groups]
+BIS_EVO_Mechanized = [[8,8],[12,10],[16,14],[19,14],[19,14],[19,14],[19,14],[21,15],[21,17],[23,18],[23,20]];//[Actual number of groups,Base number of groups]
 
 BIS_EVO_CivCount = 0; // Number of civilians spawned
 
@@ -718,7 +715,7 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 	["BMP2_TK_EP1",24],						
 	["EB_BMP3_TK",25],						
 	["T34_tk_ep1",30],	
-	["pook_t54_tak",32],
+	["pook_t54_tak",50],
 	["t55_tk_EP1",38],
 	["vil_t62m",40],	
 	["ch_t72_desert",42],
@@ -772,10 +769,10 @@ hikiAirList = ["FRL_Mig23B_TK_MR","FRL_L59_MR","FRL_Su25_TK_CAS","FRL_Su27_TK_CA
 	["ibr_tucano_lin",40],								// F35					
 	["RKTCoalerD",10],								// F35
 	["mig15bis_5_tak",50],								// F35 
-	["PRACS_TK_MiG21",100],								// F35
 	["PRACS_TK_MiG21_AG",110],	
 	["SMAF_MF1_TK_CAS",130],								// F35
 	["PRACS_TK_Su22",150],								// F35
+	["PRACS_TK_MiG21",150],								// F35
 	["PRACS_TK_Su24Fencer",170],	
 	["FRL_L39_CBU",170],								// F35
 	["FRL_L59_MR",170],								// F35
