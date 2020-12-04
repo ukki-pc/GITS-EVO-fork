@@ -234,11 +234,11 @@ BIS_EVO_Repair =
 	_type = typeOf vehicle player;
 //	hintsilent format["Type: %1",(_type)];
 
-	_inrepairzone = ((_vec in list AirportIn) or (_vec in list farp1) or (_vec in list farp2) or (_vec in list farp3) or (_vec in list farp4) or (_vec in list reng1) or (_vec in list reng2) or (_vec in list reng3) or (_vec in list reng4) or (_vec in list dock1) or (_vec in list LHDin));
+	inrepairzone = ((_vec in list AirportIn) or (_vec in list farp1) or (_vec in list farp2) or (_vec in list farp3) or (_vec in list farp4) or (_vec in list reng1) or (_vec in list reng2) or (_vec in list reng3) or (_vec in list reng4) or (_vec in list dock1) or (_vec in list LHDin));
 
 	if(getDammage _vec > 0 or fuel _vec < 0.99 and not (_vec isKindOf "Man")) then
 	{
-		if((_inrepairzone) and (_vec != player) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and (local _vec)) then
+		if((inrepairzone) and (_vec != player) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and (local _vec)) then
 		{
 			 titleText [localize "STR_M04t83", "PLAIN DOWN",0.3];//Servicing
 			 for [{_loop2=0}, {_loop2<1}, {_loop2=_loop2}] do

@@ -830,9 +830,7 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 			case 6:
 			{
 			_vec = vehicle player;
-			_inrepairzone = ((_vec in list AirportIn) or (_vec in list farp1) or (_vec in list farp2) or (_vec in list farp3) or (_vec in list farp4) or (_vec in list reng1) or (_vec in list reng2) or (_vec in list reng3) or (_vec in list reng4) or (_vec in list dock1) or (_vec in list LHDin));
-			//			if((_inrepairzone) and (_vec != player) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and (local _vec)) then
-			if((_inrepairzone) and (_vec != player) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and !(typeof _vec in egg_evo_westAmb)and !(typeof _vec in egg_evo_westMHQ ) or fuel _vec == 0) then
+			if((inrepairzone) and (_vec != player) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and !(typeof _vec in egg_evo_westAmb)and !(typeof _vec in egg_evo_westMHQ ) or fuel _vec == 0) then
 				{
 					[_ap] execVM "data\scripts\storeVeh.sqf";
 					ctrlShow [674,false]; //Storeveh page
@@ -1069,9 +1067,7 @@ if (player hasWeapon "ItemRadio") then
 					};
 
 			if(stored > 0) then
-			{
-			_inrepairzone = ((_ap in list AirportIn) or (_ap in list farp1) or (_ap in list farp2) or (_ap in list farp3) or (_ap in list farp4) or (_ap in list dock1) or (_ap in list LHDin));
-				if  (_inrepairzone and VehiclePlaced == 1 and vehicle _ap  == player) then
+			{				if  (inrepairzone and VehiclePlaced == 1 and vehicle _ap  == player) then
 				{	
 					switch(_buySubPage) do
 							{
@@ -1102,7 +1098,6 @@ if (player hasWeapon "ItemRadio") then
 								};
 							};
 								_place = [_ap, _item] execVM "actions\static\makeVehicle.sqf";
-								//_rec = [_item] execVM "data\scripts\purVeh.sqf";
 								closeDialog 1;
 				};
 
@@ -1114,29 +1109,36 @@ if (player hasWeapon "ItemRadio") then
 			{
 				if ((((score _ap)) >= round mcost*EX_EVO_vehPriceMultiplier) or (editor == 1)) then 
 					{
-							switch(_buySubPage) do
-							{
-								case 1:
-								{
-									buyCarList set [_index,[(buyCarList select _index) select 0,(buyCarList select _index) select 1,1]];
-									publicVariable "buyCarList";
-								};
-								case 2:
-								{
-									buyTankList set [_index,[(buyTankList select _index) select 0,(buyTankList select _index) select 1,1]];
-									publicVariable "buyTankList";	
-								};
-								case 3:
-								{
-									buyAirList set [_index,[(buyAirList select _index) select 0,(buyAirList select _index) select 1,1]];
-									publicVariable "buyAirList";	
-								};
-								case 4:
-								{
-									buyStatList set [_index,[(buyStatList select _index) select 0,(buyStatList select _index) select 1,1]];
-									publicVariable "buyStatList";	
-								};
-							};
+								if(inrepairzone) then 
+									{
+									_place = [_ap, _item] execVM "actions\static\makeVehicle.sqf";
+									closeDialog 1;
+									}
+									else{
+											switch(_buySubPage) do
+											{
+												case 1:
+												{
+													buyCarList set [_index,[(buyCarList select _index) select 0,(buyCarList select _index) select 1,((buyCarList select _index) select 2)+1]];
+													publicVariable "buyCarList";
+												};
+												case 2:
+												{
+													buyTankList set [_index,[(buyTankList select _index) select 0,(buyTankList select _index) select 1,((buyTankList select _index) select 2)+1]];
+													publicVariable "buyTankList";	
+												};
+												case 3:
+												{
+													buyAirList set [_index,[(buyAirList select _index) select 0,(buyAirList select _index) select 1,((buyAirList select _index) select 2)+1]];
+													publicVariable "buyAirList";	
+												};
+												case 4:
+												{
+													buyStatList set [_index,[(buyStatList select _index) select 0,(buyStatList select _index) select 1,((buyStatList select _index) select 2)+1]];
+													publicVariable "buyStatList";	
+												};
+											};
+										};
 								// _pic = "img\support\lock_on_ca.paa";
 								// lbSetPicture [2000, _index, _pic];
 								ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",0]];//Cost
@@ -1144,7 +1146,7 @@ if (player hasWeapon "ItemRadio") then
 								["jed_addscore", [_ap, ( round -(mcost*EX_EVO_vehPriceMultiplier))]] call CBA_fnc_globalEvent;
 								//player addscore round -(mcost*EX_EVO_vehPriceMultiplier);
 								ctrlSetText [2003,Format ["%1: %2",localize "STR_M04t134",(score _ap)]];//Score
-								[] call BIS_EVO_ListUpdate;
+								//[] call BIS_EVO_ListUpdate;
 					}
 					else
 					{

@@ -170,7 +170,7 @@ BIS_EVO_mtar=objNull; 			   // the target that the missile is attacking in AA wa
 BIS_EVO_fmission=false;			   // Limits support to one request at a time.
 BIS_EVO_latk=objNull; 			   // Person attacking a radio tower
 10 setRadioMsg "NULL";
-buyCoolDown = 0;
+inrepairzone=objNull;
 
 BIS_EVO_Objective0 = taskNull; // Idle objective
 BIS_EVO_Objective1 = taskNull; //City 1 to
