@@ -100,7 +100,6 @@ bmark setMarkerSizeLocal [0.5, 0.5];
 
 (FindDisplay 46) DisplaySetEventHandler ["keydown","if ((_this select 1) In actionKeys ""TeamSwitch"") then {closeDialog 0}"];
 
-onMapSingleClick {"btarg" setMarkerPos _pos;bplace=true};
 mrole = "";
 mrank = 0;
 mcost = 0;
@@ -1067,7 +1066,8 @@ if (player hasWeapon "ItemRadio") then
 					};
 
 			if(stored > 0) then
-			{				if  (inrepairzone and VehiclePlaced == 1 and vehicle _ap  == player) then
+			{	
+				if  (inrepairzone and VehiclePlaced == 1 and vehicle _ap  == player) then
 				{	
 					switch(_buySubPage) do
 							{
@@ -1097,11 +1097,34 @@ if (player hasWeapon "ItemRadio") then
 									publicVariable "buySpecialList";	
 								};
 							};
+
+							
 								_place = [_ap, _item] execVM "actions\static\makeVehicle.sqf";
 								closeDialog 1;
 				};
 
 
+			};
+			//Buy static weapons near supply trucks nearSupplyTruck
+			if (nearSupplyTruck && _buySubPage == 4 && !inrepairzone) then 
+			{
+				if ((((score _ap)) >= round mcost*EX_EVO_vehPriceMultiplier) or (editor == 1)) then 
+					{
+	
+									_place = [_ap, _item] execVM "actions\static\makeVehicle.sqf";
+									closeDialog 1;
+
+								// _pic = "img\support\lock_on_ca.paa";
+								// lbSetPicture [2000, _index, _pic];
+								["jed_addscore", [_ap, ( round -(mcost*EX_EVO_vehPriceMultiplier))]] call CBA_fnc_globalEvent;
+
+								//player addscore round -(mcost*EX_EVO_vehPriceMultiplier);
+								//[] call BIS_EVO_ListUpdate;
+					}
+					else
+					{
+						ctrlSetText [2011,format[localize "STR_M04t89",round (mcost*EX_EVO_vehPriceMultiplier), ((score _ap)-mrank)]];//You do not have the required spare points \nRequired: %1 \nCurrent: %2.
+					};
 			};
 
 			//Vehicle is locked
@@ -1134,8 +1157,10 @@ if (player hasWeapon "ItemRadio") then
 												};
 												case 4:
 												{
+													if(!nearSupplyTruck) then {
 													buyStatList set [_index,[(buyStatList select _index) select 0,(buyStatList select _index) select 1,((buyStatList select _index) select 2)+1]];
-													publicVariable "buyStatList";	
+													publicVariable "buyStatList";
+													};
 												};
 											};
 										};
@@ -1146,7 +1171,7 @@ if (player hasWeapon "ItemRadio") then
 								["jed_addscore", [_ap, ( round -(mcost*EX_EVO_vehPriceMultiplier))]] call CBA_fnc_globalEvent;
 								//player addscore round -(mcost*EX_EVO_vehPriceMultiplier);
 								ctrlSetText [2003,Format ["%1: %2",localize "STR_M04t134",(score _ap)]];//Score
-								//[] call BIS_EVO_ListUpdate;
+								[] call BIS_EVO_ListUpdate;
 					}
 					else
 					{

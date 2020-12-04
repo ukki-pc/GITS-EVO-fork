@@ -171,6 +171,7 @@ BIS_EVO_fmission=false;			   // Limits support to one request at a time.
 BIS_EVO_latk=objNull; 			   // Person attacking a radio tower
 10 setRadioMsg "NULL";
 inrepairzone=objNull;
+nearSupplyTruck=false;
 
 BIS_EVO_Objective0 = taskNull; // Idle objective
 BIS_EVO_Objective1 = taskNull; //City 1 to
@@ -221,7 +222,7 @@ BIS_EVO_IdelSVEC =
 EGG_problemcraft =  ["PRACS_TK_Su22","PRACS_TK_Su22_BMB","PRACS_TK_Su22_MSL","PRACS_TK_Su22_IND","PRACS_T K_Su22_STA","PRACS_TK_Su24Fencer","PRACS_TK_Su24Fencer_GBU","PRACS_TK_Su24Fencer_STK","PRACS_TK_MiG21"];
 
 EGG_EVO_repairtruck = ["MtvrRepair_DES_EP1","MtvrRepair","PRACS_M250_Repair","UralRepair_CDF","UralRepair_TK_EP1","UralRepair_INS","KamazRepair","T810Repair_ACR","t810_repair","pook_HEMTT_repair","pook_HEMTT_repair_US","pook_HEMTT_repair_CDF","pook_HEMTT_repair_CDF_IND"];
-
+EGG_EVO_cargoTruck = ["V3S_TK_EP1"];
 EGG_EVO_sniperhide = ["Land_sniper_hide_w_nato","Land_sniper_hide_d_nato","Land_sniper_hide_w_east","Land_sniper_hide_d_east"];
 
 

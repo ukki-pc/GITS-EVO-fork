@@ -952,7 +952,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=154;
+		items=155;
 		class Item0
 		{
 			position[]={9661.3125,139.98311,10084.463};
@@ -2393,7 +2393,7 @@ class Mission
 		};
 		class Item146
 		{
-			position[]={9484.5029,139.98311,10057.658};
+			position[]={9484.2432,139.98311,10057.918};
 			azimut=88.166084;
 			id=206;
 			side="EMPTY";
@@ -2472,6 +2472,14 @@ class Mission
 			lock="UNLOCKED";
 			skill=0.60000002;
 			init="this allowDamage false";
+		};
+		class Item154
+		{
+			position[]={9461.4668,139.98311,10119.73};
+			id=214;
+			side="EMPTY";
+			vehicle="V3S_TK_EP1";
+			skill=0.60000002;
 		};
 	};
 	class Markers
