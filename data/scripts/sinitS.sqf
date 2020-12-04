@@ -1,3 +1,4 @@
+/*
 //Selects random vehicles
 for [{_loop=0}, {_loop<4}, {_loop=_loop+1}] do {
 
@@ -25,6 +26,11 @@ publicVariable "buyAirList";
 		buyStatList set [_randomIndex,[(buyStatList select _randomIndex) select 0, (buyStatList select _randomIndex) select 1,((buyStatList select _randomIndex) select 2)+1]];
 	};
 	publicVariable "buyStatList";
+
+*/
+
+
+
 // Main vehicle init
 sleep 2.0;
 {

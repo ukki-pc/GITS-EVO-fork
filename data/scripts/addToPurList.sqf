@@ -6,6 +6,7 @@ _vec = typeof _veh;
 _displayName = getText(configFile >> "CfgVehicles" >> _vec >> "displayName");
 
 	sleep 900.0;
+
 	for [{_loop=0}, {_loop < (count buyAirList)}, {_loop=_loop+1}] do 
 	{
 		_checkVeh =  ((buyAirList select _loop) select 0);	
@@ -14,7 +15,7 @@ _displayName = getText(configFile >> "CfgVehicles" >> _vec >> "displayName");
 			systemChat format ["%1 is now ready in vehicle pool!",_displayName];
 			buyAirList set [_loop,[(buyAirList select _loop) select 0,(buyAirList select _loop) select 1,((buyAirList select _loop) select 2)+1]];
 			publicVariable "buyAirList";
-			deletevehicle _vec;
+			deletevehicle _veh;
 		};	
 		sleep BIS_EVO_GlobalSleep;
 	};

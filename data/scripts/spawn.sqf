@@ -67,6 +67,9 @@ Sleep 0.2;
 
 //Initial player skills
 if (_playertype in EGG_EVO_PlayerOff) then {allowRhq = true;};
+//Maybe
+if (allowRhq) then {_actionId8 = player addAction ["GPS/INS Menu", "actions\GPSINS.sqf",[],0, false, true,"test2"]};
+
 
 
 

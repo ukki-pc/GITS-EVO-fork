@@ -14,6 +14,7 @@ BIS_EVO_VecR =
 	_vcl2=objNull;
 	_markerobj = "";
 	_rtime = 0;
+
 	_vecinit = 
 	{
 		_getin = _vcl addEventHandler ["GetIn", {handle = [(_this select 0),(_this select 1)] execVM call BIS_EVO_Boarding}];
@@ -83,7 +84,9 @@ BIS_EVO_VecR =
 			_markerobj = "nomarker";
 		};
 	};
+
 	[] call _vecinit;
+	/*
 	for [{_Rloop=0}, {_Rloop<1}, {_Rloop=_Rloop}] do
 	{
 		if (alive _vcl) then
@@ -133,4 +136,5 @@ BIS_EVO_VecR =
 		};
 		Sleep 1.0;
 	};		
+	*/
 };

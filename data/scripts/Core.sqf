@@ -832,7 +832,7 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 			_vec = vehicle player;
 			_inrepairzone = ((_vec in list AirportIn) or (_vec in list farp1) or (_vec in list farp2) or (_vec in list farp3) or (_vec in list farp4) or (_vec in list reng1) or (_vec in list reng2) or (_vec in list reng3) or (_vec in list reng4) or (_vec in list dock1) or (_vec in list LHDin));
 			//			if((_inrepairzone) and (_vec != player) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and (local _vec)) then
-			if((_inrepairzone) and (_vec != player) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and (typeof _vec != egg_evo_westAmb select 0)and (typeof _vec != egg_evo_westMHQ select 0)) then
+			if((_inrepairzone) and (_vec != player) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and !(typeof _vec in egg_evo_westAmb)and !(typeof _vec in egg_evo_westMHQ ) or fuel _vec == 0) then
 				{
 					[_ap] execVM "data\scripts\storeVeh.sqf";
 					ctrlShow [674,false]; //Storeveh page

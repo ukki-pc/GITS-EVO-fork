@@ -62,15 +62,8 @@ if (!isServer) exitWith {};
 _unit = _this select 0;
 _delay = if (count _this > 1) then {_this select 1} else {30};
 
-if (_delay == 1) then {_delay = vspawnair};
-if (_delay == 2) then {_delay = vspawntnk};
-if (_delay == 3) then {_delay = vspawnab};
-
 _deserted = if (count _this > 2) then {_this select 2} else {120};
 
-if (_deserted == 1) then {_deserted = vspawnair};
-if (_deserted == 2) then {_deserted = vspawntnk};
-if (_deserted == 3) then {_deserted = vspawnab};
 
 _respawns = if (count _this > 3) then {_this select 3} else {0};
 _explode = if (count _this > 4) then {_this select 4} else {false};
@@ -185,7 +178,6 @@ _vecmarkerb =
 
 
 // Start monitoring the vehicle
-
 while {_run} do 
 {	
 	sleep (2 + random 10);

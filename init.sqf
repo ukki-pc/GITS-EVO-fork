@@ -194,7 +194,7 @@ BIS_EVO_Lock =
 };
 
 //High priority functions
-_rng = [] execVM "data\scripts\weightedRandom.sqf";
+//_rng = [] execVM "data\scripts\weightedRandom.sqf";
 
 
 // Detects empty enemy vehicles and deletes them.

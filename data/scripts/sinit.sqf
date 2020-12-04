@@ -19,7 +19,8 @@ _events = [] execVM "data\scripts\EVO_MissionManager.sqf";
 
 //_reinf = [] execVM "data\scripts\reinforce.sqf";
 
-_handle = [] execVM "data\scripts\makespetz.sqf";
+//_handle = [] execVM "data\scripts\makespetz.sqf"; DELETED FR NOW
+
  _handle = [] execVM "data\scripts\makesuB.sqf";
  _handle = [] execVM "data\scripts\makehindv.sqf";
  _handle = [] execVM "data\scripts\makesu.sqf";

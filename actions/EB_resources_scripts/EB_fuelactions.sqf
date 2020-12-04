@@ -120,7 +120,7 @@ while {EB_player_refuelAction >= 0} do	{
 	EB_player_refuelAction = EB_player_refuelAction - 1;
 };
 	};
-sleep 1;
+sleep 5;
 };
 
 
