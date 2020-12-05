@@ -205,7 +205,7 @@ EGG_EVO_stationRepair =
 	_type = typeOf vehicle player;
 	_EGG_stations = [];
 	_EGG_stations = nearestObjects [player, ["Land_A_FuelStation_Shed","Land_repair_center","FuelStation","FuelStation_army","Land_Mil_Repair_center_EP1","Land_A_FuelStation_Build","Land_A_FuelStation_Feed","Land_Ind_FuelStation_Feed_EP1","Land_Ind_FuelStation_Build_EP1","Land_Ind_FuelStation_Shed_EP1","Land_Ind_Garage01_EP1","Land_benzina_schnell","Land_fuelstation","Land_fuelstation_army"], 30];
-	_EGG_cargoTrucks = nearestObjects [player,EGG_EVO_cargoTruck, 10];
+	_EGG_cargoTrucks = nearestObjects [player,EGG_EVO_cargoTruck, 4];
 
 	if(count _EGG_cargoTrucks >0) then {
 		nearSupplyTruck = true;

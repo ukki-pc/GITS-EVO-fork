@@ -17,8 +17,6 @@ _run = true;
 
 waitUntil {sleep 5;alive amb};
 
-hint "amb live";
-
 while {_run} do
 {
 	sleep 0.001;

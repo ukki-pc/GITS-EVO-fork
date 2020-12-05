@@ -59,7 +59,7 @@ skillfactor = ((1 + random 2)/10);
 Spymade = 0;
 EGG_hidetotal = 6;
 
-editor = 0; publicVariable "editor";
+editor = 1; publicVariable "editor";
 
 if (editor == 0) then {
 spawntype = param1;
@@ -737,7 +737,7 @@ allowRHQ = false;
 //EDITOR use
 //if playing in editor rem out the next line with a // and manually set param below instead
 
-if (editor == 1) then
+if (editor == 0) then
 {
 	onMapSingleClick "if (_alt) then {vehicle player setpos _pos;{vehicle _x setpos _pos} forEach _units}";
 	player allowDamage false;

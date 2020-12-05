@@ -36,6 +36,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 		_ship = _array select 1;
 
 	_sumark = [_ship] execVM "data\scripts\shimarker.sqf";
+	_ship lock true;
 
 	// (units _pilot select 0) moveInDriver _ship;
 	// (units _pilot select 1) moveInTurret[_ship,[0]];
@@ -86,7 +87,7 @@ _seaPos = [(getMarkerpos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress)se
 	if (alive (units _pilot select 7)) then {(units _pilot select 7) setdammage 1};
 
 */
-	waitUntil { sleep 15; ( (not(alive _ship)) or ( (isNull (driver _ship))) ) };
+	waitUntil { sleep 15; ( (not(alive _ship)) or ( (isNull (driver _ship)) && (isNull (gunner _ship))) ) };
 	sleep 1.0;
 	if (alive _ship) then {_ship setdammage 1};
 	{if (alive _x) then {_x setdammage 1}} forEach (units _crew);

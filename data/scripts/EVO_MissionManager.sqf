@@ -41,7 +41,7 @@ while {BIS_EVO_MissionProgress < _count} do
 				{
 					if("Car" countType list BIS_EVO_DetectEast == 0) then
 					{
-						if ("Land" countType list BIS_EVO_DetectWest > 0) then{_loop=1};
+						if ("Land" countType list BIS_EVO_DetectWest > 0 or "Man" countType list BIS_EVO_DetectWest > 0 ) then{_loop=1};
 					};
 				};
 			};
@@ -50,6 +50,8 @@ while {BIS_EVO_MissionProgress < _count} do
 	};
 	//{_handle = [_x] execVM "data\scripts\makepow.sqf"} forEach list BIS_EVO_DetectEast; //REMOVED
 	{if(!isPlayer _x && side _x != "EAST") then {  _x setDammage 1       } } forEach list BIS_EVO_DetectEast;
+	sleep 2;
+	{if(!alive _x) then {     hideBody _x;   } } forEach list BIS_EVO_DetectEast;
 	{_x addscore 10} forEach list BIS_EVO_DetectWest;
 	BIS_EVO_MissionProgress = BIS_EVO_MissionProgress+1;
 	publicVariable "BIS_EVO_MissionProgress";

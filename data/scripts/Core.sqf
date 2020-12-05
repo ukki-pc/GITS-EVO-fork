@@ -850,7 +850,8 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 		if((_buySubPage == 7) && (_recpage)) then {
 			loadrec=[] execVM "data\scripts\loadoutrecorder.sqf";
 			hint "Weapons Saved!";
-			_buySubPage = 0;
+			Mpage =[true,false,false,false,false,false,0,false,false];
+			closeDialog 1;
 		};
 };	
 //Endlsts
@@ -1076,7 +1077,7 @@ if (player hasWeapon "ItemRadio") then
 
 			if(stored > 0) then
 			{	
-				if  (inrepairzone and VehiclePlaced == 1 and vehicle _ap  == player) then
+				if  (inrepairzone and VehiclePlaced == 1 and vehicle _ap == player) then
 				{	
 					switch(_buySubPage) do
 							{
@@ -1112,30 +1113,17 @@ if (player hasWeapon "ItemRadio") then
 								closeDialog 1;
 				};
 
-
+				//Buy static weapons near supply trucks nearSupplyTruck
+				if (nearSupplyTruck && _buySubPage == 4 && !inrepairzone) then 
+				{
+					buyStatList set [_index,[(buyStatList select _index) select 0,(buyStatList select _index) select 1,((buyStatList select _index) select 2)-1]];
+					_place = [_ap, _item] execVM "actions\static\makeVehicle.sqf";
+					["jed_addscore", [_ap, ( round -(mcost*EX_EVO_vehPriceMultiplier))]] call CBA_fnc_globalEvent;
+					pointsSpent = pointsSpent +  round (mcost*EX_EVO_vehPriceMultiplier);
+					closeDialog 1;
+				};
 			};
-			//Buy static weapons near supply trucks nearSupplyTruck
-			if (nearSupplyTruck && _buySubPage == 4 && !inrepairzone) then 
-			{
-				if ((((score _ap)) >= round mcost*EX_EVO_vehPriceMultiplier) or (editor == 1)) then 
-					{
-	
-									_place = [_ap, _item] execVM "actions\static\makeVehicle.sqf";
-									closeDialog 1;
 
-								// _pic = "img\support\lock_on_ca.paa";
-								// lbSetPicture [2000, _index, _pic];
-								["jed_addscore", [_ap, ( round -(mcost*EX_EVO_vehPriceMultiplier))]] call CBA_fnc_globalEvent;
-								pointsSpent = pointsSpent +  round (mcost*EX_EVO_vehPriceMultiplier);
-
-								//player addscore round -(mcost*EX_EVO_vehPriceMultiplier);
-								//[] call BIS_EVO_ListUpdate;
-					}
-					else
-					{
-						ctrlSetText [2011,format[localize "STR_M04t89",round (mcost*EX_EVO_vehPriceMultiplier), ((score _ap)-mrank)]];//You do not have the required spare points \nRequired: %1 \nCurrent: %2.
-					};
-			};
 
 			//Vehicle is locked
 			if (stored == 0) then 
@@ -1145,7 +1133,6 @@ if (player hasWeapon "ItemRadio") then
 								if(inrepairzone) then 
 									{
 									_place = [_ap, _item] execVM "actions\static\makeVehicle.sqf";
-									closeDialog 1;
 									}
 									else{
 											switch(_buySubPage) do
@@ -1170,10 +1157,14 @@ if (player hasWeapon "ItemRadio") then
 													if(!nearSupplyTruck) then {
 													buyStatList set [_index,[(buyStatList select _index) select 0,(buyStatList select _index) select 1,((buyStatList select _index) select 2)+1]];
 													publicVariable "buyStatList";
+													}
+													else{
+													_place = [_ap, _item] execVM "actions\static\makeVehicle.sqf";
 													};
 												};
 											};
 										};
+	
 								// _pic = "img\support\lock_on_ca.paa";
 								// lbSetPicture [2000, _index, _pic];
 								ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",0]];//Cost
@@ -1183,6 +1174,7 @@ if (player hasWeapon "ItemRadio") then
 								//player addscore round -(mcost*EX_EVO_vehPriceMultiplier);
 								ctrlSetText [2003,Format ["%1: %2",localize "STR_M04t134",(score _ap)]];//Score
 								[] call BIS_EVO_ListUpdate;
+								closeDialog 1;
 					}
 					else
 					{
