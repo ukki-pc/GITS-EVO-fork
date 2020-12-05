@@ -1,5 +1,6 @@
 BIS_EVO_Erec =
 {
+	defenceReady = false;
 	_placetag = _this select 0;
 	_list = _this select 1;
 	_disable = _this select 2;
@@ -261,7 +262,7 @@ while {_ied > 0} do
 		Sleep 1;
 	};
 */
-
+defenceReady = true;
 //adding reinforcements loop here
 	for [{_rloop=0}, {_rloop<1}, {_rloop=_rloop}] do
 	{

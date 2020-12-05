@@ -59,7 +59,7 @@ skillfactor = ((1 + random 2)/10);
 Spymade = 0;
 EGG_hidetotal = 6;
 
-editor = 0; publicVariable "editor";
+editor = 1; publicVariable "editor";
 
 if (editor == 0) then {
 spawntype = param1;
@@ -191,7 +191,7 @@ BIS_EVO_Objective9 = taskNull;
 BIS_EVO_Objective10 = taskNull;
 BIS_EVO_Objective11 = taskNull; // City 11
 BIS_EVO_Objective12 = taskNull; // 
-
+defenceReady = false;
 // Common function to lock vehicles.
 BIS_EVO_Lock =
 {

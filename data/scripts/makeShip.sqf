@@ -7,7 +7,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	//diffparam = difficulty values {60,45,30,15} {"Minimum", "Normal", "Hard", "Extreme"}
 	//_rv=BIS_EVO_airspawnfreqc;
 //	_rf = 0.5*((_rv*10)+(4*(600/diffparam))+random 150); // varies from 1950 jets in easy to 750 hinds in extreme
-	waitUntil{sleep 30; BIS_EVO_MissionProgress == 0 or BIS_EVO_MissionProgress == 1 or BIS_EVO_MissionProgress == 2 or BIS_EVO_MissionProgress == 4 or BIS_EVO_MissionProgress == 6 or BIS_EVO_MissionProgress == 10};
+	waitUntil{sleep 30; defenceReady and (BIS_EVO_MissionProgress == 0 or BIS_EVO_MissionProgress == 1 or BIS_EVO_MissionProgress == 2 or BIS_EVO_MissionProgress == 4 or BIS_EVO_MissionProgress == 6 or BIS_EVO_MissionProgress == 10)};
 	_rf = 1800 + (random 1800); //30min base + 30min random
 	//sleep _rf;
 	_startsf = ["EnemyAir01","EnemyAir02","EnemyAir03","EnemyAir04","EnemyAir05","EnemyAir06","EnemyAir07","EnemyAir08"];
@@ -38,18 +38,29 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	_sumark = [_ship] execVM "data\scripts\shimarker.sqf";
 	_ship lock true;
 
+
+	_unit = _crew createUnit [(_allunits select round random (_max - 1)), _kpos, [], 30, "NONE"];
+	Sleep 0.3;
+	_unit = _crew createUnit [(_allunits select round random (_max - 1)), _kpos, [], 30, "NONE"];
+	Sleep 0.3;	
+		_unit = _crew createUnit [(_allunits select round random (_max - 1)), _kpos, [], 30, "NONE"];
+	Sleep 0.3;	
+	//_unit = _crew createUnit [(_allunits select round random (_max - 1)), _kpos, [], 30, "NONE"];
 	// (units _pilot select 0) moveInDriver _ship;
 	// (units _pilot select 1) moveInTurret[_ship,[0]];
-	// (units _pilot select 2) moveInTurret[_ship,[1]];
-	// (units _pilot select 3) moveInTurret[_ship,[2]];
+	 (units _crew select 2) moveInTurret[_ship,[1]];
+	 sleep 0.3;
+	   (units _crew select 3) moveInTurret[_ship,[2]];
+	   sleep 0.3;
+	    (units _crew select 4) moveInTurret[_ship,[3]];
 	//_ship engineon true;
-
 	//_handle = [_pilot] execVM "data\scripts\flightpath.sqf";
-	{_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}]} forEach (units _crew);
+	{_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"; sleep 0.3}]} forEach (units _crew);
 
 	_ship addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
 	_spawne = [_ship] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 	_isWater= surfaceIsWater [(getMarkerpos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress)select 0) + random(1000)-random(1000),(getMarkerpos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress)select 1)+ random(1000)-random(1000)];
+	sleep 1;
 
 //DEBUG MARKER
 /*
@@ -68,7 +79,6 @@ _seaPos = [(getMarkerpos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress)se
 		_isWater= surfaceIsWater _seaPos;
 		sleep 1;
 	};
-	
 	_handle = _crew addWaypoint [_seaPos, 0];//current town
 	[_crew, 0] setWaypointType "MOVE";
 /*
