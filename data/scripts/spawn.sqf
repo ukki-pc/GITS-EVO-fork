@@ -97,7 +97,9 @@ if ((_playertype in EGG_EVO_PlayerPilot) and (perkparam == 1) and (gitsnades == 
 //_gpsd = createDialog 'glt_airgpsmfd';
 
 //if ((_playertype in EGG_EVO_spytype) and (perkparam == 1) and (gitsnades == 1)) then {_monitor = [] execVM "Actions\EB_resources_scripts\killinit.sqf"};
-if ((perkparam == 1) and (gitsnades == 1)) then {_monitor = [] execVM "Actions\EB_resources_scripts\killinit.sqf"};
+
+//CLUB KNIFE BAYONET
+//if ((perkparam == 1) and (gitsnades == 1)) then {_monitor = [] execVM "Actions\EB_resources_scripts\killinit.sqf"};
 
 //fix for HALO bug
 _playerh = (getpos player) select 2;

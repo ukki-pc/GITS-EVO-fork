@@ -29,6 +29,7 @@ uiNamespace setVariable ["vehUpgMis1", (uiNamespace getVariable "displayVendor")
 uiNamespace setVariable ["vehLoadout", (uiNamespace getVariable "displayVendor") displayCtrl 673];
 uiNamespace setVariable ["storeVeh", (uiNamespace getVariable "displayVendor") displayCtrl 674];
 uiNamespace setVariable ["saveLoadout", (uiNamespace getVariable "displayVendor") displayCtrl 675];
+uiNamespace setVariable ["unflipVeh", (uiNamespace getVariable "displayVendor") displayCtrl 676];
 uiNamespace setVariable ["ctrlVis", (uiNamespace getVariable "displayVendor") displayCtrl 6057];
 uiNamespace setVariable ["ctrlAirvis", (uiNamespace getVariable "displayVendor") displayCtrl 6058];
 uiNamespace setVariable ["ctrlTervis", (uiNamespace getVariable "displayVendor") displayCtrl 6059];
@@ -79,8 +80,9 @@ ctrlShow [668,false];
 ctrlShow [671,false]; //Turret page
 ctrlShow [672,false]; //Weapon page
 ctrlShow [673,false]; //Loadout page
-ctrlShow [674,false]; //Storeveh page
+ctrlShow [674,false]; //Storeveh btn
 ctrlShow [675,true]; //Loadout btn
+ctrlShow [676,false]; //Unflip btn
 
 if ((vehicle player isKindOf  "Air" ) ) then
 {
@@ -471,6 +473,7 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 		ctrlShow [672,false]; //Missile page
 		ctrlShow [673,false]; //Loadout page
 		ctrlShow [674,false]; //Storeveh page
+		ctrlShow [676,false]; //Unflip btn
 		
 		_i = 0;
 		lbClear 2000;
@@ -743,6 +746,9 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 
 		if(vehicle player != player) then {
 			ctrlShow [674,true]; //Storeveh page
+		}
+		else{
+			ctrlShow [676,true]; //Unflip btn
 		};
 //
 
@@ -840,6 +846,16 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 				else
 				{
 					hint "Cannot do while moving or not in base";
+				};
+				Mpage =[false,false,false,false,false,true,1,false,false];
+			};
+			case 8:
+			{
+			_vec = vehicle player;
+			if(_vec == player) then
+				{
+					[_ap] execVM "data\scripts\unflip.sqf";
+					closeDialog 1;
 				};
 				Mpage =[false,false,false,false,false,true,1,false,false];
 			};
