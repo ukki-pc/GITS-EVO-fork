@@ -15,6 +15,10 @@ _run = true;
 "ambmarker" setMarkerColorLocal "ColorRed";
 "ambmarker" setMarkerTextLocal "Recon HQ";
 
+waitUntil {sleep 5;alive amb};
+
+hint "amb live";
+
 while {_run} do
 {
 	sleep 0.001;
@@ -22,13 +26,13 @@ while {_run} do
 	{
 		"ambmarker" setMarkerTypeLocal "Empty"; 
 		"ambmarker" setMarkerColorLocal "ColorBlack";
-		waitUntil {alive amb};
+		waitUntil {sleep 5;alive amb};
 	};
 
 	"ambmarker" setMarkerTypeLocal "hd_destroy";
 	"ambmarker" setMarkerColorLocal "ColorBlue";
 
-	waitUntil {alive amb};
+	waitUntil {sleep 5;alive amb};
 	"ambmarker" setMarkerPosLocal [getpos amb select 0,getpos amb select 1];
 	sleep 1.0;
 };

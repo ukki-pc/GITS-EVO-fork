@@ -282,9 +282,12 @@ if (_asspage) then {
 if (_grppage) then {
 
 	_i = 0;
-	_Plist = list BIS_EVO_ALLWEST;
+	//_Plist = list BIS_EVO_ALLWEST;
 //blazes
 	lbClear 2000;
+	_Plist = [];
+	{if(isPlayer _x) then {_Plist set [count _Plist, _x];}}forEach allUnits;
+	sleep BIS_EVO_GlobalSleep;
 	while {_i < count _Plist} do {
 		_unit = (_Plist select _i);
 		_name = name _unit;
@@ -328,6 +331,7 @@ if (_grppage) then {
 		_i = _i + 1;
 	};
 };
+
 
 if (_optpage) then {
 

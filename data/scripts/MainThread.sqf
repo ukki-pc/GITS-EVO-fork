@@ -31,13 +31,14 @@ _EVO_Weath =
 
 BIS_EVO_listplayers = 
 {
-	_list = list BIS_EVO_ALLWEST;
+	//_list = list BIS_EVO_ALLWEST;
 	BIS_EVO_Playerlist = [];
+	{if(isPlayer _x) then {BIS_EVO_Playerlist set [count BIS_EVO_Playerlist, _x];}}forEach allUnits;
 	_i=0;
-	while {_i < (count _list)} do 
+	while {_i < (count BIS_EVO_Playerlist)} do 
 	{
 	
-		_unit = _list select _i;
+		_unit = BIS_EVO_Playerlist select _i;
 		if(not (_unit isKindOf "Man")) then
 		{		
 			{BIS_EVO_Playerlist = BIS_EVO_Playerlist + [_x]} forEach crew _unit;

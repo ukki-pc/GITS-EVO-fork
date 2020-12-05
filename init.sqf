@@ -59,6 +59,9 @@ skillfactor = ((1 + random 2)/10);
 Spymade = 0;
 EGG_hidetotal = 6;
 
+editor = 1; publicVariable "editor";
+
+if (editor == 0) then {
 spawntype = param1;
 helicopterhitch = param2;
 EVOhour = paramsArray select 2;
@@ -88,6 +91,8 @@ EGG_vecmods = paramsArray select 18;
 EGG_unitwest = paramsArray select 19;
 EX_EVO_vehPriceMultiplier = paramsArray select 20;
 EVO_incomeFrequency = paramsArray select 21;
+
+
 //Respawn settings
 publicVariable "spawntype"; 
 if (spawntype == 0 or spawntype == 1) then {server execVM "revive_init.sqf"};
@@ -102,7 +107,7 @@ BIS_EVO_rank3 = (rankscore * 3);
 BIS_EVO_rank4 = (rankscore * 4);
 BIS_EVO_rank5 = (rankscore * 5);
 BIS_EVO_rank6 = (rankscore * 6);
-
+};
 BIS_EVO_GlobalSleep = 0.1; // Global sleep is used after spawning a unit.
 // Sub mission conditions
 BIS_EVO_MissionProgress = 0; // counts towns captured, when it hits 11 , mission is over.
@@ -731,7 +736,6 @@ allowRHQ = false;
 //////////////////////////////////
 //EDITOR use
 //if playing in editor rem out the next line with a // and manually set param below instead
-editor = 0; publicVariable "editor";
 
 if (editor == 1) then
 {
@@ -914,6 +918,10 @@ EGG_EVO_east5 = ["TK_Aziz_EP1","TK_Special_Forces_MG_EP1","TK_Special_Forces_EP1
 //choppers
 EGG_EVO_eastheli1 = ["PRACS_puma330_MG","PRACS_AH6J","CH_47F_EP1","UH60M_EP1","PRACS_AB212_CAS","ibr_as350_armed","Mi171Sh_rockets_CZ_EP1","AW159_Lynx_BAF","PRACS_RAH6","PRACS_AH1S","AH1Z","AH64D"];//makehip
 
+
+//makeship
+EGG_EVO_eastShips = ["PRACS_PatrolBoat"]; //,"GNTOHP","GNTLaFayette","pook_Fregata_CDF" "PRACS_RHIB2", ,"PRACS_RB90"
+
 //makehindp
 EGG_EVO_eastheli2 = ["PRACS_RAH6","PRACS_AB212_cas","FRL_AH6M_TOW_D","FRL_Lynx_MR","PRACS_AH1S","AH1Z","AH64D"];
 //makeka
@@ -934,9 +942,9 @@ EGG_EVO_mevaira = EGG_EVO_eastheli1+EGG_EVO_eastheli2+EGG_EVO_eastheli3;//hindv
 
 	EGG_EVO_eastveh5 = ["PRACS_TK_LandRover","PRACS_TK_MTLB_APC","PRACS_TK_MTLB","PRACS_TK_Type63","PRACS_TK_Ural","TT650_TK_EP1","BTR40_TK_INS_EP1","SUV_TK_EP1","UAZ_Unarmed_TK_EP1","V3S_TK_EP1","V3S_Open_TK_EP1","Old_bike_TK_INS_EP1","M113Ambul_TK_EP1","UralSupply_TK_EP1","UralSalvage_TK_EP1","UralReammo_TK_EP1","UralRefuel_TK_EP1","UralRepair_TK_EP1","UAZ_INS","UralOpen_INS","EB_GAZ_Vodnik_MedEvac_TK","AFR_Pinz","Ural_MOL"];
 //light vec
-	EGG_EVO_eastveh6 = EGG_EVO_eastveh6+ ["PRACS_TK_MTLB_APC","PRACS_TK_URAL_SAM","BMP2_MOL","ibr_datsun_mol","ibr_datsun_molblk","pook_BTR40_twinMG_TAK","pook_BTR40_twinMG_TK_INS","pook_BTR40_patrol_TAK","pook_BTR40_patrol_TK_INS","pook_BTR40_PK_TAK","pook_BTR40_PK_TK_INS","pook_BTR40_RR57_TAK","pook_BTR40_RR57_TK_INS","pook_BTR40_RR73_TAK","pook_BTR40_RR73_TK_INS","pook_BTR40_RR106_TAK","pook_BTR40_RR106_TK_INS","pook_BTR40_MORTAR_TAK","pook_BTR40_MORTAR_TK_INS","pook_BTR40_zu23_TAK","pook_BTR40_zu23_TK_INS","pook_BTR152_DSHK_TAK","pook_BTR152_DSHK_TK_INS","pook_BTR152_ZPU_TAK","pook_BTR152_ZPU_TK_INS","pook_Ural_ZU23_TK_INS","pook_Ural_S60_TAK","pook_Ural_S60_TK_INS","BTR40_MG_TK_INS_EP1","LandRover_MG_TK_EP1","LandRover_SPG9_TK_EP1","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1","UAZ_AGS30_TK_EP1","UAZ_MG_TK_EP1","UAZ_SPG9_INS","GRAD_TK_EP1","Ural_ZU23_TK_EP1","BRDM2_TK_EP1","BRDM2_ATGM_TK_EP1","BTR60_TK_EP1","M113_TK_EP1","BMP2_HQ_TK_EP1","EB_GAZ_Vodnik_HMG_TK","EB_GAZ_Vodnik_TK","BTR90_HQ","pook_brdm2AGS_TKINS","pook_brdm2AA_TKINS","pook_brdm2RKT_TKINS","pook_brdm2PKM_TAK","pook_brdm2HQcomm_TAK","pook_brdm2HQ_TKINS","pook_brdm2DSHK_TAK","pook_brdm2AT5_TAK","pook_brdm2AT3c_TKINS","pook_brdm2AT3_TKINS","pook_brdm2AT2_TKINS","pook_brdm2M_TAK","pook_brdm2_TAK","pook_brdm2_sa9_TAK"];
+	EGG_EVO_eastveh6 = ["PRACS_TK_MTLB_APC","PRACS_TK_URAL_SAM","BMP2_MOL","ibr_datsun_mol","ibr_datsun_molblk","pook_BTR40_twinMG_TAK","pook_BTR40_twinMG_TK_INS","pook_BTR40_patrol_TAK","pook_BTR40_patrol_TK_INS","pook_BTR40_PK_TAK","pook_BTR40_PK_TK_INS","pook_BTR40_RR57_TAK","pook_BTR40_RR57_TK_INS","pook_BTR40_RR73_TAK","pook_BTR40_RR73_TK_INS","pook_BTR40_RR106_TAK","pook_BTR40_RR106_TK_INS","pook_BTR40_MORTAR_TAK","pook_BTR40_MORTAR_TK_INS","pook_BTR40_zu23_TAK","pook_BTR40_zu23_TK_INS","pook_BTR152_DSHK_TAK","pook_BTR152_DSHK_TK_INS","pook_BTR152_ZPU_TAK","pook_BTR152_ZPU_TK_INS","pook_Ural_ZU23_TK_INS","pook_Ural_S60_TAK","pook_Ural_S60_TK_INS","BTR40_MG_TK_INS_EP1","LandRover_MG_TK_EP1","LandRover_SPG9_TK_EP1","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1","UAZ_AGS30_TK_EP1","UAZ_MG_TK_EP1","UAZ_SPG9_INS","GRAD_TK_EP1","Ural_ZU23_TK_EP1","BRDM2_TK_EP1","BRDM2_ATGM_TK_EP1","BTR60_TK_EP1","M113_TK_EP1","BMP2_HQ_TK_EP1","EB_GAZ_Vodnik_HMG_TK","EB_GAZ_Vodnik_TK","BTR90_HQ","pook_brdm2AGS_TKINS","pook_brdm2AA_TKINS","pook_brdm2RKT_TKINS","pook_brdm2PKM_TAK","pook_brdm2HQcomm_TAK","pook_brdm2HQ_TKINS","pook_brdm2DSHK_TAK","pook_brdm2AT5_TAK","pook_brdm2AT3c_TKINS","pook_brdm2AT3_TKINS","pook_brdm2AT2_TKINS","pook_brdm2M_TAK","pook_brdm2_TAK","pook_brdm2_sa9_TAK"];
 //tanks
-	EGG_EVO_eastveh7 = EGG_EVO_eastveh7 + ["PRACS_TK_T80B","PRACS_2s1_TK","PRACS_Sa6_TK","PRACS_TK_SA8","PRACS_TK_SA13","PRACS_TK_BMP1","pook_ZSU_TAK","pook_ZSU57_TAK","BMP2_MOL","T72_MOL","ibr_T55","T34_TK_EP1","pook_T3485_TK_INS","pook_OT3485_TAK","pook_OT3485_TK_INS","T55_TK_EP1","pook_T55_TK_INS","pook_T54_TAK","pook_T54_TK_INS","pook_TO55_TAK","pook_TO55_TK_INS"];
+	EGG_EVO_eastveh7 =  ["PRACS_TK_T80B","PRACS_2s1_TK","PRACS_Sa6_TK","PRACS_TK_SA8","PRACS_TK_SA13","PRACS_TK_BMP1","pook_ZSU_TAK","pook_ZSU57_TAK","BMP2_MOL","T72_MOL","ibr_T55","T34_TK_EP1","pook_T3485_TK_INS","pook_OT3485_TAK","pook_OT3485_TK_INS","T55_TK_EP1","pook_T55_TK_INS","pook_T54_TAK","pook_T54_TK_INS","pook_TO55_TAK","pook_TO55_TK_INS"];
 //AA defences
 	EGG_EVO_eastveh11 = ["PRACS_Sa6_TK","PRACS_TK_SA8","PRACS_TK_URAL_SAM","PRACS_TK_SA13","EB_2S6M_Tunguska_D","pook_ZSU_TAK","pook_ZSU57_TAK","pook_brdm2_sa9_TAK","pook_9K331_TAK","pook_9K332_TAK","pook_9K37_TAK","pook_9K37M2_TAK","pook_9K317_TAK","pook_9K317M2_TAK","pook_96K6_TAK"];
 //statics

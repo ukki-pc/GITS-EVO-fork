@@ -645,8 +645,6 @@ switch (_ord) do
 	};
 	 case 20: // Illumination
 	{
-		[-1, {_man1 = _this select 0; _man1 say "FlareDist"; }, [player]] call cba_fnc_globalExecute;
-		sleep 2;
 		[-1, {_man = _this select 0; _man say "Resupply"; }, [player]] call cba_fnc_globalExecute;	  
 		_flare_types = ["F_40mm_White"];
 		//,"F_40mm_Green","F_40mm_Red","F_40mm _yellow"

@@ -27,6 +27,7 @@ _events = [] execVM "data\scripts\EVO_MissionManager.sqf";
  _handle = [] execVM "data\scripts\makeka.sqf";
  _handle = [] execVM "data\scripts\makehindp.sqf";
  _handle = [] execVM "data\scripts\makehip.sqf";
+ _handle = [] execVM "data\scripts\makeShip.sqf";
 
 _allPlayers = call BIS_fnc_listPlayers;
 {["jed_addscore", [_x, 10]] call CBA_fnc_globalEvent}forEach _allPlayers;
