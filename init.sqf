@@ -417,7 +417,7 @@ EGG_EVO_mevairb = ["L39_TK_EP1","Su25_TK_EP1"];
 //,"ibrPRACS_MiG21_AGmol","ibrPRACS_MiG21mol","mig15bis_4_tak","mig15bis_fighterBomber_tak","mig15bis_5_tak"
 
 //Reinforce paradrop vehicles
-EGG_EVO_mevair3 = ["CH_47F_EP1","ou_ch_46e","UH60M_MEV_EP1","BAF_Merlin_HC3_D","UH60M_EP1","UH1Y","PRACS_puma330_MG","ou_ch_53d","PRACS_CH53"];
+EGG_EVO_mevair3 = ["CH_47F_EP1","UH60M_MEV_EP1","BAF_Merlin_HC3_D","UH60M_EP1","UH1Y","PRACS_puma330_MG","PRACS_CH53"]; //"ou_ch_46e","ou_ch_53d",
 
 EGG_EVO_mcvconvoya = ["Ikarus_TK_CIV_EP1","Ural_TK_CIV_EP1","V3S_Open_TK_CIV_EP1"];
 EGG_EVO_mcvconvoyb = ["Lada1_TK_CIV_EP1","Lada2_TK_CIV_EP1","LandRover_TK_CIV_EP1","hilux1_civil_3_open_EP1","S1203_TK_CIV_EP1","SUV_TK_CIV_EP1","UAZ_Unarmed_TK_CIV_EP1"];
@@ -552,7 +552,6 @@ buyCarList =
 	[
 	/*---Military cars---*/
 	["ffaa_Nissan_carga",0],
-	["V3S_TK_EP1",0],
 	["PRACS_TK_URAL_OPEN",0],
 	["FFAA_nissan_pk",3],
 	["FFAA_toyota_dshk",5],
@@ -572,7 +571,8 @@ buyCarList =
 	["pracs_tk_ural_sam",10],
 	["Ural_ZU23_TK_EP1",14],
 	["pook_ural_s60_tak",16],
-	["UralRepair_TK_EP1",5]
+	["UralRepair_TK_EP1",5],
+	["V3S_TK_EP1",5]
 	];
 
 for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
@@ -742,7 +742,7 @@ if (editor == 1) then
 {
 	onMapSingleClick "if (_alt) then {vehicle player setpos _pos;{vehicle _x setpos _pos} forEach _units}";
 	player allowDamage false;
-	spawntype = 2;
+	spawntype = 1;
 	helicopterhitch = 2;
 	EVOhour = 9;
 	grasslevel =1;

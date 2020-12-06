@@ -3,7 +3,7 @@
 
   Creates playable units that fall unconscious when killed which can then be revived
 
-  © SEPTEMBER 2010 - norrin  
+  ï¿½ SEPTEMBER 2010 - norrin  
 ********************************************************************************************************
 Start Revive_player.sqf
 */
@@ -1117,6 +1117,11 @@ while {true} do
 			if (_respawn_position == 2 && !isplayer _name) then {_respawn_at_base = [_name, _pos] call Norrn_RespawnPos2AI};
 			// Player is dead if timer elapses
 			if (_respawn_position == 3) then {_dead = true};	
+		};
+
+		//Score deduction
+		if(_respawn_at_base) then  {
+				_hook = [_name] execVM "data\scripts\rmScore.sqf";
 		};
 	};
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

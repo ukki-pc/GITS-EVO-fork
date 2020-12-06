@@ -577,7 +577,7 @@ class RscMisCam
 
 titleParam1="Respawn type";
 valuesParam1[]={1,0,2};
-defvalueParam1=2;
+defvalueParam1=1;
 textsParam1[]={"Revive/Base","Revive only","Base only"};
 
 titleParam2 = "Helicopter hitch and Arty System"; 
@@ -593,7 +593,7 @@ class Params
       	title="Time Of Day";
 		values[]={2,4,6,9,12,15,18,21};
 		texts[]={"03:00","05:00","7:00","10:00","13:00","16:00","19:00","22:00"};	
-		default = 6;
+		default = 15;
 	};
 	
       class Grass
@@ -611,7 +611,7 @@ class Params
       	title = "View distance";
       	values[] = {500,800,1000,1300,1500,1800,2000,2300,2500,2800,3000,3300,3500,3800,4000,4300,4500,4800,5000,6000,7000,8000,9000,10000};
       	texts[] = {"500 m","800 m","1000 m","1300 m","1500 m","1800 m","2000 m","2300 m","2500 m","2800 m","3000 m","3300 m","3500 m","3800 m","4000 m","4300 m","4500 m","4800 m","5000 m","6000 m","7000 m","8000 m","9000 m","10000 m"};
-      	default = 3000;
+      	default = 2500;
 	};
             
       class Mhqbeam
@@ -620,7 +620,7 @@ class Params
 		title = "Mobile HQ & respawns";
 		values[] = {0,1,2};
 		texts[] = {"Disabled", "MHQs Enabled", "MHQs, Farps & Docks"};
-		default = 1;
+		default = 2;
 	};
 	
       class GLmod
@@ -656,7 +656,7 @@ class Params
 		title = "Point Punishment On Death";
 		values[] = {0,0.05,0.1};
 		texts[] = {"No punishment","5%","10%"};
-		default = 0.05;
+		default = 0;
 	};   
 	
 	class Rankscore
@@ -665,7 +665,7 @@ class Params
 		title = "Colonel Rank Points";
 		values[] = {20,30,40,50,60,80,90,100,150,200};
 		texts[] = {"120", "180", "240", "300", "360", "480", "540", "600", "900", "1200"};
-		default = 50;
+		default = 80;
 	};
 
 	class Helpers
@@ -701,7 +701,7 @@ class Params
 		title = "Area Artillery Cost";
 		values[] = {1,2,3,4,5,6,7,8,9,10,1000};
 		texts[] = {"5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "Disabled"};
-		default = 4;
+		default = 2;
 	};
 
 	class Revive
@@ -727,7 +727,7 @@ class Params
 		title = "Enemy Reinforcement Delay";
 		values[] = {120, 180, 240, 300,420,600};
 		texts[] = {"2 min", "3 min", "4 min", "5 min","7 min", "10 min"};
-		default = 180;
+		default = 300;
 	};
 	class EGG_vecmods
 	{
