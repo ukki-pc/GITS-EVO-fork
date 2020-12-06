@@ -1233,7 +1233,7 @@ if (player hasWeapon "ItemRadio") then
 	{
 		if (vehicle player isKindOf  "Air") then 
 		{
-			if(_index < 1) then 
+			if(_index == 0 && _vecSubPage != 1) then 
 			{
 				execVM "data\scripts\EB_removeWeapons.sqf";
 			} 

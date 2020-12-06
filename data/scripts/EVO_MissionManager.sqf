@@ -41,7 +41,7 @@ while {BIS_EVO_MissionProgress < _count} do
 				{
 					if("Car" countType list BIS_EVO_DetectEast == 0) then
 					{
-						if ("Land" countType list BIS_EVO_DetectWest > 0 or "Man" countType list BIS_EVO_DetectWest > 0 ) then{_loop=1};
+						if ("Land" countType list BIS_EVO_DetectWest > 0) then{_loop=1};
 					};
 				};
 			};
