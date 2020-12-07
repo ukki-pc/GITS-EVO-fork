@@ -59,7 +59,7 @@ skillfactor = ((1 + random 2)/10);
 Spymade = 0;
 EGG_hidetotal = 6;
 
-editor = 1; publicVariable "editor";
+editor = 0; publicVariable "editor";
 
 if (editor == 0) then {
 spawntype = param1;
