@@ -52,7 +52,7 @@ player setSkill BIS_EVO_PlayerSkill;
 
 _player addEventHandler ["killed", {handle = [(_this select 0),(_this select 1)] execVM "data\scripts\killed.sqf"}];
 
-if(spawntype == 0) then {
+if(spawntype == 2) then {
 _player addEventHandler ["killed", {handle = [(_this select 0),(_this select 1)] execVM "data\scripts\rmScore.sqf"}];
 };
 Sleep 0.2;
@@ -92,7 +92,6 @@ if ((_playertype in EGG_EVO_PlayerOff) and (perkparam == 1)) then {_actionId8 = 
 if (perkparam == 1) then {_actionId8 = player addAction ["Build Foxhole", "actions\static\makestatic.sqf",[_this,9],1, false, true,"test2"]};
 
 if ((perkparam == 1) and (gitsnades == 1)) then {_monitor = [] execVM "Actions\EB_resources_scripts\EB_fuelactions.sqf"};
-
 //test
 
 if ((_playertype in EGG_EVO_PlayerSniper) and (perkparam == 1) and (gitsnades == 1)) then {_actionId8 = player addAction ["GPS/INS Menu", "actions\GPSINS.sqf",[],0, false, true,"test2"]};

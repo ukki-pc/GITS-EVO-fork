@@ -10,21 +10,22 @@ veh = [this, 100, 0, 0, false, false, "_id = this addAction [""Repair"", ""scrip
 */
 
 _vehicle = _this select 0;		// this is the vehicle.
-_playerUnit = _this select 1;		// this is the repairing player.
+_playerUnit = player;		// this is the repairing player.
+
+[] call rmvAcRp;
+
 //_repStrength = (_this select 3) select 2;
 
 //systemChat format ["1: %1, 2: %2 3: %3",_vehicle,_playerUnit,_repStrength];
-if(vehicle player != player) exitWith {hint "Must be on foot while repairing."; [_vehicle] call rmv_fieldRepair;[] call enb_fieldRepair;};
 //_curDmg = getDammage _vehicle;
-[_vehicle] call rmv_fieldRepair; // Disables the repair so player cannot it spam
+ // Disables the repair so player cannot it spam
 
 _playerUnit playMove "AinvPknlMstpSlayWrflDnon_medic";		// here the player starts the repair animation.
-sleep 3;
-WaitUntil {animationState player != "AinvPknlMstpSlayWrflDnon_medic"};		// some sleep time for the repairs to take place
-if(vehicle player != player) exitWith {hint "Must be on foot while repairing."; [_vehicle] call rmv_fieldRepair;[] call enb_fieldRepair;};
+sleep 4;
+if(vehicle player != player) exitWith {hint "Repair interrupted."};
 _vehicle setDammage (getDammage _vehicle)-0.3;	// here we reset the damage of the vehicle to 0.
 hint "Vehicle repaired!";
-[] call enb_fieldRepair;
+
 
 
 //_vehicle setFuel 1;	// here we fill up the fuel tank. (uncomment this if you want to refuel the vehicle as well)

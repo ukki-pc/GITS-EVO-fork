@@ -48,10 +48,9 @@ while {BIS_EVO_MissionProgress < _count} do
 		};
 		Sleep 4;
 	};
-	//{_handle = [_x] execVM "data\scripts\makepow.sqf"} forEach list BIS_EVO_DetectEast; //REMOVED
-	{if(!isPlayer _x && side _x != "EAST") then {  _x setDammage 1       } } forEach list BIS_EVO_DetectEast;
+	{_handle = [_x] execVM "data\scripts\makepow.sqf"} forEach list BIS_EVO_DetectEast; //REMOVED
+	{deleteVehicle _x }  forEach alldead;
 	sleep 2;
-	{if(!alive _x) then {     hideBody _x;   } } forEach list BIS_EVO_DetectEast;
 	{_x addscore 10} forEach list BIS_EVO_DetectWest;
 	BIS_EVO_MissionProgress = BIS_EVO_MissionProgress+1;
 	publicVariable "BIS_EVO_MissionProgress";

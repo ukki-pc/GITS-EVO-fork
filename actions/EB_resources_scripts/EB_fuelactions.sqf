@@ -5,8 +5,11 @@ if (not (local player)) exitwith {};
 EB_player_fillfuel = 	-1;
 EB_player_siphonfuel = -1;
 EB_player_refuelAction = -1;
+EB_player_repairAction = -1;
 EB_myCursorTarget = objNull;
 EB_myCursorTarget2 = objNull;
+EB_myCursorTarget3 = objNull;
+EB_player_repairAction = -1;
 
 //hintsilent "monitor script active 2";
 
@@ -21,9 +24,10 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	sleep BIS_EVO_GlobalSleep;
 	_hasSiphon = "EB_ItemSiphon" in (items _player)  or "EB_ItemSiphon" in ((getMagazineCargo unitBackpack _player) select 0);
 	sleep BIS_EVO_GlobalSleep;
-	_equipped = (_hasFuelE or _hasfuel);
+	_hasKit = "EB_ItemRepairKit" in (magazines _player);
+	sleep BIS_EVO_GlobalSleep;
+	_equipped = (_hasFuelE or _hasfuel or _hasKit);
 	//if (_hasSiphon) then {hintsilent "has siphon"};
-
 	if ( (!isNull cursorTarget) and (!_inVehicle) and (_player distance cursorTarget < 5) and (_equipped) ) then 
 	{	//Has some kind of target
 		_isVehicle = cursorTarget isKindOf "AllVehicles";
@@ -111,6 +115,31 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 			EB_myCursorTarget2 removeAction EB_player_refuelAction;
 			EB_player_refuelAction = -1;
 		};
+		// REPAIRING VEHICLES AJKARAMBA
+		if ( (_hasKit) and (_isVehicle) and (_isAlive) and (!_isMan) and (vehicle _player == player)  ) then 
+		{
+			if (EB_player_repairAction < 0  ) then 
+			{
+				_vehicle = cursorTarget;
+				EB_myCursorTarget3 = _vehicle;
+				EB_myCursorTarget3 removeAction EB_player_repairAction;
+				_damage = getDammage _vehicle;
+				if (_damage > 0) then
+				{
+					EB_player_repairAction = EB_myCursorTarget3 addAction ["Toolkit repair vehicle", "Actions\EB_resources_scripts\actions\repair_veh.sqf",[_vehicle,EB_player_repairAction], 2, true, true, "",""];
+				};
+			};
+		} else 
+		{
+			EB_myCursorTarget3 removeAction EB_player_repairAction;
+			EB_player_repairAction = -1;
+		};
+
+		rmvAcRp = {
+			EB_myCursorTarget3 removeAction EB_player_repairAction;
+			EB_player_repairAction = -1;
+		};
+
 	} else 
 ///////##################################
 	{

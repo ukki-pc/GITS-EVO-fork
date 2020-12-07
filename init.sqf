@@ -59,7 +59,7 @@ skillfactor = ((1 + random 2)/10);
 Spymade = 0;
 EGG_hidetotal = 6;
 
-editor = 0; publicVariable "editor";
+editor = 1; publicVariable "editor";
 
 if (editor == 0) then {
 spawntype = param1;
@@ -764,7 +764,7 @@ if (editor == 1) then
 	perkparam = 1;
 	EGG_EVO_Artycost =4;
 	//Note from Tox1m: paramsArray select 15 used by Revive script
-	enemynumdiv = 1;
+	enemynumdiv = 10;
 	reinfdelay = 30;
 	EGG_highCommand = 0;
 	EX_EVO_vehPriceMultiplier = 1;
