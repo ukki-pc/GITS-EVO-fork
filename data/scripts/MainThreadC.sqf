@@ -44,7 +44,7 @@ EB_fieldRepair=-1;
  			 	{
  			 		case 1:
  			 		{
- 			 			egg_evo_westAmb = ["TK_WarfareBUAVterminal_Base_EP1"];
+ 			 			egg_evo_Amb = ["TK_WarfareBUAVterminal_Base_EP1"];
 
 						  if !(allowRhq) then {
 							_actionId8 = player addAction ["Deploy Recon HQ", "actions\ambtent.sqf",0,1, false, true,"test2"];
@@ -53,15 +53,15 @@ EB_fieldRepair=-1;
  			 		};
  			 		case 2:
  			 		{
- 			 			egg_evo_westAmb = ["EB_BRDM2_HQ_TK"];
+ 			 			egg_evo_Amb = ["EB_BRDM2_HQ_TK"];
  			 		};
  			 		case 3:
  			 		{
- 			 			egg_evo_westAmb = ["BAFX_Ridgeback_D"];
+ 			 			egg_evo_Amb = ["BAFX_Ridgeback_D"];
  			 		};
  			 		case 4:
  			 		{
- 			 			egg_evo_westAmb = ["EB_LAV25_D2"];
+ 			 			egg_evo_Amb = ["EB_LAV25_D2"];
  			 		};
  			 	};
  			 };

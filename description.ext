@@ -783,6 +783,14 @@ class Params
 		texts[]={"1 per minute", "1 per 2 minutes", "1 per 3 minutes", "1 per 4 minutes", "1 per 5 minutes"};	
 		default = 60;
 	};
+	class EVO_PlayerFaction
+	{
+      //paramsArray[20]  
+      	title="Player Faction";
+		values[]={0, 1};
+		texts[]={"East", "West"};	
+		default = 1;
+	};
 };
 
 //estimatedTimeLeft = 600;

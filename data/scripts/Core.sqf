@@ -837,7 +837,7 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 			case 6:
 			{
 			_vec = vehicle player;
-			if((inrepairzone) and (_vec != player) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and !(typeof _vec in egg_evo_westAmb)and !(typeof _vec in egg_evo_westMHQ ) or fuel _vec == 0) then
+			if((inrepairzone) and (_vec != player) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and !(typeof _vec in egg_evo_Amb)and !(typeof _vec in egg_evo_MHQ ) or fuel _vec == 0) then
 				{
 					[_ap] execVM "data\scripts\storeVeh.sqf";
 					ctrlShow [674,false]; //Storeveh page
@@ -1034,7 +1034,7 @@ if (player hasWeapon "ItemRadio") then
 		else
 		{
 			_unit = (GrpList select _index);
-			if(isNull _unit) then {_grp = creategroup (west)}else{_grp = group unit};
+			if(isNull _unit) then {_grp = creategroup (EGG_EVO_PLAYERFACTION)}else{_grp = group unit};
 			[player] join group _unit;
 		};	
 	};

@@ -14,7 +14,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	_rndy = random 600;
 	_kpos = [(_poscreate select 0)-300 +_rndx,(_poscreate select 1)-300+_rndy,500];
 	
-	_pilot = createGroup (west);
+	_pilot = createGroup (EGG_EVO_ENEMYFACTION);
 
 	_allunits = EGG_EVO_mepilot;
 	_maxu = (count _allunits)-1;

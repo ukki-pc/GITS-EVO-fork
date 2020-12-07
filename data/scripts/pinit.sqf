@@ -21,10 +21,10 @@ if (_playertype in EGG_EVO_PlayerMedic)  then
 };
 if (_playertype in EGG_EVO_PlayerEng) then
 {
-	if(player == eng1) then {BIS_EVO_EngZone = reng1};
-	if(player == eng2) then {BIS_EVO_EngZone = reng2};
-	if(player == eng3) then {BIS_EVO_EngZone = reng3};
-	if(player == eng4) then {BIS_EVO_EngZone = reng4};	
+	if(player == engE1 or player == engW1) then {BIS_EVO_EngZone = reng1};
+	if(player == engE2  or player == engW2) then {BIS_EVO_EngZone = reng2};
+	if(player == engE3  or player == engW3) then {BIS_EVO_EngZone = reng3};
+	if(player == engE4 or player == engW4) then {BIS_EVO_EngZone = reng4};	
 };
 
 

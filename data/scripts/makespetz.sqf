@@ -47,7 +47,7 @@ sleep 2;
 if(round (random 1) == 1) then {_targblue = getmarkerpos "hospital"};
 sleep 2;
 
-_spetz = createGroup (west);
+_spetz = createGroup (EGG_EVO_ENEMYFACTION);
 		_allvecsNG = EGG_EVO_westveh9;
 		_allvecsG = EGG_EVO_westveh8;
 		_maxG = (count _allvecsG)-1;

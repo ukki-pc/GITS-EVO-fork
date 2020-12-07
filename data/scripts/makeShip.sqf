@@ -25,7 +25,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	_upos = getmarkerpos "centerp";
 			//_recy = [_pilot,"none",objNull] spawn {[_this select 0,_this select 1,_this select 2] call BIS_EVO_gRecy};
 	_dir = random(100);
-	_allvecs = EGG_EVO_eastShips;
+	_allvecs = EGG_EVO_enemyShips;
 	_max = (count _allvecs)-1;
 	//_heli = createVehicle [_allvecs select (round random _max), _kpos, [], 50];Sleep BIS_EVO_GlobalSleep;
 	//_array = [_allvecs select (round random _max),_kpos,(west),20,_dir,0] call BIS_EVO_CreateVehicle;
@@ -39,7 +39,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	_ship lock true;
 	Sleep BIS_EVO_GlobalSleep;
 	_grpMenCount = 0;
-	_crew = createGroup (west);
+	_crew = createGroup (EGG_EVO_ENEMYFACTION);
 	Sleep BIS_EVO_GlobalSleep;
 
 	//When creating units too fast, script may fail

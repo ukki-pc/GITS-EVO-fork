@@ -42,7 +42,7 @@ BIS_EVO_Erec =
 //Radio defence
 	if(_inf > 11) then
 	{
-		_grp = createGroup (west);
+		_grp = createGroup (EGG_EVO_ENEMYFACTION);
 		_type = EGG_EVO_defenders select 0;
 		_unit = _grp createUnit [_type, position _radio, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
@@ -63,7 +63,7 @@ BIS_EVO_Erec =
 	if(_inf > 11) then
 	{
 		Sleep 1;
-		_grp = createGroup (west);
+		_grp = createGroup (EGG_EVO_ENEMYFACTION);
 		_type = EGG_EVO_OfficerDefenders select 0;
 		_unit = _grp createUnit [_type, position _offobj, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
@@ -84,7 +84,7 @@ BIS_EVO_Erec =
 	if(_inf > 11) then
 	{
 		Sleep 1;
-		_grp = createGroup (west);
+		_grp = createGroup (EGG_EVO_ENEMYFACTION);
 		_type = EGG_EVO_defenders select 0;
 		_unit = _grp createUnit [_type, position _radio, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
@@ -104,7 +104,7 @@ BIS_EVO_Erec =
 	Sleep 2;
 	while {_inf > 0} do 
 	{
-		_grp = createGroup (west);
+		_grp = createGroup (EGG_EVO_ENEMYFACTION);
 		_type = EGG_EVO_defenders select 0;
 		_unit = _grp createUnit [_type, _pos, [], 300, "FORM"];Sleep BIS_EVO_GlobalSleep;
 		_rds = (_unit nearRoads 50);
@@ -140,19 +140,19 @@ BIS_EVO_Erec =
 		_rng = round(random(9)+1 + (BIS_EVO_MissionProgress+1)*0.66);
 		 if(_rng < 6) then 
 		 {
-		 	_allvec = EGG_EVO_westEasy; //mixed units reinforce
+		 	_allvec = EGG_EVO_MechEasy; //mixed units reinforce
 		 };
 		if(_rng > 5 && _rng < 10) then 
 		 {
-		 	_allvec = EGG_EVO_westMedium; //mixed units reinforce
+		 	_allvec = EGG_EVO_MechMedium; //mixed units reinforce
 		 };
 	 	if(_rng > 9) then 
 		 {
-		 	_allvec = EGG_EVO_westHard; //mixed units reinforce
+		 	_allvec = EGG_EVO_MechHard; //mixed units reinforce
 		};
 		
 		_max = (count _allvec)-1;
-		_array = [_allvec select (round random _max),_pos,(west),300,180,0] call BIS_EVO_CreateVehicle;
+		_array = [_allvec select (round random _max),_pos,(EGG_EVO_ENEMYFACTION),300,180,0] call BIS_EVO_CreateVehicle;
 		_grp = _array select 0;
 		_vec = _array select 1;
 		_rds = (_vec nearRoads 20);
@@ -188,7 +188,7 @@ BIS_EVO_Erec =
 //added mortar etc
 		_allvecs = EGG_EVO_westveh13;
 		_max = (count _allvecs)-1;
-		_array = [_allvecs select (round random _max),_pos,(west),200,180,0] call BIS_EVO_CreateVehicle;
+		_array = [_allvecs select (round random _max),_pos,(EGG_EVO_ENEMYFACTION),200,180,0] call BIS_EVO_CreateVehicle;
 		_grp = _array select 0;
 		{_x addEventHandler  ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}]} forEach (units _grp);
 		{_x setSkill skillfactor+(random 0.2);_x setDir 180} forEach (units _grp);
@@ -216,8 +216,8 @@ BIS_EVO_Erec =
 		_max = (count _allvecs)-1;
 		_vcl = createVehicle [(_allvecs select (round random _max)), _respawnpoint, [], 120, "NONE"];
 		_vcl setdir random 359;	
-		_grp = createGroup (west);
-		_type = EGG_EVO_west1 select 0;
+		_grp = createGroup (EGG_EVO_ENEMYFACTION);
+		_type = EGG_EVO_enemy1 select 0;
 		_unit1 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
 		_unit2 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
 		_unit3 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;

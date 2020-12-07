@@ -20,7 +20,7 @@ if (!(alive player)) exitWith
 		amb_pos = [];
 	};
 
-amb = (egg_evo_westAmb select 0) createVehicle (position player);
+amb = (egg_evo_Amb select 0) createVehicle (position player);
 _dir  = getdir player;
 amb setdir _dir;
 amb_pos = position amb;

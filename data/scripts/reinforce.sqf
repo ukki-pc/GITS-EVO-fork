@@ -11,7 +11,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 	_Allspawns = [["parref","parrefa","parrefb"],["somref","somrefa","somrefb"],["cayref","cayrefa","cayrefb"],["dolref","dolrefa","dolrefb"],["ortref","ortrefa","ortrefb"],["corref","correfa","correfb"],["obrref","obrrefa","obrrefb"],["bagref","bagrefa","bagrefb"],["eporef","eporefa","eporefb"],["masref","masrefa","masrefb"],["pitref","pitrefa","pitrefb"]];
 	_wtime = 0;
 	_radio = BIS_EVO_radios select BIS_EVO_MissionProgress;
-	_alist = BIS_EVO_DetectWest;
+	_alist = BIS_EVO_DetectEnemy;
 	
 	_curtownInf = round(((BIS_EVO_Infantry select BIS_EVO_MissionProgress) select 0)/enemynumdiv);
 	_basetownInf = round(((BIS_EVO_Infantry select BIS_EVO_MissionProgress) select 1)/enemynumdiv);
@@ -28,13 +28,13 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_unit = objNull;
 		_pos2 = objNull;
 		_max = objnull;
-		_alist = BIS_EVO_DetectWest;
+		_alist = BIS_EVO_DetectEnemy;
 		_Allspawns = [["parref","parrefa","parrefb"],["somref","somrefa","somrefb"],["cayref","cayrefa","cayrefb"],["dolref","dolrefa","dolrefb"],["ortref","ortrefa","ortrefb"],["corref","correfa","correfb"],["obrref","obrrefa","obrrefb"],["bagref","bagrefa","bagrefb"],["eporef","eporefa","eporefb"],["masref","masrefa","masrefb"],["pitref","pitrefa","pitrefb"]];
 		_radio = BIS_EVO_radios select BIS_EVO_MissionProgress;
 
-		_allunits = EGG_EVO_west1;
+		_allunits = EGG_EVO_enemy1;
 		_max = count _allunits;
-		_guardr = createGroup (west);
+		_guardr = createGroup (EGG_EVO_ENEMYFACTION);
 		_spawns = _Allspawns select BIS_EVO_MissionProgress;
 		_pos2 = GetMarkerPos (_spawns select (round random 2));
 		_allvecs = EGG_EVO_mevconvoyb;
@@ -77,13 +77,13 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_heli0 = objnull;
 		_max = objnull;
 		_maxv = objnull;
-		_alist = BIS_EVO_DetectWest;
-		_allunits2 = EGG_EVO_west1;
+		_alist = BIS_EVO_DetectEnemy;
+		_allunits2 = EGG_EVO_enemy1;
 		_max = count _allunits2;
 		_radio = BIS_EVO_radios select BIS_EVO_MissionProgress;
 		_pos = position _radio;
 		_posback = getmarkerpos "EnemyAir03";
-		_pilot = createGroup (west);
+		_pilot = createGroup (EGG_EVO_ENEMYFACTION);
 		(EGG_EVO_mepilot select 0) createUnit [getmarkerpos "centerp", _pilot];Sleep BIS_EVO_GlobalSleep;
 		(EGG_EVO_mepilot select 0) createUnit [getmarkerpos "centerp", _pilot];Sleep BIS_EVO_GlobalSleep;
 		_pos1 = [(_pos select 0)-2000 -(random 2000),(_pos select 1)+2000 -(random 3000),(200 + random 100)];
@@ -111,7 +111,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 
 		if (canmove _heli0) then 
 		{
-			_para = createGroup (west);
+			_para = createGroup (EGG_EVO_ENEMYFACTION);
 			_count = 5;
 			_i = 0;
 			while {_i <= _count} do 
@@ -148,7 +148,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 	{
 		private ["_Allspawns","_alist","_radio","_unit","_guardm","_pos","_rng","_vec","_maxo","_spawns","_pos","_tag","_allvec","_rds","_cardir","_degrees","_dirdif","_array","_recy"]; 
 		_Allspawns = [["parref","parrefa","parrefb"],["somref","somrefa","somrefb"],["cayref","cayrefa","cayrefb"],["dolref","dolrefa","dolrefb"],["ortref","ortrefa","ortrefb"],["corref","correfa","correfb"],["obrref","obrrefa","obrrefb"],["bagref","bagrefa","bagrefb"],["eporef","eporefa","eporefb"],["masref","masrefa","masrefb"],["pitref","pitrefa","pitrefb"]];
-		_alist = BIS_EVO_DetectWest;
+		_alist = BIS_EVO_DetectEnemy;
 		_radio = BIS_EVO_radios select BIS_EVO_MissionProgress;
 		_unit = objNull;
 		_guardm = grpNull;
@@ -163,15 +163,15 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_rng = round(random(9)+1 + (BIS_EVO_MissionProgress+1)*0.66);
 		 if(_rng < 6) then 
 		 {
-		 	_allvec = EGG_EVO_westEasy; //mixed units reinforce
+		 	_allvec = EGG_EVO_MechEasy; //mixed units reinforce
 		 };
 		if(_rng > 5 && _rng < 10) then 
 		 {
-		 	_allvec = EGG_EVO_westMedium; //mixed units reinforce
+		 	_allvec = EGG_EVO_MechMedium; //mixed units reinforce
 		 };
 	 	if(_rng > 9) then 
 		 {
-		 	_allvec = EGG_EVO_westHard; //mixed units reinforce
+		 	_allvec = EGG_EVO_MechHard; //mixed units reinforce
 		};
 
 		//systemchat format ["Random number was: %1", _rng];
@@ -185,7 +185,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		if((_dirdif > 89) or (_dirdif < -89)) then{_cardir=_cardir-180};	
 		_pos = position (_rds select 0);
 
-		_array = [_allvec select (round random _maxo),_pos,(west),20,_cardir,0] call BIS_EVO_CreateVehicle;
+		_array = [_allvec select (round random _maxo),_pos,(EGG_EVO_ENEMYFACTION),20,_cardir,0] call BIS_EVO_CreateVehicle;
 
 		_guardm = _array select 0;
 		_vec = _array select 1;

@@ -79,7 +79,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=24;
+		items=25;
 		class Item0
 		{
 			side="LOGIC";
@@ -207,7 +207,7 @@ class Mission
 					id=103;
 					side="EAST";
 					vehicle="TK_Commander_EP1";
-					player="PLAYER COMMANDER";
+					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
 					text="eng5";
@@ -551,6 +551,24 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="eng21";
+				};
+			};
+		};
+		class Item24
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={9450.6855,139.98311,10112.719};
+					id=142;
+					side="WEST";
+					vehicle="US_Soldier_Officer_EP1";
+					player="PLAYER COMMANDER";
+					leader=1;
+					skill=0.60000002;
 				};
 			};
 		};
@@ -2963,7 +2981,7 @@ class Mission
 	};
 	class Sensors
 	{
-		items=63;
+		items=64;
 		class Item0
 		{
 			position[]={9821.8516,139.98311,10040.239};
@@ -3072,7 +3090,7 @@ class Mission
 		};
 		class Item7
 		{
-			position[]={9485.5693,139.98311,10098.414};
+			position[]={9487.7158,139.98311,10094.776};
 			a=0;
 			b=0;
 			angle=0.31808612;
@@ -3919,6 +3937,21 @@ class Mission
 			expCond="(Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50)  ";
 			expActiv="ID_Beamz = Player addAction [""~Transfer to FARP Echo"",""data\scripts\dock.sqs"",[""""], 4];";
 			expDesactiv="Player removeAction ID_Beamz";
+			class Effects
+			{
+			};
+		};
+		class Item63
+		{
+			position[]={9449.3965,139.98311,10107.402};
+			a=5;
+			b=10;
+			rectangular=1;
+			activationBy="ANY";
+			interruptable=1;
+			age="UNKNOWN";
+			text="caca";
+			expActiv="{deleteVehicle _x}forEach thislist; deleteVehicle caca";
 			class Effects
 			{
 			};
