@@ -17,6 +17,9 @@ Mthread = [] execVM "data\scripts\MainThread.sqf";
 
 _events = [] execVM "data\scripts\EVO_MissionManager.sqf";
 
+//FH is field hospital objct
+wcam = fh addaction ["Save mission to clipboard", "actions\saveMission.sqf",0,1, false, true,"test2"];
+
 //_reinf = [] execVM "data\scripts\reinforce.sqf";
 
 //_handle = [] execVM "data\scripts\makespetz.sqf"; DELETED FR NOW
@@ -30,7 +33,10 @@ _events = [] execVM "data\scripts\EVO_MissionManager.sqf";
  _handle = [] execVM "data\scripts\makeShip.sqf";
 
 _allPlayers = call BIS_fnc_listPlayers;
-{["jed_addscore", [_x, 10]] call CBA_fnc_globalEvent}forEach _allPlayers;
+if(EGG_EVO_LoadGame == 0) then 
+{
+    {["jed_addscore", [_x, 10]] call CBA_fnc_globalEvent}forEach _allPlayers;
+};
 if(editor == 1) then {
 systemChat "sinit done";
 };

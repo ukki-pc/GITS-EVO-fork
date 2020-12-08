@@ -1,34 +1,35 @@
-
-//Selects random vehicles
-for [{_loop=0}, {_loop<4}, {_loop=_loop+1}] do {
-
-	_randomIndex = [count buyCarList,100, 10, false] call weightedRandom;
-	buyCarList set [_randomIndex,[(buyCarList select _randomIndex) select 0, (buyCarList select _randomIndex) select 1,((buyCarList select _randomIndex) select 2)+1]];
-};
-publicVariable "buyCarList";
-//Selects random vehicles
-for [{_loop=0}, {_loop<3}, {_loop=_loop+1}] do 
+if(EGG_EVO_LoadGame == 0) then 
 {
-	_randomIndex = [count buyTankList,100, 10, false] call weightedRandom;
-	buyTankList set [_randomIndex,[(buyTankList select _randomIndex) select 0, (buyTankList select _randomIndex) select 1,((buyTankList select _randomIndex) select 2)+1]];
-};
-publicVariable "buyTankList";
 	//Selects random vehicles
-	for [{_loop=0}, {_loop<2}, {_loop=_loop+1}] do {
-		_randomIndex = [count buyAirList,100, 0, false, 2] call weightedRandom;
-		buyAirList set [_randomIndex,[(buyAirList select _randomIndex) select 0, (buyAirList select _randomIndex) select 1,((buyAirList select _randomIndex) select 2)+1]];
+	for [{_loop=0}, {_loop<4}, {_loop=_loop+1}] do {
+
+		_randomIndex = [count buyCarList,100, 10, false] call weightedRandom;
+		buyCarList set [_randomIndex,[(buyCarList select _randomIndex) select 0, (buyCarList select _randomIndex) select 1,((buyCarList select _randomIndex) select 2)+1]];
 	};
-publicVariable "buyAirList";
-				//Selects random vehicles
+	publicVariable "buyCarList";
+	//Selects random vehicles
 	for [{_loop=0}, {_loop<3}, {_loop=_loop+1}] do 
 	{
-		_randomIndex = [count buyStatList,100, 8, false, 100] call weightedRandom;
-		buyStatList set [_randomIndex,[(buyStatList select _randomIndex) select 0, (buyStatList select _randomIndex) select 1,((buyStatList select _randomIndex) select 2)+1]];
+		_randomIndex = [count buyTankList,100, 10, false] call weightedRandom;
+		buyTankList set [_randomIndex,[(buyTankList select _randomIndex) select 0, (buyTankList select _randomIndex) select 1,((buyTankList select _randomIndex) select 2)+1]];
 	};
-	publicVariable "buyStatList";
+	publicVariable "buyTankList";
+		//Selects random vehicles
+		for [{_loop=0}, {_loop<2}, {_loop=_loop+1}] do {
+			_randomIndex = [count buyAirList,100, 0, false, 2] call weightedRandom;
+			buyAirList set [_randomIndex,[(buyAirList select _randomIndex) select 0, (buyAirList select _randomIndex) select 1,((buyAirList select _randomIndex) select 2)+1]];
+		};
+	publicVariable "buyAirList";
+					//Selects random vehicles
+		for [{_loop=0}, {_loop<3}, {_loop=_loop+1}] do 
+		{
+			_randomIndex = [count buyStatList,100, 8, false, 100] call weightedRandom;
+			buyStatList set [_randomIndex,[(buyStatList select _randomIndex) select 0, (buyStatList select _randomIndex) select 1,((buyStatList select _randomIndex) select 2)+1]];
+		};
+		publicVariable "buyStatList";
 
-	_clean = []call cleanUpGenerator;
-
+		_clean = [] call cleanUpGenerator;
+};
 
 
 // Main vehicle init

@@ -87,6 +87,7 @@ EGG_unitwest = paramsArray select 19;
 EX_EVO_vehPriceMultiplier = paramsArray select 20;
 EVO_incomeFrequency = paramsArray select 21;
 EGG_EVO_FactionParam = paramsArray select 22;
+EGG_EVO_LoadGame = paramsArray select 23;
 
 
 
@@ -139,7 +140,13 @@ if (editor == 1) then
 	EX_EVO_vehPriceMultiplier = 1;
 	EVO_incomeFrequency = 120;
 	EGG_EVO_FactionParam = 0;
+	EGG_EVO_LoadGame = 1;
 };
+	//IF new game selected start the game without hesitation
+	if(EGG_EVO_LoadGame == 0) then {gameBegin = 1}
+	else{hint "Load game selected please paste the saved data into the console"};
+
+
 	EGG_EVO_PLAYERFACTION = nil;
 	EGG_EVO_ENEMYFACTION = nil;
 	EGG_EVO_strENEMYFACTION = nil;
@@ -1107,6 +1114,8 @@ LDL_inGameActions =
 	true  //3: LDL-Systems: AC130 Pilot and AC130 Co-Pilot have the ability to start coop script (Multiplayer)
 ];
 //############################################################
+waitUntil{gameBegin == 1};
+
 EGG_sinit =1; publicVariable "EGG_sinit";
 
 

@@ -79,7 +79,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=25;
+		items=29;
 		class Item0
 		{
 			side="LOGIC";
@@ -202,15 +202,15 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={9452.7725,139.98311,10104.345};
+					position[]={9447.3223,139.98311,10103.571};
 					azimut=-92.384201;
 					id=103;
 					side="EAST";
 					vehicle="TK_Commander_EP1";
-					player="PLAY CDG";
+					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;
-					text="eng5";
+					text="comE";
 				};
 			};
 		};
@@ -422,15 +422,15 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={9450.7285,139.98311,10106.185};
-					azimut=90.533005;
+					position[]={9446.1104,139.98311,10104.06};
+					azimut=90.532997;
 					id=114;
 					side="EAST";
 					vehicle="TK_Soldier_Engineer_EP1";
 					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
-					text="eng2";
+					text="engE2";
 				};
 			};
 		};
@@ -442,15 +442,15 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={9448.8584,139.98311,10105.657};
-					azimut=90.533005;
+					position[]={9446.0449,139.98311,10102.334};
+					azimut=90.532997;
 					id=115;
 					side="EAST";
 					vehicle="TK_Soldier_Engineer_EP1";
 					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
-					text="eng4";
+					text="engE4";
 				};
 			};
 		};
@@ -462,15 +462,15 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={9450.4072,139.98311,10105.442};
-					azimut=90.533005;
+					position[]={9446.1045,139.98311,10104.839};
+					azimut=90.532997;
 					id=116;
 					side="EAST";
 					vehicle="TK_Soldier_Engineer_EP1";
 					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
-					text="eng1";
+					text="engE1";
 				};
 			};
 		};
@@ -482,7 +482,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={9450.0977,139.98311,10103.351};
+					position[]={9446.0537,139.98311,10103.209};
 					azimut=90.532997;
 					id=117;
 					side="EAST";
@@ -490,7 +490,7 @@ class Mission
 					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
-					text="eng3";
+					text="engE3";
 				};
 			};
 		};
@@ -562,13 +562,90 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={9450.6855,139.98311,10112.719};
+					position[]={9449.0225,139.98311,10111.57};
 					id=142;
 					side="WEST";
 					vehicle="US_Soldier_Officer_EP1";
-					player="PLAYER COMMANDER";
+					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
+					text="comW";
+				};
+			};
+		};
+		class Item25
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={9445.7939,139.98311,10112.04};
+					id=143;
+					side="WEST";
+					vehicle="US_Soldier_Engineer_EP1";
+					player="PLAY CDG";
+					leader=1;
+					skill=0.60000002;
+					text="engW1";
+				};
+			};
+		};
+		class Item26
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={9446.5684,139.98311,10112.011};
+					id=144;
+					side="WEST";
+					vehicle="US_Soldier_Engineer_EP1";
+					player="PLAY CDG";
+					leader=1;
+					skill=0.60000002;
+					text="engW2";
+				};
+			};
+		};
+		class Item27
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={9447.3428,139.98311,10111.955};
+					id=145;
+					side="WEST";
+					vehicle="US_Soldier_Engineer_EP1";
+					player="PLAY CDG";
+					leader=1;
+					skill=0.60000002;
+					text="engW3";
+				};
+			};
+		};
+		class Item28
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={9448.002,139.98311,10111.955};
+					id=146;
+					side="WEST";
+					vehicle="US_Soldier_Engineer_EP1";
+					player="PLAY CDG";
+					leader=1;
+					skill=0.60000002;
+					text="engW4";
 				};
 			};
 		};
@@ -1001,12 +1078,12 @@ class Mission
 		class Item42
 		{
 			position[]={9497.3203,139.98311,10109.094};
-			azimut=0.92515308;
+			azimut=0.92515302;
 			id=42;
 			side="EMPTY";
 			vehicle="US_WarfareBFieldhHospital_Base_EP1";
 			skill=0.60000002;
-			init="this allowDamage false";
+			text="fh";
 		};
 		class Item43
 		{
@@ -3017,7 +3094,7 @@ class Mission
 		};
 		class Item2
 		{
-			position[]={1774.5366,0.6219328,650.38306};
+			position[]={1777.5421,0.91742444,653.5105};
 			a=1;
 			b=1;
 			rectangular=1;
@@ -3037,7 +3114,7 @@ class Mission
 			position[]={8151.8887,176.97188,7831.9478};
 			a=70;
 			b=70;
-			activationBy="EAST";
+			activationBy="LOGIC";
 			interruptable=1;
 			age="UNKNOWN";
 			name="farp1";
@@ -3052,7 +3129,7 @@ class Mission
 			b=500;
 			angle=-49.891998;
 			rectangular=1;
-			activationBy="EAST";
+			activationBy="ANY";
 			interruptable=1;
 			age="UNKNOWN";
 			name="farp2";
@@ -3458,8 +3535,8 @@ class Mission
 		};
 		class Item30
 		{
-			position[]={1015.9489,0.11620206,688.71655};
-			activationBy="EAST";
+			position[]={1017.4534,0.12725502,688.71655};
+			activationBy="WEST";
 			interruptable=1;
 			age="UNKNOWN";
 			name="reng1";
@@ -3528,7 +3605,7 @@ class Mission
 			age="UNKNOWN";
 			text="pinit";
 			name="pinit";
-			expCond="local player";
+			expCond="local player and missionNamespace getVariable ""gameBegin"" == 1";
 			expActiv="plays = [] execVM ""data\scripts\pinit.sqf"";";
 			class Effects
 			{
@@ -3544,7 +3621,7 @@ class Mission
 			age="UNKNOWN";
 			text="sinit";
 			name="sinit";
-			expCond="isServer";
+			expCond="isServer and missionNamespace getVariable ""gameBegin"" == 1";
 			expActiv="plays = [] execVM ""data\scripts\sinit.sqf"";";
 			class Effects
 			{
@@ -3943,7 +4020,7 @@ class Mission
 		};
 		class Item63
 		{
-			position[]={9449.3965,139.98311,10107.402};
+			position[]={9449.8438,139.98311,10107.943};
 			a=5;
 			b=10;
 			rectangular=1;

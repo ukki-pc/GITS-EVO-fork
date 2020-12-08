@@ -791,6 +791,14 @@ class Params
 		texts[]={"East", "West"};	
 		default = 1;
 	};
+	class EVO_LOAD
+	{
+      //paramsArray[20]  
+      	title="New Game or Load";
+		values[]={0, 1};
+		texts[]={"New Game", "Load Game"};	
+		default = 1;
+	};
 };
 
 //estimatedTimeLeft = 600;
