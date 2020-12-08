@@ -760,7 +760,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Antenna";
 			skill=0.60000002;
-			text="parso1";
+			text="radio1";
 		};
 		class Item11
 		{
@@ -770,7 +770,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Antenna";
 			skill=0.60000002;
-			text="somso1";
+			text="radio2";
 		};
 		class Item12
 		{
@@ -780,7 +780,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Antenna";
 			skill=0.60000002;
-			text="cayso1";
+			text="radio3";
 		};
 		class Item13
 		{
@@ -790,7 +790,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Antenna";
 			skill=0.60000002;
-			text="dolso1";
+			text="radio4";
 		};
 		class Item14
 		{
@@ -800,7 +800,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Antenna";
 			skill=0.60000002;
-			text="ortso1";
+			text="radio5";
 		};
 		class Item15
 		{
@@ -810,7 +810,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Antenna";
 			skill=0.60000002;
-			text="corso1";
+			text="radio6";
 		};
 		class Item16
 		{
@@ -820,7 +820,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Antenna";
 			skill=0.60000002;
-			text="obrso1";
+			text="radio7";
 		};
 		class Item17
 		{
@@ -830,7 +830,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Antenna";
 			skill=0.60000002;
-			text="bagso1";
+			text="radio8";
 		};
 		class Item18
 		{
@@ -840,7 +840,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Antenna";
 			skill=0.60000002;
-			text="eposo1";
+			text="radio9";
 		};
 		class Item19
 		{
@@ -850,7 +850,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Antenna";
 			skill=0.60000002;
-			text="masso1";
+			text="radio10";
 		};
 		class Item20
 		{
@@ -860,7 +860,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Antenna";
 			skill=0.60000002;
-			text="pitso1";
+			text="radio11";
 		};
 		class Item21
 		{
@@ -1878,7 +1878,7 @@ class Mission
 		};
 		class Item1
 		{
-			position[]={6992.4292,31.986429,8064.2178};
+			position[]={6992.5991,31.986429,8066.8936};
 			name="mobj2";
 			type="Empty";
 			colorName="ColorBlack";

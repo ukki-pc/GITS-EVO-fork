@@ -16,17 +16,17 @@ if (_type in EGG_EVO_PlayerOff) then
 	_txtpasshead = localize "STR_M04t66";//Officer Captured
 	_txtpassbody = format["+%1 %2",20,localize "STR_M04t0_5"];//Points
 	["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message;
-	if(BIS_EVO_MissionProgress == 0) then {BIS_EVO_sot = "parso2"};
-	if(BIS_EVO_MissionProgress == 1) then {BIS_EVO_sot = "somso2"};
-	if(BIS_EVO_MissionProgress == 2) then {BIS_EVO_sot = "cayso2"};
-	if(BIS_EVO_MissionProgress == 3) then {BIS_EVO_sot = "dolso2"};
-	if(BIS_EVO_MissionProgress == 4) then {BIS_EVO_sot = "ortso2"};
-	if(BIS_EVO_MissionProgress == 5) then {BIS_EVO_sot = "corso2"};
-	if(BIS_EVO_MissionProgress == 6) then {BIS_EVO_sot = "obrso2"};
-	if(BIS_EVO_MissionProgress == 7) then {BIS_EVO_sot = "bagso2"};
-	if(BIS_EVO_MissionProgress == 8) then {BIS_EVO_sot = "eposo2"};
-	if(BIS_EVO_MissionProgress == 9) then {BIS_EVO_sot = "masso2"};
-	if(BIS_EVO_MissionProgress == 10) then {BIS_EVO_sot = "pitso2"};
+	if(BIS_EVO_MissionProgress == 0) then {BIS_EVO_sot = "radio1o"};
+	if(BIS_EVO_MissionProgress == 1) then {BIS_EVO_sot = "radio2o"};
+	if(BIS_EVO_MissionProgress == 2) then {BIS_EVO_sot = "radio3o"};
+	if(BIS_EVO_MissionProgress == 3) then {BIS_EVO_sot = "radio4o"};
+	if(BIS_EVO_MissionProgress == 4) then {BIS_EVO_sot = "radio5o"};
+	if(BIS_EVO_MissionProgress == 5) then {BIS_EVO_sot = "radio6o"};
+	if(BIS_EVO_MissionProgress == 6) then {BIS_EVO_sot = "radio7o"};
+	if(BIS_EVO_MissionProgress == 7) then {BIS_EVO_sot = "radio8o"};
+	if(BIS_EVO_MissionProgress == 8) then {BIS_EVO_sot = "radio9o"};
+	if(BIS_EVO_MissionProgress == 9) then {BIS_EVO_sot = "radio10o"};
+	if(BIS_EVO_MissionProgress == 10) then {BIS_EVO_sot = "radio11o"};
 	BIS_EVO_sor = 20;BIS_EVO_sop = player;publicVariable "BIS_EVO_sor";publicVariable "BIS_EVO_sot";publicVariable "BIS_EVO_sop";
 }
 else

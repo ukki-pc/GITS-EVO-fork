@@ -140,7 +140,7 @@ if (editor == 1) then
 	EX_EVO_vehPriceMultiplier = 1;
 	EVO_incomeFrequency = 120;
 	EGG_EVO_FactionParam = 0;
-	EGG_EVO_LoadGame = 1;
+	EGG_EVO_LoadGame = 0;
 };
 	//IF new game selected start the game without hesitation
 	if(EGG_EVO_LoadGame == 0) then {gameBegin = 1}
@@ -390,6 +390,8 @@ hikiAirList = ["FRL_Mig23B_TK_MR","FRL_L59_MR","FRL_Su25_TK_CAS","FRL_Su27_TK_CA
 	{
 		buyStatList set [_loop,[(buyStatList select _loop) select 0, (buyStatList select _loop) select 1,0]];
 	};
+
+	BIS_EVO_rewardArray = ["PRACS_TK_Su24Fencer"];
 };
 if(EGG_EVO_FactionParam == 1) then 
 {
@@ -412,7 +414,7 @@ BIS_EVO_GlobalSleep = 0.1; // Global sleep is used after spawning a unit.
 BIS_EVO_MissionProgress = 0; // counts towns captured, when it hits 11 , mission is over.
 BIS_EVO_Onmission=false; 
 BIS_EVO_sobj1=false;
-BIS_EVO_radios = [parso1,somso1,cayso1,dolso1,ortso1,corso1,obrso1,bagso1,eposo1,masso1,pitso1]; // Each radio in each town
+BIS_EVO_radios = [radio1,radio2,radio3,radio4,radio5,radio6,radio7,radio8,radio9,radio10,radio11]; // Each radio in each town
 BIS_EVO_MissionTowns = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11"];// Each mission objectives town marker.
 
 //adding strings for city names

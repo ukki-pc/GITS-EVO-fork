@@ -14,7 +14,7 @@ if(_sor > 0) then
 {
 	switch (_sot) do
 	{
-	    case "parso1":
+	    case "radio1":
 	    {
 //	    	_city = "LOPATINO";
 //	    	_city = localize "str_location_lopatino";
@@ -23,7 +23,7 @@ if(_sor > 0) then
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
 	    };
-	    case "parso2":
+	    case "radio1o":
 	    {
 //	    	_city = "LOPATINO";
 //	    	_city = localize "str_location_lopatino";
@@ -31,7 +31,7 @@ if(_sor > 0) then
 	    	[West,"HQ"] SideChat format[localize "STR_M04t63",_city]; //OFFICER DETAINED AT %1, GOOD WORK
 		playSound "Goodjob";
 	    };
-	    case "somso1":
+	    case "radio2":
 	    {
 //	    	_city = "VYBOR";
 //	    	_city = localize "str_location_vybor";
@@ -40,7 +40,7 @@ if(_sor > 0) then
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
 	    };
-	    case "somso2":
+	    case "radio2o":
 	    {
 //	    	_city = "VYBOR";
 //	    	_city = localize "str_location_vybor";
@@ -48,7 +48,7 @@ if(_sor > 0) then
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    };
-	    case "cayso1":
+	    case "radio3":
 	    {
 //	    	_city = "GRISHINO";
 //	    	_city = localize "str_location_grishino";
@@ -57,7 +57,7 @@ if(_sor > 0) then
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
 	    };
-	    case "cayso2":
+	    case "radio3o":
 	    {
 //	    	_city = "GRISHINO";
 //	    	_city = localize "str_location_grishino";
@@ -65,7 +65,7 @@ if(_sor > 0) then
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    };
-	    case "dolso1":
+	    case "radio4":
 	    {
 //	    	_city = "GVOZDNO";
 //	    	_city = localize "str_location_gvozdno";
@@ -74,7 +74,7 @@ if(_sor > 0) then
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
 	    };
-	    case "dolso2":
+	    case "radio4o":
 	    {
 //	    	_city = "GVOZDNO";
 //	    	_city = localize "str_location_gvozdno";
@@ -82,7 +82,7 @@ if(_sor > 0) then
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    };
-	    case "ortso1":
+	    case "radio5":
 	    {
 //	    	_city = "KRASNOSTAV";
 //	    	_city = localize "str_location_krasnostav";
@@ -91,7 +91,7 @@ if(_sor > 0) then
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
 	    };
-	    case "ortso2":
+	    case "radio5o":
 	    {
 //	    	_city = "KRASNOSTAV";
 //	    	_city = localize "str_location_krasnostav";
@@ -99,7 +99,7 @@ if(_sor > 0) then
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    };
-	    case "corso1":
+	    case "radio6":
 	    {
 //	    	_city = "KHELM";
 //	    	_city = localize "str_location_khelm";
@@ -108,7 +108,7 @@ if(_sor > 0) then
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
 	    };  
-	    case "corso2":
+	    case "radio6o":
 	    {
 //	    	_city = "KHELM";
 //	    	_city = localize "str_location_khelm";
@@ -116,7 +116,7 @@ if(_sor > 0) then
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    };
-	    case "obrso1":
+	    case "radio7":
 	    {
 //	    	_city = "BEREZINO";
 //	    	_city = localize "str_location_berezino";
@@ -125,7 +125,7 @@ if(_sor > 0) then
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
 	    };
-	    case "obrso2":
+	    case "radio7o":
 	    {
 //	    	_city = "BEREZINO";
 //	    	_city = localize "str_location_berezino";
@@ -133,7 +133,7 @@ if(_sor > 0) then
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    };
-	    case "bagso1":
+	    case "radio8":
 	    {
 //	    	_city = "SOLNICHNIY";
 //	    	_city = localize "str_location_solnichniy";
@@ -142,7 +142,7 @@ if(_sor > 0) then
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
 	    };
-	    case "bagso2":
+	    case "radio8o":
 	    {
 //	    	_city = "SOLNICHNIY";
 //	    	_city = localize "str_location_solnichniy";
@@ -150,7 +150,7 @@ if(_sor > 0) then
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    };
-	    case "eposo1":
+	    case "radio9":
 	    {
 //	    	_city = "KAMYSHOVO";
 //	    	_city = localize "str_location_kamyshovo";
@@ -159,7 +159,7 @@ if(_sor > 0) then
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
 	    };
-	    case "eposo2":
+	    case "radio9o":
 	    {
 //	    	_city = "KAMYSHOVO";
 //	    	_city = localize "str_location_kamyshovo";
@@ -167,7 +167,7 @@ if(_sor > 0) then
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    };
-	    case "masso1":
+	    case "radio10":
 	    {
 //	    	_city = "ELEKTROZAVODSK";
 //	    	_city = localize "str_location_elektrozavodsk";
@@ -176,7 +176,7 @@ if(_sor > 0) then
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
 	    };
-	    case "masso2":
+	    case "radio10o":
 	    {
 //	    	_city = "ELEKTROZAVODSK";
 //	    	_city = localize "str_location_elektrozavodsk";
@@ -184,7 +184,7 @@ if(_sor > 0) then
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    };
-	    case "pitso1":
+	    case "radio11":
 	    {
 //	    	_city = "CHERNOGORSK";
 //	    	_city = localize "str_location_chernogorsk";
@@ -193,7 +193,7 @@ if(_sor > 0) then
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
 	    };
-	    case "pitso2":
+	    case "radio11o":
 	    {
 //	    	_city = "CHERNOGORSK";
 //	    	_city = localize "str_location_chernogorsk";

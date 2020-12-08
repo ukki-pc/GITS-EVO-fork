@@ -6,6 +6,8 @@ _events = [] execVM "data\scripts\EVO_VecRm.sqf";// Vehicle respawn for respawni
 _events = [] execVM "data\scripts\EVO_VecRc.sqf";// Vehicle respawn for respawning civilian vehicles
 _events = [] execVM "data\scripts\EventsS.sqf"; // Common server events
 
+_events = [] execVM "data\scripts\CityMarkers.sqf"; // Common server events
+
 _events = [] execVM "data\scripts\EVO_Erefway.sqf"; // Reinforcement waypoint generator
 _events = [] execVM "data\scripts\EVO_FillInf.sqf"; // Fills out squads for cites
 _events = [] execVM "data\scripts\EVO_gRecy.sqf";// Recycles groups
