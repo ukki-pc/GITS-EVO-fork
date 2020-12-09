@@ -414,7 +414,9 @@ BIS_EVO_GlobalSleep = 0.1; // Global sleep is used after spawning a unit.
 BIS_EVO_MissionProgress = 0; // counts towns captured, when it hits 11 , mission is over.
 BIS_EVO_Onmission=false; 
 BIS_EVO_sobj1=false;
-BIS_EVO_radios = [radio1,radio2,radio3,radio4,radio5,radio6,radio7,radio8,radio9,radio10,radio11]; // Each radio in each town
+BIS_EVO_radios = [radio1]; // Each radio in each town
+//BIS_EVO_radios = [radio1,radio2,radio3,radio4,radio5,radio6,radio7,radio8,radio9,radio10,radio11]; // Each radio in each town
+
 BIS_EVO_MissionTowns = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11"];// Each mission objectives town marker.
 
 //adding strings for city names
