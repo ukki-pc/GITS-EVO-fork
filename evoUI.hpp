@@ -172,7 +172,7 @@ class evoUI
 			idc = 101;
 			x = 0.39;
 			y = 0.2;
-			w = 0.55;
+			w = 0.725;
 			h = 0.42;
 		text = "\ca\ui\data\igui_background_debriefing_ca.paa";
 		colorText[] = {0.3, 0.3, 0.3, 0.6};
@@ -182,7 +182,7 @@ class evoUI
 			idc = 101;
 			x = 0.0506555;
 			y = 0.2;
-			w = 0.31;
+			w = 0.41;
 			h = 0.34;
 			text = "\ca\ui\data\igui_background_debriefing_ca.paa";
 		};
@@ -220,7 +220,7 @@ class evoUI
 			idc = 6059;
 			y = 0.65;
 		};
-		class Available_items: RscIGUIListBox//
+		class Available_items: RscIGUIListBox
 		{
 			idc = 2000;
 			default = 1;
@@ -238,7 +238,26 @@ class evoUI
 			xcolumn1 = "0.1f";
 			xcolumn2 = "0.25f";
 			xcolumn3 = "0.85f";		
-		};		
+		};
+			class Available_items2: RscIGUIListBox//
+		{
+			idc = 1995;
+			default = 1;
+			x = 0.39;
+			y = 0.2;
+			w = 0.41;
+			h = 0.3;
+			//lineSpacing = 0;
+			onLBSelChanged = "[] call BIS_EVO_ListSelect";
+			onLBDblClick = "[] call BIS_EVO_ActButton";
+			rowHeight = 0.04;
+			soundSelect[] = {"\ca\ui\data\sound\mouse2", 0.09, 1};
+			maxHistoryDelay = 10;
+			canDrag = 0;
+			xcolumn1 = "0.1f";
+			xcolumn2 = "0.25f";
+			xcolumn3 = "0.85f";		
+		};	
 	      class BMulti: RscIGUIShortcutButton // GLOBAL ACTIONS
 	      {
 		 idc = 6056;

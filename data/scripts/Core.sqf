@@ -2,6 +2,7 @@ disableSerialization;
 uiNamespace setVariable ["displayVendor", findDisplay 100];
 uiNamespace setVariable ["ctrlTitle", (uiNamespace getVariable "displayVendor") displayCtrl 101];
 uiNamespace setVariable ["ctrlListBox", (uiNamespace getVariable "displayVendor") displayCtrl 2000];
+uiNamespace setVariable ["ctrlListBox2", (uiNamespace getVariable "displayVendor") displayCtrl 1995];
 uiNamespace setVariable ["ctrlPrice", (uiNamespace getVariable "displayVendor") displayCtrl 2001];
 uiNamespace setVariable ["ctrlAtit", (uiNamespace getVariable "displayVendor") displayCtrl 2201];
 uiNamespace setVariable ["ctrlMtit", (uiNamespace getVariable "displayVendor") displayCtrl 2202];
@@ -41,6 +42,7 @@ uiNamespace setVariable ["ctrlTTitle", (uiNamespace getVariable "displayVendor")
 uiNamespace setVariable ["ctrlTactive", (uiNamespace getVariable "displayVendor") displayCtrl 2208];
 uiNamespace setVariable ["ctrlName", (uiNamespace getVariable "displayVendor") displayCtrl 500];
 uiNamespace setVariable ["ctrlPicture", (uiNamespace getVariable "displayVendor") displayCtrl 501];
+uiNamespace setVariable ["GPSgmap", (uiNamespace getVariable "displayVendor") displayCtrl 895];
 
 sliderSetRange [6057, 100, 10000];
 sliderSetPosition [6057, BIS_EVO_vdist];
@@ -62,6 +64,7 @@ ctrlShow [2205,false];
 ctrlShow [2206,false];
 ctrlShow [2207,false];
 ctrlShow [2208,false];
+ctrlShow [895,false];
 
 ctrlSetText [2203,""];
 ctrlSetText [2204,""];
@@ -83,6 +86,8 @@ ctrlShow [673,false]; //Loadout page
 ctrlShow [674,false]; //Storeveh btn
 ctrlShow [675,true]; //Loadout btn
 ctrlShow [676,false]; //Unflip btn
+ctrlShow [895,true]; //Map
+ctrlShow [1995,false]; //2nd list
 
 if ((vehicle player isKindOf  "Air" ) ) then
 {
@@ -456,6 +461,8 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 		ctrlShow [2206,false];
 		ctrlShow [2207,false];
 		ctrlShow [2208,false];
+		ctrlShow [895,true]; //Map
+		ctrlShow [1995,false]; //2nd list
 		
 		ctrlShow [663,false];
 		ctrlShow [664,false];
@@ -658,8 +665,12 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 		ctrlShow [673,true]; //Loadout page
 		ctrlShow [675,false];
 
+		ctrlShow [895,false]; //Map
+		ctrlShow [1995,true]; //2nd list
+
 
 		lbClear 2000;
+
 
 	
 		if (vehicle player isKindOf  "Air" ) then  
@@ -693,10 +704,12 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 						ctrlSetText [2010,_name];
 						ctrlSetText [2011,_description];
 						_index = lbAdd [2000, _name];
+					
 					};
 				};
 				case 3:
 				{
+					
 					_index = lbAdd [2000, "Remove weapons"];
 					for [{_i=0}, {_i< count EGG_missiles}, {_i=_i+1}] do
 					{
@@ -712,7 +725,25 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 						ctrlSetText [2011,_description];
 						_index = lbAdd [2000, _name];
 					};
+
+					_mags =  magazines vehicle player;
+					for [{_i=0}, {_i< count _mags}, {_i=_i+1}] do
+					{
+					_nameR =  getText(configFile >> "CfgMagazines" >> _mags select _i >> "displayName");
+					_name = nil;
+					if(_namer == "") then 
+					{
+						_name = format ["Slot: %1, Flares",_i+1];
+					}
+					else
+					{
+						_name = format ["Slot: %1, %2",_i+1, _nameR];
+					};
+					_index2 = lbAdd[1995,_name];	
+					};
 				};
+				
+				
 			};
 		};
 	};
@@ -875,6 +906,7 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 BIS_EVO_ActButton = 
 {
 	   _index = lbCurSel 2000;
+	   _index2 = lbCurSel 1995;
 	  _recpage = Mpage select 0;
 	  _suppage = Mpage select 1;
 	  _asspage = Mpage select 2;
@@ -1246,14 +1278,14 @@ if (player hasWeapon "ItemRadio") then
 					_class = EB_turrets select _index -1;
 					_magazineArray = getArray (configFile >> "CfgWeapons" >> _class >> "magazines");
 					_armament = _magazinearray select 0;
-					[ _class] call armTurret;
+					[_class] call armTurret;
 					};
 					case 3:
 					{
-					_class = EGG_missiles select _index - 1;
-					_magazineArray = getArray (configFile >> "CfgWeapons" >> _class >> "magazines");
-					_armament = _magazinearray select 0;
-					[_armament, _class] call armWeapon;
+						_class = EGG_missiles select _index - 1;
+						_magazineArray = getArray (configFile >> "CfgWeapons" >> _class >> "magazines");
+						_armament = _magazinearray select 0;
+						[_armament, _class, _index2] call armWeapon;
 					};
 					case 1:
 					{
@@ -1269,6 +1301,7 @@ if (player hasWeapon "ItemRadio") then
 BIS_EVO_ListSelect =
 {
 	_x = lbCurSel 2000;
+	_lb2i = lbCurSel 1995;
 	//STR_M04t135,"Distance";
 	ctrlSetText [2003,str (score player)];
 	ctrlSetText [2003,Format ["%1: %2",localize "STR_M04t134",(score player)]];//Score

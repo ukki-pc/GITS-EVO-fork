@@ -202,7 +202,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={9447.3223,139.98311,10103.571};
+					position[]={9452.4736,139.98311,10103.188};
 					azimut=-92.384201;
 					id=103;
 					side="EAST";
@@ -542,7 +542,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={9449.1758,139.98311,10109.068};
+					position[]={9449.4629,139.98311,10108.609};
 					azimut=90.533005;
 					id=120;
 					side="EAST";
@@ -562,14 +562,15 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={9449.0225,139.98311,10111.57};
+					position[]={9448.8506,139.98311,10111.916};
+					special="NONE";
 					id=142;
 					side="WEST";
 					vehicle="US_Soldier_Officer_EP1";
 					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
-					text="comW";
+					text="comw";
 				};
 			};
 		};
@@ -588,7 +589,7 @@ class Mission
 					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
-					text="engW1";
+					text="engw1";
 				};
 			};
 		};
@@ -607,7 +608,7 @@ class Mission
 					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
-					text="engW2";
+					text="engw2";
 				};
 			};
 		};
@@ -626,7 +627,7 @@ class Mission
 					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
-					text="engW3";
+					text="engw3";
 				};
 			};
 		};
@@ -645,7 +646,7 @@ class Mission
 					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
-					text="engW4";
+					text="engw4";
 				};
 			};
 		};
@@ -1871,7 +1872,7 @@ class Mission
 		items=155;
 		class Item0
 		{
-			position[]={8259.2021,15.577255,9084.2314};
+			position[]={8259.1777,15.485656,9085.3604};
 			name="mobj1";
 			type="Empty";
 			colorName="ColorBlack";
@@ -3061,9 +3062,9 @@ class Mission
 		items=64;
 		class Item0
 		{
-			position[]={9821.8516,139.98311,10040.239};
+			position[]={9819.8174,139.98311,10079.436};
 			a=600;
-			b=180;
+			b=100;
 			angle=180;
 			rectangular=1;
 			activationBy="ANY";
@@ -4020,7 +4021,7 @@ class Mission
 		};
 		class Item63
 		{
-			position[]={9449.8438,139.98311,10107.943};
+			position[]={9448.542,139.98311,10107.067};
 			a=5;
 			b=10;
 			rectangular=1;

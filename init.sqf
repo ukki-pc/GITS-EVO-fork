@@ -418,6 +418,21 @@ BIS_EVO_radios = [radio1]; // Each radio in each town
 //BIS_EVO_radios = [radio1,radio2,radio3,radio4,radio5,radio6,radio7,radio8,radio9,radio10,radio11]; // Each radio in each town
 
 BIS_EVO_MissionTowns = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11"];// Each mission objectives town marker.
+BIS_EVO_MissionTowns2 = 
+[
+	["mobj1",false,"PRACS_TK_Su24Fencer"],
+	["mobj2",false],
+	["mobj3",false],
+	["mobj4",false],
+	["mobj5",false],
+	["mobj6",false],
+	["mobj7",false],
+	["mobj8",false],
+	["mobj9",false],
+	["mobj10",false],
+	["mobj11",false]
+];
+
 
 //adding strings for city names
 //BIS_EVO_Townnames = ["CAINNA WIND","CAMARRA","KINSELLA","DJOLAN","KWAKO","DENDALA DISTRICT","BOLABONGO","ENGOR","CANTO","NUBAK","NUMBO"];// Each mission name used in eventsc, mainthreadc, sorew, briefing, used as _city = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
