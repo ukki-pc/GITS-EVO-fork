@@ -28,6 +28,7 @@ if (not (_unit isKindOf "Man")) then
 if (_unit isKindOf "Man") then
 {
 	if(not ((vehicle _unit) isKindOf "Man")) then {_unit setpos (position vehicle _unit)} ;
+		//systemChat format ["you killed a man"];
 	sleep 310.0;
 	hideBody _unit;
 };

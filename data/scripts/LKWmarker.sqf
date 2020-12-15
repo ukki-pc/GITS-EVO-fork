@@ -20,30 +20,13 @@ _i=1;
 _a=0;
 _anzahl=count _Farzeugliste;
 
-while {_i < 20000} do
+while {true} do
 		   {
-		    if ((playerSide == West) ) then
-					     {
-					     _marker setMarkerPosLocal [4803,344,10249];
-		 			     };
-		    if ((playerSide == east)) then
-					     {
-					     _marker setMarkerPosLocal [4803,344,10249];
-		 			     };
-		    if (_anzahl > _a) then
-					 {
-					     _marker setMarkerPosLocal getpos (_Farzeugliste select _a );
-		                       if (not Alive (_Farzeugliste select _a )) then
-					         {
-					            _a=_a+1;
-					  	   };
-					 }
-		  else
-	  	      		 {
-					    _marker setMarkerPosLocal getpos _Basispos;
-					 };
+			   			if(alive TruckW1) then {
+						  _marker setMarkerPosLocal getpos TruckW1;
+						   }
+						   else {_marker setMarkerPosLocal getpos _Basispos;};
 sleep 1;
-_i=_i+1;
 };
        
  

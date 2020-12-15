@@ -8,6 +8,7 @@
 //
 //Aufruf in der Init.sqs:, temp =[[TruckW1,TruckW2,TruckW3,TruckW4,TruckW5],LKWWEST] execVM "LKWcheck.sqf"
 
+/*
 private ["_i","_a","_Farzeugliste","_anzahl","_Basispos"];
 
 _Farzeugliste=_this select 0;
@@ -34,7 +35,4 @@ while {true} do
 sleep 1;
 _i=_i+1;
 };
-
-
-
-
+*/
