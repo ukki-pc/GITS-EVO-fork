@@ -868,7 +868,7 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 			case 6:
 			{
 			_vec = vehicle player;
-			if((inrepairzone) and (_vec != player) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and !(typeof _vec in egg_evo_Amb)and !(typeof _vec in egg_evo_MHQ ) or fuel _vec == 0) then
+			if((inrepairzone) and (_vec != player) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and (typeof _vec != egg_evo_Amb)and !(typeof _vec in egg_evo_MHQ ) or fuel _vec == 0) then
 				{
 					[_ap] execVM "data\scripts\storeVeh.sqf";
 					ctrlShow [674,false]; //Storeveh page

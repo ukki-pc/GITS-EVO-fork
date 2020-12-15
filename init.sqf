@@ -221,8 +221,8 @@ if(EGG_EVO_FactionParam == 0) then
 	EGG_EVO_meflag = ["FlagCarrierTK_EP1"];
 	EGG_EVO_mfhq =["USMC_WarfareBFieldhHospital","CDF_WarfareBFieldhHospital","USMC_WarfareBAircraftFactory","LAV25_HQ_unfolded","CDF_WarfareBBarracks"];// meeds taki
 
-	egg_evo_Amb = ["EB_BRDM2_HQ_TK"]; 
-	egg_evo_MHQ = ["EB_BTR90_HQ_TK"];
+	egg_evo_Amb = "EB_BRDM2_HQ_TK"; 
+	egg_evo_MHQ = "EB_BTR90_HQ_TK";
 
 buyCarList = 
 	[
@@ -515,6 +515,12 @@ BIS_EVO_Lock =
 {
 	_vec = _this select 0;
 	if(Param1 == 7) then {_vec lock true} else {_vec lock false};
+};
+
+if(isServer) then {
+//MHQ SPAWNER
+TruckW1 = createVehicle [egg_evo_MHQ,  getpos LKWWEST, [], 0, "NONE"];
+TruckW1 setVehicleInit "veh = [this, 10, 0, 0, FALSE, FALSE] execVM ""vehicle.sqf""";
 };
 
 //High priority functions
