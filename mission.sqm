@@ -207,7 +207,6 @@ class Mission
 					id=93;
 					side="EAST";
 					vehicle="TK_Commander_EP1";
-					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;
 					text="comE";
@@ -567,7 +566,7 @@ class Mission
 					id=132;
 					side="WEST";
 					vehicle="US_Soldier_Officer_EP1";
-					player="PLAY CDG";
+					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;
 					text="comw";
@@ -586,7 +585,6 @@ class Mission
 					id=133;
 					side="WEST";
 					vehicle="US_Soldier_Engineer_EP1";
-					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
 					text="engw1";
