@@ -430,7 +430,7 @@ class Mission
 					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
-					text="engE2";
+					text="enge2";
 				};
 			};
 		};
@@ -450,7 +450,7 @@ class Mission
 					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
-					text="engE4";
+					text="enge4";
 				};
 			};
 		};
@@ -470,7 +470,7 @@ class Mission
 					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
-					text="engE1";
+					text="enge1";
 				};
 			};
 		};
@@ -490,7 +490,7 @@ class Mission
 					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
-					text="engE3";
+					text="enge3";
 				};
 			};
 		};
