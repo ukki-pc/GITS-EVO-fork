@@ -8,9 +8,9 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 	_alist = objNull;
 	_tag = "";
 	_type = "";
-	_Allspawns = [["parref","parrefa","parrefb"],["somref","somrefa","somrefb"],["cayref","cayrefa","cayrefb"],["dolref","dolrefa","dolrefb"],["ortref","ortrefa","ortrefb"],["corref","correfa","correfb"],["obrref","obrrefa","obrrefb"],["bagref","bagrefa","bagrefb"],["eporef","eporefa","eporefb"],["masref","masrefa","masrefb"],["pitref","pitrefa","pitrefb"]];
+	_Allspawns = [["1ref","1refa","1refb"],["2ref","2refa","2refb"],["3ref","3refa","3refb"],["4ref","4refa","4refb"],["5ref","5refa","5refb"],["6ref","6refa","6refb"],["7ref","7refa","7refb"],["8ref","8refa","8refb"],["9ref","9refa","9refb"],["10ref","10refa","10refb"],["11ref","11refa","11refb"]];
 	_wtime = 0;
-	_radio = BIS_EVO_radios select 0;
+	_radio = BIS_EVO_radios select BIS_EVO_MissionProgress;
 	_alist = BIS_EVO_DetectEnemy;
 	
 	_curtownInf = round(((BIS_EVO_Infantry select BIS_EVO_MissionProgress) select 0)/enemynumdiv);
@@ -29,8 +29,8 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_pos2 = objNull;
 		_max = objnull;
 		_alist = BIS_EVO_DetectEnemy;
-		_Allspawns = [["parref","parrefa","parrefb"],["somref","somrefa","somrefb"],["cayref","cayrefa","cayrefb"],["dolref","dolrefa","dolrefb"],["ortref","ortrefa","ortrefb"],["corref","correfa","correfb"],["obrref","obrrefa","obrrefb"],["bagref","bagrefa","bagrefb"],["eporef","eporefa","eporefb"],["masref","masrefa","masrefb"],["pitref","pitrefa","pitrefb"]];
-		_radio = BIS_EVO_radios select 0;
+		_Allspawns = [["1ref","1refa","1refb"],["2ref","2refa","2refb"],["3ref","3refa","3refb"],["4ref","4refa","4refb"],["5ref","5refa","5refb"],["6ref","6refa","6refb"],["7ref","7refa","7refb"],["8ref","8refa","8refb"],["9ref","9refa","9refb"],["10ref","10refa","10refb"],["11ref","11refa","11refb"]];
+		_radio = BIS_EVO_radios select BIS_EVO_MissionProgress;
 
 		_allunits = EGG_EVO_enemy1;
 		_max = count _allunits;
@@ -80,7 +80,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_alist = BIS_EVO_DetectEnemy;
 		_allunits2 = EGG_EVO_enemy1;
 		_max = count _allunits2;
-		_radio = BIS_EVO_radios select 0;
+		_radio = BIS_EVO_radios select BIS_EVO_MissionProgress;
 		_pos = position _radio;
 		_posback = getmarkerpos "EnemyAir03";
 		_pilot = createGroup (EGG_EVO_ENEMYFACTION);
@@ -147,9 +147,9 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 	EGG_EVO_mecreinf = 
 	{
 		private ["_Allspawns","_alist","_radio","_unit","_guardm","_pos","_rng","_vec","_maxo","_spawns","_pos","_tag","_allvec","_rds","_cardir","_degrees","_dirdif","_array","_recy"]; 
-		_Allspawns = [["parref","parrefa","parrefb"],["somref","somrefa","somrefb"],["cayref","cayrefa","cayrefb"],["dolref","dolrefa","dolrefb"],["ortref","ortrefa","ortrefb"],["corref","correfa","correfb"],["obrref","obrrefa","obrrefb"],["bagref","bagrefa","bagrefb"],["eporef","eporefa","eporefb"],["masref","masrefa","masrefb"],["pitref","pitrefa","pitrefb"]];
+		_Allspawns = [["1ref","1refa","1refb"],["2ref","2refa","2refb"],["3ref","3refa","3refb"],["4ref","4refa","4refb"],["5ref","5refa","5refb"],["6ref","6refa","6refb"],["7ref","7refa","7refb"],["8ref","8refa","8refb"],["9ref","9refa","9refb"],["10ref","10refa","10refb"],["11ref","11refa","11refb"]];
 		_alist = BIS_EVO_DetectEnemy;
-		_radio = BIS_EVO_radios select 0;
+		_radio = BIS_EVO_radios select BIS_EVO_MissionProgress;
 		_unit = objNull;
 		_guardm = grpNull;
 		_pos = objNull;

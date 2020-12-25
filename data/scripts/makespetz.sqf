@@ -15,7 +15,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	_rf = 4600 + (random 1200);
 	sleep _rf;
 
-	_allspawns = ["somref","somrefa","somrefb","parref","parrefa","parrefb"];
+	_allspawns = ["2ref","2refa","2refb","1ref","1refa","1refb"];
 //	_allspawns = ["cayref","cayrefa","cayrefb","dolref","dolrefa","dolrefb"];
 	_max = (count _allspawns)-1;
 	_pos0 = GetMarkerPos (_allspawns select round random _max);
@@ -42,7 +42,7 @@ _pos10 = [((_pos2 select 0) + random 5),((_pos2 select 1)+random 5),(_pos2 selec
 _pos11 = [((_pos3 select 0) + random 5),((_pos3 select 1)+random 5),(_pos3 select 2)];
 _pos12 = [((_pos4 select 0) + random 5),((_pos4 select 1)+random 5),(_pos4 select 2)];
 
-_targblue = getmarkerpos "markerlkwwest"; 
+_targblue = getmarkerpos "MHQ"; 
 sleep 2;
 if(round (random 1) == 1) then {_targblue = getmarkerpos "hospital"};
 sleep 2;

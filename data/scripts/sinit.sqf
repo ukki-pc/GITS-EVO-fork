@@ -6,7 +6,7 @@ _events = [] execVM "data\scripts\EVO_VecRm.sqf";// Vehicle respawn for respawni
 _events = [] execVM "data\scripts\EVO_VecRc.sqf";// Vehicle respawn for respawning civilian vehicles
 _events = [] execVM "data\scripts\EventsS.sqf"; // Common server events
 
-_events = [] execVM "data\scripts\CityMarkers.sqf"; // Common server events
+//_events = [] execVM "data\scripts\CityMarkers.sqf"; // Common server events
 
 _events = [] execVM "data\scripts\EVO_Erefway.sqf"; // Reinforcement waypoint generator
 _events = [] execVM "data\scripts\EVO_FillInf.sqf"; // Fills out squads for cites
@@ -32,7 +32,7 @@ wcam = fh addaction ["Save mission to clipboard", "actions\saveMission.sqf",0,1,
  _handle = [] execVM "data\scripts\makeka.sqf";
  _handle = [] execVM "data\scripts\makehindp.sqf";
  _handle = [] execVM "data\scripts\makehip.sqf";
- _handle = [] execVM "data\scripts\makeShip.sqf";
+ //_handle = [] execVM "data\scripts\makeShip.sqf";
 
 _allPlayers = call BIS_fnc_listPlayers;
 if(EGG_EVO_LoadGame == 0) then 

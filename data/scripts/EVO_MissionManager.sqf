@@ -1,5 +1,5 @@
 // City Setup
-_mkr = (BIS_EVO_MissionTowns2 select BIS_EVO_MissionProgress)select 0;
+_mkr = (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
 _pos = getMarkerPos _mkr;
 
 
@@ -12,21 +12,20 @@ BIS_EVO_DetectFriendly = createTrigger ["EmptyDetector", _pos];
 BIS_EVO_DetectFriendly setTriggerActivation [EGG_EVO_strPLAYERFACTION, "PRESENT", true];
 BIS_EVO_DetectFriendly setTriggerArea [600, 600, 0, true];
 BIS_EVO_DetectFriendly setTriggerTimeout [2, 2, 2, true ];
-_count = (count BIS_EVO_MissionTowns2);
+_count = (count BIS_EVO_MissionTowns);
 
 Sleep 2.0;
 while {BIS_EVO_MissionProgress < _count} do
 {
- 	_mkr = (BIS_EVO_MissionTowns2 select BIS_EVO_MissionProgress) select 0;
+ 	_mkr = (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
  	_pos = getMarkerPos _mkr;
 
-	radio1 setPos _pos;
 	BIS_EVO_DetectEnemy setpos _pos;
 	BIS_EVO_DetectFriendly setpos _pos;
 	Sleep 2.0;
 //adding
 	CityClear=false;
-	_nradio = (BIS_EVO_radios select 0);
+	_nradio = (BIS_EVO_radios select BIS_EVO_MissionProgress);
 
 	[_mkr,BIS_EVO_DetectEnemy,BIS_EVO_DetectFriendly,BIS_EVO_MissionProgress] call BIS_EVO_Erec;
 	

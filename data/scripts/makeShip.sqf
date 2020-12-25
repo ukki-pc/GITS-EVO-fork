@@ -72,7 +72,7 @@ _multp = [-1,1];
 		_randomX = (500 + random(600)) *  ((_multp) select round random 1);
 		_randomY = (500 + random(600)) *  ((_multp) select round random 1);
 
-		_seaPos = [(getMarkerpos (BIS_EVO_MissionTowns2 select BIS_EVO_MissionProgress)select 0) + _randomX,((getMarkerpos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress))select 1) +_randomY];
+		_seaPos = [(getMarkerpos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress)) + _randomX,((getMarkerpos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress))select 1) +_randomY];
 	//	_markerobj setMarkerPos [_seaPos select 0, _seaPos select 1];
 		_isWater= surfaceIsWater _seaPos;
 		sleep 0.5;

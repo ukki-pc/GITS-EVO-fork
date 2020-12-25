@@ -54,7 +54,7 @@ skillfactor = ((1 + random 2)/10);
 Spymade = 0;
 EGG_hidetotal = 6;
 
-editor = 1; publicVariable "editor";
+editor = 0; publicVariable "editor";
 
 if (editor == 0) then {
 spawntype = param1;
@@ -139,7 +139,7 @@ if (editor == 1) then
 	EGG_highCommand = 0;
 	EX_EVO_vehPriceMultiplier = 1;
 	EVO_incomeFrequency = 120;
-	EGG_EVO_FactionParam = 0;
+	EGG_EVO_FactionParam = 1;
 	EGG_EVO_LoadGame = 0;
 };
 	//IF new game selected start the game without hesitation
@@ -207,7 +207,7 @@ if(EGG_EVO_FactionParam == 0) then
 		EGG_EVO_EnemyHeli3 = ["FRL_UH60M_SPIKE","FRL_AH64D_HCAS","FRL_AH1W_AT","AH1Z"];
 
 		//hindv
-		EGG_EVO_mevaira = EGG_EVO_eastheli1+EGG_EVO_EnemyHeli2+EGG_EVO_EnemyHeli3;//hindv
+		EGG_EVO_mevaira = EGG_EVO_EnemyHeli2+EGG_EVO_EnemyHeli3;//hindv
 
 		//planes
 		//makesub
@@ -408,33 +408,33 @@ if(EGG_EVO_FactionParam == 1) then
 	RESISTANCE setFriend [EAST, 0];
 
 	///WEST THINGS
-	reng1 setTriggerActivation ["EAST", "PRESENT", false];
-	reng2 setTriggerActivation ["EAST", "PRESENT", false];
-	reng3 setTriggerActivation ["EAST", "PRESENT", false];
-	reng4 setTriggerActivation ["EAST", "PRESENT", false];
+	reng1 setTriggerActivation ["WEST", "PRESENT", false];
+	reng2 setTriggerActivation ["WEST", "PRESENT", false];
+	reng3 setTriggerActivation ["WEST", "PRESENT", false];
+	reng4 setTriggerActivation ["WEST", "PRESENT", false];
 
 	//Main men
-	EGG_EVO_enemy1= ["RU_Soldier_TL","RU_Soldier_SL","RU_Soldier_Medic","RU_Soldier","RU_Soldier2","RU_Soldier_AR","RU_Soldier_MG","RU_Soldier_AA","RU_Soldier_AT","RU_Soldier_LAT","RU_Soldier_HAT","RU_Soldier_GL","RU_Soldier_Sniper","RU_Soldier_SniperH","RU_Soldier_Spotter","RU_Soldier_Marksman"];
-	EGG_EVO_defenders = ["TK_Soldier_AA_EP1","TK_Soldier_AAT_EP1","TK_Soldier_MG_EP1","TK_Soldier_HAT_EP1","TK_Soldier_AR_EP1","TK_Commander_EP1","TK_Soldier_Engineer_EP1","TK_Soldier_GL_EP1","TK_Soldier_AMG_EP1","TK_Soldier_Medic_EP1","TK_Soldier_Officer_EP1","TK_Soldier_EP1","TK_Soldier_B_EP1","TK_Soldier_LAT_EP1","TK_Soldier_AT_EP1","TK_Soldier_Sniper_EP1","TK_Soldier_Spotter_EP1","TK_Soldier_SL_EP1"];
+	EGG_EVO_defenders= ["RU_Soldier_TL","RU_Soldier_SL","RU_Soldier_Medic","RU_Soldier","RU_Soldier2","RU_Soldier_AR","RU_Soldier_MG","RU_Soldier_AA","RU_Soldier_AT","RU_Soldier_LAT","RU_Soldier_HAT","RU_Soldier_GL","RU_Soldier_Sniper","RU_Soldier_SniperH","RU_Soldier_Spotter","RU_Soldier_Marksman"];
+	EGG_EVO_enemy1 = ["TK_Soldier_AA_EP1","TK_Soldier_AAT_EP1","TK_Soldier_MG_EP1","TK_Soldier_HAT_EP1","TK_Soldier_AR_EP1","TK_Commander_EP1","TK_Soldier_Engineer_EP1","TK_Soldier_GL_EP1","TK_Soldier_AMG_EP1","TK_Soldier_Medic_EP1","TK_Soldier_Officer_EP1","TK_Soldier_EP1","TK_Soldier_B_EP1","TK_Soldier_LAT_EP1","TK_Soldier_AT_EP1","TK_Soldier_Sniper_EP1","TK_Soldier_Spotter_EP1","TK_Soldier_SL_EP1"];
 	EGG_EVO_OfficerDefenders = ["TK_INS_Soldier_AA_EP1","TK_INS_Soldier_AR_EP1","TK_INS_Bonesetter_EP1","TK_INS_Soldier_MG_EP1","TK_INS_Soldier_2_EP1","TK_INS_Soldier_EP1","TK_INS_Soldier_4_EP1","TK_INS_Soldier_3_EP1","TK_INS_Soldier_AAT_EP1","TK_INS_Soldier_AT_EP1","TK_INS_Soldier_Sniper_EP1","TK_INS_Soldier_TL_EP1","TK_INS_Warlord_EP1"];
 	
-	EGG_EVO_mevlight = ["BTR40_MG_TK_INS_EP1","BTR40_TK_INS_EP1","BRDM2_TK_EP1","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1"];
-	EGG_EVO_MechEasy = EGG_EVO_mevlighta =["UAZ_AGS30_TK_EP1","UAZ_MG_TK_EP1","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1","pook_brdm2AGS_TKINS","pook_brdm2AA_TKINS","pook_brdm2RKT_TKINS","pook_brdm2PKM_TAK","pook_brdm2HQcomm_TAK","pook_brdm2HQ_TKINS","pook_brdm2DSHK_TAK","pook_brdm2AT5_TAK","pook_brdm2AT3c_TKINS","pook_brdm2AT3_TKINS","pook_brdm2AT2_TKINS","pook_brdm2M_TAK","pook_brdm2_TAK","pook_brdm2_sa9_TAK"];
-	EGG_EVO_MechMedium =["T72_TK_EP1","BMP2_TK_EP1","T55_TK_EP1","T34_TK_EP1","UAZ_AGS30_TK_EP1","BTR60_TK_EP1","Ural_ZU23_TK_EP1","BRDM2_TK_EP1","M113_TK_EP1","BMP2_HQ_TK_EP1"];
-	EGG_EVO_MechHard = ["T90"];
+	EGG_EVO_mevlight = ["BTR40_MG_TK_INS_EP1","pracs_TK_type63","pracs_TK_mtlb_apc","BTR40_TK_INS_EP1","BRDM2_TK_EP1","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1"];
+	EGG_EVO_MechEasy = EGG_EVO_mevlight + ["UAZ_AGS30_TK_EP1","UAZ_MG_TK_EP1","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1","pook_brdm2AGS_TKINS","pook_brdm2AA_TKINS","pook_brdm2RKT_TKINS","pook_brdm2PKM_TAK","pook_brdm2HQcomm_TAK","pook_brdm2HQ_TKINS","pook_brdm2DSHK_TAK","pook_brdm2AT5_TAK","pook_brdm2AT3c_TKINS","pook_brdm2AT3_TKINS","pook_brdm2AT2_TKINS","pook_brdm2M_TAK","pook_brdm2_TAK","pook_brdm2_sa9_TAK"];
+	EGG_EVO_MechMedium =["T72_TK_EP1","pook_btrMWS_tak","eb_btr90_tk","vil_t62m","ch_t72_desert","ch_t72_2_desert","pook_btr2a42_tak","VIL_BMP1_TKS","EB_BMP3_TK","sa_bmd_1_iraq","BMP2_TK_EP1","pook_brdm2at2_tak","T55_TK_EP1","T34_TK_EP1","UAZ_AGS30_TK_EP1","BTR60_TK_EP1","Ural_ZU23_TK_EP1","BRDM2_TK_EP1","M113_TK_EP1","BMP2_HQ_TK_EP1"];
+	EGG_EVO_MechHard = ["T90","pracs_tk_t80b"];
 
 	//THESE AA SPAWN ON TOWNS
-	EGG_EVO_spAAeasy = ["ZU23_TK_INS_EP1","Ural_ZU23_TK_EP1","ZSU_TK_EP1","ZU23_TK_EP1","pook_brdm2AA_TKINS","pook_brdm2_sa9_TAK"];
-	EGG_EVO_spAAhard =  ["ZU23_TK_INS_EP1","Ural_ZU23_TK_EP1","ZSU_TK_EP1","ZU23_TK_EP1","pook_brdm2AA_TKINS","pook_brdm2_sa9_TAK"];
+	EGG_EVO_spAAeasy = ["ZU23_TK_INS_EP1","Ural_ZU23_TK_EP1","ZSU_TK_EP1","pook_zsum4_tak","pook_zsu57_tak","ZU23_TK_EP1","pook_brdm2AA_TKINS","pook_brdm2_sa9_TAK","pracs_tk_sa13","pracs_sa6_tk","pracs_tk_sa8","eb_2S6M_Tunguska_D","pook_5P85S_TAK"];
+	EGG_EVO_spAAhard =  EGG_EVO_spAAeasy;
 
 	EGG_EVO_mepilot = ["TK_Soldier_Pilot_EP1"];
 	EGG_EVO_meofficer = ["TK_Aziz_EP1"];
 
 	//statics
-	EGG_EVO_westveh13 = ["Igla_AA_pod_TK_EP1","AGS_TK_EP1","D30_TK_EP1","KORD_high_TK_EP1","KORD_TK_EP1","Metis_TK_EP1","2b14_82mm_TK_EP1","AGS_TK_INS_EP1","D30_TK_INS_EP1","DSHKM_TK_INS_EP1","DSHkM_Mini_TriPod_TK_INS_EP1","2b14_82mm_TK_INS_EP1","SPG9_TK_INS_EP1"];
+	EGG_EVO_westveh13 = ["Igla_AA_pod_TK_EP1","AGS_TK_EP1","D30_TK_EP1","KORD_high_TK_EP1","KORD_TK_EP1","Metis_TK_EP1","2b14_82mm_TK_EP1","AGS_TK_INS_EP1","D30_TK_INS_EP1","DSHKM_TK_INS_EP1","DSHkM_Mini_TriPod_TK_INS_EP1","2b14_82mm_TK_INS_EP1","SPG9_TK_INS_EP1","POOK_zpu4_tak","POOK_ks12_tak","POOK_zpu4_tak","pook_sa3_static_tak","pracs_tk_sa2"];
 
 	//Reinfocing infatry vehicles
-	EGG_EVO_mevconvoyb = ["V3S_TK_EP1","V3S_Open_TK_EP1"];
+	EGG_EVO_mevconvoyb = ["V3S_TK_EP1","V3S_Open_TK_EP1","pracs_TK_mtlb_apc"];
 
 	//Reinforce paradrop vehicles
 	EGG_EVO_mevair3 = ["An2_TK_EP1","Mi17_TK_EP1","Mi24_D_TK_EP1","UH1H_TK_EP1"]; //"ou_ch_46e","ou_ch_53d",
@@ -453,11 +453,11 @@ if(EGG_EVO_FactionParam == 1) then
 
 		//planes
 		//makesub
-			EGG_EVO_mevairb = ["Su25_TK_EP1","ibrPRACS_MiG21_AGmol","ibrPRACS_MiG21mol","mig15bis_4_tak","mig15bis_fighterBomber_tak","mig15bis_5_tak"];//makesub
+			EGG_EVO_mevairb = ["Su25_TK_EP1","ibrPRACS_MiG21_AGmol","ibrPRACS_MiG21mol","mig15bis_5_tak","SMAF_MF1_TK_CAS","mig15bis_5_tak"];//makesub
 
 		//"RKTSU33B1","RKTSU33AG","RKTSU33AA","RKTSU33MR",
 		//makesu
-			EGG_EVO_mevairc =["FRL_Su34_D_CAP","FRL_Su34_D_CAS","FRL_Su34_D_HCAS","FRL_Su34_D_EHCAS","FRL_Su34_D_AGM","FRL_Su34_D_MR","FRL_Su34_D_LBMB","FRL_Su34_D_BMB","FRL_Su34_D_HBMB","FRL_Su34_D_LGB","FRL_Su34_D_SEAD","An2_TK_EP1","PRACS_Su24Fencer","ibr_viggen1","ibr_viggen4","ibr_viggen3"];//makesu
+			EGG_EVO_mevairc =["FRL_Su34_D_CAP","FRL_Su34_D_CAS","FRL_Su34_D_HCAS","FRL_Su34_D_EHCAS","FRL_Su34_D_AGM","FRL_Su34_D_MR","FRL_Su34_D_LBMB","FRL_Su34_D_BMB","FRL_Su34_D_HBMB","FRL_Su34_D_LGB","FRL_Su34_D_SEAD","PRACS_TK_Su24Fencer","FRL_Mig23B_TK_MR","PRACS_TK_Su22","FRL_Mig29_TAK_MR","FRL_Su25_TK_CAS","FRL_Su27_TK_CAP"];//makesu
 	//HQ Structure
 	EGG_EVO_mehq = ["LAV25_HQ_unfolded"];
 	EGG_EVO_meflag = ["FlagCarrierTK_EP1"];
@@ -563,6 +563,7 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	[
 		/*---Helicopters---*/
 	["PRACS_puma330_MG",10],						// Mi-17
+	["ou_ch_46e",10],						// Mi-17
 	["PRACS_MH6J",10],							// Littlebird
 	["PRACS_AH6J",20],							// Littlebird (Armed)
 	["UH60M_MEV_EP1",10],									// Blackhawk (MMG)
@@ -574,27 +575,33 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	["ibr_as350_armed",30],								// Viper
 	["Mi171Sh_rockets_CZ_EP1",80],				// Mi-17 (Rockets)
 	["AW159_Lynx_BAF",80],						// Wildcat
-	["PRACS_RAH6",100],							// Littlebird (Armed)
+	["kiowa",80],
+	["PRACS_RAH6",100],							// Littlebird (Armed)	
+	["yup_SH60B",90],
+	["FRL_UH60M_MR",120],	
 	["PRACS_AH1S",190],								// Cobra
 	["AH1Z",190],								// Cobra
 	["AH64D",200],								// Apache (AT)
 	/*---Planes---*/
 	["ibr_tucano_lin",60],	
-	["SMAF_MF1_AGRESSOR_DESERT",100],								// F35					
+	["SMAF_MF1_AGRESSOR_DESERT",100],								// F35
 	["PRACS_Etendard",130],								// F35
 	["Pracs_Mohawk",130],								// F35 
 	["PRACS_Mirage3",140],								// F35
 	["F4M_Des",140],	
 	["PRACS_A4",160],								// F35
 	["PRACS_F16_PHSTRK",170],								// F35
+	["FRL_F16_D_MR",170],	
 	["JS_JC_FA18E_USMC",170],	
 	["F35B",170],								// F35
 	["PRACS_F15",170],								// F35
+	["FRL_F15E_D_MR",170],	
 	["FRL_A10_MR",170],								// A10
 	["FRL_AV8B_MR",180],								// AV8B
+	["3lb_f22_sdb",180],								// AV8B
 	["pook_EF2000_BAF_D_DEAD",185],								// AV8B
-	["FRL_F111_D_MR",185]								// AV8B
-
+	["FRL_F111_D_MR",185],								// AV8B
+	["b1b_MK82_desert",185]
 	];
 	for [{_loop=0}, {_loop<count buyAirList}, {_loop=_loop+1}] do {
 	buyAirList set [_loop,[(buyAirList select _loop) select 0, (buyAirList select _loop) select 1,0]];
@@ -632,10 +639,12 @@ BIS_EVO_GlobalSleep = 0.1; // Global sleep is used after spawning a unit.
 BIS_EVO_MissionProgress = 0; // counts towns captured, when it hits 11 , mission is over.
 BIS_EVO_Onmission=false; 
 BIS_EVO_sobj1=false;
-BIS_EVO_radios = [radio1]; // Each radio in each town
-//BIS_EVO_radios = [radio1,radio2,radio3,radio4,radio5,radio6,radio7,radio8,radio9,radio10,radio11]; // Each radio in each town
+//BIS_EVO_radios = [radio1]; // Each radio in each town
+BIS_EVO_radios = [radio1,radio2,radio3,radio4,radio5,radio6,radio7,radio8,radio9,radio10,radio11]; // Each radio in each town
 
 BIS_EVO_MissionTowns = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11"];// Each mission objectives town marker.
+
+/*
 BIS_EVO_MissionTowns2 = 
 [
 	["mobj1",false,"PRACS_TK_Su24Fencer"],
@@ -650,7 +659,7 @@ BIS_EVO_MissionTowns2 =
 	["mobj10",false],
 	["mobj11",false]
 ];
-
+*/
 
 //adding strings for city names
 //BIS_EVO_Townnames = ["CAINNA WIND","CAMARRA","KINSELLA","DJOLAN","KWAKO","DENDALA DISTRICT","BOLABONGO","ENGOR","CANTO","NUBAK","NUMBO"];// Each mission name used in eventsc, mainthreadc, sorew, briefing, used as _city = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
@@ -737,8 +746,8 @@ BIS_EVO_Lock =
 
 if(isServer) then {
 //MHQ SPAWNER
-TruckW1 = createVehicle [egg_evo_MHQ,  getpos LKWWEST, [], 0, "NONE"];
-TruckW1 setVehicleInit "veh = [this, 10, 0, 0, FALSE, FALSE] execVM ""vehicle.sqf""";
+MHQ = createVehicle [egg_evo_MHQ,  getpos LKWWEST, [], 0, "NONE"];
+MHQ setVehicleInit "veh = [this, 10, 0, 0, FALSE, FALSE] execVM ""vehicle.sqf""";
 };
 
 //High priority functions
@@ -832,7 +841,7 @@ EGG_EVO_westveh4 = ["EP3_A10_CAS","EP3_A10_CBU","EP3_A10","GLT_Falcon_mk82","GLT
 //EGG_EVO_westveh5 = ["HMMWV","HMMWV_Ambulance","UralOpen_CDF","Ural_CDF","UralReammo_CDF","UralRefuel_CDF","UralRepair_CDF","UAZ_CDF","BMP2_Ambul_CDF","MMT_USMC","M1030","MTVR","MtvrReammo","MtvrRefuel","MtvrRepair"];
 EGG_EVO_westveh5 = ["BAF_ATV_D","BAF_Offroad_D","ATV_US_EP1","MTVR_DES_EP1","MtvrReammo_DES_EP1","MtvrRefuel_DES_EP1","MtvrRepair_DES_EP1","M1133_MEV_EP1","SUV_PMC_BAF","SUV_UN_EP1"];
 //light armed
-//EGG_EVO_westveh6 = ["HMMWV_Armored","HMMWV_M2","HMMWV_MK19","HMMWV_TOW","LAV25_HQ","UAZ_MG_CDF","UAZ_AGS30_CDF","BRDM2_CDF","BRDM2_ATGM_CDF","BMP2_HQ_CDF","GRAD_CDF"];
+EGG_EVO_westveh6 = ["HMMWV_Armored","HMMWV_M2","HMMWV_MK19","HMMWV_TOW","LAV25_HQ","UAZ_MG_CDF","UAZ_AGS30_CDF","BRDM2_CDF","BRDM2_ATGM_CDF","BMP2_HQ_CDF","GRAD_CDF"];
 //heavy armed
 //EGG_EVO_westveh7 = ["AAV","LAV25","M1A1","M1A2_TUSK_MG","BMP2_CDF","T72_CDF","MLRS","T34"];
 
@@ -1234,8 +1243,8 @@ EGG_EVO_westchopM = EGG_EVO_westveh1+EGG_EVO_westveh3;
 EGG_EVO_westplaneM = EGG_EVO_westveh2+EGG_EVO_westveh4;
 EGG_EVO_westairM = EGG_EVO_westchopM+EGG_EVO_westplaneM;
 
-EGG_EVO_eastair = EGG_EVO_mevaira+EGG_EVO_eastveh2;
-EGG_EVO_eastchopM = EGG_EVO_mevaira+EGG_EVO_eastveh3;
+//EGG_EVO_eastair = EGG_EVO_mevaira+EGG_EVO_eastveh2;
+//EGG_EVO_eastchopM = EGG_EVO_mevaira+EGG_EVO_eastveh3;
 EGG_EVO_eastplaneM = EGG_EVO_eastveh2+EGG_EVO_eastveh4;
 EGG_EVO_eastairM = EGG_EVO_eastchopM+EGG_EVO_eastplaneM;
 

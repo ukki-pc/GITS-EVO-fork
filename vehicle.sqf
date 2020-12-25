@@ -135,7 +135,7 @@ _vecmarkerb =
 //	hint format["name: %1",_unitname];
 
 //MHQ
-	if (_unit == MHQ) then
+	if (typeof _unit == egg_evo_MHQ) then
 	{
 		_mrktype = "hd_flag";
 		_markerobj5 = createMarker["MHQ",[getpos _unit select 0,getpos _unit select 1]];
@@ -167,7 +167,7 @@ _vecmarkerb =
 		}
 		else
 		{
-			if ( !(isNil _markerobj5) and !(_unit == MHQ) ) then
+			if ( !(isNil _markerobj5) and !(typeof _unit == egg_evo_MHQ) ) then
 			{
 				deleteMarker _markerobj5;
 			};
@@ -263,22 +263,22 @@ while {_run} do
 		[_unit] call _vecmarkerb;
 	};
 //check if vehicle is healthy and occupied
-	if ( (_unit distance _position > 10) and (getDammage _unit < 0.8) and (Fuel _unit > 0.2) and ({alive _x} count crew _unit >0) and !(isNil _markerobj5) and (!(_unit == MHQ)) )then 
+	if ( (_unit distance _position > 10) and (getDammage _unit < 0.8) and (Fuel _unit > 0.2) and ({alive _x} count crew _unit >0) and !(isNil _markerobj5) and (!(typeof _unit == egg_evo_MHQ)) )then 
 	{
 		deleteMarker _markerobj5;
 	};
 
-	if ( (_unit == MHQ)and (isNil _markerobj5) ) then
+	if ( (typeof _unit == egg_evo_MHQ)and (isNil _markerobj5) ) then
 	{
 		[_unit] call _vecmarkerb;
 	};
-	if ( (_unit == MHQ)and !(isNil _markerobj5) ) then
+	if ( (typeof _unit == egg_evo_MHQ)and !(isNil _markerobj5) ) then
 	{
-		_posa = getposASL MHQ;
+		_posa = getposASL _unit;
 		"MHQ" setMarkerpos _posa;
 		if ((_posa select 2) < -2) then 
 		{
-			MHQ setdammage 1; 
+			_unit setdammage 1; 
 			sleep 1;
 		};
 	};

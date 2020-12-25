@@ -19,13 +19,16 @@ if (_playertype in EGG_EVO_PlayerMedic)  then
 {
 	_med = player execVM "data\scripts\med.sqf";
 };
-if (_playertype in EGG_EVO_PlayerEng) then
-{
-	if(player == enge1 or player == engw1) then {BIS_EVO_EngZone = reng1};
-	if(player == enge2  or player == engw2) then {BIS_EVO_EngZone = reng2};
-	if(player == enge3  or player == engw3) then {BIS_EVO_EngZone = reng3};
-	if(player == enge4 or player == engw4) then {BIS_EVO_EngZone = reng4};	
-};
+
+	if(player == enge1) then {BIS_EVO_EngZone = reng1};
+	if(player == enge2 ) then {BIS_EVO_EngZone = reng2};
+	if(player == enge3) then {BIS_EVO_EngZone = reng3};
+	if(player == enge4) then {BIS_EVO_EngZone = reng4};
+
+	if(player == engw1) then {BIS_EVO_EngZone = reng1};
+	if(player == engw2) then {BIS_EVO_EngZone = reng2};
+	if(player == engw3) then {BIS_EVO_EngZone = reng3};
+	if(player == engw4) then {BIS_EVO_EngZone = reng4};
 
 
 // Create player

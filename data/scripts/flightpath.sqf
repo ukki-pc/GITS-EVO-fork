@@ -2,18 +2,18 @@
 _grp = _this select 0;
 _countflt = (count BIS_EVO_MissionTowns)-1; //= 11
 
-_wp = _grp addWaypoint [getMarkerpos (BIS_EVO_MissionTowns2 select BIS_EVO_MissionProgress) select 0, 100];//current town
+_wp = _grp addWaypoint [getMarkerpos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress), 100];//current town
 
 _iflt=0;
 while {_iflt < 2} do 
 {
-	_wp = _grp addWaypoint [getMarkerpos (BIS_EVO_MissionTowns2 select (round random 4)) select 0, 100];//4 random towns
+	_wp = _grp addWaypoint [getMarkerpos (BIS_EVO_MissionTowns select (round random 4)), 100];//4 random towns
 	_iflt=_iflt+1;
 	Sleep 0.5;
 };
 while {_iflt < 4} do 
 {
-	_wp = _grp addWaypoint [getMarkerpos (BIS_EVO_MissionTowns2 select (round random _countflt))select 0, 100];//4 random towns
+	_wp = _grp addWaypoint [getMarkerpos (BIS_EVO_MissionTowns select (round random _countflt)), 100];//4 random towns
 	_iflt=_iflt+1;
 	Sleep 0.5;
 };

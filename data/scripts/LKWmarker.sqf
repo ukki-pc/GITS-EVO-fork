@@ -22,8 +22,8 @@ _anzahl=count _Farzeugliste;
 
 while {true} do
 		   {
-			   			if(alive TruckW1) then {
-						  _marker setMarkerPosLocal getpos TruckW1;
+			   			if(alive MHQ) then {
+						  _marker setMarkerPosLocal getpos MHQ;
 						   }
 						   else {_marker setMarkerPosLocal getpos _Basispos;};
 sleep 1;

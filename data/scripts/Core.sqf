@@ -229,8 +229,8 @@ BIS_EVO_ListUpdate =
 
 	if (helpersparam == 1) then 
 	{
-		RecList = [[getText (configFile >> "CfgVehicles" >> "TK_Soldier_LAT_EP1" >> "DisplayName"), "TK_Soldier_LAT_EP1", "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", ["TK_Soldier_LAT_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_Medic_EP1" >> "DisplayName"), "TK_Soldier_Medic_EP1", "\Ca\characters\data\Ico\i_med_ca.paa",["TK_Soldier_Medic_EP1"] call _GetGuns]];
+		RecList = [[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_EP1" >> "DisplayName"), "US_Delta_Force_EP1", "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", ["US_Delta_Force_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_Medic_EP1" >> "DisplayName"), "US_Delta_Force_Medic_EP1", "\Ca\characters\data\Ico\i_med_ca.paa",["US_Delta_Force_Medic_EP1"] call _GetGuns]];
 	};
 
 /* developing parameter for artillery cost based on:
@@ -277,8 +277,8 @@ AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to securit
 //recruit
 	if (helpersparam == 1) then 
 	{
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TYR_Soldier_AT3" >> "DisplayName"), "TYR_Soldier_AT3", "\Ca\weapons\data\Ico\i_at_CA.paa", ["TYR_Soldier_AT3"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_Pilot_EP1" >> "DisplayName"), "TK_Soldier_Pilot_EP1", "\Ca\characters\data\portraits\combarhead_usmc_pilot_ca",["TK_Soldier_Pilot_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_AT_EP1" >> "DisplayName"), "US_Soldier_AT_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa", ["US_Soldier_AT_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_Pilot_EP1" >> "DisplayName"), "US_Soldier_Pilot_EP1", "\Ca\characters\data\portraits\combarhead_usmc_pilot_ca",["US_Soldier_Pilot_EP1"] call _GetGuns]];
 	};
 //support
 	SupList = SupList +[[localize "str_dn_30rnd_105mmsmoke_m119","Cost: 3 Ideal for masking your movement",20,3,5,"data\sup01.paa",11]];
@@ -296,8 +296,8 @@ AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to securit
 //recruit
 	if (helpersparam == 1) then 
 	{
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_MG_EP1" >> "DisplayName"), "TK_Soldier_MG_EP1", "\Ca\weapons\data\Ico\i_mg_CA.paa",["TK_Soldier_MG_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_GL_EP1" >> "DisplayName"), "TK_Soldier_GL_EP1", "\Ca\characters\data\Ico\i_sf_ca.paa", ["TK_Soldier_GL_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_MG_EP1" >> "DisplayName"), "US_Delta_Force_MG_EP1", "\Ca\weapons\data\Ico\i_mg_CA.paa",["US_Delta_Force_MG_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_GL_EP1" >> "DisplayName"), "US_Soldier_GL_EP1", "\Ca\characters\data\Ico\i_sf_ca.paa", ["US_Soldier_GL_EP1"] call _GetGuns]];
 	};
 
 //support
@@ -326,8 +326,8 @@ AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to securit
 //recruit
 	if (helpersparam == 1) then 
 	{
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_AA_EP1" >> "DisplayName"), "TK_Soldier_AA_EP1", "\Ca\weapons\data\Ico\i_aa_CA.paa",["TK_Soldier_AA_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_Sniper_EP1" >> "DisplayName"), "TK_Soldier_Sniper_EP1", "\Ca\weapons\data\Ico\i_sniper_CA.paa",["TK_Soldier_Sniper_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_AA_EP1" >> "DisplayName"), "US_Soldier_AA_EP1", "\Ca\weapons\data\Ico\i_aa_CA.paa",["US_Soldier_AA_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_SniperH_EP1" >> "DisplayName"), "US_Soldier_SniperH_EP1", "\Ca\weapons\data\Ico\i_sniper_CA.paa",["US_Soldier_SniperH_EP1"] call _GetGuns]];
 		};
 
 //support
@@ -344,8 +344,8 @@ AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to securit
 //recruit
 	if (helpersparam == 1) then 
 	{
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TYR_Soldier_AT2" >> "DisplayName"), "TYR_Soldier_AT2", "\Ca\weapons\data\Ico\i_at_CA.paa", ["TYR_Soldier_AT2"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TYR_Soldier_MG2" >> "DisplayName"), "TYR_Soldier_MG2", "\Ca\weapons\data\Ico\i_mg_CA.paa",["TYR_Soldier_MG2"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "CZ_Soldier_AT_DES_EP1" >> "DisplayName"), "CZ_Soldier_AT_DES_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa", ["CZ_Soldier_AT_DES_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "CZ_Special_Forces_MG_DES_EP1" >> "DisplayName"), "CZ_Special_Forces_MG_DES_EP1", "\Ca\weapons\data\Ico\i_mg_CA.paa",["CZ_Special_Forces_MG_DES_EP1"] call _GetGuns]];
 	};
 
 //support	
@@ -362,7 +362,7 @@ AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to securit
 //recruit
 	if (helpersparam == 1) then 
 	{
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TYR_SF_4" >> "DisplayName"), "TYR_SF_4", "\Ca\characters\data\Ico\i_sf_ca.paa",["TYR_SF_4"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_SD_EP1" >> "DisplayName"), "US_Delta_Force_SD_EP1", "\Ca\characters\data\Ico\i_sf_ca.paa",["US_Delta_Force_SD_EP1"] call _GetGuns]];
 	};
 
 //support
@@ -426,17 +426,17 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 	if (helpersparam == 2) then 
 	{
 		RecList = [];
-		RecList = [[getText (configFile >> "CfgVehicles" >> "TK_Soldier_LAT_EP1" >> "DisplayName"), "TK_Soldier_LAT_EP1", "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", ["TK_Soldier_LAT_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_Medic_EP1" >> "DisplayName"), "TK_Soldier_Medic_EP1", "\Ca\characters\data\Ico\i_med_ca.paa",["TK_Soldier_Medic_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_HAT_EP1" >> "DisplayName"), "TK_Soldier_HAT_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa", ["TK_Soldier_HAT_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_Pilot_EP1" >> "DisplayName"), "TK_Soldier_Pilot_EP1", "\Ca\characters\data\portraits\combarhead_usmc_pilot_ca",["TK_Soldier_Pilot_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_MG_EP1" >> "DisplayName"), "TK_Soldier_MG_EP1", "\Ca\weapons\data\Ico\i_mg_CA.paa",["TK_Soldier_MG_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_GL_EP1" >> "DisplayName"), "TK_Soldier_GL_EP1", "\Ca\characters\data\Ico\i_sf_ca.paa", ["TK_Soldier_GL_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_AA_EP1" >> "DisplayName"), "TK_Soldier_AA_EP1", "\Ca\weapons\data\Ico\i_aa_CA.paa",["TK_Soldier_AA_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_Sniper_EP1" >> "DisplayName"), "TK_Soldier_Sniper_EP1", "\Ca\weapons\data\Ico\i_sniper_CA.paa",["TK_Soldier_Sniper_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_SniperH_EP1" >> "DisplayName"), "TK_Soldier_SniperH_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa", ["TK_Soldier_SniperH_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_pook_M79" >> "DisplayName"), "TK_Soldier_pook_M79", "\Ca\weapons\data\Ico\i_mg_CA.paa",["TK_Soldier_pook_M79"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "TK_Soldier_pook_RPG_chem" >> "DisplayName"), "TK_Soldier_pook_RPG_chem", "\Ca\characters\data\Ico\i_sf_ca.paa",["TK_Soldier_pook_RPG_chem"] call _GetGuns]];
+		RecList = [[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_EP1" >> "DisplayName"), "US_Delta_Force_EP1", "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", ["US_Delta_Force_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_Medic_EP1" >> "DisplayName"), "US_Delta_Force_Medic_EP1", "\Ca\characters\data\Ico\i_med_ca.paa",["US_Delta_Force_Medic_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_AT_EP1" >> "DisplayName"), "US_Soldier_AT_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa", ["US_Soldier_AT_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_Pilot_EP1" >> "DisplayName"), "US_Soldier_Pilot_EP1", "\Ca\characters\data\portraits\combarhead_usmc_pilot_ca",["US_Soldier_Pilot_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_MG_EP1" >> "DisplayName"), "US_Delta_Force_MG_EP1", "\Ca\weapons\data\Ico\i_mg_CA.paa",["US_Delta_Force_MG_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_GL_EP1" >> "DisplayName"), "US_Soldier_GL_EP1", "\Ca\characters\data\Ico\i_sf_ca.paa", ["US_Soldier_GL_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_AA_EP1" >> "DisplayName"), "US_Soldier_AA_EP1", "\Ca\weapons\data\Ico\i_aa_CA.paa",["US_Soldier_AA_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_SniperH_EP1" >> "DisplayName"), "US_Soldier_SniperH_EP1", "\Ca\weapons\data\Ico\i_sniper_CA.paa",["US_Soldier_SniperH_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "CZ_Soldier_AT_DES_EP1" >> "DisplayName"), "CZ_Soldier_AT_DES_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa", ["CZ_Soldier_AT_DES_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "CZ_Special_Forces_MG_DES_EP1" >> "DisplayName"), "CZ_Special_Forces_MG_DES_EP1", "\Ca\weapons\data\Ico\i_mg_CA.paa",["CZ_Special_Forces_MG_DES_EP1"] call _GetGuns]];
+		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_HAT_EP1" >> "DisplayName"), "US_Soldier_HAT_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa",["US_Soldier_HAT_EP1"] call _GetGuns]];
 	};
 
 /*
@@ -749,7 +749,6 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 	};
 		if (_buypage) then 
 	{
-
 		_ap = player;
 		ctrlShow [6057,false];
 		ctrlShow [6058,false];
@@ -868,7 +867,8 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 			case 6:
 			{
 			_vec = vehicle player;
-			if((inrepairzone) and (_vec != player) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and (typeof _vec != egg_evo_Amb)and !(typeof _vec in egg_evo_MHQ ) or fuel _vec == 0) then
+			_inrepairzone = ((_vec in list AirportIn) or (_vec in list farp1) or (_vec in list farp2) or (_vec in list farp3) or (_vec in list farp4) or (_vec in list reng1) or (_vec in list reng2) or (_vec in list reng3) or (_vec in list reng4) or (_vec in list dock1) or (_vec in list LHDin));
+			if((_inrepairzone)) then
 				{
 					[_ap] execVM "data\scripts\storeVeh.sqf";
 					ctrlShow [674,false]; //Storeveh page
@@ -948,13 +948,13 @@ BIS_EVO_ActButton =
 				_i = _i + 1;
 			};
 
-			if (score player < BIS_EVO_rank1 and helpersparam != 2 and _ainum >= 1) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (score player < BIS_EVO_rank2 and helpersparam != 2 and _ainum >= 2) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (score player < BIS_EVO_rank3 and helpersparam != 2 and _ainum >= 3) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (score player < BIS_EVO_rank4 and helpersparam != 2 and _ainum >= 4) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (score player < BIS_EVO_rank5 and helpersparam != 2 and _ainum >= 5) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (score player < BIS_EVO_rank6 and helpersparam != 2 and _ainum >= 6) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (score player >= BIS_EVO_rank6 and helpersparam != 2 and _ainum >= 7) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+			if (score player < BIS_EVO_rank1-pointsSpent and helpersparam != 2 and _ainum >= 1) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+			if (score player < BIS_EVO_rank2-pointsSpent and helpersparam != 2 and _ainum >= 2) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+			if (score player < BIS_EVO_rank3-pointsSpent and helpersparam != 2 and _ainum >= 3) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+			if (score player < BIS_EVO_rank4-pointsSpent and helpersparam != 2 and _ainum >= 4) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+			if (score player < BIS_EVO_rank5-pointsSpent and helpersparam != 2 and _ainum >= 5) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+			if (score player < BIS_EVO_rank6-pointsSpent and helpersparam != 2 and _ainum >= 6) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+			if (score player >= BIS_EVO_rank6-pointsSpent and helpersparam != 2 and _ainum >= 7) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
 			if (helpersparam == 2 and _ainum >= 8) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
 			_rec = [_item] execVM "data\scripts\recruit.sqf";
 //		};
