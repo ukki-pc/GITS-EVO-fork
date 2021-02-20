@@ -31,7 +31,8 @@ class Mission
 		"CA_Modules_ARTY",
 		"ca_modules_functions",
 		"ca_modules_clouds",
-		"mis_isis_terrorists"
+		"mis_isis_terrorists",
+		"PRACS_Tracked"
 	};
 	addOnsAuto[]=
 	{
@@ -56,6 +57,7 @@ class Mission
 		"cawater2_destroyer",
 		"cawater2_fregata",
 		"mis_isis_terrorists",
+		"PRACS_Tracked",
 		"smd_sahrani_a2"
 	};
 	randomSeed=8800876;
@@ -73,7 +75,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=29;
+		items=31;
 		class Item0
 		{
 			side="LOGIC";
@@ -644,10 +646,45 @@ class Mission
 				};
 			};
 		};
+		class Item29
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={11446.122,0.67916644,10630.906};
+					id=124;
+					side="LOGIC";
+					vehicle="Logic";
+					leader=1;
+					skill=0.60000002;
+					text="cent";
+				};
+			};
+		};
+		class Item30
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={10576.697,122.9685,9552.5361};
+					id=125;
+					side="LOGIC";
+					vehicle="LocationLogicCity";
+					leader=1;
+					skill=0.60000002;
+				};
+			};
+		};
 	};
 	class Vehicles
 	{
-		items=95;
+		items=96;
 		class Item0
 		{
 			position[]={9661.3125,139.98311,10084.463};
@@ -740,7 +777,7 @@ class Mission
 		};
 		class Item9
 		{
-			position[]={8258.8574,15.467237,9085.3828};
+			position[]={8259.7734,15.162835,9089.7832};
 			placement=200;
 			id=9;
 			side="EMPTY";
@@ -750,7 +787,7 @@ class Mission
 		};
 		class Item10
 		{
-			position[]={6992.6948,31.986429,8066.8818};
+			position[]={6946.2119,31.986429,8050.0947};
 			placement=200;
 			id=10;
 			side="EMPTY";
@@ -1629,20 +1666,28 @@ class Mission
 			skill=0.60000002;
 			init="this allowDamage false";
 		};
+		class Item95
+		{
+			position[]={9459.4453,139.98311,10111.675};
+			id=126;
+			side="EMPTY";
+			vehicle="PRACS_T72";
+			skill=0.60000002;
+		};
 	};
 	class Markers
 	{
 		items=154;
 		class Item0
 		{
-			position[]={8259.1777,15.485656,9085.3604};
+			position[]={8222.0645,9.9374504,9130.2363};
 			name="mobj1";
 			type="Empty";
 			colorName="ColorBlack";
 		};
 		class Item1
 		{
-			position[]={6992.5991,31.986429,8066.8936};
+			position[]={6946.1162,31.986429,8050.1064};
 			name="mobj2";
 			type="Empty";
 			colorName="ColorBlack";

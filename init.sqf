@@ -54,7 +54,7 @@ skillfactor = ((1 + random 2)/10);
 Spymade = 0;
 EGG_hidetotal = 6;
 
-editor = 0; publicVariable "editor";
+editor = 1; publicVariable "editor";
 
 if (editor == 0) then {
 spawntype = param1;
@@ -1038,6 +1038,7 @@ EB_planes_SEAD = EB_planes_west;
 
 EGG_maxMissiles = 6;
 VehiclePlaced = 1;
+repaircooldown = 0;
 
 EB_PLbombs = ["EB_Mk81_Launcher","EB_Mk82_Launcher","EB_Mk83_Launcher","EB_Mk84_Launcher","EB_Mk77_Launcher","EB_Mk770_Launcher","EB_BombLauncher_fab250","EB_BombLauncher_fab500","EB_CBU78B_Launcher","EB_CBU87B_Launcher","RKTR27Launcher","EB_R77_Launcher","EB_CBU89B_Launcher","EB_CBU100_Launcher","EB_GBU12_Launcher","EB_GBU16_Launcher","EB_GBU10_Launcher","EB_BombLauncher_kab250","EB_BombLauncher_kab500"];
 EB_PLmissiles = ["EB_AIM9M_Launcher","EB_AIM120_Launcher","EB_AIM9X_Launcher","EB_AIM7E_Launcher","EB_METEOR_Launcher","EB_AIM132_Launcher","EB_R60_Launcher","EB_R73_Launcher","EB_AT2_Launcher","EB_KH29D_Launcher","EB_KH29L_Launcher","EB_AGM65E_Launcher","EB_AGM114K_Launcher","EB_AGM88_Launcher"];

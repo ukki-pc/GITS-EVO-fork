@@ -31,6 +31,9 @@ _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 	detach _cstatA;
 	_cstatA enableSimulation true;
 	_who allowDamage true;
+	
+	//Event handler to prevent repair whilst taking damage
+	_cstatA addEventHandler ["Dammaged",{execVM "data\scripts\hitcooldown.sqf"}];
 
 	if(_stattype isKindOf "Land") then 
 	{
