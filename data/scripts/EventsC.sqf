@@ -4398,20 +4398,32 @@ BIS_EVO_AssignTasks =  // Assigns common main city objectives
 		BIS_EVO_Objective0 setSimpleTaskDescription [_MissionBriefingLong,_MissionBriefingShort,_MissionBriefingHUD];
 		BIS_EVO_Objective0 settaskstate "Created";
 	};
-	if(isNull BIS_EVO_Objective1) then
+	
+	if( (BIS_EVO_MissionProgress != -1) ) then {
+		_MissionBriefingHUD = localize "STR_M04t58";//ASSAULT
+		_MissionBriefingShort = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
+		_MissionBriefingLong = format[localize "STR_M04t59",_MissionBriefingShort];// Command has issued an order to launch a full scale assault on %1. The primary objective is to neutralize all enemy in the area. Secondary objectives are to disable their radio tower and capture any high ranking officers you find in the town.
+		BIS_EVO_Objective1 = player createSimpleTask ["obj1"];
+		BIS_EVO_Objective1 setSimpleTaskDescription [_MissionBriefingLong,_MissionBriefingShort,_MissionBriefingHUD];
+		BIS_EVO_Objective1 setSimpleTaskDestination GetMarkerPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) ;
+		BIS_EVO_Objective1 settaskstate "Created";
+		player setCurrentTask BIS_EVO_Objective1;
+	};
+/*
+	if(BIS_EVO_MissionProgress == 0 ) then
 	{
 		_MissionBriefingHUD = localize "STR_M04t58";//ASSAULT
-//		_MissionBriefingShort = "Lopatino";
-//		_MissionBriefingShort = localize "str_location_lopatino";
+		//_MissionBriefingShort = "Lopatino";
+		//_MissionBriefingShort = localize "str_location_lopatino";
 		_MissionBriefingShort = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
 		_MissionBriefingLong = format[localize "STR_M04t59",_MissionBriefingShort];// Command has issued an order to launch a full scale assault on %1. The primary objective is to neutralize all enemy in the area. Secondary objectives are to disable their radio tower and capture any high ranking officers you find in the town.
 		BIS_EVO_Objective1 = player createSimpleTask ["obj1"];
 		BIS_EVO_Objective1 setSimpleTaskDescription [_MissionBriefingLong,_MissionBriefingShort,_MissionBriefingHUD];
 		BIS_EVO_Objective1 setSimpleTaskDestination GetMarkerPos "mobj1";
 		BIS_EVO_Objective1 settaskstate "Created";
-		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective1};
+		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective0};
 	};
-	if(BIS_EVO_MissionProgress > 0 and isNull BIS_EVO_Objective2) then
+	if(BIS_EVO_MissionProgress == 1) then
 	{
 		BIS_EVO_Objective1 settaskstate "Succeeded";
 //		_MissionBriefingShort = "Vybor";
@@ -4424,7 +4436,7 @@ BIS_EVO_AssignTasks =  // Assigns common main city objectives
 		BIS_EVO_Objective2 settaskstate "Created";
 		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective2};
 	};
-	if(BIS_EVO_MissionProgress > 1 and isNull BIS_EVO_Objective3) then
+	if(BIS_EVO_MissionProgress == 2) then
 	{
 		BIS_EVO_Objective2 settaskstate "Succeeded";
 //		_MissionBriefingShort = "Grishino";
@@ -4437,7 +4449,7 @@ BIS_EVO_AssignTasks =  // Assigns common main city objectives
 		BIS_EVO_Objective3 settaskstate "Created";
 		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective3};
 	};
-	if(BIS_EVO_MissionProgress > 2 and isNull BIS_EVO_Objective4) then
+	if(BIS_EVO_MissionProgress == 3) then
 	{
 		BIS_EVO_Objective3 settaskstate "Succeeded";
 //		_MissionBriefingShort = "Gvozdno";
@@ -4450,7 +4462,7 @@ BIS_EVO_AssignTasks =  // Assigns common main city objectives
 		BIS_EVO_Objective4 settaskstate "Created";
 		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective4};
 	};
-	if(BIS_EVO_MissionProgress > 3 and isNull BIS_EVO_Objective5) then
+	if(BIS_EVO_MissionProgress == 4) then
 	{
 		BIS_EVO_Objective4 settaskstate "Succeeded";
 
@@ -4464,7 +4476,7 @@ BIS_EVO_AssignTasks =  // Assigns common main city objectives
 		BIS_EVO_Objective5 settaskstate "Created";
 		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective5};
 	};
-	if(BIS_EVO_MissionProgress > 4 and isNull BIS_EVO_Objective6) then
+	if(BIS_EVO_MissionProgress == 5) then
 	{
 		BIS_EVO_Objective5 settaskstate "Succeeded";
 //		_MissionBriefingShort = "Khelm";
@@ -4477,7 +4489,7 @@ BIS_EVO_AssignTasks =  // Assigns common main city objectives
 		BIS_EVO_Objective6 settaskstate "Created";
 		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective6};
 	};
-	if(BIS_EVO_MissionProgress > 5 and isNull BIS_EVO_Objective7) then
+	if(BIS_EVO_MissionProgress == 6) then
 	{
 		BIS_EVO_Objective6 settaskstate "Succeeded";
 //		_MissionBriefingShort = "Berezino";
@@ -4490,7 +4502,7 @@ BIS_EVO_AssignTasks =  // Assigns common main city objectives
 		BIS_EVO_Objective7 settaskstate "Created";
 		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective7};
 	};
-	if(BIS_EVO_MissionProgress > 6 and isNull BIS_EVO_Objective8) then
+	if(BIS_EVO_MissionProgress == 7) then
 	{
 		BIS_EVO_Objective7 settaskstate "Succeeded";
 //		_MissionBriefingShort = "Solnichniy";
@@ -4503,7 +4515,7 @@ BIS_EVO_AssignTasks =  // Assigns common main city objectives
 		BIS_EVO_Objective8 settaskstate "Created";
 		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective8};
 	};
-	if(BIS_EVO_MissionProgress > 7 and isNull BIS_EVO_Objective9) then
+	if(BIS_EVO_MissionProgress == 8) then
 	{
 		BIS_EVO_Objective8 settaskstate "Succeeded";
 //		_MissionBriefingShort = "Kamyshovo";
@@ -4516,7 +4528,7 @@ BIS_EVO_AssignTasks =  // Assigns common main city objectives
 		BIS_EVO_Objective9 settaskstate "Created";
 		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective9};
 	};
-	if(BIS_EVO_MissionProgress > 8 and isNull BIS_EVO_Objective10) then
+	if(BIS_EVO_MissionProgress == 9) then
 	{
 		BIS_EVO_Objective9 settaskstate "Succeeded";
 //		_MissionBriefingShort = "Elektrozadovsk";
@@ -4529,7 +4541,7 @@ BIS_EVO_AssignTasks =  // Assigns common main city objectives
 		BIS_EVO_Objective10 settaskstate "Created";
 		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective10};
 	};
-	if(BIS_EVO_MissionProgress > 9 and isNull BIS_EVO_Objective11) then
+	if(BIS_EVO_MissionProgress == 10 ) then
 	{
 		BIS_EVO_Objective10 settaskstate "Succeeded";
 //		_MissionBriefingShort = "Chernogorsk";
@@ -4541,10 +4553,14 @@ BIS_EVO_AssignTasks =  // Assigns common main city objectives
 		BIS_EVO_Objective11 setSimpleTaskDestination GetMarkerPos "mobj11";
 		BIS_EVO_Objective11 settaskstate "Created";
 		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective11};
-	};
-	if(BIS_EVO_MissionProgress > 10) then
+	};*/
+		if(BIS_EVO_MissionProgress == -1 ) then {
+			BIS_EVO_Objective1 settaskstate "Succeeded";
+		};
+
+	if(BIS_EVO_MissionProgress == 11) then
 	{
-		BIS_EVO_Objective11 settaskstate "Succeeded";
+		
 	};
 
 };

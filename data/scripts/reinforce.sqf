@@ -187,7 +187,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 			sleep BIS_EVO_GlobalSleep;
 		};
 
-		systemChat format ["Reinforcement towns are: %1",_reinforceTowns];
+	//	systemChat format ["Reinforcement towns are: %1",_reinforceTowns];
 
 /*
 		for [{_loop=0}, {_loop<count _allobj}, {_loop=_loop+1}] do 
@@ -234,7 +234,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 
 		_guardm = _array select 0;
 		_vec = _array select 1;
-		_sumark = [_vec] execVM "data\scripts\sumarker.sqf";
+		//_sumark = [_vec] execVM "data\scripts\sumarker.sqf";
 	///	systemchat format ["spawned: %1", typeof _vec];
 		[position _alist,_guardm,_radio,_alist] call BIS_EVO_Erefway;
 		_vec lock 2;
