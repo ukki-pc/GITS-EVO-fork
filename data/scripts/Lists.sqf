@@ -111,6 +111,7 @@ AssList = AssList +[[localize "STR_M04t6_1",localize "STR_M04t7_1","data\offensi
 AssList = AssList +[[localize "STR_M04t16_0",localize "STR_M04t17_1","data\sabotage.paa",10,1]];
 AssList = AssList +[[localize "STR_M04t20",localize "STR_M04t21_0","data\sabotage.paa",10,4]];
 AssList = AssList +[[localize "STR_M04t24",localize "STR_M04t25_0","data\defend.paa",10,6]];
+AssList = AssList +[["Capture city","Capture a city from enemy conrol","data\sabotage.paa",0,18]];	
 AssList = AssList +[["Rendition","A few moments ago we received satellite intel that a key member of the enemy high command is visiting a remote station on the island. Your mission is to go to the location search for the officer and eliminate any resistance in the area.","data\sabotage.paa",20,10]];
 AssList = AssList +[["Extermination","We have received reports from an undercover agent on the location of a gathering of the People's Temple cult. They have a fertiliser bomb and may plan to use it. Go to the location and exterminate any civilians you find there.","data\sabotage.paa",10,11]];
 AssList = AssList +[["Ambush troop convoy","Crossroad reports satellite recon has identified a heavily defended enemy infantry column moving cross-country.  Neutralise it.","data\sabotage.paa",10,12]];
@@ -157,6 +158,7 @@ AssList = AssList +[[localize "STR_M04t20",localize "STR_M04t21_0","data\offensi
 AssList = AssList +[[localize "STR_M04t32",localize "STR_M04t33","data\defend.paa",20,5]];
 AssList = AssList +[[localize "STR_M04t37_0",localize "STR_M04t38_0","data\defend.paa",30,7]];
 
+AssList = AssList +[["Capture city","Capture a city from enemy conrol","data\sabotage.paa",0,18]];	
 AssList = AssList +[["Rendition","A few moments ago we received satellite intel that a key member of the enemy high command is visiting a remote station on the island. Your mission is to go to the location search for the officer and eliminate any resistance in the area.","data\sabotage.paa",30,10]];
 AssList = AssList +[["Extermination","We have received reports from an undercover agent on the location of a Red Brigade security arm of the People's Temple cult. They have a chemical weapon and may plan to use it. Go to the location and exterminate any civilians you find there.","data\sabotage.paa",20,11]];
 AssList = AssList +[["Ambush troop convoy","Crossroad reports satellite recon has identified a heavily defended enemy infantry column moving cross-country.  Neutralise it.","data\sabotage.paa",20,12]];
@@ -213,6 +215,8 @@ AssList = AssList +[[localize "STR_M04t20",localize "STR_M04t21_0","data\offensi
 AssList = AssList +[[localize "STR_M04t32",localize "STR_M04t33","data\defend.paa",20,5]];
 AssList = AssList +[[localize "STR_M04t12",localize "STR_M04t13_1","data\offensive.paa",20,9]];
 AssList = AssList +[[localize "STR_M04t37_0",localize "STR_M04t38_0","data\defend.paa",30,7]];
+AssList = AssList +[["Capture city","Capture a city from enemy conrol","data\sabotage.paa",0,18]];	
+
 AssList = AssList +[["Rendition","A few moments ago we received satellite intel that a key member of the enemy high command is visiting a remote station on the island. Your mission is to go to the location search for the officer and eliminate any resistance in the area.","data\sabotage.paa",40,10]];
 AssList = AssList +[["Extermination","We have received reports from an undercover agent on the location of a major Peoples Temple Agricultural Project. They have a nuclear weapon and plan to use it. Go to the location and exterminate all civilians you find there.","data\sabotage.paa",40,11]];
 AssList = AssList +[["Ambush troop convoy","Crossroad reports satellite recon has identified a heavily defended enemy infantry column moving cross-country.  Neutralise it.","data\sabotage.paa",30,12]];

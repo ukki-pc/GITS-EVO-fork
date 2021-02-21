@@ -141,7 +141,7 @@ if (editor == 1) then
 	EX_EVO_vehPriceMultiplier = 1;
 	EVO_incomeFrequency = 120;
 	EGG_EVO_FactionParam = 1;
-	EGG_EVO_LoadGame = 1;
+	EGG_EVO_LoadGame = 0;
 };
 	//IF new game selected start the game without hesitation
 	if(EGG_EVO_LoadGame == 0) then {gameBegin = 1}

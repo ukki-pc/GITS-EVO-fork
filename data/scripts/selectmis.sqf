@@ -64,5 +64,9 @@
     	{
     		_run = [_punit,_prew] execVM "data\scripts\Mapat2.sqf"
     	};     	
+		case 16:
+    	{
+    		_run = [] execVM "data\scripts\pickCity.sqf"
+    	};  
 	
 };

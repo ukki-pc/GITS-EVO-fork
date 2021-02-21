@@ -2536,7 +2536,7 @@ class Mission
 	};
 	class Sensors
 	{
-		items=62;
+		items=63;
 		class Item0
 		{
 			position[]={9819.8174,139.98311,10079.436};
@@ -3479,6 +3479,21 @@ class Mission
 			expCond="(Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50)  ";
 			expActiv="ID_Beamcar = Player addAction [""~Transfer to Carrier"",""data\scripts\gocarrier.sqs"",[""""], 4];";
 			expDesactiv="Player removeAction ID_Beamcar";
+			class Effects
+			{
+			};
+		};
+		class Item62
+		{
+			position[]={9458.2803,139.98311,10067.813};
+			a=15;
+			b=15;
+			activationBy="ANY";
+			interruptable=1;
+			age="UNKNOWN";
+			name="macho";
+			expActiv="ID_BeamCq = Player addAction [""~Visit the Airshow"",""data\scripts\island.sqs""]; blueText = {""<t color='#0000FF'>"" + _this + ""</t>""};    cityAction = player addAction [""Start assault"" call blueText, ""data\scripts\pickCity.sqf"", [], -1, false, true, """"];";
+			expDesactiv="Player removeAction ID_BeamCq; Player removeAction cityAction;";
 			class Effects
 			{
 			};
