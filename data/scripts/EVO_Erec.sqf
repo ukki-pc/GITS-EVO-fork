@@ -46,7 +46,8 @@ BIS_EVO_Erec =
 		_type = EGG_EVO_defenders select 0;
 		_unit = _grp createUnit [_type, position _radio, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
-		_unit addEventHandler ["killed", {handle = [_this select 0,"INF"] execVM "data\scripts\mobjbury.sqf"}];		
+		_unit addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1] execVM "data\scripts\mobjbury.sqf"}]; 
+		_unit addEventHandler ["Hit", {handle = [_this select 0,_this select 1] execVM "data\scripts\lastHit.sqf"}];  
 		_wp = _grp addWaypoint [position _radio, 0];
 		_wp2 = _grp addWaypoint [position _radio, 50];
 		_wp3 = _grp addWaypoint [position _radio, 50];
@@ -67,7 +68,7 @@ BIS_EVO_Erec =
 		_type = EGG_EVO_OfficerDefenders select 0;
 		_unit = _grp createUnit [_type, position _offobj, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
-		_unit addEventHandler ["killed", {handle = [_this select 0,"INF"] execVM "data\scripts\mobjbury.sqf"}];		
+		_unit addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1] execVM "data\scripts\mobjbury.sqf"}];		
 		_wp = _grp addWaypoint [position _offobj, 100];
 		_wp2 = _grp addWaypoint [position _offobj, 100];
 		_wp3 = _grp addWaypoint [position _offobj, 100];
@@ -88,7 +89,7 @@ BIS_EVO_Erec =
 		_type = EGG_EVO_defenders select 0;
 		_unit = _grp createUnit [_type, position _radio, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
-		_unit addEventHandler ["killed", {handle = [_this select 0,"INF"] execVM "data\scripts\mobjbury.sqf"}];
+		_unit addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 		_wp = _grp addWaypoint [position _radio, 0];
 		_wp2 = _grp addWaypoint [position _radio, 100];
 		_wp3 = _grp addWaypoint [position _radio, 100];
@@ -113,7 +114,7 @@ BIS_EVO_Erec =
 			_unit setpos position (_rds select 0);
 		};			
 //		_unit setSkill skillfactor+(random 0.2);
-		_unit addEventHandler ["killed", {handle = [_this select 0,"INF"] execVM "data\scripts\mobjbury.sqf"}];
+		_unit addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 		_posasl = getPosASL _unit;
 		if ((_posasl select 2) < 1.0) then 
 		{
@@ -178,7 +179,7 @@ BIS_EVO_Erec =
 		Sleep 1;
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
 		{_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}]} forEach (crew _vec);
-		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC"] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
+		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
 	};
 
 // Static Guns

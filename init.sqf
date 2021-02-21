@@ -67,7 +67,7 @@ if (grasslevel == 2) then {setTerrainGrid 12.5};
 if (grasslevel == 3) then {setTerrainGrid 6.25};
 if (grasslevel == 4) then {setTerrainGrid 3.125};
 viewparam =  paramsArray select 4;
-basebeam = paramsArray select 5;
+hasCarrier = paramsArray select 5;
 gitsnades = paramsArray select 6;
 EGG_EVO_allowpilots = paramsArray select 7;
 ranklock = paramsArray select 8;
@@ -88,6 +88,9 @@ EX_EVO_vehPriceMultiplier = paramsArray select 20;
 EVO_incomeFrequency = paramsArray select 21;
 EGG_EVO_FactionParam = paramsArray select 22;
 EGG_EVO_LoadGame = paramsArray select 23;
+
+basebeam = 2;
+
 
 
 
@@ -634,6 +637,7 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 };
 
 
+
 BIS_EVO_GlobalSleep = 0.1; // Global sleep is used after spawning a unit.
 // Sub mission conditions
 BIS_EVO_MissionProgress = 0; // counts towns captured, when it hits 11 , mission is over.
@@ -1039,6 +1043,7 @@ EB_planes_SEAD = EB_planes_west;
 EGG_maxMissiles = 6;
 VehiclePlaced = 1;
 repaircooldown = 0;
+hitRegister = [];
 
 EB_PLbombs = ["EB_Mk81_Launcher","EB_Mk82_Launcher","EB_Mk83_Launcher","EB_Mk84_Launcher","EB_Mk77_Launcher","EB_Mk770_Launcher","EB_BombLauncher_fab250","EB_BombLauncher_fab500","EB_CBU78B_Launcher","EB_CBU87B_Launcher","RKTR27Launcher","EB_R77_Launcher","EB_CBU89B_Launcher","EB_CBU100_Launcher","EB_GBU12_Launcher","EB_GBU16_Launcher","EB_GBU10_Launcher","EB_BombLauncher_kab250","EB_BombLauncher_kab500"];
 EB_PLmissiles = ["EB_AIM9M_Launcher","EB_AIM120_Launcher","EB_AIM9X_Launcher","EB_AIM7E_Launcher","EB_METEOR_Launcher","EB_AIM132_Launcher","EB_R60_Launcher","EB_R73_Launcher","EB_AT2_Launcher","EB_KH29D_Launcher","EB_KH29L_Launcher","EB_AGM65E_Launcher","EB_AGM114K_Launcher","EB_AGM88_Launcher"];

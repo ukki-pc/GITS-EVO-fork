@@ -20,12 +20,19 @@ _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 
 			_cstatA attachTo [player, [
 				0,
-				(((boundingBox _cstatA select 1 select 1) max (-(boundingBox _cstatA select 0 select 1))) max ((boundingBox _cstatA select 1 select 0) max (-(boundingBox _cstatA select 0 select 0)))) +2,
+				(((boundingBox _cstatA select 1 select 1) max (-(boundingBox _cstatA select 0 select 1))) max ((boundingBox _cstatA select 1 select 0) max (-(boundingBox _cstatA select 0 select 0)))) +3,
 				1]
 			];
 		sleep 0.5;
 		waitUntil{vehiclePlaced == 1};
-		_cstatA setPos [getPos _cstatA select 0, getPos _cstatA select 1, 0];
+
+		//Careful placement while in carrier
+		if(player in list LHDin) then {
+			_cstatA setPosASL [getPos _cstatA select 0, getPos _cstatA select 1, 18];
+		}
+		else {
+			_cstatA setPos [getPos _cstatA select 0, getPos _cstatA select 1, 0];
+		};
 		_cstatA setVelocity [0, 0, 0];
 		
 	detach _cstatA;

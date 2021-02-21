@@ -1,9 +1,10 @@
 // Deletes dead Enemy
 private ["_unit"]; 
 _unit = _this select 0;
-
+_dispname = getText (configFile >> "cfgVehicles" >> typeof _unit >> "displayName");	// different displayname for different languages
 if (not (_unit isKindOf "Man")) then
 {
+	systemChat format ["You destroyed: %1",  _dispname];
 	{_x setpos position _unit} forEach crew _unit;
 	sleep 300.0;
 	deletevehicle _unit;

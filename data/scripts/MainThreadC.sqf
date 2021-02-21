@@ -271,7 +271,7 @@ BIS_EVO_Repair =
 				if(not ("CamelGrenades" in _weapons)) then {_vec addweapon "CamelGrenades"};
 			};
 		};
-		if(repaircooldown > 0) then {hint "Cannot repair immediately after hit!"};
+		if(inrepairzone and repaircooldown > 0) then {hint "Cannot repair immediately after hit!"};
 	};
 //adding cheats to planes
 	// if( (_inrepairzone) and (_type in EB_planes_west) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and (local _vec) and (perkparam == 1) and (EB_airload1 <0) ) then

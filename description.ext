@@ -617,10 +617,10 @@ class Params
       class Mhqbeam
       {
       //paramsArray[5]
-		title = "Mobile HQ & respawns";
+		title = "Aircraft carrier";
 		values[] = {0,1,2};
-		texts[] = {"Disabled", "MHQs Enabled", "MHQs, Farps & Docks"};
-		default = 2;
+		texts[] = {"Disabled", "Enabled", "Game begin"};
+		default = 1;
 	};
 	
       class GLmod

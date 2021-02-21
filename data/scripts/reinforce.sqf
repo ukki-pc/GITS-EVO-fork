@@ -55,7 +55,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		Sleep 0.2;
 		[position _alist,_guardr,_radio,_alist] call BIS_EVO_Erefway;
 		[_guardr, 1] setWaypointType "GETOUT";
-		{_x addEventHandler ["killed", {handle = [_this select 0,"INF"] execVM "data\scripts\mobjbury.sqf"}]; _x addmagazine ["EB_molotov_mag",2];} forEach (units _guardr);	
+		{_x addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1 ] execVM "data\scripts\mobjbury.sqf"}]; _x addmagazine ["EB_molotov_mag",2];} forEach (units _guardr);	
 		_recy = [objnull,_guardr] execVM "data\scripts\grecycle.sqf";
 		_guardr setFormation "COLUMN";
 		[_guardr, 1] setWaypointCombatMode "RED";	
@@ -119,7 +119,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 				_pos = position _heli0;
 				_unit = _para createUnit [_allunits2 select (round (random (_max - 1))), [0,0,0], [], 300, "NONE"];
 				_unit setSkill skillfactor+(random 0.2);
-				_unit addEventHandler ["killed", {handle = [_this select 0,"INF"] execVM "data\scripts\mobjbury.sqf"}];
+				_unit addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 				[_unit] join _para;
 				_vec = createVehicle ["ParachuteWest", _pos, [], 20, 'NONE'];
 				_vec setpos [_pos select 0,_pos select 1,(_pos select 2)- 12];
@@ -193,7 +193,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		[position _alist,_guardm,_radio,_alist] call BIS_EVO_Erefway;
 		_vec lock 2;
 		[_guardm, 1] setWaypointCombatMode "RED";		
-		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC"] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guardm);
+		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guardm);
 		_guardm setFormation "COLUMN";
 		//adding
 		_recy = [objnull,_guardm] execVM "data\scripts\grecycle.sqf";

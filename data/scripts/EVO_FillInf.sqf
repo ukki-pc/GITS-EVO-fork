@@ -38,7 +38,7 @@ BIS_EVO_FillInf =
 		_nunit = (_allunits select (round random _max));
 		_unit = _grp createUnit [_nunit, _lpos, [], 0, "FORM"];
 		_unit setSkill _grpskill;
-		_unit addEventHandler ["killed", {handle = [_this select 0,"INF"] execVM "data\scripts\mobjbury.sqf"}];
+		_unit addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 		[_unit] join _grp;
 		_j = _j+1;
 		sleep 1;
@@ -108,7 +108,7 @@ BIS_EVO_InfDummyReplace =
 			_unit = _grp createUnit [_type, _pos, [], 0, "None"];
 			_unit setPos _pos;
 			_unit setDir _dir;
-			_unit addEventHandler ["killed", {handle = [_this select 0,"INF"] execVM "data\scripts\mobjbury.sqf"}];
+			_unit addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 			_newunits=_newunits+[_unit];
 		};
 		sleep 1;
@@ -140,7 +140,7 @@ BIS_EVO_InfReDummy =
 			_unit = createVehicle [_type, _pos, [], 0, "NONE"];
 			_unit setPos _pos;
 			_unit setDir _dir;
-			_unit addEventHandler ["killed", {handle = [_this select 0,"INF"] execVM "data\scripts\mobjbury.sqf"}];
+			_unit addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 			_newunits=_newunits+[_unit];
 		};
 		sleep 1;
