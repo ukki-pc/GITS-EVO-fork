@@ -10,7 +10,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 	_type = "";
 	_Allspawns = [["1ref","1refa","1refb"],["2ref","2refa","2refb"],["3ref","3refa","3refb"],["4ref","4refa","4refb"],["5ref","5refa","5refb"],["6ref","6refa","6refb"],["7ref","7refa","7refb"],["8ref","8refa","8refb"],["9ref","9refa","9refb"],["10ref","10refa","10refb"],["11ref","11refa","11refb"]];
 	_wtime = 0;
-	_radio = BIS_EVO_radios select BIS_EVO_MissionProgress;
+	_radio =radio1;
 	_alist = BIS_EVO_DetectEnemy;
 	
 	_curtownInf = round(((BIS_EVO_Infantry select BIS_EVO_MissionProgress) select 0)/enemynumdiv);
@@ -30,7 +30,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_max = objnull;
 		_alist = BIS_EVO_DetectEnemy;
 		_Allspawns = [["1ref","1refa","1refb"],["2ref","2refa","2refb"],["3ref","3refa","3refb"],["4ref","4refa","4refb"],["5ref","5refa","5refb"],["6ref","6refa","6refb"],["7ref","7refa","7refb"],["8ref","8refa","8refb"],["9ref","9refa","9refb"],["10ref","10refa","10refb"],["11ref","11refa","11refb"]];
-		_radio = BIS_EVO_radios select BIS_EVO_MissionProgress;
+		_radio =radio1;
 
 		_allunits = EGG_EVO_enemy1;
 		_max = count _allunits;
@@ -80,7 +80,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_alist = BIS_EVO_DetectEnemy;
 		_allunits2 = EGG_EVO_enemy1;
 		_max = count _allunits2;
-		_radio = BIS_EVO_radios select BIS_EVO_MissionProgress;
+		_radio = radio1;
 		_pos = position _radio;
 		_posback = getmarkerpos "EnemyAir03";
 		_pilot = createGroup (EGG_EVO_ENEMYFACTION);
@@ -146,17 +146,62 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 	
 	EGG_EVO_mecreinf = 
 	{
-		private ["_Allspawns","_alist","_radio","_unit","_guardm","_pos","_rng","_vec","_maxo","_spawns","_pos","_tag","_allvec","_rds","_cardir","_degrees","_dirdif","_array","_recy"]; 
+		private ["_Allspawns","_allobj","_alist","_radio","_unit","_guardm","_pos","_rng","_vec","_maxo","_spawns","_pos","_tag","_allvec","_rds","_cardir","_degrees","_dirdif","_array","_recy"]; 
 		_Allspawns = [["1ref","1refa","1refb"],["2ref","2refa","2refb"],["3ref","3refa","3refb"],["4ref","4refa","4refb"],["5ref","5refa","5refb"],["6ref","6refa","6refb"],["7ref","7refa","7refb"],["8ref","8refa","8refb"],["9ref","9refa","9refb"],["10ref","10refa","10refb"],["11ref","11refa","11refb"]];
+		_allobj = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11"];
 		_alist = BIS_EVO_DetectEnemy;
-		_radio = BIS_EVO_radios select BIS_EVO_MissionProgress;
+		_radio = radio1;
 		_unit = objNull;
 		_guardm = grpNull;
 		_pos = objNull;
 		_vec = objNull;
 		_maxo = 0;
+		_nearestMarker = "";
+		_blackList = [];
+		_dist = 0;
+		
+		_allobj = BIS_EVO_MissionTowns - BIS_EVO_conqueredTowns;
+		_reinforceTowns = [];
+
+		for [{_loop=0}, {_loop<count _allobj}, {_loop=_loop+1}] do 
+		{
+			//DETERMINE THE CLOSEST REINFORCE POINT
+			if !(_allobj select _loop == BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) then 
+			{
+				//_blackList set [count _blackList,_allobj select _loop]; //blacklist the objective itself so you cannot reinforce from the some town as objective is
+				//_remainingObjectives = _allobj - BIS_EVO_conqueredTowns;
+				//_nearestMarker = [_remainingObjectives select _loop, _radio] call BIS_fnc_nearestPosition;
+				_targetMarker = _allobj select _loop;
+				_dist = _radio distance getMarkerPos _targetMarker;
+				//systemChat format ["%1 was closest reinforce point and the distance is: %2",_targetMarker, _dist ];
+
+				if(_dist <= 4000) then 
+				{
+					_reinforceTowns = _reinforceTowns + [_allobj select _loop]; 
+				};
+			}
+			else 
+			{
+				//systemChat "Banned town... SKIPPING!";
+			};
+			sleep BIS_EVO_GlobalSleep;
+		};
+
+		systemChat format ["Reinforcement towns are: %1",_reinforceTowns];
+
+/*
+		for [{_loop=0}, {_loop<count _allobj}, {_loop=_loop+1}] do 
+		{
+			//DETERMINE THE CLOSEST REINFORCE POINT
+			_blackList set [_loop,_allobj select BIS_EVO_MissionProgress]; //blacklist the objective itself so you cannot reinforce from the some town as objective is
+			_remainingObjectives = _allobj - _blackList;
+			_nearestMarker = [_remainingObjectives, _radio] call BIS_fnc_nearestPosition;
+			_dist = _radio distance getMarkerPos _nearestMarker;
+			systemChat format ["%1 was closest reinforce point and the distance is: %2",_nearestMarker, _dist ];
+		};
+*/
 		_spawns = _Allspawns select BIS_EVO_MissionProgress;
-		_pos = GetMarkerPos (_spawns select (round random 2));
+		_pos = GetMarkerPos (_reinforceTowns select (round random (count _reinforceTowns-1)));
 		_tag = "MEC";
 
 		//Increasing aggression
@@ -189,6 +234,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 
 		_guardm = _array select 0;
 		_vec = _array select 1;
+		_sumark = [_vec] execVM "data\scripts\sumarker.sqf";
 	///	systemchat format ["spawned: %1", typeof _vec];
 		[position _alist,_guardm,_radio,_alist] call BIS_EVO_Erefway;
 		_vec lock 2;
@@ -213,7 +259,7 @@ sleep 15;
 
 if( (_curtownMec <= _basetownMec) and (alive _radio) ) then 
 {
-//	systemChat "reinforcing mechanized";
+	systemChat "reinforcing mechanized";
 	[] spawn EGG_EVO_mecreinf;
 	(BIS_EVO_Mechanized select BIS_EVO_MissionProgress) set [0, (_curtownMec*enemynumdiv)+1];
 	sleep 1;

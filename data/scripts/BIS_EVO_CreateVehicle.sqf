@@ -81,6 +81,7 @@ BIS_EVO_CreateVehicle =
 	};
 */
 //////////////////////////
+	sleep 0.5;
 	if((_vec emptyPositions "gunner") > 0) then 
 	{
 		_unit = _grp createUnit [(_crewtype select round random _maxc), _pos, [], 5, "NONE"];

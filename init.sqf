@@ -92,8 +92,6 @@ EGG_EVO_LoadGame = paramsArray select 23;
 basebeam = 2;
 
 
-
-
 //Respawn settings
 publicVariable "spawntype"; 
 if (spawntype == 0 or spawntype == 1) then {server execVM "revive_init.sqf"};
@@ -143,7 +141,7 @@ if (editor == 1) then
 	EX_EVO_vehPriceMultiplier = 1;
 	EVO_incomeFrequency = 120;
 	EGG_EVO_FactionParam = 1;
-	EGG_EVO_LoadGame = 0;
+	EGG_EVO_LoadGame = 1;
 };
 	//IF new game selected start the game without hesitation
 	if(EGG_EVO_LoadGame == 0) then {gameBegin = 1}
@@ -424,7 +422,7 @@ if(EGG_EVO_FactionParam == 1) then
 	EGG_EVO_mevlight = ["BTR40_MG_TK_INS_EP1","pracs_TK_type63","pracs_TK_mtlb_apc","BTR40_TK_INS_EP1","BRDM2_TK_EP1","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1"];
 	EGG_EVO_MechEasy = EGG_EVO_mevlight + ["UAZ_AGS30_TK_EP1","UAZ_MG_TK_EP1","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1","pook_brdm2AGS_TKINS","pook_brdm2AA_TKINS","pook_brdm2RKT_TKINS","pook_brdm2PKM_TAK","pook_brdm2HQcomm_TAK","pook_brdm2HQ_TKINS","pook_brdm2DSHK_TAK","pook_brdm2AT5_TAK","pook_brdm2AT3c_TKINS","pook_brdm2AT3_TKINS","pook_brdm2AT2_TKINS","pook_brdm2M_TAK","pook_brdm2_TAK","pook_brdm2_sa9_TAK"];
 	EGG_EVO_MechMedium =["T72_TK_EP1","pook_btrMWS_tak","eb_btr90_tk","vil_t62m","ch_t72_desert","ch_t72_2_desert","pook_btr2a42_tak","VIL_BMP1_TKS","EB_BMP3_TK","sa_bmd_1_iraq","BMP2_TK_EP1","pook_brdm2at2_tak","T55_TK_EP1","T34_TK_EP1","UAZ_AGS30_TK_EP1","BTR60_TK_EP1","Ural_ZU23_TK_EP1","BRDM2_TK_EP1","M113_TK_EP1","BMP2_HQ_TK_EP1"];
-	EGG_EVO_MechHard = ["T90","pracs_tk_t80b"];
+	EGG_EVO_MechHard = ["T90"];
 
 	//THESE AA SPAWN ON TOWNS
 	EGG_EVO_spAAeasy = ["ZU23_TK_INS_EP1","Ural_ZU23_TK_EP1","ZSU_TK_EP1","pook_zsum4_tak","pook_zsu57_tak","ZU23_TK_EP1","pook_brdm2AA_TKINS","pook_brdm2_sa9_TAK","pracs_tk_sa13","pracs_sa6_tk","pracs_tk_sa8","eb_2S6M_Tunguska_D","pook_5P85S_TAK"];
@@ -648,7 +646,25 @@ BIS_EVO_radios = [radio1,radio2,radio3,radio4,radio5,radio6,radio7,radio8,radio9
 
 BIS_EVO_MissionTowns = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11"];// Each mission objectives town marker.
 
+//Generate objectives from city game logic objects
 /*
+_gamelogic = cent;
+_towns = nearestObjects [getPosATL _gamelogic, ["LocationLogicCity"], 25000];
+_RandomTownPosition = position (_towns select (floor (random (count _towns))));
+ztownmgr = [];
+{
+   _pos = position _x;
+   _m = createMarker [format ["mrk%1",random 100000],_pos];
+ztownmgr = ztownmgr + [_m];
+   _m setMarkerShape "ELLIPSE";
+   _m setMarkerSize [500,500];
+   _m setMarkerBrush "Solid";
+   _m setMarkerAlpha 0.5;
+   _m setMarkerColor "ColorRed";
+} forEach _towns;  
+*/
+
+BIS_EVO_conqueredTowns = [];
 BIS_EVO_MissionTowns2 = 
 [
 	["mobj1",false,"PRACS_TK_Su24Fencer"],
@@ -663,7 +679,7 @@ BIS_EVO_MissionTowns2 =
 	["mobj10",false],
 	["mobj11",false]
 ];
-*/
+
 
 //adding strings for city names
 //BIS_EVO_Townnames = ["CAINNA WIND","CAMARRA","KINSELLA","DJOLAN","KWAKO","DENDALA DISTRICT","BOLABONGO","ENGOR","CANTO","NUBAK","NUMBO"];// Each mission name used in eventsc, mainthreadc, sorew, briefing, used as _city = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
@@ -1003,7 +1019,7 @@ if (isServer) then
 {
 	_plyIncome = [] execVM "data\scripts\plyIncome.sqf";
 
-	{_x addEventHandler ["hit", {if((_this select 1) != BIS_EVO_latk) then {(_this select 0) setdamage 0}}]} forEach BIS_EVO_radios;
+	radio1 addEventHandler ["hit", {if((_this select 1) != BIS_EVO_latk) then {(_this select 0) setdamage 0}}];
 //blazes
 	onplayerconnected "
 //	plays = [_name] execVM ""data\scripts\selectplayer.sqf"";

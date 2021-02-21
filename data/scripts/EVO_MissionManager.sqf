@@ -25,7 +25,16 @@ while {BIS_EVO_MissionProgress < _count} do
 	Sleep 2.0;
 //adding
 	CityClear=false;
-	_nradio = (BIS_EVO_radios select BIS_EVO_MissionProgress);
+
+	//radio1 setVehiclePosition [(getMarkerPos[_mkr,true]), [], 200, "NONE"];
+	radio1 setPos _pos;
+	radio1 setPos [(getpos radio1 select 0) + 200 - random(200),(getpos radio1 select 1) + 200 - random(200), 0];
+
+
+	//player setVehiclePosition [[1000,2000], ["Pos1","Pos2","Pos3"], 0, "CAN_COLLIDE"];
+
+	_nradio = radio1;
+
 
 	[_mkr,BIS_EVO_DetectEnemy,BIS_EVO_DetectFriendly,BIS_EVO_MissionProgress] call BIS_EVO_Erec;
 	
@@ -54,6 +63,9 @@ while {BIS_EVO_MissionProgress < _count} do
 	{deleteVehicle _x }  forEach alldead;
 	sleep 2;
 	{_x addscore 10} forEach list BIS_EVO_DetectFriendly;
+
+	BIS_EVO_conqueredTowns = BIS_EVO_conqueredTowns + [BIS_EVO_MissionTowns select BIS_EVO_MissionProgress];
+	publicVariable "BIS_EVO_conqueredTowns";
 	BIS_EVO_MissionProgress = BIS_EVO_MissionProgress+1;
 	publicVariable "BIS_EVO_MissionProgress";
 	//player globalchat format ["BIS_EVO_MissionProgress: %1",BIS_EVO_MissionProgress]; 
