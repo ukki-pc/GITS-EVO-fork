@@ -54,8 +54,8 @@ tbox setRepairCargo 0.2;
 
 BIS_EVO_EngZone setpos _pos;	
 
-etent addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
-ebox addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+etent addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
+ebox addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 
 _mssg = format["%1's FARP",(name player)];
 _medmark = createMarker [_mark, _pos];

@@ -73,7 +73,7 @@ else{
 WaitUntil {vehicle _unit == _unit};
 _unit setpos [(getpos _unit select 0),(getpos _unit select 1),0];
 _unit setdammage 0;
-_unit  addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+_unit  addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 _vecprotect = [_unit] execVM "data\scripts\aivec.sqf";
 
 //[_unit] join _grp;
