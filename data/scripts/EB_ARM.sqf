@@ -64,22 +64,22 @@ armWeapon = {
 			
 			if( (inrepairzone) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and (local _vec) and (perkparam == 1) and (EB_airload1 <0) ) then
 {
-			if(_magCount >= _maxAmmo) then 
-			{
-				hint format ["Max bomb count: %1 , Cannot put more bombs.", _maxAmmo];
-			};
+			// if(_magCount >= _maxAmmo) then 
+			// {
+			// 	hint format ["Max bomb count: %1 , Cannot put more bombs.", _maxAmmo];
+			// };
 
 			//Find the original weapon slot
 			_ogMag = _mags select _weaponSlot;
 			_ogMag = toUpper _ogMag;
-			systemChat format ["Selected: %1",_ogMag];
+			//systemChat format ["Selected: %1",_ogMag];
 			_find = -1;
 			_found = -1;
 			_ogMi = [];
 			for [{_i = 0}, {_i < count _weps}, {_i = _i + 1}] do 
 			{
 			_ogMi = getArray(configFile >> "CfgWeapons" >> _weps select _i >> "magazines");
-			systemChat format ["ogmi c %1",count _ogMi];
+			//systemChat format ["ogmi c %1",count _ogMi];
 
 			//Nested uppercasing loop
 			
@@ -92,7 +92,7 @@ armWeapon = {
 			if(_ogMag in _ogMi) then {_found = _i};
 			};
 
-			systemChat format ["Found in index: %1",_found];
+			//systemChat format ["Found in index: %1",_found];
 			if(_found < 0) then {hint "Cannot change that weapon!";}
 			else{
 			{_vec removemagazine _x}forEach magazines _vec;

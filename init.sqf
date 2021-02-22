@@ -598,7 +598,8 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	["F35B",170],								// F35
 	["PRACS_F15",170],								// F35
 	["FRL_F15E_D_MR",170],	
-	["FRL_A10_MR",170],								// A10
+	["FRL_A10_MR",170],								// A10 A7
+	["A7",180],								// AV8B
 	["FRL_AV8B_MR",180],								// AV8B
 	["3lb_f22_sdb",180],								// AV8B
 	["pook_EF2000_BAF_D_DEAD",185],								// AV8B
@@ -797,6 +798,9 @@ BIS_EVO_IdelSVEC =
 
 
 EGG_problemcraft =  ["PRACS_TK_Su22","PRACS_TK_Su22_BMB","PRACS_TK_Su22_MSL","PRACS_TK_Su22_IND","PRACS_T K_Su22_STA","PRACS_TK_Su24Fencer","PRACS_TK_Su24Fencer_GBU","PRACS_TK_Su24Fencer_STK","PRACS_TK_MiG21"];
+
+//Planes with custom loadout
+customPlanes = ["A4"];
 
 EGG_EVO_repairtruck = ["MtvrRepair_DES_EP1","MtvrRepair","PRACS_M250_Repair","UralRepair_CDF","UralRepair_TK_EP1","UralRepair_INS","KamazRepair","T810Repair_ACR","t810_repair","pook_HEMTT_repair","pook_HEMTT_repair_US","pook_HEMTT_repair_CDF","pook_HEMTT_repair_CDF_IND"];
 EGG_EVO_cargoTruck = ["V3S_TK_EP1"];

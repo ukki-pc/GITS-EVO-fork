@@ -729,17 +729,17 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 					_mags =  magazines vehicle player;
 					for [{_i=0}, {_i< count _mags}, {_i=_i+1}] do
 					{
-					_nameR =  getText(configFile >> "CfgMagazines" >> _mags select _i >> "displayName");
-					_name = nil;
-					if(_namer == "") then 
-					{
-						_name = format ["Slot: %1, Flares",_i+1];
-					}
-					else
-					{
-						_name = format ["Slot: %1, %2",_i+1, _nameR];
-					};
-					_index2 = lbAdd[1995,_name];	
+						_nameR =  getText(configFile >> "CfgMagazines" >> _mags select _i >> "displayName");
+						_name = nil;
+						if(_namer == "") then 
+						{
+							//_name = format ["Slot: %1, Unknown",_i+1];
+						}
+						else
+						{
+							_name = format ["Slot: %1, %2",_i+1, _nameR];
+							_index2 = lbAdd[1995,_name];	
+						};	
 					};
 				};
 				

@@ -51,6 +51,10 @@ _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 	if(_stattype isKindOf "Air") then 
 	{
 	_cstatA addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\addToPurList.sqf"}];
+		if(_stattype in customPlanes) then 
+		{
+			_handle = [_cstatA] execVM "data\scripts\customLoadout.sqf";
+		};
 	processInitCommands;
 	};
 		_cstatA lock false;
