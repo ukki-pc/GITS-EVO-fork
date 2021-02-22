@@ -37,75 +37,24 @@ if(cityToAttack > -1) then {hint format ['Selected: %1', BIS_EVO_Townnames selec
 	else { hint 'No selection.'};
 true;";
 
-
-
-//if(BIS_EVO_MissionProgress != -1) exitWith{};
-
-
-//if(BIS_EVO_Onmission) exitWith {openMap false;hint "Cannot launch during operation!";};
-
-/*
-
-while{visibleMap} do 
-{  
-	
-	waitUntil{mapRefresh or !visibleMap};
-  sleep 0.1;
-      for [{_rloop=0}, {_rloop< citycount}, {_rloop=_rloop}] do 
-      {
-
-
-
-
-            if(!visiblemap) then {_rloop = cityCount+1};
-            if ((BIS_EVO_allCities select _rloop) in list BIS_EVO_CityDetect ) then 
-            {
-              mapRefresh = false;
-              _marker= createMarker ['marker1',[0,0,0]];
-                BIS_EVO_CityDetect setPos [0,0,0];
-                "marker1" setMarkerPos getPos (BIS_EVO_allCities select _rloop);
-                  _marker setMarkerColor 'ColorBlack';
-                _marker setMarkerShape 'ELLIPSE';
-                _marker setMarkerBrush 'Solid';
-                _marker setMarkerSize [200, 200];
-                cityToAttack = _rloop;
-                hint format  ["Picked city: %1 \n Click again to cancel \n Close map to Begin assault",BIS_EVO_Townnames select _rloop];
-                waitUntil{mapRefresh or !visibleMap};
-                if(!visiblemap) then {_rloop = cityCount+1};
-              }
-              else{
-                   _rloop = _rloop +1;
-                    };
-              if(_rloop == citycount)then {
-                mapRefresh = false;
-                cityToAttack = -1;
-                hint "No city selected";
-                waitUntil{mapRefresh or !visibleMap};
-                if(!visiblemap) then {_rloop = cityCount+1};
-                _rloop = 0
-              };
-        };
-      deleteMarker "marker1";
-      deleteVehicle BIS_EVO_CityDetect;
-	  *
-};
-*/
-
-
 waitUntil{!visibleMap};
 onMapSingleClick "";
 deleteMarker "marker1";
 
-if(cityToAttack > -1) then 
+if(cityToAttack > -1 and !(BIS_EVO_MissionTowns select cityToAttack in BIS_EVO_conqueredTowns)) then 
 {
-hint format ["Launching assault on %1!",BIS_EVO_Townnames select cityToAttack];
-BIS_EVO_MissionProgress = cityToAttack;
-publicVariable "BIS_EVO_MissionProgress";
-//_events = [] execVM "data\scripts\EVO_MissionManager.sqf";
-closeDialog 0;
+  hint format ["Launching assault on %1!",BIS_EVO_Townnames select cityToAttack];
+  BIS_EVO_MissionProgress = cityToAttack;
+  publicVariable "BIS_EVO_MissionProgress";
+  if(isServer) then 
+  {
+    _events = [] execVM "data\scripts\EVO_MissionManager.sqf";
+  };
+  closeDialog 0;
 }
-else {
-hint "Assault planning cancelled!";
-BIS_EVO_Onmission=false;
-closeDialog 0;
+else 
+{
+  hint "Assault planning cancelled!";
+  BIS_EVO_Onmission=false;
+  closeDialog 0;
 };

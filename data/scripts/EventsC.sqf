@@ -4555,7 +4555,7 @@ BIS_EVO_AssignTasks =  // Assigns common main city objectives
 		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective11};
 	};*/
 		if(BIS_EVO_MissionProgress == -1 ) then {
-			BIS_EVO_Objective1 settaskstate "Succeeded";
+		//	BIS_EVO_Objective1 settaskstate "Succeeded";
 		};
 
 	if(BIS_EVO_MissionProgress == 11) then

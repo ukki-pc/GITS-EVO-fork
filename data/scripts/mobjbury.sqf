@@ -25,7 +25,10 @@ switch (_tag) do //who died where?
 };
 if (not (_unit isKindOf "Man")) then
 {
+	if(isPlayer _killer) then 
+	{
 	systemChat format ["You destroyed: %1", _dispname];
+	};
 	{_x setpos position _unit} forEach crew _unit;
 	sleep 300.0;
 	deletevehicle _unit;

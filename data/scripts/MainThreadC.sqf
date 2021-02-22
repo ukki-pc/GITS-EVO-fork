@@ -564,7 +564,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	[] call EGG_EVO_stationRepair;
 	sleep 1.011;
 	if (score player != _tscore and alive player) then {[] call BIS_EVO_Rank};
-	if (BIS_EVO_MissionProgress > _currentprog) then {[] call BIS_EVO_CityClear};
+	if (BIS_EVO_MissionProgress != _currentprog) then {[] call BIS_EVO_CityClear};
 	sleep 1.011;
 	[] call BIS_EVO_CTime;
 	sleep 1.011;

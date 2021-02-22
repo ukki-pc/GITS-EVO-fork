@@ -39,7 +39,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_pos2 = GetMarkerPos (_spawns select (round random 2));
 		_allvecs = EGG_EVO_mevconvoyb;
 		_maxA = count _allvecs;
-		_ural = createVehicle [(_allvecs select (round random (_maxA - 1))), _pos2, _spawns, 0, "NONE"];[_ural] call BIS_EVO_Lock;_ural addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+		_ural = createVehicle [(_allvecs select (round random (_maxA - 1))), _pos2, _spawns, 0, "NONE"];[_ural] call BIS_EVO_Lock;_ural addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 		Sleep 0.2;
 		_unit = _guardr createUnit [(_allunits select (round random (_max - 1))), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsDriver _ural;_unit moveInDriver _ural;
 		Sleep 0.2;
@@ -259,7 +259,7 @@ sleep 15;
 
 if( (_curtownMec <= _basetownMec) and (alive _radio) ) then 
 {
-	systemChat "reinforcing mechanized";
+	//systemChat "reinforcing mechanized";
 	[] spawn EGG_EVO_mecreinf;
 	(BIS_EVO_Mechanized select BIS_EVO_MissionProgress) set [0, (_curtownMec*enemynumdiv)+1];
 	sleep 1;

@@ -43,7 +43,7 @@ BIS_EVO_makeGb =
 	while {_d <= _dcountc} do 
 	{
 		_unit = _guardb createUnit [_allunits select (round random _max), _ppos, [], 2, "FORM"];
-		_unit addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+		_unit addEventHandler ["killed", {handle = [_this select 0, _this select 1] execVM "data\scripts\bury.sqf"}];
 		[_unit] join _guardb;
 		_d = _d+1;
 		sleep 1;
@@ -57,13 +57,13 @@ BIS_EVO_makeGb =
 		_heli2 = createVehicle [(_allvecA select (round random _maxA)), _ppos, [], 2, "NONE"];Sleep BIS_EVO_GlobalSleep;
 		_spawne = [_vec2] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 		[_heli2] call BIS_EVO_Lock;
-		_heli2 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+		_heli2 addEventHandler ["killed", {handle = [_this select 0, _this select 1] execVM "data\scripts\bury.sqf"}];
 		(units _guardb select 0) assignAsDriver _heli2;Sleep BIS_EVO_GlobalSleep;
 		(units _guardb select 0) moveInDriver _heli2;Sleep BIS_EVO_GlobalSleep;
 		(units _guardb select 1) assignAsGunner _heli2;Sleep BIS_EVO_GlobalSleep;
 		(units _guardb select 1) moveInGunner _heli2;	
 	};	
-	{_x setCombatMode "RED";_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}]} forEach (units _guardb);
+	{_x setCombatMode "RED";_x addEventHandler ["killed", {handle = [_this select 0, _this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _guardb);
 	_recy = [_user,_guardb] execVM "data\scripts\grecycle.sqf";
 };
 

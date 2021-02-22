@@ -6,7 +6,7 @@ _events = [] execVM "data\scripts\EVO_VecRm.sqf";// Vehicle respawn for respawni
 _events = [] execVM "data\scripts\EVO_VecRc.sqf";// Vehicle respawn for respawning civilian vehicles
 _events = [] execVM "data\scripts\EventsS.sqf"; // Common server events
 
-//_events = [] execVM "data\scripts\CityMarkers.sqf"; // Common server events
+_events = [] execVM "data\scripts\CityMarkers.sqf"; // Common server events
 
 _events = [] execVM "data\scripts\EVO_Erefway.sqf"; // Reinforcement waypoint generator
 _events = [] execVM "data\scripts\EVO_FillInf.sqf"; // Fills out squads for cites
@@ -17,10 +17,11 @@ _events = [] execVM "data\scripts\EVO_Erec.sqf";	// City setup (radios,officers,
 _sin = [] execVM "data\scripts\sinitS.sqf";
 Mthread = [] execVM "data\scripts\MainThread.sqf";
 
-_events = [] execVM "data\scripts\EVO_MissionManager.sqf";
 
 //FH is field hospital objct
 wcam = fh addaction ["Save mission to clipboard", "actions\saveMission.sqf",0,1, false, true,"test2"];
+wcam = hq addAction ["Start assault", "data\scripts\pickCity.sqf", [], -1, false, true, ""];
+
 
 //_reinf = [] execVM "data\scripts\reinforce.sqf";
 

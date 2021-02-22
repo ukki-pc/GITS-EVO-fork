@@ -56,7 +56,7 @@ _EVO_CreateVehicle =
 		_unit moveinDriver _vec;
 	};		
 	Sleep BIS_EVO_GlobalSleep;
-	_vec addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+	_vec addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 	_unattended = [_vec] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 	_returnarray = [_grp,_vec];
 	_returnarray
@@ -229,7 +229,7 @@ _SpawnCar =
 	_car = _array select 1;
 	_driver = (units _passengers select 0);
 	_driver doMove _pos1;
-	_driver addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+	_driver addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 	Sleep 0.1;
 	// Navagation
 	if(_DeadEnd)then

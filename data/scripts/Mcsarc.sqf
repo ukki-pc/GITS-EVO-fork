@@ -130,7 +130,7 @@ _hostage = _pilot createUnit [_allunits select (round random (_max - 1)), _pos1,
 	removeallweapons _x;
 	_x setCaptive true;
 	commandStop _x;
-	_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}]
+	_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]
 } forEach units _pilot;
 
 sleep 1.0;
@@ -180,40 +180,40 @@ while {_d <= _dcounta} do
 	Sleep BIS_EVO_GlobalSleep;
 	_spawne = [_heli] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 //	[_heli] call BIS_EVO_Lock;
-	_heli addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+	_heli addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 
 	_heli1 = createVehicle [(_allvecB select round random (_maxC - 1)), _pos3, [], 0, "NONE"];
 	Sleep BIS_EVO_GlobalSleep;
 	_spawne = [_heli1] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 //	[_heli1] call BIS_EVO_Lock;
-	_heli1 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+	_heli1 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 
 	_heli2 = createVehicle [(_allvecC select round random (_maxD - 1)), _pos4, [], 0, "NONE"];
 	Sleep BIS_EVO_GlobalSleep;
 	_spawne = [_heli2] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 //	[_heli2] call BIS_EVO_Lock;
-	_heli2 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+	_heli2 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 
 	_heli3 = createVehicle [(_allvecD select round random (_maxB - 1)), _pos5, [], 0, "NONE"];
 	Sleep BIS_EVO_GlobalSleep;
 	_spawne = [_heli3] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 //	[_heli3] call BIS_EVO_Lock;
-	_heli3 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+	_heli3 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 
 	_heli4 = createVehicle [(EGG_EVO_meflag select 0), _pos1, [], 20, "NONE"];
 	Sleep BIS_EVO_GlobalSleep;
 	_spawne = [_heli4] spawn {[_this select 0] call BIS_EVO_idelSVEC};
-	_heli4 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+	_heli4 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 
 	_heli5 = createVehicle ["Land_Fire_burning", _pos1, [], 20, "NONE"];
 	Sleep BIS_EVO_GlobalSleep;
 	_spawne = [_heli5] spawn {[_this select 0] call BIS_EVO_idelSVEC};
-	_heli5 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+	_heli5 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 
 	_heli6 = createVehicle [(EGG_EVO_mehq select 0), _pos1, [], 10, "NONE"];
 	Sleep BIS_EVO_GlobalSleep;
 	_spawne = [_heli6] spawn {[_this select 0] call BIS_EVO_idelSVEC};
-	_heli6 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+	_heli6 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 
 _guard = createGroup (east);//4 vehicles and 9 crew
 
@@ -251,7 +251,7 @@ while {_d <= _dcounta} do
 (units _guard select 8) assignAsGunner _heli3;
 (units _guard select 8) moveInGunner _heli3;
 
-{_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}]} forEach (units _guard);
+{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _guard);
 {_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}]} forEach (units _guardb);
 {_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}]} forEach (units _guardc);
 

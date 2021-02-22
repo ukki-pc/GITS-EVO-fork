@@ -15,7 +15,7 @@ BIS_EVO_DetectFriendly setTriggerTimeout [2, 2, 2, true ];
 _count = (count BIS_EVO_MissionTowns);
 
 Sleep 2.0;
-while {BIS_EVO_MissionProgress < _count} do
+while {BIS_EVO_MissionProgress != -1} do
 {
  	_mkr = (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
  	_pos = getMarkerPos _mkr;
@@ -39,7 +39,7 @@ while {BIS_EVO_MissionProgress < _count} do
 	[_mkr,BIS_EVO_DetectEnemy,BIS_EVO_DetectFriendly,BIS_EVO_MissionProgress] call BIS_EVO_Erec;
 	
 	Sleep 10.0;
-
+	_tempProgress = BIS_EVO_MissionProgress;
 //testing reinforce - removed from sinit
 	for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	{
@@ -57,6 +57,7 @@ while {BIS_EVO_MissionProgress < _count} do
 				};
 			};
 		};
+		if(_tempProgress!=BIS_EVO_MissionProgress)then{_loop=1};
 		Sleep 4;
 	};
 	{_handle = [_x] execVM "data\scripts\makepow.sqf"} forEach list BIS_EVO_DetectEnemy; //REMOVED
@@ -66,7 +67,7 @@ while {BIS_EVO_MissionProgress < _count} do
 
 	BIS_EVO_conqueredTowns = BIS_EVO_conqueredTowns + [BIS_EVO_MissionTowns select BIS_EVO_MissionProgress];
 	publicVariable "BIS_EVO_conqueredTowns";
-	BIS_EVO_MissionProgress = BIS_EVO_MissionProgress+1;
+	BIS_EVO_MissionProgress = -1;
 	publicVariable "BIS_EVO_MissionProgress";
 	//player globalchat format ["BIS_EVO_MissionProgress: %1",BIS_EVO_MissionProgress]; 
 };

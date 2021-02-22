@@ -33,7 +33,7 @@ BIS_EVO_Erec =
 //Officer
 	_type = EGG_EVO_meofficer select 0;
 	_offobj = createVehicle [_type, _pos, [], 300, "NONE"];Sleep BIS_EVO_GlobalSleep;
-	_offobj addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+	_offobj addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 	_offobj setVehicleInit "Ocap = [this] execVM 'data\scripts\submit.sqf'";
 	_pobj = [_offobj] execVM "data\scripts\objoff.sqf";
 	processInitCommands;
@@ -47,7 +47,6 @@ BIS_EVO_Erec =
 		_unit = _grp createUnit [_type, position _radio, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
 		_unit addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1] execVM "data\scripts\mobjbury.sqf"}]; 
-		_unit addEventHandler ["Hit", {handle = [_this select 0,_this select 1] execVM "data\scripts\lastHit.sqf"}];  
 		_wp = _grp addWaypoint [position _radio, 0];
 		_wp2 = _grp addWaypoint [position _radio, 50];
 		_wp3 = _grp addWaypoint [position _radio, 50];
@@ -178,7 +177,7 @@ BIS_EVO_Erec =
 		_mec = _mec-1; //##9,8,7,6,5,4,3,2,1,0
 		Sleep 1;
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
-		{_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}]} forEach (crew _vec);
+		{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (crew _vec);
 		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
 	};
 
@@ -191,7 +190,7 @@ BIS_EVO_Erec =
 		_max = (count _allvecs)-1;
 		_array = [_allvecs select (round random _max),_pos,(EGG_EVO_ENEMYFACTION),200,180,0] call BIS_EVO_CreateVehicle;
 		_grp = _array select 0;
-		{_x addEventHandler  ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}]} forEach (units _grp);
+		{_x addEventHandler  ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _grp);
 		{_x setSkill skillfactor+(random 0.2);_x setDir 180} forEach (units _grp);
 		{_x setBehaviour "combat"} forEach (units _grp);
 		_stat = _stat-1; //##4,3,2,1,0
@@ -223,8 +222,8 @@ BIS_EVO_Erec =
 		_unit2 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
 		_unit3 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
 		[_unit1,_unit2,_unit3] join _grp;
-		{_x setSkill skillfactor+(random 0.4);_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}]} forEach (units _grp);
-		_vcl addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+		{_x setSkill skillfactor+(random 0.4);_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _grp);
+		_vcl addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 		sleep 1.0;
 		_unit1 moveInCommander _vcl;
 		_unit2 moveInGunner _vcl;
@@ -255,7 +254,7 @@ while {_ied > 0} do
 	     _max = (count _allciv)-1;
      		_type = EGG_EVO_civ1 select (round(random _max));
 		_unit = _grp createUnit [_type, _pos, [], 0, "NONE"];Sleep BIS_EVO_GlobalSleep;
-		_unit addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+		_unit addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 		_unit setVehicleInit "null = [this,10,5,""Rnd"",""Sw"",0,""bin"","""",""Run""] execVM 'IED\IED_Man_v6.sqf'";
 		processInitCommands;
 		_ied = _ied - 1;

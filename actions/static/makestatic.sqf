@@ -173,7 +173,7 @@ switch (_custom) do
 			};
 		};
 		_who removeAction _laction1;
-		foxhole addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+		foxhole addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 	};
 	 case 1: //Custom static based on class
 	{
@@ -227,7 +227,7 @@ switch (_custom) do
 			_txtpassbody = format["+%1 %2",(-_scost),localize "STR_M04t0_5"];//points
 			["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message;
 		};
-		cstatA addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+		cstatA addEventHandler ["killed", {handle = [_this select 0, _this select 1] execVM "data\scripts\bury.sqf"}];
 	};
 
 	 case 3: //Exit because tried to call a static weapon without the correct weapon

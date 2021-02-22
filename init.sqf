@@ -108,6 +108,7 @@ BIS_EVO_rank5 = (rankscore * 5);
 BIS_EVO_rank6 = (rankscore * 6);
 };
 
+
 // DONT CHANGE THIS
 if (editor == 1) then
 {
@@ -638,7 +639,7 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 
 BIS_EVO_GlobalSleep = 0.1; // Global sleep is used after spawning a unit.
 // Sub mission conditions
-BIS_EVO_MissionProgress = 0; // counts towns captured, when it hits 11 , mission is over.
+BIS_EVO_MissionProgress = -1; // counts towns captured, when it hits 11 , mission is over.
 BIS_EVO_Onmission=false; 
 BIS_EVO_sobj1=false;
 //BIS_EVO_radios = [radio1]; // Each radio in each town

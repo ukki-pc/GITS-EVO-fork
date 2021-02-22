@@ -15,7 +15,7 @@ deleteVehicle _unit;
 
 _lastgroup = createGroup east; 
 _unitn = _lastgroup createUnit [_type, _posu, [], 10, "NONE"];Sleep BIS_EVO_GlobalSleep;
-_unitn addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+_unitn addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 [_unitn] join _lastgroup;
 _unitn setVehicleInit "ucap = [this] execVM 'data\scripts\submit.sqf'";
 processInitCommands;
