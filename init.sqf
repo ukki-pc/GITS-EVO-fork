@@ -114,7 +114,7 @@ if (editor == 1) then
 {
 	onMapSingleClick "if (_alt) then {vehicle player setpos _pos;{vehicle _x setpos _pos} forEach _units}";
 	player allowDamage false;
-	spawntype = 1;
+	spawntype = 2;
 	helicopterhitch = 2;
 	EVOhour = 9;
 	grasslevel =1;
@@ -143,6 +143,7 @@ if (editor == 1) then
 	EVO_incomeFrequency = 120;
 	EGG_EVO_FactionParam = 1;
 	EGG_EVO_LoadGame = 0;
+		hint "Version 0.1";
 };
 	//IF new game selected start the game without hesitation
 	if(EGG_EVO_LoadGame == 0) then {gameBegin = 1}
@@ -198,6 +199,11 @@ if(EGG_EVO_FactionParam == 0) then
 
 	//Reinforce paradrop vehicles
 	EGG_EVO_mevair3 = ["CH_47F_EP1","UH60M_MEV_EP1","BAF_Merlin_HC3_D","UH60M_EP1","UH1Y","PRACS_puma330_MG","PRACS_CH53"]; //"ou_ch_46e","ou_ch_53d",
+
+
+	//makehip
+	EGG_EVO_eastheli1 = ["PRACS_puma330_MG","PRACS_AH6J","CH_47F_EP1","UH60M_EP1","PRACS_AB212_CAS","ibr_as350_armed","Mi171Sh_rockets_CZ_EP1","AW159_Lynx_BAF","PRACS_RAH6","PRACS_AH1S","AH1Z","AH64D"];//makehip
+
 
 	
 		//makeship
@@ -442,6 +448,12 @@ if(EGG_EVO_FactionParam == 1) then
 	EGG_EVO_mevair3 = ["An2_TK_EP1","Mi17_TK_EP1","Mi24_D_TK_EP1","UH1H_TK_EP1"]; //"ou_ch_46e","ou_ch_53d",
 
 	
+
+	//makehip light choppers
+	EGG_EVO_eastheli1 = ["ibr_gazelle_armed","FRL_Mi17_1_TAK","UH1H_TK_EP1"];//makehip
+
+
+
 		//makeship
 		EGG_EVO_enemyShips = ["PRACS_PatrolBoat"]; //,"GNTOHP","GNTLaFayette","pook_Fregata_CDF" "PRACS_RHIB2", ,"PRACS_RB90"
 
@@ -1167,8 +1179,11 @@ EGG_EVO_westveh10 = ["Stinger_Pod_US_EP1","ZU23_TK_GUE_EP1","Rbs70_ACR","HMMWV_A
 	];
 
 //Server side score addition
-
    ["jed_addscore", {(_this select 0) addScore (_this select 1)}] call CBA_fnc_addEventHandler;
+
+
+//Broadcast messages to clients
+clientMessageBuffer = [];
 
 
 
@@ -1177,6 +1192,7 @@ EGG_EVO_westveh10 = ["Stinger_Pod_US_EP1","ZU23_TK_GUE_EP1","Rbs70_ACR","HMMWV_A
 //	execVM "addons\GITS.sqf";
 //	execVM "addons\RKSL.sqf";
 //	execVM "addons\PRACS.sqf";
+["jed_message", ["message"]] call CBA_fnc_globalEvent;
 
 	EGG_EVO_meflag = ["flag_mol"];
 /*
@@ -1234,10 +1250,6 @@ EGG_EVO_east5 = ["TK_Aziz_EP1","TK_Special_Forces_MG_EP1","TK_Special_Forces_EP1
 	EGG_EVO_HELIPAD =["HeliHEmpty","HeliH","HeliHRescue"];
 
 	EGG_EVO_westveh10 = ["PRACS_M429_CRAM","PRACS_M302_SAM","PRACS_351_SAM","PRACS_M460_SAM","PRACS_LAV_SAM","pook_9K37_CDF","pook_9K37M2_CDF","pook_9K331_CDF","pook_9K332_CDF","pook_9K317_CDF","pook_9K317M2_CDF","pook_96K6_CDF","pook_NASAMS_US","pook_CRAM_US"];
-
-//makehip
-//choppers
-EGG_EVO_eastheli1 = ["PRACS_puma330_MG","PRACS_AH6J","CH_47F_EP1","UH60M_EP1","PRACS_AB212_CAS","ibr_as350_armed","Mi171Sh_rockets_CZ_EP1","AW159_Lynx_BAF","PRACS_RAH6","PRACS_AH1S","AH1Z","AH64D"];//makehip
 
 //"RKTTU22M3C","RKTTU22M3D","RKTTU22M3B",
 	EGG_EVO_eastveh2 = EGG_EVO_mevairc+EGG_EVO_mevairb;

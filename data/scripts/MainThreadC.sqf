@@ -553,6 +553,15 @@ BIS_EVO_Surrender =
 	sleep 2;
 };
 
+_msgBuffer =
+{
+	if(	count clientMessageBuffer > 0 ) then 
+	{
+		{systemChat format ["%1",clientMessageBuffer select _forEachIndex]}forEach clientMessageBuffer;
+			clientMessageBuffer = [""];
+	};
+};	
+
 //_base_west_surrender_array = west_surrender_array;
 for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 {
@@ -567,8 +576,9 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	if (BIS_EVO_MissionProgress != _currentprog) then {[] call BIS_EVO_CityClear};
 	sleep 1.011;
 	[] call BIS_EVO_CTime;
+	[] call _msgBuffer;
 	sleep 1.011;
-	[] call BIS_EVO_HPM;
+	//[] call BIS_EVO_HPM; //DUNNO WHAT IS
 	sleep 1.011;
 //	[] call BIS_EVO_Surrender;
 };

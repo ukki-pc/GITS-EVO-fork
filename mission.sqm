@@ -36,7 +36,7 @@ class Mission
 		"EB_Ship",
 		"pracs_mirage3",
 		"ibr_arl2",
-		"JS_JC_FA18_USMC"
+		"pracs_etendard"
 	};
 	addOnsAuto[]=
 	{
@@ -64,7 +64,7 @@ class Mission
 		"mis_isis_terrorists",
 		"jdg_carrier",
 		"pracs_heli",
-		"JS_JC_FA18_USMC",
+		"pracs_etendard",
 		"smd_sahrani_a2"
 	};
 	randomSeed=8800876;
@@ -1566,14 +1566,14 @@ class Mission
 		};
 		class Item86
 		{
-			position[]={8776.9385,18.165585,12457.887};
-			azimut=115.677;
+			position[]={8812.3643,18.182442,12470.619};
+			azimut=211.22626;
 			id=116;
 			side="EMPTY";
-			vehicle="JS_JC_FA18E_USMC";
+			vehicle="PRACS_EtendardM_CAS";
 			leader=1;
 			skill=0.60000002;
-			init="this setPosASL[getpos this select 0,getpos this select 1, 18]";
+			init="this setPosASL[getpos this select 0,getpos this select 1, 18]; veh = [this, 3600, 3600] execVM ""vehicle.sqf""";
 		};
 	};
 	class Markers

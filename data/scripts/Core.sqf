@@ -876,7 +876,10 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 				}
 				else
 				{
-					hint "Cannot do while moving or not in base";
+					[_vec,300] execVM "data\scripts\addToPurList.sqf";
+					ctrlShow [674,false]; //Storeveh page
+					closeDialog 1;
+					hint "Sending vehicle to base, cooldown 5min";
 				};
 				Mpage =[false,false,false,false,false,true,1,false,false];
 			};

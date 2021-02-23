@@ -32,7 +32,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	};
 	//_recy = [_pilot,"none",objNull] spawn {[_this select 0,_this select 1,_this select 2] call BIS_EVO_gRecy};
 
-	_allvecs = EGG_EVO_eastheli3;
+	_allvecs = EGG_EVO_EnemyHeli3;
 	_max = (count _allvecs)-1;
 	_heli = createVehicle [_allvecs select (round random _max), _kpos, [], 50, "FLY"];Sleep BIS_EVO_GlobalSleep;
 	_heli setpos [getpos _heli select 0, getpos _heli select 1, 500];

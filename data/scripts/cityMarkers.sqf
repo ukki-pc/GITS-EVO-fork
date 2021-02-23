@@ -9,7 +9,7 @@ _markerobj = createMarker[_unitm,[getMarkerPos _unit select 0,getMarkerPos _unit
 _markerobj setMarkerType  "Strongpoint";
 
 //TEST
-BIS_EVO_conqueredTowns = ["mobj1","mobj3"];
+//BIS_EVO_conqueredTowns = ["mobj1","mobj3"];
 
 
 //ENEMY TOWN
