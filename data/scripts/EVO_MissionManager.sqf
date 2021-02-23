@@ -68,6 +68,7 @@ while {BIS_EVO_MissionProgress != -1} do
 	BIS_EVO_conqueredTowns = BIS_EVO_conqueredTowns + [BIS_EVO_MissionTowns select BIS_EVO_MissionProgress];
 	[] call updCityMarkers;
 	publicVariable "BIS_EVO_conqueredTowns";
+	hint "Town captured";
 	BIS_EVO_MissionProgress = -1;
 	//BIS_EVO_MissionProgress = BIS_EVO_MissionProgress + 1;
 	publicVariable "BIS_EVO_MissionProgress";

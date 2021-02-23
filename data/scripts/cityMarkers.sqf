@@ -15,7 +15,7 @@
 	//ENEMY TOWN
 	if !(BIS_EVO_MissionTowns select _forEachIndex in BIS_EVO_conqueredTowns) then
 	{
-		_markerobj setMarkerColor "ColorRedAlpha";
+		_markerobj setMarkerColor "ColorRed";
 		if(!isNil "_rewardVeh") then
 			{
 		_rewardStr = getText (configFile >> "cfgVehicles" >> _rewardVeh >> "DisplayName");
@@ -53,14 +53,10 @@ updCityMarkers =
 
 	_markerobj = _unitm;
 
-	//TEST
-	//BIS_EVO_conqueredTowns = ["mobj1","mobj3"];
-
-
 	//ENEMY TOWN
 	if !(BIS_EVO_MissionTowns select _forEachIndex in BIS_EVO_conqueredTowns) then
 	{
-		_markerobj setMarkerColor "ColorRedAlpha";
+		_markerobj setMarkerColor "ColorRed";
 		if(!isNil "_rewardVeh") then
 			{
 		_rewardStr = getText (configFile >> "cfgVehicles" >> _rewardVeh >> "DisplayName");

@@ -8,7 +8,6 @@ _id = _this select 2;
 _map = objNull;
 cityCount = count BIS_EVO_allCities;
 
-
 mapRefresh = false;
 cityToAttack = -1;
 openMap true;

@@ -470,61 +470,61 @@ playSound "CityClear";
 		{	
 //			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_lopatino"];
 			"1" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos "mobj2";
+			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
 		};
 		case 2:
 		{	
 //			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_vybor"];
 			"2" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos "mobj3";
+			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
 		};
 		case 3:
 		{	
 //			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_grishino"];
 			"3" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos "mobj4";
+			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
 		};
 		case 4:
 		{	
 //			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_gvozdno"];
 			"4" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos "mobj5";
+			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
 		};
 		case 5:
 		{	
 //			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_krasnostav"];
 			"5" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos "mobj6";
+			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
 		};
 		case 6:
 		{	
 //			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_khelm"];
 			"6" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos "mobj7";
+			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
 		};
 		case 7:
 		{	
 //			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_berezino"];
 			"7" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos "mobj8";
+			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
 		};
 		case 8:
 		{	
 //			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_solnichniy"];
 			"8" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos "mobj9";
+			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
 		};
 		case 9:
 		{	
 //			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_kamyshovo"];
 			"9" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos "mobj10";
+			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
 		};
 		case 10:
 		{	
 //			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_elektrozavodsk"];
 			"10" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos "mobj11";
+			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
 		};
 		case 11:
 		{	

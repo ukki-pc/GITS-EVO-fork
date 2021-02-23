@@ -13,7 +13,7 @@ if (not (_unit isKindOf "Man")) then
 		//systemChat format ["You killed: %1", _dispname];
 		
 		 clientMessageBuffer = clientMessageBuffer + [_msg];
-		 (owner _killer) publicVariableClient "clientMessageBuffer";
+		publicVariable "clientMessageBuffer";
 	};
 	{_x setpos position _unit} forEach crew _unit;
 	sleep 300.0;

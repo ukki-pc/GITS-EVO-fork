@@ -679,9 +679,11 @@ ztownmgr = ztownmgr + [_m];
 */
 
 BIS_EVO_conqueredTowns = [];
+
+// CHANGE LATER??
 BIS_EVO_MissionTowns2 = 
 [
-	["mobj1",false,"PRACS_TK_Su24Fencer"],
+	["mobj1",false],
 	["mobj2",false],
 	["mobj3",false],
 	["mobj4",false],

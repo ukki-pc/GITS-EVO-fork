@@ -148,7 +148,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 	{
 		private ["_Allspawns","_allobj","_alist","_radio","_unit","_guardm","_pos","_rng","_vec","_maxo","_spawns","_pos","_tag","_allvec","_rds","_cardir","_degrees","_dirdif","_array","_recy"]; 
 		_Allspawns = [["1ref","1refa","1refb"],["2ref","2refa","2refb"],["3ref","3refa","3refb"],["4ref","4refa","4refb"],["5ref","5refa","5refb"],["6ref","6refa","6refb"],["7ref","7refa","7refb"],["8ref","8refa","8refb"],["9ref","9refa","9refb"],["10ref","10refa","10refb"],["11ref","11refa","11refb"]];
-		_allobj = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11"];
+		_allobj = BIS_EVO_MissionTowns;
 		_alist = BIS_EVO_DetectEnemy;
 		_radio = radio1;
 		_unit = objNull;

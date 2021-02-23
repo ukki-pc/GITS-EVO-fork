@@ -28,7 +28,7 @@ _wp1 = _grp addWaypoint [[0,0,0], 10];
 for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 {
 
-	_allobj = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11"];
+	_allobj = BIS_EVO_MissionTowns;
 	_currentobj = [];
 	_max = count _allobj; //12
 	_i = 0;
