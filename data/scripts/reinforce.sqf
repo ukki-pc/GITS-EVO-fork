@@ -168,12 +168,8 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 			//DETERMINE THE CLOSEST REINFORCE POINT
 			if !(_allobj select _loop == BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) then 
 			{
-				//_blackList set [count _blackList,_allobj select _loop]; //blacklist the objective itself so you cannot reinforce from the some town as objective is
-				//_remainingObjectives = _allobj - BIS_EVO_conqueredTowns;
-				//_nearestMarker = [_remainingObjectives select _loop, _radio] call BIS_fnc_nearestPosition;
 				_targetMarker = _allobj select _loop;
 				_dist = _radio distance getMarkerPos _targetMarker;
-				//systemChat format ["%1 was closest reinforce point and the distance is: %2",_targetMarker, _dist ];
 
 				if(_dist <= 4000) then 
 				{
@@ -189,17 +185,6 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 
 	//	systemChat format ["Reinforcement towns are: %1",_reinforceTowns];
 
-/*
-		for [{_loop=0}, {_loop<count _allobj}, {_loop=_loop+1}] do 
-		{
-			//DETERMINE THE CLOSEST REINFORCE POINT
-			_blackList set [_loop,_allobj select BIS_EVO_MissionProgress]; //blacklist the objective itself so you cannot reinforce from the some town as objective is
-			_remainingObjectives = _allobj - _blackList;
-			_nearestMarker = [_remainingObjectives, _radio] call BIS_fnc_nearestPosition;
-			_dist = _radio distance getMarkerPos _nearestMarker;
-			systemChat format ["%1 was closest reinforce point and the distance is: %2",_nearestMarker, _dist ];
-		};
-*/
 		_spawns = _Allspawns select BIS_EVO_MissionProgress;
 		_pos = GetMarkerPos (_reinforceTowns select (round random (count _reinforceTowns-1)));
 		_tag = "MEC";
@@ -219,30 +204,37 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		 	_allvec = EGG_EVO_MechHard; //mixed units reinforce
 		};
 
-		//systemchat format ["Random number was: %1", _rng];
-		_maxo = (count _allvec)-1;	
-		_rds = [];
-		_rds = (_pos nearRoads 10);
-		waitUntil{count _rds > 0};
-		_cardir = (getdir (_rds select 0));
-		_degrees = [_pos,position _alist] call BIS_EVO_GetRelDir;
-		_dirdif = (_cardir-_degrees);
-		if((_dirdif > 89) or (_dirdif < -89)) then{_cardir=_cardir-180};	
-		_pos = position (_rds select 0);
+	if (count _reinforceTowns > 0) then 
+		{
+			//systemchat format ["Random number was: %1", _rng];
+			_maxo = (count _allvec)-1;	
+			_rds = [];
+			_rds = (_pos nearRoads 10);
+			waitUntil{count _rds > 0};
+			_cardir = (getdir (_rds select 0));
+			_degrees = [_pos,position _alist] call BIS_EVO_GetRelDir;
+			_dirdif = (_cardir-_degrees);
+			if((_dirdif > 89) or (_dirdif < -89)) then{_cardir=_cardir-180};	
+			_pos = position (_rds select 0);
 
-		_array = [_allvec select (round random _maxo),_pos,(EGG_EVO_ENEMYFACTION),20,_cardir,0] call BIS_EVO_CreateVehicle;
+			_array = [_allvec select (round random _maxo),_pos,(EGG_EVO_ENEMYFACTION),20,_cardir,0] call BIS_EVO_CreateVehicle;
 
-		_guardm = _array select 0;
-		_vec = _array select 1;
-		//_sumark = [_vec] execVM "data\scripts\sumarker.sqf";
-	///	systemchat format ["spawned: %1", typeof _vec];
-		[position _alist,_guardm,_radio,_alist] call BIS_EVO_Erefway;
-		_vec lock 2;
-		[_guardm, 1] setWaypointCombatMode "RED";		
-		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guardm);
-		_guardm setFormation "COLUMN";
-		//adding
-		_recy = [objnull,_guardm] execVM "data\scripts\grecycle.sqf";
+			_guardm = _array select 0;
+			_vec = _array select 1;
+			//_sumark = [_vec] execVM "data\scripts\sumarker.sqf";
+			///	systemchat format ["spawned: %1", typeof _vec];
+			[position _alist,_guardm,_radio,_alist] call BIS_EVO_Erefway;
+			_vec lock 2;
+			[_guardm, 1] setWaypointCombatMode "RED";		
+			{_x addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guardm);
+			_guardm setFormation "COLUMN";
+			//adding
+			_recy = [objnull,_guardm] execVM "data\scripts\grecycle.sqf";
+		}
+		else 
+		{
+			systemChat "No nearby reinforcement cities";
+		};
 	};
 
 if ( (_curtownInf <= _basetownInf) and (alive _radio) ) then 

@@ -137,13 +137,13 @@ if (editor == 1) then
 	EGG_EVO_Artycost =4;
 	//Note from Tox1m: paramsArray select 15 used by Revive script
 	enemynumdiv = 10;
-	reinfdelay = 30;
+	reinfdelay = 60;
 	EGG_highCommand = 0;
 	EX_EVO_vehPriceMultiplier = 1;
 	EVO_incomeFrequency = 120;
 	EGG_EVO_FactionParam = 1;
 	EGG_EVO_LoadGame = 0;
-		hint "Version 0.1";
+	hint "DEBUG MODE ON | Version 0.2";
 };
 	//IF new game selected start the game without hesitation
 	if(EGG_EVO_LoadGame == 0) then {gameBegin = 1}
