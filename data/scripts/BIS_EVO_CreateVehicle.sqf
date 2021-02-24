@@ -15,6 +15,90 @@ EGG_fnc_commonTurrets =
 	 _arr;
 };
 
+//Counts how many available seats and returns [_driver,_gunner,_commander,_cargoseats,_turretcount];
+BIS_EVO_CountSeats =
+{
+_target = _this select 0;
+_type = typeof _target;
+_turretarrayname = [""];
+
+	If (_target isKindOf "LandVehicle" || _target isKindOf "Air" || _target isKindOf "Ship") then 
+	{	// check if the unit is a vehicle
+		_weapdriv = getArray (configFile >> "cfgVehicles" >> _type >> "weapons");		// Pilot/Driver weapons
+		_magsdriv = getArray (configFile >> "cfgVehicles" >> _type >> "magazines");		// Pilot/Driver magazines
+		_drivhint = format ["<br/><br/><t color='#0000CC'>Driver Weapons:</t><br/>%1<br/><br/><t color='#0000CC'>Driver Magazines:</t><br/>%2", _weapdriv, _magsdriv];
+		If (count _weapdriv == 0) then {_drivhint = ""};
+
+		_mainturret = false;
+		_hasturrets = false;
+		If (isClass (configFile >> "cfgVehicles" >> _type >> "Turrets")) then {				// check if the unit has turrets
+			If ((count (configFile >> "cfgVehicles" >> _type >> "Turrets")) > 1) then {		// Sometimes there are Turrets in the Turrets class (Air vehicles) and that turrets are dependent on the Mainturret class
+				_turrets = configFile >> "cfgVehicles" >> _type >> "Turrets";
+				_hasturrets = true;
+			} else {
+				_turrets = configFile >> "cfgVehicles" >> _type >> "Turrets" >> "MainTurret" >> "Turrets";	// If only the "Mainturret" class is in "Turrets" then use the lower class "Turrets" as the turrets (Tanks f.e.)
+				_mainturret = true;
+				_hasturrets = true;
+			};
+		} else {
+			_turrets = [];		// If the turret check fails then there are no turrets
+		};
+		_turretcount = 
+			If (_mainturret) then {
+				(count _turrets) - 1;	// If the turrets are a lower class of MainTurret then substract 1 from the _turret count (CommanderOptics)
+			} else {
+				count _turrets;
+		};
+					
+		If (_turretcount >= 1) then {
+			for [{_i = 0}, {_i < _turretcount}, {_i = _i + 1}] do {
+				_turretarrayname = _turretarrayname + [getText (_turrets select _i >> "gunnerName")];
+				player globalchat format ["%1", _turretarrayname];
+			};
+		};
+
+		_upperclass = configName (inheritsFrom (configFile >> "cfgVehicles" >> _type));
+		_cargoseats = getNumber (configFile >> "cfgVehicles" >> _type >> "transportSoldier");
+		_driver = getNumber (configFile >> "cfgVehicles" >> _upperclass >> "hasDriver");
+		
+		// Workaround to check if the vehicle has a gunner position
+		_gunner = _target emptyPositions "Gunner";
+		If (_gunner == 0) then {							// check if position is not empty (empty = 1)
+			_gunner = switch (isNull (gunner _target)) do {	// check if a soldier is in gunner position
+				case true : {0};							// no gunner in vehicle => there isn't a gunner position in that vehicle
+				case false: {1};							// gunner is in vehicle
+			};
+		} else {									// if the script goes to the else code then the position is empty (1)
+			_gunner = switch (_mainturret) do {		// check if the vehicle has multiple turrets which doesn't use the 
+				case false : {0};					// mainturret as base class
+				case true : {1};
+			};
+		};
+		
+		// Workaround to check if the vehicle has a commander position
+		_commander = _target emptyPositions "commander";
+		_effcom = effectiveCommander _target;
+		If (_commander == 0) then {						// check if position is not empty (empty = 1)
+			If (isNull (commander _target)) then {		// check if soldier is in commander position
+				_commander = 0;							// no commander in vehicle => there isn't a commander position in that vehicle
+			} else {
+				_commander = 1;							// commander in vehicle
+			};
+		};
+		
+		// Total amount of seats
+		_seats = If (_turretcount == -1) then {
+				_cargoseats + _driver + _gunner + _commander + (_turretcount + 1);
+			} else {
+				_cargoseats + _driver + _gunner + _commander + _turretcount;
+		};
+		//Return free seat values
+		_returnSeats = [_cargoseats,_turretcount];
+		_returnSeats;
+	};
+};
+
+
 BIS_EVO_CreateVehicle =
 {
 	Private["_type","_pos","_side","_radi","_dir","_vel","_grp","_returnarray","_vec","_crewtype","_maxc","_maxcrew","_newmaxcrew","_unit","_vtarray","_ctr","_n"];

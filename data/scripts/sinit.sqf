@@ -18,6 +18,10 @@ _sin = [] execVM "data\scripts\sinitS.sqf";
 Mthread = [] execVM "data\scripts\MainThread.sqf";
 
 
+//Neighbors
+//_events = [] execVM "data\scripts\occupiedSpawns.sqf";	//Random enemies on occupied towns
+
+
 //FH is field hospital objct
 wcam = fh addaction ["Save mission to clipboard", "actions\saveMission.sqf",0,1, false, true,"test2"];
 wcam = hq addAction ["Start assault", "data\scripts\pickCity.sqf", [], -1, false, true, ""];

@@ -530,8 +530,8 @@ playSound "CityClear";
 		{	
 //			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_chernogorsk"];
 			"11" objstatus "done";
-			deleteMarkerLocal BIS_EVO_MainObjective;
-			playSound "Intro";
+			//deleteMarkerLocal BIS_EVO_MainObjective;
+		//	playSound "Intro";
 		};		
 	};
 	[] call BIS_EVO_AssignTasks;

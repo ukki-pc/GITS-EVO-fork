@@ -13,10 +13,10 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 	_radio =radio1;
 	_alist = BIS_EVO_DetectEnemy;
 	
-	_curtownInf = round(((BIS_EVO_Infantry select BIS_EVO_MissionProgress) select 0)/enemynumdiv);
-	_basetownInf = round(((BIS_EVO_Infantry select BIS_EVO_MissionProgress) select 1)/enemynumdiv);
-	_curtownMec = round(((BIS_EVO_Mechanized select BIS_EVO_MissionProgress) select 0)/enemynumdiv);
-	_basetownMec = round(((BIS_EVO_Mechanized select BIS_EVO_MissionProgress) select 1)/enemynumdiv);
+	_curtownInf = round(((BIS_EVO_InfantrySpawn)/enemynumdiv));
+	_basetownInf = round(((BIS_EVO_InfantryTarget))/enemynumdiv);
+	_curtownMec = round(((BIS_EVO_MechanizedSpawn))/enemynumdiv);
+	_basetownMec = round(((BIS_EVO_MechanizedTarget))/enemynumdiv);
 
 	//systemChat format["CI:%1 BI:%2 CM:%3 BM:%4 ",_curtownInf,_basetownInf,_curtownMec,_basetownMec];
 	sleep 1;
@@ -190,7 +190,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_tag = "MEC";
 
 		//Increasing aggression
-		_rng = round(random(9)+1 + (BIS_EVO_MissionProgress+1)*0.66);
+		_rng = round(random(10));
 		 if(_rng < 6) then 
 		 {
 		 	_allvec = EGG_EVO_MechEasy; //mixed units reinforce

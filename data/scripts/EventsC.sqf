@@ -3983,7 +3983,7 @@ BIS_EVO_AmmoBox = // Creates and fills local rank based ammo boxes
 		deletevehicle ammobox3;ammobox3 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob3";ammobox3 setpos getmarkerpos "ammob3";[ammobox3] call _FillAmmoBoxU;
 		deletevehicle ammobox4;ammobox4 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob4";ammobox4 setpos getmarkerpos "ammob4";[ammobox4] call _FillAmmoBoxU;
 		deletevehicle ammobox5;ammobox5 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob5";ammobox5 setpos getmarkerpos "ammob5";[ammobox5] call _FillAmmoBoxU;
-		deletevehicle ammobox11;ammobox11 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob11";ammobox11 SetPosASL [(getMarkerPos "HMS-GITS" select 0)+1,(getMarkerPos "HMS-GITS" select 1)+1, 18.4];[ammobox11] call _FillAmmoBoxU;
+		deletevehicle ammobox11;ammobox11 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob11";ammobox11 SetPosASL [(getMarkerPos "HMS-GITS" select 0)+1,(getMarkerPos "HMS-GITS" select 1)+1, 18];[ammobox11] call _FillAmmoBoxU;
 //		deletevehicle ammobox11;ammobox11 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob11";ammobox11 SetPos getMarkerPos "HMS-GITS";[ammobox11] call _FillAmmoBoxU;
 		player reveal ammobox1
 	} 
@@ -3994,7 +3994,7 @@ BIS_EVO_AmmoBox = // Creates and fills local rank based ammo boxes
 		deletevehicle ammobox3;ammobox3 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob3";ammobox3 setpos getmarkerpos "ammob3";[ammobox3] call _FillAmmoBoxUR;
 		deletevehicle ammobox4;ammobox4 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob4";ammobox4 setpos getmarkerpos "ammob4";[ammobox4] call _FillAmmoBoxUR;
 		deletevehicle ammobox5;ammobox5 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob5";ammobox5 setpos getmarkerpos "ammob5";[ammobox5] call _FillAmmoBoxUR;
-		deletevehicle ammobox11;ammobox11 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob11";ammobox11 SetPosASL [(getMarkerPos "HMS-GITS" select 0)+1,(getMarkerPos "HMS-GITS" select 1)+1, 18.4];[ammobox11] call _FillAmmoBoxUR;
+		deletevehicle ammobox11;ammobox11 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob11";ammobox11 SetPosASL [(getMarkerPos "HMS-GITS" select 0)+1,(getMarkerPos "HMS-GITS" select 1)+2, 18];[ammobox11] call _FillAmmoBoxUR;
 //		deletevehicle ammobox11;ammobox11 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob11";ammobox11 SetPos getMarkerPos "HMS-GITS";[ammobox11] call _FillAmmoBoxUR;
 		player reveal ammobox1
 	};

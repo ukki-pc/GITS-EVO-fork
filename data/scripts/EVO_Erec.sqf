@@ -1,6 +1,5 @@
 BIS_EVO_Erec =
 {
-	defenceReady = false;
 	_placetag = _this select 0;
 	_list = _this select 1;
 	_disable = _this select 2;
@@ -9,9 +8,10 @@ BIS_EVO_Erec =
 	_mec = 0; 
 	_stat = 0; 
 	_radio = objNull; 
-	_inf = round(((BIS_EVO_Infantry select _towncount) select 0)/2);
-	_mec = round(((BIS_EVO_Mechanized select _towncount) select 0));
-	_stat = round((((BIS_EVO_Mechanized select _towncount) select 0)/2));
+	_inf = round(BIS_EVO_InfantrySpawn/1.5);
+	_mec = round(BIS_EVO_MechanizedSpawn);
+	_stat = round((BIS_EVO_MechanizedSpawn)/2);
+	systemChat str _inf;
 	_radio = radio1;
 	_newunits = [];
 	_rds = [];
@@ -26,6 +26,7 @@ BIS_EVO_Erec =
 	_pos2 = [(_pos select 0),(_pos select 1)+300,(_pos select 2)];
 	_pos3 = [(_pos select 0)-300,(_pos select 1),(_pos select 2)];
 	_pos4 = [(_pos select 0),(_pos select 1)-300,(_pos select 2)];
+	defenceReady = false;
 	private ["_rng","_allvec"]; 
 
 	_outpoints = [_pos1,_pos2,_pos3,_pos4];	
@@ -37,8 +38,118 @@ BIS_EVO_Erec =
 	_offobj setVehicleInit "Ocap = [this] execVM 'data\scripts\submit.sqf'";
 	_pobj = [_offobj] execVM "data\scripts\objoff.sqf";
 	processInitCommands;
-	Sleep 3;
 
+// SP ANTI-AIR defence
+	Sleep 1;
+	_MakeAA =
+	{
+		Sleep 1;
+		_respawnpoint = _outpoints select _curpoint;
+		_rng = round(random(9)+1 + (BIS_EVO_MissionProgress+1)*0.66);
+		 if(_rng < 10) then 
+		 {
+		 	_allvecs = EGG_EVO_spAAeasy;
+		 }
+		 else {
+			 _allvecs = EGG_EVO_spAAhard;
+		 };
+		
+		_max = (count _allvecs)-1;
+		_vcl = createVehicle [(_allvecs select (round random _max)), _respawnpoint, [], 120, "NONE"];
+		_vcl setdir random 359;	
+		_grp = createGroup (EGG_EVO_ENEMYFACTION);
+		_type = EGG_EVO_enemy1 select 0;
+		_unit1 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
+		_unit2 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
+		_unit3 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
+		[_unit1,_unit2,_unit3] join _grp;
+		{_x setSkill skillfactor+(random 0.4);_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _grp);
+		_vcl addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
+		sleep 1.0;
+		_unit1 moveInCommander _vcl;
+		_unit2 moveInGunner _vcl;
+		_unit3 moveInDriver _vcl;
+		[_vcl] call BIS_EVO_Lock;
+		_unattended = [_vcl] spawn {[_this select 0] call BIS_EVO_idelSVEC};
+		[_vcl] execVM "data\scripts\EVO_VecRAA.sqf";
+		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
+		_curpoint =_curpoint+1;
+	};
+	_curpoint = 0;
+	_AA=4;
+	while {_AA > 0} do 
+	{
+		[] call _MakeAA;
+		_AA=_AA-1;
+		sleep 1;
+	};
+
+// Spawn Mechanised units
+	Sleep 2;
+	while {_mec > 0} do 
+	{
+		//Increasing aggression
+		_rng = round(random(10));
+		 if(_rng < 6) then 
+		 {
+		 	_allvec = EGG_EVO_MechEasy; //mixed units reinforce
+		 };
+		if(_rng > 5 && _rng < 10) then 
+		 {
+		 	_allvec = EGG_EVO_MechMedium; //mixed units reinforce
+		 };
+	 	if(_rng > 9) then 
+		 {
+		 	_allvec = EGG_EVO_MechHard; //mixed units reinforce
+		};
+		
+		_max = (count _allvec)-1;
+		_array = [_allvec select (round random _max),_pos,(EGG_EVO_ENEMYFACTION),300,180,0] call BIS_EVO_CreateVehicle;
+		_grp = _array select 0;
+		_vec = _array select 1;
+		_rds = (_vec nearRoads 20);
+		if(not Isnull (_rds select 0)) then
+		{
+			_vec setpos position (_rds select 0);
+			_vec setdir (getdir (_rds select 0));
+		}
+		else
+		{
+			_vec setdir 180;
+		};
+		if(round(random 1) == 1) then
+		{	
+			_wp = _grp addWaypoint [(_outpoints select 0), 0];
+			_wp2 = _grp addWaypoint [(_outpoints select 1), 0];
+			_wp3 = _grp addWaypoint [(_outpoints select 2), 0];
+			_wp4 = _grp addWaypoint [(_outpoints select 3), 0];
+			[_grp, 4] setWaypointType "CYCLE";
+		};		
+		[_grp] call BIS_EVO_OrderSquad;
+		_mec = _mec-1; //##9,8,7,6,5,4,3,2,1,0
+		Sleep 1;
+		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
+		{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (crew _vec);
+		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
+	};
+
+// Static Guns
+	_i=0;
+	while {_stat > 0} do 
+	{
+//added mortar etc
+		_allvecs = EGG_EVO_statAA;
+		_max = (count _allvecs)-1;
+		_array = [_allvecs select (round random _max),_pos,(EGG_EVO_ENEMYFACTION),200,180,0] call BIS_EVO_CreateVehicle;
+		_grp = _array select 0;
+		{_x addEventHandler  ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _grp);
+		{_x setSkill skillfactor+(random 0.2);_x setDir 180} forEach (units _grp);
+		{_x setBehaviour "combat"} forEach (units _grp);
+		_stat = _stat-1; //##4,3,2,1,0
+		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
+		Sleep 1;
+	};
+	
 //Radio defence
 	if(_inf > 11) then
 	{
@@ -56,10 +167,10 @@ BIS_EVO_Erec =
 		[_grp] call BIS_EVO_FillInf;
 		_inf=_inf-12;
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
+			systemChat format ["Radio defence created, inf: %1",_inf];
 	};
 
 //Officer defence
-	Sleep 2;
 	if(_inf > 11) then
 	{
 		Sleep 1;
@@ -132,117 +243,10 @@ BIS_EVO_Erec =
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
 	};
 
-// Spawn Mechanised units
-	Sleep 2;
-	while {_mec > 0} do 
-	{
-		//Increasing aggression
-		_rng = round(random(9)+1 + (BIS_EVO_MissionProgress+1)*0.66);
-		 if(_rng < 6) then 
-		 {
-		 	_allvec = EGG_EVO_MechEasy; //mixed units reinforce
-		 };
-		if(_rng > 5 && _rng < 10) then 
-		 {
-		 	_allvec = EGG_EVO_MechMedium; //mixed units reinforce
-		 };
-	 	if(_rng > 9) then 
-		 {
-		 	_allvec = EGG_EVO_MechHard; //mixed units reinforce
-		};
-		
-		_max = (count _allvec)-1;
-		_array = [_allvec select (round random _max),_pos,(EGG_EVO_ENEMYFACTION),300,180,0] call BIS_EVO_CreateVehicle;
-		_grp = _array select 0;
-		_vec = _array select 1;
-		_rds = (_vec nearRoads 20);
-		if(not Isnull (_rds select 0)) then
-		{
-			_vec setpos position (_rds select 0);
-			_vec setdir (getdir (_rds select 0));
-		}
-		else
-		{
-			_vec setdir 180;
-		};
-		if(round(random 1) == 1) then
-		{	
-			_wp = _grp addWaypoint [(_outpoints select 0), 0];
-			_wp2 = _grp addWaypoint [(_outpoints select 1), 0];
-			_wp3 = _grp addWaypoint [(_outpoints select 2), 0];
-			_wp4 = _grp addWaypoint [(_outpoints select 3), 0];
-			[_grp, 4] setWaypointType "CYCLE";
-		};		
-		[_grp] call BIS_EVO_OrderSquad;
-		_mec = _mec-1; //##9,8,7,6,5,4,3,2,1,0
-		Sleep 1;
-		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
-		{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (crew _vec);
-		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
-	};
 
-// Static Guns
-	_i=0;
-	while {_stat > 0} do 
-	{
-//added mortar etc
-		_allvecs = EGG_EVO_westveh13;
-		_max = (count _allvecs)-1;
-		_array = [_allvecs select (round random _max),_pos,(EGG_EVO_ENEMYFACTION),200,180,0] call BIS_EVO_CreateVehicle;
-		_grp = _array select 0;
-		{_x addEventHandler  ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _grp);
-		{_x setSkill skillfactor+(random 0.2);_x setDir 180} forEach (units _grp);
-		{_x setBehaviour "combat"} forEach (units _grp);
-		_stat = _stat-1; //##4,3,2,1,0
-		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
-		Sleep 1;
-	};
+defenceReady = true;
 
-// SP ANTI-AIR defence
-	Sleep 1;
-	_MakeAA =
-	{
-		Sleep 1;
-		_respawnpoint = _outpoints select _curpoint;
-		_rng = round(random(9)+1 + (BIS_EVO_MissionProgress+1)*0.66);
-		 if(_rng < 10) then 
-		 {
-		 	_allvecs = EGG_EVO_spAAeasy;
-		 }
-		 else {
-			 _allvecs = EGG_EVO_spAAhard;
-		 };
-		
-		_max = (count _allvecs)-1;
-		_vcl = createVehicle [(_allvecs select (round random _max)), _respawnpoint, [], 120, "NONE"];
-		_vcl setdir random 359;	
-		_grp = createGroup (EGG_EVO_ENEMYFACTION);
-		_type = EGG_EVO_enemy1 select 0;
-		_unit1 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
-		_unit2 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
-		_unit3 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
-		[_unit1,_unit2,_unit3] join _grp;
-		{_x setSkill skillfactor+(random 0.4);_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _grp);
-		_vcl addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
-		sleep 1.0;
-		_unit1 moveInCommander _vcl;
-		_unit2 moveInGunner _vcl;
-		_unit3 moveInDriver _vcl;
-		[_vcl] call BIS_EVO_Lock;
-		_unattended = [_vcl] spawn {[_this select 0] call BIS_EVO_idelSVEC};
-		[_vcl] execVM "data\scripts\EVO_VecRAA.sqf";
-		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
-		_curpoint =_curpoint+1;
-	};
-	_curpoint = 0;
-	_AA=4;
-	while {_AA > 0} do 
-	{
-		[] call _MakeAA;
-		_AA=_AA-1;
-		sleep 1;
-	};
-
+systemChat "Defemce ready";
 /*
 _ied = round(random BLA_EVO_IED);
 //adding IED nutters
@@ -262,7 +266,6 @@ while {_ied > 0} do
 		Sleep 1;
 	};
 */
-defenceReady = true;
 //adding reinforcements loop here
 	for [{_rloop=0}, {_rloop<1}, {_rloop=_rloop}] do
 	{

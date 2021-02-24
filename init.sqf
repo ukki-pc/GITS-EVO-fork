@@ -192,7 +192,7 @@ if(EGG_EVO_FactionParam == 0) then
 	EGG_EVO_meofficer = ["BAF_Soldier_Officer_MTP"];
 
 	//statics
-	EGG_EVO_westveh13 = ["Fort_Nest_M240","M2HD_mini_TriPod","M2StaticMG","DSHKM_CDF","DSHkM_Mini_TriPod_CDF","MK19_TriPod","AGS_CDF","2b14_82mm_CDF","M252","SPG9_CDF","M119","D30_CDF","TOW_TriPod","ZU23_CDF","PRACS_HAWK","PRACS_Type74AAgun","PRACS_M266AAgun"];
+	EGG_EVO_statAA = ["Fort_Nest_M240","M2HD_mini_TriPod","M2StaticMG","DSHKM_CDF","DSHkM_Mini_TriPod_CDF","MK19_TriPod","AGS_CDF","2b14_82mm_CDF","M252","SPG9_CDF","M119","D30_CDF","TOW_TriPod","ZU23_CDF","PRACS_HAWK","PRACS_Type74AAgun","PRACS_M266AAgun"];
 
 	//Reinfocing infatry vehicles
 	EGG_EVO_mevconvoyb = ["MTVR_DES_EP1","ibr_VAB","PRACS_M250"];
@@ -432,14 +432,14 @@ if(EGG_EVO_FactionParam == 1) then
 	EGG_EVO_MechHard = ["T90"];
 
 	//THESE AA SPAWN ON TOWNS
-	EGG_EVO_spAAeasy = ["ZU23_TK_INS_EP1","Ural_ZU23_TK_EP1","ZSU_TK_EP1","pook_zsum4_tak","pook_zsu57_tak","ZU23_TK_EP1","pook_brdm2AA_TKINS","pook_brdm2_sa9_TAK","pracs_tk_sa13","pracs_sa6_tk","pracs_tk_sa8","eb_2S6M_Tunguska_D","pook_5P85S_TAK"];
+	EGG_EVO_spAAeasy = ["ffaa_toyota_strela","ZU23_TK_INS_EP1","Ural_ZU23_TK_EP1","ZSU_TK_EP1","pook_zsum4_tak","pook_zsu57_tak","pook_brdm2AA_TKINS","pook_brdm2_sa9_TAK","pracs_tk_sa13","pracs_sa6_tk","pracs_tk_sa8","eb_2S6M_Tunguska_D","pook_5P85S_TAK"];
 	EGG_EVO_spAAhard =  EGG_EVO_spAAeasy;
 
 	EGG_EVO_mepilot = ["TK_Soldier_Pilot_EP1"];
 	EGG_EVO_meofficer = ["TK_Aziz_EP1"];
 
-	//statics
-	EGG_EVO_westveh13 = ["Igla_AA_pod_TK_EP1","AGS_TK_EP1","D30_TK_EP1","KORD_high_TK_EP1","KORD_TK_EP1","Metis_TK_EP1","2b14_82mm_TK_EP1","AGS_TK_INS_EP1","D30_TK_INS_EP1","DSHKM_TK_INS_EP1","DSHkM_Mini_TriPod_TK_INS_EP1","2b14_82mm_TK_INS_EP1","SPG9_TK_INS_EP1","POOK_zpu4_tak","POOK_ks12_tak","POOK_zpu4_tak","pook_sa3_static_tak","pracs_tk_sa2"];
+	//statics AGS_TK_EP1 Metis_TK_EP1 KORD_TK_EP1 KORD_high_TK_EP1 AGS_TK_INS_EP1 D30_TK_INS_EP1 DSHKM_TK_INS_EP1 DSHkM_Mini_TriPod_TK_INS_EP1 2b14_82mm_TK_INS_EP1 SPG9_TK_INS_EP1 EB_pook_M40_TYR EB_PK_tripod_TYR pook_9m14_TYR
+	EGG_EVO_statAA = ["Igla_AA_pod_TK_EP1","POOK_zpu4_tak","ZU23_TK_EP1","EB_pook_Type74_TYR","POOK_ks12_tak","EB_DSHKx2_TK","pook_KS19_TAK","pook_s60_TK","POOK_zpu4_tak","pook_sa3_static_tak","pracs_tk_sa2"]; //REMOVED D30_TK_EP1 2b14_82mm_TK_EP1
 
 	//Reinfocing infatry vehicles
 	EGG_EVO_mevconvoyb = ["V3S_TK_EP1","V3S_Open_TK_EP1","pracs_TK_mtlb_apc"];
@@ -658,26 +658,16 @@ BIS_EVO_sobj1=false;
 //BIS_EVO_radios = [radio1]; // Each radio in each town
 BIS_EVO_radios = [radio1,radio2,radio3,radio4,radio5,radio6,radio7,radio8,radio9,radio10,radio11]; // Each radio in each town
 
-BIS_EVO_MissionTowns = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11"];// Each mission objectives town marker.
+BIS_EVO_MissionTowns = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11","mobj12","mobj2","mobj13","mobj14","mobj15","mobj16","mobj17","mobj18","mobj19","mobj20","mobj21","mobj22","mobj23","mobj24","mobj25"];// Each mission objectives town marker.
+BIS_EVO_MissionBigTowns = ["mobjB1","mobjB2","mobjB3","mobjB4","mobjB5","mobjB6"];
+BIS_EVO_MilitaryObjectives = ["mobjC1","mobjC2","mobjc3","mobjC4","mobjC5","mobjC6","mobjC7","mobjC8","mobjC9","mobjC10"];
 
-//Generate objectives from city game logic objects
-/*
-_gamelogic = cent;
-_towns = nearestObjects [getPosATL _gamelogic, ["LocationLogicCity"], 25000];
-_RandomTownPosition = position (_towns select (floor (random (count _towns))));
-ztownmgr = [];
-{
-   _pos = position _x;
-   _m = createMarker [format ["mrk%1",random 100000],_pos];
-ztownmgr = ztownmgr + [_m];
-   _m setMarkerShape "ELLIPSE";
-   _m setMarkerSize [500,500];
-   _m setMarkerBrush "Solid";
-   _m setMarkerAlpha 0.5;
-   _m setMarkerColor "ColorRed";
-} forEach _towns;  
-*/
+//Sea warfare here
+BIS_EVO_CoastalTowns = ["mobj11","mobj4","mobj3","mobj5","mobjB2","mobj12","mobj9"];
 
+BIS_EVO_MissionTowns = BIS_EVO_MissionTowns + BIS_EVO_MissionBigTowns +BIS_EVO_MilitaryObjectives;
+
+//These are filled as you conquer them, additionally you can set towns conquered as default
 BIS_EVO_conqueredTowns = [];
 
 // CHANGE LATER??
@@ -702,8 +692,17 @@ BIS_EVO_MissionTowns2 =
 
 BIS_EVO_Townnames = ["LARENGA","URSANA","KIRABO","CANTO","ZEELOR","MANGOMAK","ENGOR","BOLABONGO","SWONTO","PINLEY","KINSELLA"];// Each mission name used in eventsc, mainthreadc, sorew, briefing, used as _city = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
 
+
+// OLD SPAWN VALUES OBSOLETE SOON
 BIS_EVO_Infantry = [[42,40],[50,48],[65,50],[68,52],[70,56],[75,60],[77,65],[80,68],[85,70],[88,73],[92,76]];//[Actual number of groups,Base number of groups]
 BIS_EVO_Mechanized = [[8,8],[12,10],[16,14],[19,14],[19,14],[19,14],[19,14],[21,15],[21,17],[23,18],[23,20]];//[Actual number of groups,Base number of groups]
+
+BIS_EVO_InfantrySpawn = 42;
+BIS_EVO_InfantryTarget = 40;
+
+BIS_EVO_MechanizedSpawn = 8;
+BIS_EVO_MechanizedTarget = 8;
+
 
 BIS_EVO_CivCount = 0; // Number of civilians spawned
 
@@ -773,6 +772,7 @@ BIS_EVO_Objective10 = taskNull;
 BIS_EVO_Objective11 = taskNull; // City 11
 BIS_EVO_Objective12 = taskNull; // 
 defenceReady = false;
+money = 100;
 // Common function to lock vehicles.
 BIS_EVO_Lock =
 {
@@ -782,7 +782,7 @@ BIS_EVO_Lock =
 
 if(isServer) then {
 //MHQ SPAWNER
-MHQ = createVehicle [egg_evo_MHQ,  getpos LKWWEST, [], 0, "NONE"];
+MHQ = createVehicle [egg_evo_MHQ,  getposASL LKWWEST, [], 0, "NONE"];
 MHQ setVehicleInit "veh = [this, 10, 0, 0, FALSE, FALSE] execVM ""vehicle.sqf""";
 };
 
@@ -1415,10 +1415,7 @@ EGG_sinit =1; publicVariable "EGG_sinit";
 if (isServer and not (local player)) exitWith {}; 
 
 // Large marker seen over occupied cities
-BIS_EVO_MainObjective = createMarkerLocal ["MainObj", getMarkerPos "mobj1"];
-BIS_EVO_MainObjective setMarkerColorLocal "ColorBlack";
-BIS_EVO_MainObjective setMarkerShapeLocal "ELLIPSE";
-BIS_EVO_MainObjective setMarkerSizeLocal [500, 500];
+
 
 // For jip, client waits for server to run update.sqf
 waitUntil {BIS_EVO_allvar_packed != ""};

@@ -7,11 +7,14 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	//diffparam = difficulty values {60,45,30,15} {"Minimum", "Normal", "Hard", "Extreme"}
 	//_rv=BIS_EVO_airspawnfreqc;
 //	_rf = 0.5*((_rv*10)+(4*(600/diffparam))+random 150); // varies from 1950 jets in easy to 750 hinds in extreme
-	waitUntil{ sleep 30; defenceReady and (BIS_EVO_MissionProgress == 0 or BIS_EVO_MissionProgress == 1 or BIS_EVO_MissionProgress == 2 or BIS_EVO_MissionProgress == 4 or BIS_EVO_MissionProgress == 6 or BIS_EVO_MissionProgress == 10)};
-	_rf = 1800 + (random 1800); //30min base + 30min random
-	sleep _rf;
+	waitUntil{ sleep 1; defenceReady and (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) in BIS_EVO_CoastalTowns};
+	systemChat "shipscrts";
+
+	//_rf = 1800 + (random 1800); //30min base + 30min random
+	//sleep _rf;
 	_startsf = ["EnemyAir01","EnemyAir02","EnemyAir03","EnemyAir04","EnemyAir05","EnemyAir06","EnemyAir07","EnemyAir08"];
-	_poscreate = getmarkerpos (_startsf select (round random 7));
+	_closestMarker = [_startsf, BIS_EVO_MissionTowns select BIS_EVO_MissionProgress] call BIS_fnc_nearestPosition;
+	_poscreate = getMarkerPos _closestMarker;
 
 	_ship = objNull;
 	_crew = grpNull;
@@ -61,22 +64,27 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	sleep 1;
 
 //DEBUG MARKER
-/*
+
 _markerobj = createMarker["hiki",getPos player];
 _markerobj setMarkerType  "Dot";
 _markerobj setMarkerColor "ColorGreen";
-*/
+
+systemChat "starting to find place";
+
 _seaPos = [];
 _multp = [-1,1];
+
 	while{!_isWater} do {
 		_randomX = (500 + random(600)) *  ((_multp) select round random 1);
 		_randomY = (500 + random(600)) *  ((_multp) select round random 1);
 
 		_seaPos = [(getMarkerpos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress)) + _randomX,((getMarkerpos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress))select 1) +_randomY];
-	//	_markerobj setMarkerPos [_seaPos select 0, _seaPos select 1];
+		_markerobj setMarkerPos [_seaPos select 0, _seaPos select 1];
 		_isWater= surfaceIsWater _seaPos;
 		sleep 0.5;
 	};
+
+	systemChat "found ez";
 	
 
 //	systemChat format ["ship starts to sail with: %1: men on board and groupsize of %2", _shipCrewCount, _grpMenCount];

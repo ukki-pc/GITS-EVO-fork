@@ -59,19 +59,23 @@ _pos = position _player;
 _unit = group _player createUnit [_unitype, [0,0,0], [], 0, "NONE"];Sleep BIS_EVO_GlobalSleep;
 _unit setskill BIS_EVO_PlayerSkill;
 //_lone = [_unit] execVM 'data\scripts\nohuman.sqf';
-if(!inrepairzone or player in list LHDin) then {
+if(!inrepairzone) then 
+{
 	_vec = createVehicle ["ParachuteEast", _pos, [], 20, 'NONE'];Sleep BIS_EVO_GlobalSleep;
 	_vec setpos [_pos select 0,_pos select 1,(_pos select 2)+ 120];
 	_unit MoveInDriver _vec;
+	WaitUntil {vehicle _unit == _unit};
+	_unit setpos [(getpos _unit select 0),(getpos _unit select 1),0];
 }
-else{
-	if !(_player in list LHDin) then 
-	{
-				_unit setPos [(getpos _player select 0) + 5, (getpos _player select 1) +5,  0];
-	}
+else
+{	
+	_unit setPosASL [(getPosASL _player select 0) + 1, (getPosASL _player select 1) +1, (getPosASL _player select 2)];
+	_unit moveInDriver vehicle _player;
+	_unit moveInGunner vehicle _player;
+	_unit moveInCommander vehicle _player;
+	_unit moveInCargo vehicle _player;
 };
-WaitUntil {vehicle _unit == _unit};
-_unit setpos [(getpos _unit select 0),(getpos _unit select 1),0];
+
 _unit setdammage 0;
 _unit  addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 _vecprotect = [_unit] execVM "data\scripts\aivec.sqf";

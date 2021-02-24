@@ -12,6 +12,13 @@ BIS_EVO_DetectFriendly = createTrigger ["EmptyDetector", _pos];
 BIS_EVO_DetectFriendly setTriggerActivation [EGG_EVO_strPLAYERFACTION, "PRESENT", true];
 BIS_EVO_DetectFriendly setTriggerArea [600, 600, 0, true];
 BIS_EVO_DetectFriendly setTriggerTimeout [2, 2, 2, true ];
+
+BIS_EVO_MainObjective = createMarkerLocal ["MainObj", getMarkerPos _mkr];
+BIS_EVO_MainObjective setMarkerColorLocal "ColorBlack";
+BIS_EVO_MainObjective setMarkerShapeLocal "ELLIPSE";
+BIS_EVO_MainObjective setMarkerSizeLocal [500, 500];
+
+
 _count = (count BIS_EVO_MissionTowns);
 
 Sleep 2.0;
@@ -22,6 +29,9 @@ while {BIS_EVO_MissionProgress != -1} do
 
 	BIS_EVO_DetectEnemy setpos _pos;
 	BIS_EVO_DetectFriendly setpos _pos;
+	"MainObj" setMarkerPos _pos;
+
+	
 	Sleep 2.0;
 //adding
 	CityClear=false;
