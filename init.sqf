@@ -772,7 +772,10 @@ BIS_EVO_Objective10 = taskNull;
 BIS_EVO_Objective11 = taskNull; // City 11
 BIS_EVO_Objective12 = taskNull; // 
 defenceReady = false;
+
+bankAccount = [];
 money = 100;
+
 // Common function to lock vehicles.
 BIS_EVO_Lock =
 {
