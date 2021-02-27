@@ -1,10 +1,9 @@
-private ["_who","_cstatA","_stattype","_laction1","_zvector","_dist","_zfactor","_vec","_inrepairzone"];
+private ["_who","_cstatA","_stattype","_laction1","_zvector","_dist","_zfactor","_vec"];
 
 _stattype = _this select 1;
 _who = _this select 0;
 _dist = 8;
 _zfactor = 0;
-_inrepairzone = true;
 _type = _stattype;
 _cstatA = objNull;
 _cstatA removeaction wcam;

@@ -2,10 +2,9 @@ BIS_EVO_Erefway =
 {
 	_pos = _this select 0;
 	_grp = _this select 1;
-	_radio = _this select 2;
+	_epos = _this select 2;
 	_list = _this select 3;
 	_enemy = objNull;
-	_epos = position _radio;
 	_rnd = (round random 1);
 	_pos1 = [(_pos select 0),(_pos select 1)+300,(_pos select 2)]; // North
 	_pos2 = [(_pos select 0)-300,(_pos select 1),(_pos select 2)]; // East

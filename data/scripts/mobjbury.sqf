@@ -27,11 +27,9 @@ if (not (_unit isKindOf "Man")) then
 {
 	if(isPlayer _killer) then 
 	{
-		_msg = format ["%1 destroyed: %2",name _killer, _dispname];
-		//systemChat format ["You killed: %1", _dispname];
-		
-		 clientMessageBuffer = clientMessageBuffer + [_msg];
-		 publicVariable "clientMessageBuffer";
+		_msg = format ["3$ for destroying: %1",_dispname];
+		["jed_msg", [_killer, _msg]] call CBA_fnc_whereLocalEvent;
+		["jed_addMoney", [_killer, 3]] call CBA_fnc_whereLocalEvent;
 	};
 	{_x setpos position _unit} forEach crew _unit;
 	sleep 300.0;
@@ -41,10 +39,9 @@ if (_unit isKindOf "Man") then
 {
 	if(isPlayer _killer) then 
 	{
-		_msg = format ["%1 killed: %2",name _killer, _dispname];
-
-		 clientMessageBuffer = clientMessageBuffer + [_msg];
-		 publicVariable "clientMessageBuffer";
+		_msg = format ["1$ for killing: %1",_dispname];
+		["jed_msg", [_killer, _msg]] call CBA_fnc_whereLocalEvent;
+		["jed_addMoney", [_killer, 1]] call CBA_fnc_whereLocalEvent;
 	};
 
 

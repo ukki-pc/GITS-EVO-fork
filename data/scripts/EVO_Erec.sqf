@@ -267,13 +267,7 @@ while {_ied > 0} do
 	};
 */
 //adding reinforcements loop here
-	for [{_rloop=0}, {_rloop<1}, {_rloop=_rloop}] do
-	{
-		_reinf = [] execVM "data\scripts\reinforce.sqf";
-		sleep reinfdelay;
-		//sleep 120+(random 120);
-		if (not (alive _radio)) then {_rloop=1};
-	};
+
 
 };
 

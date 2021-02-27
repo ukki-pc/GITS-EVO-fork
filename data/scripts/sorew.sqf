@@ -35,7 +35,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "VYBOR";
 //	    	_city = localize "str_location_vybor";
-		_city = (BIS_EVO_Townnames select 1);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t62",_city];
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
@@ -44,7 +44,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "VYBOR";
 //	    	_city = localize "str_location_vybor";
-		_city = (BIS_EVO_Townnames select 1);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    };
@@ -52,7 +52,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "GRISHINO";
 //	    	_city = localize "str_location_grishino";
-		_city = (BIS_EVO_Townnames select 2);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t62",_city];
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
@@ -61,7 +61,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "GRISHINO";
 //	    	_city = localize "str_location_grishino";
-		_city = (BIS_EVO_Townnames select 2);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    };
@@ -69,7 +69,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "GVOZDNO";
 //	    	_city = localize "str_location_gvozdno";
-		_city = (BIS_EVO_Townnames select 3);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t62",_city];
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
@@ -78,7 +78,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "GVOZDNO";
 //	    	_city = localize "str_location_gvozdno";
-		_city = (BIS_EVO_Townnames select 3);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    };
@@ -86,7 +86,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "KRASNOSTAV";
 //	    	_city = localize "str_location_krasnostav";
-		_city = (BIS_EVO_Townnames select 4);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t62",_city];
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
@@ -95,7 +95,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "KRASNOSTAV";
 //	    	_city = localize "str_location_krasnostav";
-		_city = (BIS_EVO_Townnames select 4);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    };
@@ -103,7 +103,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "KHELM";
 //	    	_city = localize "str_location_khelm";
-		_city = (BIS_EVO_Townnames select 5);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t62",_city];
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
@@ -112,7 +112,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "KHELM";
 //	    	_city = localize "str_location_khelm";
-		_city = (BIS_EVO_Townnames select 5);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    };
@@ -120,7 +120,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "BEREZINO";
 //	    	_city = localize "str_location_berezino";
-		_city = (BIS_EVO_Townnames select 6);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t62",_city];
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
@@ -129,7 +129,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "BEREZINO";
 //	    	_city = localize "str_location_berezino";
-		_city = (BIS_EVO_Townnames select 6);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    };
@@ -137,7 +137,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "SOLNICHNIY";
 //	    	_city = localize "str_location_solnichniy";
-		_city = (BIS_EVO_Townnames select 7);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t62",_city];
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
@@ -146,7 +146,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "SOLNICHNIY";
 //	    	_city = localize "str_location_solnichniy";
-		_city = (BIS_EVO_Townnames select 7);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    };
@@ -154,7 +154,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "KAMYSHOVO";
 //	    	_city = localize "str_location_kamyshovo";
-		_city = (BIS_EVO_Townnames select 8);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t62",_city];
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
@@ -163,7 +163,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "KAMYSHOVO";
 //	    	_city = localize "str_location_kamyshovo";
-		_city = (BIS_EVO_Townnames select 8);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    };
@@ -171,7 +171,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "ELEKTROZAVODSK";
 //	    	_city = localize "str_location_elektrozavodsk";
-		_city = (BIS_EVO_Townnames select 9);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t62",_city];
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
@@ -180,7 +180,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "ELEKTROZAVODSK";
 //	    	_city = localize "str_location_elektrozavodsk";
-		_city = (BIS_EVO_Townnames select 9);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    };
@@ -188,7 +188,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "CHERNOGORSK";
 //	    	_city = localize "str_location_chernogorsk";
-		_city = (BIS_EVO_Townnames select 10);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t62",_city];
 		if (_sop == player) then {["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message};
 		playSound "Goodjob";
@@ -197,7 +197,7 @@ if(_sor > 0) then
 	    {
 //	    	_city = "CHERNOGORSK";
 //	    	_city = localize "str_location_chernogorsk";
-		_city = (BIS_EVO_Townnames select 10);
+		_city = (BIS_EVO_Townnames select 0);
 		[West,"HQ"] SideChat format[localize "STR_M04t63",_city];
 		playSound "Goodjob";
 	    }; 

@@ -31,12 +31,6 @@ if(EGG_EVO_LoadGame == 0) then
 		_clean = [] call cleanUpGenerator;
 };
 
-
-//Initialize bank accounts
-_allPlayers = call BIS_fnc_listPlayers;
-{bankAccount set [_foreachindex, _x]}forEach _allPlayers;
-hint str bankAccount;
-
 // Main vehicle init
 sleep 2.0;
 {

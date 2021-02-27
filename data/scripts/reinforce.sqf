@@ -29,17 +29,41 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_pos2 = objNull;
 		_max = objnull;
 		_alist = BIS_EVO_DetectEnemy;
-		_Allspawns = [["1ref","1refa","1refb"],["2ref","2refa","2refb"],["3ref","3refa","3refb"],["4ref","4refa","4refb"],["5ref","5refa","5refb"],["6ref","6refa","6refb"],["7ref","7refa","7refb"],["8ref","8refa","8refb"],["9ref","9refa","9refb"],["10ref","10refa","10refb"],["11ref","11refa","11refb"]];
-		_radio =radio1;
+		//_radio =radio1;
+		_objPos = getMarkerPos(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
+		_allobj = BIS_EVO_MissionTowns - BIS_EVO_conqueredTowns;
+		_reinforceTowns = [];
+
+		for [{_loop=0}, {_loop<count _allobj}, {_loop=_loop+1}] do 
+		{
+			//DETERMINE THE CLOSEST REINFORCE POINT
+			if !(_allobj select _loop == BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) then 
+			{
+				_targetMarker = _allobj select _loop;
+				_dist = getMarkerPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) distance getMarkerPos _targetMarker;
+
+				if(_dist <= 3000) then 
+				{
+					_reinforceTowns = _reinforceTowns + [_allobj select _loop]; 
+				};
+			}
+			else 
+			{
+				//systemChat "Banned town... SKIPPING!";
+			};
+		};
+
+		_spawns = (_reinforceTowns select (round random (count _reinforceTowns-1)));
+		_pos = GetMarkerPos _spawns;
+		_tag = "MEC";
 
 		_allunits = EGG_EVO_enemy1;
 		_max = count _allunits;
 		_guardr = createGroup (EGG_EVO_ENEMYFACTION);
-		_spawns = _Allspawns select BIS_EVO_MissionProgress;
-		_pos2 = GetMarkerPos (_spawns select (round random 2));
+		_pos2 = GetMarkerPos (_reinforceTowns select (round random (count _reinforceTowns-1)));
 		_allvecs = EGG_EVO_mevconvoyb;
 		_maxA = count _allvecs;
-		_ural = createVehicle [(_allvecs select (round random (_maxA - 1))), _pos2, _spawns, 0, "NONE"];[_ural] call BIS_EVO_Lock;_ural addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
+		_ural = createVehicle [(_allvecs select (round random (_maxA - 1))), _pos2,[], 0, "NONE"];[_ural] call BIS_EVO_Lock;_ural addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 		Sleep 0.2;
 		_unit = _guardr createUnit [(_allunits select (round random (_max - 1))), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsDriver _ural;_unit moveInDriver _ural;
 		Sleep 0.2;
@@ -53,18 +77,19 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		Sleep 0.2;
 		_unit = _guardr createUnit [(_allunits select round random (_max - 1)), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
 		Sleep 0.2;
-		[position _alist,_guardr,_radio,_alist] call BIS_EVO_Erefway;
+		sleep 1;
+		[position _alist,_guardr,_objPos,_alist] call BIS_EVO_Erefway;
+		sleep 1;
+		_sumark = [_ural,"Ural","ColorBlack"] execVM "data\scripts\customMarker.sqf";
 		[_guardr, 1] setWaypointType "GETOUT";
 		{_x addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1 ] execVM "data\scripts\mobjbury.sqf"}]; _x addmagazine ["EB_molotov_mag",2];} forEach (units _guardr);	
 		_recy = [objnull,_guardr] execVM "data\scripts\grecycle.sqf";
 		_guardr setFormation "COLUMN";
 		[_guardr, 1] setWaypointCombatMode "RED";	
 		[_guardr, 1] setWaypointSpeed "NORMAL";	
-
-			
-
-
-		sleep 300;
+		sleep 10;
+		if(isNull driver _ural  ) then {deleteVehicle _ural; {_x setDammage 1}forEach (units _guardr)};
+		sleep 400;
 		deleteVehicle _ural;
 	};
 
@@ -81,7 +106,8 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_allunits2 = EGG_EVO_enemy1;
 		_max = count _allunits2;
 		_radio = radio1;
-		_pos = position _radio;
+		_objPos = getMarkerPos(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
+		_pos = _objPos;
 		_posback = getmarkerpos "EnemyAir03";
 		_pilot = createGroup (EGG_EVO_ENEMYFACTION);
 		(EGG_EVO_mepilot select 0) createUnit [getmarkerpos "centerp", _pilot];Sleep BIS_EVO_GlobalSleep;
@@ -129,7 +155,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 			};
 
 			{_x setBehaviour "combat"; _x addmagazine "EB_molotov_mag"} forEach (units _para);
-			[position _alist,_para,_radio,_alist] call BIS_EVO_Erefway;
+			[position _alist,_para,_objPos,_alist] call BIS_EVO_Erefway;
 //adding
 			_recy = [objnull,_para] execVM "data\scripts\grecycle.sqf";
 			sleep 10;
@@ -147,17 +173,16 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 	EGG_EVO_mecreinf = 
 	{
 		private ["_Allspawns","_allobj","_alist","_radio","_unit","_guardm","_pos","_rng","_vec","_maxo","_spawns","_pos","_tag","_allvec","_rds","_cardir","_degrees","_dirdif","_array","_recy"]; 
-		_Allspawns = [["1ref","1refa","1refb"],["2ref","2refa","2refb"],["3ref","3refa","3refb"],["4ref","4refa","4refb"],["5ref","5refa","5refb"],["6ref","6refa","6refb"],["7ref","7refa","7refb"],["8ref","8refa","8refb"],["9ref","9refa","9refb"],["10ref","10refa","10refb"],["11ref","11refa","11refb"]];
 		_allobj = BIS_EVO_MissionTowns;
 		_alist = BIS_EVO_DetectEnemy;
 		_radio = radio1;
+		_objPos = getMarkerPos(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
 		_unit = objNull;
 		_guardm = grpNull;
 		_pos = objNull;
 		_vec = objNull;
 		_maxo = 0;
 		_nearestMarker = "";
-		_blackList = [];
 		_dist = 0;
 		
 		_allobj = BIS_EVO_MissionTowns - BIS_EVO_conqueredTowns;
@@ -169,9 +194,9 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 			if !(_allobj select _loop == BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) then 
 			{
 				_targetMarker = _allobj select _loop;
-				_dist = _radio distance getMarkerPos _targetMarker;
+				_dist = getMarkerPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) distance getMarkerPos _targetMarker;
 
-				if(_dist <= 4000) then 
+				if(_dist <= 3000) then 
 				{
 					_reinforceTowns = _reinforceTowns + [_allobj select _loop]; 
 				};
@@ -185,7 +210,6 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 
 	//	systemChat format ["Reinforcement towns are: %1",_reinforceTowns];
 
-		_spawns = _Allspawns select BIS_EVO_MissionProgress;
 		_pos = GetMarkerPos (_reinforceTowns select (round random (count _reinforceTowns-1)));
 		_tag = "MEC";
 
@@ -221,13 +245,14 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 
 			_guardm = _array select 0;
 			_vec = _array select 1;
-			//_sumark = [_vec] execVM "data\scripts\sumarker.sqf";
-			///	systemchat format ["spawned: %1", typeof _vec];
-			[position _alist,_guardm,_radio,_alist] call BIS_EVO_Erefway;
-			_vec lock 2;
+			_sumark = [_vec,"Mec","ColorBlack"] execVM "data\scripts\customMarker.sqf";
+			[position _alist,_guardm,_objPos,_alist] call BIS_EVO_Erefway;
+			sleep 1;
 			[_guardm, 1] setWaypointCombatMode "RED";		
 			{_x addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guardm);
 			_guardm setFormation "COLUMN";
+			sleep 10;
+			if(isNull driver _vec  ) then {deleteVehicle _vec; {_x setDammage 1}forEach (units _guardm)};
 			//adding
 			_recy = [objnull,_guardm] execVM "data\scripts\grecycle.sqf";
 		}
@@ -237,19 +262,26 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		};
 	};
 
-if ( (_curtownInf <= _basetownInf) and (alive _radio) ) then 
+if ( (_curtownInf <= _basetownInf) and (reinforcements) ) then 
 {
-//	systemChat "reinforcing infantry";
+	systemChat "reinforcing infantry";
 	_tag = "INF";	
 	[] spawn BIS_EVO_mKamazOpen;
-	[] spawn BIS_EVO_MI17support;
-	(BIS_EVO_Infantry select BIS_EVO_MissionProgress) set [0, (_curtownInf*enemynumdiv)+12];
+
+	//No choppy choppies in villages
+	if !(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress in BIS_EVO_MissionVillages) then 
+	{
+		[] spawn BIS_EVO_MI17support;
+		(BIS_EVO_Infantry select BIS_EVO_MissionProgress) set [0, (_curtownInf*enemynumdiv)+6];
+	};
+
+	(BIS_EVO_Infantry select BIS_EVO_MissionProgress) set [0, (_curtownInf*enemynumdiv)+6];
 	sleep 1;
 };
 	(BIS_EVO_Mechanized select BIS_EVO_MissionProgress) set [0,0];
 sleep 15;
 
-if( (_curtownMec <= _basetownMec) and (alive _radio) ) then 
+if( (_curtownMec <= _basetownMec) and (reinforcements) ) then 
 {
 	//systemChat "reinforcing mechanized";
 	[] spawn EGG_EVO_mecreinf;

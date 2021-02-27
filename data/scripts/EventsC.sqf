@@ -4401,7 +4401,7 @@ BIS_EVO_AssignTasks =  // Assigns common main city objectives
 	
 	if( (BIS_EVO_MissionProgress != -1) ) then {
 		_MissionBriefingHUD = localize "STR_M04t58";//ASSAULT
-		_MissionBriefingShort = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
+		_MissionBriefingShort = (BIS_EVO_Townnames select 0);
 		_MissionBriefingLong = format[localize "STR_M04t59",_MissionBriefingShort];// Command has issued an order to launch a full scale assault on %1. The primary objective is to neutralize all enemy in the area. Secondary objectives are to disable their radio tower and capture any high ranking officers you find in the town.
 		BIS_EVO_Objective1 = player createSimpleTask ["obj1"];
 		BIS_EVO_Objective1 setSimpleTaskDescription [_MissionBriefingLong,_MissionBriefingShort,_MissionBriefingHUD];

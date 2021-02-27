@@ -1,10 +1,54 @@
 
-	//Regular Town
 	{
 	_unit = (BIS_EVO_MissionTowns select _forEachIndex);
 
 	_unitm = format ["%1t", _unit];
 	_markerobj = createMarker[_unitm,[getMarkerPos _unit select 0,getMarkerPos _unit select 1]];
+	//TEST
+	BIS_EVO_conqueredTowns = ["mobj12","mobj11"];
+
+	//ENEMY TOWN
+	if !(BIS_EVO_MissionTowns select _forEachIndex in BIS_EVO_conqueredTowns) then
+	{
+		if(BIS_EVO_MissionTowns select _forEachIndex in BIS_EVO_MissionBigTowns or BIS_EVO_MissionTowns select _forEachIndex in BIS_EVO_MilitaryObjectives) then 
+		{
+			if(BIS_EVO_MissionTowns select _forEachIndex in BIS_EVO_MissionBigTowns) then 
+			{
+				_markerobj setMarkerType  "Depot";
+				_markerobj setMarkerColor "ColorRed";
+			//	_markerobj setMarkerText "Enemy Big City";
+			};
+			if(BIS_EVO_MissionTowns select _forEachIndex in BIS_EVO_MilitaryObjectives) then 
+			{
+				_markerobj setMarkerType  "City";
+				_markerobj setMarkerColor "ColorRed";
+			//	_markerobj setMarkerText "Enemy Big City";
+			};
+		}
+		//BIS_EVO_MilitaryObjectives
+		else
+		{
+			_markerobj setMarkerType  "Strongpoint";
+			_markerobj setMarkerColor "ColorRed";
+		//	_markerobj setMarkerText "Enemy Town";
+		};
+	}
+	else 
+	{
+		_markerobj setMarkerType  "Flag1";
+		_markerobj setMarkerColor "ColorGreen";
+		_markerobj setMarkerText "Captured Objective";
+	};
+}forEach BIS_EVO_MissionTowns;
+
+updCityMarkers =
+{
+	{
+	_unit = (BIS_EVO_MissionTowns select _forEachIndex);
+
+	_unitm = format ["%1t", _unit];
+	_markerobj = _unitm;
+
 	//TEST
 	//BIS_EVO_conqueredTowns = ["mobj1","mobj3"];
 
@@ -42,47 +86,6 @@
 		_markerobj setMarkerText "Friendly Objective";
 	};
 
-}forEach BIS_EVO_MissionTowns;
-
-updCityMarkers =
-{
-	{
-	_unit = (BIS_EVO_MissionTowns2 select _forEachIndex) select 0;
-
-	_rewardVeh = (BIS_EVO_MissionTowns2 select _forEachIndex) select 2;
-	_rewardStr = nil;
-	_unitm = format ["%1t", _unit];
-
-	_markerobj = _unitm;
-
-	//ENEMY TOWN
-	if !(BIS_EVO_MissionTowns select _forEachIndex in BIS_EVO_conqueredTowns) then
-	{
-		_markerobj setMarkerColor "ColorRedAlpha";
-		if(!isNil "_rewardVeh") then
-			{
-		_rewardStr = getText (configFile >> "cfgVehicles" >> _rewardVeh >> "DisplayName");
-		_markerobj setMarkerText format ["Enemy Town. Reward: %1",_rewardStr];
-		}
-		else{
-			_markerobj setMarkerText "Enemy Town.";
-		};
-	}
-	//FRIENDLY TOWN
-	else 
-	{
-		_markerobj setMarkerColor "ColorGreen";
-
-		if(!isNil "_rewardVeh") then
-		{
-			_rewardStr = getText (configFile >> "cfgVehicles" >> _rewardVeh >> "DisplayName");
-			_markerobj setMarkerText format ["Unlocked:  %1",_rewardStr];
-		}
-		else{
-			_markerobj setMarkerText "Friendly Town";
-		};
-	};
-
-	}forEach BIS_EVO_MissionTowns2;
+	}forEach BIS_EVO_MissionTowns;
 	
 };

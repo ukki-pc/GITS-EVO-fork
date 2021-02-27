@@ -74,6 +74,9 @@ else
 	_unit moveInGunner vehicle _player;
 	_unit moveInCommander vehicle _player;
 	_unit moveInCargo vehicle _player;
+			//[_player, 1] call changeBalance; 
+			["jed_addMoney", [_player, 3]] call CBA_fnc_whereLocalEvent;
+			//_balans = [_player] call getBalance;
 };
 
 _unit setdammage 0;

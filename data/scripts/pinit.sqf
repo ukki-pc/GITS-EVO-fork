@@ -64,7 +64,6 @@ _cthread = [] execVM "data\scripts\MainThreadC.sqf";
 
 //CLIENT SIDED ATM
 //_sResp = [] execVM "data\scripts\strategicResponse.sqf"; //WIP
-//Ctraffic = [] execVM "data\scripts\BIS_EVO_CivTraffic.sqf";
 
 
 (FindDisplay 46) DisplaySetEventHandler ["keydown","if ((_this select 1) In actionKeys ""TeamSwitch"") then {a = createDialog 'evoUI'}"];

@@ -206,15 +206,6 @@ EGG_EVO_stationRepair =
 	_type = typeOf vehicle player;
 	_EGG_stations = [];
 	_EGG_stations = nearestObjects [player, ["Land_A_FuelStation_Shed","Land_repair_center","FuelStation","FuelStation_army","Land_Mil_Repair_center_EP1","Land_A_FuelStation_Build","Land_A_FuelStation_Feed","Land_Ind_FuelStation_Feed_EP1","Land_Ind_FuelStation_Build_EP1","Land_Ind_FuelStation_Shed_EP1","Land_Ind_Garage01_EP1","Land_benzina_schnell","Land_fuelstation","Land_fuelstation_army"], 30];
-	_EGG_cargoTrucks = nearestObjects [player,EGG_EVO_cargoTruck, 4];
-
-	if(count _EGG_cargoTrucks >0) then {
-		nearSupplyTruck = true;
-	}
-	else
-	{
-		nearSupplyTruck = false;
-	};
 
 	if( (getDammage _vec > 0 or fuel _vec < 0.98) and (count _EGG_stations >0) and not (_vec isKindOf "Man") ) then
 	{
@@ -242,8 +233,6 @@ BIS_EVO_Repair =
 	_vec = (vehicle player);
 	_type = typeOf vehicle player;
 //	hintsilent format["Type: %1",(_type)];
-	inrepairzone = ((_vec in list AirportIn) or (_vec in list farp1) or (_vec in list farp2) or (_vec in list farp3) or (_vec in list farp4) or (_vec in list reng1) or (_vec in list reng2) or (_vec in list reng3) or (_vec in list reng4) or (_vec in list dock1) or (_vec in list LHDin));
-
 	if(getDammage _vec > 0 or fuel _vec < 0.99 and not (_vec isKindOf "Man") ) then
 	{
 		if((inrepairzone) and repaircooldown == 0 and (_vec != player) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and (local _vec)) then
@@ -463,7 +452,7 @@ BIS_EVO_CityClear =
 	{
 	player sideChat format ["BIS_EVO_CityClear:%1",BIS_EVO_MissionProgress];
 	_currentcity = (BIS_EVO_MissionProgress-1);
-	_city = (BIS_EVO_Townnames select _currentcity);
+	_city = (BIS_EVO_Townnames select 0);
 	[West,"HQ"] SideChat format[localize "STR_M04t61",_city];//%1 IS CLEAR OF ENEMY, GREAT JOB MEN
 playSound "CityClear";
 		case 1:
@@ -553,15 +542,6 @@ BIS_EVO_Surrender =
 	sleep 2;
 };
 
-_msgBuffer =
-{
-	if(	count clientMessageBuffer > 0 ) then 
-	{
-		{systemChat format ["%1",clientMessageBuffer select _forEachIndex]}forEach clientMessageBuffer;
-			clientMessageBuffer = [""];
-	};
-};	
-
 //_base_west_surrender_array = west_surrender_array;
 for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 {
@@ -576,7 +556,6 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	if (BIS_EVO_MissionProgress != _currentprog) then {[] call BIS_EVO_CityClear};
 	sleep 1.011;
 	[] call BIS_EVO_CTime;
-	[] call _msgBuffer;
 	sleep 1.011;
 	//[] call BIS_EVO_HPM; //DUNNO WHAT IS
 	sleep 1.011;

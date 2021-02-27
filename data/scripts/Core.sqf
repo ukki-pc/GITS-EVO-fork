@@ -868,8 +868,7 @@ AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault 
 			case 6:
 			{
 			_vec = vehicle player;
-			_inrepairzone = ((_vec in list AirportIn) or (_vec in list farp1) or (_vec in list farp2) or (_vec in list farp3) or (_vec in list farp4) or (_vec in list reng1) or (_vec in list reng2) or (_vec in list reng3) or (_vec in list reng4) or (_vec in list dock1) or (_vec in list LHDin));
-			if((_inrepairzone)) then
+			if((inrepairzone)) then
 				{
 					[_ap] execVM "data\scripts\storeVeh.sqf";
 					ctrlShow [674,false]; //Storeveh page
@@ -1164,16 +1163,6 @@ if (player hasWeapon "ItemRadio") then
 								_place = [_ap, _item] execVM "actions\static\makeVehicle.sqf";
 								closeDialog 1;
 				};
-
-				//Buy static weapons near supply trucks nearSupplyTruck
-				if (nearSupplyTruck && _buySubPage == 4 && !inrepairzone) then 
-				{
-					buyStatList set [_index,[(buyStatList select _index) select 0,(buyStatList select _index) select 1,((buyStatList select _index) select 2)-1]];
-					_place = [_ap, _item] execVM "actions\static\makeVehicle.sqf";
-					["jed_addscore", [_ap, ( round -(mcost*EX_EVO_vehPriceMultiplier))]] call CBA_fnc_globalEvent;
-					pointsSpent = pointsSpent +  round (mcost*EX_EVO_vehPriceMultiplier);
-					closeDialog 1;
-				};
 			};
 
 
@@ -1206,13 +1195,8 @@ if (player hasWeapon "ItemRadio") then
 												};
 												case 4:
 												{
-													if(!nearSupplyTruck) then {
 													buyStatList set [_index,[(buyStatList select _index) select 0,(buyStatList select _index) select 1,((buyStatList select _index) select 2)+1]];
 													publicVariable "buyStatList";
-													}
-													else{
-													_place = [_ap, _item] execVM "actions\static\makeVehicle.sqf";
-													};
 												};
 											};
 										};
