@@ -93,7 +93,6 @@ basebeam = 2;
 
 //Respawn settings
 publicVariable "spawntype"; 
-if (spawntype == 0 or spawntype == 1) then {server execVM "revive_init.sqf"};
 if (spawntype == 2) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" select 0),(getMarkerPos "FahneLKW" select 1)]};
 
 if (performanceparam == 1) then {enableEnvironment true};

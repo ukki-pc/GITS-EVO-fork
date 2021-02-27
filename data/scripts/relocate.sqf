@@ -2,13 +2,19 @@ disableSerialization;
 closeDialog 0;
 sleep 0.3;
 
+
+
 _player = _this select 0;
 _id = _this select 2;
 _map = objNull;
 cityToTransfer = -1;
-_cursorPos = [];
-BIS_EVO_BaseMarkers = ["LHD1Marker"];
-TeleportLocations = BIS_EVO_MissionTowns + BIS_EVO_BaseMarkers;
+_cursorPos = []; 
+TeleportLocations = BIS_EVO_MissionTowns + ["LHD1Marker"];
+
+_nearestPoint = [TeleportLocations, position player] call BIS_fnc_nearestPosition;
+
+if(position player distance getmarkerpos _nearestPoint > 200) exitwith{hint "Cannot transfer from here!"};
+
 openMap true;
 hint "Pick a location to transfer to";
 
