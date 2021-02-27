@@ -66,7 +66,13 @@
     	};     	
 		case 16:
     	{
+			BIS_EVO_Onmission = false;
     		_run = [] execVM "data\scripts\pickCity.sqf"
+    	}; 
+		case 17:
+    	{
+			BIS_EVO_Onmission = false;
+    		_run = [] execVM "data\scripts\relocate.sqf"
     	};  
 	
 };

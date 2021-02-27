@@ -259,7 +259,8 @@ SupList = SupList +[[localize "STR_M04t106",localize "STR_M04t107",20,(EGG_EVO_A
 
 //missions
 AssList = [];
-AssList = AssList +[["TOWN CAPTUR","A few moments ago we received satellite intel that a key member of the enemy high command is visiting a remote station on the island. Your mission is to go to the location search for the officer and eliminate any resistance in the area.","data\sabotage.paa",0,16]];
+AssList = AssList +[["Transfer","Capture objective from enemy control.","",0,17]];
+AssList = AssList +[["Town Conquest","Capture objective from enemy control.","data\offensive.paa",0,16]];
 AssList = AssList +[[localize "STR_M04t6_1",localize "STR_M04t7_1","data\offensive.paa",10,3]];
 AssList = AssList +[[localize "STR_M04t16_0",localize "STR_M04t17_1","data\sabotage.paa",10,1]];
 AssList = AssList +[[localize "STR_M04t20",localize "STR_M04t21_0","data\sabotage.paa",10,4]];
