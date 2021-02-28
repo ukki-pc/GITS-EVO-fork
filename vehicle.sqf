@@ -77,6 +77,7 @@ if (isNil _unitname) then {_hasname = false;} else {_hasname = true;};
 _noend = true;
 _run = true;
 _rounds = 0;
+_ismhq = false;
 
 if (_delay < 0) then {_delay = 0};
 if (_deserted < 0) then {_deserted = 0};
@@ -143,6 +144,7 @@ _vecmarkerb =
 		_markerobj5 setMarkerType _mrktype;
 		_markerobj5 setMarkerSize [0.5, 0.5];
 		_markerobj5 setMarkerText "MHQ";
+		_ismhq = true;
 	} else
 	{
 		if (not (_unit in list airportin)) then
@@ -206,7 +208,7 @@ while {_run} do
 
 // Respawn vehicle
 	_wet=0;
-      if (_dead) then 
+      if (_dead and !_ismhq) then 
 	{	
 		_posasl = getPosASL _unit;
 		if (_posasl select 2 < 1.0) then 
@@ -248,6 +250,58 @@ while {_run} do
 
 //EGG adding
 		[_unit] call _vecmarkerb;
+		// Check respawn amount
+		if !(_noend) then {_rounds = _rounds + 1};
+		if ((_rounds == _respawns) and !(_noend)) then {_run = false;};
+		WaitUntil{( (damage _unit == 0) or !(alive _unit) )};
+//		[_unit] call EGG_EVO_Frew;
+	};
+
+
+// MHQ DED
+	_wet=0;
+      if (_dead and _ismhq) then 
+	{	
+		_posasl = getPosASL MHQ;
+		if (_posasl select 2 < 1.0) then 
+		{
+			_wet=1;
+		};
+		if (_nodelay) then {sleep 0.1; _nodelay = false;} else {sleep _delay;};
+		if ((_dynamic) and (_wet==0)) then {_position = getPosASL MHQ; _dir = getDir MHQ;};
+		if (_explode) then {_effect = "M_AT" createVehicle getPosASL MHQ; _effect setPosASL getPosASL MHQ; hint "dude";};
+		sleep 0.1;
+		deleteVehicle MHQ;
+//EGG adding
+		if !(isNil _markerobj5) then
+		{
+			deleteMarker _markerobj5;
+		};
+		sleep 2;
+		MHQ = _type createVehicle _position;
+		MHQ setPosASL _position;
+		MHQ setDir _dir;
+
+//EGG adding script to place statics and weapons into vehicle cargoes
+//		_cargoadd = [_unit] spawn "data\scripts\static_cargo.sqf";
+//		_cargoadd = [_unit] call EGG_EVO_static_cargo;
+//		sleep 1.0;
+//
+
+		if (_haveinit) then 
+		{
+			MHQ setVehicleInit format ["%1;", _unitinit];
+			processInitCommands;
+		};
+		if (_hasname) then 
+		{
+			MHQ setVehicleInit format ["%1 = this; this setVehicleVarName ""%1""",_unitname];
+			processInitCommands;
+		};
+		_dead = false;
+
+//EGG adding
+		[MHQ] call _vecmarkerb;
 		// Check respawn amount
 		if !(_noend) then {_rounds = _rounds + 1};
 		if ((_rounds == _respawns) and !(_noend)) then {_run = false;};

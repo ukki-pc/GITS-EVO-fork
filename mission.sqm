@@ -1594,7 +1594,7 @@ class Mission
 		};
 		class Item25
 		{
-			position[]={15398.829,17.936113,5013.6445};
+			position[]={15403.647,0.30702063,5010.916};
 			name="ammob11";
 			markerType="ELLIPSE";
 			type="Flag";
@@ -2769,7 +2769,7 @@ class Mission
 			age="UNKNOWN";
 			text="Respawn at Recon HQ";
 			expCond="(player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50 or Player distance getMarkerPos ""MHQ"" < 10)";
-			expActiv="ID_Beamx = Player addAction [""~Respawn Recon HQ"",""data\scripts\ambx.sqs"",[""""], 10]";
+			expActiv="ID_Beamx = Player addAction [""~Respawn Recon HQ"",""data\scripts\ambx.sqf"",[""""], 10]";
 			expDesactiv="Player removeAction ID_Beamx";
 			class Effects
 			{
@@ -2834,7 +2834,7 @@ class Mission
 			age="UNKNOWN";
 			text="Respawn MHQ Ambulance";
 			expCond="(Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50) ";
-			expActiv="ID_Beamw = Player addAction [""~Respawn MHQ Ambulance"",""data\scripts\auswahlw.sqs""]";
+			expActiv="ID_Beamw = Player addAction [""~Respawn MHQ Ambulance"",""data\scripts\auswahlw.sqf""]";
 			expDesactiv="Player removeAction ID_Beamw";
 			class Effects
 			{

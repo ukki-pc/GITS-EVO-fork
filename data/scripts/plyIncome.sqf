@@ -22,9 +22,8 @@ _income = [] call countIncome;
 
 if(_income > 0) then 
 {
-_msg = format ["Income from cities: $%1",_income];
-    {
-    ["jed_msg", [_x, _msg]] call CBA_fnc_whereLocalEvent;
-    ["jed_addMoney", [_x, _income]] call CBA_fnc_globalEvent}forEach _allPlayers;
+    _msg = format ["Income from cities: $%1",_income];
+        {["jed_msg", [_x, _msg]] call CBA_fnc_whereLocalEvent;
+        ["jed_addMoney", [_x, _income]] call CBA_fnc_whereLocalEvent}forEach _allPlayers;
     };
 };

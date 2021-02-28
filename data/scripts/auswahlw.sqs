@@ -1,5 +1,0 @@
-	if((vehiclePlaced == 0) or (R3F_LOG_mutex_local_verrou)) exitWith{hint "You cannot do that while carrying."; exit};
-
-	_dir = random 359;
-	player SetPos [(getMarkerPos "MHQ" select 0)-15*sin(_dir),(getMarkerPos "MHQ" select 1)-15*cos(_dir)];
-	exit

@@ -58,6 +58,8 @@ EGG_hidetotal = 6;
 
 editor = 1; publicVariable "editor";
 
+R3F_LOG_mutex_local_verrou = false;
+
 if (editor == 0) then {
 spawntype = param1;
 helicopterhitch = param2;

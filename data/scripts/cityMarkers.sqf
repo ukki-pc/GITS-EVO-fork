@@ -5,7 +5,7 @@
 	_unitm = format ["%1t", _unit];
 	_markerobj = createMarker[_unitm,[getMarkerPos _unit select 0,getMarkerPos _unit select 1]];
 	//TEST
-	//BIS_EVO_conqueredTowns = ["mobj12","mobj11"];
+	BIS_EVO_conqueredTowns = ["mobjC1","mobj11"];
 
 	//ENEMY TOWN
 	if !(BIS_EVO_MissionTowns select _forEachIndex in BIS_EVO_conqueredTowns) then
