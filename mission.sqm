@@ -34,13 +34,13 @@ class Mission
 		"ibr_arl2",
 		"pracs_etendard",
 		"eb_tyria",
-		"PRACS_Heli",
 		"ibr_arl",
 		"uns_A1J",
 		"PRACS_Mohawk",
 		"UNS_A6",
 		"UNS_A7",
-		"eb_wheeled_blufor"
+		"eb_wheeled_blufor",
+		"re_armory"
 	};
 	addOnsAuto[]=
 	{
@@ -64,7 +64,6 @@ class Mission
 		"cawater2_fregata",
 		"mis_isis_terrorists",
 		"jdg_carrier",
-		"PRACS_Heli",
 		"pracs_etendard",
 		"uns_A1J",
 		"PRACS_Mohawk",
@@ -571,7 +570,7 @@ class Mission
 				class Item0
 				{
 					position[]={15411.492,0.93379879,5008.9214};
-					azimut=-41.116356;
+					azimut=-41.116402;
 					special="NONE";
 					id=84;
 					side="WEST";
@@ -614,7 +613,7 @@ class Mission
 				class Item0
 				{
 					position[]={15409.697,0.92231321,5007.4932};
-					azimut=-41.116356;
+					azimut=-41.116402;
 					id=86;
 					side="WEST";
 					vehicle="US_Soldier_Engineer_EP1";
@@ -689,7 +688,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=68;
+		items=67;
 		class Item0
 		{
 			position[]={18819.916,38.26318,13693.878};
@@ -806,8 +805,8 @@ class Mission
 		};
 		class Item12
 		{
-			position[]={15365.562,0.83628786,5061.4473};
-			azimut=134.98199;
+			position[]={15447.627,17.95866,4961.3379};
+			azimut=-43.441925;
 			id=12;
 			side="EMPTY";
 			vehicle="HeliHEmpty";
@@ -1004,7 +1003,7 @@ class Mission
 		class Item30
 		{
 			position[]={15440.972,0.93383157,4974.1489};
-			azimut=-81.828651;
+			azimut=-81.828697;
 			id=33;
 			side="EMPTY";
 			vehicle="EB_RIM7_pod_US";
@@ -1309,76 +1308,64 @@ class Mission
 		};
 		class Item61
 		{
-			position[]={15450.5,17.95866,4958.9995};
-			azimut=-39.728001;
-			id=91;
-			side="EMPTY";
-			vehicle="PRACS_puma330_MG";
-			leader=1;
-			skill=0.60000002;
-			text="puma";
-			init="this setPosASL[getpos this select 0,getpos this select 1, 18]; [this] call BIS_EVO_CountSeats; ";
-		};
-		class Item62
-		{
 			position[]={15393.866,0.77157098,4946.1592};
 			azimut=49.732899;
-			id=92;
+			id=91;
 			side="EMPTY";
 			vehicle="PRACS_EtendardM_CAS";
 			leader=1;
 			skill=0.60000002;
 			init="this setPosASL[getpos this select 0,getpos this select 1, 18]; veh = [this, 1200, 1200] execVM ""vehicle.sqf""";
 		};
-		class Item63
+		class Item62
 		{
 			position[]={15431.995,0.24790207,4988.1797};
 			azimut=-133.746;
-			id=93;
+			id=92;
 			side="EMPTY";
 			vehicle="uns_A1J_AGM";
 			leader=1;
 			skill=0.60000002;
 			init="this setPosASL[getpos this select 0,getpos this select 1, 18]; veh = [this, 1200, 1200] execVM ""vehicle.sqf""";
 		};
-		class Item64
+		class Item63
 		{
 			position[]={15380.871,17.960094,5045.0591};
 			azimut=-133.235;
-			id=94;
+			id=93;
 			side="EMPTY";
 			vehicle="PRACS_Mohawk";
 			leader=1;
 			skill=0.60000002;
 			init="this setPosASL[getpos this select 0,getpos this select 1, 18]; veh = [this, 1200, 1200] execVM ""vehicle.sqf""";
 		};
-		class Item65
+		class Item64
 		{
 			position[]={15351.359,17.951681,5080.0503};
 			azimut=-133.47876;
-			id=95;
+			id=94;
 			side="EMPTY";
 			vehicle="uns_A6_Intruder_LRBMB";
 			leader=1;
 			skill=0.60000002;
 			init="this setPosASL[getpos this select 0,getpos this select 1, 18]; veh = [this, 1200, 1200] execVM ""vehicle.sqf""";
 		};
-		class Item66
+		class Item65
 		{
 			position[]={15382.801,17.936127,4963.3931};
 			azimut=-310.98798;
-			id=96;
+			id=95;
 			side="EMPTY";
 			vehicle="uns_A7N_AGM";
 			leader=1;
 			skill=0.60000002;
 			init="this setPosASL[getpos this select 0,getpos this select 1, 18]; veh = [this, 1200, 1200] execVM ""vehicle.sqf""";
 		};
-		class Item67
+		class Item66
 		{
 			position[]={1526.8662,5.9272294,2434.728};
 			azimut=270;
-			id=97;
+			id=96;
 			side="EMPTY";
 			vehicle="HMMWV_Terminal_EP1";
 			skill=0.60000002;
@@ -1607,7 +1594,7 @@ class Mission
 		};
 		class Item25
 		{
-			position[]={15363.257,0.62700033,5022.5005};
+			position[]={15398.829,17.936113,5013.6445};
 			name="ammob11";
 			markerType="ELLIPSE";
 			type="Flag";
@@ -2861,7 +2848,7 @@ class Mission
 			repeating=1;
 			age="UNKNOWN";
 			text="Board";
-			expCond=" Player distance Fahne7 < 50";
+			expCond=" Player distance Fahne8 < 50";
 			expActiv="ID_Beaml = Player addAction [""~Board HMS GITS"",""data\scripts\gocarrier.sqs""]";
 			expDesactiv="Player removeAction ID_Beaml";
 			class Effects

@@ -490,7 +490,7 @@ if(EGG_EVO_FactionParam == 1) then
 	EGG_EVO_mfhq =["USMC_WarfareBFieldhHospital","CDF_WarfareBFieldhHospital","USMC_WarfareBAircraftFactory","LAV25_HQ_unfolded","CDF_WarfareBBarracks"];// meeds taki
 
 	egg_evo_Amb = "EB_M1114_Armored_D"; 
-	egg_evo_MHQ = "PRACS_M113_AMB";
+	egg_evo_MHQ = "PRACS_puma330_MG"; //PRACS_M113_AMB
 
 //////////////////////////////////////////////
 buyCarList = 
@@ -777,10 +777,39 @@ BIS_EVO_Lock =
 	if(Param1 == 7) then {_vec lock true} else {_vec lock false};
 };
 
+
+//HIGH COMMAND MODULE
+EGG_highCommand = 1;
+if (EGG_highCommand == 1) then {
+//High command extensions stuff
+
+enableTeamSwitch false;
+
+// Config Options (these can also flipped with menu commands)
+
+missionNamespace setVariable ["HCExtAllowRunTimeConfigChanges", true];
+
+missionNamespace setVariable ["HCExtAllowAddAndDeleteWp", false];
+missionNamespace setVariable ["HCExtMaxNumGroupsNewWaypoints", 6];
+
+missionNamespace setVariable ["HCExtShowHCIconsOnlyInHCMode", true];
+missionNamespace setVariable ["HCExtHideOtherSideIcons", true];
+missionNamespace setVariable ["HCExtHideEnemySideIcons", true];
+missionNamespace setVariable ["HCExtHideAccessToOtherSides", true];
+missionNamespace setVariable ["HCExtHideAccessToEnemySides", true];
+missionNamespace setVariable ["HCExtHideStatsOnOtherSides", true];
+missionNamespace setVariable ["HCExtHideStatsOnEnemySides", false];
+
+[] execVM "HCfunc\HCrep\InitHC.sqf";
+};
+
+
 if(isServer) then {
 //MHQ SPAWNER
 MHQ = createVehicle [egg_evo_MHQ,  getposASL LKWWEST, [], 0, "NONE"];
 MHQ setVehicleInit "veh = [this, 10, 0, 0, FALSE, FALSE] execVM ""vehicle.sqf""";
+MHQ setposASL  [getposASL LKWWEST select 0, getposASL LKWWEST select 1,19];
+MHQ setDir getDir LKWWEST;
 };
 
 //High priority functions
