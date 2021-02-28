@@ -1,3 +1,4 @@
+/*
 SupList = [];
 RecList = [];
 AssList = [];
@@ -349,3 +350,4 @@ if (_optpage) then {
 	};
 };
 _index =  lbSetCurSel[2000, 0];
+*/

@@ -2,6 +2,8 @@ disableSerialization;
 closeDialog 0;
 sleep 0.3;
 
+if(BIS_EVO_MissionProgress > -1) exitWith {hint "Mission already in progress."};
+
 _player = _this select 0;
 _id = _this select 2;
 _map = objNull;

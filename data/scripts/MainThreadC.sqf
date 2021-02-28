@@ -547,9 +547,9 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 {
 	//[] call BIS_EVO_CWeath;
 //	sleep 1.011;
+	inrepairzone = ((vehicle player in list AirportIn) or (vehicle player in list farp1) or (vehicle player in list farp2) or (vehicle player in list farp3) or (vehicle player in list farp4) or (vehicle player in list reng1) or (vehicle player in list reng2) or (vehicle player in list reng3) or (vehicle player in list reng4) or (vehicle player in list dock1) or (vehicle player in list LHDin));
 	[] call BIS_EVO_Repair;
 //	[] call EGG_EVO_fieldRepair;
-	sleep 1.011;
 	[] call EGG_EVO_stationRepair;
 	sleep 1.011;
 	if (score player != _tscore and alive player) then {[] call BIS_EVO_Rank};
@@ -558,6 +558,5 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	[] call BIS_EVO_CTime;
 	sleep 1.011;
 	//[] call BIS_EVO_HPM; //DUNNO WHAT IS
-	sleep 1.011;
 //	[] call BIS_EVO_Surrender;
 };

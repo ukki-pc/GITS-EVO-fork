@@ -290,7 +290,7 @@ class evoUI
 	      {
 		 idc = 658;
 				y = 0.76;
-				text = $STR_M04t120;
+				text = "Actions";
 				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,true,false,false,false,0,false,false];[] call BIS_EVO_ListUpdate";
 	      };
 	      class BGroup: BRecruit

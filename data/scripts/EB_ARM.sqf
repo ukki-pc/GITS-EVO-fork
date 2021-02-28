@@ -107,12 +107,13 @@ armWeapon = {
 
 			{_vec addMagazine _x}forEach _mags;
 			{_vec addWeapon _x}forEach _weps;
+			_vec selectWeapon (_weps select _weaponSlot);
 
-			if(_magCount < _maxAmmo) then 
-			{
-				//_vec addWeapon _weaponSystem;
-				//_vec addMagazine _bomb;
-			};
+				if(_magCount < _maxAmmo) then 
+				{
+					//_vec addWeapon _weaponSystem;
+					//_vec addMagazine _bomb;
+				};
 			};
 }
 else{

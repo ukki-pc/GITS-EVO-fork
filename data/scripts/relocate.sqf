@@ -8,8 +8,9 @@ _player = _this select 0;
 _id = _this select 2;
 _map = objNull;
 cityToTransfer = -1;
-_cursorPos = []; 
-TeleportLocations = BIS_EVO_MissionTowns + ["LHD1Marker"];
+_cursorPos = [];
+BIS_EVO_BaseMarkers = ["LHD1Marker"];
+TeleportLocations = BIS_EVO_MissionTowns + BIS_EVO_BaseMarkers;
 
 _nearestPoint = [TeleportLocations, position player] call BIS_fnc_nearestPosition;
 
