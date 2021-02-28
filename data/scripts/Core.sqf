@@ -259,18 +259,8 @@ SupList = SupList +[[localize "STR_M04t106",localize "STR_M04t107",20,(EGG_EVO_A
 
 //missions
 AssList = [];
-AssList = AssList +[["Transfer","Capture objective from enemy control.","",0,17]];
+AssList = AssList +[["Relocate","Capture objective from enemy control.","data\offensive.paa",0,17]];
 AssList = AssList +[["Town Conquest","Capture objective from enemy control.","data\offensive.paa",0,16]];
-AssList = AssList +[[localize "STR_M04t6_1",localize "STR_M04t7_1","data\offensive.paa",10,3]];
-AssList = AssList +[[localize "STR_M04t16_0",localize "STR_M04t17_1","data\sabotage.paa",10,1]];
-AssList = AssList +[[localize "STR_M04t20",localize "STR_M04t21_0","data\sabotage.paa",10,4]];
-AssList = AssList +[[localize "STR_M04t24",localize "STR_M04t25_0","data\defend.paa",10,6]];
-AssList = AssList +[["Rendition","A few moments ago we received satellite intel that a key member of the enemy high command is visiting a remote station on the island. Your mission is to go to the location search for the officer and eliminate any resistance in the area.","data\sabotage.paa",20,10]];
-AssList = AssList +[["Extermination","We have received reports from an undercover agent on the location of a gathering of the People's Temple cult. They have a fertiliser bomb and may plan to use it. Go to the location and exterminate any civilians you find there.","data\sabotage.paa",10,11]];
-AssList = AssList +[["Ambush troop convoy","Crossroad reports satellite recon has identified a heavily defended enemy infantry column moving cross-country.  Neutralise it.","data\sabotage.paa",10,12]];
-AssList = AssList +[[localize "str_lib_chal_assassination","Crossroad reports a senior enemy general is approaching Chernogorsk, hoping to escape Chernarus by boat.  Position your sniper team on the roof of the International Hotel andtake him out.","data\sabotage.paa",10,13]];
-AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to security.  One of the CDF's top agents has been captured.  Locate him, eliminate ALL hostiles, extract him to HMS GITS.","data\sabotage.paa",20,14]];
-
 
 	if(_sco >= BIS_EVO_rank1-pointsSpent) then 
 	{
@@ -308,18 +298,6 @@ AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to securit
 	SupList = SupList +[[localize "STR_M04t108",localize "STR_M04t109",50,(EGG_EVO_Artycost*4),20,"data\sup01.paa",3]];
 
 //missions
-AssList = [];
-AssList = AssList +[[localize "STR_M04t6_1",localize "STR_M04t7_1","data\offensive.paa",10,3]];
-AssList = AssList +[[localize "STR_M04t9_1",localize "STR_M04t10_1","data\offensive.paa",20,2]];
-AssList = AssList +[[localize "STR_M04t16_0",localize "STR_M04t17_1","data\sabotage.paa",20,1]];
-AssList = AssList +[[localize "STR_M04t20",localize "STR_M04t21_0","data\offensive.paa",20,4]];
-AssList = AssList +[[localize "STR_M04t32",localize "STR_M04t33","data\defend.paa",20,5]];
-AssList = AssList +[[localize "STR_M04t37_0",localize "STR_M04t38_0","data\defend.paa",30,7]];
-AssList = AssList +[["Rendition","A few moments ago we received satellite intel that a key member of the enemy high command is visiting a remote station on the island. Your mission is to go to the location search for the officer and eliminate any resistance in the area.","data\sabotage.paa",30,10]];
-AssList = AssList +[["Extermination","We have received reports from an undercover agent on the location of a Red Brigade security arm of the People's Temple cult. They have a chemical weapon and may plan to use it. Go to the location and exterminate any civilians you find there.","data\sabotage.paa",20,11]];
-AssList = AssList +[["Ambush troop convoy","Crossroad reports satellite recon has identified a heavily defended enemy infantry column moving cross-country.  Neutralise it.","data\sabotage.paa",20,12]];
-AssList = AssList +[[localize "str_lib_chal_assassination","Crossroad reports a senior enemy general is approaching Chernogorsk, hoping to escape Chernarus by boat.  Position your sniper team on the roof of the International Hotel andtake him out.","data\sabotage.paa",20,13]];
-AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to security.  One of the CDF's top agents has been captured.  Locate him, eliminate ALL hostiles, extract him to HMS GITS.","data\sabotage.paa",20,14]];
 	};
 	if(_sco >= BIS_EVO_rank3-pointsSpent) then 
 	{
@@ -372,22 +350,8 @@ AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to securit
 //chem strike
 		SupList = SupList +[[localize "STR_M04t114",localize "STR_M04t115",150,(EGG_EVO_Artycost*20),40,"data\sup01.paa",6]];
 
-//missions
-AssList = [];
-AssList = AssList +[[localize "STR_M04t6_1",localize "STR_M04t7_1","data\offensive.paa",10,3]];
-AssList = AssList +[[localize "STR_M04t9_1",localize "STR_M04t10_1","data\offensive.paa",20,2]];
-AssList = AssList +[[localize "STR_M04t16_0",localize "STR_M04t17_1","data\sabotage.paa",20,1]];
-AssList = AssList +[[localize "STR_M04t20",localize "STR_M04t21_0","data\offensive.paa",20,4]];
-AssList = AssList +[[localize "STR_M04t32",localize "STR_M04t33","data\defend.paa",20,5]];
-AssList = AssList +[[localize "STR_M04t12",localize "STR_M04t13_1","data\offensive.paa",20,9]];
-AssList = AssList +[[localize "STR_M04t37_0",localize "STR_M04t38_0","data\defend.paa",30,7]];
-AssList = AssList +[["Rendition","A few moments ago we received satellite intel that a key member of the enemy high command is visiting a remote station on the island. Your mission is to go to the location search for the officer and eliminate any resistance in the area.","data\sabotage.paa",40,10]];
-AssList = AssList +[["Extermination","We have received reports from an undercover agent on the location of a major Peoples Temple Agricultural Project. They have a nuclear weapon and plan to use it. Go to the location and exterminate all civilians you find there.","data\sabotage.paa",40,11]];
-AssList = AssList +[["Ambush troop convoy","Crossroad reports satellite recon has identified a heavily defended enemy infantry column moving cross-country.  Neutralise it.","data\sabotage.paa",30,12]];
-AssList = AssList +[[localize "str_lib_chal_assassination","Crossroad reports a senior enemy general is approaching Chernogorsk, hoping to escape Chernarus by boat.  Position your sniper team on the roof of the International Hotel andtake him out.","data\sabotage.paa",30,13]];
-AssList = AssList +[["Liberate Agent","Crossroad reports a major blow to security.  One of the CDF's top agents has been captured.  Locate him, eliminate ALL hostiles, extract him to HMS GITS.","data\sabotage.paa",20,14]];
-AssList = AssList +[["Air Assault","Crossroad reports a major enemy air assault is imminent - secure the air space and eliminate ALL hostiles.  Good hunting!","data\sabotage.paa",40,15]];
-	};
+//missions	
+};
 	if(_sco >= BIS_EVO_rank6-pointsSpent) then 
 	{
 		mrank = BIS_EVO_rank6;
