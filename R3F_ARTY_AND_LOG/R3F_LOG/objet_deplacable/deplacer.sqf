@@ -110,7 +110,14 @@ else
 			// L'objet n'est plus port�, on le repose
 			VehiclePlaced = 1;
 			detach _objet;
-			_objet setPos [getPos _objet select 0, getPos _objet select 1, 0];
+			if !(player in list LHDin) then 
+			{
+				_objet setPos [getPos _objet select 0, getPos _objet select 1, 0];
+			}
+			else 
+			{
+				_objet setPosASL [getPosASL _objet select 0, getPosASL _objet select 1, 18];
+			};
 			_objet setVelocity [0, 0, 0];
 			
 			player removeAction _action_menu;
