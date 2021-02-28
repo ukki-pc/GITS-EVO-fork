@@ -446,6 +446,7 @@ class evoUI
 				text = "Unflip vehicle";
 				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,8,false,false];[] call BIS_EVO_ListUpdate";
 	      };
+
 		class GPSgmap: RscMapControl
 		  {
 			idc = 895;

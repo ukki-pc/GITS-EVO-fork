@@ -1467,7 +1467,7 @@ class Mission
 		};
 		class Item11
 		{
-			position[]={15567.867,0.3462736,19444.709};
+			position[]={15413.557,18,5004.9595};
 			name="Respawn_West";
 			markerType="RECTANGLE";
 			type="Tank";
@@ -1690,7 +1690,7 @@ class Mission
 		};
 		class Item34
 		{
-			position[]={15411.76,0.98206538,5014.4302};
+			position[]={15410.747,0.25502181,5013.0361};
 			name="HMS-GITS";
 			type="n_mortar";
 			colorName="ColorBlue";
@@ -2203,7 +2203,7 @@ class Mission
 	};
 	class Sensors
 	{
-		items=50;
+		items=45;
 		class Item0
 		{
 			position[]={9819.8174,139.98311,10079.436};
@@ -2734,7 +2734,7 @@ class Mission
 		};
 		class Item34
 		{
-			position[]={2270.1685,0.84384751,757.32837};
+			position[]={1961.833,0.12077648,738.7395};
 			a=0;
 			b=0;
 			repeating=1;
@@ -2810,34 +2810,6 @@ class Mission
 		};
 		class Item39
 		{
-			position[]={1797.2898,0.2759099,750.3396};
-			a=0;
-			b=0;
-			repeating=1;
-			age="UNKNOWN";
-			expCond="Player distance inthotel_base < 5 ";
-			expActiv="ID_Beamu = Player addAction [""~Lift up"",""data\scripts\hotelu.sqs""]";
-			expDesactiv="Player removeAction ID_Beamu";
-			class Effects
-			{
-			};
-		};
-		class Item40
-		{
-			position[]={1825.8894,0.42295688,746.82788};
-			a=0;
-			b=0;
-			repeating=1;
-			age="UNKNOWN";
-			expCond="Player distance inthotel_roof < 7 ";
-			expActiv="ID_Beamv = Player addAction [""~Lift down"",""data\scripts\hoteld.sqs""]";
-			expDesactiv="Player removeAction ID_Beamv";
-			class Effects
-			{
-			};
-		};
-		class Item41
-		{
 			position[]={1211.7906,0.28540707,482.68823};
 			a=0;
 			b=0;
@@ -2851,7 +2823,7 @@ class Mission
 			{
 			};
 		};
-		class Item42
+		class Item40
 		{
 			position[]={1106.4176,0.27060217,492.94409};
 			a=0;
@@ -2866,48 +2838,7 @@ class Mission
 			{
 			};
 		};
-		class Item43
-		{
-			position[]={1853.9167,0.38918674,746.82593};
-			a=0;
-			b=0;
-			repeating=1;
-			age="UNKNOWN";
-			expCond="Player distance inthotel_base < 8000 && gitsnades == 2";
-			expActiv="ID_Beamp = Player addAction [""~Pos"",""data\scripts\pos.sqf""]";
-			class Effects
-			{
-			};
-		};
-		class Item44
-		{
-			position[]={1144.0465,0.13719812,1046.9275};
-			a=0;
-			b=0;
-			repeating=1;
-			age="UNKNOWN";
-			expCond="Player distance Fahne < 10 && player == eng7";
-			expActiv="ID_Beamn = Player addAction [""~Go Undercover"",""actions\spy\makespy.sqs""]";
-			expDesactiv="Player removeAction ID_Beamn";
-			class Effects
-			{
-			};
-		};
-		class Item45
-		{
-			position[]={1237.2692,0.27016896,1032.2107};
-			a=0;
-			b=0;
-			repeating=1;
-			age="UNKNOWN";
-			expCond="Player distance Fahne < 10 && player == eng15";
-			expActiv="ID_Beamna = Player addAction [""~Go Undercover"",""actions\spy\makespy.sqs""]";
-			expDesactiv="Player removeAction ID_Beamna";
-			class Effects
-			{
-			};
-		};
-		class Item46
+		class Item41
 		{
 			position[]={2130.9395,0.47681606,630.54138};
 			a=0;
@@ -2922,7 +2853,7 @@ class Mission
 			{
 			};
 		};
-		class Item47
+		class Item42
 		{
 			position[]={2128.002,0.75033933,572.32202};
 			a=0;
@@ -2937,7 +2868,7 @@ class Mission
 			{
 			};
 		};
-		class Item48
+		class Item43
 		{
 			position[]={15273.711,0.76066875,4980.8071};
 			a=0;
@@ -2951,7 +2882,7 @@ class Mission
 			{
 			};
 		};
-		class Item49
+		class Item44
 		{
 			position[]={15414.442,0.81813622,5005.0684};
 			a=5;

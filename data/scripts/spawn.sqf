@@ -1,6 +1,9 @@
+
 // player spawn script
 if (not (local player)) exitwith {};
 _player = player;
+
+
 
 //jail script for teamkillers
 // if (jailparam == 1) then
@@ -111,6 +114,9 @@ if (_playerh < 1500) then
 };
 
 disableUserInput false;
-
+//Update money
+sleep 8;
+cutRsc ["DollarTitle","PLAIN"];
+(uiNameSpace getVariable "myUI_DollarTitle") ctrlSetText format ["$%1",money];
 //debug only!
 //if (score player == 0)  then {player addscore 1000};

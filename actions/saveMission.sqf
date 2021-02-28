@@ -32,6 +32,7 @@ for [{_loop=0}, {_loop<count buyStatList}, {_loop=_loop+1}] do
 
 _savePlayers = "";
 //SAVE SCORES
+/*
 _allPlayers = call BIS_fnc_listPlayers;
 _plyCount = count _allPlayers;
 
@@ -43,11 +44,24 @@ for [{_loop=0}, {_loop< _plyCount}, {_loop=_loop+1}] do
         _savePlayers = _savePlayers + ",";
     };
 };
+*/
+/*
+while {true} do {
+sleep EVO_incomeFrequency;
+_allPlayers = call BIS_fnc_listPlayers;
+{["jed_addscore", [_x, 1]] call CBA_fnc_globalEvent}forEach _allPlayers;
+};
+*/
+
+_allPlayers = call BIS_fnc_listPlayers;
+	{["jed_getMoney", [_x,_forEachIndex]] call CBA_fnc_whereLocalEvent;
+}forEach _allPlayers;
+
+
 
 //GENERATE SAVE VALUES
-
-_clipboard = format ["cars=[%1];tanks=[%2];air=[%3];stat=[%4];players=[%5];prog=%6;",_saveCars,_saveTanks,_saveAir,_saveStatic,_savePlayers,BIS_EVO_conqueredTowns];
+_clipboard = format ["cars=[%1];tanks=[%2];air=[%3];stat=[%4];players=%5;prog=%6;",_saveCars,_saveTanks,_saveAir,_saveStatic,bank,BIS_EVO_conqueredTowns];
 _clipboard = _clipboard + format ["%1","[cars,tanks,air,stat,players,prog] execVM ""actions\loadMission.sqf"";"];
 copyToClipboard _clipboard;
 
-hint "Saved!";
+hint "Saved to clipboard!";

@@ -17,6 +17,8 @@ BIS_EVO_airspawnfreqa = 30;// shortest sleep = harder
 EGG_EVO_airAggression = 0;
 EGG_EVO_groundAggression = 0;
 
+bank = [];
+
 /////////////////Dwarden fixing fire in the sky bug
 
 BIS_Effects_EH_Killed=compile preprocessFileLineNumbers "new_effects\killed.sqf";
@@ -88,12 +90,13 @@ EX_EVO_vehPriceMultiplier = paramsArray select 20;
 EVO_incomeFrequency = paramsArray select 21;
 EGG_EVO_FactionParam = paramsArray select 22;
 EGG_EVO_LoadGame = paramsArray select 23;
-
+};
 basebeam = 2;
 
 //Respawn settings
+spawntype = 2;
 publicVariable "spawntype"; 
-if (spawntype == 2) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" select 0),(getMarkerPos "FahneLKW" select 1)]};
+if (spawntype == 2) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" select 0),(getMarkerPos "FahneLKW" select 1),18]};
 
 if (performanceparam == 1) then {enableEnvironment true};
 if (performanceparam == 2) then {enableEnvironment false};
@@ -104,7 +107,7 @@ BIS_EVO_rank3 = (rankscore * 3);
 BIS_EVO_rank4 = (rankscore * 4);
 BIS_EVO_rank5 = (rankscore * 5);
 BIS_EVO_rank6 = (rankscore * 6);
-};
+
 
 
 // DONT CHANGE THIS
@@ -140,9 +143,11 @@ if (editor == 1) then
 	EX_EVO_vehPriceMultiplier = 1;
 	EVO_incomeFrequency = 120;
 	EGG_EVO_FactionParam = 1;
-	EGG_EVO_LoadGame = 1;
-	hint "DEBUG MODE ON | Version 0.3";
+	EGG_EVO_LoadGame = 0;
+	hint "DEBUG MODE ON | Version 0.5";
 };
+
+
 
 	BIS_EVO_MissionTowns = [];
 	BIS_EVO_MissionVillages = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11","mobj12","mobj2","mobj13","mobj14","mobj15","mobj16","mobj17","mobj18","mobj19","mobj20","mobj21","mobj22","mobj23","mobj24","mobj25"];// Each mission objectives town marker.
@@ -762,7 +767,8 @@ BIS_EVO_Objective11 = taskNull; // City 11
 BIS_EVO_Objective12 = taskNull; // 
 defenceReady = false; //Avoid certain events during objective population
 
-money = 100;
+money = 10;
+
 
 // Common function to lock vehicles.
 BIS_EVO_Lock =
@@ -943,8 +949,6 @@ EGG_EVO_mcvconvoya = ["Ikarus_TK_CIV_EP1","Ural_TK_CIV_EP1","V3S_Open_TK_CIV_EP1
 EGG_EVO_mcvconvoyb = ["Lada1_TK_CIV_EP1","Lada2_TK_CIV_EP1","LandRover_TK_CIV_EP1","hilux1_civil_3_open_EP1","S1203_TK_CIV_EP1","SUV_TK_CIV_EP1","UAZ_Unarmed_TK_CIV_EP1"];
 EGG_EVO_mcvconvoyc =["TT650_TK_CIV_EP1","Old_bike_TK_CIV_EP1","Old_moto_TK_Civ_EP1"];
 EGG_EVO_mcvconvoyd = ["Volha_1_TK_CIV_EP1","Volha_2_TK_CIV_EP1","VolhaLimo_TK_CIV_EP1","S1203_ambulance_EP1"];
-
-
 
 //adding weapon type arrays for actions/makestatic.sqf
 // All weapons that count for AA class static bonus
@@ -1165,10 +1169,31 @@ EGG_EVO_westveh10 = ["Stinger_Pod_US_EP1","ZU23_TK_GUE_EP1","Rbs70_ACR","HMMWV_A
 ["jed_addMoney", {
 	_player = _this select 0;
 	_amount = _this select 1;
+
 	if(name _player == name player) then 
 	{
 		money = money + _amount;
+	["jed_updMoney", [_player]] call CBA_fnc_whereLocalEvent;
 	};
+}] call CBA_fnc_addLocalEventHandler;
+
+//Just update the money
+["jed_updMoney", {
+	_player = _this select 0;
+	if(name _player == name player) then 
+	{
+		(uiNameSpace getVariable "myUI_DollarTitle") ctrlSetText format ["$%1",money];
+	};
+}] call CBA_fnc_addLocalEventHandler;
+
+["jed_getMoney", {
+		_player = _this select 0;
+		_count = _this select 1;
+			if(name _player == name player) then 
+			{
+				bank set [_count,[_player,money]];
+				publicVariableServer "bank";
+			};
 }] call CBA_fnc_addLocalEventHandler;
 
 //////////////////////////////////
