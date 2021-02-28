@@ -42,8 +42,10 @@ for [{_loop=0}, {_loop<count _playerValues}, {_loop=_loop+1}] do
 
 
 //SET MISSION PROGRESS
-BIS_EVO_MissionProgress = _missionProgress;
+BIS_EVO_conqueredTowns = _missionProgress;
 publicVariable "BIS_EVO_MissionProgress";
+[] call updCityMarkers;
+sleep 0.3;
 hint "load success";
 gameBegin = 1;
 publicVariable "gameBegin";

@@ -44,11 +44,10 @@ for [{_loop=0}, {_loop< _plyCount}, {_loop=_loop+1}] do
     };
 };
 
+//GENERATE SAVE VALUES
 
-//SAVE MISSION VALUES
-
-_clipboard = format ["cars=[%1];tanks=[%2];air=[%3];stat=[%4];players=[%5];prog=%6;",_saveCars,_saveTanks,_saveAir,_saveStatic,_savePlayers,BIS_EVO_MissionProgress];
+_clipboard = format ["cars=[%1];tanks=[%2];air=[%3];stat=[%4];players=[%5];prog=%6;",_saveCars,_saveTanks,_saveAir,_saveStatic,_savePlayers,BIS_EVO_conqueredTowns];
 _clipboard = _clipboard + format ["%1","[cars,tanks,air,stat,players,prog] execVM ""actions\loadMission.sqf"";"];
 copyToClipboard _clipboard;
 
-hint "saved";
+hint "Saved!";

@@ -1,7 +1,3 @@
-// make base script - populates base with aircraft/vehicles based on the mod you are running
-//mod management EGG_vecmods //## modify desc
-//0,1,2,3,4,5,9 
-//"Off", "GITS", "RKSL", "PRACS", "UNSUNG", "GLT", "Arma3"
 /*
 _vecmode = _this select 0;// needed?
 

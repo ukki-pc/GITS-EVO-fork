@@ -259,8 +259,9 @@ SupList = SupList +[[localize "STR_M04t106",localize "STR_M04t107",20,(EGG_EVO_A
 
 //missions
 AssList = [];
-AssList = AssList +[["Relocate","Capture objective from enemy control.","data\offensive.paa",0,17]];
+AssList = AssList +[["Relocate","Relocate to captured town or base.","data\offensive.paa",0,17]];
 AssList = AssList +[["Town Conquest","Capture objective from enemy control.","data\offensive.paa",0,16]];
+AssList = AssList +[["Save Game","Save game for next session.","data\offensive.paa",0,18]];
 
 	if(_sco >= BIS_EVO_rank1-pointsSpent) then 
 	{
