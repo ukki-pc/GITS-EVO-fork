@@ -35,10 +35,6 @@ class Mission
 		"pracs_etendard",
 		"eb_tyria",
 		"ibr_arl",
-		"uns_A1J",
-		"PRACS_Mohawk",
-		"UNS_A6",
-		"UNS_A7",
 		"eb_wheeled_blufor",
 		"re_armory"
 	};
@@ -65,10 +61,6 @@ class Mission
 		"mis_isis_terrorists",
 		"jdg_carrier",
 		"pracs_etendard",
-		"uns_A1J",
-		"PRACS_Mohawk",
-		"UNS_A6",
-		"UNS_A7",
 		"eb_wheeled_blufor",
 		"smd_sahrani_a2"
 	};
@@ -96,7 +88,8 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={15339.076,0.82607824,5049.3989};
+					presenceCondition="false";
+					position[]={15120.091,0.77831066,4971.4951};
 					azimut=-31.828699;
 					id=28;
 					side="LOGIC";
@@ -470,11 +463,10 @@ class Mission
 				class Item0
 				{
 					position[]={15414.069,0.75992298,5001.7866};
-					azimut=49.416389;
+					azimut=49.416401;
 					id=68;
 					side="EAST";
 					vehicle="TK_Soldier_Engineer_EP1";
-					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
 					text="enge1";
@@ -591,7 +583,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={15409.104,17.936111,5006.6304};
+					position[]={15408.648,17.936111,5006.479};
 					azimut=-13.2024;
 					id=85;
 					side="WEST";
@@ -688,7 +680,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=67;
+		items=63;
 		class Item0
 		{
 			position[]={18819.916,38.26318,13693.878};
@@ -1319,53 +1311,9 @@ class Mission
 		};
 		class Item62
 		{
-			position[]={15431.995,0.24790207,4988.1797};
-			azimut=-133.746;
-			id=92;
-			side="EMPTY";
-			vehicle="uns_A1J_AGM";
-			leader=1;
-			skill=0.60000002;
-			init="this setPosASL[getpos this select 0,getpos this select 1, 18]; veh = [this, 1200, 1200] execVM ""vehicle.sqf""";
-		};
-		class Item63
-		{
-			position[]={15380.871,17.960094,5045.0591};
-			azimut=-133.235;
-			id=93;
-			side="EMPTY";
-			vehicle="PRACS_Mohawk";
-			leader=1;
-			skill=0.60000002;
-			init="this setPosASL[getpos this select 0,getpos this select 1, 18]; veh = [this, 1200, 1200] execVM ""vehicle.sqf""";
-		};
-		class Item64
-		{
-			position[]={15351.359,17.951681,5080.0503};
-			azimut=-133.47876;
-			id=94;
-			side="EMPTY";
-			vehicle="uns_A6_Intruder_LRBMB";
-			leader=1;
-			skill=0.60000002;
-			init="this setPosASL[getpos this select 0,getpos this select 1, 18]; veh = [this, 1200, 1200] execVM ""vehicle.sqf""";
-		};
-		class Item65
-		{
-			position[]={15382.801,17.936127,4963.3931};
-			azimut=-310.98798;
-			id=95;
-			side="EMPTY";
-			vehicle="uns_A7N_AGM";
-			leader=1;
-			skill=0.60000002;
-			init="this setPosASL[getpos this select 0,getpos this select 1, 18]; veh = [this, 1200, 1200] execVM ""vehicle.sqf""";
-		};
-		class Item66
-		{
 			position[]={1526.8662,5.9272294,2434.728};
 			azimut=270;
-			id=96;
+			id=92;
 			side="EMPTY";
 			vehicle="HMMWV_Terminal_EP1";
 			skill=0.60000002;

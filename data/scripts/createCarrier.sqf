@@ -1,5 +1,5 @@
 // Original LHD placement script by ArMaTeC
-/*
+
 if (isServer) then {
 	_LHDspawn = _this;
 	_LHDdir = getdir _LHDspawn;
@@ -23,4 +23,3 @@ if (isServer) then {
 		_dummy setpos _LHDspawnpoint;
 	} foreach _parts;
 };
-*/

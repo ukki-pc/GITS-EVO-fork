@@ -63,7 +63,9 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_pos2 = GetMarkerPos (_reinforceTowns select (round random (count _reinforceTowns-1)));
 		_allvecs = EGG_EVO_mevconvoyb;
 		_maxA = count _allvecs;
-		_ural = createVehicle [(_allvecs select (round random (_maxA - 1))), _pos2,[], 0, "NONE"];[_ural] call BIS_EVO_Lock;_ural addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
+		_ural = createVehicle [(_allvecs select (round random (_maxA - 1))), _pos2,[], 0, "NONE"];
+		[_ural] call BIS_EVO_Lock;
+		_ural addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 		Sleep 0.2;
 		_unit = _guardr createUnit [(_allunits select (round random (_max - 1))), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsDriver _ural;_unit moveInDriver _ural;
 		Sleep 0.2;
@@ -77,10 +79,9 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		Sleep 0.2;
 		_unit = _guardr createUnit [(_allunits select round random (_max - 1)), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
 		Sleep 0.2;
+		_sumark = [_ural,"Ural","ColorBlack"] execVM "data\scripts\customMarker.sqf";
 		sleep 1;
 		[position _alist,_guardr,_objPos,_alist] call BIS_EVO_Erefway;
-		sleep 1;
-		_sumark = [_ural,"Ural","ColorBlack"] execVM "data\scripts\customMarker.sqf";
 		[_guardr, 1] setWaypointType "GETOUT";
 		{_x addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1 ] execVM "data\scripts\mobjbury.sqf"}]; _x addmagazine ["EB_molotov_mag",2];} forEach (units _guardr);	
 		_recy = [objnull,_guardr] execVM "data\scripts\grecycle.sqf";

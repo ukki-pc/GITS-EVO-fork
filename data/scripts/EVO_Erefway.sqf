@@ -21,12 +21,12 @@ BIS_EVO_Erefway =
 	{
 		 case 0: //Radio Defence
 		{	
-			_prad = position _radio;
+			_prad = position radio1;
 			_wp1 = _grp addWaypoint [[(_prad select 0)+50,(_prad select 1),(_prad select 2)],50];
 			_wp2 = _grp addWaypoint [[(_prad select 0),(_prad select 1)-50,(_prad select 2)],50];
 			_wp3 = _grp addWaypoint [[(_prad select 0)-50,(_prad select 1),(_prad select 2)],50];
 			_wp4 = _grp addWaypoint [[(_prad select 0),(_prad select 1)+50,(_prad select 2)],100];
-			_wp5 = _grp addWaypoint [position _radio, 100];
+			_wp5 = _grp addWaypoint [position radio1, 100];
 
 		};
 		 case 1: //Flank 

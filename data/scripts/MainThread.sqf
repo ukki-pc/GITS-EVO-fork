@@ -30,6 +30,7 @@ _EVO_Weath =
 };
 
 // Removes unused objects and weapon holders
+/*
 _EVO_Clean =
 {
 	{if(count units _x == 0) then {deletegroup _x}} foreach allGroups; // Remove empty groups
@@ -54,7 +55,7 @@ _EVO_Clean =
 	_mark = format["%1farp",dunit];
 	deleteMarker _mark;
 };	
-
+*/
 _EVO_timesync =
 {
 	BIS_EVO_gdate = date;

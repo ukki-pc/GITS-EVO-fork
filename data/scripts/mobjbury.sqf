@@ -25,8 +25,9 @@ switch (_tag) do //who died where?
 };
 if (not (_unit isKindOf "Man")) then
 {
-	if(isPlayer _killer) then 
+	if(isPlayer _killer or isPlayer leader _killer) then 
 	{
+		if(!isPlayer _killer) then {_killer = leader _killer;};
 		_msg = format ["3$ for destroying: %1",_dispname];
 		["jed_msg", [_killer, _msg]] call CBA_fnc_whereLocalEvent;
 		["jed_addMoney", [_killer, 3]] call CBA_fnc_whereLocalEvent;
@@ -37,13 +38,17 @@ if (not (_unit isKindOf "Man")) then
 };
 if (_unit isKindOf "Man") then
 {
-	if(isPlayer _killer) then 
-	{
+	if(isPlayer _killer or isPlayer leader _killer) then 
+	{	
+		// When ai kills it's automatically the leaders reward
+		if(!isPlayer _killer) then {_killer = leader _killer;};
+		
 		_msg = format ["1$ for killing: %1",_dispname];
 		["jed_msg", [_killer, _msg]] call CBA_fnc_whereLocalEvent;
 		["jed_addMoney", [_killer, 1]] call CBA_fnc_whereLocalEvent;
 	};
 
+ 
 
 	if(not ((vehicle _unit) isKindOf "Man")) then {_unit setpos (position vehicle _unit)} ;
 	sleep 310.0;

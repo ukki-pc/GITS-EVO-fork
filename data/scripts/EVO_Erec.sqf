@@ -39,12 +39,13 @@ BIS_EVO_Erec =
 	_pobj = [_offobj] execVM "data\scripts\objoff.sqf";
 	processInitCommands;
 
-// SP ANTI-AIR defence
+	// MANPAD ANTI-AIR defence
 	Sleep 1;
 	_MakeAA =
 	{
 		Sleep 1;
 		_respawnpoint = _outpoints select _curpoint;
+		/*
 		_rng = round(random(9)+1 + (BIS_EVO_MissionProgress+1)*0.66);
 		 if(_rng < 10) then 
 		 {
@@ -53,7 +54,8 @@ BIS_EVO_Erec =
 		 else {
 			 _allvecs = EGG_EVO_spAAhard;
 		 };
-		
+		*/
+		_allvecs = EGG_EVO_spAAeasy;
 		_max = (count _allvecs)-1;
 		_vcl = createVehicle [(_allvecs select (round random _max)), _respawnpoint, [], 120, "NONE"];
 		_vcl setdir random 359;	
@@ -62,6 +64,7 @@ BIS_EVO_Erec =
 		_unit1 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
 		_unit2 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
 		_unit3 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
+				player setpos _respawnpoint;
 		[_unit1,_unit2,_unit3] join _grp;
 		{_x setSkill skillfactor+(random 0.4);_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _grp);
 		_vcl addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];

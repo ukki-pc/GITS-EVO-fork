@@ -1,7 +1,7 @@
 enableEnvironment true;
 //creating center east/ setting relations
 
-
+//
 
 //rug_dsai settings [EAST, WEST, GUER, CIV, sideEnemy]
 RUG_DSAI_SIDES = ["RUG_DSAIArab","RUG_DSAI","RUG_DSAIArab","RUG_DSAIArab","RUG_DSAIArab"];
@@ -93,22 +93,6 @@ EVO_incomeFrequency = paramsArray select 21;
 EGG_EVO_FactionParam = paramsArray select 22;
 EGG_EVO_LoadGame = paramsArray select 23;
 };
-basebeam = 2;
-
-//Respawn settings
-spawntype = 2;
-publicVariable "spawntype"; 
-if (spawntype == 2) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" select 0),(getMarkerPos "FahneLKW" select 1),18]};
-
-if (performanceparam == 1) then {enableEnvironment true};
-if (performanceparam == 2) then {enableEnvironment false};
-
-BIS_EVO_rank1 = (rankscore * 1);
-BIS_EVO_rank2 = (rankscore * 2);
-BIS_EVO_rank3 = (rankscore * 3);
-BIS_EVO_rank4 = (rankscore * 4);
-BIS_EVO_rank5 = (rankscore * 5);
-BIS_EVO_rank6 = (rankscore * 6);
 
 
 
@@ -149,7 +133,24 @@ if (editor == 1) then
 	hint "DEBUG MODE ON | Version 0.5";
 };
 
+basebeam = 2;
 
+
+
+BIS_EVO_rank1 = (rankscore * 1);
+BIS_EVO_rank2 = (rankscore * 2);
+BIS_EVO_rank3 = (rankscore * 3);
+BIS_EVO_rank4 = (rankscore * 4);
+BIS_EVO_rank5 = (rankscore * 5);
+BIS_EVO_rank6 = (rankscore * 6);
+
+//Respawn settings
+spawntype = 2;
+publicVariable "spawntype"; 
+if (spawntype == 2) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" select 0),(getMarkerPos "FahneLKW" select 1),18]};
+
+if (performanceparam == 1) then {enableEnvironment true};
+if (performanceparam == 2) then {enableEnvironment false};
 
 	BIS_EVO_MissionTowns = [];
 	BIS_EVO_MissionVillages = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11","mobj12","mobj2","mobj13","mobj14","mobj15","mobj16","mobj17","mobj18","mobj19","mobj20","mobj21","mobj22","mobj23","mobj24","mobj25"];// Each mission objectives town marker.

@@ -57,7 +57,7 @@ _grp = group _player;
 
 _pos = position _player;
 _unit = group _player createUnit [_unitype, [0,0,0], [], 0, "NONE"];Sleep BIS_EVO_GlobalSleep;
-_unit setskill BIS_EVO_PlayerSkill;
+//_unit setskill BIS_EVO_PlayerSkill; //THIS THING RUINS TANK GUN LOADING
 //_lone = [_unit] execVM 'data\scripts\nohuman.sqf';
 if(!inrepairzone) then 
 {
@@ -74,9 +74,6 @@ else
 	_unit moveInGunner vehicle _player;
 	_unit moveInCommander vehicle _player;
 	_unit moveInCargo vehicle _player;
-			//[_player, 1] call changeBalance; 
-			["jed_addMoney", [_player, 3]] call CBA_fnc_whereLocalEvent;
-			//_balans = [_player] call getBalance;
 };
 
 _unit setdammage 0;
