@@ -20,7 +20,14 @@ if (not (_unit isKindOf "Man")) then
 };
 if (_unit isKindOf "Man") then
 {
-	if(not ((vehicle _unit) isKindOf "Man")) then {_unit setpos (position vehicle _unit)} ;
-	sleep 310.0;
+	if(isPlayer _killer or isPlayer leader _killer) then 
+	{
+		if(!isPlayer _killer) then {_killer = leader _killer;};
+		_msg = format ["1$ for killing: %1",_dispname];
+		["jed_msg", [_killer, _msg]] call CBA_fnc_whereLocalEvent;
+		["jed_addMoney", [_killer, 1]] call CBA_fnc_whereLocalEvent;
+	};
+	{_x setpos position _unit} forEach crew _unit;
+	sleep 300.0;
 	hideBody _unit;
 };

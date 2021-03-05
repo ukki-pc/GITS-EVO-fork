@@ -22,12 +22,31 @@ BIS_EVO_Erec =
 	_c4 = [_radio] execVM "data\scripts\c4only.sqf";
 	_rtobj = [_radio] execVM "data\scripts\rtobj.sqf";
 	_pos = position _list;
-	_pos1 = [(_pos select 0)+300,(_pos select 1),(_pos select 2)];
-	_pos2 = [(_pos select 0),(_pos select 1)+300,(_pos select 2)];
-	_pos3 = [(_pos select 0)-300,(_pos select 1),(_pos select 2)];
-	_pos4 = [(_pos select 0),(_pos select 1)-300,(_pos select 2)];
+
 	defenceReady = false;
 	private ["_rng","_allvec"]; 
+
+		_pos1 = [(_pos select 0)+random(300),(_pos select 1),(_pos select 2)];
+		_pos2 = [(_pos select 0),(_pos select 1)+random(300),(_pos select 2)];
+		_pos3 = [(_pos select 0)-random(300),(_pos select 1),(_pos select 2)];
+		_pos4 = [(_pos select 0),(_pos select 1)-random(300),(_pos select 2)];
+
+	//HIKI SECTION
+	while {surfaceIsWater _pos1} do 
+	{
+		_pos1 = [(_pos select 0)+random(300),(_pos select 1),(_pos select 2)];
+	};
+	while {surfaceIsWater _pos2} do 
+	{
+		_pos2 = [(_pos select 0),(_pos select 1)+random(300),(_pos select 2)];
+	};
+	while {surfaceIsWater _pos3} do 
+	{
+		_pos3 = [(_pos select 0)-random(300),(_pos select 1),(_pos select 2)];
+	};
+	while {surfaceIsWater _pos4} do {
+		_pos4 = [(_pos select 0),(_pos select 1)-random(300),(_pos select 2)];
+	};
 
 	_outpoints = [_pos1,_pos2,_pos3,_pos4];	
 
@@ -40,10 +59,9 @@ BIS_EVO_Erec =
 	processInitCommands;
 
 	// MANPAD ANTI-AIR defence
-	Sleep 1;
 	_MakeAA =
 	{
-		Sleep 1;
+		Sleep 0.6;
 		_respawnpoint = _outpoints select _curpoint;
 		/*
 		_rng = round(random(9)+1 + (BIS_EVO_MissionProgress+1)*0.66);
@@ -64,16 +82,17 @@ BIS_EVO_Erec =
 		_unit1 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
 		_unit2 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
 		_unit3 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
-				player setpos _respawnpoint;
+		player setpos _respawnpoint;
 		[_unit1,_unit2,_unit3] join _grp;
 		{_x setSkill skillfactor+(random 0.4);_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _grp);
 		_vcl addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
-		sleep 1.0;
+		sleep 0.6;
 		_unit1 moveInCommander _vcl;
 		_unit2 moveInGunner _vcl;
 		_unit3 moveInDriver _vcl;
 		[_vcl] call BIS_EVO_Lock;
 		_unattended = [_vcl] spawn {[_this select 0] call BIS_EVO_idelSVEC};
+		
 		[_vcl] execVM "data\scripts\EVO_VecRAA.sqf";
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
 		_curpoint =_curpoint+1;
@@ -84,11 +103,10 @@ BIS_EVO_Erec =
 	{
 		[] call _MakeAA;
 		_AA=_AA-1;
-		sleep 1;
+		sleep 0.6;
 	};
 
 // Spawn Mechanised units
-	Sleep 2;
 	while {_mec > 0} do 
 	{
 		//Increasing aggression
@@ -130,7 +148,7 @@ BIS_EVO_Erec =
 		};		
 		[_grp] call BIS_EVO_OrderSquad;
 		_mec = _mec-1; //##9,8,7,6,5,4,3,2,1,0
-		Sleep 1;
+		Sleep 0.6;
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
 		{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (crew _vec);
 		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
@@ -150,14 +168,14 @@ BIS_EVO_Erec =
 		{_x setBehaviour "combat"} forEach (units _grp);
 		_stat = _stat-1; //##4,3,2,1,0
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
-		Sleep 1;
+		Sleep 0.6;
 	};
 	
 //Radio defence
 	if(_inf > 11) then
 	{
 		_grp = createGroup (EGG_EVO_ENEMYFACTION);
-		_type = EGG_EVO_defenders select 0;
+		_type = EGG_EVO_defenders select round (random (count EGG_EVO_defenders-1));
 		_unit = _grp createUnit [_type, position _radio, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
 		_unit addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1] execVM "data\scripts\mobjbury.sqf"}]; 
@@ -176,9 +194,9 @@ BIS_EVO_Erec =
 //Officer defence
 	if(_inf > 11) then
 	{
-		Sleep 1;
+		Sleep 0.6;
 		_grp = createGroup (EGG_EVO_ENEMYFACTION);
-		_type = EGG_EVO_OfficerDefenders select 0;
+		_type = EGG_EVO_OfficerDefenders select round (random (count EGG_EVO_OfficerDefenders-1));
 		_unit = _grp createUnit [_type, position _offobj, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
 		_unit addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1] execVM "data\scripts\mobjbury.sqf"}];		
@@ -197,9 +215,9 @@ BIS_EVO_Erec =
 	//player sideChat format ["Radio defence2:%1:%2",_i,_inf];
 	if(_inf > 11) then
 	{
-		Sleep 1;
+		Sleep 0.6;
 		_grp = createGroup (EGG_EVO_ENEMYFACTION);
-		_type = EGG_EVO_defenders select 0;
+		_type = EGG_EVO_defenders select round (random (count EGG_EVO_defenders-1));
 		_unit = _grp createUnit [_type, position _radio, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
 		_unit addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1] execVM "data\scripts\mobjbury.sqf"}];
@@ -215,7 +233,7 @@ BIS_EVO_Erec =
 	};
 
 //Spawn infantry
-	Sleep 2;
+
 	while {_inf > 0} do 
 	{
 		_grp = createGroup (EGG_EVO_ENEMYFACTION);
@@ -249,7 +267,7 @@ BIS_EVO_Erec =
 
 defenceReady = true;
 
-systemChat "Defemce ready";
+systemChat "Defence ready";
 /*
 _ied = round(random BLA_EVO_IED);
 //adding IED nutters
