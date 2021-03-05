@@ -82,7 +82,6 @@ BIS_EVO_Erec =
 		_unit1 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
 		_unit2 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
 		_unit3 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
-		player setpos _respawnpoint;
 		[_unit1,_unit2,_unit3] join _grp;
 		{_x setSkill skillfactor+(random 0.4);_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _grp);
 		_vcl addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
@@ -150,7 +149,6 @@ BIS_EVO_Erec =
 		_mec = _mec-1; //##9,8,7,6,5,4,3,2,1,0
 		Sleep 0.6;
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
-		{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (crew _vec);
 		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
 	};
 
@@ -188,7 +186,6 @@ BIS_EVO_Erec =
 		[_grp] call BIS_EVO_FillInf;
 		_inf=_inf-12;
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
-			systemChat format ["Radio defence created, inf: %1",_inf];
 	};
 
 //Officer defence

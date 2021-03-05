@@ -79,7 +79,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		Sleep 0.2;
 		_unit = _guardr createUnit [(_allunits select round random (_max - 1)), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
 		Sleep 0.2;
-		_sumark = [_ural,"Ural","ColorBlack"] execVM "data\scripts\customMarker.sqf";
+		//_sumark = [_ural,"Ural","ColorBlack"] execVM "data\scripts\customMarker.sqf";
 		sleep 1;
 		[position _alist,_guardr,_objPos,_alist] call BIS_EVO_Erefway;
 		[_guardr, 1] setWaypointType "GETOUT";
@@ -246,7 +246,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 
 			_guardm = _array select 0;
 			_vec = _array select 1;
-			_sumark = [_vec,"Mec","ColorBlack"] execVM "data\scripts\customMarker.sqf";
+			//_sumark = [_vec,"Mec","ColorBlack"] execVM "data\scripts\customMarker.sqf";
 			[position _alist,_guardm,_objPos,_alist] call BIS_EVO_Erefway;
 			sleep 1;
 			[_guardm, 1] setWaypointCombatMode "RED";		
@@ -259,13 +259,12 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		}
 		else 
 		{
-			systemChat "No nearby reinforcement cities";
+			//systemChat "No nearby reinforcement cities";
 		};
 	};
 
 if ( (_curtownInf <= _basetownInf) and (reinforcements) ) then 
 {
-	systemChat "reinforcing infantry";
 	_tag = "INF";	
 	[] spawn BIS_EVO_mKamazOpen;
 
