@@ -600,13 +600,13 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	["UH60M_MEV_EP1",10],									// Blackhawk (MMG)
 	["CH_47F_EP1",10],							// Chinook
 	["BAF_Merlin_HC3_D",10],							// Chinook
-	["UH60M_EP1",10],							// Blackhawk (GAT)
-	["UH1Y",15],								// Viper
+	["UH60M_EP1",10],							// Blackhawk (GAT)						
 	["PRACS_AB212_CAS",30],									// Blackhawk (MMG)
 	["ibr_as350_armed",30],								// Viper
+	["UH1Y",50],
+	["kiowa",60],
 	["Mi171Sh_rockets_CZ_EP1",80],				// Mi-17 (Rockets)
 	["AW159_Lynx_BAF",80],						// Wildcat
-	["kiowa",80],
 	["PRACS_RAH6",100],							// Littlebird (Armed)	
 	["yup_SH60B",90],
 	["FRL_UH60M_MR",120],	
@@ -621,12 +621,12 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	["PRACS_Mirage3",140],								// F35
 	["F4M_Des",140],	
 	["PRACS_A4",160],								// F35
-	["PRACS_F16_PHSTRK",170],								// F35
-	["FRL_F16_D_MR",170],	
+	//["PRACS_F16_PHSTRK",170],								// F35
+	["FRL_F16_MR",170],	
 	["JS_JC_FA18E_USMC",170],	
 	["F35B",170],								// F35
-	["PRACS_F15",170],								// F35
-	["FRL_F15E_D_MR",170],	
+	//["PRACS_F15",170],								// F35
+	["FRL_F15C_MR",170],	
 	["FRL_A10_MR",170],								// A10 A7
 	//["A7",180],								// AV8B
 	["FRL_AV8B_MR",180],								// AV8B
@@ -783,12 +783,12 @@ BIS_EVO_unlockables = [
 	"RM70_ACR",
 	"GRAD_TK_EP1",
 	"EB_M1A3_TUSK_D",
-	"FRL_F15E_D_MR",
+	"FRL_F15C_MR",
 	"EB_M1A2_US_D",
 	"PRACS_LEO2A4",
 	"AH1Z",
 	"AH64D",
-	"FRL_F16_D_MR",
+	"FRL_F16_MR",
 	"F35B",
 	"FRL_F111_D_MR",
 	"b1b_MK82_desert",

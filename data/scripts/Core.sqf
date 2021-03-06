@@ -1152,7 +1152,7 @@ if (player hasWeapon "ItemRadio") then
 
 
 			//Vehicle is locked
-			if (stored == 0 and !(_item in BIS_EVO_unlocks)) then 
+			if ((stored == 0 and !(_item in BIS_EVO_unlocks)or editor == 1)) then 
 			{
 				if ((((money)) >= round mcost*EX_EVO_vehPriceMultiplier) or (editor == 1)) then 
 					{
