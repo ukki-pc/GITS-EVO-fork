@@ -19,7 +19,9 @@ BIS_EVO_VecR =
 	{
 		_getin = _vcl addEventHandler ["GetIn", {handle = [(_this select 0),(_this select 1)] execVM call BIS_EVO_Boarding}];
 		if(_getin > 1) then {_vcl removeEventHandler ["GetIn", _getin]};
-		if(_vcl isKindOf "Air") then
+
+		/*
+				if(_vcl isKindOf "Air") then
 		{
 			_warning = _vcl addEventHandler["IncomingMissile",{if ((_this select 1) in BIS_EVO_aaweapons) then 
 			{	
@@ -27,6 +29,15 @@ BIS_EVO_VecR =
 				publicVariable "BIS_EVO_mtar";
 			}}];
 		};
+		*/
+
+
+	
+			_warning = _vcl addEventHandler["IncomingMissile",{
+			
+				BIS_EVO_mtar = driver (_this select 0);
+				publicVariable "BIS_EVO_mtar";
+			}];
 	};
 	BIS_EVO_Frew = 
 	{

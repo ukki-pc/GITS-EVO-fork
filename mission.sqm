@@ -2644,8 +2644,8 @@ class Mission
 			timeoutMax=1;
 			age="UNKNOWN";
 			text="IncomingMissile";
-			expCond="not (isNull BIS_EVO_mtar) and (driver vehicle player) == BIS_EVO_mtar";
-			expActiv="['#FF0000',localize 'STR_M04t3_2',localize 'STR_M04t3_2'] call BIS_EVO_Message;BIS_EVO_mtar = objNull";
+			expCond="not (isNull BIS_EVO_mtar) and (BIS_EVO_mtar in vehicle player)";
+			expActiv="['#FF0000','WARNING!','Incoming projectile!'] call BIS_EVO_Message;BIS_EVO_mtar = objNull";
 			class Effects
 			{
 			};

@@ -49,11 +49,8 @@ aggressionEvaluation =
 		aggression = aggression - 10;
 		if(aggression < 0 ) then {aggression = 0};
 	};
-	publicVariable "aggression";
-	systemChat "call aggr";
 	_allPlayers = call BIS_fnc_listPlayers;
 	{["jed_aggr", [_x]] call CBA_fnc_whereLocalEvent;}foreach _allPlayers;
-
 };
 
 _count = (count BIS_EVO_MissionTowns);
@@ -144,6 +141,7 @@ while {BIS_EVO_MissionProgress != -1} do
 	[] call aggressionEvaluation;
 
 	BIS_EVO_conqueredTowns = BIS_EVO_conqueredTowns + [BIS_EVO_MissionTowns select BIS_EVO_MissionProgress];
+
 	publicVariable "BIS_EVO_conqueredTowns";
 	[] call updCityMarkers;
 	hint "Town captured";

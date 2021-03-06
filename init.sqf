@@ -560,7 +560,7 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 	["EB_M2A3_WH",50],
 	["BAF_FV510_W",55],							// Warrior
 	["PRACS_LEO2A4",52],							// T72M
-	["M1A1_US_DES_EP1",55],								// M1A1
+	//["M1A1_US_DES_EP1",55],								// M1A1
 	["EB_M1A2_US_D",65],						// M1A2
 	["M1A2_US_TUSK_MG_EP1",65],						// M1A2
 	["EB_M1A3_TUSK_D",75],						// M1A2
@@ -582,6 +582,8 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 	["PRACS_M245_TEL",170],								// MLRS
 	["PRACS_MLRS",180]								// MLRS
 	];
+
+BIS_EVO_unlocks = [];
 
 for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	buyTankList set [_loop,[(buyTankList select _loop) select 0, (buyTankList select _loop) select 1,0]];
@@ -626,7 +628,7 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	["PRACS_F15",170],								// F35
 	["FRL_F15E_D_MR",170],	
 	["FRL_A10_MR",170],								// A10 A7
-	["A7",180],								// AV8B
+	//["A7",180],								// AV8B
 	["FRL_AV8B_MR",180],								// AV8B
 	["3lb_f22_sdb",180],								// AV8B
 	["pook_EF2000_BAF_D_DEAD",185],								// AV8B
@@ -768,11 +770,31 @@ BIS_EVO_Objective9 = taskNull;
 BIS_EVO_Objective10 = taskNull;
 BIS_EVO_Objective11 = taskNull; // City 11
 BIS_EVO_Objective12 = taskNull; // 
+
 defenceReady = false; //Avoid certain events during objective population
 
 money = 10;
 aggression = 0;
 
+//List of vehicles that are unlocked through objective capture
+BIS_EVO_unlockables = [
+	"PRACS_MLRS",
+	"PRACS_M245_TEL",
+	"RM70_ACR",
+	"GRAD_TK_EP1",
+	"EB_M1A3_TUSK_D",
+	"M1A2_US_TUSK_MG_EP1",
+	"EB_M1A2_US_D",
+	"PRACS_LEO2A4",
+	"AH1Z",
+	"AH64D",
+	"FRL_F16_D_MR",
+	"F35B",
+	"FRL_F111_D_MR",
+	"b1b_MK82_desert",
+	"FRL_AV8B_MR",
+	"pook_EF2000_BAF_D_DEAD"
+];
 
 // Common function to lock vehicles.
 BIS_EVO_Lock =
@@ -1082,7 +1104,8 @@ if (isServer) then
 EGG_maxMissiles = 6;
 VehiclePlaced = 1;
 repaircooldown = 0;
-hitRegister = [];
+
+//hitRegister = [];
 
 EB_PLbombs = ["EB_Mk81_Launcher","EB_Mk82_Launcher","EB_Mk83_Launcher","EB_Mk84_Launcher","EB_Mk77_Launcher","EB_Mk770_Launcher","EB_BombLauncher_fab250","EB_BombLauncher_fab500","EB_CBU78B_Launcher","EB_CBU87B_Launcher","RKTR27Launcher","EB_R77_Launcher","EB_CBU89B_Launcher","EB_CBU100_Launcher","EB_GBU12_Launcher","EB_GBU16_Launcher","EB_GBU10_Launcher","EB_BombLauncher_kab250","EB_BombLauncher_kab500"];
 EB_PLmissiles = ["EB_AIM9M_Launcher","EB_AIM120_Launcher","EB_AIM9X_Launcher","EB_AIM7E_Launcher","EB_METEOR_Launcher","EB_AIM132_Launcher","EB_R60_Launcher","EB_R73_Launcher","EB_AT2_Launcher","EB_KH29D_Launcher","EB_KH29L_Launcher","EB_AGM65E_Launcher","EB_AGM114K_Launcher","EB_AGM88_Launcher"];
@@ -1188,7 +1211,8 @@ EGG_EVO_westveh10 = ["Stinger_Pod_US_EP1","ZU23_TK_GUE_EP1","Rbs70_ACR","HMMWV_A
 //Server side score addition
    ["jed_addscore", {(_this select 0) addScore (_this select 1)}] call CBA_fnc_addEventHandler;
 
-//Aggression update
+//Bandage init
+[player,0.2,0.15,3,true] execVM "data\scripts\cly_heal.sqf";
 
 //Client message
 ["jed_msg", {

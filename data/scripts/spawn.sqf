@@ -63,11 +63,6 @@ Sleep 0.2;
 0 setOvercast 0.0;
 0 setRain 0.0;
 
-
-
-
-
-
 _playertype = typeOf (vehicle player);
 Sleep 0.2;
 

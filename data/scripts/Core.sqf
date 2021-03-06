@@ -766,6 +766,12 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 					_displayName = getText(configFile >> "CfgVehicles" >> _name >> "displayName");
 					_salesString = format["[%1] %2 ",_stored,_displayName];
 					_index = lbAdd[2000, _salesString];
+
+					//Locked vehicles are red, otherwise white
+
+					if(_name in BIS_EVO_unlocks) then {
+					_index = lbSetColor [2000, _i, [1, 0, 0, 0.5]];
+					};
 					//_index = lbSetPicture [2000, _i, _pic];
 					_i = _i + 1;
 				};
@@ -782,6 +788,9 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 					_displayName = getText(configFile >> "CfgVehicles" >> _name >> "displayName");
 					_salesString = format["[%1] %2",_stored,_displayName];
 					_index = lbAdd[2000, _salesString];
+					if(_name in BIS_EVO_unlocks) then {
+					_index = lbSetColor [2000, _i, [1, 0, 0, 0.5]];
+					};
 					_i = _i + 1;
 				};
 			};
@@ -798,6 +807,9 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 					_displayName = getText(configFile >> "CfgVehicles" >> _name >> "displayName");
 					_salesString = format["[%1] %2",_stored,_displayName];
 					_index = lbAdd[2000, _salesString];
+					if(_name in BIS_EVO_unlocks) then {
+					_index = lbSetColor [2000, _i, [1, 0, 0, 0.5]];
+					};
 					_i = _i + 1;
 				};
 			};
@@ -813,6 +825,9 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 					_displayName = getText(configFile >> "CfgVehicles" >> _name >> "displayName");
 					_salesString = format["[%1] %2",_stored,_displayName];
 					_index = lbAdd[2000, _salesString];
+					if(_name in BIS_EVO_unlocks) then {
+					_index = lbSetColor [2000, _i, [1, 0, 0, 0.5]];
+					};
 					_i = _i + 1;
 				};
 			};
@@ -828,6 +843,9 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 						_displayName = getText(configFile >> "CfgVehicles" >> _name >> "displayName");
 						_salesString = format["[%1] %2",_stored,_displayName];
 						_index = lbAdd[2000, _salesString];
+					if(_name in BIS_EVO_unlocks) then {
+					_index = lbSetColor [2000, _i, [1, 0, 0, 0.5]];
+					};
 						_i = _i + 1;
 					};
 				
@@ -1134,9 +1152,9 @@ if (player hasWeapon "ItemRadio") then
 
 
 			//Vehicle is locked
-			if (stored == 0) then 
+			if (stored == 0 and !(_item in BIS_EVO_unlocks)) then 
 			{
-				if ((((score _ap)) >= round mcost*EX_EVO_vehPriceMultiplier) or (editor == 1)) then 
+				if ((((money)) >= round mcost*EX_EVO_vehPriceMultiplier) or (editor == 1)) then 
 					{
 								if(inrepairzone) then 
 									{
@@ -1172,10 +1190,10 @@ if (player hasWeapon "ItemRadio") then
 								// lbSetPicture [2000, _index, _pic];
 								ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",0]];//Cost
 								ctrlSetText [2011,format["You bought: %1",getText(configFile >> "CfgVehicles" >> _item >> "displayName")]];
-								["jed_addscore", [_ap, ( round -(mcost*EX_EVO_vehPriceMultiplier))]] call CBA_fnc_globalEvent;
+								["jed_addMoney", [_ap, ( round -(mcost*EX_EVO_vehPriceMultiplier))]] call CBA_fnc_whereLocalEvent;
 								pointsSpent = pointsSpent +  round (mcost*EX_EVO_vehPriceMultiplier);
 								//player addscore round -(mcost*EX_EVO_vehPriceMultiplier);
-								ctrlSetText [2003,Format ["%1: %2",localize "STR_M04t134",(score _ap)]];//Score
+								ctrlSetText [2003,Format ["%1: %2",localize "STR_M04t134",(money)]];//Score
 								[] call BIS_EVO_ListUpdate;
 								closeDialog 1;
 					}

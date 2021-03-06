@@ -30,9 +30,10 @@ if(EGG_EVO_LoadGame == 0) then
 
 		_clean = [] call cleanUpGenerator;
 };
-
+/*
 // Main vehicle init
 sleep 2.0;
+
 {
 	_type = TypeOf _x;
 	switch (_type) do
@@ -42,7 +43,7 @@ sleep 2.0;
 		
 //modded desert BAF
 //
-/*
+
 
 NEW
 "EB_ArmoredSUV_Gau19"
@@ -285,7 +286,7 @@ NEW
 "pook_brdm2HQ_PMCWest"
 "pook_brdm2PKM_UNO"
 "pook_brdm2AA_UNO"
-*/
+
 
 		case "Dingo_GL_DST_ACR":
 		{
@@ -2418,12 +2419,11 @@ NEW
 		{
 			_unit = [_x,2,600] spawn {[_this select 0,_this select 1,_this select 2] call BIS_EVO_VecRm};
 		};
-/*
+
 		 case "AAVAmbul":
 		{
 			_unit = [_x,1,600] spawn {[_this select 0,_this select 1,_this select 2] call BIS_EVO_VecRm};
 		};
-*/
 		case "MTVR":
 		{
 			_unit = [_x,2,600] spawn {[_this select 0,_this select 1,_this select 2] call BIS_EVO_VecRm};
@@ -2780,7 +2780,7 @@ NEW
 			_unit = [_x,_type,"Motorcycle",position _x] spawn {[_this select 0,_this select 1,_this select 2,_this select 3] call BIS_EVO_VecR};
 			};
 		};
-*/
+
 		case "M2HD_mini_TriPod":
 		{
 			if(Param1 == 7) then {deletevehicle _x} else {
@@ -3251,14 +3251,14 @@ NEW
 			_unit = [_x,_type,"Ambulance",position _x] spawn {[_this select 0,_this select 1,_this select 2,_this select 3] call BIS_EVO_VecR};
 			};
 		};
-/*
+
 		case "LandRover_Ambulance_Des_ACR":
 		{
 			if(Param1 == 7) then {deletevehicle _x} else {
 			_unit = [_x,_type,"Ambulance",position _x] spawn {[_this select 0,_this select 1,_this select 2,_this select 3] call BIS_EVO_VecR};
 			};
 		};
-*/
+
 		case "LandRover_Ambulance_ACR":
 		{
 			if(Param1 == 7) then {deletevehicle _x} else {
@@ -3274,4 +3274,5 @@ NEW
 	
 } forEach list BIS_EVO_ALL;
 deletevehicle BIS_EVO_ALL;
+*/
 
