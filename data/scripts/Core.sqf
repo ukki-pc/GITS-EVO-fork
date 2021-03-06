@@ -657,7 +657,6 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 				};
 				case 2:
 				{
-					_index = lbAdd [2000, "Remove weapons"];
 					//while {_i < count EB_turrets} do 
 					for [{_i=0}, {_i< count EB_turrets}, {_i=_i+1}] do
 					{
@@ -677,8 +676,6 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 				};
 				case 3:
 				{
-					
-					_index = lbAdd [2000, "Remove weapons"];
 					for [{_i=0}, {_i< count EGG_missiles}, {_i=_i+1}] do
 					{
 						_class = EGG_missiles select _i;
@@ -1156,7 +1153,7 @@ if (player hasWeapon "ItemRadio") then
 			{
 				if ((((money)) >= round mcost*EX_EVO_vehPriceMultiplier) or (editor == 1)) then 
 					{
-								if(inrepairzone) then 
+								if(inrepairzone and VehiclePlaced == 1) then 
 									{
 									_place = [_ap, _item] execVM "actions\static\makeVehicle.sqf";
 									}
@@ -1238,32 +1235,25 @@ if (player hasWeapon "ItemRadio") then
 	{
 		if (vehicle player isKindOf  "Air") then 
 		{
-			if(_index == 0 && _vecSubPage != 1) then 
+			switch (_vecSubPage) do 
 			{
-				execVM "data\scripts\EB_removeWeapons.sqf";
-			} 
-			else
-			{
-				switch (_vecSubPage) do 
+				case 2:
 				{
-					case 2:
-					{
-					_class = EB_turrets select _index -1;
+				_class = EB_turrets select _index;
+				_magazineArray = getArray (configFile >> "CfgWeapons" >> _class >> "magazines");
+				_armament = _magazinearray select 0;
+				[_class] call armTurret;
+				};
+				case 3:
+				{
+					_class = EGG_missiles select _index;
 					_magazineArray = getArray (configFile >> "CfgWeapons" >> _class >> "magazines");
 					_armament = _magazinearray select 0;
-					[_class] call armTurret;
-					};
-					case 3:
-					{
-						_class = EGG_missiles select _index - 1;
-						_magazineArray = getArray (configFile >> "CfgWeapons" >> _class >> "magazines");
-						_armament = _magazinearray select 0;
-						[_armament, _class, _index2] call armWeapon;
-					};
-					case 1:
-					{
-					[_index+1] execVM "actions\EB_newReArm.sqf";
-					};
+					[_armament, _class, _index2] call armWeapon;
+				};
+				case 1:
+				{
+				[_index] execVM "actions\EB_newReArm.sqf";
 				};
 			};
 		};

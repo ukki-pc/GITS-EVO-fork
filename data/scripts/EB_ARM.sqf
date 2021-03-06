@@ -70,6 +70,7 @@ armWeapon = {
 
 			//Find the original weapon slot
 			_ogMag = _mags select _weaponSlot;
+			_ammoCount = ((_vec) ammo (weapons (_vec) select _weaponSlot));
 			_ogMag = toUpper _ogMag;
 			//systemChat format ["Selected: %1",_ogMag];
 			_find = -1;
@@ -86,8 +87,6 @@ armWeapon = {
 			 	_ogMi set [_forEachIndex, toUpper (_ogmi select _forEachIndex)];
 			 } forEach _ogMi;
 
-			
-
 			if(_ogMag in _ogMi) then {_found = _i};
 			};
 
@@ -98,16 +97,44 @@ armWeapon = {
 			{_vec removeweapon _x}forEach weapons _vec;
 			_ogWep = _weps select _found;
 
+
 			 _weps	set [_found, _weaponSystem];
 			 _magazineArray = getArray (configFile >> "CfgWeapons" >> _weaponSystem >> "magazines");
 
-			 _mag = _magazineArray select 1;
+			 _mag = _magazineArray select _ammoCount-1;
+
+			 //Exceptions
+			 switch (_weaponSystem) do {
+				  case 'EB_AIM120_Launcher': {_mag = _magazineArray select _ammoCount;};
+				  case 'EB_METEOR_Launcher': {_mag = _magazineArray select _ammoCount;};
+					case 'EB_Mk83_Launcher': {_mag = _magazineArray select _ammoCount;};
+					case 'EB_Mk770_Launcher': {_mag = _magazineArray select _ammoCount;};
+				case 'EB_GBU12_Launcher': {_mag = _magazineArray select _ammoCount;};
+			case 'EB_GBU12_Launcher': {_mag = _magazineArray select _ammoCount;};
+			case 'EB_BombLauncher_kab500': {_mag = _magazineArray select _ammoCount;};
+			case 'GLT_AM39_Launcher': {if(_ammoCount > 2) then {_ammoCount = 2;};_mag = _magazineArray select _ammoCount-1;};
+			case 'GLT_GBU24_Launcher': {_mag = _magazineArray select 0; if(_ammoCount == 4) then {_mag = _magazineArray select 1;};if(_ammoCount == 6) then {_mag = _magazineArray select 2;};};
+			case 'GLT_GBU53_Launcher': {_mag = _magazineArray select 0; if(_ammoCount == 4) then {_mag = _magazineArray select 1;};if(_ammoCount == 6) then {_mag = _magazineArray select 2;};};
+			case 'GLT_GBU39_Launcher': {if(_ammoCount == 4) then {_mag = _magazineArray select 0;}; if(_ammoCount != 4)exitWith{hint "Needs 4 ammo slot";}};
+			case 'GLT_KAB1500_Launcher': {if(_ammoCount == 2) then {_mag = _magazineArray select 1;}; if(_ammoCount == 4) then {_mag = _magazineArray select 2;};  if(_ammoCount != 2 and _ammoCount != 4)exitWith{hint "Needs 2 or 4 ammo slot";}};
+			case 'GLT_AGM154A_Launcher': {if(_ammoCount == 2) then {_mag = _magazineArray select 1;}; if(_ammoCount == 4) then {_mag = _magazineArray select 2;};  if(_ammoCount != 2 and _ammoCount != 4)exitWith{hint "Needs 2 or 4 ammo slot";}};
+			case 'GLT_AGM154A1_Launcher': {if(_ammoCount == 2) then {_mag = _magazineArray select 1;}; if(_ammoCount == 4) then {_mag = _magazineArray select 2;};  if(_ammoCount != 2 and _ammoCount != 4)exitWith{hint "Needs 2 or 4 ammo slot";}};
+		
+			
+			};
+
 			 _mags	set [_weaponSlot, _mag];
 			 
 
 			{_vec addMagazine _x}forEach _mags;
 			{_vec addWeapon _x}forEach _weps;
 			_vec selectWeapon (_weps select _weaponSlot);
+
+		_magaziinis =	getArray(configFile >> "CfgWeapons" >> (currentWeapon vehicle player) >> "magazines");
+		hint str _magaziinis;
+		_weaponz = currentWeapon vehicle player;
+		_txt = format ["%2,%1",_magaziinis,_weaponz];
+		copyToClipboard  _weaponz;
 
 				if(_magCount < _maxAmmo) then 
 				{

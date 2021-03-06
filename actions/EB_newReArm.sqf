@@ -7047,11 +7047,16 @@ if (_i < 1000) then
 
 	};
   };
+
+  if(count weapons vehicle player == 0) exitWith {{_vec addWeapon _x} forEach _weapons;{_vec addMagazine _x} forEach _magazines; _vec selectWeapon (_weapons select 1); hint "No Loadouts found";};
+
   _vec addMagazine "120Rnd_CMFlare_Chaff_Magazine";
 _vec addweapon "CMFlareLauncher";
 player selectWeapon "CMFlareLauncher";
 _muzzles = getArray(configFile>>"cfgWeapons" >> "CMFlareLauncher" >> "muzzles");
 player selectWeapon (_muzzles select 0);
+
+
 };
 
 /*
