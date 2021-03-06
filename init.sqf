@@ -562,7 +562,7 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 	["PRACS_LEO2A4",52],							// T72M
 	//["M1A1_US_DES_EP1",55],								// M1A1
 	["EB_M1A2_US_D",65],						// M1A2
-	["M1A2_US_TUSK_MG_EP1",65],						// M1A2
+	//["M1A2_US_TUSK_MG_EP1",65],						// M1A2
 	["EB_M1A3_TUSK_D",75],						// M1A2
 	/*---AA---*/
 	["PRACS_Sa6",30],						// M1A2
@@ -783,7 +783,7 @@ BIS_EVO_unlockables = [
 	"RM70_ACR",
 	"GRAD_TK_EP1",
 	"EB_M1A3_TUSK_D",
-	"M1A2_US_TUSK_MG_EP1",
+	"FRL_F15E_D_MR",
 	"EB_M1A2_US_D",
 	"PRACS_LEO2A4",
 	"AH1Z",
@@ -1444,7 +1444,15 @@ LDL_inGameActions =
 	true  //3: LDL-Systems: AC130 Pilot and AC130 Co-Pilot have the ability to start coop script (Multiplayer)
 ];
 //############################################################
+if(EGG_EVO_LoadGame == 0) then 
+{
+    _allPlayers = call BIS_fnc_listPlayers;
+    {["jed_addscore", [_x, 10]] call CBA_fnc_globalEvent}forEach _allPlayers;
+    _handle = [] execVM "data\scripts\distrUnlockables.sqf";
+};
+_events = [] execVM "data\scripts\CityMarkers.sqf";
 waitUntil{gameBegin == 1};
+publicVariable "gameBegin";
 
 EGG_sinit =1; publicVariable "EGG_sinit";
 

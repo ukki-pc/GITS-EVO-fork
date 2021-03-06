@@ -1,6 +1,6 @@
 // main server init
 //_base = [] execvm "data\scripts\EVO_makebase.sqf"; // Creates the main west base
-_handle = [] execVM "data\scripts\distrUnlockables.sqf";
+
 _events = [] execVM "data\scripts\EVO_VecR.sqf"; // Vehicle respawn for non-respawning military vehicles
 _events = [] execVM "data\scripts\EVO_VecRm.sqf";// Vehicle respawn for respawning military vehicles
 _events = [] execVM "data\scripts\EVO_VecRc.sqf";// Vehicle respawn for respawning civilian vehicles
@@ -38,11 +38,7 @@ wcam = hq addAction ["Start assault", "data\scripts\pickCity.sqf", [], -1, false
  _handle = [] execVM "data\scripts\makehip.sqf";
  //_handle = [] execVM "data\scripts\makeShip.sqf";
 
-_allPlayers = call BIS_fnc_listPlayers;
-if(EGG_EVO_LoadGame == 0) then 
-{
-    {["jed_addscore", [_x, 10]] call CBA_fnc_globalEvent}forEach _allPlayers;
-};
+
 if(editor == 1) then {
 systemChat "sinit done";
 };

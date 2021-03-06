@@ -82,15 +82,21 @@ updCityMarkers =
 		{
 			if(BIS_EVO_MissionTowns select _forEachIndex in BIS_EVO_MissionBigTowns) then 
 			{
+				_objInd =	BIS_EVO_MissionBigTowns  find (BIS_EVO_MissionTowns select _forEachIndex);
+				_vec = BIS_EVO_unlocks select _objInd;
+				_dispname = getText (configFile >> "cfgVehicles" >> _vec >> "displayName");
 				_markerobj setMarkerType  "Depot";
 				_markerobj setMarkerColor "ColorRed";
-			//	_markerobj setMarkerText "Enemy Big City";
+				_markerobj setMarkerText _dispname;
 			};
 			if(BIS_EVO_MissionTowns select _forEachIndex in BIS_EVO_MilitaryObjectives) then 
 			{
+				_objInd =	BIS_EVO_MilitaryObjectives  find (BIS_EVO_MissionTowns select _forEachIndex);
+				_vec = BIS_EVO_unlocks select _objInd;
+				_dispname = getText (configFile >> "cfgVehicles" >> _vec >> "displayName");
 				_markerobj setMarkerType  "City";
 				_markerobj setMarkerColor "ColorRed";
-			//	_markerobj setMarkerText "Enemy Big City";
+				_markerobj setMarkerText _dispname;
 			};
 		}
 		//BIS_EVO_MilitaryObjectives
@@ -105,7 +111,7 @@ updCityMarkers =
 	else 
 	{
 		_markerobj setMarkerColor "ColorGreen";
-		_markerobj setMarkerText "Friendly Objective";
+		_markerobj setMarkerType  "Strongpoint";
 
 		if(BIS_EVO_MissionTowns select _forEachIndex in BIS_EVO_MissionBigTowns)
 		then 

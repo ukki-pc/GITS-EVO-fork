@@ -4,6 +4,7 @@ _airArray = _this select 2;
 _statArray = _this select 3;
 _playerValues = _this select 4;
 _missionProgress = _this select 5;
+BIS_EVO_unlocks = _this select 6;
 
 sleep 0.3;
 //Start adding vehicles into array

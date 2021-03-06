@@ -14,9 +14,9 @@ if ( scriptDone _ScriptHandle ) then {
 	
 	_ScriptHandle = [_TargetRange, _OnlyDoLeaders, _KnownValue] spawn F_ShowEnemiesProcess;
     missionNamespace setVariable ["HCExtShowEnemiesProcess", _ScriptHandle];
-    hintSilent "Show Enemies Process started.";
+   // hintSilent "Show Enemies Process started.";
 } else {
-	hintSilent "Show Enemies Process already running.";
+	//hintSilent "Show Enemies Process already running.";
 };
 
 nil;
