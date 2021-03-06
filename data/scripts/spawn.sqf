@@ -112,11 +112,21 @@ if (_playerh < 1500) then
 {
 	(FindDisplay 46) DisplaySetEventHandler ["keydown","if ((_this select 1) In actionKeys ""TeamSwitch"") then {a = createDialog 'evoUI'}"];
 };
-
 disableUserInput false;
 //Update money
 sleep 8;
-cutRsc ["DollarTitle","PLAIN"];
+1 cutRsc ["DollarTitle","PLAIN"];
 (uiNameSpace getVariable "myUI_DollarTitle") ctrlSetText format ["$%1",money];
+2 cutRsc ["AggressionTitle","PLAIN"];
+(uiNameSpace getVariable "myUI_AggressionTitle") ctrlSetText format ["%2%1","%",aggression];
+
+/*
+disableSerialization;
+_display = uiNamespace getVariable "aggressionTitle";
+_ctrl = _display displayCtrl 102;
+_color = [1,0,0,1]; //Red
+_ctrl ctrlSetTextColor _color;
+*/
+
 //debug only!
 //if (score player == 0)  then {player addscore 1000};

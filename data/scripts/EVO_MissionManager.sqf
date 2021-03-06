@@ -31,6 +31,31 @@ reinforcementLoop =
 
 };
 
+//Increases aggression level
+aggressionEvaluation = 
+{
+	if(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress in BIS_EVO_MissionVillages) then 
+	{
+		aggression = aggression + 5;
+		if(aggression > 100 ) then {aggression = 100};
+	};
+	if(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress in BIS_EVO_MissionBigTowns) then 
+	{
+		aggression = aggression + 15;
+		if(aggression > 100 ) then {aggression = 100};
+	};
+	if(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress in BIS_EVO_MilitaryObjectives) then 
+	{
+		aggression = aggression - 10;
+		if(aggression < 0 ) then {aggression = 0};
+	};
+	publicVariable "aggression";
+	systemChat "call aggr";
+	_allPlayers = call BIS_fnc_listPlayers;
+	{["jed_aggr", [_x]] call CBA_fnc_whereLocalEvent;}foreach _allPlayers;
+
+};
+
 _count = (count BIS_EVO_MissionTowns);
 
 Sleep 2.0;
@@ -49,7 +74,6 @@ while {BIS_EVO_MissionProgress != -1} do
 	{
 		radio1 setPos _pos;
 		radio1 setPos [(getpos radio1 select 0) + 200 - random(200),(getpos radio1 select 1) + 200 - random(200), 0];
-
 
 		[_mkr,BIS_EVO_DetectEnemy,BIS_EVO_DetectFriendly,BIS_EVO_MissionProgress] call BIS_EVO_Erec;
 		
@@ -116,6 +140,8 @@ while {BIS_EVO_MissionProgress != -1} do
 	{deleteVehicle _x }  forEach alldead;
 	sleep 2;
 	{_x addscore 10} forEach list BIS_EVO_DetectFriendly;
+
+	[] call aggressionEvaluation;
 
 	BIS_EVO_conqueredTowns = BIS_EVO_conqueredTowns + [BIS_EVO_MissionTowns select BIS_EVO_MissionProgress];
 	publicVariable "BIS_EVO_conqueredTowns";

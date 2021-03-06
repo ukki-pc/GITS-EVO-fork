@@ -462,7 +462,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={15414.069,0.75992298,5001.7866};
+					position[]={15411.745,0.22786361,5002.877};
 					azimut=49.416401;
 					id=68;
 					side="EAST";
@@ -470,6 +470,7 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="enge1";
+					init="this setPosASL[getpos this select 0,getpos this select 1, 18];";
 				};
 			};
 		};
@@ -887,14 +888,14 @@ class Mission
 		};
 		class Item20
 		{
-			position[]={9474.1143,139.98311,10107.4};
-			azimut=130.92517;
+			position[]={15414.123,17.936111,5010.5625};
+			azimut=130.925;
 			id=20;
 			side="EMPTY";
 			vehicle="Misc_Backpackheap_EP1";
 			skill=0.60000002;
 			text="Backpacks";
-			init="this allowDamage false";
+			init="this allowDamage false; this setPosASL[getpos this select 0,getpos this select 1, 18];";
 		};
 		class Item21
 		{

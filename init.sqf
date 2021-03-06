@@ -771,6 +771,7 @@ BIS_EVO_Objective12 = taskNull; //
 defenceReady = false; //Avoid certain events during objective population
 
 money = 10;
+aggression = 0;
 
 
 // Common function to lock vehicles.
@@ -1187,6 +1188,8 @@ EGG_EVO_westveh10 = ["Stinger_Pod_US_EP1","ZU23_TK_GUE_EP1","Rbs70_ACR","HMMWV_A
 //Server side score addition
    ["jed_addscore", {(_this select 0) addScore (_this select 1)}] call CBA_fnc_addEventHandler;
 
+//Aggression update
+
 //Client message
 ["jed_msg", {
 	_player = _this select 0;
@@ -1226,6 +1229,15 @@ EGG_EVO_westveh10 = ["Stinger_Pod_US_EP1","ZU23_TK_GUE_EP1","Rbs70_ACR","HMMWV_A
 				bank set [_count,[_player,money]];
 				publicVariableServer "bank";
 			};
+}] call CBA_fnc_addLocalEventHandler;
+
+["jed_aggr", {
+	_player = _this select 0;
+	if(name _player == name player) then 
+	{
+		(uiNameSpace getVariable "myUI_AggressionTitle") ctrlSetText format ["%2%1","%",aggression];
+	};
+		systemChat "aggrCalled";
 }] call CBA_fnc_addLocalEventHandler;
 
 //////////////////////////////////

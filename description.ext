@@ -406,27 +406,27 @@ class RscTitles
                        }; 
                }; 
        }; 
-       class LevelTitle 
+       class aggressionTitle 
        { 
            idd = 1556; 
            duration = 999999;
-           onLoad = "uiNameSpace setVariable ['myUI_LevelTitle', (_this select 0) displayCtrl 102];";
+           onLoad = "uiNameSpace setVariable ['myUI_aggressionTitle', (_this select 0) displayCtrl 102];";
            class controls 
            { 
-                   class LevelControl 
+                   class AgressionControl 
                    { 
                            idc = 102; 
-                           type = 0; 
-                           style = 2; 
-                           x =  safeZoneX + safeZoneW - 0.4 * 3 / 4; 
-                           y = safeZoneY + safeZoneH - 0.1; 
-                           w = 0.2; 
-                           h = 0.2 * 3 / 4; 
-                           font = "EtelkaNarrowMediumPro"; 
-                           sizeEX = 0.03; 
+                           type = VSoft; 
+                           style = 0; 
+                           x =  safeZoneX + safeZoneW - 0.2 * 3 / 4; 
+                           y = safeZoneY + safeZoneH - 0.2; 
+          					w = 0.5;
+							h = 0.09;
+                           font = "Bitstream"; 
+                           sizeEX = 0.09; 
                            colorBackground[] = {0,0,0,0}; 
-                           colorText[] = {0,0,1,1}; 
-                           text = "LVL"; 
+                           colorText[] = {1,0.6,0.3,1}; 
+                           text = "%"; 
                        }; 
                }; 
        }; 

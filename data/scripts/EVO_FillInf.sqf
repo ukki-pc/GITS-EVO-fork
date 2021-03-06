@@ -1,3 +1,4 @@
+//Populates squads with infantry
 BIS_EVO_FillInf = 
 {
 	_grp = _this select 0;
