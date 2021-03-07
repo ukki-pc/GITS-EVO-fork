@@ -15,8 +15,9 @@ BIS_EVO_DetectFriendly setTriggerTimeout [2, 2, 2, true ];
 
 BIS_EVO_MainObjective = createMarkerLocal ["MainObj", getMarkerPos _mkr];
 BIS_EVO_MainObjective setMarkerColorLocal "ColorBlack";
+BIS_EVO_MainObjective setMarkerAlpha 0.2;
 BIS_EVO_MainObjective setMarkerShapeLocal "ELLIPSE";
-BIS_EVO_MainObjective setMarkerSizeLocal [500, 500];
+BIS_EVO_MainObjective setMarkerSizeLocal [reinforceRange, reinforceRange];
 
 reinforcementLoop = 
 {

@@ -7,11 +7,12 @@ BIS_EVO_Erec =
 	_inf = 0; 
 	_mec = 0; 
 	_stat = 0; 
+	_statAA = 0;
 	_radio = objNull; 
 	_inf = round(BIS_EVO_InfantrySpawn/1.5);
 	_mec = round(BIS_EVO_MechanizedSpawn);
-	_stat = round((BIS_EVO_MechanizedSpawn)/2);
-	systemChat str _inf;
+	_statAA = round((BIS_EVO_MechanizedSpawn)/2);
+	_stat = round((BIS_EVO_MechanizedSpawn)/3);
 	_radio = radio1;
 	_newunits = [];
 	_rds = [];
@@ -49,6 +50,8 @@ BIS_EVO_Erec =
 	};
 
 	_outpoints = [_pos1,_pos2,_pos3,_pos4];	
+
+	systemChat format ["Creating defense with %1: inf, %2: mec, %3: aastat, %4: stat", _inf,_mec,_statAA,_stat];
 
 //Officer
 	_type = EGG_EVO_meofficer select 0;
@@ -152,17 +155,31 @@ BIS_EVO_Erec =
 		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
 	};
 
-// Static Guns
+// Static AA
 	_i=0;
-	while {_stat > 0} do 
+	while {_statAA > 0} do 
 	{
-//added mortar etc
-		_allvecs = EGG_EVO_statAA;
+		_allvecs = EGG_EVO_statEnemyAA;
 		_max = (count _allvecs)-1;
 		_array = [_allvecs select (round random _max),_pos,(EGG_EVO_ENEMYFACTION),200,180,0] call BIS_EVO_CreateVehicle;
 		_grp = _array select 0;
-		_vec = _array select 0;
-		_vec addEventHandler ["Fired", {handle = [_this select 0,"INF",_this select 1] execVM "data\scripts\mobjbury.sqf"}];
+		_vec = _array select 1;
+		_vec addEventHandler ["Fired", {handle = [_this select 0] execVM "data\scripts\xtraAmmo.sqf"}];
+		{_x addEventHandler  ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _grp);
+		{_x setSkill skillfactor+(random 0.2);_x setDir 180} forEach (units _grp);
+		{_x setBehaviour "combat"} forEach (units _grp);
+		_statAA = _statAA-1; //##4,3,2,1,0
+		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
+		Sleep 0.6;
+	};
+
+		while {_stat > 0} do 
+	{
+		_allvecs = EGG_EVO_statEnemy;
+		_max = (count _allvecs)-1;
+		_array = [_allvecs select (round random _max),_pos,(EGG_EVO_ENEMYFACTION),200,180,0] call BIS_EVO_CreateVehicle;
+		_grp = _array select 0;
+		_vec = _array select 1;
 		{_x addEventHandler  ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _grp);
 		{_x setSkill skillfactor+(random 0.2);_x setDir 180} forEach (units _grp);
 		{_x setBehaviour "combat"} forEach (units _grp);
@@ -263,10 +280,10 @@ BIS_EVO_Erec =
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
 	};
 
-
+				systemChat "All created";
 defenceReady = true;
 
-systemChat "Defence ready";
+
 /*
 _ied = round(random BLA_EVO_IED);
 //adding IED nutters

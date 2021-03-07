@@ -19,7 +19,7 @@
 	{
 			for "_i" from 1 to 5 do
 			{
-				_obj = engw1;
+				_obj = player;
 				_obj = [] call compile format ["engw%1",_i];
 				_marker =_markerw select (_i - 1);
 				if (alive _obj) then

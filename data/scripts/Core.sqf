@@ -200,6 +200,36 @@ BIS_EVO_ListUpdate =
 		};
 		_txtmessage
 	};
+	_GetMyGuns =
+	{
+		_player = _this select 0;;
+		_name = "";
+		_array = weapons _player;
+		_count = count _array;
+		_txtmessage = format ["%1:",localize "STR_M04t100"];
+		_i=0;
+		while {_i < _count} do 
+		{
+			_name = getText (configFile >> "CfgWeapons" >> (_array select _i) >> "displayName");
+			if(_name != "throw" and _name != "put") then 
+			{
+				if(_i == _count-3) then 
+				{
+					_txtmessage = format["%1 and %2.",_txtmessage,_name];
+				};
+				if(_i == 0) then 
+				{
+					_txtmessage = format["%1 %2",_txtmessage,_name];
+				};
+				if(_i != _count-3 and _i != 0) then
+				{
+					_txtmessage = format["%1 %2",_txtmessage,_name];
+				};
+			};
+			_i = _i+1;
+		};
+		_txtmessage
+	};
 
 	//-----------------------------------------------------------------
 
@@ -390,11 +420,13 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 "US_Soldier_HAT_EP1"
 */
 
+	//TÄÄ SEO
 	if (helpersparam == 2) then 
 	{
 		RecList = [];
 		RecList = [[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_EP1" >> "DisplayName"), "US_Delta_Force_EP1", "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", ["US_Delta_Force_EP1"] call _GetGuns]];
-		RecList = [[getText (configFile >> "CfgVehicles" >> "US_Soldier_Crew_EP1" >> "DisplayName"), "US_Soldier_Crew_EP1", "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", ["US_Soldier_Crew_EP1"] call _GetGuns]];
+		RecList = RecList+ [[getText (configFile >> "CfgVehicles" >> "US_Soldier_Crew_EP1" >> "DisplayName"), "US_Soldier_Crew_EP1", "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", ["US_Soldier_Crew_EP1"] call _GetGuns]];
+		RecList = RecList +[["Copy me","ME", "\Ca\characters\data\Ico\i_med_ca.paa",[player] call _GetMyGuns]];
 		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_Medic_EP1" >> "DisplayName"), "US_Delta_Force_Medic_EP1", "\Ca\characters\data\Ico\i_med_ca.paa",["US_Delta_Force_Medic_EP1"] call _GetGuns]];
 		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_AT_EP1" >> "DisplayName"), "US_Soldier_AT_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa", ["US_Soldier_AT_EP1"] call _GetGuns]];
 		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_Pilot_EP1" >> "DisplayName"), "US_Soldier_Pilot_EP1", "\Ca\characters\data\portraits\combarhead_usmc_pilot_ca",["US_Soldier_Pilot_EP1"] call _GetGuns]];
@@ -941,7 +973,8 @@ BIS_EVO_ActButton =
 			if (score player < BIS_EVO_rank6-pointsSpent and helpersparam != 2 and _ainum >= 6) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
 			if (score player >= BIS_EVO_rank6-pointsSpent and helpersparam != 2 and _ainum >= 7) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
 			if (helpersparam == 2 and _ainum >= 8) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			_rec = [_item] execVM "data\scripts\recruit.sqf";
+			if(_item != "ME") then {_rec = [_item] execVM "data\scripts\recruit.sqf";}
+			else {_rec = [_item] execVM "data\scripts\recruitMe.sqf";};
 //		};
 	};   
 
@@ -1224,9 +1257,8 @@ if (player hasWeapon "ItemRadio") then
 	//	perkList set [_index,[_curLevel,[((perkList select _index) select _curLevel) select 0,( (perkList select _index) select _curLevel) select 1,TRUE,((perkList select _index) select _curLevel)select 3]]];
 		_perks = (perkList select _index);
 		_perks set [_curLevel,[(_perks select _curLevel) select 0,(_perks select _curLevel) select 1,true]];
-				//_asd = [_index] call setPerkLevel;
+		_asd = [_index] call setPerkLevel;
 		perkList set [_index,_perks];
-		//[] call BIS_EVO_PerkUpdate;
 		[] call BIS_EVO_ListUpdate;
 
 		};

@@ -85,21 +85,16 @@ repaircooldown = 0;
  					case 1:
  					{
 
- 						_tempMissiles = _tempMissiles +  ["EB_AIM9M_Launcher","EB_AIM120_Launcher","EB_AIM9X_Launcher","EB_AIM7E_Launcher","EB_METEOR_Launcher","EB_AIM132_Launcher","EB_R60_Launcher","EB_R73_Launcher","EB_AT2_Launcher","EB_KH29D_Launcher","EB_KH29L_Launcher","EB_AGM65E_Launcher","EB_AGM114K_Launcher","EB_AGM88_Launcher"];
- 						EGG_maxMissiles = 9;
  					};
  					case 2:
  					{	
- 						_tempMissiles = _tempMissiles +  ["EB_AIM9M_Launcher","EB_AIM120_Launcher","EB_AIM9X_Launcher","EB_AIM7E_Launcher","EB_METEOR_Launcher","EB_AIM132_Launcher","EB_R60_Launcher","EB_R73_Launcher","EB_AT2_Launcher","EB_KH29D_Launcher","EB_KH29L_Launcher","EB_AGM65E_Launcher","EB_AGM114K_Launcher","EB_AGM88_Launcher"];
- 						EGG_maxMissiles = 12;
+
  					};
  					case 3:
  					{
- 						_tempMissiles = _tempMissiles +  ["EB_AIM9M_Launcher","EB_AIM120_Launcher","EB_AIM9X_Launcher","EB_AIM7E_Launcher","EB_METEOR_Launcher","EB_AIM132_Launcher","EB_R60_Launcher","EB_R73_Launcher","EB_AT2_Launcher","EB_KH29D_Launcher","EB_KH29L_Launcher","EB_AGM65E_Launcher","EB_AGM114K_Launcher","EB_AGM88_Launcher"];
- 						EGG_maxMissiles = 15;
+
  					};
  				};
- 				EGG_missiles = _tempMissiles;
  			};
 
 			if (_perk == 3) then  
@@ -130,19 +125,23 @@ repaircooldown = 0;
  			 	{
  			 		case 1:
  			 		{
+						  /*
 						buySpecialList set [count buySpecialList,["pook_brdm2_Sa9_tak",0,28]];
 						sleep BIS_EVO_GlobalSleep;
 						buySpecialList set [count buySpecialList,["pracs_tk_sa13",0,32]];
 						sleep BIS_EVO_GlobalSleep;
 						systemChat "sa9 and sa 13unlock";
+						*/
  			 		};
  			 		case 2:
  			 		{ 
+						  /*
 						buySpecialList set [count buySpecialList,["pracs_sa6_tk",0,32]];
 						sleep BIS_EVO_GlobalSleep;
 						buySpecialList set [count buySpecialList,["pracs_tk_sa8",0,35]];
 						sleep BIS_EVO_GlobalSleep;
 						systemChat "sa6 and sa8 unlock"; //	["pracs_tk_sa8",35],
+						*/
  			 		};
  			 		case 3:
  			 		{

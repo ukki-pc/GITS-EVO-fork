@@ -130,7 +130,7 @@ if (editor == 1) then
 	EVO_incomeFrequency = 120;
 	EGG_EVO_FactionParam = 1;
 	EGG_EVO_LoadGame = 0;
-	hint "DEBUG MODE ON | Version 0.5";
+	hint "DEBUG MODE ON | Version 0.6";
 };
 
 basebeam = 2;
@@ -210,7 +210,7 @@ if(EGG_EVO_FactionParam == 0) then
 	EGG_EVO_meofficer = ["BAF_Soldier_Officer_MTP"];
 
 	//statics
-	EGG_EVO_statAA = ["Fort_Nest_M240","M2HD_mini_TriPod","M2StaticMG","DSHKM_CDF","DSHkM_Mini_TriPod_CDF","MK19_TriPod","AGS_CDF","2b14_82mm_CDF","M252","SPG9_CDF","M119","D30_CDF","TOW_TriPod","ZU23_CDF","PRACS_HAWK","PRACS_Type74AAgun","PRACS_M266AAgun"];
+	EGG_EVO_statEnemyAA = ["Fort_Nest_M240","M2HD_mini_TriPod","M2StaticMG","DSHKM_CDF","DSHkM_Mini_TriPod_CDF","MK19_TriPod","AGS_CDF","2b14_82mm_CDF","M252","SPG9_CDF","M119","D30_CDF","TOW_TriPod","ZU23_CDF","PRACS_HAWK","PRACS_Type74AAgun","PRACS_M266AAgun"];
 
 	//Reinfocing infatry vehicles
 	EGG_EVO_mevconvoyb = ["MTVR_DES_EP1","ibr_VAB","PRACS_M250"];
@@ -413,8 +413,6 @@ hikiAirList = ["FRL_Mig23B_TK_MR","FRL_L59_MR","FRL_Su25_TK_CAS","FRL_Su27_TK_CA
 	{
 		buyStatList set [_loop,[(buyStatList select _loop) select 0, (buyStatList select _loop) select 1,0]];
 	};
-
-	BIS_EVO_rewardArray = ["PRACS_TK_Su24Fencer"];
 };
 if(EGG_EVO_FactionParam == 1) then 
 {
@@ -453,8 +451,9 @@ if(EGG_EVO_FactionParam == 1) then
 	EGG_EVO_mepilot = ["TK_Soldier_Pilot_EP1"];
 	EGG_EVO_meofficer = ["TK_Aziz_EP1"];
 
-	//statics AGS_TK_EP1 Metis_TK_EP1 KORD_TK_EP1 KORD_high_TK_EP1 AGS_TK_INS_EP1 D30_TK_INS_EP1 DSHKM_TK_INS_EP1 DSHkM_Mini_TriPod_TK_INS_EP1 2b14_82mm_TK_INS_EP1 SPG9_TK_INS_EP1 EB_pook_M40_TYR EB_PK_tripod_TYR pook_9m14_TYR
-	EGG_EVO_statAA = ["Igla_AA_pod_TK_EP1","POOK_zpu4_tak","ZU23_TK_EP1","EB_pook_Type74_TYR","POOK_ks12_tak","EB_DSHKx2_TK","pook_KS19_TAK","pook_s60_TK","POOK_zpu4_tak","pook_sa3_static_tak","pracs_tk_sa2"]; //REMOVED D30_TK_EP1 2b14_82mm_TK_EP1
+	//statics 
+	EGG_EVO_statEnemy = ["AGS_TK_EP1", "Metis_TK_EP1", "KORD_TK_EP1", "KORD_high_TK_EP1", "AGS_TK_INS_EP1", "D30_TK_INS_EP1", "DSHKM_TK_INS_EP1","DSHkM_Mini_TriPod_TK_INS_EP1", "2b14_82mm_TK_INS_EP1", "SPG9_TK_INS_EP1", "EB_pook_M40_TYR", "EB_PK_tripod_TYR", "pook_9m14_TYR"];
+	EGG_EVO_statEnemyAA = ["Igla_AA_pod_TK_EP1","POOK_zpu4_tak","pracs_tk_sa2","ZU23_TK_EP1","EB_pook_Type74_TYR","POOK_ks12_tak","EB_DSHKx2_TK","pook_KS19_TAK","pook_s60_TK","POOK_zpu4_tak","pook_sa3_static_tak"]; //REMOVED D30_TK_EP1 2b14_82mm_TK_EP1
 
 	//Reinfocing infatry vehicles
 	EGG_EVO_mevconvoyb = ["V3S_TK_EP1","V3S_Open_TK_EP1","pracs_TK_mtlb_apc"];
@@ -492,7 +491,7 @@ if(EGG_EVO_FactionParam == 1) then
 	EGG_EVO_meflag = ["FlagCarrierTK_EP1"];
 	EGG_EVO_mfhq =["USMC_WarfareBFieldhHospital","CDF_WarfareBFieldhHospital","USMC_WarfareBAircraftFactory","LAV25_HQ_unfolded","CDF_WarfareBBarracks"];// meeds taki
 
-	egg_evo_Amb = "EB_M1114_Armored_D"; 
+	egg_evo_Amb = "TK_WarfareBUAVterminal_Base_EP1"; 
 	egg_evo_MHQ = "PRACS_puma330_MG"; //PRACS_M113_AMB
 
 //////////////////////////////////////////////
@@ -661,8 +660,6 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	{
 		buyStatList set [_loop,[(buyStatList select _loop) select 0, (buyStatList select _loop) select 1,0]];
 	};
-
-	BIS_EVO_rewardArray = ["PRACS_TK_Su24Fencer"];
 };
 
 
@@ -674,6 +671,7 @@ BIS_EVO_Onmission=false;
 BIS_EVO_sobj1=false;
 //BIS_EVO_radios = [radio1]; // Each radio in each town
 reinforcements=false;
+reinforceRange = 2600;
 
 
 // CHANGE LATER??
@@ -829,6 +827,7 @@ missionNamespace setVariable ["HCExtHideStatsOnEnemySides", false];
 [] execVM "HCfunc\HCrep\InitHC.sqf";
 };
 
+RHQMarkers = [];
 
 if(isServer) then {
 //MHQ SPAWNER
@@ -1116,8 +1115,7 @@ extra_missiles = ["GLT_AM39_Launcher"];
 EB_turrets = ["M197","PRACS_OV1_LA1","PRACS_SE_552","M621","2A42","YakB","M230","M168","EB_GAU8","GAU8","GAU12","ZPL_20","GSh301","GSh302","GSh23L","GSh23L","SMAF_MF1_DEFA_553","EB_GAU22","EB_M61A1","GLT_M61A1","EB_GP9","EB_NR30","EB_N37"];
 extra_bombs = ["GLT_AGM154A_Launcher","GLT_AGM154A1_Launcher"];
 
-EGG_bombs =  EB_PLbombs + GLT_bombs + extra_bombs;
-EGG_missiles = EB_PLmissiles + extra_missiles  + EGG_bombs;// EB_PLmissiles +extra_missiles;
+EGG_missiles = EB_PLmissiles + extra_missiles  + EB_PLbombs +GLT_bombs + extra_bombs ;// EB_PLmissiles +extra_missiles;
 
 
 //mod management EGG_vecmods //## modify desc

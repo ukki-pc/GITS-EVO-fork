@@ -8,11 +8,14 @@ BLA_EVO_RewardL =
 	_reward = _this select 1;
 	_unit addScore _reward;
 };
+//Rewards player with money
 BIS_EVO_Reward =
 {
    _usergroup = _this select 0;
    _reward = _this select 1;
-   {_x addscore _reward} forEach units _usergroup;
+  	_msg = format ["%1$ rewarded",_reward];
+	["jed_msg", [_usergroup, _msg]] call CBA_fnc_whereLocalEvent;
+	["jed_addMoney", [_usergroup, _reward]] call CBA_fnc_whereLocalEvent;
 };
 
 //adding individual player bonus/ reward - sensor 65 in mission

@@ -42,7 +42,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 				_targetMarker = _allobj select _loop;
 				_dist = getMarkerPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) distance getMarkerPos _targetMarker;
 
-				if(_dist <= 3000) then 
+				if(_dist <= reinforceRange) then 
 				{
 					_reinforceTowns = _reinforceTowns + [_allobj select _loop]; 
 				};
@@ -197,7 +197,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 				_targetMarker = _allobj select _loop;
 				_dist = getMarkerPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) distance getMarkerPos _targetMarker;
 
-				if(_dist <= 3000) then 
+				if(_dist <= reinforceRange) then 
 				{
 					_reinforceTowns = _reinforceTowns + [_allobj select _loop]; 
 				};

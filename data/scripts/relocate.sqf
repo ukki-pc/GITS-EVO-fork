@@ -9,12 +9,30 @@ _id = _this select 2;
 _map = objNull;
 cityToTransfer = -1;
 _cursorPos = [];
+_rhqPositions = [];
+travelCost = 0;
+
 BIS_EVO_BaseMarkers = ["LHD1Marker"];
-TeleportLocations = BIS_EVO_MissionTowns + BIS_EVO_BaseMarkers;
+
+_lowRHQ = format ["%1amb",player];
+
+	_curLevel = [0] call countPerkLevel;
+if(_curLevel < 4) then {
+_rhqPositions = [_lowRHQ];
+}
+else {
+_rhqPositions = RHQMarkers;
+};
+
+TeleportLocations = BIS_EVO_MissionTowns + BIS_EVO_BaseMarkers + _rhqPositions;
 
 _nearestPoint = [TeleportLocations, position player] call BIS_fnc_nearestPosition;
 
-if(position player distance getmarkerpos _nearestPoint > 200) exitwith{hint "Cannot transfer from here!"};
+_maxDistance = 200;
+
+if(_nearestPoint in _rhqPositions) then {_maxDistance = 20;};
+
+if(position player distance getmarkerpos _nearestPoint > _maxDistance) exitwith{hint "Cannot transfer from here!"};
 
 openMap true;
 hint "Pick a location to transfer to";
@@ -30,6 +48,10 @@ mapRefresh = true;
 _nearestMarker = [TeleportLocations, _pos] call BIS_fnc_nearestPosition;
 cityToTransfer = TeleportLocations find _nearestMarker;
 _dist = _pos distance getMarkerPos _nearestMarker;
+travelCost = 0;
+_plyDist = (getPos player) distance getMarkerPos _nearestMarker;
+
+if (_nearestMarker in BIS_EVO_MissionVillages) then {travelCost = round((_plyDist/1000));};
 
 if(_dist < 300) then {'markerRelo' setMarkerPos getMarkerPos _nearestMarker;}
 else
@@ -39,7 +61,7 @@ else
 };
 if(cityToTransfer > -1) then 
 {
-  hint format ['Selected: %1', BIS_EVO_Townnames select 0];
+  hint format ['Selected: %1, Travel price: $%2 ', BIS_EVO_Townnames select 0,travelCost];
 }
 	else { hint 'No selection.'
 };
@@ -49,13 +71,16 @@ waitUntil{!visibleMap};
 onMapSingleClick "";
 deleteMarker "markerRelo";
 
-if(TeleportLocations select cityToTransfer in BIS_EVO_conqueredTowns or TeleportLocations select cityToTransfer in BIS_EVO_BaseMarkers) then 
+if((TeleportLocations select cityToTransfer in BIS_EVO_conqueredTowns or TeleportLocations select cityToTransfer in BIS_EVO_BaseMarkers or TeleportLocations select cityToTransfer in _rhqPositions)and travelCost <= money) then 
 {
   hint  "Reloacting to a new location!";
     Player setpos getMarkerPos ((TeleportLocations) select cityToTransfer);
     if((TeleportLocations) select cityToTransfer == "LHD1Marker") then{
       Player setposASL [getpos player select 0,getpos player select 1,18];
     };
+    _msg = format ["Travel costs: $%1",travelCost];
+    ["jed_msg", [player, _msg]] call CBA_fnc_whereLocalEvent;
+		["jed_addMoney", [player, -travelCost]] call CBA_fnc_whereLocalEvent;
      closeDialog 0;
 }
 else 

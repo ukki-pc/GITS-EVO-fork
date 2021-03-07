@@ -4,9 +4,14 @@
 //private ["_posamb","_amb_name","_marker1"];
 private ["_posamb","_amb_name","_markerLUP"];
 
-if (player in list AirportIn) exitWith {hint "You cannot deploy a Recon HQ in the base"};
+_amb = objNull;
 
-if (alive amb) exitWith 
+if (inrepairzone) exitWith {hint "You cannot deploy a Recon HQ in the base"};
+_name = format ["%1amb",player];
+
+
+//Check if RHQ:s marker exists
+if !(getMarkerColor _name == "") exitWith 
 	{
 		hint "You have already established a Recon HQ. You must destroy/remove it to make a new one"
 	};
@@ -19,11 +24,11 @@ if (!(alive player)) exitWith
 	{
 		amb_pos = [];
 	};
-
-amb = egg_evo_Amb createVehicle (position player);
+	
+_amb = egg_evo_Amb createVehicle (getposASL player);
 _dir  = getdir player;
-amb setdir _dir;
-amb_pos = position amb;
+_amb setdir _dir;
+amb_pos = position _amb;
 
 
 
@@ -34,8 +39,9 @@ amb_pos = position amb;
 
 _amb_name = "EB_BRDM2_HQ_TK";
 
-amb addAction ["Remove Recon HQ", "actions\removeamb.sqf",0,1,false,true];
-publicVariable "amb";
-player moveInDriver amb;
 
+_amb addAction ["Remove Recon HQ", "actions\removeamb.sqf",_amb,1,false,true];
+
+player moveInDriver _amb;
+_ambmarker = [player,_amb] execVM "data\scripts\ambmarker.sqf";
 if (true) exitWith {};

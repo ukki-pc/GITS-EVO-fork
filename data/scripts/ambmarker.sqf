@@ -8,29 +8,39 @@
 
 
 private ["_run"];
-
+_player = _this select 0;
+_amb = _this select 1;
 _run = true;
 
-"ambmarker" setMarkerTypeLocal "hd_destroy";
-"ambmarker" setMarkerColorLocal "ColorRed";
-"ambmarker" setMarkerTextLocal "Recon HQ";
+_name = format ["%1amb",_player];
 
-waitUntil {sleep 5;alive amb};
+//Public ?
+if !(_name in RHQMarkers) then {
+RHQmarkers = RHQMarkers + [_name];
+publicVariable "RHQmarkers";
+};
+
+_markerobj = createMarker[_name,[getPos _amb select 0,getPos _amb select 1]];
+_markerobj setMarkerTypeLocal "hd_destroy";
+_markerobj setMarkerColorLocal "ColorRed";
+_markerobj setMarkerTextLocal "Recon HQ";
+publicVariable "_markerobj";
+waitUntil {sleep 5;alive _amb};
 
 while {_run} do
 {
 	sleep 0.001;
-	if ((not alive amb) or (IsNull amb)) then 
+	if ((not alive _amb) or (IsNull _amb)) then 
 	{
-		"ambmarker" setMarkerTypeLocal "Empty"; 
-		"ambmarker" setMarkerColorLocal "ColorBlack";
-		waitUntil {sleep 5;alive amb};
+		_markerobj setMarkerType "Empty"; 
+		_markerobj setMarkerColor "ColorBlack";
+		waitUntil {sleep 5;alive _amb};
 	};
 
-	"ambmarker" setMarkerTypeLocal "hd_destroy";
-	"ambmarker" setMarkerColorLocal "ColorBlue";
+	_markerobj setMarkerType "hd_destroy";
+	_markerobj setMarkerColor "ColorBlue";
 
-	waitUntil {sleep 5;alive amb};
-	"ambmarker" setMarkerPosLocal [getpos amb select 0,getpos amb select 1];
-	sleep 1.0;
+	waitUntil {sleep 5;alive _amb};
+	_markerobj setMarkerPos [getpos _amb select 0,getpos _amb select 1];
+	sleep 2.0;
 };

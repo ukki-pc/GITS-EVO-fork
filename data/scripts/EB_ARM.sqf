@@ -11,6 +11,7 @@ armTurret =
 	_magCount = count _mags;
 	_weapons = weapons _vec;
 
+
 if( (inrepairzone) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and (local _vec) and (perkparam == 1) and (EB_airload1 <0) ) then
 {
 	_inteksi = -1;
@@ -60,7 +61,9 @@ armWeapon = {
 					_maxAmmo = 15;
 				};
 			};
-			
+			//systemChat str (_weps select _weaponSlot);
+				if(_weps select _weaponSlot in EB_turrets or _weaponSlot < 1) exitWith {hint "Cannot change that";};
+
 			if( (inrepairzone) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and (local _vec) and (perkparam == 1) and (EB_airload1 <0) ) then
 {
 			// if(_magCount >= _maxAmmo) then 
@@ -76,29 +79,12 @@ armWeapon = {
 			_find = -1;
 			_found = -1;
 			_ogMi = [];
-			for [{_i = 0}, {_i < count _weps}, {_i = _i + 1}] do 
-			{
-			_ogMi = getArray(configFile >> "CfgWeapons" >> _weps select _i >> "magazines");
-			//systemChat format ["ogmi c %1", _ogMi];
-
-			//Nested uppercasing loop
 			
-			 {
-			 	_ogMi set [_forEachIndex, toUpper (_ogmi select _forEachIndex)];
-			 } forEach _ogMi;
 
-			if(_ogMag in _ogMi) then {_found = _i};
-			};
-
-			//systemChat format ["Found in index: %1",_found];
-			if(_found < 0) then {hint "Cannot change that weapon!";}
-			else{
 			{_vec removemagazine _x}forEach magazines _vec;
 			{_vec removeweapon _x}forEach weapons _vec;
-			_ogWep = _weps select _found;
 
-
-			 _weps	set [_found, _weaponSystem];
+			 _weps	set [_weaponSlot, _weaponSystem];
 			 _magazineArray = getArray (configFile >> "CfgWeapons" >> _weaponSystem >> "magazines");
 
 			 _mag = _magazineArray select _ammoCount-1;
@@ -129,19 +115,18 @@ armWeapon = {
 			{_vec addMagazine _x}forEach _mags;
 			{_vec addWeapon _x}forEach _weps;
 			_vec selectWeapon (_weps select _weaponSlot);
-
+/*
 		_magaziinis =	getArray(configFile >> "CfgWeapons" >> (currentWeapon vehicle player) >> "magazines");
 		hint str _magaziinis;
 		_weaponz = currentWeapon vehicle player;
 		_txt = format ["%2,%1",_magaziinis,_weaponz];
 		copyToClipboard  _weaponz;
-
+*/
 				if(_magCount < _maxAmmo) then 
 				{
 					//_vec addWeapon _weaponSystem;
 					//_vec addMagazine _bomb;
 				};
-			};
 }
 else{
   hint "Must be stationary at base!";
