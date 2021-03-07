@@ -47,6 +47,7 @@ CLY_healfirstrun=true;
 };
 };
 
+/*
 //Give bandage
 if (_id in ["give"]) then {
 _caller setVariable ["CLY_healings",(_caller getVariable "CLY_healings")-1,true];
@@ -56,7 +57,7 @@ _text=[format ["Received bandage from %1",name _caller],"PLAIN DOWN",0.3];
 CLY_healannouncepv=[_target,_text];
 publicVariable "CLY_healannouncepv";
 };
-
+*/
 //Interrupt healing
 if (_id in ["interrupt"]) then {
 _caller setVariable ["CLY_healinterrupt",true];
@@ -206,7 +207,7 @@ while {alive _unit and _unit==player} do {
 			"_this==_target and (damage _this>_this getVariable 'CLY_healthreshold' or !canStand _this) and !(animationState _this in CLY_healanims) and time>_this getVariable 'CLY_healcooldown' and _this getVariable 'CLY_healings'!=0"
 		];
 		_interruptaction=_unit addAction [
-			"Cancel bandaging",
+			"Cancel action",
 			"data\scripts\cly_heal.sqf",
 			"interrupt",
 			1.4,

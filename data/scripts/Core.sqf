@@ -1145,6 +1145,7 @@ if (player hasWeapon "ItemRadio") then
 			{	
 				if  (inrepairzone and VehiclePlaced == 1 and vehicle _ap == player) then
 				{	
+					VehiclePlaced = 0;
 					switch(_buySubPage) do
 							{
 								case 1:

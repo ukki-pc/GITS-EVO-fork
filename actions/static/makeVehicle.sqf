@@ -58,7 +58,7 @@ _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 	};
 		_cstatA lock false;
 		_who removeAction _laction1;
-		[_cstatA,_type,"",position _cstatA] call BIS_EVO_VecR;
+		[_cstatA,_type,"",position _cstatA] spawn BIS_EVO_VecR;
 	
 	if(_cstatA isKindOf "Air") then {
 		wcam = _cstatA addaction ["Weapon Camera On", "actions\wepcam.sqf",0,1, false, true,"test2"];

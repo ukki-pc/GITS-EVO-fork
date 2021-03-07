@@ -23,7 +23,7 @@ switch (_tag) do //who died where?
 	{
 	};	
 };
-if (not (_unit isKindOf "Man")) then
+if ( !(_unit isKindOf "Man")) then
 {
 	if(isPlayer _killer or isPlayer leader _killer) then 
 	{

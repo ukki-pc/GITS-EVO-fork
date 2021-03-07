@@ -1918,7 +1918,7 @@ class Mission
 	};
 	class Sensors
 	{
-		items=45;
+		items=43;
 		class Item0
 		{
 			position[]={9819.8174,139.98311,10079.436};
@@ -2490,21 +2490,6 @@ class Mission
 		};
 		class Item37
 		{
-			position[]={2161.6653,0.32167777,599.14185};
-			a=0;
-			b=0;
-			repeating=1;
-			age="UNKNOWN";
-			text="Respawn at Recon HQ";
-			expCond="(player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50 or Player distance getMarkerPos ""MHQ"" < 10)";
-			expActiv="ID_Beamx = Player addAction [""~Respawn Recon HQ"",""data\scripts\ambx.sqf"",[""""], 10]";
-			expDesactiv="Player removeAction ID_Beamx";
-			class Effects
-			{
-			};
-		};
-		class Item38
-		{
 			position[]={1254.9938,0.18419239,747.41187};
 			a=10;
 			b=10;
@@ -2523,7 +2508,7 @@ class Mission
 			{
 			};
 		};
-		class Item39
+		class Item38
 		{
 			position[]={1211.7906,0.28540707,482.68823};
 			a=0;
@@ -2538,7 +2523,7 @@ class Mission
 			{
 			};
 		};
-		class Item40
+		class Item39
 		{
 			position[]={1106.4176,0.27060217,492.94409};
 			a=0;
@@ -2553,22 +2538,7 @@ class Mission
 			{
 			};
 		};
-		class Item41
-		{
-			position[]={2130.9395,0.47681606,630.54138};
-			a=0;
-			b=0;
-			repeating=1;
-			age="UNKNOWN";
-			text="Respawn MHQ Ambulance";
-			expCond="(Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50) ";
-			expActiv="ID_Beamw = Player addAction [""~Respawn MHQ Ambulance"",""data\scripts\auswahlw.sqf""]";
-			expDesactiv="Player removeAction ID_Beamw";
-			class Effects
-			{
-			};
-		};
-		class Item42
+		class Item40
 		{
 			position[]={2128.002,0.75033933,572.32202};
 			a=0;
@@ -2583,7 +2553,7 @@ class Mission
 			{
 			};
 		};
-		class Item43
+		class Item41
 		{
 			position[]={15273.711,0.76066875,4980.8071};
 			a=0;
@@ -2597,7 +2567,7 @@ class Mission
 			{
 			};
 		};
-		class Item44
+		class Item42
 		{
 			position[]={15414.442,0.81813622,5005.0684};
 			a=5;

@@ -21,6 +21,7 @@ BIS_EVO_gRecy =
 			};
 		};
 
+
 		if(not _spawned) then 
 		{
 			if(not isNull (_leader findNearestEnemy position _leader) or not (alive _leader)) then 

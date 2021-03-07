@@ -13,6 +13,7 @@ _rhqPositions = [];
 travelCost = 0;
 
 BIS_EVO_BaseMarkers = ["LHD1Marker"];
+MHQMarker = ["MHQ"];
 
 _lowRHQ = format ["%1amb",player];
 
@@ -24,7 +25,7 @@ else {
 _rhqPositions = RHQMarkers;
 };
 
-TeleportLocations = BIS_EVO_MissionTowns + BIS_EVO_BaseMarkers + _rhqPositions;
+TeleportLocations = BIS_EVO_MissionTowns + BIS_EVO_BaseMarkers + _rhqPositions + MHQMarker;
 
 _nearestPoint = [TeleportLocations, position player] call BIS_fnc_nearestPosition;
 
@@ -71,9 +72,20 @@ waitUntil{!visibleMap};
 onMapSingleClick "";
 deleteMarker "markerRelo";
 
-if((TeleportLocations select cityToTransfer in BIS_EVO_conqueredTowns or TeleportLocations select cityToTransfer in BIS_EVO_BaseMarkers or TeleportLocations select cityToTransfer in _rhqPositions)and travelCost <= money) then 
+if((TeleportLocations select cityToTransfer in BIS_EVO_conqueredTowns or TeleportLocations select cityToTransfer in BIS_EVO_BaseMarkers or TeleportLocations select cityToTransfer in _rhqPositions or TeleportLocations select cityToTransfer in MHQMarker)and travelCost <= money) then 
 {
   hint  "Reloacting to a new location!";
+
+      //MHQ TELEPORT
+    if(TeleportLocations select cityToTransfer in MHQMarker) exitWith {
+      	if(!alive MHQ or (vehiclePlaced == 0) or (R3F_LOG_mutex_local_verrou)) exitWith{hint "You cannot do that right now."; };
+      [player] execVM "data\scripts\auswahlw.sqf"};
+
+            //MHQ TELEPORT
+    if(TeleportLocations select cityToTransfer in _rhqPositions) exitWith {
+      	if((vehiclePlaced == 0) or (R3F_LOG_mutex_local_verrou)) exitWith{hint "You cannot do that right now."; };
+      };
+
     Player setpos getMarkerPos ((TeleportLocations) select cityToTransfer);
     if((TeleportLocations) select cityToTransfer == "LHD1Marker") then{
       Player setposASL [getpos player select 0,getpos player select 1,18];
@@ -81,6 +93,7 @@ if((TeleportLocations select cityToTransfer in BIS_EVO_conqueredTowns or Telepor
     _msg = format ["Travel costs: $%1",travelCost];
     ["jed_msg", [player, _msg]] call CBA_fnc_whereLocalEvent;
 		["jed_addMoney", [player, -travelCost]] call CBA_fnc_whereLocalEvent;
+
      closeDialog 0;
 }
 else 
