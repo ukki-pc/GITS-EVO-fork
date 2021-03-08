@@ -24,12 +24,15 @@ reinforcementLoop =
 	//Loop that calls reinforcements
 	for [{_rloop=0}, {_rloop<1}, {_rloop=_rloop}] do
 	{
-		_reinf = [] execVM "data\scripts\reinforce.sqf";
-		sleep reinfdelay;
-		//sleep 120+(random 120);
-		if ( !(reinforcements)) then {_rloop=1};
+			//Sleep with interrupt
+			for [{_slploop=0}, {_slploop<reinfdelay}, {_slploop=_slploop+1}] do
+			{
+				sleep 1;
+				if ( !(reinforcements)) then {_slploop=reinfdelay; _rloop = 1;};
+			};
+			if ( !(reinforcements)) then {_rloop=1};
+			_reinf = [] execVM "data\scripts\reinforce.sqf";
 	};
-
 };
 
 //Increases aggression level
@@ -66,6 +69,11 @@ while {BIS_EVO_MissionProgress != -1} do
 	BIS_EVO_DetectFriendly setpos _pos;
 	"MainObj" setMarkerPos _pos;
 	CityClear=false;
+
+	//Calc some enemy power
+	BIS_EVO_InfantrySpawn = 24 + round (aggression*0.7);
+	BIS_EVO_MechanizedSpawn = 4 + round (aggression*0.2);
+
 	
 	///NON VILLAGE ROUTINE
 	if !(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress in BIS_EVO_MissionVillages) then
@@ -78,6 +86,9 @@ while {BIS_EVO_MissionProgress != -1} do
 		Sleep 10.0;
 		//_tempProgress = BIS_EVO_MissionProgress;
 	//testing reinforce - removed from sinit
+	reinfdelay = round (290-(aggression^1.14));
+
+	systemChat str reinfdelay;
 
 	reinforcements = true;
 	[] spawn reinforcementLoop;
@@ -110,7 +121,8 @@ while {BIS_EVO_MissionProgress != -1} do
 		[_mkr,BIS_EVO_DetectEnemy,BIS_EVO_DetectFriendly,BIS_EVO_MissionProgress] call BIS_EVO_Erec;
 		
 		Sleep 10.0;
-	
+	reinfdelay = round (320-(aggression^1.14));
+
 	reinforcements = true;
 	[] spawn reinforcementLoop;
 

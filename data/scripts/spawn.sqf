@@ -70,6 +70,7 @@ Sleep 0.2;
 if (_playertype in EGG_EVO_PlayerOff) then {allowRhq = true;};
 //Maybe
 if (allowRhq) then {_actionId8 = player addAction ["GPS/INS Menu", "actions\GPSINS.sqf",[],0, false, true,"test2"]};
+if (allowFarp) then {_actionId8 = player addAction [localize "STR_M04t53", "data\scripts\etent.sqf",0,1, false, true,"test2"]};
 
 
 

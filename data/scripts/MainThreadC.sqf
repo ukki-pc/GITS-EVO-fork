@@ -103,8 +103,8 @@ repaircooldown = 0;
  			 	{
  			 		case 1:
  			 		{
-						repairStrength = 50;
-
+						_actionId8 = player addAction [localize "STR_M04t53", "data\scripts\etent.sqf",0,1, false, true,"test2"];
+						allowRhq = true;
  			 		};
  			 		case 2:
  			 		{ 
@@ -119,7 +119,7 @@ repaircooldown = 0;
  			 		};
  			 	};
  			 };
-						if (_perk ==2) then  
+			if (_perk ==2) then  
  			 {
  			 	switch (_currentLevel) do
  			 	{
@@ -152,6 +152,10 @@ repaircooldown = 0;
  			 		};
  			 	};
  			 };
+
+
+			  if (allowFarp) then {_actionId8 = player addAction [localize "STR_M04t53", "data\scripts\etent.sqf",0,1, false, true,"test2"]};
+
  };
 
 BIS_EVO_CWeath =
