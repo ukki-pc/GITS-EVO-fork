@@ -79,7 +79,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		Sleep 0.2;
 		_unit = _guardr createUnit [(_allunits select round random (_max - 1)), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
 		Sleep 0.2;
-		//_sumark = [_ural,"Ural","ColorBlack"] execVM "data\scripts\customMarker.sqf";
+		_sumark = [_ural,"Ural","ColorBlack"] execVM "data\scripts\customMarker.sqf";
 		sleep 1;
 		[position _alist,_guardr,_objPos,_alist] call BIS_EVO_Erefway;
 		[_guardr, 1] setWaypointType "GETOUT";
@@ -93,6 +93,80 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		sleep 400;
 		deleteVehicle _ural;
 	};
+
+BIS_EVO_mKamazOpen =
+	{
+		private ["_allunits","_guardr","_unit","pos2","_max","_alist","_Allspawns","_radio","_spawns","_allvecs","_maxA","_ural"]; 
+		_guardr = grpNull;
+		_unit = objNull;
+		_pos2 = objNull;
+		_max = objnull;
+		_alist = BIS_EVO_DetectEnemy;
+		//_radio =radio1;
+		_objPos = getMarkerPos(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
+		_allobj = BIS_EVO_MissionTowns - BIS_EVO_conqueredTowns;
+		_reinforceTowns = [];
+
+		for [{_loop=0}, {_loop<count _allobj}, {_loop=_loop+1}] do 
+		{
+			//DETERMINE THE CLOSEST REINFORCE POINT
+			if !(_allobj select _loop == BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) then 
+			{
+				_targetMarker = _allobj select _loop;
+				_dist = getMarkerPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) distance getMarkerPos _targetMarker;
+
+				if(_dist <= reinforceRange) then 
+				{
+					_reinforceTowns = _reinforceTowns + [_allobj select _loop]; 
+				};
+			}
+			else 
+			{
+				//systemChat "Banned town... SKIPPING!";
+			};
+		};
+
+		_spawns = (_reinforceTowns select (round random (count _reinforceTowns-1)));
+		_pos = GetMarkerPos _spawns;
+		_tag = "MEC";
+
+		_allunits = EGG_EVO_enemy1;
+		_max = count _allunits;
+		_guardr = createGroup (EGG_EVO_ENEMYFACTION);
+		_pos2 = GetMarkerPos (_reinforceTowns select (round random (count _reinforceTowns-1)));
+		_allvecs = EGG_EVO_mevconvoyb;
+		_maxA = count _allvecs;
+		_ural = createVehicle [(_allvecs select (round random (_maxA - 1))), _pos2,[], 0, "NONE"];
+		[_ural] call BIS_EVO_Lock;
+		_ural addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
+		Sleep 0.2;
+		_unit = _guardr createUnit [(_allunits select (round random (_max - 1))), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsDriver _ural;_unit moveInDriver _ural;
+		Sleep 0.2;
+		_unit = _guardr createUnit [(_allunits select round random (_max - 1)), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
+		Sleep 0.2;
+		_unit = _guardr createUnit [(_allunits select round random (_max - 1)), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
+		Sleep 0.2;
+		_unit = _guardr createUnit [(_allunits select round random (_max - 1)), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
+		Sleep 0.2;
+		_unit = _guardr createUnit [(_allunits select round random (_max - 1)), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
+		Sleep 0.2;
+		_unit = _guardr createUnit [(_allunits select round random (_max - 1)), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
+		Sleep 0.2;
+		_sumark = [_ural,"Ural","ColorBlack"] execVM "data\scripts\customMarker.sqf";
+		sleep 1;
+		[position _alist,_guardr,_objPos,_alist] call BIS_EVO_Erefway;
+		[_guardr, 1] setWaypointType "GETOUT";
+		{_x addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1 ] execVM "data\scripts\mobjbury.sqf"}]; _x addmagazine ["EB_molotov_mag",2];} forEach (units _guardr);	
+		_recy = [objnull,_guardr] execVM "data\scripts\grecycle.sqf";
+		_guardr setFormation "COLUMN";
+		[_guardr, 1] setWaypointCombatMode "RED";	
+		[_guardr, 1] setWaypointSpeed "NORMAL";	
+		sleep 10;
+		if(isNull driver _ural  ) then {deleteVehicle _ural; {_x setDammage 1}forEach (units _guardr)};
+		sleep 400;
+		deleteVehicle _ural;
+	};
+
 
 	BIS_EVO_MI17support =
 	{	
@@ -215,18 +289,20 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_tag = "MEC";
 
 		//Increasing aggression
-		_rng = round(random(10));
-		 if(_rng < 6) then 
+		_allvec = EGG_EVO_MechEasy;
+		_rng = round(random(100+aggression));
+
+		 if(_rng < 60) then 
 		 {
 		 	_allvec = EGG_EVO_MechEasy; //mixed units reinforce
 		 };
-		if(_rng > 5 && _rng < 10) then 
+		if(_rng < 80) then 
 		 {
-		 	_allvec = EGG_EVO_MechMedium; //mixed units reinforce
+		 	_allvec = EGG_EVO_MechEasy + EGG_EVO_MechMedium; //mixed units reinforce
 		 };
-	 	if(_rng > 9) then 
+	 	if(_rng >= 100) then 
 		 {
-		 	_allvec = EGG_EVO_MechHard; //mixed units reinforce
+		 	_allvec = EGG_EVO_MechMedium + EGG_EVO_MechHard; //mixed units reinforce
 		};
 
 	if (count _reinforceTowns > 0) then 
@@ -246,7 +322,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 
 			_guardm = _array select 0;
 			_vec = _array select 1;
-			//_sumark = [_vec,"Mec","ColorBlack"] execVM "data\scripts\customMarker.sqf";
+			_sumark = [_vec,"Mec","ColorBlack"] execVM "data\scripts\customMarker.sqf";
 			[position _alist,_guardm,_objPos,_alist] call BIS_EVO_Erefway;
 			sleep 1;
 			[_guardm, 1] setWaypointCombatMode "RED";		
