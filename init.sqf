@@ -153,9 +153,9 @@ if (performanceparam == 1) then {enableEnvironment true};
 if (performanceparam == 2) then {enableEnvironment false};
 
 	BIS_EVO_MissionTowns = [];
-	BIS_EVO_MissionVillages = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11","mobj12","mobj2","mobj13","mobj14","mobj15","mobj16","mobj17","mobj18","mobj19","mobj20","mobj21","mobj22","mobj23","mobj24","mobj25"];// Each mission objectives town marker.
+	BIS_EVO_MissionVillages = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11","mobj12","mobj2","mobj13","mobj14","mobj15","mobj16","mobj17","mobj18","mobj19","mobj20","mobj21","mobj22","mobj23","mobj24","mobj25","mobj26"];// Each mission objectives town marker.
 	BIS_EVO_MissionBigTowns = ["mobjB1","mobjB2","mobjB3","mobjB4","mobjB5","mobjB6"];
-	BIS_EVO_MilitaryObjectives = ["mobjC1","mobjC2","mobjc3","mobjC4","mobjC5","mobjC6","mobjC7","mobjC8","mobjC9","mobjC10"];
+	BIS_EVO_MilitaryObjectives = ["mobjC1","mobjC2","mobjc3","mobjC4","mobjC5","mobjC6","mobjC7","mobjC8","mobjC9","mobjC10","mobjC11"];
 	BIS_EVO_CoastalTowns = ["mobj11","mobj4","mobj3","mobj5","mobjB2","mobj12","mobj9"];
 	BIS_EVO_MissionTowns = BIS_EVO_MissionTowns + BIS_EVO_MissionVillages + BIS_EVO_MissionBigTowns +BIS_EVO_MilitaryObjectives;
 
@@ -582,7 +582,7 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 	/*---Artillery---*/
 	["PRACS_M250_TEL",140],	
 	["PRACS_M291_TEL",150],	
-	["GRAD_TK_EP1",160],						// GRAD
+//	["GRAD_TK_EP1",160],						// GRAD
 	["RM70_ACR",170],							// RM70
 	["PRACS_M245_TEL",170],								// MLRS
 	["PRACS_MLRS",180]								// MLRS
@@ -635,10 +635,10 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	["FRL_A10_MR",170],								// A10 A7
 	//["A7",180],								// AV8B
 	["FRL_AV8B_MR",180],								// AV8B
-	["3lb_f22_sdb",180],								// AV8B
+	//["3lb_f22_sdb",180],								// AV8B
 	["pook_EF2000_BAF_D_DEAD",185],								// AV8B
-	["FRL_F111_D_MR",185],								// AV8B
-	["b1b_MK82_desert",185]
+	["FRL_F111_D_MR",185]								// AV8B
+	//["b1b_MK82_desert",185]
 	];
 	for [{_loop=0}, {_loop<count buyAirList}, {_loop=_loop+1}] do {
 	buyAirList set [_loop,[(buyAirList select _loop) select 0, (buyAirList select _loop) select 1,0]];
@@ -778,7 +778,7 @@ BIS_EVO_Objective12 = taskNull; //
 defenceReady = false; //Avoid certain events during objective population
 
 money = 10;
-aggression = 100;
+aggression = 0;
 eResupplying = false;
 
 //List of vehicles that are unlocked through objective capture
@@ -786,7 +786,7 @@ BIS_EVO_unlockables = [
 	"PRACS_MLRS",
 	"PRACS_M245_TEL",
 	"RM70_ACR",
-	"GRAD_TK_EP1",
+	"JS_JC_FA18E_USMC",
 	"EB_M1A3_TUSK_D",
 	"FRL_F15C_MR",
 	"EB_M1A2_US_D",
@@ -796,10 +796,13 @@ BIS_EVO_unlockables = [
 	"FRL_F16_MR",
 	"F35B",
 	"FRL_F111_D_MR",
-	"b1b_MK82_desert",
+	"PRACS_A4",
 	"FRL_AV8B_MR",
-	"pook_EF2000_BAF_D_DEAD"
+	"pook_EF2000_BAF_D_DEAD",
+	"FRL_A10_MR"
 ];
+							// AV8B
+
 
 // Common function to lock vehicles.
 BIS_EVO_Lock =
