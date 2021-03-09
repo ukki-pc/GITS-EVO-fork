@@ -127,6 +127,10 @@ BIS_EVO_CreateVehicle =
 	_maxc = (count _crewtype)-1;
 	_maxcrew = 0;
 
+
+	//BANNED WEAPONS
+	if(_type == "PRACS_TK_T80B") then {	_wps = weapons _vec - ["2A46MRocket"]; {_vec removeWeapon _x}forEach weapons _vec; {_vec addWeapon _x}forEach _wps;};
+
 	/*
 	if (enemynumdiv==1) then 
 	{

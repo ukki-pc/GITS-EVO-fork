@@ -88,8 +88,6 @@ while {BIS_EVO_MissionProgress != -1} do
 	//testing reinforce - removed from sinit
 	reinfdelay = round (290-(aggression^1.14));
 
-	systemChat str reinfdelay;
-
 	reinforcements = true;
 	[] spawn reinforcementLoop;
 	

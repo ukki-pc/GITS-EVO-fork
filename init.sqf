@@ -446,9 +446,9 @@ if(EGG_EVO_FactionParam == 1) then
 	EGG_EVO_mevlight = ["BTR40_MG_TK_INS_EP1","pracs_TK_type63","pracs_TK_mtlb_apc","BTR40_TK_INS_EP1","BRDM2_TK_EP1","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1"];
 	EGG_EVO_MechEasy = EGG_EVO_mevlight + ["UAZ_AGS30_TK_EP1","UAZ_MG_TK_EP1","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1","pook_brdm2AGS_TKINS","pook_brdm2AA_TKINS","pook_brdm2RKT_TKINS","pook_brdm2PKM_TAK","pook_brdm2HQcomm_TAK","pook_brdm2HQ_TKINS","pook_brdm2DSHK_TAK","pook_brdm2AT5_TAK","pook_brdm2AT3c_TKINS","pook_brdm2AT3_TKINS","pook_brdm2AT2_TKINS","pook_brdm2M_TAK","pook_brdm2_TAK","pook_brdm2_sa9_TAK"];
 	EGG_EVO_MechMedium =["T72_TK_EP1","pook_btrMWS_tak","eb_btr90_tk","vil_t62m","ch_t72_desert","ch_t72_2_desert","pook_btr2a42_tak","VIL_BMP1_TKS","EB_BMP3_TK","sa_bmd_1_iraq","BMP2_TK_EP1","pook_brdm2at2_tak","T55_TK_EP1","T34_TK_EP1","UAZ_AGS30_TK_EP1","BTR60_TK_EP1","Ural_ZU23_TK_EP1","BRDM2_TK_EP1","M113_TK_EP1","BMP2_HQ_TK_EP1"];
-	EGG_EVO_MechHard = ["T90"];
+	EGG_EVO_MechHard = ["T90","pracs_tk_t80b"];
 
-	EGG_EVO_enemySupply = ["UralReammo_TK_EP1","KamazReammo","V3S_Reammo_TK_GUE_EP1"];
+	EGG_EVO_enemySupply = ["UralReammo_TK_EP1","KamazReammo"]; //V3S_Reammo_TK_GUE_EP1 //NEED EAST V3S
 
 	//THESE AA SPAWN ON TOWNS
 	EGG_EVO_spAAeasy = ["ffaa_toyota_strela","pook_BTR152_ZPU_TAK","pook_BTR40_zu23_TAK","Ural_ZU23_TK_EP1","pook_zsu57_tak","pook_brdm2AA_TKINS","pook_brdm2_sa9_TAK","pracs_tk_sa13"];
@@ -778,7 +778,8 @@ BIS_EVO_Objective12 = taskNull; //
 defenceReady = false; //Avoid certain events during objective population
 
 money = 10;
-aggression = 0;
+aggression = 100;
+eResupplying = false;
 
 //List of vehicles that are unlocked through objective capture
 BIS_EVO_unlockables = [
@@ -1337,7 +1338,8 @@ EGG_EVO_east5 = ["TK_Aziz_EP1","TK_Special_Forces_MG_EP1","TK_Special_Forces_EP1
 	EGG_EVO_eastveh11 = ["PRACS_Sa6_TK","PRACS_TK_SA8","PRACS_TK_URAL_SAM","PRACS_TK_SA13","EB_2S6M_Tunguska_D","pook_ZSU_TAK","pook_ZSU57_TAK","pook_brdm2_sa9_TAK","pook_9K331_TAK","pook_9K332_TAK","pook_9K37_TAK","pook_9K37M2_TAK","pook_9K317_TAK","pook_9K317M2_TAK","pook_96K6_TAK"];
 //statics
 	EGG_EVO_eastveh13 = ["PRACS_M266AAgun","PRACS_Type74AAgun","PRACS_Type66_Gun","PRACS_TK_SA2","PRACS_TK_D20","Igla_AA_pod_TK_EP1","AGS_TK_EP1","D30_TK_EP1","KORD_high_TK_EP1","Metis_TK_EP1","2b14_82mm_TK_EP1","DSHKM_TK_INS_EP1","DSHkM_Mini_TriPod_TK_INS_EP1","SPG9_TK_INS_EP1","INS_WarfareBMGNest_PK","pook_ZPU4_TAK","pook_s60_TK","ZU23_TK_INS_EP1"];
-	EGG_EVO_eastveh14 = ["PRACS_TK_MTLB_APC","PRACS_TK_URAL_SAM","Offroad_DSHKM_INS","Pickup_PK_INS","BTR40_MG_TK_INS_EP1","LandRover_MG_TK_EP1","LandRover_SPG9_TK_EP1","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1","UAZ_AGS30_TK_EP1","UAZ_MG_TK_EP1","UAZ_SPG9_INS","GRAD_TK_EP1","Ural_ZU23_TK_EP1","BRDM2_TK_EP1","BRDM2_ATGM_TK_EP1","BTR60_TK_EP1","M113_TK_EP1","BMP2_HQ_TK_EP1","EB_GAZ_Vodnik_HMG_TK","EB_GAZ_Vodnik_TK","BTR90_HQ","pook_brdm2AGS_TKINS","pook_brdm2AA_TKINS","pook_brdm2RKT_TKINS","pook_brdm2PKM_TAK","pook_brdm2HQcomm_TAK","pook_brdm2HQ_TKINS","pook_brdm2DSHK_TAK","pook_brdm2AT5_TAK","pook_brdm2AT3c_TKINS","pook_brdm2AT3_TKINS","pook_brdm2AT2_TKINS","pook_brdm2M_TAK","pook_brdm2_TAK","pook_brdm2_sa9_TAK","ibr_datsun_mol","ibr_datsun_molblk","pook_BTR40_twinMG_TAK","pook_BTR40_twinMG_TK_INS","pook_BTR40_patrol_TAK","pook_BTR40_patrol_TK_INS","pook_BTR40_PK_TAK","pook_BTR40_PK_TK_INS","pook_BTR40_RR57_TAK","pook_BTR40_RR57_TK_INS","pook_BTR40_RR73_TAK","pook_BTR40_RR73_TK_INS","pook_BTR40_RR106_TAK","pook_BTR40_RR106_TK_INS","pook_BTR40_MORTAR_TAK","pook_BTR40_MORTAR_TK_INS","pook_BTR40_zu23_TAK","pook_BTR40_zu23_TK_INS","pook_BTR152_DSHK_TAK","pook_BTR152_DSHK_TK_INS","pook_BTR152_ZPU_TAK","pook_BTR152_ZPU_TK_INS","pook_Ural_ZU23_TK_INS","pook_Ural_S60_TAK","pook_Ural_S60_TK_INS"];
+	EGG_EVO_eastveh14 = ["PRACS_TK_MTLB_APC","PRACS_TK_URAL_SAM","Offroad_DSHKM_INS","Pickup_PK_INS","BTR40_MG_TK_INS_EP1","LandRover_MG_TK_EP1","LandRover_SPG9_TK_EP1","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1","UAZ_AGS30_TK_EP1","UAZ_MG_TK_EP1","UAZ_SPG9_INS","GRAD_TK_EP1","Ural_ZU23_TK_EP1","BRDM2_TK_EP1","BRDM2_ATGM_TK_EP1","BTR60_TK_EP1","M113_TK_EP1","EB_GAZ_Vodnik_HMG_TK","EB_GAZ_Vodnik_TK","pook_brdm2AGS_TKINS","pook_brdm2AA_TKINS","pook_brdm2RKT_TKINS","pook_brdm2PKM_TAK","pook_brdm2HQcomm_TAK","pook_brdm2HQ_TKINS","pook_brdm2DSHK_TAK","pook_brdm2AT5_TAK","pook_brdm2AT3c_TKINS","pook_brdm2AT3_TKINS","pook_brdm2AT2_TKINS","pook_brdm2M_TAK","pook_brdm2_TAK","pook_brdm2_sa9_TAK","ibr_datsun_mol","ibr_datsun_molblk","pook_BTR40_twinMG_TAK","pook_BTR40_twinMG_TK_INS","pook_BTR40_patrol_TAK","pook_BTR40_patrol_TK_INS","pook_BTR40_PK_TAK","pook_BTR40_PK_TK_INS","pook_BTR40_RR57_TAK","pook_BTR40_RR57_TK_INS","pook_BTR40_RR73_TAK","pook_BTR40_RR73_TK_INS","pook_BTR40_RR106_TAK","pook_BTR40_RR106_TK_INS","pook_BTR40_MORTAR_TAK","pook_BTR40_MORTAR_TK_INS","pook_BTR40_zu23_TAK","pook_BTR40_zu23_TK_INS","pook_BTR152_DSHK_TAK","pook_BTR152_DSHK_TK_INS","pook_BTR152_ZPU_TAK","pook_BTR152_ZPU_TK_INS","pook_Ural_ZU23_TK_INS","pook_Ural_S60_TAK","pook_Ural_S60_TK_INS"];
+ 
 
 	EGG_EVO_mevlight = ["UAZ_MG_INS","Offroad_DSHKM_INS","Pickup_PK_INS","BRDM2_INS","ibr_datsun_mol","ibr_datsun_molblk"];
 EGG_EVO_mevlighta = ["BRDM2_ATGM_INS","UAZ_AGS30_INS","UAZ_AGS30_RU","UAZ_SPG9_INS","BMP2_HQ_INS","EB_GAZ_Vodnik_HMG_TK","EB_GAZ_Vodnik_TK","ibr_datsun_mol","ibr_datsun_molblk"];
