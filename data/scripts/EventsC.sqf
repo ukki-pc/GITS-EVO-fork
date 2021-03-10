@@ -135,8 +135,6 @@ BIS_EVO_AmmoBoxR = // Creates and fills local rank based ammo box of Russian Wea
 		_vecRu AddWeaponCargo ["PK",12];
 		_vecRu AddWeaponCargo ["RPK_74",12];
 		_vecRu AddWeaponCargo ["Pecheneg",12];
-
-
 		_vecRu AddWeaponCargo ["RH_rpk74m1p29",12];
 
 
@@ -517,10 +515,10 @@ BIS_EVO_AmmoBox = // Creates and fills local rank based ammo boxes
 		_vec addWeaponCargo ["C1987_MP7_acog_t",12];
 //		_vec addWeaponCargo ["C1987_MP7_acog_sd_t",12];
 //		_vec addWeaponCargo ["C1987_P99_black",12];
-		_vec addWeaponCargo ["C1987_P99_green",12];
+//		_vec addWeaponCargo ["C1987_P99_green",12];
 //		_vec addWeaponCargo ["C1987_P99_silver",12];
 //		_vec addWeaponCargo ["C1987_P99_black_laser",12];
-		_vec addWeaponCargo ["C1987_P99_green_laser",12];
+//		_vec addWeaponCargo ["C1987_P99_green_laser",12];
 //		_vec addWeaponCargo ["C1987_P99_silver_laser",12];
 //		_vec addWeaponCargo ["C1987_P99_black_sd",12];
 //		_vec addWeaponCargo ["C1987_P99_green_sd",12];
@@ -572,35 +570,35 @@ BIS_EVO_AmmoBox = // Creates and fills local rank based ammo boxes
 //		_vec addWeaponCargo ["DM_CAMO_M4_RCO_LP_SIL_GL",12];
 
 //FHQ
-		_vec AddWeaponCargo ["FHQ_RSASS_TAN",12];
-		_vec AddWeaponCargo ["FHQ_RSASS_TWS_TAN",12];
+		// _vec AddWeaponCargo ["FHQ_RSASS_TAN",12];
+		// _vec AddWeaponCargo ["FHQ_RSASS_TWS_TAN",12];
 //		_vec AddWeaponCargo ["FHQ_RSASS_SD_TAN",12];
 //		_vec AddWeaponCargo ["FHQ_RSASS_TWS_SD_TAN",12];
 
-		_vec AddWeaponCargo ["FHQ_XM2010_DESERT",12];
+		// _vec AddWeaponCargo ["FHQ_XM2010_DESERT",12];
 //		_vec AddWeaponCargo ["FHQ_XM2010_SD_DESERT",12];
-		_vec AddWeaponCargo ["FHQ_XM2010_NV_DESERT",12];
+		// _vec AddWeaponCargo ["FHQ_XM2010_NV_DESERT",12];
 //		_vec AddWeaponCargo ["FHQ_XM2010_NV_SD_DESERT",12];
-		_vec AddWeaponCargo ["FHQ_XM2010_TWS_DESERT",12];
+		// _vec AddWeaponCargo ["FHQ_XM2010_TWS_DESERT",12];
 //		_vec AddWeaponCargo ["FHQ_XM2010_TWS_SD_DESERT",12];
 
-		_vec AddWeaponCargo ["FHQ_MSR_DESERT",12];
-		_vec AddWeaponCargo ["FHQ_MSR_NV_DESERT",12];
-		_vec AddWeaponCargo ["FHQ_MSR_TWS_DESERT",12];
+		// _vec AddWeaponCargo ["FHQ_MSR_DESERT",12];
+		// _vec AddWeaponCargo ["FHQ_MSR_NV_DESERT",12];
+		// _vec AddWeaponCargo ["FHQ_MSR_TWS_DESERT",12];
 //		_vec AddWeaponCargo ["FHQ_MSR_SD_DESERT",12];
 //		_vec AddWeaponCargo ["FHQ_MSR_NV_SD_DESERT",12];
 //		_vec AddWeaponCargo ["FHQ_MSR_TWS_SD_DESERT",12];
 
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_IRN",12];
-		_vec AddWeaponCargo ["FHQ_ACR_WDL_IRN_F",12];
+		// _vec AddWeaponCargo ["FHQ_ACR_WDL_IRN_F",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_CCO",12];
-		_vec AddWeaponCargo ["FHQ_ACR_WDL_CCO_F",12];
+		// _vec AddWeaponCargo ["FHQ_ACR_WDL_CCO_F",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_RCO",12];
-		_vec AddWeaponCargo ["FHQ_ACR_WDL_RCO_F",12];
+		// _vec AddWeaponCargo ["FHQ_ACR_WDL_RCO_F",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_HWS",12];
-		_vec AddWeaponCargo ["FHQ_ACR_WDL_HWS_F",12];
+		// _vec AddWeaponCargo ["FHQ_ACR_WDL_HWS_F",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_G33",12];
-		_vec AddWeaponCargo ["FHQ_ACR_WDL_G33_F",12];
+		// _vec AddWeaponCargo ["FHQ_ACR_WDL_G33_F",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_IRN_SD",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_IRN_SD_F",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_CCO_SD",12];
@@ -612,15 +610,15 @@ BIS_EVO_AmmoBox = // Creates and fills local rank based ammo boxes
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_G33_SD",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_G33_SD_F",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_IRN_GL",12];
-		_vec AddWeaponCargo ["FHQ_ACR_WDL_IRN_GL_F",12];
+		// _vec AddWeaponCargo ["FHQ_ACR_WDL_IRN_GL_F",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_CCO_GL",12];
-		_vec AddWeaponCargo ["FHQ_ACR_WDL_CCO_GL_F",12];
+		// _vec AddWeaponCargo ["FHQ_ACR_WDL_CCO_GL_F",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_RCO_GL",12];
-		_vec AddWeaponCargo ["FHQ_ACR_WDL_RCO_GL_F",12];
+		// _vec AddWeaponCargo ["FHQ_ACR_WDL_RCO_GL_F",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_HWS_GL",12];
-		_vec AddWeaponCargo ["FHQ_ACR_WDL_HWS_GL_F",12];
+		// _vec AddWeaponCargo ["FHQ_ACR_WDL_HWS_GL_F",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_G33_GL",12];
-		_vec AddWeaponCargo ["FHQ_ACR_WDL_G33_GL_F",12];
+		// _vec AddWeaponCargo ["FHQ_ACR_WDL_G33_GL_F",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_IRN_GL_SD",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_IRN_GL_SD_F",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_CCO_GL_SD",12];
@@ -633,11 +631,11 @@ BIS_EVO_AmmoBox = // Creates and fills local rank based ammo boxes
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_G33_GL_SD_F",12];
 
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_HAMR",12];
-		_vec AddWeaponCargo ["FHQ_ACR_WDL_HAMR_F",12];
+		// _vec AddWeaponCargo ["FHQ_ACR_WDL_HAMR_F",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_HAMR_SD",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_HAMR_SD_F",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_HAMR_GL",12];
-		_vec AddWeaponCargo ["FHQ_ACR_WDL_HAMR_GL_F",12];
+		// _vec AddWeaponCargo ["FHQ_ACR_WDL_HAMR_GL_F",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_HAMR_GL_SD",12];
 //		_vec AddWeaponCargo ["FHQ_ACR_WDL_HAMR_GL_SD_F",12];
 //RH Weapons
@@ -784,15 +782,15 @@ BIS_EVO_AmmoBox = // Creates and fills local rank based ammo boxes
 //			_vec addWeaponCargo ["RH_mk12sd",12];
 			_vec addWeaponCargo ["RH_m21",12];
 			_vec addWeaponCargo ["RH_MK21A5SD",12];
-			_vec addWeaponCargo ["RH_m27",12];
-			_vec addWeaponCargo ["RH_m27aim",12];
-			_vec addWeaponCargo ["RH_m27cacog",12];
-			_vec addWeaponCargo ["RH_m27ceotech",12];
+			// _vec addWeaponCargo ["RH_m27",12];
+			// _vec addWeaponCargo ["RH_m27aim",12];
+			// _vec addWeaponCargo ["RH_m27cacog",12];
+			// _vec addWeaponCargo ["RH_m27ceotech",12];
 			_vec addWeaponCargo ["RH_M249",12];
-//			_vec addWeaponCargo ["RH_M249acog",12];
-//			_vec addWeaponCargo ["RH_M249elcan",12];
+			_vec addWeaponCargo ["RH_M249acog",12];
+			_vec addWeaponCargo ["RH_M249elcan",12];
 			_vec addWeaponCargo ["RH_M249p",12];
-//			_vec addWeaponCargo ["RH_M249pacog",12];
+			_vec addWeaponCargo ["RH_M249pacog",12];
 			_vec addWeaponCargo ["RH_M249pelcan",12];
 			_vec addWeaponCargo ["RH_Mk48mod1",12];
 			_vec addWeaponCargo ["RH_Mk48mod1acog",12];
@@ -918,7 +916,7 @@ BIS_EVO_AmmoBox = // Creates and fills local rank based ammo boxes
 		_vec AddWeaponCargo ["Mk_48_DES_EP1",12];
 //ammo 
 //FHQ ammo
-
+/*
 		_vec addMagazineCargo ["FHQ_rem_20Rnd_762x51_PMAG_NT",12];
 		_vec addMagazineCargo ["FHQ_rem_20Rnd_762x51_PMAG_NT_SD",12];
 		_vec addMagazineCargo ["FHQ_rem_20Rnd_762x51_PMAG_T",12];
@@ -975,6 +973,7 @@ BIS_EVO_AmmoBox = // Creates and fills local rank based ammo boxes
 		_vec addMagazineCargo ["FHQ_rem_20Rnd_680x43_ACR_T_SD",12];
 		_vec addMagazineCargo ["FHQ_rem_20Rnd_680x43_ACR_TS_SD",12];
 		_vec addMagazineCargo ["FHQ_rem_20Rnd_680x43_ACR_TD_SD",12];
+		*/
 //new ammo
 		_vec addMagazineCargo ["R3F_25Rnd_556x45_FAMAS",12];
 		_vec addMagazineCargo ["R3F_30Rnd_556x45_FAMAS",12];
@@ -1006,10 +1005,10 @@ BIS_EVO_AmmoBox = // Creates and fills local rank based ammo boxes
 		_vec addMagazineCargo ["40Rnd_46x30_sd_mp7",12];
 		_vec addMagazineCargo ["20Rnd_46x30_mp7",12];
 		_vec addMagazineCargo ["20Rnd_46x30_sd_mp7",12];
-		_vec addMagazineCargo ["15Rnd_9x19_p99",12];
-		_vec addMagazineCargo ["10Rnd_9x19_p99",12];
-		_vec addMagazineCargo ["15Rnd_9x19_p99_sd",12];
-		_vec addMagazineCargo ["10Rnd_9x19_p99_sd",12];
+		// _vec addMagazineCargo ["15Rnd_9x19_p99",12];
+		// _vec addMagazineCargo ["10Rnd_9x19_p99",12];
+		// _vec addMagazineCargo ["15Rnd_9x19_p99_sd",12];
+		// _vec addMagazineCargo ["10Rnd_9x19_p99_sd",12];
 //RH ammo##
 		_vec addMagazineCargo ["RH_7Rnd_50_AE",12];
 		_vec addMagazineCargo ["RH_6Rnd_44_Mag",12];

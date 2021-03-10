@@ -623,6 +623,7 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	["SMAF_MF1_AGRESSOR_DESERT",100],								// F35
 	["PRACS_Etendard",130],								// F35
 	["Pracs_Mohawk",130],								// F35 
+	["F117A",140],	
 	["PRACS_Mirage3",140],								// F35
 	["F4M_Des",140],	
 	["PRACS_A4",160],								// F35
@@ -1035,7 +1036,7 @@ EGG_EVO_Trapweapons = ["uns_Tripwire1a","uns_Tripwire1a_2","uns_Tripwire1b","uns
 EGG_EVO_miscamwepsM = ["M_Toophan_AT","EB_M_AT3_AT","EB_M_AT9_AT","EB_M_AT9F_AT","PRACS_TK_AA8","EB_M_AT2_AT","M_Sidewinder_AA","M_Sidewinder_AA_F35","M_Strela_AA","M_Igla_AA","M_Stinger_AA","M_AT2_AT","M_AT6_AT","M_AT9_AT","M_AT5_AT","M_AT10_AT","M_AT11_AT","M_AT13_AT","M_TOW_AT","M_TOW2_AT","M_Hellfire_AT","M_Maverick_AT","M_Vikhr_AT","M_Ch29_AT","M_R73_AA","M_9M311_AA","GLT_AIM9M_AA","GLT_AIM9X_AA","GLT_AIM120_AA","GLT_AIM7_AA","GLT_AIM54_AA","GLT_R3_AA","GLT_R27_AA","GLT_R73_AA","GLT_R77_AA","GLT_R550_AA","IkaR_F14_AIM9_ir","IkaR_F14_AIM54_ir","RKTF15_AIM9","RKTF15_AIM120","ffaa_Mistral_AA","GLT_Sidewinder_AA","GLT_SidewinderX_AA","GLT_AIM7E_AA","GLT_Maverick_AG","GLT_Harpoon_LGM","GLT_AGM65_AG","GLT_AGM84_AG","GLT_AGM88_AG","GLT_AGM114_AG","GLT_CH15_AG","GLT_CH29L_AG","GLT_CH29T_AG","GLT_CH59_AG","GLT_CH31_AG","GLT_AM39_AG","GLT_AS4_AG","IkaR_F14_AGM65_ir","ffaa_spike_AT","RKTF4HarmRaila","RKTF4SparrowRaila","RKT_Kitchen","RKT_Ch29_AT","RKT_R27_AA","RKT_R73_AA","RKSL_LYNX_TOW_AT","M_AT9_Mi28","RKSL_brimstone_rack","RKSL_harpoon","rksl_agm119mk3","rksl_aim9m","rksl_aim132","rksl_irist","rksl_aim120","rksl_meteor","RKSL_stormshadow","RKSL_ALARM"];
 
 //all airborne bombs
-EGG_EVO_miscamwepsB = ["EB_Bo_FAB250","Bo_GBU12_LGB","Bo_GBU12_LGB_F35","Bo_FAB_250","RKTF4BLUBomb","RKTF4BombRaila","Bo_kb500_LGB","Bo_fb250_FFB","RKSL_PAVE2_500","RKSL_PAVE4_500","RKSL_PAVE2_1000","RKSL_GP_500","RKSL_GP_500RET","RKSL_GP_1000","RKSL_GP_1000RET","GLT_FAB250_Bo","GLT_FAB500_Bo","GLT_MK81_Bo","GLT_MK82_Bo","GLT_MK82_Bo","GLT_MK84_Bo","GLT_AGM154_LGB","GLT_GBU12_LGB","GLT_GBU53_LGB","GLT_KAB250_LGB","GLT_KAB500_LGB","GLT_KAB1500_LGB","IkaR_F14_GBU12_ir","RKTF15E_GBU10Bomb","RKTF15E_mk82Bomb","RKTF15E_cbuBomb","RKTF15E_mk84Bomb"];
+EGG_EVO_miscamwepsB = ["EB_Bo_GBU12","EB_Bo_FAB250","Bo_GBU12_LGB","Bo_GBU12_LGB_F35","Bo_FAB_250","RKTF4BLUBomb","RKTF4BombRaila","Bo_kb500_LGB","Bo_fb250_FFB","RKSL_PAVE2_500","RKSL_PAVE4_500","RKSL_PAVE2_1000","RKSL_GP_500","RKSL_GP_500RET","RKSL_GP_1000","RKSL_GP_1000RET","GLT_FAB250_Bo","GLT_FAB500_Bo","GLT_MK81_Bo","GLT_MK82_Bo","GLT_MK82_Bo","GLT_MK84_Bo","GLT_AGM154_LGB","GLT_GBU12_LGB","GLT_GBU53_LGB","GLT_KAB250_LGB","GLT_KAB500_LGB","GLT_KAB1500_LGB","IkaR_F14_GBU12_ir","RKTF15E_GBU10Bomb","RKTF15E_mk82Bomb","RKTF15E_cbuBomb","RKTF15E_mk84Bomb"];
 
 //all laser guided weapons
 EGG_EVO_LaserLauncher = ["EB_AT2_Launcher","BombLauncher","BombLauncherF35","BombLauncherA10","HellfireLauncher","GLT_GBU12_Launcher","GLT_AGM154_Launcher","GLT_GBU53_Launcher","GLT_FFARLauncher_laser","GLT_Ch29LauncherLaser"];
@@ -1116,7 +1117,7 @@ repaircooldown = 0;
 
 //hitRegister = [];
 
-EB_PLbombs = ["EB_Mk81_Launcher","EB_Mk82_Launcher","EB_Mk83_Launcher","EB_Mk84_Launcher","EB_Mk77_Launcher","EB_Mk770_Launcher","EB_BombLauncher_fab250","EB_BombLauncher_fab500","EB_CBU78B_Launcher","EB_CBU87B_Launcher","EB_R77_Launcher","EB_CBU89B_Launcher","EB_CBU100_Launcher","EB_GBU12_Launcher","EB_GBU16_Launcher","EB_GBU10_Launcher","EB_BombLauncher_kab250","EB_BombLauncher_kab500"]; 
+EB_PLbombs = ["EB_Mk81_Launcher","EB_Mk82_Launcher","EB_Mk83_Launcher","EB_Mk84_Launcher","EB_Mk77_Launcher","EB_GBU12_Launcher","EB_Mk770_Launcher","EB_BombLauncher_fab250","EB_BombLauncher_fab500","EB_CBU78B_Launcher","EB_CBU87B_Launcher","EB_R77_Launcher","EB_CBU89B_Launcher","EB_CBU100_Launcher","EB_GBU12_Launcher","EB_GBU16_Launcher","EB_GBU10_Launcher","EB_BombLauncher_kab250","EB_BombLauncher_kab500"]; 
 EB_PLmissiles = ["EB_AIM9M_Launcher","EB_AIM120_Launcher","EB_AIM9X_Launcher","EB_AIM7E_Launcher","EB_METEOR_Launcher","EB_AIM132_Launcher","EB_R60_Launcher","EB_R73_Launcher","EB_AT2_Launcher","EB_KH29D_Launcher","EB_KH29L_Launcher","EB_AGM65E_Launcher","EB_AGM114K_Launcher","EB_AGM88_Launcher"];
 GLT_bombs = ["GLT_GBU24_Launcher","GLT_GBU53_Launcher","GLT_GBU39_Launcher","GLT_KAB1500_Launcher"];
 GLT_missiles = ["GLT_AIM120_Launcher","GLT_AIM54_Launcher","GLT_R550_Launcher","GLT_AIM132_Launcher","GLT_METEOR_Launcher","GLT_AGM84_Launcher","GLT_AGM154A1_Launcher","GLT_AM39_Launcher","GLT_R3_Launcher","GLT_R27_Launcher","GLT_R77_Launcher","GLT_CH15S_Launcher","GLT_CH29T_Launcher","GLT_CH59_Launcher","GLT_CH31P_Launcher"];
@@ -1237,7 +1238,7 @@ EGG_EVO_westveh10 = ["Stinger_Pod_US_EP1","ZU23_TK_GUE_EP1","Rbs70_ACR","HMMWV_A
 	_player = _this select 0;
 	_amount = _this select 1;
 
-	if(name _player == name player and isNumber _amount) then 
+	if(name _player == name player and !(isNil "_amount")) then 
 	{
 		money = money + _amount;
 	["jed_updMoney", [_player]] call CBA_fnc_whereLocalEvent;

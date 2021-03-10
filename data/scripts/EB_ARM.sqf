@@ -62,7 +62,7 @@ armWeapon = {
 				};
 			};
 			//systemChat str (_weps select _weaponSlot);
-				if(_weps select _weaponSlot in EB_turrets or _weaponSlot < 1) exitWith {hint "Cannot change that";};
+				if(_weps select _weaponSlot in EB_turrets) exitWith {hint "Cannot change that";};
 
 			if( (inrepairzone) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and (local _vec) and (perkparam == 1) and (EB_airload1 <0) ) then
 {
