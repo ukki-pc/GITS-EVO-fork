@@ -1237,7 +1237,7 @@ EGG_EVO_westveh10 = ["Stinger_Pod_US_EP1","ZU23_TK_GUE_EP1","Rbs70_ACR","HMMWV_A
 	_player = _this select 0;
 	_amount = _this select 1;
 
-	if(name _player == name player) then 
+	if(name _player == name player and isNumber _amount) then 
 	{
 		money = money + _amount;
 	["jed_updMoney", [_player]] call CBA_fnc_whereLocalEvent;
