@@ -882,20 +882,26 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 			case 6:
 			{
 			_vec = vehicle player;
-			if((inrepairzone)) then
-				{
-					[_ap] execVM "data\scripts\storeVeh.sqf";
-					ctrlShow [674,false]; //Storeveh page
-					closeDialog 1;
+			if(_vec != MHQ) then 
+			{
+				if((inrepairzone)) then
+					{
+						[_ap] execVM "data\scripts\storeVeh.sqf";
+						ctrlShow [674,false]; //Storeveh page
+						closeDialog 1;
+					}
+					else
+					{
+						[_vec,300] execVM "data\scripts\addToPurList.sqf";
+						ctrlShow [674,false]; //Storeveh page
+						closeDialog 1;
+						hint "Sending vehicle to base, cooldown 5min";
+					};
+					Mpage =[false,false,false,false,false,true,1,false,false];
 				}
-				else
-				{
-					[_vec,300] execVM "data\scripts\addToPurList.sqf";
-					ctrlShow [674,false]; //Storeveh page
-					closeDialog 1;
-					hint "Sending vehicle to base, cooldown 5min";
-				};
+				else{hint "Cannot store this vehicle";
 				Mpage =[false,false,false,false,false,true,1,false,false];
+				closeDialog 1;};
 			};
 			case 8:
 			{
