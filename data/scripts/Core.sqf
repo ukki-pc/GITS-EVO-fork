@@ -136,12 +136,12 @@ BIS_EVO_ListUpdate =
 */
 	_rank = 0;
 	_newstring = "";
-	 if (score player >= BIS_EVO_rank1-pointsSpent && _rank == 0) then {_rank = 1};
-	 if (score player >= BIS_EVO_rank2-pointsSpent && _rank == 1) then {_rank = 2};
-	 if (score player >= BIS_EVO_rank3-pointsSpent && _rank == 2) then {_rank = 3};
-	 if (score player >= BIS_EVO_rank4-pointsSpent && _rank == 3) then {_rank = 4};
-	 if (score player >= BIS_EVO_rank5-pointsSpent && _rank == 4) then {_rank = 5};
-	 if (score player >= BIS_EVO_rank6-pointsSpent && _rank == 5) then {_rank = 6};
+	 if (score player >= BIS_EVO_rank1 && _rank == 0) then {_rank = 1};
+	 if (score player >= BIS_EVO_rank2 && _rank == 1) then {_rank = 2};
+	 if (score player >= BIS_EVO_rank3 && _rank == 2) then {_rank = 3};
+	 if (score player >= BIS_EVO_rank4 && _rank == 3) then {_rank = 4};
+	 if (score player >= BIS_EVO_rank5 && _rank == 4) then {_rank = 5};
+	 if (score player >= BIS_EVO_rank6 && _rank == 5) then {_rank = 6};
 
 	_assemblelist =  
 	{
@@ -295,7 +295,7 @@ AssList = AssList +[["Relocate","Relocate to captured town or base.","data\offen
 AssList = AssList +[["Town Conquest","Capture objective from enemy control.","data\offensive.paa",0,16]];
 AssList = AssList +[["Save Game","Save game for next session.","data\offensive.paa",0,18]];
 
-	if(_sco >= BIS_EVO_rank1-pointsSpent) then 
+	if(_sco >= BIS_EVO_rank1) then 
 	{
 		mrank = BIS_EVO_rank1;
 
@@ -314,7 +314,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 //place traps
 		if (gitsnades == 2) then {SupList = SupList +[["Set traps","Ideal for protecting an area against infantry",50,(EGG_EVO_Artycost*2),5,"data\sup01.paa",24]]};
 	};
-	if(_sco >= BIS_EVO_rank2-pointsSpent) then 
+	if(_sco >= BIS_EVO_rank2) then 
 	{
 		mrank = BIS_EVO_rank2;
 
@@ -332,7 +332,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 
 //missions
 	};
-	if(_sco >= BIS_EVO_rank3-pointsSpent) then 
+	if(_sco >= BIS_EVO_rank3) then 
 	{
 		mrank = BIS_EVO_rank3;
 
@@ -350,7 +350,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 //cluster bomb
 		SupList = SupList +[[localize "STR_M04t110",localize "STR_M04t111",50,(EGG_EVO_Artycost*6),20,"data\sup01.paa",4]];
 	};
-	if(_sco >= BIS_EVO_rank4-pointsSpent) then 
+	if(_sco >= BIS_EVO_rank4) then 
 	{
 		mrank = BIS_EVO_rank4;
 
@@ -368,7 +368,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 //large arty
 		SupList = SupList +[[localize "STR_M04t112",localize "STR_M04t113",100,(EGG_EVO_Artycost*8),30,"data\sup01.paa",5]];
 	};
-	if(_sco >= BIS_EVO_rank5-pointsSpent) then 
+	if(_sco >= BIS_EVO_rank5) then 
 	{
 		mrank = BIS_EVO_rank5;
 
@@ -385,7 +385,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 
 //missions	
 };
-	if(_sco >= BIS_EVO_rank6-pointsSpent) then 
+	if(_sco >= BIS_EVO_rank6) then 
 	{
 		mrank = BIS_EVO_rank6;
 
@@ -889,7 +889,9 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 			_vec = vehicle player;
 			if(_vec != MHQ) then 
 			{
-				if((inrepairzone)) then
+			_nearestMarker = [BIS_EVO_conqueredTowns, position player] call BIS_fnc_nearestPosition;
+			_plyDist = (getPos player) distance getMarkerPos _nearestMarker;
+				if((inrepairzone or _plyDist < 300)) then
 					{
 						[_ap] execVM "data\scripts\storeVeh.sqf";
 						ctrlShow [674,false]; //Storeveh page
@@ -976,13 +978,13 @@ BIS_EVO_ActButton =
 				_i = _i + 1;
 			};
 
-			if (score player < BIS_EVO_rank1-pointsSpent and helpersparam != 2 and _ainum >= 1) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (score player < BIS_EVO_rank2-pointsSpent and helpersparam != 2 and _ainum >= 2) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (score player < BIS_EVO_rank3-pointsSpent and helpersparam != 2 and _ainum >= 3) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (score player < BIS_EVO_rank4-pointsSpent and helpersparam != 2 and _ainum >= 4) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (score player < BIS_EVO_rank5-pointsSpent and helpersparam != 2 and _ainum >= 5) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (score player < BIS_EVO_rank6-pointsSpent and helpersparam != 2 and _ainum >= 6) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (score player >= BIS_EVO_rank6-pointsSpent and helpersparam != 2 and _ainum >= 7) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+			if (score player < BIS_EVO_rank1 and helpersparam != 2 and _ainum >= 1) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+			if (score player < BIS_EVO_rank2 and helpersparam != 2 and _ainum >= 2) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+			if (score player < BIS_EVO_rank3 and helpersparam != 2 and _ainum >= 3) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+			if (score player < BIS_EVO_rank4 and helpersparam != 2 and _ainum >= 4) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+			if (score player < BIS_EVO_rank5 and helpersparam != 2 and _ainum >= 5) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+			if (score player < BIS_EVO_rank6 and helpersparam != 2 and _ainum >= 6) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+			if (score player >= BIS_EVO_rank6 and helpersparam != 2 and _ainum >= 7) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
 			if (helpersparam == 2 and _ainum >= 8) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
 			if(_item != "ME") then {_rec = [_item] execVM "data\scripts\recruit.sqf";}
 			else {_rec = [_item] execVM "data\scripts\recruitMe.sqf";};
@@ -1034,7 +1036,6 @@ if (player hasWeapon "ItemRadio") then
 						publicVariable "BIS_EVO_punitC";
 					//adding
 					player addscore -mcost;
-					pointsSpent = pointsSpent +  round (mcost*EX_EVO_vehPriceMultiplier);
 					ctrlSetText [2003,Format ["%1: %2",localize "STR_M04t134",(score player)]];//Score
 
 					};
@@ -1233,7 +1234,6 @@ if (player hasWeapon "ItemRadio") then
 								ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",0]];//Cost
 								ctrlSetText [2011,format["You bought: %1",getText(configFile >> "CfgVehicles" >> _item >> "displayName")]];
 								["jed_addMoney", [_ap, ( round -(mcost*EX_EVO_vehPriceMultiplier))]] call CBA_fnc_whereLocalEvent;
-								pointsSpent = pointsSpent +  round (mcost*EX_EVO_vehPriceMultiplier);
 								//player addscore round -(mcost*EX_EVO_vehPriceMultiplier);
 								ctrlSetText [2003,Format ["%1: %2",localize "STR_M04t134",(money)]];//Score
 								[] call BIS_EVO_ListUpdate;
@@ -1262,15 +1262,15 @@ if (player hasWeapon "ItemRadio") then
 			_curLevel = [_index] call countPerkLevel;
 			_name = ((perkList select _index) select _curLevel) select 0;
 
-	if(_curlevel <  (count(perkList select _index)-1)) then 
+	if(_curlevel <  (count(perkList select _index)-1) and perkPoints > 0) then 
 	{
 		_curLevel = [_index] call countPerkLevel;
 
-	//	perkList set [_index,[_curLevel,[((perkList select _index) select _curLevel) select 0,( (perkList select _index) select _curLevel) select 1,TRUE,((perkList select _index) select _curLevel)select 3]]];
 		_perks = (perkList select _index);
 		_perks set [_curLevel,[(_perks select _curLevel) select 0,(_perks select _curLevel) select 1,true]];
 		_asd = [_index] call setPerkLevel;
 		perkList set [_index,_perks];
+		perkPoints = perkPoints -1;
 		[] call BIS_EVO_ListUpdate;
 
 		};

@@ -117,12 +117,12 @@ BIS_EVO_Erec =
 		//Increasing aggression
 		_rng = round(random(100+aggression));
 
-		 if(_rng < 80) then 
+		 if(_rng < 100) then 
 		 {
 		 	_allvec = EGG_EVO_MechEasy; //mixed units reinforce
 		 };
 
-		if(_rng >= 80 and _rng < 150) then 
+		if(_rng >= 100 and _rng < 150) then 
 		 {
 		 	_allvec = EGG_EVO_MechMedium; //mixed units reinforce
 		 };

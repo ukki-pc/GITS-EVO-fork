@@ -26,6 +26,7 @@ if (!(alive player)) exitWith
 	};
 	
 _amb = egg_evo_Amb createVehicle (getposASL player);
+//if(egg_evo_Amb == EGG_EVO_allAmbs select 3) then {_amb setFuelCargo 1; _amb setAmmoCargo 1; _amb setRepairCargo 1;};
 _dir  = getdir player;
 _amb setdir _dir;
 amb_pos = position _amb;

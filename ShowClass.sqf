@@ -30,7 +30,7 @@ Description:
 	
 	arma2.rpt example of a soldier:
 	--------------------------------------------------------------------------------------------------------------------------------------
-	Unit: B 1-1-A:1 (Cyborg11) (Schï¿½tze)
+	Unit: B 1-1-A:1 (Cyborg11) (Schütze)
 	Classname: USMC_Soldier
 	Weapons: ["NVGoggles","ACE_FAST_PackEDC","DMR","ACE_Glock18"]
 	Magazines: ["20Rnd_762x51_DMR","20Rnd_762x51_DMR", ...]

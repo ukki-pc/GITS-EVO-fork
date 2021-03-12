@@ -11,6 +11,7 @@ cityToTransfer = -1;
 _cursorPos = [];
 _rhqPositions = [];
 travelCost = 0;
+travelMarker = objNull;
 
 BIS_EVO_BaseMarkers = ["LHD1Marker"];
 MHQMarker = ["MHQ"];
@@ -39,11 +40,11 @@ openMap true;
 hint "Pick a location to transfer to";
 
 onMapSingleClick "
-  _marker= createMarker ['markerRelo',[0,0,0]];
-                  _marker setMarkerColor 'ColorGreen';
-                _marker setMarkerShape 'ELLIPSE';
-                _marker setMarkerBrush 'Solid';
-                _marker setMarkerSize [200, 200];
+  travelMarker= createMarker ['markerRelo',[0,0,0]];
+                  travelMarker setMarkerColor 'ColorGreen';
+                travelMarker setMarkerShape 'ELLIPSE';
+                travelMarker setMarkerBrush 'Solid';
+                travelMarker setMarkerSize [200, 200];
 
 mapRefresh = true;
 _nearestMarker = [TeleportLocations, _pos] call BIS_fnc_nearestPosition;

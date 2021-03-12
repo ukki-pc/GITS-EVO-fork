@@ -1850,12 +1850,6 @@ BIS_EVO_AssignTasks =  // Assigns common main city objectives
 		if(BIS_EVO_MissionProgress == -1 ) then {
 		//	BIS_EVO_Objective1 settaskstate "Succeeded";
 		};
-
-	if(BIS_EVO_MissionProgress == 11) then
-	{
-		
-	};
-
 };
 
 BIS_EVO_Message = // Most hint messages are sent here for a common display and record to log

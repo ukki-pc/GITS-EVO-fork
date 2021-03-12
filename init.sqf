@@ -442,7 +442,7 @@ if(EGG_EVO_FactionParam == 1) then
 	EGG_EVO_OfficerDefenders = ["TK_INS_Soldier_AA_EP1","TK_INS_Soldier_AR_EP1","TK_INS_Bonesetter_EP1","TK_INS_Soldier_MG_EP1","TK_INS_Soldier_2_EP1","TK_INS_Soldier_EP1","TK_INS_Soldier_4_EP1","TK_INS_Soldier_3_EP1","TK_INS_Soldier_AAT_EP1","TK_INS_Soldier_AT_EP1","TK_INS_Soldier_Sniper_EP1","TK_INS_Soldier_TL_EP1","TK_INS_Warlord_EP1"];
 	
 	EGG_EVO_mevlight = ["BTR40_MG_TK_INS_EP1","pracs_TK_type63","pracs_TK_mtlb_apc","BTR40_TK_INS_EP1","BRDM2_TK_EP1","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1"];
-	EGG_EVO_MechEasy = EGG_EVO_mevlight + ["UAZ_AGS30_TK_EP1","UAZ_MG_TK_EP1","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1","pook_brdm2AGS_TKINS","pook_brdm2AA_TKINS","pook_brdm2RKT_TKINS","pook_brdm2PKM_TAK","pook_brdm2HQcomm_TAK","pook_brdm2HQ_TKINS","pook_brdm2DSHK_TAK","pook_brdm2AT5_TAK","pook_brdm2AT3c_TKINS","pook_brdm2AT3_TKINS","pook_brdm2AT2_TKINS","pook_brdm2M_TAK","pook_brdm2_TAK","pook_brdm2_sa9_TAK"];
+	EGG_EVO_MechEasy = EGG_EVO_mevlight + ["UAZ_AGS30_TK_EP1","UAZ_MG_TK_EP1","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1","pook_brdm2AGS_TKINS","pook_brdm2AA_TKINS","pook_brdm2RKT_TKINS","pook_brdm2PKM_TAK","pook_brdm2HQcomm_TAK","pook_brdm2DSHK_TAK","pook_brdm2AT5_TAK","pook_brdm2AT3c_TKINS","pook_brdm2AT3_TKINS","pook_brdm2AT2_TKINS","pook_brdm2M_TAK","pook_brdm2_TAK","pook_brdm2_sa9_TAK"];
 	EGG_EVO_MechMedium =["T72_TK_EP1","pook_btrMWS_tak","eb_btr90_tk","vil_t62m","ch_t72_desert","ch_t72_2_desert","pook_btr2a42_tak","VIL_BMP1_TKS","EB_BMP3_TK","sa_bmd_1_iraq","BMP2_TK_EP1","pook_brdm2at2_tak","T55_TK_EP1","T34_TK_EP1","UAZ_AGS30_TK_EP1","BTR60_TK_EP1","Ural_ZU23_TK_EP1","BRDM2_TK_EP1","M113_TK_EP1","BMP2_HQ_TK_EP1"];
 	EGG_EVO_MechHard = ["T90","pracs_tk_t80b"];
 
@@ -620,6 +620,7 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	["ibr_tucano_lin",60],	
 	["SMAF_MF1_AGRESSOR_DESERT",100],								// F35
 	["PRACS_Etendard",130],								// F35
+	["uns_A1J_LBMB",130],		
 	["Pracs_Mohawk",130],								// F35 
 	["F117A",140],	
 	["PRACS_Mirage3",140],								// F35
@@ -668,6 +669,7 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 };
 
 
+EGG_EVO_allAmbs = ["TK_WarfareBUAVterminal_Base_EP1","BAF_Offroad_D","EB_LR_Supply_D_BAFX","RE_landrover6x6_BAF"];
 
 BIS_EVO_GlobalSleep = 0.1; // Global sleep is used after spawning a unit.
 // Sub mission conditions
@@ -777,6 +779,7 @@ BIS_EVO_Objective12 = taskNull; //
 defenceReady = false; //Avoid certain events during objective population
 
 money = 10;
+perkPoints = 2;
 aggression = 0;
 eResupplying = false;
 
@@ -876,7 +879,7 @@ EGG_problemcraft =  ["PRACS_TK_Su22","PRACS_TK_Su22_BMB","PRACS_TK_Su22_MSL","PR
 //Planes with custom loadout
 customPlanes = ["A4"];
 
-EGG_EVO_repairtruck = ["MtvrRepair_DES_EP1","MtvrRepair","PRACS_M250_Repair","UralRepair_CDF","UralRepair_TK_EP1","UralRepair_INS","KamazRepair","T810Repair_ACR","t810_repair","pook_HEMTT_repair","pook_HEMTT_repair_US","pook_HEMTT_repair_CDF","pook_HEMTT_repair_CDF_IND"];
+EGG_EVO_repairtruck = ["MtvrRepair_DES_EP1","MtvrRepair","PRACS_M250_Repair","UralRepair_CDF","UralRepair_TK_EP1","UralRepair_INS","KamazRepair","T810Repair_ACR","t810_repair","pook_HEMTT_repair","pook_HEMTT_repair_US","pook_HEMTT_repair_CDF","pook_HEMTT_repair_CDF_IND","RE_landrover6x6_BAF"];
 EGG_EVO_cargoTruck = ["V3S_TK_EP1"];
 EGG_EVO_sniperhide = ["Land_sniper_hide_w_nato","Land_sniper_hide_d_nato","Land_sniper_hide_w_east","Land_sniper_hide_d_east"];
 
@@ -1183,6 +1186,11 @@ EGG_EVO_westveh10 = ["Stinger_Pod_US_EP1","ZU23_TK_GUE_EP1","Rbs70_ACR","HMMWV_A
 */
 // Perks
 
+perkOffLVL = 0;
+perkPilotLVL = 0;
+perkSniperLVL = 0;
+perkEngLVL = 0;
+
 	perkList = 
 	[
 		//Perk 1
@@ -1202,10 +1210,10 @@ EGG_EVO_westveh10 = ["Stinger_Pod_US_EP1","ZU23_TK_GUE_EP1","Rbs70_ACR","HMMWV_A
 		],
 		//Perk 3
 		[
-			["Anti Air","Unlock stuff",FALSE],
-			["Anti Air","",FALSE],
-			["Anti Air","",FALSE],
-			["Anti Air","",FALSE]
+			["Sniper","Unlock stuff",FALSE],
+			["Sniper","",FALSE],
+			["Sniper","",FALSE],
+			["Sniper","",FALSE]
 		],
 		[
 			["Engineer","Unlock stuff",FALSE],
@@ -1361,8 +1369,6 @@ EGG_EVO_mevlighta = ["BRDM2_ATGM_INS","UAZ_AGS30_INS","UAZ_AGS30_RU","UAZ_SPG9_I
 
 //Player unlocks
 buySpecialList =[];
-perkPoints = 0;
-pointsSpent = 0;
 allowRHQ = false;
 allowFarp = false;
 

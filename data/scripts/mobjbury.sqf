@@ -33,6 +33,7 @@ if ( !(_unit isKindOf "Man")) then
 		["jed_msg", [_killer, _msg]] call CBA_fnc_whereLocalEvent;
 		["jed_addMoney", [_killer, 3]] call CBA_fnc_whereLocalEvent;
 	};
+	if(_unit isKindOf "APC") then {systemChat "APC KILL!!";};
 	{_x setpos position _unit} forEach crew _unit;
 	sleep 300.0;
 	deletevehicle _unit;

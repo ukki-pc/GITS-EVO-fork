@@ -38,15 +38,15 @@ repaircooldown = 0;
  		 	 };
  			// systemChat str (((perkList select _perk) select _loop) select 2 );
  		 };
-
+			//Recon Perk
  			 if (_perk == 0) then  
  			 {
  			 	switch (_currentLevel) do
  			 	{
  			 		case 1:
  			 		{
- 			 			egg_evo_Amb = "TK_WarfareBUAVterminal_Base_EP1";
-
+ 			 			egg_evo_Amb = EGG_EVO_allAmbs select 0;
+					//Add ability to spawn rhq right awway
 						  if !(allowRhq) then {
 							_actionId8 = player addAction ["Deploy Recon HQ", "actions\ambtent.sqf",0,1, false, true,"test2"];
 						 	 allowRHQ = true;
@@ -54,15 +54,15 @@ repaircooldown = 0;
  			 		};
  			 		case 2:
  			 		{
- 			 			egg_evo_Amb = "EB_BRDM2_HQ_TK";
+ 			 			egg_evo_Amb = EGG_EVO_allAmbs select 1;
  			 		};
  			 		case 3:
  			 		{
- 			 			egg_evo_Amb = "BAFX_Ridgeback_D";
+ 			 			egg_evo_Amb = EGG_EVO_allAmbs select 2;
  			 		};
  			 		case 4:
  			 		{
- 			 			egg_evo_Amb = "EB_LAV25_D2";
+ 			 			egg_evo_Amb = EGG_EVO_allAmbs select 3;
  			 		};
  			 	};
  			 };
@@ -77,6 +77,7 @@ repaircooldown = 0;
  			extra_bombs = ["GLT_AGM154A_Launcher","GLT_AGM154A1_Launcher"];
  			 EB_PLmissiles +extra_missiles;
  			*/
+			//Pilot perk
  			_tempMissiles = [];
  			if (_perk == 1) then  
  			{
@@ -96,7 +97,7 @@ repaircooldown = 0;
  					};
  				};
  			};
-
+			//Engineer perk
 			if (_perk == 3) then  
  			 {
  			 	switch (_currentLevel) do
@@ -119,6 +120,7 @@ repaircooldown = 0;
  			 		};
  			 	};
  			 };
+			//Sniper perk
 			if (_perk ==2) then  
  			 {
  			 	switch (_currentLevel) do
@@ -325,7 +327,7 @@ BIS_EVO_Rank =
 	_name = name player;
 	_score = score player;
 	_rank = rank player;
-	if (_score < BIS_EVO_rank2-pointsSpent and _score >= BIS_EVO_rank1-pointsSpent and _rank == "PRIVATE")  exitWith  
+	if (_score < BIS_EVO_rank2 and _score >= BIS_EVO_rank1 and _rank == "PRIVATE")  exitWith  
 	{
 		_rname = format["Corp.%1",_name];
 		_hint =  format[_rankmes,_rname];
@@ -342,7 +344,7 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_arank";
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
 	};
-	if (_score < BIS_EVO_rank3-pointsSpent and _score >= BIS_EVO_rank2-pointsSpent and _rank == "CORPORAL")  exitWith  
+	if (_score < BIS_EVO_rank3 and _score >= BIS_EVO_rank2 and _rank == "CORPORAL")  exitWith  
 	{
 		_rname = format["Sgt.%1",_name];
 		_hint =  format[_rankmes,_rname];
@@ -359,7 +361,7 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_arank";		
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
 	};
-	if (_score < BIS_EVO_rank4-pointsSpent and _score >= BIS_EVO_rank3-pointsSpent and _rank  == "SERGEANT")  exitWith  
+	if (_score < BIS_EVO_rank4 and _score >= BIS_EVO_rank3 and _rank  == "SERGEANT")  exitWith  
 	{	
 		_rname = format["Ltn.%1",_name];
 		_hint =  format[_rankmes,_rname];
@@ -376,7 +378,7 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_arank";	
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
 	};
-	if (_score < BIS_EVO_rank5-pointsSpent and _score >= BIS_EVO_rank4-pointsSpent and _rank  == "LIEUTENANT")  exitWith  
+	if (_score < BIS_EVO_rank5 and _score >= BIS_EVO_rank4 and _rank  == "LIEUTENANT")  exitWith  
 	{
 		_rname = format["Cpt.%1",_name];
 		_hint =  format[_rankmes,_rname];
@@ -393,7 +395,7 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_arank";	
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
 	};
-	if (_score < BIS_EVO_rank6-pointsSpent and _score >= BIS_EVO_rank5-pointsSpent and _rank == "CAPTAIN")  exitWith  
+	if (_score < BIS_EVO_rank6 and _score >= BIS_EVO_rank5 and _rank == "CAPTAIN")  exitWith  
 	{	
 		_rname = format["Mjr.%1",_name];
 		_hint =  format[_rankmes,_rname];
@@ -410,7 +412,7 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_arank";	
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
 	};
-	if (_score >= BIS_EVO_rank6-pointsSpent and _rank  == "MAJOR")  exitWith  
+	if (_score >= BIS_EVO_rank6 and _rank  == "MAJOR")  exitWith  
 	{
 		_rname = format["Col.%1",_name];
 		_hint =  format[_rankmes,_rname];
@@ -458,6 +460,7 @@ BIS_EVO_CityClear =
 	_city = (BIS_EVO_Townnames select 0);
 	[West,"HQ"] SideChat format[localize "STR_M04t61",_city];//%1 IS CLEAR OF ENEMY, GREAT JOB MEN
 playSound "CityClear";
+/*
 		case 1:
 		{	
 //			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_lopatino"];
@@ -525,6 +528,7 @@ playSound "CityClear";
 			//deleteMarkerLocal BIS_EVO_MainObjective;
 		//	playSound "Intro";
 		};		
+		*/
 	};
 	[] call BIS_EVO_AssignTasks;
 	_currentprog = BIS_EVO_MissionProgress;

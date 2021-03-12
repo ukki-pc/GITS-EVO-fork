@@ -366,7 +366,7 @@ if ( (_curtownInf <= _basetownInf) and (reinforcements) ) then
 {
 	_tag = "INF";	
 	[] spawn BIS_EVO_mKamazOpen;
-	if !(eResupplying) then {[] spawn BIS_EVO_mKamazResupply;};
+	//if !(eResupplying) then {[] spawn BIS_EVO_mKamazResupply;};
 	//No choppy choppies in villages
 	if !(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress in BIS_EVO_MissionVillages) then 
 	{

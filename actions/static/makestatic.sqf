@@ -32,27 +32,27 @@ if (player in list AirportIn) exitWith {hint localize "STR_M04t88"};
 
 srank = 0;
 _sco = score player;
-if(_sco >= BIS_EVO_rank1-pointsSpent) then 
+if(_sco >= BIS_EVO_rank1) then 
 {
 	srank = BIS_EVO_rank1;
 };
-if(_sco >= BIS_EVO_rank2-pointsSpent) then 
+if(_sco >= BIS_EVO_rank2) then 
 {
 	srank = BIS_EVO_rank2;
 };
-if(_sco >= BIS_EVO_rank3-pointsSpent) then 
+if(_sco >= BIS_EVO_rank3) then 
 {
 	srank = BIS_EVO_rank3;
 };
-if(_sco >= BIS_EVO_rank4-pointsSpent) then 
+if(_sco >= BIS_EVO_rank4) then 
 {
 	srank = BIS_EVO_rank4;
 };
-if(_sco >= BIS_EVO_rank5-pointsSpent) then 
+if(_sco >= BIS_EVO_rank5) then 
 {
 	srank = BIS_EVO_rank5;
 };
-if(_sco >= BIS_EVO_rank6-pointsSpent) then 
+if(_sco >= BIS_EVO_rank6) then 
 {
 	srank = BIS_EVO_rank6;
 };
