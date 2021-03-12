@@ -1867,7 +1867,7 @@ BIS_EVO_Message = // Most hint messages are sent here for a common display and r
 	_parsedtext = parseText format["<t color='%1'>%2</t><br/><br/>%3",_headcolor,_head,_body];
 	_msg = [_parsedtext];
 	_txt = composeText _msg;
-	hint _txt;
+	hintSilent _txt;
 	_record = player createDiaryRecord ["diary", [localize "STR_M04t78", _plaintext]];//"Message Log"
 };
 

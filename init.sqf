@@ -60,7 +60,7 @@ editor = 1; publicVariable "editor";
 
 R3F_LOG_mutex_local_verrou = false;
 
-if (editor == 0) then {
+
 spawntype = param1;
 helicopterhitch = param2;
 EVOhour = paramsArray select 2;
@@ -92,7 +92,8 @@ EX_EVO_vehPriceMultiplier = paramsArray select 20;
 EVO_incomeFrequency = paramsArray select 21;
 EGG_EVO_FactionParam = paramsArray select 22;
 EGG_EVO_LoadGame = paramsArray select 23;
-};
+
+hitMarker = true;
 
 
 
@@ -134,9 +135,6 @@ if (editor == 1) then
 };
 
 basebeam = 2;
-
-
-
 BIS_EVO_rank1 = (rankscore * 1);
 BIS_EVO_rank2 = (rankscore * 2);
 BIS_EVO_rank3 = (rankscore * 3);
@@ -1219,7 +1217,6 @@ EGG_EVO_westveh10 = ["Stinger_Pod_US_EP1","ZU23_TK_GUE_EP1","Rbs70_ACR","HMMWV_A
 
 //Server side score addition
    ["jed_addscore", {(_this select 0) addScore (_this select 1)}] call CBA_fnc_addEventHandler;
-
 //Bandage init
 [player,0.2,0.15,3,true] execVM "data\scripts\cly_heal.sqf";
 
@@ -1242,6 +1239,15 @@ EGG_EVO_westveh10 = ["Stinger_Pod_US_EP1","ZU23_TK_GUE_EP1","Rbs70_ACR","HMMWV_A
 	{
 		money = money + _amount;
 	["jed_updMoney", [_player]] call CBA_fnc_whereLocalEvent;
+	};
+}] call CBA_fnc_addLocalEventHandler;
+
+["jed_hitMarker", {
+_killer = _this select 0;
+	if(name _killer == name player ) then 
+	{
+		3 cutRsc ["Hitmarker","PLAIN"];
+		playSound "hmark";
 	};
 }] call CBA_fnc_addLocalEventHandler;
 

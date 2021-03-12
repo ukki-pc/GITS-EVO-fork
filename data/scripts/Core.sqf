@@ -31,6 +31,7 @@ uiNamespace setVariable ["vehLoadout", (uiNamespace getVariable "displayVendor")
 uiNamespace setVariable ["storeVeh", (uiNamespace getVariable "displayVendor") displayCtrl 674];
 uiNamespace setVariable ["saveLoadout", (uiNamespace getVariable "displayVendor") displayCtrl 675];
 uiNamespace setVariable ["unflipVeh", (uiNamespace getVariable "displayVendor") displayCtrl 676];
+uiNamespace setVariable ["hitMark", (uiNamespace getVariable "displayVendor") displayCtrl 677];
 uiNamespace setVariable ["ctrlVis", (uiNamespace getVariable "displayVendor") displayCtrl 6057];
 uiNamespace setVariable ["ctrlAirvis", (uiNamespace getVariable "displayVendor") displayCtrl 6058];
 uiNamespace setVariable ["ctrlTervis", (uiNamespace getVariable "displayVendor") displayCtrl 6059];
@@ -86,16 +87,17 @@ ctrlShow [673,false]; //Loadout page
 ctrlShow [674,false]; //Storeveh btn
 ctrlShow [675,true]; //Loadout btn
 ctrlShow [676,false]; //Unflip btn
+ctrlShow [677,false]; //Hitmark btn
 ctrlShow [895,true]; //Map
 ctrlShow [1995,false]; //2nd list
 
 if ((vehicle player isKindOf  "Air" ) ) then
 {
-ctrlShow [669,false];
+	ctrlShow [669,false];
 }
-else 
+else
 {
-ctrlShow [670,false];
+	ctrlShow [670,false];
 };
 
 bplace = false;
@@ -463,6 +465,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 		ctrlShow [2208,false];
 		ctrlShow [895,true]; //Map
 		ctrlShow [1995,false]; //2nd list
+		ctrlShow [677,false];
 		
 		ctrlShow [663,false];
 		ctrlShow [664,false];
@@ -506,6 +509,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 		ctrlShow [2206,false];
 		ctrlShow [2207,false];
 		ctrlShow [2208,false];
+		ctrlShow [677,false];
 
 		_i = 0;
 		lbClear 2000;
@@ -664,6 +668,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 		ctrlShow [672,true]; //Missile page
 		ctrlShow [673,true]; //Loadout page
 		ctrlShow [675,false];
+		ctrlShow [677,false];
 
 		ctrlShow [895,false]; //Map
 		ctrlShow [1995,true]; //2nd list
@@ -1518,6 +1523,21 @@ BIS_EVO_ListSelect =
 		ctrlShow [2207,true];
 		ctrlShow [2208,true];
 
+		ctrlShow [661,false];
+		ctrlShow [663,true];
+		ctrlShow [664,false];
+		ctrlShow [665,false];
+		ctrlShow [666,false];
+		ctrlShow [667,false];
+		ctrlShow [668,false];
+		ctrlShow [656,false];
+		ctrlShow [657,false];
+		ctrlShow [658,false];
+		ctrlShow [659,false];
+		ctrlShow [675,false];
+		ctrlShow [677,true];
+		ctrlShow [895,false];
+
 	(uiNamespace getVariable "ctrlListBox") ctrlSetPosition [0.0506555,0.22,0.31, 0.05];
 		ctrlSetText [2203,localize "STR_M04t126"];
 		ctrlSetText [2204,localize "STR_M04t127"];
@@ -1533,6 +1553,11 @@ BIS_EVO_ListSelect =
 		ctrlSetText [2005,""];
 		ctrlSetText [2004,""];
 //		setterraingrid _z;
+
+		if((_buySubPage == 9) && (_optpage)) then {
+		if(hitMarker) then {hitmarker = false; hint "Hitmarker disabled!";}else{hitMarker = true; hint "Hitmarker enabled!";};
+		Mpage =[false,false,false,false,true,false,0,false,false];
+		};
 	};
 		if (_buypage) then 
 	{

@@ -446,7 +446,14 @@ class evoUI
 				text = "Unflip vehicle";
 				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,8,false,false];[] call BIS_EVO_ListUpdate";
 	      };
-
+		class hitMark: BRecruit
+	      {
+		 idc = 677;
+				y = 0.825;
+				x = 0.771248;
+				text = "Hitmarker";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,true,false,9,false,false];[] call BIS_EVO_ListUpdate";
+	      };
 		class GPSgmap: RscMapControl
 		  {
 			idc = 895;

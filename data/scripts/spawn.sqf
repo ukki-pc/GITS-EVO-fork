@@ -103,6 +103,7 @@ if ((_playertype in EGG_EVO_PlayerPilot) and (perkparam == 1) and (gitsnades == 
 //if ((perkparam == 1) and (gitsnades == 1)) then {_monitor = [] execVM "Actions\EB_resources_scripts\killinit.sqf"};
 
 //fix for HALO bug
+
 _playerh = (getpos player) select 2;
 if (_playerh < 1500) then 
 {
@@ -115,6 +116,8 @@ sleep 8;
 (uiNameSpace getVariable "myUI_DollarTitle") ctrlSetText format ["$%1",money];
 2 cutRsc ["AggressionTitle","PLAIN"];
 (uiNameSpace getVariable "myUI_AggressionTitle") ctrlSetText format ["%2%1","%",aggression];
+
+
 
 /*
 disableSerialization;

@@ -339,7 +339,7 @@ class Mission
 				class Item0
 				{
 					position[]={13169.7,0.74426669,2659.1094};
-					azimut=4.452425;
+					azimut=4.4524298;
 					id=67;
 					side="WEST";
 					vehicle="US_Soldier_EP1";
@@ -2363,7 +2363,7 @@ class Mission
 			age="UNKNOWN";
 			text="IncomingMissile";
 			expCond="not (isNull BIS_EVO_mtar) and (BIS_EVO_mtar in vehicle player)";
-			expActiv="['#FF0000','WARNING!','Incoming projectile!'] call BIS_EVO_Message;BIS_EVO_mtar = objNull";
+			expActiv="['#FF0000','WARNING!','Incoming projectile!'] call BIS_EVO_Message;BIS_EVO_mtar = objNull; playSound 'misWarn'";
 			class Effects
 			{
 			};

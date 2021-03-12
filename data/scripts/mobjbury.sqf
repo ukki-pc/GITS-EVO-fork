@@ -25,6 +25,7 @@ switch (_tag) do //who died where?
 };
 if ( !(_unit isKindOf "Man")) then
 {
+	if(isPlayer _killer and hitMarker) then {["jed_hitMarker", [_killer]] call CBA_fnc_whereLocalEvent;};
 	if(isPlayer _killer or isPlayer leader _killer) then 
 	{
 		if(!isPlayer _killer) then {_killer = leader _killer;};
@@ -38,6 +39,7 @@ if ( !(_unit isKindOf "Man")) then
 };
 if (_unit isKindOf "Man") then
 {
+	if(isPlayer _killer and hitMarker) then {["jed_hitMarker", [_killer]] call CBA_fnc_whereLocalEvent;};
 	if(isPlayer _killer or isPlayer leader _killer) then 
 	{	
 		// When ai kills it's automatically the leaders reward
