@@ -10,11 +10,11 @@ if (_soldier != driver _unit) exitWith
 
 if (typeOf _unit in mando_hitch_heavies) then
 {
-   _units = nearestObjects [[getPos _unit select 0, getPos _unit select 1, 0], mando_hitch_types+ mando_hitch_types_heavy, 5];
+   _units = nearestObjects [[getPos _unit select 0, getPos _unit select 1,getpos _unit select 2], mando_hitch_types+ mando_hitch_types_heavy, 5];
 }
 else
 {
-   _units = nearestObjects [[getPos _unit select 0, getPos _unit select 1, 0], mando_hitch_types, 5];
+   _units = nearestObjects [[getPosASL _unit select 0, getPosASL _unit select 1,getPosASL _unit select 2], mando_hitch_types, 5];
 };
 _units = _units - [_unit];
 if ((count _units) > 0) then
