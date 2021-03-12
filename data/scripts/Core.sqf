@@ -629,27 +629,45 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 			_i = _i + 1;
 		};
 	};
-		if (_perkPage) then 
+	if (_perkPage) then 
 	{
+/*
 		_i = 0;
 		lbClear 2000;
-		while {_i < count perkList} do 
-		{
-			_curLevel = 0;
-			_curLevel = [_i] call countPerkLevel;
-		//	systemChat str _curLevel;
-			_name = ((perkList select _i) select _curLevel) select 0;
-			_description =  ((perkList select _i) select _curlevel) select 1;
-			_maxLevel = count (perkList select _i)-1;
-			_text = format["%1 %2/%3",_name,_curLevel,_maxLevel];
-			// systemChat str _curLevel;
-			//systemChat str (count (perkList select _i));
-
+		
+			//Officer Perk
+			_maxLevel = 4;
+			_name = "Officer";
+			_text = format["%1 %2/%3",_name,perkOffLVL,_maxLevel];
 			ctrlSetText [2010,_name];
 			ctrlSetText [2011,"Perks"];
 			_index = lbAdd [2000, _text];
-			_i = _i + 1;
-		};
+			//Engineer Perk
+			_maxLevel = 4;
+			_name = "Engineer";
+			_text = format["%1 %2/%3",_name,perkEngLVL,_maxLevel];
+			ctrlSetText [2010,_name];
+			ctrlSetText [2011,"Perks"];
+			_index = lbAdd [2000, _text];
+
+			//Recon Perk
+			_maxLevel = 4;
+			_name = "Recon";
+			_text = format["%1 %2/%3",_name,perkSniperLVL,_maxLevel];
+			ctrlSetText [2010,_name];
+			ctrlSetText [2011,"Perks"];
+			_index = lbAdd [2000, _text];
+
+			//Pilot Perk
+			_name = "Recon";
+			_maxLevel = 4;
+			_text = format["%1 %2/%3",_name,perkPilotLVL,_maxLevel];
+			ctrlSetText [2010,_name];
+			ctrlSetText [2011,"Perks"];
+			_index = lbAdd [2000, _text];
+
+*/
+
 	};
 		if (_vecPage) then 
 	{
@@ -1258,21 +1276,18 @@ if (player hasWeapon "ItemRadio") then
 		ctrlShow [2207,false];
 		ctrlShow [2208,false];
 
-			_maxLevel = count (perkList select _index);
-			_curLevel = [_index] call countPerkLevel;
-			_name = ((perkList select _index) select _curLevel) select 0;
-
-	if(_curlevel <  (count(perkList select _index)-1) and perkPoints > 0) then 
+	if(perkPoints > 0) then 
 	{
-		_curLevel = [_index] call countPerkLevel;
-
-		_perks = (perkList select _index);
-		_perks set [_curLevel,[(_perks select _curLevel) select 0,(_perks select _curLevel) select 1,true]];
-		_asd = [_index] call setPerkLevel;
-		perkList set [_index,_perks];
+		switch(_index) do
+		{
+			case 0: {if(perkOffLVL<4) then {perkOffLVL = perkOffLVL+1;}};
+			case 1: {if(perkEngLVL<4) then {perkEngLVL = perkEngLVL+1;}};
+			case 2: {if(perkSniperLVL<4) then {perkSniperLVL = perkSniperLVL+1;}};
+			case 3: {if(perkPilotLVL<4) then {perkPilotLVL = perkPilotLVL+1;}};
+		};
 		perkPoints = perkPoints -1;
+		[] call setPerkLevel;
 		[] call BIS_EVO_ListUpdate;
-
 		};
 	}; 
 	if (_vecPage) then 
@@ -1611,11 +1626,84 @@ if (_perkPage) then
 		ctrlShow [2208,false];
 
 
-			_curLevel = [_x] call countPerkLevel;
-			_name = ((perkList select _x) select _curLevel) select 0;
-			_description =  ((perkList select _x) select _curlevel) select 1;
-			_maxLevel = count (perkList select _x)-1;
-			_text = format["%1 %2/%3",_name,_curLevel,_maxLevel];
+			_i = 0;
+		lbClear 2000;
+			//Officer
+			_name = "Officer";
+			_maxLevel = 4;
+			_text = format["%1 %2/%3",_name,perkOffLVL,_maxLevel];
+			_index = lbAdd [2000, _text];
+			ctrlSetText [2010,_name];
+
+			//Engineer Perk
+			_maxLevel = 4;
+			_name = "Engineer";
+			_text = format["%1 %2/%3",_name,perkEngLVL,_maxLevel];
+			ctrlSetText [2010,_name];
+			_index = lbAdd [2000, _text];
+
+			//Recon Perk
+			_maxLevel = 4;
+			_name = "Recon";
+			_text = format["%1 %2/%3",_name,perkSniperLVL,_maxLevel];
+			ctrlSetText [2010,_name];
+			_index = lbAdd [2000, _text];
+
+			//Pilot Perk
+			_name = "Pilot";
+			_maxLevel = 4;
+			_text = format["%1 %2/%3",_name,perkPilotLVL,_maxLevel];
+			ctrlSetText [2010,_name];
+			_index = lbAdd [2000, _text];
+
+			switch(_x) do 
+			{
+				//Officer Perk
+				case 0: 
+				{			
+					_name = "Officer";
+					_description = "Can create static RECON HQ
+improve vehicle
+improve vehicle with supply
+improve vehicle with supply
+";
+					_maxLevel = 4;
+					_text = format["%1 %2/%3",_name,perkOffLVL,_maxLevel];
+					ctrlSetText [2010,_name];
+					ctrlSetText [2011,_description];
+				};
+				case 1: 
+				{
+					//Engineer Perk
+					_description =  "paska engineer";
+					_maxLevel = 4;
+					_name = "Engineer";
+					_text = format["%1 %2/%3",_name,perkEngLVL,_maxLevel];
+					ctrlSetText [2010,_name];
+					ctrlSetText [2011,_description];
+				};
+				case 2: 
+				{
+				//Recon Perk
+					_description =  "paska sniper";
+					_maxLevel = 4;
+					_name = "Recon";
+					_text = format["%1 %2/%3",_name,perkSniperLVL,_maxLevel];
+					ctrlSetText [2010,_name];
+					ctrlSetText [2011,_description];
+				};
+				case 3: 
+				{
+					//Pilot Perk
+					_description =  "paska pilot";
+					_name = "Pilot";
+					_maxLevel = 4;
+					_text = format["%1 %2/%3",_name,perkPilotLVL,_maxLevel];
+
+					ctrlSetText [2010,_name];
+					ctrlSetText [2011,_description];
+				};
+			};
 
 		ctrlSetText [2202, "Perks"];
 		ctrlSetText [2201, "Pick"];
@@ -1626,11 +1714,6 @@ if (_perkPage) then
 		// 	ctrlBut1 ctrlSetText localize "STR_M04t103";
 		// };
 	//	ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",((perkList select _x) select 3)]];//Cost
-		ctrlSetText [2002,""];
-		ctrlSetText [2010,_name];
-		ctrlSetText [2011,_description];
-		ctrlSetText [2005,_maxLevel];
-		ctrlSetText [2004,""];
 	};
 };
 

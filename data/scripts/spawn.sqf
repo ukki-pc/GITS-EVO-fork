@@ -67,13 +67,12 @@ _playertype = typeOf (vehicle player);
 Sleep 0.2;
 
 
-_officerLVL = [0] call countPerkLevel;
-_engLVL = [3] call countPerkLevel;
+
 //Initial player skills
 if (_playertype in EGG_EVO_PlayerOff) then {allowRhq = true;};
 //Maybe
-if (_officerLVL > 0) then {_actionId8 = player addAction ["Build Mortar", "actions\static\makestatic.sqf",[_this,8],1, false, true,"test2"]; _actionId8 = player addAction ["GPS/INS Menu", "actions\GPSINS.sqf",[],0, false, true,"test2"]};
-if (_engLVL > 0) then {_actionId8 = player addAction ["Build MG Nest", "actions\static\makestatic.sqf",[_this,5],1, false, true,"test2"]; _actionId8 = player addAction [localize "STR_M04t53", "data\scripts\etent.sqf",0,1, false, true,"test2"]};
+if (perkOffLVL > 0) then {_actionId8 = player addAction ["Build Mortar", "actions\static\makestatic.sqf",[_this,8],1, false, true,"test2"]; _actionId8 = player addAction ["GPS/INS Menu", "actions\GPSINS.sqf",[],0, false, true,"test2"]};
+if (perkEngLVL > 0) then {_actionId8 = player addAction ["Build MG Nest", "actions\static\makestatic.sqf",[_this,5],1, false, true,"test2"]; _actionId8 = player addAction [localize "STR_M04t53", "data\scripts\etent.sqf",0,1, false, true,"test2"]};
 
 
 

@@ -1191,38 +1191,6 @@ perkPilotLVL = 0;
 perkSniperLVL = 0;
 perkEngLVL = 0;
 
-	perkList = 
-	[
-		//Perk 1
-		[
-			["Recon HQ","Upgrade recon HQ to HUMVEE M2",FALSE],
-			["Recon HQ","Upgrade recon HQ to HUMVEE M2 CROWS",FALSE],
-			["Recon HQ","Upgrade recon HQ to Ridgeback MRAP",FALSE],
-			["Recon HQ","Upgrade recon HQ to LAV APC",FALSE],
-			["Recon HQ","Maximum level reached",FALSE]
-		],
-		//Perk 2
-		[
-			["Pilot","New armament and 3 extra missiles",FALSE],
-			["Pilot","New armament and 3 extra missiles",FALSE],
-			["Pilot","New armament and 3 extra missiles",FALSE],
-			["Pilot","This the maximum perk level",FALSE]
-		],
-		//Perk 3
-		[
-			["Sniper","Unlock stuff",FALSE],
-			["Sniper","",FALSE],
-			["Sniper","",FALSE],
-			["Sniper","",FALSE]
-		],
-		[
-			["Engineer","Unlock stuff",FALSE],
-			["Engineer","",FALSE],
-			["Engineer","",FALSE],
-			["Engineer","",FALSE]
-		]
-	];
-
 //Server side score addition
    ["jed_addscore", {(_this select 0) addScore (_this select 1)}] call CBA_fnc_addEventHandler;
 //Bandage init

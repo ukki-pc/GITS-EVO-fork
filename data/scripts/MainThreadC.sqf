@@ -7,41 +7,10 @@ EB_airload1=-1;
 EB_fieldRepair=-1;
 repaircooldown = 0;
 
- countPerkLevel = 
- {
- 	_perk = _this select 0;
- 	_currentLevel = count(perkList select _perk);
- 	_count = 0;
- 	for [{_loop=0}, {_loop<(count(perkList select _perk))}, {_loop=_loop + 1}] do
- 	 	{
- 			 if (!(((perkList select _perk) select _loop) select 2 )) then 
- 			 {
- 				_currentLevel = _loop;
- 				_loop =  (count(perkList select _perk)-1);
- 		 	 };
-// 			 systemChat str (((perkList select _perk) select _loop) select 2 );
- 		 };
-	_currentLevel;
- };
-
  setPerkLevel = 
  {
- 	_perk = _this select 0;
- 	_currentLevel = count(perkList select _perk);
- 	_count = 0;
- 	for [{_loop=0}, {_loop<(count(perkList select _perk))}, {_loop=_loop + 1}] do
- 	 	{
- 			 if (!(((perkList select _perk) select _loop) select 2 )) then 
- 			 {
- 				_currentLevel = _loop;
- 				_loop =  (count(perkList select _perk)-1);
- 		 	 };
- 			// systemChat str (((perkList select _perk) select _loop) select 2 );
- 		 };
 			//Recon Perk
- 			 if (_perk == 0) then  
- 			 {
- 			 	switch (_currentLevel) do
+ 			 	switch (perkOffLVL) do
  			 	{
  			 		case 1:
  			 		{
@@ -65,7 +34,6 @@ repaircooldown = 0;
  			 			egg_evo_Amb = EGG_EVO_allAmbs select 3;
  			 		};
  			 	};
- 			 };
  			/*
  			EB_PLbombs = ["EB_Mk81_Launcher","EB_Mk82_Launcher","EB_Mk83_Launcher","EB_Mk84_Launcher","EB_Mk77_Launcher","EB_Mk770_Launcher","EB_BombLauncher_fab250","EB_BombLauncher_fab500","EB_CBU78B_Launcher","EB_CBU87B_Launcher","RKTR27Launcher","EB_R77_Launcher","EB_CBU89B_Launcher","EB_CBU100_Launcher","EB_GBU12_Launcher","EB_GBU16_Launcher","EB_GBU10_Launcher","EB_BombLauncher_kab250","EB_BombLauncher_kab500"];
  			EB_PLmissiles = ["","EB_AIM120_Launcher","EB_AIM9X_Launcher","EB_AIM7E_Launcher","EB_METEOR_Launcher","EB_AIM132_Launcher","EB_R60_Launcher","EB_R73_Launcher","EB_AT2_Launcher","EB_KH29D_Launcher","EB_KH29L_Launcher","EB_AGM65E_Launcher","EB_AGM114K_Launcher","EB_AGM88_Launcher"];
@@ -79,9 +47,7 @@ repaircooldown = 0;
  			*/
 			//Pilot perk
  			_tempMissiles = [];
- 			if (_perk == 1) then  
- 			{
- 				switch (_currentLevel) do
+ 			switch (perkPilotLVL) do
  				{
  					case 1:
  					{
@@ -96,11 +62,10 @@ repaircooldown = 0;
 
  					};
  				};
- 			};
+ 			
 			//Engineer perk
-			if (_perk == 3) then  
- 			 {
- 			 	switch (_currentLevel) do
+
+ 			 	switch (perkEngLVL) do
  			 	{
  			 		case 1:
  			 		{
@@ -118,12 +83,9 @@ repaircooldown = 0;
  			 		case 4:
  			 		{
  			 		};
- 			 	};
  			 };
 			//Sniper perk
-			if (_perk ==2) then  
- 			 {
- 			 	switch (_currentLevel) do
+ 			 	switch (perkSniperLVL) do
  			 	{
  			 		case 1:
  			 		{
@@ -152,12 +114,7 @@ repaircooldown = 0;
  			 		case 4:
  			 		{
  			 		};
- 			 	};
  			 };
-
-
-			  if (allowFarp) then {_actionId8 = player addAction [localize "STR_M04t53", "data\scripts\etent.sqf",0,1, false, true,"test2"]};
-
  };
 
 BIS_EVO_CWeath =

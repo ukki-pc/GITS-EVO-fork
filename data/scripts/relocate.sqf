@@ -18,7 +18,7 @@ MHQMarker = ["MHQ"];
 
 _lowRHQ = format ["%1amb",player];
 
-	_curLevel = [0] call countPerkLevel;
+	_curLevel = perkOffLVL;
 if(_curLevel < 4) then {
 _rhqPositions = [_lowRHQ];
 }
