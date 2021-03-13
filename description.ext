@@ -33,7 +33,7 @@ class CfgRadio
 
 class CfgSounds
 {
-	sounds[] = {reload,hmark,miswarn,bash,kill,Fill,Siphon,Intro,Somalia_News,CityClear,Promotion,Goodjob,Rocket_Away,Incoming,incoming_Nuke,nblast,nsound,Explo_Large,Explo_Nuke,radzoneb,Recruitment,Resupply,MarkerSmoke,MortarBarrage,Airstrike,SmallArty,LargeArty,NapalmStrike,MortarDist,ArtyDist,ArtyDistLarge,SmokeScreenDist,MarkerSmokeDist};
+	sounds[] = {reload,hmark,miswarn,bash,kill,Fill,Siphon,Intro,Somalia_News,CityClear,Paycall,Goodjob,Rocket_Away,Incoming,incoming_Nuke,nblast,nsound,Explo_Large,Explo_Nuke,radzoneb,Recruitment,Resupply,MarkerSmoke,MortarBarrage,Airstrike,SmallArty,LargeArty,NapalmStrike,MortarDist,ArtyDist,ArtyDistLarge,SmokeScreenDist,MarkerSmokeDist};
 
 	class reload
 	{
@@ -125,10 +125,10 @@ class CfgSounds
 		sound[] = {"Sound\CityClear.ogg", db-1, 1.0};
 		titles[] = {};
 	};
-	class Promotion
+	class Paycall
 	{
-		name = "Promotion";
-		sound[] = {"Sound\Promotion.ogg", db - 3, 1.0};
+		name = "Paycall";
+		sound[] = {"Sound\Paycall.ogg", db - 3, 1.0};
 		titles[] = {};
 	};
 	class Goodjob

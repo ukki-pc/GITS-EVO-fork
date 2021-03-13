@@ -1,6 +1,7 @@
 _oldhour = date select 3;
 _tscore = 0;
 _rankmes = localize "STR_M04t82";
+_rankmes = _rankmes + format [" Perkpoints available: %1", perkPoints];
 _currentprog = 0;
 _EGG_stations = [];
 EB_airload1=-1;
@@ -264,8 +265,7 @@ BIS_EVO_Rank =
 	_name = name player;
 	_score = money;
 	_rank = rank player;
-	_rankmes = "test";
-	if (_score < BIS_EVO_rank2 and _score >= BIS_EVO_rank1 and _rank == "PRIVATE")  exitWith  
+	if (_score >= BIS_EVO_rank1 and _rank == "PRIVATE")  exitWith  
 	{
 		_rname = format["Corp.%1",_name];
 		_hint =  format[_rankmes,_rname];
@@ -282,7 +282,7 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_arank";
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
 	};
-	if (_score < BIS_EVO_rank3 and _score >= BIS_EVO_rank2 and _rank == "CORPORAL")  exitWith  
+	if (_score >= BIS_EVO_rank2 and _rank == "CORPORAL")  exitWith  
 	{
 		_rname = format["Sgt.%1",_name];
 		_hint =  format[_rankmes,_rname];
@@ -299,7 +299,7 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_arank";		
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
 	};
-	if (_score < BIS_EVO_rank4 and _score >= BIS_EVO_rank3 and _rank  == "SERGEANT")  exitWith  
+	if (_score >= BIS_EVO_rank3 and _rank  == "SERGEANT")  exitWith  
 	{	
 		_rname = format["Ltn.%1",_name];
 		_hint =  format[_rankmes,_rname];
@@ -316,7 +316,7 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_arank";	
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
 	};
-	if (_score < BIS_EVO_rank5 and _score >= BIS_EVO_rank4 and _rank  == "LIEUTENANT")  exitWith  
+	if (_score >= BIS_EVO_rank4 and _rank  == "LIEUTENANT")  exitWith  
 	{
 		_rname = format["Cpt.%1",_name];
 		_hint =  format[_rankmes,_rname];
@@ -333,7 +333,7 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_arank";	
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
 	};
-	if (_score < BIS_EVO_rank6 and _score >= BIS_EVO_rank5 and _rank == "CAPTAIN")  exitWith  
+	if (_score >= BIS_EVO_rank5 and _rank == "CAPTAIN")  exitWith  
 	{	
 		_rname = format["Mjr.%1",_name];
 		_hint =  format[_rankmes,_rname];
@@ -497,7 +497,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 //	[] call EGG_EVO_fieldRepair;
 	[] call EGG_EVO_stationRepair;
 	sleep 1.011;
-	if (score player != _tscore and alive player) then {[] call BIS_EVO_Rank};
+	if (money > _tscore and alive player) then {[] call BIS_EVO_Rank};
 	if (BIS_EVO_MissionProgress != _currentprog) then {[] call BIS_EVO_CityClear};
 	sleep 1.011;
 	[] call BIS_EVO_CTime;
