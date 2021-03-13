@@ -136,12 +136,7 @@ BIS_EVO_ListUpdate =
 */
 	_rank = 0;
 	_newstring = "";
-	 if (score player >= BIS_EVO_rank1 && _rank == 0) then {_rank = 1};
-	 if (score player >= BIS_EVO_rank2 && _rank == 1) then {_rank = 2};
-	 if (score player >= BIS_EVO_rank3 && _rank == 2) then {_rank = 3};
-	 if (score player >= BIS_EVO_rank4 && _rank == 3) then {_rank = 4};
-	 if (score player >= BIS_EVO_rank5 && _rank == 4) then {_rank = 5};
-	 if (score player >= BIS_EVO_rank6 && _rank == 5) then {_rank = 6};
+	_rank = playerRank;
 
 	_assemblelist =  
 	{
@@ -923,7 +918,8 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 			{
 			_nearestMarker = [BIS_EVO_conqueredTowns, position player] call BIS_fnc_nearestPosition;
 			_plyDist = (getPos player) distance getMarkerPos _nearestMarker;
-				if((inrepairzone or _plyDist < 300)) then
+
+				if((inrepairzone or _plyDist < 200)) then
 					{
 						[_ap] execVM "data\scripts\storeVeh.sqf";
 						ctrlShow [674,false]; //Storeveh page
@@ -999,6 +995,7 @@ BIS_EVO_ActButton =
 			_ainum = 0;
 			_ap = player;
 			_i = 0;
+			_infCost = 4;
 
 			if(player distance backPacks > 4) then 
 			{
@@ -1013,16 +1010,84 @@ BIS_EVO_ActButton =
 					_i = _i + 1;
 				};
 
-				if (score player < BIS_EVO_rank1 and helpersparam != 2 and _ainum >= 1) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-				if (score player < BIS_EVO_rank2 and helpersparam != 2 and _ainum >= 2) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-				if (score player < BIS_EVO_rank3 and helpersparam != 2 and _ainum >= 3) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-				if (score player < BIS_EVO_rank4 and helpersparam != 2 and _ainum >= 4) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-				if (score player < BIS_EVO_rank5 and helpersparam != 2 and _ainum >= 5) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-				if (score player < BIS_EVO_rank6 and helpersparam != 2 and _ainum >= 6) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-				if (score player >= BIS_EVO_rank6 and helpersparam != 2 and _ainum >= 7) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+				if (playerRank < 1 and helpersparam != 2 and _ainum >= 1) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+				if (playerRank < 2 and helpersparam != 2 and _ainum >= 2) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+				if (playerRank < 3 and helpersparam != 2 and _ainum >= 3) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+				if (playerRank < 4 and helpersparam != 2 and _ainum >= 4) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+				if (playerRank < 5 and helpersparam != 2 and _ainum >= 5) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+				if (playerRank < 6 and helpersparam != 2 and _ainum >= 6) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+				if (playerRank >= 6 and helpersparam != 2 and _ainum >= 7) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
 				if (helpersparam == 2 and _ainum >= 8) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-				if(_item != "ME") then {_rec = [_item] execVM "data\scripts\recruit.sqf";}
-				else {_rec = [_item] execVM "data\scripts\recruitMe.sqf";};
+
+				switch(recruitPlaces) do 
+				{
+					//Free and everywhere
+					case 0:
+					{
+						if(_item != "ME") then {_rec = [_item] execVM "data\scripts\recruit.sqf";}
+						else {_rec = [_item] execVM "data\scripts\recruitMe.sqf";};
+					};
+					//Free at friendly locations
+					case 1:
+					{
+						_nearestPoint = [BIS_EVO_conqueredTowns, position player] call BIS_fnc_nearestPosition;
+						_objDist = player distance getMarkerPos _nearestPoint;
+						if(inrepairzone or _objDist <= 100) then 
+						{					
+							if(_item != "ME") then {_rec = [_item] execVM "data\scripts\recruit.sqf";}
+							else {_rec = [_item] execVM "data\scripts\recruitMe.sqf";};
+						}
+						else{
+							hint "Cannot recruit outside of base or town!";
+							closeDialog 1;
+						};
+					};
+					//Free only at bases
+					case 2:
+					{
+						_nearestPoint = [BIS_EVO_conqueredTowns, position player] call BIS_fnc_nearestPosition;
+						_objDist = player distance getMarkerPos _nearestPoint;
+						if(inrepairzone) then 
+						{					
+							if(_item != "ME") then {_rec = [_item] execVM "data\scripts\recruit.sqf";}
+							else {_rec = [_item] execVM "data\scripts\recruitMe.sqf";};
+						};
+						if(_objDist < 100 and !inrepairzone) then 
+						{
+							if(money>=_infCost) then
+							{
+							if(_item != "ME") then {_rec = [_item] execVM "data\scripts\recruit.sqf";}
+							else {_rec = [_item] execVM "data\scripts\recruitMe.sqf";};
+								["jed_addMoney", [player, -4]] call CBA_fnc_whereLocalEvent;
+							}
+							else{hint "Not enough money!";};
+						};
+						if(_objDist >= 100 and !inrepairzone) then {
+							hint "Cannot recruit outside of base or town!";
+							closeDialog 1;
+						};
+					};
+					case 3:
+					{
+						_nearestPoint = [BIS_EVO_conqueredTowns, position player] call BIS_fnc_nearestPosition;
+						_objDist = player distance getMarkerPos _nearestPoint;
+
+						if(inrepairzone or _objDist <= 100) then 
+						{
+							if(money>=_infCost) then
+							{
+							if(_item != "ME") then {_rec = [_item] execVM "data\scripts\recruit.sqf";}
+							else {_rec = [_item] execVM "data\scripts\recruitMe.sqf";};
+								["jed_addMoney", [player, -4]] call CBA_fnc_whereLocalEvent;
+							}
+							else{hint "Not enough money!";};
+						}
+						else {
+							hint "Cannot recruit outside of base or town!";
+							closeDialog 1;
+						};
+					};
+				};
 			}
 			else
 			{
@@ -1309,7 +1374,7 @@ if (player hasWeapon "ItemRadio") then
 			case 3: {if(perkPilotLVL<4) then {perkPilotLVL = perkPilotLVL+1;}};
 		};
 		perkPoints = perkPoints -1;
-		[] call setPerkLevel;
+		[_index] call setPerkLevel;
 		[] call BIS_EVO_ListUpdate;
 		};
 	}; 
@@ -1348,8 +1413,8 @@ BIS_EVO_ListSelect =
 	_x = lbCurSel 2000;
 	_lb2i = lbCurSel 1995;
 	//STR_M04t135,"Distance";
-	ctrlSetText [2003,str (score player)];
-	ctrlSetText [2003,Format ["%1: %2",localize "STR_M04t134",(score player)]];//Score
+	ctrlSetText [2003,str (money)];
+	ctrlSetText [2003,Format ["%1: %2", "Money",(Money)]];//Score
 	ctrlSetText [2203,""];
 	ctrlSetText [2204,""];
 	ctrlSetText [2205,""];
@@ -1686,10 +1751,10 @@ if (_perkPage) then
 				{			
 					_name = "Officer";
 					_description = "Can create static RECON HQ
-improve vehicle
-improve vehicle with supply
-improve vehicle with supply
-";
+					improve vehicle
+					improve vehicle with supply
+					improve vehicle with supply
+					";
 					_maxLevel = 4;
 					_text = format["%1 %2/%3",_name,perkOffLVL,_maxLevel];
 					ctrlSetText [2010,_name];

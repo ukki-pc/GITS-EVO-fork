@@ -50,16 +50,19 @@ if (score player < BIS_EVO_rank6 and helpersparam != 2 and _ainum >= 6) exitwith
 if (score player >= BIS_EVO_rank6 and helpersparam != 2 and _ainum >= 7) exitwith {["#FF0000",_txtpasshead,_txtpassbody] call _Message};
 if (helpersparam == 2 and _ainum >= 8) exitwith {["#FF0000",_txtpasshead,_txtpassbody] call _Message};
 
-
 _player = player;
 _unitype = _type;
 _grp = group _player;
+
+
+_nearestPoint = [BIS_EVO_conqueredTowns, position _player] call BIS_fnc_nearestPosition;
+_objDist = _player distance getMarkerPos _nearestPoint;
 
 _pos = position _player;
 _unit = group _player createUnit [_unitype, [0,0,0], [], 0, "NONE"];Sleep BIS_EVO_GlobalSleep;
 //_unit setskill BIS_EVO_PlayerSkill; //THIS THING RUINS TANK GUN LOADING
 //_lone = [_unit] execVM 'data\scripts\nohuman.sqf';
-if(!inrepairzone) then 
+if(!inrepairzone and _objDist > 100) then 
 {
 	_vec = createVehicle ["ParachuteEast", _pos, [], 20, 'NONE'];Sleep BIS_EVO_GlobalSleep;
 	_vec setpos [_pos select 0,_pos select 1,(_pos select 2)+ 120];

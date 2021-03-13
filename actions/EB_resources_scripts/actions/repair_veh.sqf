@@ -23,7 +23,7 @@ _playerUnit = player;		// this is the repairing player.
 _playerUnit playMove "AinvPknlMstpSlayWrflDnon_medic";		// here the player starts the repair animation.
 sleep 4;
 if(vehicle player != player) exitWith {hint "Repair interrupted."};
-_vehicle setDammage (getDammage _vehicle)-0.3;	// here we reset the damage of the vehicle to 0.
+_vehicle setDammage (getDammage _vehicle);	// here we reset the damage of the vehicle to 0.
 hint "Vehicle repaired!";
 
 

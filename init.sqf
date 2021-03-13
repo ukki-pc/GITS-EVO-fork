@@ -122,7 +122,7 @@ if (editor == 1) then
 	helpersparam =2;
 
 	//"Free & Bases","Bases & Towns Free","Bases free & Towns cost","Costs everywhere"
-	recruitPlaces = 1;
+	recruitPlaces = 3;
 	perkparam = 1;
 	EGG_EVO_Artycost =4;
 

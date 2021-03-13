@@ -10,17 +10,18 @@ repaircooldown = 0;
 
  setPerkLevel = 
  {
+	_perk = _this select 0;
+	 switch (_perk) do
+	 {
+		 case 0:
+		 {
 			//Recon Perk
  			 	switch (perkOffLVL) do
  			 	{
  			 		case 1:
  			 		{
  			 			egg_evo_Amb = EGG_EVO_allAmbs select 0;
-					//Add ability to spawn rhq right awway
-						  if !(allowRhq) then {
-							_actionId8 = player addAction ["Deploy Recon HQ", "actions\ambtent.sqf",0,1, false, true,"test2"];
-						 	 allowRHQ = true;
-						  };
+						_actionId8 = player addAction ["Deploy Recon HQ", "actions\ambtent.sqf",0,1, false, true,"test2"];
  			 		};
  			 		case 2:
  			 		{
@@ -35,6 +36,7 @@ repaircooldown = 0;
  			 			egg_evo_Amb = EGG_EVO_allAmbs select 3;
  			 		};
  			 	};
+			};
  			/*
  			EB_PLbombs = ["EB_Mk81_Launcher","EB_Mk82_Launcher","EB_Mk83_Launcher","EB_Mk84_Launcher","EB_Mk77_Launcher","EB_Mk770_Launcher","EB_BombLauncher_fab250","EB_BombLauncher_fab500","EB_CBU78B_Launcher","EB_CBU87B_Launcher","RKTR27Launcher","EB_R77_Launcher","EB_CBU89B_Launcher","EB_CBU100_Launcher","EB_GBU12_Launcher","EB_GBU16_Launcher","EB_GBU10_Launcher","EB_BombLauncher_kab250","EB_BombLauncher_kab500"];
  			EB_PLmissiles = ["","EB_AIM120_Launcher","EB_AIM9X_Launcher","EB_AIM7E_Launcher","EB_METEOR_Launcher","EB_AIM132_Launcher","EB_R60_Launcher","EB_R73_Launcher","EB_AT2_Launcher","EB_KH29D_Launcher","EB_KH29L_Launcher","EB_AGM65E_Launcher","EB_AGM114K_Launcher","EB_AGM88_Launcher"];
@@ -46,8 +48,34 @@ repaircooldown = 0;
  			extra_bombs = ["GLT_AGM154A_Launcher","GLT_AGM154A1_Launcher"];
  			 EB_PLmissiles +extra_missiles;
  			*/
+			
+			//Engineer perk
+			case 1: 
+			{
+			 	switch (perkEngLVL) do
+ 			 	{
+ 			 		case 1:
+ 			 		{
+						_actionId8 = player addAction [localize "STR_M04t53", "data\scripts\etent.sqf",0,1, false, true,"test2"];
+ 			 		};
+ 			 		case 2:
+ 			 		{ 
+
+ 			 		};
+ 			 		case 3:
+ 			 		{
+
+ 			 		};
+ 			 		case 4:
+ 			 		{
+ 			 		};
+ 			 	};
+ 			};
+
 			//Pilot perk
- 			_tempMissiles = [];
+			case 2:
+			{
+			_tempMissiles = [];
  			switch (perkPilotLVL) do
  				{
  					case 1:
@@ -63,28 +91,11 @@ repaircooldown = 0;
 
  					};
  				};
- 			
-			//Engineer perk
 
- 			 	switch (perkEngLVL) do
- 			 	{
- 			 		case 1:
- 			 		{
-						_actionId8 = player addAction [localize "STR_M04t53", "data\scripts\etent.sqf",0,1, false, true,"test2"];
-						allowRhq = true;
- 			 		};
- 			 		case 2:
- 			 		{ 
+			};
 
- 			 		};
- 			 		case 3:
- 			 		{
-
- 			 		};
- 			 		case 4:
- 			 		{
- 			 		};
- 			 };
+			case 3:
+			{
 			//Sniper perk
  			 	switch (perkSniperLVL) do
  			 	{
@@ -108,14 +119,16 @@ repaircooldown = 0;
 						systemChat "sa6 and sa8 unlock"; //	["pracs_tk_sa8",35],
 						*/
  			 		};
- 			 		case 3:
+ 			 		case 4:
  			 		{
 
  			 		};
- 			 		case 4:
+ 			 		case 5:
  			 		{
  			 		};
- 			 };
+				};
+			};
+ 		 };
  };
 
 BIS_EVO_CWeath =

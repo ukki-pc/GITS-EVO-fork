@@ -1,4 +1,4 @@
-hint "character menu!";
+
 /*
 _camera = "camera" camCreate getPosASL Backpacks;
 _camera camPrepareTarget player;
@@ -21,7 +21,8 @@ deleteVehicle _ogObj;
 //create new unit with correct name for evo
 _model = _this select 0;
 _unit = player;
-_nname = format ["eng%1",owner player];
+_plyName = name player;
+_nname = format ["engw%1",(owner player)+1];
 _group = createGroup EGG_EVO_PLAYERFACTION;
 _nunit = _group createUnit [_model,position player,[],0,"NONE"];
 
@@ -37,6 +38,8 @@ processInitCommands;
 sleep 0.1;
 removeSwitchableUnit _unit;
 deleteVehicle _unit;
+_nunit setName _plyName;
+systemChat str _plyName;
 
 //move unit back to spawn location and initialise them
 

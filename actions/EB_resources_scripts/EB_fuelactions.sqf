@@ -24,7 +24,8 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	sleep BIS_EVO_GlobalSleep;
 	_hasSiphon = "EB_ItemSiphon" in (items _player)  or "EB_ItemSiphon" in ((getMagazineCargo unitBackpack _player) select 0);
 	sleep BIS_EVO_GlobalSleep;
-	_hasKit = "EB_ItemRepairKit" in (magazines _player);
+	//_hasKit = "EB_ItemRepairKit" in (magazines _player);
+	_hasKit = perkEngLVL > 0;
 	sleep BIS_EVO_GlobalSleep;
 	_equipped = (_hasFuelE or _hasfuel or _hasKit);
 	//if (_hasSiphon) then {hintsilent "has siphon"};
@@ -126,7 +127,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 				_damage = getDammage _vehicle;
 				if (_damage > 0) then
 				{
-					EB_player_repairAction = EB_myCursorTarget3 addAction ["Toolkit repair vehicle", "Actions\EB_resources_scripts\actions\repair_veh.sqf",[_vehicle,EB_player_repairAction], 2, true, true, "",""];
+					EB_player_repairAction = EB_myCursorTarget3 addAction ["Repair vehicle", "Actions\EB_resources_scripts\actions\repair_veh.sqf",[_vehicle,EB_player_repairAction], 7, true, true, "",""];
 				};
 			};
 		} else 

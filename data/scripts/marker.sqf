@@ -4,7 +4,7 @@
 	waitUntil {sleep 0.4;(Alive player)};
 	_markerw = [];
 //	for "_i" from 1 to 32 do
-	for "_i" from 1 to 22 do
+	for "_i" from 1 to 4 do
 		{
 			_marker = createMarkerLocal [format["W%1Unit",_i],[0,0]];
 			_markerw = _markerw + [_marker];
