@@ -79,10 +79,10 @@ deathScorePenalty = paramsArray select 9;
 rankscore = paramsArray select 10;
 //adding	
 helpersparam = paramsArray select 11;
-performanceparam = paramsArray select 12;
+recruitPlaces = paramsArray select 12;
 perkparam = paramsArray select 13;
 EGG_EVO_Artycost = paramsArray select 14;
-//Note from Tox1m: paramsArray select 15 used by Revive script
+paratroopers = paramsArray select 15;
 enemynumdiv = paramsArray select 16;
 reinfdelay = paramsArray select 17;
 EGG_vecmods = paramsArray select 18;
@@ -120,11 +120,15 @@ if (editor == 1) then
 	rankscore = 50;
 	//adding	
 	helpersparam =2;
-	performanceparam = 2;
+
+	//"Free & Bases","Bases & Towns Free","Bases free & Towns cost","Costs everywhere"
+	recruitPlaces = 1;
 	perkparam = 1;
 	EGG_EVO_Artycost =4;
-	//Note from Tox1m: paramsArray select 15 used by Revive script
-	enemynumdiv = 10;
+
+	// Limited,"Expensive","Normal","Free"
+	paratroopers = 1;
+	enemynumdiv = 1;
 	reinfdelay = 120;
 	EGG_highCommand = 0;
 	EX_EVO_vehPriceMultiplier = 1;
@@ -147,8 +151,7 @@ spawntype = 2;
 publicVariable "spawntype"; 
 if (spawntype == 2) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" select 0),(getMarkerPos "FahneLKW" select 1),18]};
 
-if (performanceparam == 1) then {enableEnvironment true};
-if (performanceparam == 2) then {enableEnvironment false};
+	enableEnvironment true;
 
 	BIS_EVO_MissionTowns = [];
 	BIS_EVO_MissionVillages = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11","mobj12","mobj2","mobj13","mobj14","mobj15","mobj16","mobj17","mobj18","mobj19","mobj20","mobj21","mobj22","mobj23","mobj24","mobj25","mobj26"];// Each mission objectives town marker.

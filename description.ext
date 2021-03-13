@@ -716,8 +716,8 @@ class Params
       {
       //paramsArray[8]
 		title = "Player Rank Lock";
-		values[] = {0,1,2,3};
-		texts[] = {"Locked", "Vehicles Locked Only", "Equipment Locked Only", "Unlocked"};
+		values[] = {2,3};
+		texts[] = {"Equipment Locked Only", "Unlocked"};
 		default = 2;
 	};  
 	
@@ -748,12 +748,12 @@ class Params
 		default = 1;
 	};
 
-	class Performance
-      {
-      //paramsArray[12]
-		title = "Performance";
-		values[] = {1,2};
-		texts[] = {"Sky + Environment ON", "Original EVO"};
+	class RecruitPlaces
+	{
+      //paramsArray[11]  
+      	title="AI Support";
+		values[]={0,1,2,3};
+		texts[]={"Free & Bases","Bases & Towns Free","Bases free & Towns cost","Costs everywhere"};
 		default = 1;
 	};
 
@@ -775,14 +775,14 @@ class Params
 		default = 2;
 	};
 
-	class Revive
+	class paratroopers
 	{
 	// paramsArray[15]
-		title = "Number of Revives:";
-		values[] = {2000,1000,20,10,7,5};
-		texts[] = {"No Revive","Infinite - Cadet","20 - Easy ","10 - Normal","7  - Hard","5  - Extreme"};
-		default = 1000;
-        };
+		title = "Allow paratroopers";
+		values[] = {0,1,2,3};
+		texts[] = {"Limited","Expensive","Normal","Free"};
+		default = 1;
+    };
 
 	class Difficulty 
 	{

@@ -66,7 +66,7 @@ _EVO_timesync =
 for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 {	
 	_time = time;
-	[] call _EVO_Weath;
+	//[] call _EVO_Weath;
 	sleep 1.011;
 	//[] call BIS_EVO_Score;
 	//sleep 1.011;

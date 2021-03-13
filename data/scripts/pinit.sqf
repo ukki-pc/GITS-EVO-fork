@@ -26,7 +26,7 @@ _pos = [0,0,0];
 
 
 //_events = [] execVM "data\scripts\EVO_Vecinit.sqf"; // Player vehicles rank restriction system
-_rain = [] execVM "data\scripts\rain.sqf";
+//_rain = [] execVM "data\scripts\rain.sqf";
 _arm = [] execVM "data\scripts\EB_ARM.sqf";
 //_fog = [] execVM "data\scripts\fog.sqf";
 _cthread = [] execVM "data\scripts\MainThreadC.sqf";
