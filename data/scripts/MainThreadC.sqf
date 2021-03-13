@@ -224,26 +224,6 @@ BIS_EVO_Repair =
 		};
 		if(inrepairzone and repaircooldown > 0) then {hint "Cannot repair immediately after hit!"};
 	};
-//adding cheats to planes
-	// if( (_inrepairzone) and (_type in EB_planes_west) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and (local _vec) and (perkparam == 1) and (EB_airload1 <0) ) then
-	// {
-	// 	_texta1 = getText (configFile >> "CfgVehicles" >> _type >> "displayName");
-	// 	_astring0 = format["Rearm %1",_texta1];
-	// 	_aicon = "<img image='img\crew\getingunner_ca.paa' size='1.0' shadow='false' />";
-	// 	_astring = format ["<t color='#f79b31'>" +"%1 %2"+ "</t>",_aicon,_astring0];
-	// 	EB_airload1 = _vec addAction [_astring, "Actions\EB_rearm.sqf",[_vec,_player], 5, true, true,"",""];
-	// };
-	// if ( !(EB_airload1 <0) and ( (speed _vec < -2) or (speed _vec > 2) or (position _vec select 2 > 2.0) ) )then
-	// {
-	// 	_vec removeaction EB_airload1;
-	// 	EB_airload1 = -1;
-	// };
-	// if (_vec==player) then 
-	// {
-	// 	_oldvec = nearestObject [player, "Air"];
-	// 	_oldvec removeaction EB_airload1;
-	// 	EB_airload1 = -1;
-	// };
 };
 
 
@@ -282,8 +262,9 @@ BIS_EVO_Rdisp =
 BIS_EVO_Rank = 
 {
 	_name = name player;
-	_score = score player;
+	_score = money;
 	_rank = rank player;
+	_rankmes = "test";
 	if (_score < BIS_EVO_rank2 and _score >= BIS_EVO_rank1 and _rank == "PRIVATE")  exitWith  
 	{
 		_rname = format["Corp.%1",_name];

@@ -499,6 +499,55 @@ if(EGG_EVO_FactionParam == 1) then
 	egg_evo_MHQ = "PRACS_puma330_MG"; //PRACS_M113_AMB
 
 //////////////////////////////////////////////
+	//EGG_EVO_defenders = ["PRACS_SNG_AT","PRACS_SNG_DMS","PRACS_SNG_SPR","PRACS_SNG","PRACS_SNG_ARM","PRACS_SNG_GNR","PRACS_SNG_MG","PRACS_SNG_MED","PRACS_SNG_O","PRACS_SNG_RTO","PRACS_SNG_AA"];
+	//EGG_EVO_OfficerDefenders = ["PRACS_Marine_AT","PRACS_Marine","PRACS_Marine_MG","PRACS_Marine_AA","PRACS_Marine_GNR"];
+
+BIS_EVO_PlayerModels = [
+"CIV_Contractor1_BAF",
+"CIV_Contractor2_BAF",
+"Soldier_Medic_PMC",
+"Soldier_TL_PMC",
+"Soldier_Bodyguard_AA12_PMC",
+"BAF_crewman_MTP",
+"BAF_Soldier_Officer_MTP",
+"BAF_Soldier_SL_MTP",
+"BAF_Pilot_MTP",
+"BAF_Soldier_SniperH_MTP",
+"GER_Soldier_EP1",
+"GER_Soldier_TL_EP1",
+"CZ_Soldier_SL_DES_EP1",
+"CZ_Soldier_Office_DES_EP1",
+"US_Soldier_Spotter_EP1",
+"US_Soldier_Sniper_EP1",
+"US_Soldier_Pilot_EP1",
+"US_Soldier_SL_EP1",
+"US_Soldier_Officer_EP1",
+"US_Delta_Force_TL_EP1",
+"UN_CDF_Soldier_SL_EP1",
+"UN_CDF_Soldier_Pilot_EP1",
+"UN_CDF_Soldier_Guard_EP1",
+"bink_usmc_sl_des",
+"AFR_Officer",
+"LIN_Officer",
+"LIN_Soldier_Engineer",
+"BB_OA_BlackOp",
+"BB_OA_Merc_base",
+"CZ_Soldier_Spec1_Wdl_ACR",
+"PRACS_MRegular_SPR",
+"SMAF_MF1_RACS_FighterPilot",
+"PRACS_F15_Pilot",
+"PRACS_Fusilier_O",
+"PRACS_QAB_O",
+"PRACS_SNG",
+"PRACS_RSAF_CSAR",
+"PRACS_RSAF_G_AA",
+"PRACS_Paratrooper_PF",
+"PRACS_Sniper",
+"PRACS_Marine",
+"PRACS_Recon2",
+"PRACS_RedBrigade",
+"PRACS_RedBrigade_O_D"];
+
 buyCarList = 
 	[
 	/*---Military cars---*/

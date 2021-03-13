@@ -73,14 +73,15 @@ if (_playertype in EGG_EVO_PlayerOff) then {allowRhq = true;};
 //Maybe
 if (perkOffLVL > 0) then {_actionId8 = player addAction ["Build Mortar", "actions\static\makestatic.sqf",[_this,8],1, false, true,"test2"]; _actionId8 = player addAction ["GPS/INS Menu", "actions\GPSINS.sqf",[],0, false, true,"test2"]};
 if (perkEngLVL > 0) then {_actionId8 = player addAction ["Build MG Nest", "actions\static\makestatic.sqf",[_this,5],1, false, true,"test2"]; _actionId8 = player addAction [localize "STR_M04t53", "data\scripts\etent.sqf",0,1, false, true,"test2"]};
+if (allowRhq) then {_actionId8 = player addAction ["Deploy Recon HQ", "actions\ambtent.sqf",0,1, false, true,"test2"]};
+if (perkparam == 1) then {_actionId8 = player addAction ["Build Foxhole", "actions\static\makestatic.sqf",[_this,9],1, false, true,"test2"]};
+if ((perkparam == 1) and (gitsnades == 1)) then {_monitor = [] execVM "Actions\EB_resources_scripts\EB_fuelactions.sqf"};
 
-
-
+/*
 
 if (_playertype in EGG_EVO_PlayerMedic) then {_actionId8 = player addAction [localize "STR_M04t52", "data\scripts\mtent.sqf",0,1, false, true,"test2"]};
 if (_playertype in EGG_EVO_PlayerEng) then {_actionId8 = player addAction [localize "STR_M04t53", "data\scripts\etent.sqf",0,1, false, true,"test2"]};
 
-if (allowRhq) then {_actionId8 = player addAction ["Deploy Recon HQ", "actions\ambtent.sqf",0,1, false, true,"test2"]};
 if ((_playertype in EGG_EVO_PlayerSniper) and (perkparam == 1)) then {_actionId8 = player addAction ["Short Ladder", "actions\static\makestatic.sqf",[_this,0],1, false, true,"test2"]};
 if ((_playertype in EGG_EVO_PlayerSniper) and (perkparam == 1)) then {_actionId8 = player addAction ["Long Ladder", "actions\static\makestatic.sqf",[_this,1],1,false, true,"test2"]};
 if ((_playertype in EGG_EVO_PlayerGL) and (perkparam == 1)) then {_actionId8 = player addAction ["Build MK19 Nest", "actions\static\makestatic.sqf",[_this,2],1, false, true,"test2"]};
@@ -90,15 +91,14 @@ if ((_playertype in EGG_EVO_PlayerMG) and (perkparam == 1)) then {_actionId8 = p
 if ((_playertype in EGG_EVO_PlayerSniper) and (perkparam == 1)) then {_actionId8 = player addAction ["Build Camo Net", "actions\static\makestatic.sqf",[_this,6],1, false, true,"test2"]};
 if ((_playertype in EGG_EVO_PlayerPilot) and (perkparam == 1)) then {_actionId8 = player addAction ["Build Refuel Depot", "actions\static\makestatic.sqf",[_this,7],1, false, true,"test2"]};
 if ((_playertype in EGG_EVO_PlayerOff) and (perkparam == 1)) then {_actionId8 = player addAction ["Build Mortar", "actions\static\makestatic.sqf",[_this,8],1, false, true,"test2"]};
-if (perkparam == 1) then {_actionId8 = player addAction ["Build Foxhole", "actions\static\makestatic.sqf",[_this,9],1, false, true,"test2"]};
 
-if ((perkparam == 1) and (gitsnades == 1)) then {_monitor = [] execVM "Actions\EB_resources_scripts\EB_fuelactions.sqf"};
+
 //test
 
 if ((_playertype in EGG_EVO_PlayerSniper) and (perkparam == 1) and (gitsnades == 1)) then {_actionId8 = player addAction ["GPS/INS Menu", "actions\GPSINS.sqf",[],0, false, true,"test2"]};
 if ((_playertype in EGG_EVO_PlayerPilot) and (perkparam == 1) and (gitsnades == 1)) then {_actionId8 = player addAction ["GPS/INS Menu", "actions\GPSINS.sqf",[],0, false, true,"test2"]};
 //_gpsd = createDialog 'glt_airgpsmfd';
-
+*/
 //if ((_playertype in EGG_EVO_spytype) and (perkparam == 1) and (gitsnades == 1)) then {_monitor = [] execVM "Actions\EB_resources_scripts\killinit.sqf"};
 
 //CLUB KNIFE BAYONET

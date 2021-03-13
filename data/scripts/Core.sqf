@@ -485,18 +485,32 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 		ctrlShow [674,false]; //Storeveh page
 		ctrlShow [676,false]; //Unflip btn
 		
-		_i = 0;
 		lbClear 2000;
-		while {_i < count RecList} do 
+		_i = 0;
+		if(player distance backPacks > 4) then 
 		{
-			_name = (RecList select _i) select 0;
-			_pic = (RecList select _i) select 2;
-			_index = lbAdd[2000, _name];
-			_index = lbSetPicture [2000, _i, _pic];
-			_i = _i + 1;
+			
+			while {_i < count RecList} do 
+			{
+				_name = (RecList select _i) select 0;
+				_pic = (RecList select _i) select 2;
+				_index = lbAdd[2000, _name];
+				_index = lbSetPicture [2000, _i, _pic];
+				_i = _i + 1;
+			};
+		}
+		else
+		{
+			while {_i < count BIS_EVO_PlayerModels} do 
+			{
+				_name = ((BIS_EVO_PlayerModels) select _i);
+				//_pic = (RecList select _i) select 2;
+				_index = lbAdd[2000, _name];
+				//_index = lbSetPicture [2000, _i, _pic];
+				_i = _i + 1;
+			};
 		};
 	};
-
 	if (_suppage) then 
 	{
 //
@@ -986,26 +1000,35 @@ BIS_EVO_ActButton =
 			_ap = player;
 			_i = 0;
 
-			while {_i < _count} do 
+			if(player distance backPacks > 4) then 
 			{
-				_ap = (units _grp select _i);
-				if (not (isPlayer _ap)) then 
+				_item = ((RecList select _index) select 1);
+				while {_i < _count} do 
 				{
-					_ainum = _ainum +1;
+					_ap = (units _grp select _i);
+					if (not (isPlayer _ap)) then 
+					{
+						_ainum = _ainum +1;
+					};
+					_i = _i + 1;
 				};
-				_i = _i + 1;
-			};
 
-			if (score player < BIS_EVO_rank1 and helpersparam != 2 and _ainum >= 1) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (score player < BIS_EVO_rank2 and helpersparam != 2 and _ainum >= 2) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (score player < BIS_EVO_rank3 and helpersparam != 2 and _ainum >= 3) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (score player < BIS_EVO_rank4 and helpersparam != 2 and _ainum >= 4) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (score player < BIS_EVO_rank5 and helpersparam != 2 and _ainum >= 5) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (score player < BIS_EVO_rank6 and helpersparam != 2 and _ainum >= 6) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (score player >= BIS_EVO_rank6 and helpersparam != 2 and _ainum >= 7) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if (helpersparam == 2 and _ainum >= 8) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
-			if(_item != "ME") then {_rec = [_item] execVM "data\scripts\recruit.sqf";}
-			else {_rec = [_item] execVM "data\scripts\recruitMe.sqf";};
+				if (score player < BIS_EVO_rank1 and helpersparam != 2 and _ainum >= 1) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+				if (score player < BIS_EVO_rank2 and helpersparam != 2 and _ainum >= 2) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+				if (score player < BIS_EVO_rank3 and helpersparam != 2 and _ainum >= 3) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+				if (score player < BIS_EVO_rank4 and helpersparam != 2 and _ainum >= 4) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+				if (score player < BIS_EVO_rank5 and helpersparam != 2 and _ainum >= 5) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+				if (score player < BIS_EVO_rank6 and helpersparam != 2 and _ainum >= 6) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+				if (score player >= BIS_EVO_rank6 and helpersparam != 2 and _ainum >= 7) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+				if (helpersparam == 2 and _ainum >= 8) exitwith {ctrlSetText [2011,localize "STR_M04t99"]};
+				if(_item != "ME") then {_rec = [_item] execVM "data\scripts\recruit.sqf";}
+				else {_rec = [_item] execVM "data\scripts\recruitMe.sqf";};
+			}
+			else
+			{
+				_item = (BIS_EVO_PlayerModels select _index);
+				_rec = [_item] execVM "data\scripts\charactermenu.sqf";
+			};
 //		};
 	};   
 

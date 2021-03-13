@@ -635,7 +635,7 @@ class Mission
 		class Item14
 		{
 			position[]={13133.087,0.18851037,2798.2949};
-			azimut=503.20419;
+			azimut=503.20401;
 			id=14;
 			side="EMPTY";
 			vehicle="Misc_Backpackheap_EP1";
