@@ -828,6 +828,7 @@ BIS_EVO_Objective12 = taskNull; //
 defenceReady = false; //Avoid certain events during objective population
 
 money = 10;
+playerRank = 0;
 perkPoints = 2;
 aggression = 0;
 eResupplying = false;

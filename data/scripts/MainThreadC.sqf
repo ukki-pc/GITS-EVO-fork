@@ -1,7 +1,7 @@
 _oldhour = date select 3;
 _tscore = 0;
 _rankmes = localize "STR_M04t82";
-_rankmes = _rankmes + format [" Perkpoints available: %1", perkPoints];
+_rankmes = _rankmes + "More perkpoints available!";
 _currentprog = 0;
 _EGG_stations = [];
 EB_airload1=-1;
@@ -267,6 +267,7 @@ BIS_EVO_Rank =
 	_rank = rank player;
 	if (_score >= BIS_EVO_rank1 and _rank == "PRIVATE")  exitWith  
 	{
+		perkPoints = perkPoints + 1;
 		_rname = format["Corp.%1",_name];
 		_hint =  format[_rankmes,_rname];
 		["corp","CORPORAL",_hint] call BIS_EVO_Rdisp;
@@ -281,9 +282,11 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_aunit";
 		publicVariable "BIS_EVO_arank";
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
+		playerRank = 1;
 	};
 	if (_score >= BIS_EVO_rank2 and _rank == "CORPORAL")  exitWith  
 	{
+		perkPoints = perkPoints + 1;
 		_rname = format["Sgt.%1",_name];
 		_hint =  format[_rankmes,_rname];
 		["sgt","SERGEANT",_hint] call BIS_EVO_Rdisp;		
@@ -298,9 +301,11 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_aunit";
 		publicVariable "BIS_EVO_arank";		
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
+		playerRank = 2;
 	};
 	if (_score >= BIS_EVO_rank3 and _rank  == "SERGEANT")  exitWith  
 	{	
+		perkPoints = perkPoints + 1;
 		_rname = format["Ltn.%1",_name];
 		_hint =  format[_rankmes,_rname];
 		["ltn","LIEUTENANT",_hint] call BIS_EVO_Rdisp;		
@@ -315,9 +320,11 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_aunit";
 		publicVariable "BIS_EVO_arank";	
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
+		playerRank = 3;
 	};
 	if (_score >= BIS_EVO_rank4 and _rank  == "LIEUTENANT")  exitWith  
 	{
+		perkPoints = perkPoints + 1;
 		_rname = format["Cpt.%1",_name];
 		_hint =  format[_rankmes,_rname];
 		["cpt","CAPTAIN",_hint] call BIS_EVO_Rdisp;		
@@ -332,9 +339,11 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_aunit";
 		publicVariable "BIS_EVO_arank";	
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
+		playerRank = 4;
 	};
 	if (_score >= BIS_EVO_rank5 and _rank == "CAPTAIN")  exitWith  
 	{	
+		perkPoints = perkPoints + 1;
 		_rname = format["Mjr.%1",_name];
 		_hint =  format[_rankmes,_rname];
 		["mjr","MAJOR",_hint] call BIS_EVO_Rdisp;		
@@ -349,9 +358,11 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_aunit";
 		publicVariable "BIS_EVO_arank";	
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
+		playerRank = 5;
 	};
 	if (_score >= BIS_EVO_rank6 and _rank  == "MAJOR")  exitWith  
 	{
+		perkPoints = perkPoints + 1;
 		_rname = format["Col.%1",_name];
 		_hint =  format[_rankmes,_rname];
 		["col","COLONEL",_hint] call BIS_EVO_Rdisp;		
@@ -366,9 +377,9 @@ BIS_EVO_Rank =
 		publicVariable "BIS_EVO_aunit";
 		publicVariable "BIS_EVO_arank";
 		_professions = player execvm "data\scripts\EVO_UpdateProf.sqf";
+		playerRank = 6;
 	};
 	_tscore = score player;
-	
 };
 
 BIS_EVO_CTime = 

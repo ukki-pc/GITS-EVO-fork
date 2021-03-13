@@ -39,7 +39,6 @@ _cthread = [] execVM "data\scripts\MainThreadC.sqf";
 _box = [0] call BIS_EVO_AmmoBox;
 _boxR = [0] call BIS_EVO_AmmoBoxR;
 //added to make markers show up on first spawn
-[] call BIS_EVO_AssignTasks;
 //player addweapon "ItemCompass";	
 //player addweapon "ItemGPS";
 //player addweapon "ItemMap";

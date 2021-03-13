@@ -1678,7 +1678,7 @@ if (_perkPage) then
 			_text = format["%1 %2/%3",_name,perkPilotLVL,_maxLevel];
 			ctrlSetText [2010,_name];
 			_index = lbAdd [2000, _text];
-
+			ctrlSetText [2001,format["Perkpoints: %1",perkPoints]];
 			switch(_x) do 
 			{
 				//Officer Perk
