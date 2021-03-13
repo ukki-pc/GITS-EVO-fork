@@ -38,8 +38,6 @@ processInitCommands;
 sleep 0.1;
 removeSwitchableUnit _unit;
 deleteVehicle _unit;
-_nunit setName _plyName;
-systemChat str _plyName;
 
 //move unit back to spawn location and initialise them
 
