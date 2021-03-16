@@ -154,7 +154,7 @@ if (spawntype == 2) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" 
 	enableEnvironment true;
 
 	BIS_EVO_MissionTowns = [];
-	BIS_EVO_MissionVillages = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11","mobj12","mobj2","mobj13","mobj14","mobj15","mobj16","mobj17","mobj18","mobj19","mobj20","mobj21","mobj22","mobj23","mobj24","mobj25","mobj26"];// Each mission objectives town marker.
+	BIS_EVO_MissionVillages = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11","mobj12","mobj2","mobj13","mobj14","mobj15","mobj16","mobj17","mobj18","mobj19","mobj20","mobj21","mobj22","mobj23","mobj24","mobj25","mobj26","mobj26"];// Each mission objectives town marker.
 	BIS_EVO_MissionBigTowns = ["mobjB1","mobjB2","mobjB3","mobjB4","mobjB5","mobjB6"];
 	BIS_EVO_MilitaryObjectives = ["mobjC1","mobjC2","mobjc3","mobjC4","mobjC5","mobjC6","mobjC7","mobjC8","mobjC9","mobjC10","mobjC11"];
 	BIS_EVO_CoastalTowns = ["mobj11","mobj4","mobj3","mobj5","mobjB2","mobj12","mobj9"];

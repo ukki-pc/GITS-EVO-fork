@@ -498,7 +498,6 @@ playSound "CityClear";
 
 BIS_EVO_Surrender = 
 {
-	hint "surrender array called";
 	sleep 2;
 	if ((count west_surrender_array > count _base_west_surrender_array) || (count west_surrender_array < count _base_west_surrender_array)) then
 	{
@@ -511,12 +510,33 @@ BIS_EVO_Surrender =
 	sleep 2;
 };
 
+BIS_EVO_UpdateUI =
+{
+	if(inrepairzone) then 
+	{
+		4 cutRsc ["UIrep","PLAIN"];
+		5 cutRsc ["UIammo","PLAIN"];
+		6 cutRsc ["UIfastTravel","PLAIN"];
+		7 cutRsc ["UIgasoline","PLAIN"];
+		8 cutRsc ["UIrecruit","PLAIN"];
+	}
+	else
+	{
+		4 cutRsc ["Default","PLAIN"];
+		5 cutRsc ["Default","PLAIN"];
+		6 cutRsc ["Default","PLAIN"];
+		7 cutRsc ["Default","PLAIN"];
+		8 cutRsc ["Default","PLAIN"];
+	};
+};
+
 //_base_west_surrender_array = west_surrender_array;
 for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 {
 	//[] call BIS_EVO_CWeath;
 //	sleep 1.011;
 	inrepairzone = ((player in list AirportIn) or (player in list farp1) or (player in list farp2) or (player in list farp3) or (player in list farp4) or (player in list reng1) or (player in list reng2) or (player in list reng3) or (player in list reng4) or (player in list dock1) or (player in list LHDin) or (vehicle player in list AirportIn) or (vehicle player in list farp1) or (vehicle player in list farp2) or (vehicle player in list farp3) or (vehicle player in list farp4) or (vehicle player in list reng1) or (vehicle player in list reng2) or (vehicle player in list reng3) or (vehicle player in list reng4) or (vehicle player in list dock1) or (vehicle player in list LHDin));
+	
 	[] call BIS_EVO_Repair;
 //	[] call EGG_EVO_fieldRepair;
 	[] call EGG_EVO_stationRepair;
@@ -525,6 +545,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	if (BIS_EVO_MissionProgress != _currentprog) then {[] call BIS_EVO_CityClear};
 	sleep 1.011;
 	[] call BIS_EVO_CTime;
+	[] call BIS_EVO_UpdateUI;
 	sleep 1.011;
 	//[] call BIS_EVO_HPM; //DUNNO WHAT IS
 //	[] call BIS_EVO_Surrender;

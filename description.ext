@@ -391,8 +391,14 @@ class RscTitles
 
 	titles[] =
 	{
-		"DollarTitle","Hitmarker","LevelTitle","Evo","DesertHeader","Objective1","Objective2","Objective3"
-
+		"Default","DollarTitle","Hitmarker","UIrecruit","UIgasoline","UIfastTravel","LevelTitle","Evo","DesertHeader","Objective1","Objective2","Objective3"
+	};
+	class Default 
+	{
+		idd = -1;
+		fadein = 0;
+		fadeout = 0;
+		duration = 0;
 	};
 	 class DollarTitle 
        { 
@@ -415,8 +421,8 @@ class RscTitles
                            colorBackground[] = {0,0,0,0}; 
                            colorText[] = {0.5, 0.75, 0.5, 1};
                            text = "0$";
-                       }; 
-               }; 
+                    }; 
+        	}; 
        }; 
        class aggressionTitle 
        { 
@@ -464,9 +470,128 @@ class Hitmarker
 			h = 0.04;
 			x = (safeZoneX + safeZoneW  * 1 / 2)-0.02; 
 			y = safeZoneY + safeZoneH  * 1 / 2-0.02;
-			text = "Data\hitmarker.paa";
+			text = "Data\hitmarkerR.paa";
 			colorBackground[] = {0, 0, 0, 0};
 			colorText[] = {0.9, 0.9, 0.9, 0.8}; //Last number is alpha
+		};
+	};
+};
+
+class uiImages
+{
+	duration=999999;
+	fadein = 0;
+	fadeout = 0;
+};
+
+class uiHud
+{
+	x =  safeZoneX + safeZoneW - 0.185 * 3 / 4;
+};
+
+//Repair UI
+class UIrep : uiImages
+{
+    idd = 1558;
+
+    onLoad = "uiNameSpace setVariable ['myUI_repair', (_this select 0) displayCtrl 104];";
+     class Controls
+	{
+     	class UIrepControl : uiHud
+		{
+            idc = 104; 
+	    	type = 0; 
+	    	style = 48;
+			w = 0.07;
+			h = 0.1;
+            y = safeZoneY + safeZoneH - 0.4;
+			text = "Data\uiRepG.paa";
+			colorText[] = {0.9, 0.9, 0.9, 1}; //Last number is alpha
+
+		};
+	};
+};
+class UIammo : uiImages
+{
+    idd = 1559;
+	
+    onLoad = "uiNameSpace setVariable ['myUI_ammo', (_this select 0) displayCtrl 105];";
+     class Controls
+	{
+     	class UIammoControl : uiHud
+		{
+            idc = 105; 
+	    	type = 0; 
+	    	style = 48;
+			w = 0.07;
+			h = 0.1;
+            y = safeZoneY + safeZoneH - 0.5;
+			text = "Data\uiAmmoG.paa";
+			colorText[] = {0.9, 0.9, 0.9, 1}; //Last number is alpha
+
+		};
+	};
+};
+class UIfastTravel : uiImages
+{
+    idd = 1560;
+	
+    onLoad = "uiNameSpace setVariable ['myUI_fastTravel', (_this select 0) displayCtrl 106];";
+     class Controls
+	{
+     	class UIammoControl : uiHud
+		{
+            idc = 106; 
+	    	type = 0; 
+	    	style = 48;
+			w = 0.07;
+			h = 0.1;
+            y = safeZoneY + safeZoneH - 0.7;
+			text = "Data\fastTravUI.paa";
+			colorText[] = {0.9, 0.9, 0.9, 1}; //Last number is alpha
+
+		};
+	};
+};
+class UIgasoline : uiImages
+{
+    idd = 1561;
+	
+    onLoad = "uiNameSpace setVariable ['myUI_gasoline', (_this select 0) displayCtrl 107];";
+     class Controls
+	{
+     	class UIammoControl : uiHud
+		{
+            idc = 107; 
+	    	type = 0; 
+	    	style = 48;
+			w = 0.07;
+			h = 0.1;
+            y = safeZoneY + safeZoneH - 0.6;
+			text = "Data\UIgasoline.paa";
+			colorText[] = {0.9, 0.9, 0.9, 1}; //Last number is alpha
+
+		};
+	};
+};
+class UIrecruit : uiImages
+{
+    idd = 1561;
+	
+    onLoad = "uiNameSpace setVariable ['myUI_recruit', (_this select 0) displayCtrl 108];";
+     class Controls
+	{
+     	class UIammoControl : uiHud
+		{
+            idc = 108; 
+	    	type = 0; 
+	    	style = 48;
+			w = 0.07;
+			h = 0.1;
+            y = safeZoneY + safeZoneH - 0.8;
+			text = "Data\UIrecruit.paa";
+			colorText[] = {0.9, 0.9, 0.9, 1}; //Last number is alpha
+
 		};
 	};
 };

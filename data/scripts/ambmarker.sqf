@@ -21,10 +21,13 @@ publicVariable "RHQmarkers";
 };
 
 _markerobj = createMarker[_name,[getPos _amb select 0,getPos _amb select 1]];
-_markerobj setMarkerTypeLocal "hd_destroy";
-_markerobj setMarkerColorLocal "ColorRed";
+_markerobj setMarkerTypeLocal "plp_icon_binoculars";
+_markerobj setMarkerColorLocal "ColorKhaki";
 _markerobj setMarkerTextLocal "Recon HQ";
-publicVariable "_markerobj";
+
+//Friends can teleport when enough level
+if(perkOffLVL > 1) then {publicVariable "_markerobj";};
+
 waitUntil {sleep 5;alive _amb};
 
 while {_run} do
@@ -37,7 +40,7 @@ while {_run} do
 		waitUntil {sleep 5;alive _amb};
 	};
 
-	_markerobj setMarkerType "hd_destroy";
+	_markerobj setMarkerType "plp_icon_binoculars";
 	_markerobj setMarkerColor "ColorBlue";
 
 	waitUntil {sleep 5;alive _amb};

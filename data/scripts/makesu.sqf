@@ -35,7 +35,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	_heli = createVehicle [_allvecs select (round random _max), _kpos, [], 50, "FLY"];Sleep BIS_EVO_GlobalSleep;
 	_heli setpos [getpos _heli select 0, getpos _heli select 1, 500];
 	_heli setdir (random 100);
-	_sumark = [_heli] execVM "data\scripts\sumarker.sqf";
+	_sumark = [_heli,"Enemy Air","ColorRed","plp_icon_planeAttack",true,0.6] execVM "data\scripts\customMarker.sqf";
 	(units _pilot select 0) assignAsDriver _heli;
 	(units _pilot select 1) assignAsGunner _heli;
 	(units _pilot select 0) moveInDriver _heli;
@@ -46,7 +46,9 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	_heli1 = createVehicle [_allvecs select (round random _max), _kpos, [], 50, "FLY"];Sleep BIS_EVO_GlobalSleep;
 	_heli1 setpos [getpos _heli1 select 0, getpos _heli1 select 1, 500];
 	_heli1 setdir (random 100);
-	_sumark = [_heli1] execVM "data\scripts\sumarker.sqf";
+	//[_unit, _string, _color, _markerType, _enableDir]
+	_sumark = [_heli1,"Enemy Air","ColorRed","plp_icon_planeAttack",true,0.6] execVM "data\scripts\customMarker.sqf";
+	//_sumark = [_heli1] execVM "data\scripts\sumarker.sqf";
 	(units _pilot select 2) assignAsDriver _heli1;
 	(units _pilot select 3) assignAsGunner _heli1;
 	(units _pilot select 2) moveInDriver _heli1;

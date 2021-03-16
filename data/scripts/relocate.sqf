@@ -25,8 +25,8 @@ _rhqPositions = [_lowRHQ];
 else {
 _rhqPositions = RHQMarkers;
 };
-
-TeleportLocations = BIS_EVO_MissionTowns + BIS_EVO_BaseMarkers + _rhqPositions + MHQMarker;
+// BIS_EVO_MissionTowns + BIS_EVO_BaseMarkers +
+TeleportLocations = BIS_EVO_conqueredTowns + _rhqPositions + MHQMarker;
 
 _nearestPoint = [TeleportLocations, position player] call BIS_fnc_nearestPosition;
 
@@ -40,11 +40,9 @@ openMap true;
 hint "Pick a location to transfer to";
 
 onMapSingleClick "
-  travelMarker= createMarker ['markerRelo',[0,0,0]];
-                  travelMarker setMarkerColor 'ColorGreen';
-                travelMarker setMarkerShape 'ELLIPSE';
-                travelMarker setMarkerBrush 'Solid';
-                travelMarker setMarkerSize [200, 200];
+  travelMarker= createMarkerLocal ['markerRelo',[0,0,0]];
+                  travelMarker setMarkerColor 'ColorBrown';
+                travelMarker setMarkerType 'SELECT';
 
 mapRefresh = true;
 _nearestMarker = [TeleportLocations, _pos] call BIS_fnc_nearestPosition;
@@ -53,7 +51,8 @@ _dist = _pos distance getMarkerPos _nearestMarker;
 travelCost = 0;
 _plyDist = (getPos player) distance getMarkerPos _nearestMarker;
 
-if (_nearestMarker in BIS_EVO_MissionVillages) then {travelCost = round((_plyDist/1000));};
+if (_nearestMarker in BIS_EVO_MissionVillages) then {travelCost = round((_plyDist/1000));}
+else{travelCost = 0;};
 
 if(_dist < 300) then {'markerRelo' setMarkerPos getMarkerPos _nearestMarker;}
 else
@@ -63,7 +62,8 @@ else
 };
 if(cityToTransfer > -1) then 
 {
-  hint format ['Selected: %1, Travel price: $%2 ', BIS_EVO_Townnames select 0,travelCost];
+  _trvStr = format ['Travel Price: $%1',travelCost];
+  travelMarker setMarkerText _trvStr;
 }
 	else { hint 'No selection.'
 };
