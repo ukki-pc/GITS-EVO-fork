@@ -79,8 +79,10 @@ while {BIS_EVO_MissionProgress != -1} do
 	if !(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress in BIS_EVO_MissionVillages) then
 	{
 		radio1 setPos _pos;
-		radio1 setPos [(getpos radio1 select 0) + 200 - random(200),(getpos radio1 select 1) + 200 - random(200), 0];
-
+		while{!(surfaceIsWater position radio1)} do 
+		{
+			radio1 setPos [(_pos select 0) + random(200) - random(200),(_pos select 1) + random(200) - random(200), 0];
+		};
 		[_mkr,BIS_EVO_DetectEnemy,BIS_EVO_DetectFriendly,BIS_EVO_MissionProgress] call BIS_EVO_Erec;
 		
 		Sleep 10.0;

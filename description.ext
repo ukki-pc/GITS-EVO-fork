@@ -831,10 +831,10 @@ class Params
       class Pilotaccess
       {
       //paramsArray[7]
-		title = "Pilots Access Aircraft";
-		values[] = {0,1,2};
-		texts[] = {"Disabled", "Enabled", "Enabled at 150 points"};
-		default = 1;
+		title = "Number of vehicle respawns";
+		values[] = {-1,1,2,3,4,5,0};
+		texts[] = {"Disabled", "1", "2","3","4","5","infinite"};
+		default = 6;
 	};   
 	
       class Vehiclelock

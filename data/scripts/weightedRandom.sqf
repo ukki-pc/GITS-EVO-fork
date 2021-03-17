@@ -22,6 +22,10 @@ c = _this select 2;
 negation = _this select 3;
 prec =  _this select 4;
 
+_start = diag_tickTime;
+//code
+
+
 if(isNil "negation") then {negation = true};
 if(isNil "c") then {c = 0};
 if(isNil "prec") then {prec = 100};
@@ -99,5 +103,7 @@ b = b-0.5;
     };
 	// };
 //systemChat str barValues;
+_stop = diag_tickTime;
+//systemChat format ["%1",_stop - _start];
 randomNum;
 };

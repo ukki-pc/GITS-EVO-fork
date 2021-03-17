@@ -73,7 +73,7 @@ if (grasslevel == 4) then {setTerrainGrid 3.125};
 viewparam =  paramsArray select 4;
 hasCarrier = paramsArray select 5;
 gitsnades = paramsArray select 6;
-EGG_EVO_allowpilots = paramsArray select 7;
+BIS_EVO_vehRespawnCount = paramsArray select 7;
 ranklock = paramsArray select 8;
 deathScorePenalty = paramsArray select 9;
 rankscore = paramsArray select 10;
@@ -114,7 +114,6 @@ if (editor == 1) then
 	viewparam =  2500;
 	basebeam = 2;
 	gitsnades = 1;
-	EGG_EVO_allowpilots = 1;
 	ranklock = 3;
 	jailparam = 0;
 	rankscore = 50;
@@ -135,6 +134,7 @@ if (editor == 1) then
 	EVO_incomeFrequency = 120;
 	EGG_EVO_FactionParam = 1;
 	EGG_EVO_LoadGame = 0;
+	BIS_EVO_vehRespawnCount = 2;
 	hint "DEBUG MODE ON | Version 0.6";
 };
 

@@ -1759,9 +1759,9 @@ class Mission
 		{
 			position[]={13088.896,18.218235,2761.5283};
 			name="bonusveh1";
-			type="Air";
+			type="Empty";
 			colorName="ColorPink";
-			angle=19.668751;
+			angle=19.6688;
 		};
 		class Item93
 		{

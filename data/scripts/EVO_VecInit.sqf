@@ -41,9 +41,6 @@ BIS_EVO_VecInit =
 	_vec removeaction wcam;
 
 //unlocks everything for pilots
-	_pilotcheck = 0;
-	if ((_pilotchecktype in EGG_EVO_playerPilot) AND (EGG_EVO_allowpilots == 1))then {_pilotcheck = 1};
-	if ((_pilotchecktype in EGG_EVO_playerPilot) AND (EGG_EVO_allowpilots == 2) AND (score _dunit >= 150)) then {_pilotcheck = 1};
 
 	switch (_Vehicle) do
 	{
