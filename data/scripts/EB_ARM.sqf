@@ -72,6 +72,7 @@ armWeapon = {
 			// };
 
 			//Find the original weapon slot
+			_vec setVehicleAmmo 1;
 			_ogMag = _mags select _weaponSlot;
 			_ammoCount = ((_vec) ammo (weapons (_vec) select _weaponSlot));
 			_ogMag = toUpper _ogMag;

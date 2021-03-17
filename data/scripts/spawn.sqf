@@ -108,7 +108,7 @@ if ((_playertype in EGG_EVO_PlayerPilot) and (perkparam == 1) and (gitsnades == 
 _playerh = (getpos player) select 2;
 if (_playerh < 1500) then 
 {
-	(FindDisplay 46) DisplaySetEventHandler ["keydown","if ((_this select 1) In actionKeys ""TeamSwitch"") then {a = createDialog 'evoUI'}"];
+	(FindDisplay 46) DisplaySetEventHandler ["keydown","if ((_this select 1) In actionKeys ""TeamSwitch"") then {a = createDialog 'evoUI';}"];
 };
 disableUserInput false;
 //Update money
