@@ -16,6 +16,7 @@ _income;
 
 while {true} do {
 _income = 0;
+if(isNil "EVO_incomeFrequency") then {EVO_incomeFrequency = 180};
 sleep EVO_incomeFrequency;
 _allPlayers = call BIS_fnc_listPlayers;
 _income = [] call countIncome;

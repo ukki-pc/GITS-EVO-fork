@@ -56,7 +56,7 @@ skillfactor = ((1 + random 2)/10);
 Spymade = 0;
 EGG_hidetotal = 6;
 
-editor = 1; publicVariable "editor";
+editor = 0; publicVariable "editor";
 
 R3F_LOG_mutex_local_verrou = false;
 
@@ -121,7 +121,7 @@ if (editor == 1) then
 	helpersparam =2;
 
 	//"Free & Bases","Bases & Towns Free","Bases free & Towns cost","Costs everywhere"
-	recruitPlaces = 3;
+	recruitPlaces = 1;
 	perkparam = 1;
 	EGG_EVO_Artycost =4;
 
@@ -590,7 +590,7 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 	["PRACS_M113_FSV",17],							// BMP1
 	["PRACS_LAV_IFV",15],					// Dingo (GMG)
 	["PRACS_LAV_MGS",17],					// Dingo (GMG)
-	["BVP1_TK_ACR",17],							// BMP1
+	//["BVP1_TK_ACR",17],							// BMP1
 	["AAV_D",18],									// AAVP
 	["EB_LAV25_D2",22],								// LAV
 	["PRACS_LAV25",22],								// LAV
@@ -830,7 +830,7 @@ BIS_EVO_Objective12 = taskNull; //
 
 defenceReady = false; //Avoid certain events during objective population
 
-money = 10;
+money = 20;
 playerRank = 0;
 perkPoints = 2;
 aggression = 0;

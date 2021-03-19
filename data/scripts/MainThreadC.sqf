@@ -236,7 +236,7 @@ BIS_EVO_Repair =
 				if(not ("CamelGrenades" in _weapons)) then {_vec addweapon "CamelGrenades"};
 			};
 		};
-		if(inrepairzone and repaircooldown > 0) then {hint "Cannot repair immediately after hit!"};
+		if(inrepairzone and repaircooldown > 0 and !(player isKindof "Man")) then {hint "Cannot repair immediately after hit!"};
 	};
 };
 

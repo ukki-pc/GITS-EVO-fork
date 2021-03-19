@@ -81,6 +81,8 @@
 
 updCityMarkers =
 {
+	_enemyColor = "ColorBrown";
+	_friendlyColor = "ColorGreen";
 	{
 	_currentTown = BIS_EVO_MissionTowns select _forEachIndex;
 	_unit = (_currentTown);
@@ -98,7 +100,7 @@ updCityMarkers =
 				_objInd =	BIS_EVO_MissionBigTowns  find (_currentTown);
 				_vec = BIS_EVO_unlocks select _objInd;
 				_dispname = getText (configFile >> "cfgVehicles" >> _vec >> "displayName");
-				_markerobj setMarkerType  "Depot";
+				_markerobj setMarkerType  "plp_icon_building";
 				_markerobj setMarkerColor _enemyColor;
 				_markerobj setMarkerText _dispname;
 			};
@@ -107,7 +109,7 @@ updCityMarkers =
 				_objInd =	BIS_EVO_MilitaryObjectives  find (_currentTown);
 				_vec = BIS_EVO_unlocks select _objInd;
 				_dispname = getText (configFile >> "cfgVehicles" >> _vec >> "displayName");
-				_markerobj setMarkerType  "City";
+				_markerobj setMarkerType  "plp_icon_storage1";
 				_markerobj setMarkerColor _enemyColor;
 				_markerobj setMarkerText _dispname;
 			};
@@ -115,7 +117,7 @@ updCityMarkers =
 		//BIS_EVO_MilitaryObjectives
 		else
 		{
-			_markerobj setMarkerType  "Strongpoint";
+			_markerobj setMarkerType  "plp_icon_house";
 			_markerobj setMarkerColor _enemyColor;
 		//	_markerobj setMarkerText "Enemy Town";
 		};
@@ -124,7 +126,7 @@ updCityMarkers =
 	else 
 	{
 		_markerobj setMarkerColor _friendlyColor;
-		_markerobj setMarkerType  "Strongpoint";
+		_markerobj setMarkerType  "plp_icon_house";
 
 		if(_currentTown in BIS_EVO_MissionBigTowns)
 		then 
@@ -133,6 +135,7 @@ updCityMarkers =
 			_vec = BIS_EVO_unlocks select _objInd;
 			BIS_EVO_unlocks set [_objInd, ""];
 			publicVariable "BIS_EVO_unlocks";
+			_markerobj setMarkerType  "plp_icon_building";
 			_dispname = getText (configFile >> "cfgVehicles" >> _vec >> "displayName");
 			_markerobj setMarkerText _dispname;
 		};
@@ -143,6 +146,7 @@ updCityMarkers =
 			_objInd = _objInd + count BIS_EVO_MissionBigTowns;
 			_vec = BIS_EVO_unlocks select _objInd;
 			BIS_EVO_unlocks set [_objInd, ""];
+			_markerobj setMarkerType  "plp_icon_storage1";
 			_dispname = getText (configFile >> "cfgVehicles" >> _vec >> "displayName");
 			publicVariable "BIS_EVO_unlocks";
 			_markerobj setMarkerText _dispname;

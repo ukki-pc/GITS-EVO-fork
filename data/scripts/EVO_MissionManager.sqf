@@ -78,8 +78,8 @@ while {BIS_EVO_MissionProgress != -1} do
 	///NON VILLAGE ROUTINE
 	if !(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress in BIS_EVO_MissionVillages) then
 	{
-		radio1 setPos _pos;
-		while{!(surfaceIsWater position radio1)} do 
+		radio1 setPos [(_pos select 0) + random(200) - random(200),(_pos select 1) + random(200) - random(200), 0];
+		while{(surfaceIsWater position radio1)} do 
 		{
 			radio1 setPos [(_pos select 0) + random(200) - random(200),(_pos select 1) + random(200) - random(200), 0];
 		};
@@ -89,7 +89,7 @@ while {BIS_EVO_MissionProgress != -1} do
 		//_tempProgress = BIS_EVO_MissionProgress;
 	//testing reinforce - removed from sinit
 	reinfdelay = round (290-(aggression^1.14));
-	reinfdelay = 60;
+	//reinfdelay = 60;
 
 	reinforcements = true;
 	[] spawn reinforcementLoop;

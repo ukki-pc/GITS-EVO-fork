@@ -834,7 +834,7 @@ class Params
 		title = "Number of vehicle respawns";
 		values[] = {-1,1,2,3,4,5,0};
 		texts[] = {"Disabled", "1", "2","3","4","5","infinite"};
-		default = 6;
+		default = -1;
 	};   
 	
       class Vehiclelock
@@ -843,7 +843,7 @@ class Params
 		title = "Player Rank Lock";
 		values[] = {2,3};
 		texts[] = {"Equipment Locked Only", "Unlocked"};
-		default = 2;
+		default = 3;
 	};  
 	
 	class Jail
@@ -876,7 +876,7 @@ class Params
 	class RecruitPlaces
 	{
       //paramsArray[11]  
-      	title="AI Support";
+      	title="AI Purchase places";
 		values[]={0,1,2,3};
 		texts[]={"Free & Bases","Bases & Towns Free","Bases free & Towns cost","Costs everywhere"};
 		default = 1;

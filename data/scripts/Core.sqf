@@ -1021,7 +1021,7 @@ BIS_EVO_ActButton =
 
 				switch(recruitPlaces) do 
 				{
-					//Free and everywhere
+					//Free everywhere
 					case 0:
 					{
 						if(_item != "ME") then {_rec = [_item] execVM "data\scripts\recruit.sqf";}
