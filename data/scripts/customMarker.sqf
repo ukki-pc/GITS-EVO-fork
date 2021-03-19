@@ -6,6 +6,7 @@ _type = _this select 3;
 _enableDir = _this select 4; // For top down vehicle markers
 _scale = _this select 5;
 
+
 _leader = gunner _unit;
 _group = group _leader;
 _unitm = format ["%1", _unit];
