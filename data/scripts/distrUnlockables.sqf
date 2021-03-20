@@ -2,6 +2,8 @@
 
 _tempBases = BIS_EVO_MissionBigTowns+ BIS_EVO_MilitaryObjectives;
 _unlockables = BIS_EVO_unlockables;
+_vec = "";
+BIS_EVO_unlocks = [];
 {
     _rnd = round (random (count _unlockables-1));
 

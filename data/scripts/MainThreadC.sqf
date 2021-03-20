@@ -394,7 +394,7 @@ BIS_EVO_Rank =
 	};
 	_tscore = score player;
 };
-
+/*
 BIS_EVO_CTime = 
 {
 	_temp = compile BIS_EVO_gdate_packed;
@@ -412,7 +412,7 @@ BIS_EVO_CTime =
 		setDate _date;
 	};
 };
-
+*/
 BIS_EVO_CityClear = 
 {
 	switch (BIS_EVO_MissionProgress) do
@@ -422,75 +422,6 @@ BIS_EVO_CityClear =
 	_city = (BIS_EVO_Townnames select 0);
 	[West,"HQ"] SideChat format[localize "STR_M04t61",_city];//%1 IS CLEAR OF ENEMY, GREAT JOB MEN
 playSound "CityClear";
-/*
-		case 1:
-		{	
-//			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_lopatino"];
-			"1" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
-		};
-		case 2:
-		{	
-//			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_vybor"];
-			"2" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
-		};
-		case 3:
-		{	
-//			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_grishino"];
-			"3" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
-		};
-		case 4:
-		{	
-//			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_gvozdno"];
-			"4" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
-		};
-		case 5:
-		{	
-//			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_krasnostav"];
-			"5" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
-		};
-		case 6:
-		{	
-//			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_khelm"];
-			"6" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
-		};
-		case 7:
-		{	
-//			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_berezino"];
-			"7" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
-		};
-		case 8:
-		{	
-//			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_solnichniy"];
-			"8" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
-		};
-		case 9:
-		{	
-//			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_kamyshovo"];
-			"9" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
-		};
-		case 10:
-		{	
-//			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_elektrozavodsk"];
-			"10" objstatus "done";
-			BIS_EVO_MainObjective setMarkerPos getMarkerPos BIS_EVO_MissionTowns select BIS_EVO_MissionProgress+1;
-		};
-		case 11:
-		{	
-//			[West,"HQ"] SideChat format[localize "STR_M04t61",localize "str_location_chernogorsk"];
-			"11" objstatus "done";
-			//deleteMarkerLocal BIS_EVO_MainObjective;
-		//	playSound "Intro";
-		};		
-		*/
 	};
 	[] call BIS_EVO_AssignTasks;
 	_currentprog = BIS_EVO_MissionProgress;
@@ -543,7 +474,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	if (money > _tscore and alive player) then {[] call BIS_EVO_Rank};
 	if (BIS_EVO_MissionProgress != _currentprog) then {[] call BIS_EVO_CityClear};
 	sleep 1.011;
-	[] call BIS_EVO_CTime;
+	//[] call BIS_EVO_CTime;
 	[] call BIS_EVO_UpdateUI;
 	sleep 1.011;
 	//[] call BIS_EVO_HPM; //DUNNO WHAT IS

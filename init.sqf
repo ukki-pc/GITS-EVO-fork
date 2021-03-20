@@ -56,7 +56,7 @@ skillfactor = ((1 + random 2)/10);
 Spymade = 0;
 EGG_hidetotal = 6;
 
-editor = 0; publicVariable "editor";
+editor = 1; publicVariable "editor";
 
 R3F_LOG_mutex_local_verrou = false;
 
@@ -1314,6 +1314,8 @@ _killer = _this select 0;
 //	execVM "addons\RKSL.sqf";
 //	execVM "addons\PRACS.sqf";
 
+_events = [] execVM "data\scripts\CityMarkers.sqf";
+
 
 	EGG_EVO_meflag = ["flag_mol"];
 /*
@@ -1494,7 +1496,6 @@ if(EGG_EVO_LoadGame == 0) then
     {["jed_addscore", [_x, 10]] call CBA_fnc_globalEvent}forEach _allPlayers;
     _handle = [] execVM "data\scripts\distrUnlockables.sqf";
 };
-_events = [] execVM "data\scripts\CityMarkers.sqf";
 waitUntil{gameBegin == 1};
 publicVariable "gameBegin";
 

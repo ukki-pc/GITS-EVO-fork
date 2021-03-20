@@ -19,6 +19,49 @@ BIS_EVO_MainObjective setMarkerAlpha 0.2;
 BIS_EVO_MainObjective setMarkerShapeLocal "ELLIPSE";
 BIS_EVO_MainObjective setMarkerSizeLocal [reinforceRange, reinforceRange];
 
+manGunner=
+{
+    _vehicles = [];
+	_units = [];
+	_unit = objnull;
+	_car = nil;
+
+	//Find vehicle with turret but without gunner
+	{
+		//Empty vehicles are always returned as civilian
+		if(side _x == civilian or side _x == EGG_EVO_ENEMYFACTION and isnull gunner _x and count (_x weaponsTurret [0]) > 0 and canMove _x) then 
+		{
+			_vehicles = _vehicles + [_x];
+		};
+		sleep BIS_EVO_GlobalSleep;
+	} foreach ( nearestobjects [position BIS_EVO_DetectEnemy,["LandVehicle"],300]);
+
+	//Pick one randomly from the found vehicles
+	_car = _vehicles select (round(random(count _vehicles)))-1;
+	if !(isNil "_car") then 
+	{
+		{
+			//get soldiers from near the vehicle
+			if(!isPlayer _x and side _x == east and _x isKindOf "Man") then 
+			{
+				if(count _units < 5) then 
+				{
+					_units = _units + [_x];
+				};
+			};
+			sleep BIS_EVO_GlobalSleep;
+		} foreach ( nearestobjects [position _car,["Man"],100]);
+
+		//Pick on unit at randomly
+		_unit = _units select round (random(count _units))-1;
+    _unit assignAsGunner _car;
+     [_unit] orderGetIn true;
+
+//	 systemChat format ["Sending %1 to %2", typeof _unit,typeof _car];
+	}
+//	else{systemChat "No cars found";};
+};
+
 reinforcementLoop = 
 {
 	//Loop that calls reinforcements
@@ -29,6 +72,8 @@ reinforcementLoop =
 			{
 				sleep 1;
 				if ( !(reinforcements)) then {_slploop=reinfdelay; _rloop = 1;};
+				//check every minute
+				if(_slploop != 0 and _slploop mod 60 == 0) then { _hook = [] spawn manGunner};
 			};
 			if ( !(reinforcements)) then {_rloop=1};
 			_reinf = [] execVM "data\scripts\reinforce.sqf";

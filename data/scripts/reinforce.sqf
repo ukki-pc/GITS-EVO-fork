@@ -168,6 +168,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 			_guardm setFormation "COLUMN";
 
 			waitUntil{sleep 5;_vec distance _objPos < 100;};
+	
 			while {alive _vec} do 
 			{
     			{
@@ -177,7 +178,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 						sleep 3;
 					};
 				} foreach ( nearestobjects [position _vec,["LandVehicle"],200]);
-				sleep (60);
+				sleep 60;
 			};
 			//adding
 			_recy = [objnull,_guardm] execVM "data\scripts\grecycle.sqf";
