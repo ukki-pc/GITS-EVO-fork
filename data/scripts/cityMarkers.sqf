@@ -18,21 +18,13 @@
 		{
 			if(_currentTown in BIS_EVO_MissionBigTowns) then 
 			{
-				_objInd =	BIS_EVO_MissionBigTowns  find (_currentTown);
-				_vec = BIS_EVO_unlocks select _objInd;
-				_dispname = getText (configFile >> "cfgVehicles" >> _vec >> "displayName");
 				_markerobj setMarkerType  "plp_icon_building";
 				_markerobj setMarkerColor _enemyColor;
-				_markerobj setMarkerText _dispname;
 			};
 			if(_currentTown in BIS_EVO_MilitaryObjectives) then 
 			{
-				_objInd =	BIS_EVO_MilitaryObjectives  find (_currentTown);
-				_vec = BIS_EVO_unlocks select _objInd;
-				_dispname = getText (configFile >> "cfgVehicles" >> _vec >> "displayName");
 				_markerobj setMarkerType  "plp_icon_storage1";
 				_markerobj setMarkerColor _enemyColor;
-				_markerobj setMarkerText _dispname;
 				if((_currentTown) in _airports) then {_markerobj setMarkerType "plp_icon_hangarB";};
 			};
 		}
@@ -54,30 +46,20 @@
 		if(_currentTown in BIS_EVO_MissionBigTowns)
 		then 
 		{
-			_objInd =	BIS_EVO_MissionBigTowns  find (_currentTown);
-			_vec = BIS_EVO_unlocks select _objInd;
-			BIS_EVO_unlocks set [_objInd, ""];
-			publicVariable "BIS_EVO_unlocks";
-			_dispname = getText (configFile >> "cfgVehicles" >> _vec >> "displayName");
 			_markerobj setMarkerType  "plp_icon_building";
-			_markerobj setMarkerText _dispname;
 			_markerobj setMarkerSize [1,1];
 		};
 		if(_currentTown in BIS_EVO_MilitaryObjectives)
 		then 
 		{
-			_objInd = BIS_EVO_MilitaryObjectives  find (_currentTown);
-			_objInd = _objInd + count BIS_EVO_MissionBigTowns;
-			_vec = BIS_EVO_unlocks select _objInd;
-			BIS_EVO_unlocks set [_objInd, ""];
-			_dispname = getText (configFile >> "cfgVehicles" >> _vec >> "displayName");
 			publicVariable "BIS_EVO_unlocks";
 			_markerobj setMarkerType  "plp_icon_storage1";
-			_markerobj setMarkerText _dispname;
 			_markerobj setMarkerSize [1,1];
 		};
 	};
 }forEach BIS_EVO_MissionTowns;
+
+if(EGG_EVO_LoadGame == 0) then { _handle = [] execVM "data\scripts\distrUnlockables.sqf";};
 
 updCityMarkers =
 {

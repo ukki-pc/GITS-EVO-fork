@@ -995,7 +995,7 @@ BIS_EVO_ActButton =
 			_ainum = 0;
 			_ap = player;
 			_i = 0;
-			_infCost = 4;
+			_infCost = 3;
 
 			if(player distance backPacks > 4) then 
 			{
@@ -1124,7 +1124,7 @@ if (player hasWeapon "ItemRadio") then
 			 if (bplace) then 
 			 {
 
-				if (((score player)) >= mcost) then 
+				if (((money)) >= mcost) then 
 				{	
 					if(airportin distance (getmarkerpos "btarg") < 400) then 
 					{
@@ -1134,7 +1134,7 @@ if (player hasWeapon "ItemRadio") then
 					else
 					{
 						_rec = [mrole,msize,mtime,mord] execVM "data\scripts\csupport.sqf";
-						ctrlSetText [2003,str (score player)];
+						ctrlSetText [2003,str (money)];
 						BIS_EVO_punitC = player;
 						BIS_EVO_prewC  = -mcost;
 //						BIS_EVO_prew  = -1;
@@ -1142,13 +1142,13 @@ if (player hasWeapon "ItemRadio") then
 						publicVariable "BIS_EVO_punitC";
 					//adding
 					player addscore -mcost;
-					ctrlSetText [2003,Format ["%1: %2",localize "STR_M04t134",(score player)]];//Score
+					ctrlSetText [2003,Format ["%1: %2",localize "STR_M04t134",(money)]];//Score
 
 					};
 				}
 				else
 				{
-					ctrlSetText [2011,format[localize "STR_M04t89",mcost, ((score player)-mrank)]];//You do not have the required spare points \nRequired: %1 \nCurrent: %2.
+					ctrlSetText [2011,format[localize "STR_M04t89",mcost, ((money)-mrank)]];//You do not have the required spare points \nRequired: %1 \nCurrent: %2.
 				};
 			 }
 			 else {ctrlSetText [2011,localize "STR_M04t90"]};//Click a point on the map first.

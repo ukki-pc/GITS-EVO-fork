@@ -9,7 +9,7 @@ _events = [] execVM "data\scripts\EventsS.sqf"; // Common server events
 sleep 1;
 
 _events = [] execVM "data\scripts\vehicleRewards.sqf";
-_events = [] execVM "data\scripts\CityMarkers.sqf";
+//_events = [] execVM "data\scripts\CityMarkers.sqf";
 
 _events = [] execVM "data\scripts\EVO_Erefway.sqf"; // Reinforcement waypoint generator
 _events = [] execVM "data\scripts\EVO_FillInf.sqf"; // Fills out squads for cites

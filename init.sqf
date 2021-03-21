@@ -594,9 +594,10 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 	["AAV_D",18],									// AAVP
 	["EB_LAV25_D2",22],								// LAV
 	["PRACS_LAV25",22],								// LAV
+	["uns_Sheridan_de",22],							// Pandur
 	["PRACS_LAV_SAM",23],							// Pandur
 	["Pandur2_ACR",25],							// Pandur
-	["PRACS_BMP2",25],							// Pandur
+	//["PRACS_BMP2",25],							// Pandur
 	["PRACS_M901_ITV",25],							// Pandur
 	["M1126_ICV_M2_EP1",15],					// Stryker (HMG)
 	["M1126_ICV_mk19_EP1",16],					// Stryker (GMG)
@@ -1494,7 +1495,6 @@ if(EGG_EVO_LoadGame == 0) then
 {
     _allPlayers = call BIS_fnc_listPlayers;
     {["jed_addscore", [_x, 10]] call CBA_fnc_globalEvent}forEach _allPlayers;
-    _handle = [] execVM "data\scripts\distrUnlockables.sqf";
 };
 waitUntil{gameBegin == 1};
 publicVariable "gameBegin";

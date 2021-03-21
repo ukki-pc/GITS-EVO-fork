@@ -29,7 +29,7 @@ manGunner=
 	//Find vehicle with turret but without gunner
 	{
 		//Empty vehicles are always returned as civilian
-		if(side _x == civilian or side _x == EGG_EVO_ENEMYFACTION and isnull gunner _x and count (_x weaponsTurret [0]) > 0 and canMove _x) then 
+		if((side _x == civilian or side _x == EGG_EVO_ENEMYFACTION) and isnull gunner _x and count (_x weaponsTurret [0]) > 0 and canMove _x) then 
 		{
 			_vehicles = _vehicles + [_x];
 		};

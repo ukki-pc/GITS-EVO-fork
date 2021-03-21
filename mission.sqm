@@ -1671,7 +1671,7 @@ class Mission
 		};
 		class Item80
 		{
-			position[]={2596.6807,13.883385,2687.7695};
+			position[]={2886.3831,17.222616,2876.0837};
 			name="mobjC6";
 			type="Empty";
 			colorName="ColorYellow";
