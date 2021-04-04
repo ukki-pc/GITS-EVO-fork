@@ -13,9 +13,10 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	_rv=BIS_EVO_airspawnfreqa;
 //	_rf = 0.5*((_rv*10)+(4*(600/diffparam))+random 150); // varies from 1950 jets in easy to 750 hinds in extreme
 	_rf = 4600 + (random 1200);
-	sleep _rf;
+	sleep 10;
 
-	_allspawns = ["2ref","2refa","2refb","1ref","1refa","1refb"];
+	_allspawns = ["EnemyAir01","EnemyAir02","EnemyAir03","EnemyAir04","EnemyAir05","EnemyAir06","EnemyAir07","EnemyAir08"];
+		_allspawns = ["EnemyAir01"];
 //	_allspawns = ["cayref","cayrefa","cayrefb","dolref","dolrefa","dolrefb"];
 	_max = (count _allspawns)-1;
 	_pos0 = GetMarkerPos (_allspawns select round random _max);
@@ -25,11 +26,11 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 
 	_pos1 = [(_pos0 select 0),(_pos0 select 1),(_pos0 select 2)];
 	sleep 1;
-	_pos2 = [(_pos0 select 0),(_pos0 select 1) - 15,(_pos0 select 2)];
+	_pos2 = [(_pos0 select 0),(_pos0 select 1) - 30,(_pos0 select 2)];
 	sleep 1;
-	_pos3 = [(_pos0 select 0),(_pos0 select 1) - 30,(_pos0 select 2)];
+	_pos3 = [(_pos0 select 0),(_pos0 select 1) - 60,(_pos0 select 2)];
 	sleep 1;
-	_pos4 = [(_pos0 select 0),(_pos0 select 1) - 45,(_pos0 select 2)];
+	_pos4 = [(_pos0 select 0),(_pos0 select 1) - 90,(_pos0 select 2)];
 	sleep 1;
 
 _pos5 = [((_pos1 select 0) + random 5),((_pos1 select 1)+random 5),(_pos1 select 2)];
@@ -42,33 +43,39 @@ _pos10 = [((_pos2 select 0) + random 5),((_pos2 select 1)+random 5),(_pos2 selec
 _pos11 = [((_pos3 select 0) + random 5),((_pos3 select 1)+random 5),(_pos3 select 2)];
 _pos12 = [((_pos4 select 0) + random 5),((_pos4 select 1)+random 5),(_pos4 select 2)];
 
-_targblue = getmarkerpos "MHQ"; 
+_targblue = getmarkerpos "FahneHalo"; 
 sleep 2;
-if(round (random 1) == 1) then {_targblue = getmarkerpos "hospital"};
+//if(round (random 1) == 1) then {_targblue = getmarkerpos "hospital"};
 sleep 2;
 
 _spetz = createGroup (EGG_EVO_ENEMYFACTION);
-		_allvecsNG = EGG_EVO_westveh9;
-		_allvecsG = EGG_EVO_westveh8;
+		_allvecsNG = EGG_EVO_spetzHeli;
+		_allvecsG = EGG_EVO_spetzHeli;
 		_maxG = (count _allvecsG)-1;
 		_maxNG = (count _allvecsNG)-1;
-		_heli = createVehicle [_allvecsG select (round random _maxG), _pos1, [], 0, "NONE"];[_heli] call BIS_EVO_Lock;Sleep BIS_EVO_GlobalSleep;
+		_heli = createVehicle [_allvecsG select (round random _maxG), _pos1, [], 0, "FLY"];[_heli] call BIS_EVO_Lock;Sleep BIS_EVO_GlobalSleep;
 _spawne = [_heli] spawn {[_this select 0] call BIS_EVO_idelSVEC};
-		_heli1 = createVehicle [_allvecsG select (round random _maxG), _pos2, [], 0, "NONE"];[_heli1] call BIS_EVO_Lock;Sleep BIS_EVO_GlobalSleep;
-_spawne = [_heli1] spawn {[_this select 0] call BIS_EVO_idelSVEC};
-		_heli2 = createVehicle [_allvecsNG select (round random _maxNG), _pos3, [], 0, "NONE"];[_heli2] call BIS_EVO_Lock;Sleep BIS_EVO_GlobalSleep;
-_spawne = [_heli2] spawn {[_this select 0] call BIS_EVO_idelSVEC};
-		_heli3 = createVehicle [_allvecsNG select (round random _maxNG), _pos4, [], 0, "NONE"];[_heli3] call BIS_EVO_Lock;Sleep BIS_EVO_GlobalSleep;
-_spawne = [_heli3] spawn {[_this select 0] call BIS_EVO_idelSVEC};
+// 		_heli1 = createVehicle [_allvecsG select (round random _maxG), _pos2, [], 0, "FLY"];[_heli1] call BIS_EVO_Lock;Sleep BIS_EVO_GlobalSleep;
+// _spawne = [_heli1] spawn {[_this select 0] call BIS_EVO_idelSVEC};
+// 		_heli2 = createVehicle [_allvecsNG select (round random _maxNG), _pos3, [], 0, "FLY"];[_heli2] call BIS_EVO_Lock;Sleep BIS_EVO_GlobalSleep;
+// _spawne = [_heli2] spawn {[_this select 0] call BIS_EVO_idelSVEC};
+// 		_heli3 = createVehicle [_allvecsNG select (round random _maxNG), _pos4, [], 0, "FLY"];[_heli3] call BIS_EVO_Lock;Sleep BIS_EVO_GlobalSleep;
+// _spawne = [_heli3] spawn {[_this select 0] call BIS_EVO_idelSVEC};
+
+    _sumark = [_heli,"Friendly Air","ColorRED","plp_icon_helicopter",true,0.6] execVM "data\scripts\customMarker.sqf";
+    // _sumark = [_heli1,"Friendly Air","ColorBlue","plp_icon_planeAttack",true,0.6] execVM "data\scripts\customMarker.sqf";
+    // _sumark = [_heli2,"Friendly Air","ColorBlue","plp_icon_planeAttack",true,0.6] execVM "data\scripts\customMarker.sqf";
+    // _sumark = [_heli3,"Friendly Air","ColorBlue","plp_icon_planeAttack",true,0.6] execVM "data\scripts\customMarker.sqf";
+
 _heli setdir 340;
-_heli1 setdir 340;
-_heli2 setdir 340;
-_heli3 setdir 340;
+// _heli1 setdir 340;
+// _heli2 setdir 340;
+// _heli3 setdir 340;
 
 _heli engineon true;
-_heli1 engineon true;
-_heli2 engineon true;
-_heli3 engineon true;
+// _heli1 engineon true;
+// _heli2 engineon true;
+// _heli3 engineon true;
 
 //making infantry crews
 
@@ -95,16 +102,16 @@ sleep 0.2;
 sleep 0.2;
 (units _spetz select 1) moveInGunner _heli;
 sleep 0.2;
-(units _spetz select 2) moveInDriver _heli1;
-sleep 0.2;
-(units _spetz select 3) moveInGunner _heli1;
-sleep 0.2;
-(units _spetz select 4) moveInDriver _heli2;
-sleep 0.2;
-(units _spetz select 5) moveInDriver _heli3;
+// (units _spetz select 2) moveInDriver _heli1;
+// sleep 0.2;
+// (units _spetz select 3) moveInGunner _heli1;
+// sleep 0.2;
+// (units _spetz select 4) moveInDriver _heli2;
+// sleep 0.2;
+// (units _spetz select 5) moveInDriver _heli3;
 
-//_allunits = ["RUS_Soldier_GL","RUS_Soldier_Marksman","RUS_Commander","RUS_Soldier1","RUS_Soldier2","RUS_Soldier3","RUS_Soldier_TL"];
-_allunits = EGG_EVO_west3;
+_allunits = ["RUS_Soldier_GL","RUS_Soldier_Marksman","RUS_Commander","RUS_Soldier1","RUS_Soldier2","RUS_Soldier3","RUS_Soldier_TL"];
+//_allunits = EGG_EVO_west3;
 _max = count _allunits;
 
 _allunits select (round random (_max - 1)) createUnit [_pos5, _spetz];Sleep BIS_EVO_GlobalSleep;
@@ -116,22 +123,22 @@ _allunits select (round random (_max - 1)) createUnit [_pos10, _spetz];Sleep BIS
 _allunits select (round random (_max - 1)) createUnit [_pos11, _spetz];Sleep BIS_EVO_GlobalSleep;
 _allunits select (round random (_max - 1)) createUnit [_pos12, _spetz];Sleep BIS_EVO_GlobalSleep;
 
-(units _spetz select 6) moveInCargo _heli2;
+(units _spetz select 6) moveInCargo _heli;
 sleep 0.2;
-(units _spetz select 7) moveInCargo _heli2; 
+(units _spetz select 7) moveInCargo _heli; 
 sleep 0.2;
-(units _spetz select 8) moveInCargo _heli2;
+(units _spetz select 8) moveInCargo _heli;
 sleep 0.2;
-(units _spetz select 9) moveInCargo _heli2; 
+(units _spetz select 9) moveInCargo _heli; 
 sleep 0.2;
-(units _spetz select 10) moveInCargo _heli2; 
+(units _spetz select 10) moveInCargo _heli; 
 sleep 0.2;
-(units _spetz select 11) moveInCargo _heli2; 
+(units _spetz select 11) moveInCargo _heli; 
 sleep 0.2;
-(units _spetz select 12) moveInCargo _heli2; 
+(units _spetz select 12) moveInCargo _heli; 
 sleep 0.2;
-(units _spetz select 13) moveInCargo _heli2; 
-
+(units _spetz select 13) moveInCargo _heli; 
+/*
 _allunits select (round random (_max - 1)) createUnit [_pos5, _spetz];Sleep BIS_EVO_GlobalSleep;
 _allunits select (round random (_max - 1)) createUnit [_pos6, _spetz];Sleep BIS_EVO_GlobalSleep;
 _allunits select (round random (_max - 1)) createUnit [_pos7, _spetz];Sleep BIS_EVO_GlobalSleep;
@@ -157,12 +164,12 @@ sleep 0.2;
 sleep 0.2;
 (units _spetz select 21) moveInCargo _heli3; 
 
-
+*/
 {_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _spetz);
 _heli addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
-_heli1 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
-_heli2 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
-_heli3 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
+// _heli1 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
+// _heli2 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
+// _heli3 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 
 _recy = [objnull,_spetz] execVM "data\scripts\grecycle.sqf";
 
@@ -172,13 +179,20 @@ _spetz setCombatMode "SAFE";
 
 [West,"HQ"] SideChat "Spetznaz assault imminent!";playSound "Incoming";
 
+/*
 _spetz setFormation "COLUMN";
 _spetz setSpeedMode "LIMITED";
-_spetz setBehaviour "SAFE";
+*/
+_spetz setBehaviour "Careless";
+_heli flyInHeight 30;
+
+
 
 sleep 20;
 _wp = _spetz addWaypoint [_targblue, 80];
-[_spetz, 1] setWaypointType "HOLD";
+
+[_spetz, 1] setWaypointType "UNLOAD";
+//_wp setWaypointStatements ["true","_nul = [_heli, 1, 25, 'move1.sqf',30] execVM '\norrn_dbo_fastrope\scripts\NORRN_fastRope_init.sqf';"]; 
 
 waitUntil {(count units _spetz) < 1};
 

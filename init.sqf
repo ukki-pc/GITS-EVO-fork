@@ -452,7 +452,8 @@ if(EGG_EVO_FactionParam == 1) then
 	EGG_EVO_enemySupply = ["UralReammo_TK_EP1","KamazReammo"]; //V3S_Reammo_TK_GUE_EP1 //NEED EAST V3S
 
 	//THESE AA SPAWN ON TOWNS
-	EGG_EVO_spAAeasy = ["ffaa_toyota_strela","pook_BTR152_ZPU_TAK","pook_BTR40_zu23_TAK","Ural_ZU23_TK_EP1","pook_zsu57_tak","pook_brdm2AA_TKINS","pook_brdm2_sa9_TAK","pracs_tk_sa13"];
+	EGG_EVO_spAAeasy = ["ffaa_toyota_strela","pook_BTR152_ZPU_TAK","pook_BTR40_zu23_TAK","Ural_ZU23_TK_EP1"];
+	EGG_EVO_spAAmedium = ["pook_zsu57_tak","pook_brdm2AA_TKINS","pook_brdm2_sa9_TAK","pracs_tk_sa13"];
 	EGG_EVO_spAAhard =  ["ZSU_TK_EP1","pracs_tk_sa8","pook_zsum4_tak","eb_2S6M_Tunguska_D","pook_5P85S_TAK","pracs_sa6_tk"];
 
 	EGG_EVO_mepilot = ["TK_Soldier_Pilot_EP1"];
@@ -473,7 +474,7 @@ if(EGG_EVO_FactionParam == 1) then
 	//makehip light choppers
 	EGG_EVO_eastheli1 = ["ibr_gazelle_armed","FRL_Mi17_1_TAK","UH1H_TK_EP1"];//makehip
 
-
+	EGG_EVO_spetzHeli = ["UH60M_EP1"];
 
 		//makeship
 		EGG_EVO_enemyShips = ["PRACS_PatrolBoat"]; //,"GNTOHP","GNTLaFayette","pook_Fregata_CDF" "PRACS_RHIB2", ,"PRACS_RB90"

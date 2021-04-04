@@ -292,11 +292,10 @@ class Mission
 				class Item0
 				{
 					position[]={13132.654,0.21751595,2796.7122};
-					azimut=421.69556;
+					azimut=421.69601;
 					id=51;
 					side="EAST";
 					vehicle="TK_Soldier_Medic_EP1";
-					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
 					text="eng22";
@@ -854,7 +853,7 @@ class Mission
 		};
 		class Item36
 		{
-			position[]={9441.7373,140.21413,10086.934};
+			position[]={9540.1865,139.98311,10086.393};
 			azimut=405.53308;
 			id=42;
 			side="EMPTY";
@@ -886,7 +885,7 @@ class Mission
 		};
 		class Item39
 		{
-			position[]={9442.3945,140.21413,10086.459};
+			position[]={9517.9404,139.98311,10086.295};
 			azimut=230.53305;
 			id=45;
 			side="EMPTY";
@@ -896,7 +895,7 @@ class Mission
 		};
 		class Item40
 		{
-			position[]={19167.24,11.952834,13948.322};
+			position[]={19167.684,11.952834,13948.072};
 			azimut=315;
 			id=53;
 			side="EMPTY";
@@ -1245,7 +1244,7 @@ class Mission
 		};
 		class Item25
 		{
-			position[]={19167.502,11.952834,13948.42};
+			position[]={19167.668,11.952834,13948.061};
 			name="FARP";
 			type="Empty";
 			colorName="ColorBlue";
@@ -1305,7 +1304,7 @@ class Mission
 		};
 		class Item32
 		{
-			position[]={1449.882,0.081638381,11943.118};
+			position[]={8817.0547,42.583141,10122.485};
 			name="EnemyAir01";
 			type="Empty";
 			colorName="ColorOrange";

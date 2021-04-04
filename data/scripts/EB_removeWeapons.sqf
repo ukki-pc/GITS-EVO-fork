@@ -15,7 +15,7 @@ if( (inrepairzone) and (speed _vec > -2) and (speed _vec < 2) and (position _vec
   if(_vecC == "F4M_Des") then
   {
     //This is dummy slot
-    		_vec addMagazine "EB_1Rnd_pylonblank";
+    //		_vec addMagazine "EB_1Rnd_pylonblank";
   };
 
 _vec addMagazine "120Rnd_CMFlare_Chaff_Magazine";
