@@ -1021,7 +1021,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=94;
+		items=97;
 		class Item0
 		{
 			position[]={9701.0234,15.009979,11020.452};
@@ -1733,7 +1733,7 @@ class Mission
 		};
 		class Item89
 		{
-			position[]={13089.254,18.2472,2817.6162};
+			position[]={13081.108,18.23996,2829.2214};
 			name="LHD1Marker";
 			text="USS NIMITZ";
 			type="plp_icon_shipCarrierBig";
@@ -1755,7 +1755,7 @@ class Mission
 		};
 		class Item92
 		{
-			position[]={13088.896,18.218235,2761.5283};
+			position[]={13097.208,18.257626,2741.3708};
 			name="bonusveh1";
 			type="Empty";
 			colorName="ColorPink";
@@ -1767,6 +1767,30 @@ class Mission
 			name="mobj27";
 			type="Empty";
 			colorName="ColorBlack";
+		};
+		class Item94
+		{
+			position[]={13145.968,18.234745,2776.8018};
+			name="bonusveh2";
+			type="Empty";
+			colorName="ColorPink";
+			angle=-110;
+		};
+		class Item95
+		{
+			position[]={13108.242,18.242203,2840.9485};
+			name="bonusveh3";
+			type="Empty";
+			colorName="ColorPink";
+			angle=-110;
+		};
+		class Item96
+		{
+			position[]={13085.854,18.233788,2881.0767};
+			name="bonusveh4";
+			type="Empty";
+			colorName="ColorPink";
+			angle=-110;
 		};
 	};
 	class Sensors

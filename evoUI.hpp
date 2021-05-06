@@ -454,6 +454,14 @@ class evoUI
 				text = "Hitmarker";
 				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,true,false,9,false,false];[] call BIS_EVO_ListUpdate";
 	      };
+		class vehUpg: BRecruit
+	      {
+		 idc = 678;
+		  	 	x = 0.11;
+		 		y = 0.78;
+				text = "Upgrade";
+	 			onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,true,4];[] call BIS_EVO_ListUpdate";
+	      };
 		class GPSgmap: RscMapControl
 		  {
 			idc = 895;

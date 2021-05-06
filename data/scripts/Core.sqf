@@ -32,6 +32,7 @@ uiNamespace setVariable ["storeVeh", (uiNamespace getVariable "displayVendor") d
 uiNamespace setVariable ["saveLoadout", (uiNamespace getVariable "displayVendor") displayCtrl 675];
 uiNamespace setVariable ["unflipVeh", (uiNamespace getVariable "displayVendor") displayCtrl 676];
 uiNamespace setVariable ["hitMark", (uiNamespace getVariable "displayVendor") displayCtrl 677];
+uiNamespace setVariable ["vehUpg", (uiNamespace getVariable "displayVendor") displayCtrl 678];
 uiNamespace setVariable ["ctrlVis", (uiNamespace getVariable "displayVendor") displayCtrl 6057];
 uiNamespace setVariable ["ctrlAirvis", (uiNamespace getVariable "displayVendor") displayCtrl 6058];
 uiNamespace setVariable ["ctrlTervis", (uiNamespace getVariable "displayVendor") displayCtrl 6059];
@@ -89,6 +90,7 @@ ctrlShow [675,true]; //Loadout btn
 ctrlShow [676,false]; //Unflip btn
 ctrlShow [677,false]; //Hitmark btn
 ctrlShow [895,true]; //Map
+ctrlShow [678,false]; //Hitmark btn
 ctrlShow [1995,false]; //2nd list
 
 if ((vehicle player isKindOf  "Air" ) ) then
@@ -476,6 +478,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 
 		ctrlShow [671,false]; //Turret page
 		ctrlShow [672,false]; //Missile page
+		ctrlShow [678,false]; //Hitmark btn
 		ctrlShow [673,false]; //Loadout page
 		ctrlShow [674,false]; //Storeveh page
 		ctrlShow [676,false]; //Unflip btn
@@ -693,6 +696,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 		ctrlShow [659,false];
 		ctrlShow [671,true]; //Turret page
 		ctrlShow [672,true]; //Missile page
+		ctrlShow [678,true]; //Hitmark btn
 		ctrlShow [673,true]; //Loadout page
 		ctrlShow [675,false];
 		ctrlShow [677,false];
@@ -721,6 +725,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 				};
 				case 2:
 				{
+						lbClear 2000;
 					//while {_i < count EB_turrets} do 
 					for [{_i=0}, {_i< count EB_turrets}, {_i=_i+1}] do
 					{
@@ -740,6 +745,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 				};
 				case 3:
 				{
+					lbClear 1995;
 					for [{_i=0}, {_i< count EGG_missiles}, {_i=_i+1}] do
 					{
 						_class = EGG_missiles select _i;
@@ -770,8 +776,29 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 							_index2 = lbAdd[1995,_name];	
 						};	
 					};
+					
 				};
-				
+				case 4:
+				{
+					lbClear 1995;
+					lbClear 2000;
+					
+					for [{_y=0}, {_y< count vehUpgList}, {_y=_y+1}] do
+					{
+						for [{_i=0}, {_i< count (vehUpgList select _y)}, {_i=_i+1}] do
+						{
+							if((typeof (vehicle player)) in (vehUpgList select _y)) then //if current vehicle is upgradeable or can be upgraded to
+							{
+								if(_i mod 2 == 0) then //every even index is vehicle class
+								{
+									_veh = (vehUpgList select _y) select _i;
+								//	_displayName = getText(configFile >> "CfgVehicles" >> _veh >> "displayName");
+									_index = lbAdd [2000, _veh];
+								};
+							};
+						};
+					};
+				};
 				
 			};
 		};
@@ -1378,6 +1405,7 @@ if (player hasWeapon "ItemRadio") then
 		[] call BIS_EVO_ListUpdate;
 		};
 	}; 
+
 	if (_vecPage) then 
 	{
 		if (vehicle player isKindOf  "Air") then 
@@ -1398,9 +1426,14 @@ if (player hasWeapon "ItemRadio") then
 					_armament = _magazinearray select 0;
 					[_armament, _class, _index2] call armWeapon;
 				};
+				case 4:
+				{
+						_lbtext = lbtext [2000,_index];
+					[_lbtext] execVM "data\scripts\vehUpg.sqf";
+				};
 				case 1:
 				{
-				[_index] execVM "actions\EB_newReArm.sqf";
+					[_index] execVM "actions\EB_newReArm.sqf";
 				};
 			};
 		};

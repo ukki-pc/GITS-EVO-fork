@@ -720,6 +720,12 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	{
 		buyStatList set [_loop,[(buyStatList select _loop) select 0, (buyStatList select _loop) select 1,0]];
 	};
+
+	vehUpgList = 
+	[
+		["SH2a",10,"SH2b",15,"SH2d",20],
+		["yup_sh60f",0,"yup_SH60B_penguin",15,"yup_SH60B",20]
+	];
 };
 
 
