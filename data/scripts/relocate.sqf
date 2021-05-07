@@ -26,11 +26,11 @@ else {
 _rhqPositions = RHQMarkers;
 };
 // BIS_EVO_MissionTowns + BIS_EVO_BaseMarkers +
-TeleportLocations = BIS_EVO_conqueredTowns + _rhqPositions + MHQMarker;
+TeleportLocations = BIS_EVO_conqueredTowns + _rhqPositions + MHQMarker + BIS_EVO_BaseMarkers;
 
 _nearestPoint = [TeleportLocations, position player] call BIS_fnc_nearestPosition;
 
-_maxDistance = 200;
+_maxDistance = 300;
 
 if(_nearestPoint in _rhqPositions) then {_maxDistance = 20;};
 

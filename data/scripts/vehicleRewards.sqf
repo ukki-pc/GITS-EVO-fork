@@ -47,10 +47,8 @@ _vec4 = objnull;
 
 waitUntil{sleep 2; gamebegin == 1};
 
-while {true} do
+while {gamebegin} do
 {
-	sleep BIS_EVO_GlobalSleep*2;
-
 	//Tier 1
 	if(!alive _vec1 && count BIS_EVO_conqueredTowns > tier1unlock) then 
 	{
@@ -72,7 +70,7 @@ while {true} do
 		_vec2 setPos [getMarkerPos "bonusveh2" select 0,getMarkerPos "bonusveh2" select 1,18];
 	};
 
-	sleep 3;
+	 sleep BIS_EVO_GlobalSleep*2;	
 
 	//Tier 3
 	if(!alive _vec3 && count BIS_EVO_conqueredTowns > tier3unlock) then 
@@ -94,4 +92,6 @@ while {true} do
 		_vec4 setDir markerDir "bonusveh4";
 		_vec4 setPos [getMarkerPos "bonusveh4" select 0,getMarkerPos "bonusveh4" select 1,18];
 	};
+
+	sleep 60;
 };

@@ -70,7 +70,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	sleep 1.011;
 	//[] call BIS_EVO_Score;
 	//sleep 1.011;
-	[] call _EVO_Clean;
+	//[] call _EVO_Clean;
 	sleep 1.011;
 	if (_oldhour != (date select 3)) then {[] call _EVO_timesync};
 	_newtime = time - _time;	

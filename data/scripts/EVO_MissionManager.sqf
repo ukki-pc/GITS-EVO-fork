@@ -21,6 +21,7 @@ BIS_EVO_MainObjective setMarkerSizeLocal [reinforceRange, reinforceRange];
 
 manGunner=
 {
+	private ["_vehicles","_units","_unit","_unit","_car","_unit","_driver"];
     _vehicles = [];
 	_units = [];
 	_unit = objnull;
@@ -42,24 +43,46 @@ manGunner=
 	{
 		{
 			//get soldiers from near the vehicle
-			if(!isPlayer _x and side _x == east and _x isKindOf "Man") then 
+			if(!isPlayer _x and side _x == EGG_EVO_ENEMYFACTION and _x isKindOf "Man" and alive _x) then 
 			{
 				if(count _units < 5) then 
 				{
 					_units = _units + [_x];
 				};
 			};
+
 			sleep BIS_EVO_GlobalSleep;
-		} foreach ( nearestobjects [position _car,["Man"],100]);
+		} foreach ( nearestobjects [position _car,["Man"],200]);
 
+
+	if(count _units > 0) then 
+	{
 		//Pick on unit at randomly
+		//systemChat format ["%1",_units];
 		_unit = _units select round (random(count _units))-1;
-    _unit assignAsGunner _car;
-     [_unit] orderGetIn true;
+		_unit assignAsGunner _car;
+		[_unit] orderGetIn true;
 
-//	 systemChat format ["Sending %1 to %2", typeof _unit,typeof _car];
+		_driver = driver _car;
+
+		if(!isNil "_driver") then 
+		{
+			commandStop _driver;
+		};
+
+		_unit setBehaviour "CARELESS";
+	//systemChat format ["Sending %1 to %2", typeof _unit, typeof _car];
+
+		for [{_rloop=0}, {_rloop<60}, {_rloop=_rloop + 1}] do
+		{
+			if(_unit in _car) then {_rloop = 60};
+			sleep 4;
+		};
+	//	systemChat  "Embarked vehicle";
+		_unit setBehaviour "AWARE";
+	 };
 	}
-//	else{systemChat "No cars found";};
+	//else{systemChat "No cars found";};
 };
 
 reinforcementLoop = 
