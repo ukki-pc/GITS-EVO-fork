@@ -18,18 +18,19 @@ private ["_who","_params","_statparam","_stattype","_statpos","_laction1","_lact
 
 //"foxhole","cstatA"
 
-_params = _this select 3;
-_who = _params select 0;
+//_params = _this select 3;
+_who = _this select 0;
 _playertype = typeOf (vehicle player);
-_statparam = _params select 1;
+_stattype = _this select 1;
 _dist = 2;
 _custom = 0;
 _zfactor = 1;
 _scost = 2; //cost of statics
+_statparam = 0;
 
 if (player in list AirportIn) exitWith {hint localize "STR_M04t88"};
 //you cannot call support in the base
-
+/*
 srank = 0;
 _sco = score player;
 if(_sco >= BIS_EVO_rank1) then 
@@ -59,89 +60,153 @@ if(_sco >= BIS_EVO_rank6) then
 
 if ( (_scost >((_sco)-srank)) AND (_statparam != 0 and _statparam != 1 and _statparam != 6 and _statparam != 9) ) exitwith {hint format[localize "STR_M04t89",_scost, ((_sco)-srank)]};
 //You do not have the required spare points \nRequired: %1 \nCurrent: %2.
+*/
 
-switch (_statparam) do
+switch (_stattype) do
 //returns _stattype and _mkr_name
 {
-	 case 0: //Short ladder "Land_ladder_half"
+	 case "Land_ladder_half": //Short ladder "Land_ladder_half"
 	{
-		_stattype = "Land_ladder_half";
+		_statparam = 1;
 		_custom = 1;
 		_zfactor = 0;
 	};
-	 case 1: //Long ladder "Land_ladder"
+	 case "Land_ladder": //Long ladder "Land_ladder"
 	{
-		_stattype = "Land_ladder";
+		_statparam = 1;
 		_custom = 1;
 		_zfactor = 0;
 	};
-	 case 2: //Grenade Launcher Nest 
+	 case "MK19_TriPod_US_EP1": //Grenade Launcher Nest 
 	{
-		_stattype = "MK19_TriPod_US_EP1";
 		_mkr_name = format ["MK19_Nest %1", name player];
 		_custom = 1;
 		_dist = 3;
-		if NOT( ((primaryWeapon player) in EGG_EVO_GLweapons) OR ((secondaryWeapon player) in EGG_EVO_GLweapons) ) exitWith {hint "You cannot build a Grenade Launcher Nest without an underslung grenade launcher";_custom = 2};
+		if !( ((primaryWeapon player) in EGG_EVO_GLweapons) OR ((secondaryWeapon player) in EGG_EVO_GLweapons) ) exitWith {hint "You cannot build a Grenade Launcher Nest without an underslung grenade launcher";_custom = 2};
 	};
-	 case 3: //AA Nest
+	 case "KORD_high_UN_EP1": //AA Nest
 	{
-		_allstat = ["KORD_high_UN_EP1","Stinger_Pod","Igla_AA_pod_East","ZU23_TK_INS_EP1"];
-		_maxb = (count _allstat)-1;
-		_stattype = _allstat select (round random _maxb);
 		_mkr_name = format ["AA Nest %1", name player];
 		_custom = 1;
 		_dist = 4;
-		if NOT( ((primaryWeapon player) in EGG_EVO_AAirweapons) OR ((secondaryWeapon player) in EGG_EVO_AAirweapons) ) exitWith {hint "You cannot build an AA Nest without a Shoulder Launched Surface-to-Air Missile";_custom = 2};
+		if !( ((primaryWeapon player) in EGG_EVO_AAirweapons) OR ((secondaryWeapon player) in EGG_EVO_AAirweapons) ) exitWith {hint "You cannot build an AA Nest without a Shoulder Launched Surface-to-Air Missile";_custom = 2};
 	};
-	 case 4: //AT Nest
+		 case "Stinger_Pod": //AA Nest
 	{
-		_allstat = ["TOW_TriPod_US_EP1","M119_US_EP1","SPG9_TK_GUE_EP1","Metis_TK_EP1"];
-		_maxb = (count _allstat)-1;
-		_stattype = _allstat select (round random _maxb);
+		_mkr_name = format ["AA Nest %1", name player];
+		_custom = 1;
+		_dist = 4;
+		if !( ((primaryWeapon player) in EGG_EVO_AAirweapons) OR ((secondaryWeapon player) in EGG_EVO_AAirweapons) ) exitWith {hint "You cannot build an AA Nest without a Shoulder Launched Surface-to-Air Missile";_custom = 2};
+	};
+		 case "Igla_AA_pod_East": //AA Nest
+	{
+		_mkr_name = format ["AA Nest %1", name player];
+		_custom = 1;
+		_dist = 4;
+		if !( ((primaryWeapon player) in EGG_EVO_AAirweapons) OR ((secondaryWeapon player) in EGG_EVO_AAirweapons) ) exitWith {hint "You cannot build an AA Nest without a Shoulder Launched Surface-to-Air Missile";_custom = 2};
+	};
+	 case "ZU23_TK_INS_EP1": //AA Nest
+	{
+		_mkr_name = format ["AA Nest %1", name player];
+		_custom = 1;
+		_dist = 4;
+		if !( ((primaryWeapon player) in EGG_EVO_AAirweapons) OR ((secondaryWeapon player) in EGG_EVO_AAirweapons) ) exitWith {hint "You cannot build an AA Nest without a Shoulder Launched Surface-to-Air Missile";_custom = 2};
+	};
+	 case "TOW_TriPod_US_EP1": //AT Nest
+	{
 		_mkr_name = format ["Antitank Nest %1", name player];
 		_custom = 1;
 		_dist = 6;
-		if NOT( ((primaryWeapon player) in EGG_EVO_ATweapons) OR ((secondaryWeapon player) in EGG_EVO_ATweapons) ) exitWith {hint "You cannot build an Antitank Nest without an Anti-Tank Rocket Launcher";_custom = 2};
+		if !( ((primaryWeapon player) in EGG_EVO_ATweapons) OR ((secondaryWeapon player) in EGG_EVO_ATweapons) ) exitWith {hint "You cannot build an Antitank Nest without an Anti-Tank Rocket Launcher";_custom = 2};
 	};
-	 case 5: //MG Nest
+		 case "M119_US_EP1": //AT Nest
 	{
-		_allstat = ["KORD_high_UN_EP1","DSHkM_Mini_TriPod_TK_GUE_EP1","Fort_Nest_M240","M2HD_mini_TriPod_US_EP1","M2StaticMG_US_EP1"];
-		_maxb = (count _allstat)-1;
-		_stattype = _allstat select (round random _maxb);
+		_mkr_name = format ["Antitank Nest %1", name player];
+		_custom = 1;
+		_dist = 6;
+		if !( ((primaryWeapon player) in EGG_EVO_ATweapons) OR ((secondaryWeapon player) in EGG_EVO_ATweapons) ) exitWith {hint "You cannot build an Antitank Nest without an Anti-Tank Rocket Launcher";_custom = 2};
+	};
+		 case "SPG9_TK_GUE_EP1": //AT Nest
+	{
+		_mkr_name = format ["Antitank Nest %1", name player];
+		_custom = 1;
+		_dist = 6;
+		if !( ((primaryWeapon player) in EGG_EVO_ATweapons) OR ((secondaryWeapon player) in EGG_EVO_ATweapons) ) exitWith {hint "You cannot build an Antitank Nest without an Anti-Tank Rocket Launcher";_custom = 2};
+	};
+		 case "Metis_TK_EP1": //AT Nest
+	{
+		_mkr_name = format ["Antitank Nest %1", name player];
+		_custom = 1;
+		_dist = 6;
+		if !( ((primaryWeapon player) in EGG_EVO_ATweapons) OR ((secondaryWeapon player) in EGG_EVO_ATweapons) ) exitWith {hint "You cannot build an Antitank Nest without an Anti-Tank Rocket Launcher";_custom = 2};
+	};
+	 case "KORD_high_UN_EP1": //MG Nest
+	{
 		_mkr_name = format ["MG Nest %1", name player];
 		_custom = 1;
 		_dist = 4;
-		if NOT( ((primaryWeapon player) in EGG_EVO_MGweapons) OR ((secondaryWeapon player) in EGG_EVO_MGweapons) ) exitWith {hint "You cannot build an MG Nest without a Heavy Machine Gun";_custom = 2};
+		if !( ((primaryWeapon player) in EGG_EVO_MGweapons) OR ((secondaryWeapon player) in EGG_EVO_MGweapons) ) exitWith {hint "You cannot build an MG Nest without a Heavy Machine Gun";_custom = 2};
 	};
-	 case 6: //Camo Net
+		 case "DSHkM_Mini_TriPod_TK_GUE_EP1": //MG Nest
 	{
-		_stattype = "Land_CamoNetVar_NATO";
+		_mkr_name = format ["MG Nest %1", name player];
+		_custom = 1;
+		_dist = 4;
+		if !( ((primaryWeapon player) in EGG_EVO_MGweapons) OR ((secondaryWeapon player) in EGG_EVO_MGweapons) ) exitWith {hint "You cannot build an MG Nest without a Heavy Machine Gun";_custom = 2};
+	};
+		 case "Fort_Nest_M240": //MG Nest
+	{
+		_mkr_name = format ["MG Nest %1", name player];
+		_custom = 1;
+		_dist = 4;
+		if !( ((primaryWeapon player) in EGG_EVO_MGweapons) OR ((secondaryWeapon player) in EGG_EVO_MGweapons) ) exitWith {hint "You cannot build an MG Nest without a Heavy Machine Gun";_custom = 2};
+	};
+		 case "M2HD_mini_TriPod_US_EP1": //MG Nest
+	{
+		_mkr_name = format ["MG Nest %1", name player];
+		_custom = 1;
+		_dist = 4;
+		if !( ((primaryWeapon player) in EGG_EVO_MGweapons) OR ((secondaryWeapon player) in EGG_EVO_MGweapons) ) exitWith {hint "You cannot build an MG Nest without a Heavy Machine Gun";_custom = 2};
+	};
+		 case "M2StaticMG_US_EP1": //MG Nest
+	{
+		_mkr_name = format ["MG Nest %1", name player];
+		_custom = 1;
+		_dist = 4;
+		if !( ((primaryWeapon player) in EGG_EVO_MGweapons) OR ((secondaryWeapon player) in EGG_EVO_MGweapons) ) exitWith {hint "You cannot build an MG Nest without a Heavy Machine Gun";_custom = 2};
+	};
+	 case "Land_CamoNetVar_NATO": //Camo Net
+	{
 		_dist = 6;
 	};
-	 case 7: //Refuel Depot
+	 case "Barrels": //Refuel Depot
 	{
-		_stattype = "Barrels";
 		_mkr_name = format ["Refuel %1", name player];
 		_custom = 1;
 		_dist = 3;
 		_zfactor = 3;
 	};
-	 case 8: //Mortar
+	 case "M252_US_EP1": //Mortar
 	{
-		_stattype = "M252_US_EP1";
 		_mkr_name = format ["Mortar %1", name player];
 		_custom = 1;
 		_dist = 3;
 	};
-	 case 9: //Foxhole
+	 case "Land_fortified_nest_small": //Foxhole
 	{
-		_allstat = ["Land_fortified_nest_small","Land_fort_bagfence_round","Land_BagFenceRound","Land_BagFenceLong"];
 		_dist = 4;
-		if (_playertype in EGG_EVO_playerOff) then {_allstat = ["Land_fortified_nest_big"];_dist = 8};
-		if (_playertype in EGG_EVO_playerSniper) then {_allstat = EGG_EVO_sniperhide;_dist = 3};
-
-		_maxb = (count _allstat)-1;
-		_stattype = _allstat select (round random _maxb);
+	};
+		 case "Land_fort_bagfence_round": //Foxhole
+	{
+		_dist = 4;
+	};
+		 case "Land_BagFenceRound": //Foxhole
+	{
+		_dist = 4;
+	};
+		 case "Land_BagFenceLong": //Foxhole
+	{
+		_dist = 4;
 	};
 };
 
@@ -153,10 +218,12 @@ switch (_custom) do
 		if (alive foxhole) then {deletevehicle foxhole};
 		Foxholeplaced = 0;
 		foxhole = _stattype createVehicle [(getposATL _who select 0) + (sin(getdir _who) * _dist), (getposATL _who select 1) + (cos(getdir _who) * _dist)];
+		foxhole enableSimulation false;
 		_laction1 = _who addAction ["Drop Equipment","actions\static\foxhole_placed.sqf"];
 
 		WHILE {Foxholeplaced == 0} DO
 		{
+		//	foxhole lock true;
 			_zvector = ((_who weaponDirection (primaryWeapon _who)) select 2) * 3;
 			foxhole setposATL [(getposATL _who select 0) + (sin(getdir _who) * _dist), (getposATL _who select 1) + (cos(getdir _who) * _dist), (getposATL _who select 2) + _zvector + _zfactor];
 			if (_stattype == "Land_fort_bagfence_round") then 
@@ -164,16 +231,19 @@ switch (_custom) do
 			else
 				{foxhole setDir ((getDir _who) -180)};
 			sleep 0.05;
-//adding to fix rocket bug
+			//adding to fix rocket bug
 			if not(vehicle player == player) then 
 			{
 				deletevehicle cstatA;
 				StaticAplaced =1;
-				player setpos [(getpos _who select 0), (getpos_who select 1),0];
+			//	player setpos [(getpos _who select 0), (getpos_who select 1),0];
 			};
 		};
+		//foxhole lock false;
+		foxhole enableSimulation true;
 		_who removeAction _laction1;
 		foxhole addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
+
 	};
 	 case 1: //Custom static based on class
 	{

@@ -40,7 +40,6 @@ removeSwitchableUnit _unit;
 deleteVehicle _unit;
 
 //move unit back to spawn location and initialise them
-
 _nunit = _this select 0;
 
 //markme = [_nunit] execVM "data\scripts\update.sqf";

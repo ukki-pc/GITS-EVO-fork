@@ -506,6 +506,11 @@ if(EGG_EVO_FactionParam == 1) then
 	//EGG_EVO_defenders = ["PRACS_SNG_AT","PRACS_SNG_DMS","PRACS_SNG_SPR","PRACS_SNG","PRACS_SNG_ARM","PRACS_SNG_GNR","PRACS_SNG_MG","PRACS_SNG_MED","PRACS_SNG_O","PRACS_SNG_RTO","PRACS_SNG_AA"];
 	//EGG_EVO_OfficerDefenders = ["PRACS_Marine_AT","PRACS_Marine","PRACS_Marine_MG","PRACS_Marine_AA","PRACS_Marine_GNR"];
 
+BIS_EVO_EngModels = [
+	"LIN_Soldier_Engineer"
+];
+
+//Player characters
 BIS_EVO_PlayerModels = [
 "CIV_Contractor1_BAF",
 "CIV_Contractor2_BAF",
@@ -533,7 +538,6 @@ BIS_EVO_PlayerModels = [
 "bink_usmc_sl_des",
 "AFR_Officer",
 "LIN_Officer",
-"LIN_Soldier_Engineer",
 "BB_OA_BlackOp",
 "BB_OA_Merc_base",
 "CZ_Soldier_Spec1_Wdl_ACR",
@@ -704,21 +708,21 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 
 	buyStatList = 
 	[
-	/*---Statics---*/
-	["M2StaticMG_US_EP1",2],					// CUSTOM  ["PRACS_Type66_Gun","PRACS_M266AAgun","PRACS_Type74AAgun","PRACS_M101","PRACS_M1","PRACS_Regular_M2","PRACS_Regular_MK19","PRACS_Regular_TOW","PRACS_Regular_M252"];
-	["M2HD_mini_TriPod_US_EP1",2],					// ap
-	["MK19_TriPod_US_EP1",6],							// Ap
-	["TOW_TriPod",10],							// AT
-	["Stinger_Pod_US_EP1",10],						// AA
-	["M252_US_EP1",10],								// AP
-	["Rbs70_ACR",10],								// AA
-	["sfp_rbs97",12],
-	["PRACS_Type66_Gun",12],	
-	["PRACS_M266AAgun",12],	
-	["PRACS_Type74AAgun",12],		
-	["PRACS_M101",12],	
-	["PRACS_M1",12],						
-	["M119_US_EP1",30]							// CUSTOM
+		/*---Statics---*/
+		["M2StaticMG_US_EP1",2],					// CUSTOM  ["PRACS_Type66_Gun","PRACS_M266AAgun","PRACS_Type74AAgun","PRACS_M101","PRACS_M1","PRACS_Regular_M2","PRACS_Regular_MK19","PRACS_Regular_TOW","PRACS_Regular_M252"];
+		["M2HD_mini_TriPod_US_EP1",2],					// ap
+		["MK19_TriPod_US_EP1",6],							// Ap
+		["TOW_TriPod",10],							// AT
+		["Stinger_Pod_US_EP1",10],						// AA
+		["M252_US_EP1",10],								// AP
+		["Rbs70_ACR",10],								// AA
+		["sfp_rbs97",12],
+		["PRACS_Type66_Gun",12],	
+		["PRACS_M266AAgun",12],	
+		["PRACS_Type74AAgun",12],		
+		["PRACS_M101",12],	
+		["PRACS_M1",12],						
+		["M119_US_EP1",30]							// CUSTOM
 	];
 
 	for [{_loop=0}, {_loop<count buyStatList}, {_loop=_loop+1}] do 
@@ -762,6 +766,34 @@ BIS_EVO_MissionTowns2 =
 	["mobj11",false]
 ];
 
+constructList = 
+[
+	"Land_ladder_half",
+	"Land_ladder",
+	"MK19_TriPod_US_EP1",
+	"KORD_high_UN_EP1",
+	"Stinger_Pod",
+	"Igla_AA_pod_East",
+	"ZU23_TK_INS_EP1",
+	"TOW_TriPod_US_EP1",
+	"M119_US_EP1",
+	"SPG9_TK_GUE_EP1",
+	"Metis_TK_EP1",
+	"KORD_high_UN_EP1",
+	"DSHkM_Mini_TriPod_TK_GUE_EP1",
+	"Fort_Nest_M240",
+	"M2HD_mini_TriPod_US_EP1",
+	"M2StaticMG_US_EP1",
+	"Land_CamoNetVar_NATO",
+	"Barrels",
+	"M252_US_EP1",
+	"Land_fortified_nest_small",
+	"Land_fort_bagfence_round",
+	"Land_BagFenceRound",
+	"Land_BagFenceLong"
+];
+
+Foxholeplaced = 1;
 
 //adding strings for city names
 //BIS_EVO_Townnames = ["CAINNA WIND","CAMARRA","KINSELLA","DJOLAN","KWAKO","DENDALA DISTRICT","BOLABONGO","ENGOR","CANTO","NUBAK","NUMBO"];// Each mission name used in eventsc, mainthreadc, sorew, briefing, used as _city = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);

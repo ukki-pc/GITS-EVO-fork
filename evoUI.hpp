@@ -462,6 +462,14 @@ class evoUI
 				text = "Upgrade";
 	 			onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,true,4];[] call BIS_EVO_ListUpdate";
 	      };
+		class Construction: BRecruit
+	      {
+		 idc = 679;
+				y = 0.825;
+				x = 0.47;
+				text = "Construction";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,false,0,true];[] call BIS_EVO_ListUpdate";
+	      };
 		class GPSgmap: RscMapControl
 		  {
 			idc = 895;
@@ -604,7 +612,7 @@ class evoUI
 			w = 0.40;
 			sizeEx = 0.03;
 			y = 0.67;
-			h = 0.18;
+			h = 0.15;
 			text = ;
 		};
 		class Timer: DescriptionTitle

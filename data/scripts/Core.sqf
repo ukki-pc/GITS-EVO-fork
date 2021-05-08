@@ -45,6 +45,7 @@ uiNamespace setVariable ["ctrlTactive", (uiNamespace getVariable "displayVendor"
 uiNamespace setVariable ["ctrlName", (uiNamespace getVariable "displayVendor") displayCtrl 500];
 uiNamespace setVariable ["ctrlPicture", (uiNamespace getVariable "displayVendor") displayCtrl 501];
 uiNamespace setVariable ["GPSgmap", (uiNamespace getVariable "displayVendor") displayCtrl 895];
+uiNamespace setVariable ["Construct", (uiNamespace getVariable "displayVendor") displayCtrl 679];
 
 sliderSetRange [6057, 100, 10000];
 sliderSetPosition [6057, BIS_EVO_vdist];
@@ -244,6 +245,7 @@ BIS_EVO_ListUpdate =
 	_perkPage = Mpage select 7;
 	_vecPage = Mpage select 8;
 	_vecSubPage = Mpage select 9;
+	_constructPage = Mpage select 10;
 
 	ctrlShow [6057,false];
 	ctrlShow [6058,false];
@@ -502,8 +504,9 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 			while {_i < count BIS_EVO_PlayerModels} do 
 			{
 				_name = ((BIS_EVO_PlayerModels) select _i);
+				_dispname = getText (configFile >> "cfgVehicles" >> _name >> "displayName");
 				//_pic = (RecList select _i) select 2;
-				_index = lbAdd[2000, _name];
+				_index = lbAdd[2000, _dispname];
 				//_index = lbSetPicture [2000, _i, _pic];
 				_i = _i + 1;
 			};
@@ -641,6 +644,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 			_i = _i + 1;
 		};
 	};
+
 	if (_perkPage) then 
 	{
 /*
@@ -792,7 +796,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 								if(_i mod 2 == 0) then //every even index is vehicle class
 								{
 									_veh = (vehUpgList select _y) select _i;
-								//	_displayName = getText(configFile >> "CfgVehicles" >> _veh >> "displayName");
+									//_displayName = getText(configFile >> "CfgVehicles" >> _veh >> "displayName");
 									_index = lbAdd [2000, _veh];
 								};
 							};
@@ -979,12 +983,29 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 	};
 	_index = lbSetCurSel [2000, 0];
 
-		if((_buySubPage == 7) && (_recpage)) then {
+		if((_buySubPage == 7) && (_recpage)) then 
+		{
 			loadrec=[] execVM "data\scripts\loadoutrecorder.sqf";
 			hint "Weapons Saved!";
 			Mpage =[true,false,false,false,false,false,0,false,false];
 			closeDialog 1;
 		};
+
+	if (_constructPage) then 
+	{
+		_i = 0;
+		lbClear 2000;
+		while {_i < count constructList} do 
+		{
+			_name = (constructList select _i);
+			_uname = getText (configFile >> "CfgVehicles" >> _name >> "DisplayName");
+			_pic = "data\wrench.paa";
+			_index = lbAdd [2000, _uname];
+			_index = lbSetPicture[2000, _i, _pic];
+			_i = _i + 1;
+		};
+	};
+	
 };	
 //Endlsts
 
@@ -1002,6 +1023,7 @@ BIS_EVO_ActButton =
 	_perkPage = Mpage select 7;
 	_vecPage = Mpage select 8;
 	_vecSubPage = Mpage select 9;
+		_constructPage = Mpage select 10;
 
 	if (_recpage) then 
 	{
@@ -1437,6 +1459,13 @@ if (player hasWeapon "ItemRadio") then
 				};
 			};
 		};
+	};
+
+if (_constructPage and Foxholeplaced == 1) then 
+	{
+		_item = constructList select _index;
+		[player,_item] execVM "actions\static\makestatic.sqf";
+		closeDialog 1;
 	}; 
 
 };
@@ -1447,7 +1476,7 @@ BIS_EVO_ListSelect =
 	_lb2i = lbCurSel 1995;
 	//STR_M04t135,"Distance";
 	ctrlSetText [2003,str (money)];
-	ctrlSetText [2003,Format ["%1: %2", "Money",(Money)]];//Score
+	ctrlSetText [2003,Format ["%1: %2", "Money",(money)]];//Score
 	ctrlSetText [2203,""];
 	ctrlSetText [2204,""];
 	ctrlSetText [2205,""];

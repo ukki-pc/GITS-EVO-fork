@@ -57,6 +57,7 @@ repaircooldown = 0;
  			 		case 1:
  			 		{
 						_actionId8 = player addAction [localize "STR_M04t53", "data\scripts\etent.sqf",0,1, false, true,"test2"];
+						BIS_EVO_PlayerModels = BIS_EVO_PlayerModels + BIS_EVO_EngModels;
  			 		};
  			 		case 2:
  			 		{ 
@@ -143,7 +144,7 @@ BIS_EVO_CWeath =
 };
 
 // FIELD REPAIRS
-
+/*
 		rmv_fieldRepair = {
 			_tveh = _this select 0;
 			_tveh removeAction EB_fieldRepair;
@@ -175,7 +176,7 @@ EGG_EVO_fieldRepair =
 				};
 		};
 };
-
+*/
 EGG_EVO_stationRepair = 
 {
 	_vec = (vehicle player);
