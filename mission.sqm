@@ -1971,8 +1971,8 @@ class Mission
 		{
 			position[]={13073.851,0.45177904,2844.1326};
 			a=60;
-			b=160;
-			angle=510.45007;
+			b=170;
+			angle=510.45001;
 			rectangular=1;
 			activationBy="ANY";
 			repeating=1;

@@ -47,9 +47,9 @@ etent = "Camp" createVehicle _pos2;
 _pos3 = [(_pos2 select 0)+3,(_pos2 select 1)+3,_pos2 select 2];
 _pos4 = [(_pos2 select 0)+5,(_pos2 select 1)+5,_pos2 select 2];
 ebox = "USBasicAmmunitionBox" createVehicle _pos3;
-tbox = "US_WarfareBVehicleServicePoint_Base_EP1" createVehicle _pos4;
-tbox setAmmoCargo 0.2;
-tbox setRepairCargo 0.2;
+// tbox = "US_WarfareBVehicleServicePoint_Base_EP1" createVehicle _pos4;
+// tbox setAmmoCargo 0.2;
+// tbox setRepairCargo 0.2;
 //ebox = "TKVehicleBox_EP1" createVehicle _pos3;
 
 BIS_EVO_EngZone setpos _pos;	

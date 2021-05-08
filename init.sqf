@@ -585,9 +585,10 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 	[
 	/*---APCs---*/
 	["Dingo_DST_ACR",12],						// Dingo (MMG)
-	["Dingo_GL_DST_ACR",12],					// Dingo (GMG)
+	["Dingo_GL_DST_ACR",12],					// Dingo (GMG) 
 	["PRACS_M113_SA",15],					// Dingo (GMG)
 	["PRACS_M113_SA_Mk19",17],					// Dingo (GMG)
+	["FOX",17],							// BMP1
 	["PRACS_M113_FSV",17],							// BMP1
 	["PRACS_LAV_IFV",15],					// Dingo (GMG)
 	["PRACS_LAV_MGS",17],					// Dingo (GMG)
@@ -663,6 +664,7 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	["UH1Y",50],
 	["kiowa",60],
 	["Mi171Sh_rockets_CZ_EP1",80],				// Mi-17 (Rockets)
+	["DAF_Cougar_Gunship",80],				// Mi-17 (Rockets)
 	["AW159_Lynx_BAF",80],						// Wildcat
 	["PRACS_RAH6",100],							// Littlebird (Armed)	
 	["yup_SH60B",90],
@@ -672,15 +674,17 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	["AH64D",200],								// Apache (AT)
 	/*---Planes---*/
 	["ibr_tucano_lin",60],	
-	["SMAF_MF1_AGRESSOR_DESERT",100],								// F35
+	["SMAF_MF1_AGRESSOR_DESERT",100],								// F35  
 	["PRACS_Etendard",130],								// F35
 	["uns_A1J_LBMB",130],		
 	["Pracs_Mohawk",130],								// F35 
 	["F117A",140],	
+	["DAF_F5E_AGM2",140],
 	["PRACS_Mirage3",140],								// F35
 	["F4M_Des",140],	
 	["PRACS_A4",160],								// F35
-	//["PRACS_F16_PHSTRK",170],								// F35
+	//["PRACS_F16_PHSTRK",170],
+	["14US_IA",160],								// F35
 	["FRL_F16_MR",170],	
 	["JS_JC_FA18E_USMC",170],	
 	["F35B",170],								// F35
@@ -708,6 +712,7 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	["Stinger_Pod_US_EP1",10],						// AA
 	["M252_US_EP1",10],								// AP
 	["Rbs70_ACR",10],								// AA
+	["sfp_rbs97",12],
 	["PRACS_Type66_Gun",12],	
 	["PRACS_M266AAgun",12],	
 	["PRACS_Type74AAgun",12],		

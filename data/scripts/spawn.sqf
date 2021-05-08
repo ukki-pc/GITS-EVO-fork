@@ -3,22 +3,6 @@
 if (not (local player)) exitwith {};
 _player = player;
 
-
-
-//jail script for teamkillers
-// if (jailparam == 1) then
-// {
-// 	if (alive jailme) then
-// 	{
-// 		deletevehicle jailme;
-// 	};
-// 	myscore = score player;
-// 	_jailpos = getmarkerpos "Respawn_West";
-// 	jailme = createTrigger ["EmptyDetector", [_jailpos select 0, 	_jailpos select 1, _jailpos select 2]];
-// 	jailme setTriggerActivation ["NONE", "PRESENT", false];
-// 	jailme setTriggerStatements ["score player < myscore and score player < -1", "jailed = player execVM ""data\scripts\jail.sqf""", ""];
-// };
-
 removeAllWeapons _player;
 {player addmagazine _x} forEach BIS_EVO_pallammo;
 {player addweapon _x} forEach BIS_EVO_pweapons;
@@ -55,8 +39,9 @@ player setSkill BIS_EVO_PlayerSkill;
 
 _player addEventHandler ["killed", {handle = [(_this select 0),(_this select 1)] execVM "data\scripts\killed.sqf"}];
 
-if(spawntype == 2) then {
-_player addEventHandler ["killed", {handle = [(_this select 0),(_this select 1)] execVM "data\scripts\rmScore.sqf"}];
+if(spawntype == 2) then 
+{
+	_player addEventHandler ["killed", {handle = [(_this select 0),(_this select 1)] execVM "data\scripts\rmScore.sqf"}];
 };
 Sleep 0.2;
 0 setFog 0.0;

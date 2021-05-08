@@ -47,7 +47,7 @@ _vec4 = objnull;
 
 waitUntil{sleep 2; gamebegin == 1};
 
-while {gamebegin} do
+while {gamebegin == 1} do
 {
 	//Tier 1
 	if(!alive _vec1 && count BIS_EVO_conqueredTowns > tier1unlock) then 
