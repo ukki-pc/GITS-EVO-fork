@@ -121,7 +121,7 @@ mcost = 0;
 msize = 0;
 mtime = 0;
 mord = 0;
-
+upgIndex = -1;
 // Lists
 BIS_EVO_ListUpdate = 
 {
@@ -793,11 +793,12 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 						{
 							if((typeof (vehicle player)) in (vehUpgList select _y)) then //if current vehicle is upgradeable or can be upgraded to
 							{
+								upgIndex = _y;
 								if(_i mod 2 == 0) then //every even index is vehicle class
 								{
 									_veh = (vehUpgList select _y) select _i;
-									//_displayName = getText(configFile >> "CfgVehicles" >> _veh >> "displayName");
-									_index = lbAdd [2000, _veh];
+									_displayName = getText(configFile >> "CfgVehicles" >> _veh >> "displayName");
+									_index = lbAdd [2000, _displayName];
 								};
 							};
 						};
@@ -1189,10 +1190,9 @@ if (player hasWeapon "ItemRadio") then
 //						BIS_EVO_prew  = -1;
 						publicVariable "BIS_EVO_prewC";
 						publicVariable "BIS_EVO_punitC";
-					//adding
-					player addscore -mcost;
-					ctrlSetText [2003,Format ["%1: %2",localize "STR_M04t134",(money)]];//Score
-
+						//adding
+						player addscore -mcost;
+						ctrlSetText [2003,Format ["%1: %2",localize "STR_M04t134",(money)]];//Score
 					};
 				}
 				else
@@ -1450,8 +1450,19 @@ if (player hasWeapon "ItemRadio") then
 				};
 				case 4:
 				{
-						_lbtext = lbtext [2000,_index];
-					[_lbtext] execVM "data\scripts\vehUpg.sqf";
+					_upgColumn = vehUpgList select upgIndex;
+					_priceIndex = (_index*2)+1;
+					_price = _upgColumn select _priceIndex;
+
+					if(money>=_price && inrepairzone && speed vehicle player < 4) then
+					{
+						[_upgColumn select _priceIndex-1] execVM "data\scripts\vehUpg.sqf";
+						["jed_addMoney", [player, -_price]] call CBA_fnc_whereLocalEvent;
+						hint "Upgraded!";
+						closeDialog 1;
+						Mpage =[true,false,false,false,false,false,0,false,false];
+					}
+					else {hint "Not possible right now!"};
 				};
 				case 1:
 				{
@@ -1864,6 +1875,21 @@ if (_perkPage) then
 		// 	ctrlBut1 ctrlSetText localize "STR_M04t103";
 		// };
 	//	ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",((perkList select _x) select 3)]];//Cost
+	};
+
+	if(_vecPage) then
+	{
+		switch (_vecSubPage) do
+		{
+			case 4:
+			{
+					_upgColumn = vehUpgList select upgIndex;
+					_priceIndex = (_x*2)+1;
+					_price = _upgColumn select _priceIndex;
+
+				ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",_price]];//Cost
+			};
+		};
 	};
 };
 

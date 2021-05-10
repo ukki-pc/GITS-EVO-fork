@@ -339,7 +339,7 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="engw1";
-					init="this setPosASL[getpos this select 0,getpos this select 1, 18]; ";
+					init="this setPosASL[getpos this select 0,getpos this select 1, 18];";
 				};
 			};
 		};
@@ -706,7 +706,7 @@ class Mission
 		class Item21
 		{
 			position[]={13150.48,0.22500773,2759.051};
-			azimut=290.45038;
+			azimut=290.45001;
 			id=24;
 			side="EMPTY";
 			vehicle="EB_RIM7_pod_US";
@@ -1809,6 +1809,7 @@ class Mission
 			text="airport";
 			name="AirportIn";
 			expCond="""mobjC1"" in (missionNamespace getVariable ""BIS_EVO_conqueredTowns"")";
+			expActiv="systemchat ""kykki""";
 			class Effects
 			{
 			};

@@ -467,7 +467,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 {
 	//[] call BIS_EVO_CWeath;
 //	sleep 1.011;
-	inrepairzone = (vehicle player in list AirportIn) or (vehicle player in list farp1 and triggerActivated farp1) or (vehicle player in list farp2 and triggerActivated farp2) or (vehicle player in list farp3 and triggerActivated farp3) or (vehicle player in list farp4 and triggerActivated farp4) or (vehicle player in list dock1) or (vehicle player in list LHDin);
+	inrepairzone = (vehicle player in list AirportIn and triggerActivated airportIn) or (vehicle player in list farp1 and triggerActivated farp1) or (vehicle player in list farp2 and triggerActivated farp2) or (vehicle player in list farp3 and triggerActivated farp3) or (vehicle player in list farp4 and triggerActivated farp4) or (vehicle player in list dock1) or (vehicle player in list LHDin);
 	//inrepairzone = (vehicle player in list reng1) or (vehicle player in list reng2) or (vehicle player in list reng3) or (vehicle player in list reng4);	
 	[] call BIS_EVO_Repair;
 //	[] call EGG_EVO_fieldRepair;
