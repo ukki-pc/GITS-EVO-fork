@@ -457,8 +457,8 @@ class evoUI
 		class vehUpg: BRecruit
 	      {
 		 idc = 678;
-		  	 	x = 0.11;
-		 		y = 0.78;
+				y = 0.825;
+				x = 0.47;
 				text = "Upgrade";
 	 			onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,true,4];[] call BIS_EVO_ListUpdate";
 	      };

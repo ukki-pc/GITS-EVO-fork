@@ -732,8 +732,12 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 
 	vehUpgList = 
 	[
+		//HELI
 		["SH2a",10,"SH2b",15,"SH2d",20],
-		["yup_sh60f",0,"yup_SH60B_penguin",15,"yup_SH60B",20]
+		["yup_sh60f",0,"yup_SH60B_penguin",15,"yup_SH60B",20],
+
+		//CAR
+		["HMMWV_M1035_DES_EP1",0,"EB_M1114_Armored_D",15,"M1114_DSK_ACR",20,"HMMWV_M1151_M2_DES_EP1",10,"M1114_AGS_ACR",5,"HMMWV_M998_crows_M2_DES_EP1",5,"HMMWV_M998_crows_MK19_DES_EP1",5,"HMMWV_TOW_DES_EP1",5]
 	];
 };
 

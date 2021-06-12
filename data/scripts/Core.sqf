@@ -24,7 +24,7 @@ uiNamespace setVariable ["buyTank", (uiNamespace getVariable "displayVendor") di
 uiNamespace setVariable ["buyAir", (uiNamespace getVariable "displayVendor") displayCtrl 666];
 uiNamespace setVariable ["buyStatic", (uiNamespace getVariable "displayVendor") displayCtrl 667];
 uiNamespace setVariable ["buySpecial", (uiNamespace getVariable "displayVendor") displayCtrl 668];
-uiNamespace setVariable ["vehUpg", (uiNamespace getVariable "displayVendor") displayCtrl 670];
+uiNamespace setVariable ["vehMenuBtn", (uiNamespace getVariable "displayVendor") displayCtrl 670];
 uiNamespace setVariable ["vehUpgTur1", (uiNamespace getVariable "displayVendor") displayCtrl 671];
 uiNamespace setVariable ["vehUpgMis1", (uiNamespace getVariable "displayVendor") displayCtrl 672];
 uiNamespace setVariable ["vehLoadout", (uiNamespace getVariable "displayVendor") displayCtrl 673];
@@ -91,8 +91,9 @@ ctrlShow [675,true]; //Loadout btn
 ctrlShow [676,false]; //Unflip btn
 ctrlShow [677,false]; //Hitmark btn
 ctrlShow [895,true]; //Map
-ctrlShow [678,false]; //Hitmark btn
+ctrlShow [678,false]; //Upg btn
 ctrlShow [1995,false]; //2nd list
+ctrlShow [679,false]; // Construct page
 
 if ((vehicle player isKindOf  "Air" ) ) then
 {
@@ -101,6 +102,15 @@ if ((vehicle player isKindOf  "Air" ) ) then
 else
 {
 	ctrlShow [670,false];
+};
+
+if(vehicle player != player) then {
+	ctrlShow [679,false];
+	ctrlShow [678,true];
+}
+else{
+	ctrlShow [679,true];
+	ctrlShow [678,false];
 };
 
 bplace = false;
@@ -480,7 +490,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 
 		ctrlShow [671,false]; //Turret page
 		ctrlShow [672,false]; //Missile page
-		ctrlShow [678,false]; //Hitmark btn
+		ctrlShow [678,true]; //Upg btn
 		ctrlShow [673,false]; //Loadout page
 		ctrlShow [674,false]; //Storeveh page
 		ctrlShow [676,false]; //Unflip btn
@@ -700,7 +710,6 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 		ctrlShow [659,false];
 		ctrlShow [671,true]; //Turret page
 		ctrlShow [672,true]; //Missile page
-		ctrlShow [678,true]; //Hitmark btn
 		ctrlShow [673,true]; //Loadout page
 		ctrlShow [675,false];
 		ctrlShow [677,false];
@@ -711,14 +720,13 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 
 		lbClear 2000;
 
-
-	
-		if (vehicle player isKindOf  "Air" ) then  
-		{
 			
-			switch (_vecSubPage) do {
-				case 1:
-				{	
+		switch (_vecSubPage) do 
+		{
+			case 1:
+			{	
+				if(vehicle player iskindof "Air") then 
+				{
 					_index = lbAdd [2000, "Combat Area Patrol"];
 					_index = lbAdd [2000, "Close Air Support"];
 					_index = lbAdd [2000, "Air to Ground Missile"];
@@ -727,10 +735,12 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 					_index = lbAdd [2000, "Laser Guided Bomb"];
 					_index = lbAdd [2000, "SEAD"];
 				};
-				case 2:
+			};
+			case 2:
+			{
+				if(vehicle player iskindof "Air") then 
 				{
-						lbClear 2000;
-					//while {_i < count EB_turrets} do 
+					lbClear 2000;
 					for [{_i=0}, {_i< count EB_turrets}, {_i=_i+1}] do
 					{
 						_class = EB_turrets select _i;
@@ -738,18 +748,18 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 						_armament = _magazinearray select 0;
 						_nameR =  getText(configFile >> "CfgMagazines" >> _armament >> "displayName");
 						_name = format ["%1",_nameR];
-
 						_description = "turret ";
-
 						ctrlSetText [2010,_name];
 						ctrlSetText [2011,_description];
 						_index = lbAdd [2000, _name];
-					
 					};
 				};
-				case 3:
+			};
+			case 3:
+			{
+				lbClear 1995;
+				if(vehicle player iskindof "Air") then 
 				{
-					lbClear 1995;
 					for [{_i=0}, {_i< count EGG_missiles}, {_i=_i+1}] do
 					{
 						_class = EGG_missiles select _i;
@@ -763,7 +773,8 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 						ctrlSetText [2010,_name];
 						ctrlSetText [2011,_description];
 						_index = lbAdd [2000, _name];
-					};
+						};
+					
 
 					_mags =  magazines vehicle player;
 					for [{_i=0}, {_i< count _mags}, {_i=_i+1}] do
@@ -780,31 +791,30 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 							_index2 = lbAdd[1995,_name];	
 						};	
 					};
-					
 				};
-				case 4:
+				
+			};
+			case 4:
+			{
+				lbClear 1995;
+				lbClear 2000;
+				
+				for [{_y=0}, {_y< count vehUpgList}, {_y=_y+1}] do
 				{
-					lbClear 1995;
-					lbClear 2000;
-					
-					for [{_y=0}, {_y< count vehUpgList}, {_y=_y+1}] do
+					for [{_i=0}, {_i< count (vehUpgList select _y)}, {_i=_i+1}] do
 					{
-						for [{_i=0}, {_i< count (vehUpgList select _y)}, {_i=_i+1}] do
+						if((typeof (vehicle player)) in (vehUpgList select _y)) then //if current vehicle is upgradeable or can be upgraded to
 						{
-							if((typeof (vehicle player)) in (vehUpgList select _y)) then //if current vehicle is upgradeable or can be upgraded to
+							upgIndex = _y;
+							if(_i mod 2 == 0) then //every even index is vehicle class
 							{
-								upgIndex = _y;
-								if(_i mod 2 == 0) then //every even index is vehicle class
-								{
-									_veh = (vehUpgList select _y) select _i;
-									_displayName = getText(configFile >> "CfgVehicles" >> _veh >> "displayName");
-									_index = lbAdd [2000, _displayName];
-								};
+								_veh = (vehUpgList select _y) select _i;
+								_displayName = getText(configFile >> "CfgVehicles" >> _veh >> "displayName");
+								_index = lbAdd [2000, _displayName];
 							};
 						};
 					};
 				};
-				
 			};
 		};
 	};
@@ -1430,41 +1440,53 @@ if (player hasWeapon "ItemRadio") then
 
 	if (_vecPage) then 
 	{
-		if (vehicle player isKindOf  "Air") then 
+		switch (_vecSubPage) do 
 		{
-			switch (_vecSubPage) do 
+			case 2:
 			{
-				case 2:
+				if (vehicle player isKindOf  "Air") then 
 				{
-				_class = EB_turrets select _index;
-				_magazineArray = getArray (configFile >> "CfgWeapons" >> _class >> "magazines");
-				_armament = _magazinearray select 0;
-				[_class] call armTurret;
+					_class = EB_turrets select _index;
+					_magazineArray = getArray (configFile >> "CfgWeapons" >> _class >> "magazines");
+					_armament = _magazinearray select 0;
+					[_class] call armTurret;
 				};
-				case 3:
+			};
+			case 3:
+			{
+				if (vehicle player isKindOf  "Air") then 
 				{
 					_class = EGG_missiles select _index;
 					_magazineArray = getArray (configFile >> "CfgWeapons" >> _class >> "magazines");
 					_armament = _magazinearray select 0;
 					[_armament, _class, _index2] call armWeapon;
 				};
-				case 4:
-				{
-					_upgColumn = vehUpgList select upgIndex;
-					_priceIndex = (_index*2)+1;
-					_price = _upgColumn select _priceIndex;
+			};
+			case 4:
+			{
+				_upgColumn = vehUpgList select upgIndex;
+				_curVehIndex =_upgColumn find (typeof vehicle player);
+				_priceIndex = (_index*2)+1;
 
-					if(money>=_price && inrepairzone && speed vehicle player < 4) then
-					{
-						[_upgColumn select _priceIndex-1] execVM "data\scripts\vehUpg.sqf";
-						["jed_addMoney", [player, -_price]] call CBA_fnc_whereLocalEvent;
-						hint "Upgraded!";
-						closeDialog 1;
-						Mpage =[true,false,false,false,false,false,0,false,false];
-					}
-					else {hint "Not possible right now!"};
+				_price = 0;
+
+				if(_priceIndex-1 > _curVehIndex) then { //IF upgrade vehicle is worse, dont charge
+				_price = _upgColumn select _priceIndex;
 				};
-				case 1:
+
+				if(money>=_price && inrepairzone && speed vehicle player < 4) then
+				{
+					[_upgColumn select _priceIndex-1] execVM "data\scripts\vehUpg.sqf";
+					["jed_addMoney", [player, -_price]] call CBA_fnc_whereLocalEvent;
+					hint "Upgraded!";
+					closeDialog 1;
+					Mpage =[true,false,false,false,false,false,0,false,false];
+				}
+				else {hint "Not possible right now!"};
+			};
+			case 1:
+			{
+				if (vehicle player isKindOf  "Air") then 
 				{
 					[_index] execVM "actions\EB_newReArm.sqf";
 				};
@@ -1883,9 +1905,15 @@ if (_perkPage) then
 		{
 			case 4:
 			{
+				//
+
 					_upgColumn = vehUpgList select upgIndex;
+					_curVehIndex =_upgColumn find (typeof vehicle player);
 					_priceIndex = (_x*2)+1;
-					_price = _upgColumn select _priceIndex;
+					_price = 0;
+				if(_priceIndex-1 > _curVehIndex) then { //IF upgrade vehicle is worse, dont charge
+				_price = _upgColumn select _priceIndex;
+				};
 
 				ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",_price]];//Cost
 			};
