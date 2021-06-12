@@ -1,7 +1,7 @@
 #define tier1unlock 0
-#define tier2unlock 0
-#define tier3unlock 0
-#define tier4unlock 0
+#define tier2unlock 2
+#define tier3unlock 4
+#define tier4unlock 6
 
 //Rewards players with spawned vehicles when certain criteria is met
 fnc_rndRewardVeh = 
@@ -58,7 +58,7 @@ _tier4Vehs =
 				_vec1 = createVehicle [_vehicle,  [getMarkerPos "bonusveh1" select 0,getMarkerPos "bonusveh1" select 1,18], [], 0, "NONE"];
 				_vec1 setDir markerDir "bonusveh1";
 				_vec1 setPos [getMarkerPos "bonusveh1" select 0,getMarkerPos "bonusveh1" select 1,18];
-				_vec1 addEventHandler ["killed", {_handle = [_this select 0, 10, 1] execVM "data\scripts\rewardVehHandle.sqf"}];
+				_vec1 addEventHandler ["killed", {_handle = [_this select 0, 300, 1] execVM "data\scripts\rewardVehHandle.sqf"}];
 				_vecobj = _vec1;
 			};
 			case 2:
@@ -68,7 +68,7 @@ _tier4Vehs =
 				_vec2 = createVehicle [_vehicle,  [getMarkerPos "bonusveh2" select 0,getMarkerPos "bonusveh2" select 1,18], [], 0, "NONE"];
 				_vec2 setDir markerDir "bonusveh2";
 				_vec2 setPos [getMarkerPos "bonusveh2" select 0,getMarkerPos "bonusveh2" select 1,18];
-				_vec2 addEventHandler ["killed", {_handle = [_this select 0, 10, 2] execVM "data\scripts\rewardVehHandle.sqf"}];
+				_vec2 addEventHandler ["killed", {_handle = [_this select 0, 300, 2] execVM "data\scripts\rewardVehHandle.sqf"}];
 				_vecobj = _vec2;
 			};
 			case 3:
@@ -78,7 +78,7 @@ _tier4Vehs =
 				_vec3 = createVehicle [_vehicle,  [getMarkerPos "bonusveh3" select 0,getMarkerPos "bonusveh3" select 1,18], [], 0, "NONE"];
 				_vec3 setDir markerDir "bonusveh3";
 				_vec3 setPos [getMarkerPos "bonusveh3" select 0,getMarkerPos "bonusveh3" select 1,18];
-				_vec3 addEventHandler ["killed", {_handle = [_this select 0,10, 3] execVM "data\scripts\rewardVehHandle.sqf"}];
+				_vec3 addEventHandler ["killed", {_handle = [_this select 0,300, 3] execVM "data\scripts\rewardVehHandle.sqf"}];
 				_vecobj = _vec3;
 			};
 			case 4:
@@ -88,7 +88,7 @@ _tier4Vehs =
 				_vec4 = createVehicle [_vehicle,  [getMarkerPos "bonusveh4" select 0,getMarkerPos "bonusveh4" select 1,18], [], 0, "NONE"];
 				_vec4 setDir markerDir "bonusveh4";
 				_vec4 setPos [getMarkerPos "bonusveh4" select 0,getMarkerPos "bonusveh4" select 1,18];
-				_vec4 addEventHandler ["killed", {_handle = [_this select 0,10, 4] execVM "data\scripts\rewardVehHandle.sqf"}];
+				_vec4 addEventHandler ["killed", {_handle = [_this select 0,300, 4] execVM "data\scripts\rewardVehHandle.sqf"}];
 				_vecobj = _vec4;
 			};
 		};
