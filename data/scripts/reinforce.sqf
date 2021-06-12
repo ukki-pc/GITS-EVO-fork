@@ -1,5 +1,6 @@
 // resupplies towns with reinforcements
 
+
 private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","_tag","_type","_Allspawns","_wtime","_curtownInf","_basetownInf","_curtownMec","_basetownMec"]; 
 
 	_spawn = [0,0,0];
@@ -12,7 +13,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 	_wtime = 0;
 	_radio =radio1;
 	_alist = BIS_EVO_DetectEnemy;
-	
+
 	_curtownInf = round(((BIS_EVO_InfantrySpawn)/enemynumdiv));
 	_basetownInf = round(((BIS_EVO_InfantryTarget))/enemynumdiv);
 	_curtownMec = round(((BIS_EVO_MechanizedSpawn))/enemynumdiv);
@@ -272,6 +273,8 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 	
 	EGG_EVO_mecreinf = 
 	{
+		#define easyTreshold 100
+		#define	hardTreshold 150
 		private ["_Allspawns","_allobj","_alist","_radio","_unit","_guardm","_pos","_rng","_vec","_maxo","_spawns","_pos","_tag","_allvec","_rds","_cardir","_degrees","_dirdif","_array","_recy"]; 
 		_allobj = BIS_EVO_MissionTowns;
 		_alist = BIS_EVO_DetectEnemy;
@@ -312,19 +315,18 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 
 		_pos = GetMarkerPos (_reinforceTowns select (round random (count _reinforceTowns-1)));
 		_tag = "MEC";
-
 		//Increasing aggression
-		_allvec = EGG_EVO_MechEasy;
+		_allvec = [];
 		_rng = round(random(100+aggression));
-		 if(_rng < 60) then 
+		 if(_rng < easyTreshold) then 
 		 {
 		 	_allvec = EGG_EVO_MechEasy; //mixed units reinforce
 		 };
-		if(_rng < 80) then 
+		if(_rng > easyTreshold and _rng < hardTreshold) then 
 		 {
 		 	_allvec = EGG_EVO_MechEasy + EGG_EVO_MechMedium; //mixed units reinforce
 		 };
-	 	if(_rng >= 100) then 
+	 	if(_rng >= hardTreshold) then 
 		 {
 		 	_allvec = EGG_EVO_MechMedium + EGG_EVO_MechHard; //mixed units reinforce
 		};
@@ -332,7 +334,6 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 	if (count _reinforceTowns > 0) then 
 		{
 			//systemchat format ["Random number was: %1", _rng];
-			_maxo = (count _allvec)-1;	
 			_rds = [];
 			_rds = (_pos nearRoads 10);
 			waitUntil{count _rds > 0};
@@ -341,8 +342,8 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 			_dirdif = (_cardir-_degrees);
 			if((_dirdif > 89) or (_dirdif < -89)) then{_cardir=_cardir-180};	
 			_pos = position (_rds select 0);
-
-			_array = [_allvec select (round random _maxo),_pos,(EGG_EVO_ENEMYFACTION),20,_cardir,0] call BIS_EVO_CreateVehicle;
+			_vecT = [_allvec] call fnc_pickRandom;
+			_array = [_vecT,_pos,(EGG_EVO_ENEMYFACTION),20,_cardir,0] call BIS_EVO_CreateVehicle;
 
 			_guardm = _array select 0;
 			_vec = _array select 1;
@@ -384,7 +385,7 @@ sleep 15;
 
 if( (_curtownMec <= _basetownMec) and (reinforcements) ) then 
 {
-	//systemChat "reinforcing mechanized";
+//	systemChat "reinforcing mechanized";
 	[] spawn EGG_EVO_mecreinf;
 	(BIS_EVO_Mechanized select BIS_EVO_MissionProgress) set [0, (_curtownMec*enemynumdiv)+1];
 	sleep 1;

@@ -73,6 +73,8 @@ if(!inrepairzone and _objDist > 100) then
 else
 {	
 	_unit setPosASL [(getPosASL _player select 0) + 1, (getPosASL _player select 1) +1, (getPosASL _player select 2)];
+
+	_vec = vehicle player;
 	_unit moveInDriver vehicle _player;
 	_unit moveInGunner vehicle _player;
 	_unit moveInCommander vehicle _player;

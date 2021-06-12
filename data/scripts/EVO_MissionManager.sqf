@@ -100,6 +100,7 @@ reinforcementLoop =
 			};
 			if ( !(reinforcements)) then {_rloop=1};
 			_reinf = [] execVM "data\scripts\reinforce.sqf";
+			systemChat "calling reinforcements";
 	};
 };
 
@@ -157,7 +158,6 @@ while {BIS_EVO_MissionProgress != -1} do
 		//_tempProgress = BIS_EVO_MissionProgress;
 	//testing reinforce - removed from sinit
 	reinfdelay = round (290-(aggression^1.14));
-	//reinfdelay = 60;
 
 	reinforcements = true;
 	[] spawn reinforcementLoop;

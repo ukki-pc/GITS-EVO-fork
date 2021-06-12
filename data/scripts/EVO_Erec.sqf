@@ -1,5 +1,7 @@
 BIS_EVO_Erec =
 {
+	#define easyTreshold 100
+	#define	hardTreshold 150
 	_placetag = _this select 0;
 	_list = _this select 1;
 	_disable = _this select 2;
@@ -70,11 +72,11 @@ BIS_EVO_Erec =
 		//Increasing aggression
 		_rng = round(random(100+aggression));
 
-		if(_rng < 100) then 
+		if(_rng < easyTreshold) then 
 		 {
 		 	_allvecs = EGG_EVO_spAAeasy; //mixed units reinforce
 		 };
-	 	if(_rng >= 100) then 
+	 	if(_rng >= easyTreshold) then 
 		 {
 		 	_allvecs = EGG_EVO_spAAhard; //mixed units reinforce
 		};
@@ -113,26 +115,27 @@ BIS_EVO_Erec =
 // Spawn Mechanised units
 	while {_mec > 0} do 
 	{
-		_allvec = EGG_EVO_MechEasy;
+		_allvec = [];
+		_vecT = "";
 		//Increasing aggression
 		_rng = round(random(100+aggression));
 
-		 if(_rng < 100) then 
-		 {
+		if(_rng < easyTreshold) then 
+		{
 		 	_allvec = EGG_EVO_MechEasy; //mixed units reinforce
-		 };
+		};
 
-		if(_rng >= 100 and _rng < 150) then 
-		 {
+		if(_rng >= easyTreshold and _rng < hardTreshold) then 
+		{
 		 	_allvec = EGG_EVO_MechMedium; //mixed units reinforce
-		 };
-	 	if(_rng >= 150) then 
-		 {
+		};
+	 	if(_rng >= hardTreshold) then 
+		{
 		 	_allvec = EGG_EVO_MechHard; //mixed units reinforce
 		};
-		
-		_max = (count _allvec)-1;
-		_array = [_allvec select (round random _max),_pos,(EGG_EVO_ENEMYFACTION),300,180,0] call BIS_EVO_CreateVehicle;
+
+		_vecT = [_allvec] call fnc_pickRandom;
+		_array = [_vecT,_pos,(EGG_EVO_ENEMYFACTION),300,180,0] call BIS_EVO_CreateVehicle;
 		_grp = _array select 0;
 		_vec = _array select 1;
 		_rds = (_vec nearRoads 20);
