@@ -1,5 +1,5 @@
 // Arma 2 function
-
+/*
 private ["_MarkerName","_mi"];
 
 for [{ _mi = 0 }, { _mi < 1000 }, { _mi = _mi + 1 }] do {
@@ -11,3 +11,4 @@ for [{ _mi = 0 }, { _mi < 1000 }, { _mi = _mi + 1 }] do {
 };
 
 nil;
+*/

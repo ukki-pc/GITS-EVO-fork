@@ -1,5 +1,5 @@
 // Arma 2 function
-
+/*
 private ["_MarkerNameString","_MarkerIndex","_WorldCoord","_NewMarkerName","_TestMarkerName"];
 
 _MarkerNameString = _this select 0;
@@ -18,3 +18,4 @@ while { _NewMarkerName != _TestMarkerName } do {
 };
 
 [_NewMarkerName, _MarkerIndex];
+*/
