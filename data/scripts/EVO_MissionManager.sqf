@@ -59,7 +59,7 @@ manGunner=
 	{
 		//Pick on unit at randomly
 		//systemChat format ["%1",_units];
-		_unit = _units select round (random(count _units))-1;
+		_unit = _units select round ((random(count _units)-1));
 		_unit assignAsGunner _car;
 		[_unit] orderGetIn true;
 

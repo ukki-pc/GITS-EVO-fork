@@ -1354,7 +1354,6 @@ _killer = _this select 0;
 	{
 		(uiNameSpace getVariable "myUI_AggressionTitle") ctrlSetText format ["%2%1","%",aggression];
 	};
-		systemChat "aggrCalled";
 }] call CBA_fnc_addLocalEventHandler;
 
 //////////////////////////////////

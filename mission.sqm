@@ -1809,7 +1809,6 @@ class Mission
 			text="airport";
 			name="AirportIn";
 			expCond="""mobjC1"" in (missionNamespace getVariable ""BIS_EVO_conqueredTowns"")";
-			expActiv="systemchat ""kykki""";
 			class Effects
 			{
 			};
