@@ -1298,7 +1298,7 @@ perkEngLVL = 0;
 //Server side score addition
    ["jed_addscore", {(_this select 0) addScore (_this select 1)}] call CBA_fnc_addEventHandler;
 //Bandage init
-[player,0.2,0.15,3,true] execVM "data\scripts\cly_heal.sqf";
+[player,0.2,0.15,-1,true] execVM "data\scripts\cly_heal.sqf";
 
 //Client message
 ["jed_msg", {

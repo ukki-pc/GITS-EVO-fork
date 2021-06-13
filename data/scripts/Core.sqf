@@ -798,6 +798,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 			{
 				lbClear 1995;
 				lbClear 2000;
+				_found = false;
 				
 				for [{_y=0}, {_y< count vehUpgList}, {_y=_y+1}] do
 				{
@@ -812,8 +813,10 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 								_displayName = getText(configFile >> "CfgVehicles" >> _veh >> "displayName");
 								_index = lbAdd [2000, _displayName];
 							};
+							_found = true;
 						};
 					};
+					if(_found) exitWith {};
 				};
 			};
 		};
@@ -1780,18 +1783,46 @@ BIS_EVO_ListSelect =
 							case 1:
 							{
 								ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",round (((buyCarList select _x) select 1)*EX_EVO_vehPriceMultiplier)]];//Cost
+								_upgCount = [(buyCarList select _x) select 0] call fnc_countUpgrades;
+								_name = [(buyCarList select _x) select 0] call fnc_getCfgName;
+								_text = format["Price: %2\nUpgrades available: %1",_upgCount,round (((buyCarList select _x) select 1)*EX_EVO_vehPriceMultiplier)];
+								ctrlSetText [2010,_name];
+								ctrlSetText [2011,_text];
+								_picture = getText (configFile >> "cfgVehicles" >> (buyCarList select _x) select 0 >> "picture");	// get picture from config
+								ctrlSetText [2005,_picture];
 							};
 							case 2:
 							{
 								ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",round (((buyTankList select _x) select 1)*EX_EVO_vehPriceMultiplier)]];//Cost
+								_upgCount = [(buyTankList select _x) select 0] call fnc_countUpgrades;
+								_name = [(buyTankList select _x) select 0] call fnc_getCfgName;
+								_text = format["Price: %2\nUpgrades available: %1",_upgCount,round (((buyTankList select _x) select 1)*EX_EVO_vehPriceMultiplier)];
+								ctrlSetText [2010,_name];
+								ctrlSetText [2011,_text];
+								_picture = getText (configFile >> "cfgVehicles" >> (buyTankList select _x) select 0 >> "picture");	// get picture from config
+								ctrlSetText [2005,_picture];
 							};
 							case 3:
 							{
 								ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",round (((buyAirList select _x) select 1)*EX_EVO_vehPriceMultiplier)]];//Cost
+								_upgCount = [(buyAirList select _x) select 0] call fnc_countUpgrades;
+								_name = [(buyAirList select _x) select 0] call fnc_getCfgName;
+								_text = format["Price: %2\nUpgrades available: %1",_upgCount,round (((buyAirList select _x) select 1)*EX_EVO_vehPriceMultiplier)];
+								ctrlSetText [2010,_name];
+								ctrlSetText [2011,_text];
+								_picture = getText (configFile >> "cfgVehicles" >> (buyAirList select _x) select 0 >> "picture");	// get picture from config
+								ctrlSetText [2005,_picture];
 							};
 							case 4:
 							{
 								ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",round (((buyStatList select _x) select 1)*EX_EVO_vehPriceMultiplier)]];//Cost
+								_upgCount = [(buyStatList select _x) select 0] call fnc_countUpgrades;
+								_name = [(buyStatList select _x) select 0] call fnc_getCfgName;
+								_text = format["Price: %2\nUpgrades available: %1",_upgCount,round (((buyStatList select _x) select 1)*EX_EVO_vehPriceMultiplier)];
+								ctrlSetText [2010,_name];
+								ctrlSetText [2011,_text];
+								_picture = getText (configFile >> "cfgVehicles" >> (buyStatList select _x) select 0 >> "picture");	// get picture from config
+								ctrlSetText [2005,_picture];
 							};
 						};
 	};
@@ -1907,15 +1938,20 @@ if (_perkPage) then
 			{
 				//
 
-					_upgColumn = vehUpgList select upgIndex;
-					_curVehIndex =_upgColumn find (typeof vehicle player);
-					_priceIndex = (_x*2)+1;
-					_price = 0;
+				_upgColumn = vehUpgList select upgIndex;
+				_curVehIndex =_upgColumn find (typeof vehicle player);
+				_priceIndex = (_x*2)+1;
+				_price = 0;
 				if(_priceIndex-1 > _curVehIndex) then { //IF upgrade vehicle is worse, dont charge
 				_price = _upgColumn select _priceIndex;
 				};
-
 				ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",_price]];//Cost
+				_upgCount = [typeof vehicle player] call fnc_countUpgrades;
+				ctrlSetText [6056, "Upgrade"];
+				_name = "Upgrade";
+				_text = format["Upgrades available: %1",_upgCount];
+				ctrlSetText [2010,_name];
+				ctrlSetText [2011,_text];
 			};
 		};
 	};

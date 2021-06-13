@@ -37,7 +37,7 @@ _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 	detach _cstatA;
 	_cstatA enableSimulation true;
 	_who allowDamage true;
-	
+	_cstatA addEventHandler ["GetIn",{_hndl = [_this select 0,_this select 1, _this select 2] execVM "data\scripts\upgNotif.sqf"}];
 	//Event handler to prevent repair whilst taking damage
 	_cstatA addEventHandler ["Dammaged",{execVM "data\scripts\hitcooldown.sqf"}];
 

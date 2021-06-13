@@ -22,9 +22,19 @@ deleteVehicle _ogObj;
 _model = _this select 0;
 _unit = player;
 _plyName = name player;
+_oldGroup = group player;
+_grpUnits = units _oldGroup;
+_grpUnits = _grpUnits - [player];
+_isLeader = (leader _oldGroup == _unit);
+_group = grpNull;
 _nname = format ["engw%1",(owner player)+1];
+_nunit = objNull;
+
+
 _group = createGroup EGG_EVO_PLAYERFACTION;
 _nunit = _group createUnit [_model,position player,[],0,"NONE"];
+
+
 
 //switch into new unit
 addSwitchableUnit _nunit;
@@ -38,6 +48,14 @@ processInitCommands;
 sleep 0.1;
 removeSwitchableUnit _unit;
 deleteVehicle _unit;
+
+if(_isLeader) then {
+units _oldGroup join _group;
+}
+else
+{
+_nunit join _oldGroup;
+};
 
 //move unit back to spawn location and initialise them
 _nunit = _this select 0;

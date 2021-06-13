@@ -8,6 +8,36 @@ EB_airload1=-1;
 EB_fieldRepair=-1;
 repaircooldown = 0;
 
+fnc_getCfgName = 
+{
+	private ["_classname","_return","_name"];
+	_classname = _this select 0;
+	_return = "";
+	_name = getText(configFile >> "CfgVehicles" >> _classname >> "displayName");
+	if(!isNil "_name") then{_return = _name}else{_return = _classname};
+	_return;
+};
+
+//Takes vehicle classname and returns upgrade count
+fnc_countUpgrades = 
+{
+	private ["_vecType","_count","_y","_i"];
+	_vecType = _this select 0;
+	_count = 0;
+
+	for [{_y=0}, {_y< count vehUpgList}, {_y=_y+1}] do
+		{
+			for [{_i=0}, {_i< count (vehUpgList select _y)}, {_i=_i+1}] do
+			{
+				if((_vecType) in (vehUpgList select _y)) exitWith //if current vehicle is upgradeable or can be upgraded to
+				{
+					_count = count (vehUpgList select _y)/2;
+				};
+			};
+		};
+	_count;
+};
+
  setPerkLevel = 
  {
 	_perk = _this select 0;
