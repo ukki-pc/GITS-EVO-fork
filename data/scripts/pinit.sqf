@@ -8,7 +8,6 @@ EB_airfn5=-1;
 EB_airfn6=-1;
 EB_airfn7=-1;
 
-
 _cevents = [] execVM "data\scripts\EventsC.sqf"; // Common player events
 Sleep 1.0;
 // Special conditions for medics and engineers

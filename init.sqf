@@ -32,6 +32,16 @@ BIS_Effects_globalEvent =
      _this call BIS_Effects_startEvent;
 };
 
+fnc_getCfgName = 
+{
+	private ["_classname","_return","_name"];
+	_classname = _this select 0;
+	_return = "";
+	_name = getText(configFile >> "CfgVehicles" >> _classname >> "displayName");
+	if(!isNil "_name") then{_return = _name}else{_return = _classname};
+	_return;
+};
+
 BIS_Effects_startEvent = 
 {
 	switch (_this select 0) do 
@@ -447,16 +457,16 @@ if(EGG_EVO_FactionParam == 1) then
 	_BRDMS = ["BRDM2_TK_EP1","pook_brdm2AGS_TKINS","pook_brdm2AA_TKINS","pook_brdm2RKT_TKINS","pook_brdm2PKM_TAK","pook_brdm2HQcomm_TAK","pook_brdm2DSHK_TAK","pook_brdm2AT5_TAK","pook_brdm2AT3c_TKINS","pook_brdm2AT3_TKINS","pook_brdm2AT2_TKINS","pook_brdm2M_TAK","pook_brdm2_TAK","pook_brdm2_sa9_TAK"];
 	
 	EGG_EVO_mevlight = ["BTR40_MG_TK_INS_EP1","pracs_TK_type63","pracs_TK_mtlb_apc","BTR40_TK_INS_EP1","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1"];
-	EGG_EVO_MechEasy = [_BRDMS] + EGG_EVO_mevlight + ["UAZ_AGS30_TK_EP1","UAZ_MG_TK_EP1","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1"];
-	EGG_EVO_MechMedium =["T72_TK_EP1","pook_btrMWS_tak","eb_btr90_tk","vil_t62m","ch_t72_desert","ch_t72_2_desert","pook_btr2a42_tak","VIL_BMP1_TKS","EB_BMP3_TK","sa_bmd_1_iraq","BMP2_TK_EP1","pook_brdm2at2_tak","T55_TK_EP1","T34_TK_EP1","UAZ_AGS30_TK_EP1","BTR60_TK_EP1","Ural_ZU23_TK_EP1","M113_TK_EP1","BMP2_HQ_TK_EP1"];
+	EGG_EVO_MechEasy = [_BRDMS] + EGG_EVO_mevlight + ["NM_Tigr_kord_des","NM_Tigr_ags30_des","UAZ_AGS30_TK_EP1","UAZ_MG_TK_EP1","EB_GAZ_Vodnik_TK","EB_GAZ_Vodnik_HMG_TK","LandRover_MG_TK_INS_EP1","LandRover_SPG9_TK_INS_EP1"];
+	EGG_EVO_MechMedium =["uns_pt76","T72_TK_EP1","pook_btrMWS_tak","AP_BTR80_D_CAMO","AP_BTR82A_DES","eb_btr90_tk","vil_t62m","ch_t72_desert","ch_t72_2_desert","pook_btr2a42_tak","VIL_BMP1_TKS","EB_BMP3_TK","sa_bmd_1_iraq","BMP2_TK_EP1","pook_brdm2at2_tak","T55_TK_EP1","T34_TK_EP1","UAZ_AGS30_TK_EP1","BTR60_TK_EP1","Ural_ZU23_TK_EP1","M113_TK_EP1","BMP2_HQ_TK_EP1"];
 	EGG_EVO_MechHard = ["T90","pracs_tk_t80b"];
 
 	EGG_EVO_enemySupply = ["UralReammo_TK_EP1","KamazReammo"]; //V3S_Reammo_TK_GUE_EP1 //NEED EAST V3S
 
 	//THESE AA SPAWN ON TOWNS
-	EGG_EVO_spAAeasy = ["ffaa_toyota_strela","pook_BTR152_ZPU_TAK","pook_BTR40_zu23_TAK","Ural_ZU23_TK_EP1"];
+	EGG_EVO_spAAeasy = ["ffaa_toyota_strela","pook_BTR152_ZPU_TAK","pook_BTR40_zu23_TAK","PRACS_TK_Ural_SAM","Ural_ZU23_TK_EP1","m55a4TruckVRS","FAP_ZPU4vrs","BofTruckVRS"];
 	EGG_EVO_spAAmedium = ["pook_zsu57_tak","pook_brdm2AA_TKINS","pook_brdm2_sa9_TAK","pracs_tk_sa13"];
-	EGG_EVO_spAAhard =  ["ZSU_TK_EP1","pracs_tk_sa8","pook_zsum4_tak","eb_2S6M_Tunguska_D","pook_5P85S_TAK","pracs_sa6_tk"];
+	EGG_EVO_spAAhard =  ["ZSU_TK_EP1","pracs_tk_sa8","pook_zsum4_tak","eb_2S6M_Tunguska_D","pook_5P85S_TAK","pracs_sa6_tk","pook_SA20_static_TAK"];
 
 	EGG_EVO_mepilot = ["TK_Soldier_Pilot_EP1"];
 	EGG_EVO_meofficer = ["TK_Aziz_EP1"];
@@ -466,7 +476,7 @@ if(EGG_EVO_FactionParam == 1) then
 	EGG_EVO_statEnemyAA = ["Igla_AA_pod_TK_EP1","POOK_zpu4_tak","pracs_tk_sa2","ZU23_TK_EP1","EB_pook_Type74_TYR","POOK_ks12_tak","EB_DSHKx2_TK","pook_KS19_TAK","pook_s60_TK","POOK_zpu4_tak","pook_sa3_static_tak"]; //REMOVED D30_TK_EP1 2b14_82mm_TK_EP1
 
 	//Reinfocing infatry vehicles
-	EGG_EVO_mevconvoyb = ["V3S_TK_EP1","V3S_Open_TK_EP1","","pracs_TK_mtlb_apc"];
+	EGG_EVO_mevconvoyb = ["NM_Tigr_des","V3S_TK_EP1","V3S_Open_TK_EP1","vilas_uaz451","pracs_TK_mtlb_apc","LIN_KamazOpen","ARL_Kamaz3","FgS_ZIL131_3","FgS_ZIL131_4","rhs_gaz66o_taki","rhs_gaz66_taki","s1","c1vrs","c2vrs"];
 
 	//Reinforce paradrop vehicles
 	EGG_EVO_mevair3 = ["An2_TK_EP1","Mi17_TK_EP1","Mi24_D_TK_EP1","UH1H_TK_EP1"]; //"ou_ch_46e","ou_ch_53d",
@@ -562,6 +572,7 @@ buyCarList =
 	[
 	/*---Military cars---*/
 	["PRACS_ATV",0],			// Hilux (Open)
+	["SRA_Truck5tOpen",0],
 	["LandRover_CZ_EP1",0],			// Hilux (Open)
 	["LandRover_Special_CZ_EP1",2],				// Landrover (SF)
 	["SUV_PMC",2],							// SUV
@@ -573,6 +584,7 @@ buyCarList =
 	["HMMWV_M998_crows_MK19_DES_EP1",12],							// HMMWV (GMG)s
 	["HMMWV_TOW_DES_EP1",15],							// HMMWV (AT)
 	["HMMWV_Avenger_DES_EP1",25],						// HMMWV (AA)
+	["SRA_Truck5tRepair",4],
 	["MtvrRepair_DES_EP1",5],						// HMMWV (AA)
 	["POOK_HEMTT_repair_us",8]						// HMMWV (AA)
 	];
@@ -599,6 +611,7 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 	["PRACS_LAV_IFV",15],					// Dingo (GMG)
 	["PRACS_LAV_MGS",17],					// Dingo (GMG)
 	//["BVP1_TK_ACR",17],							// BMP1
+	["FFAA_ET_VEC",17],
 	["AAV_D",18],									// AAVP
 	["EB_LAV25_D2",22],								// LAV
 	["PRACS_LAV25",22],								// LAV
@@ -625,6 +638,7 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 	["BAF_FV510_W",55],							// Warrior
 	["PRACS_LEO2A4",52],							// T72M
 	//["M1A1_US_DES_EP1",55],								// M1A1
+	["ffaa_et_Leopard",65],
 	["EB_M1A2_US_D",65],						// M1A2
 	//["M1A2_US_TUSK_MG_EP1",65],						// M1A2
 	["EB_M1A3_TUSK_D",75],						// M1A2
@@ -648,6 +662,8 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 	];
 
 BIS_EVO_unlocks = [];
+BIS_EVO_unlocked = [];
+
 
 for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	buyTankList set [_loop,[(buyTankList select _loop) select 0, (buyTankList select _loop) select 1,0]];
@@ -676,7 +692,8 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	["yup_SH60B",90],
 	["FRL_UH60M_MR",120],	
 	["PRACS_AH1S",190],								// Cobra
-	["AH1Z",190],								// Cobra
+	["ffaa_famet_tigre",190],
+	["AH1Z",190],								// Cobra                                                                                                                                                           
 	["AH64D",200],								// Apache (AT)
 	/*---Planes---*/
 	["ibr_tucano_lin",60],	
@@ -739,7 +756,10 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 		["yup_sh60f",0,"yup_SH60B_penguin",15,"yup_SH60B",20],
 
 		//CAR
-		["HMMWV_M1035_DES_EP1",0,"EB_M1114_Armored_D",15,"M1114_DSK_ACR",20,"HMMWV_M1151_M2_DES_EP1",10,"M1114_AGS_ACR",5,"HMMWV_M998_crows_M2_DES_EP1",5,"HMMWV_M998_crows_MK19_DES_EP1",5,"HMMWV_TOW_DES_EP1",5]
+		["HMMWV_M1035_DES_EP1",0,"ExA_HMMWV_TROOP",4,"ExA_HMMWV_M2_USMC",6,"HMMWV_M998A2_SOV_DES_EP1",7,"EB_M1114_Armored_D",15,"M1114_DSK_ACR",20,"HMMWV_M1151_M2_DES_EP1",10,"ExA_HMMWV_M2_A1_D",25,"HMMWV_M134_Armored_D",25,"M1114_AGS_ACR",5,"ExA_HMMWV_mk19_A1_D",25,"HMMWV_M998_crows_M2_DES_EP1",5,"HMMWV_M998_crows_MK19_DES_EP1",5,"HMMWV_TOW_DES_EP1",5,"ExA_HMMWV_TOW_A1_D",15],
+		["M1129_MC_EP1",1],
+		["SRA_Truck5tOpen",0,"SRA_Truck5t",0,"SRA_Truck5tMG",2]
+
 	];
 };
 
@@ -952,6 +972,8 @@ MHQ setVehicleInit "veh = [this, 10, 0, 0, FALSE, FALSE] execVM ""vehicle.sqf"""
 MHQ setposASL  [getposASL LKWWEST select 0, getposASL LKWWEST select 1,19];
 MHQ setDir getDir LKWWEST;
 };
+
+
 
 //High priority functions
 _rng = [] execVM "data\scripts\weightedRandom.sqf";
@@ -1309,6 +1331,16 @@ perkEngLVL = 0;
 		systemChat format ["%1",_msg];
 	};
 }] call CBA_fnc_addLocalEventHandler;
+
+//Client message
+["jed_missionManager", {
+_objId = _this select 0;
+	if(isServer) then 
+	{
+		BIS_EVO_MissionProgress = _objId;
+       [] spawn missionManager;
+	};
+}] call CBA_fnc_addEventHandler;
 
 //Get money from server
 ["jed_addMoney", {

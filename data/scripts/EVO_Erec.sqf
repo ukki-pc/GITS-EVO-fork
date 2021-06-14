@@ -56,10 +56,13 @@ BIS_EVO_Erec =
 
 	//Officer
 	_type = EGG_EVO_meofficer select 0;
+	_offGrp = createGroup (civilian);
 	_offobj = createVehicle [_type, _pos, [], 300, "NONE"];Sleep BIS_EVO_GlobalSleep;
+	[_offobj] join _offGrp;
 	_offobj addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 	_offobj setVehicleInit "Ocap = [this] execVM 'data\scripts\submit.sqf'";
 	_pobj = [_offobj] execVM "data\scripts\objoff.sqf";
+	PLAYER SETPOS GETPOS _offobj;
 	processInitCommands;
 
 	// MANPAD ANTI-AIR defence

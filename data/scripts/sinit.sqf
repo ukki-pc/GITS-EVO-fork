@@ -15,12 +15,13 @@ _events = [] execVM "data\scripts\EVO_Erefway.sqf"; // Reinforcement waypoint ge
 _events = [] execVM "data\scripts\EVO_FillInf.sqf"; // Fills out squads for cites
 _events = [] execVM "data\scripts\EVO_gRecy.sqf";// Recycles groups
 _events = [] execVM "data\scripts\EVO_Erec.sqf";	// City setup (radios,officers,group leaders)
-
+_events = [] execVM "data\scripts\EVO_MissionManager.sqf";
 
 
 //added
 _sin = [] execVM "data\scripts\sinitS.sqf";
 Mthread = [] execVM "data\scripts\MainThread.sqf";
+_mgun = [] execVM "data\scripts\manVehicle.sqf";
 
 //FH is field hospital objct
 //wcam = fh addaction ["Save mission to clipboard", "actions\saveMission.sqf",0,1, false, true,"test2"];

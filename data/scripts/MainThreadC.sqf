@@ -8,16 +8,6 @@ EB_airload1=-1;
 EB_fieldRepair=-1;
 repaircooldown = 0;
 
-fnc_getCfgName = 
-{
-	private ["_classname","_return","_name"];
-	_classname = _this select 0;
-	_return = "";
-	_name = getText(configFile >> "CfgVehicles" >> _classname >> "displayName");
-	if(!isNil "_name") then{_return = _name}else{_return = _classname};
-	_return;
-};
-
 //Takes vehicle classname and returns upgrade count
 fnc_countUpgrades = 
 {

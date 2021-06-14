@@ -1785,7 +1785,7 @@ BIS_EVO_ListSelect =
 								ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",round (((buyCarList select _x) select 1)*EX_EVO_vehPriceMultiplier)]];//Cost
 								_upgCount = [(buyCarList select _x) select 0] call fnc_countUpgrades;
 								_name = [(buyCarList select _x) select 0] call fnc_getCfgName;
-								_text = format["Price: %2\nUpgrades available: %1",_upgCount,round (((buyCarList select _x) select 1)*EX_EVO_vehPriceMultiplier)];
+								_text = format["Price: %2\nVariants available: %1",_upgCount,round (((buyCarList select _x) select 1)*EX_EVO_vehPriceMultiplier)];
 								ctrlSetText [2010,_name];
 								ctrlSetText [2011,_text];
 								_picture = getText (configFile >> "cfgVehicles" >> (buyCarList select _x) select 0 >> "picture");	// get picture from config
@@ -1796,7 +1796,7 @@ BIS_EVO_ListSelect =
 								ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",round (((buyTankList select _x) select 1)*EX_EVO_vehPriceMultiplier)]];//Cost
 								_upgCount = [(buyTankList select _x) select 0] call fnc_countUpgrades;
 								_name = [(buyTankList select _x) select 0] call fnc_getCfgName;
-								_text = format["Price: %2\nUpgrades available: %1",_upgCount,round (((buyTankList select _x) select 1)*EX_EVO_vehPriceMultiplier)];
+								_text = format["Price: %2\nVariants available: %1",_upgCount,round (((buyTankList select _x) select 1)*EX_EVO_vehPriceMultiplier)];
 								ctrlSetText [2010,_name];
 								ctrlSetText [2011,_text];
 								_picture = getText (configFile >> "cfgVehicles" >> (buyTankList select _x) select 0 >> "picture");	// get picture from config
@@ -1807,7 +1807,7 @@ BIS_EVO_ListSelect =
 								ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",round (((buyAirList select _x) select 1)*EX_EVO_vehPriceMultiplier)]];//Cost
 								_upgCount = [(buyAirList select _x) select 0] call fnc_countUpgrades;
 								_name = [(buyAirList select _x) select 0] call fnc_getCfgName;
-								_text = format["Price: %2\nUpgrades available: %1",_upgCount,round (((buyAirList select _x) select 1)*EX_EVO_vehPriceMultiplier)];
+								_text = format["Price: %2\nVariants available: %1",_upgCount,round (((buyAirList select _x) select 1)*EX_EVO_vehPriceMultiplier)];
 								ctrlSetText [2010,_name];
 								ctrlSetText [2011,_text];
 								_picture = getText (configFile >> "cfgVehicles" >> (buyAirList select _x) select 0 >> "picture");	// get picture from config
@@ -1818,7 +1818,7 @@ BIS_EVO_ListSelect =
 								ctrlSetText [2001,Format ["%1: %2",localize "STR_M04t132",round (((buyStatList select _x) select 1)*EX_EVO_vehPriceMultiplier)]];//Cost
 								_upgCount = [(buyStatList select _x) select 0] call fnc_countUpgrades;
 								_name = [(buyStatList select _x) select 0] call fnc_getCfgName;
-								_text = format["Price: %2\nUpgrades available: %1",_upgCount,round (((buyStatList select _x) select 1)*EX_EVO_vehPriceMultiplier)];
+								_text = format["Price: %2\nVariants available: %1",_upgCount,round (((buyStatList select _x) select 1)*EX_EVO_vehPriceMultiplier)];
 								ctrlSetText [2010,_name];
 								ctrlSetText [2011,_text];
 								_picture = getText (configFile >> "cfgVehicles" >> (buyStatList select _x) select 0 >> "picture");	// get picture from config
