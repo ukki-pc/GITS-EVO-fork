@@ -875,7 +875,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 
 					//Locked vehicles are red, otherwise white
 
-					if(_name in BIS_EVO_unlocks) then {
+					if(_name in BIS_EVO_unlockables and !(_name in BIS_EVO_unlocked)) then {
 					_index = lbSetColor [2000, _i, [1, 0, 0, 0.5]];
 					};
 					//_index = lbSetPicture [2000, _i, _pic];
@@ -894,7 +894,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 					_displayName = getText(configFile >> "CfgVehicles" >> _name >> "displayName");
 					_salesString = format["[%1] %2",_stored,_displayName];
 					_index = lbAdd[2000, _salesString];
-					if(_name in BIS_EVO_unlocks) then {
+					if(_name in BIS_EVO_unlockables and !(_name in BIS_EVO_unlocked)) then {
 					_index = lbSetColor [2000, _i, [1, 0, 0, 0.5]];
 					};
 					_i = _i + 1;
@@ -913,7 +913,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 					_displayName = getText(configFile >> "CfgVehicles" >> _name >> "displayName");
 					_salesString = format["[%1] %2",_stored,_displayName];
 					_index = lbAdd[2000, _salesString];
-					if(_name in BIS_EVO_unlocks) then {
+					if(_name in BIS_EVO_unlockables and !(_name in BIS_EVO_unlocked)) then {
 					_index = lbSetColor [2000, _i, [1, 0, 0, 0.5]];
 					};
 					_i = _i + 1;
@@ -931,7 +931,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 					_displayName = getText(configFile >> "CfgVehicles" >> _name >> "displayName");
 					_salesString = format["[%1] %2",_stored,_displayName];
 					_index = lbAdd[2000, _salesString];
-					if(_name in BIS_EVO_unlocks) then {
+					if(_name in BIS_EVO_unlockables and !(_name in BIS_EVO_unlocked)) then {
 					_index = lbSetColor [2000, _i, [1, 0, 0, 0.5]];
 					};
 					_i = _i + 1;
@@ -949,7 +949,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 						_displayName = getText(configFile >> "CfgVehicles" >> _name >> "displayName");
 						_salesString = format["[%1] %2",_stored,_displayName];
 						_index = lbAdd[2000, _salesString];
-					if(_name in BIS_EVO_unlocks) then {
+					if(_name in BIS_EVO_unlockables and !(_name in BIS_EVO_unlocked)) then {
 					_index = lbSetColor [2000, _i, [1, 0, 0, 0.5]];
 					};
 						_i = _i + 1;
