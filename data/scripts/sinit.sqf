@@ -39,8 +39,4 @@ _mgun = [] execVM "data\scripts\manVehicle.sqf";
  _handle = [] execVM "data\scripts\makehip.sqf";
  //_handle = [] execVM "data\scripts\makeShip.sqf";
 
-
-if(editor == 1) then {
-systemChat "sinit done";
-};
 Sleep 10.0;

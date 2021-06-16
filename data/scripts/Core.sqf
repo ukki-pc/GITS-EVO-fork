@@ -959,7 +959,8 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 			case 6:
 			{
 			_vec = vehicle player;
-			if(_vec != MHQ) then 
+			_isRHQ = _vec getVariable ["RHQ",false];
+			if(_vec != MHQ and !_isRHQ) then 
 			{
 			_nearestMarker = [BIS_EVO_conqueredTowns, position player] call BIS_fnc_nearestPosition;
 			_plyDist = (getPos player) distance getMarkerPos _nearestMarker;

@@ -62,7 +62,6 @@ BIS_EVO_Erec =
 	_offobj addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 	_offobj setVehicleInit "Ocap = [this] execVM 'data\scripts\submit.sqf'";
 	_pobj = [_offobj] execVM "data\scripts\objoff.sqf";
-	PLAYER SETPOS GETPOS _offobj;
 	processInitCommands;
 
 	// MANPAD ANTI-AIR defence

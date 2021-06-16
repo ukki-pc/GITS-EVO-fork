@@ -39,19 +39,21 @@ missionManager =
 	};
 
 	//Increases aggression level
-	aggressionEvaluation = 
+	changeAggression = 
 	{
-		if(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress in BIS_EVO_MissionVillages) then 
+	private ["_curTown"];
+	_curTown = BIS_EVO_MissionTowns select BIS_EVO_MissionProgress;
+		if(_curTown in BIS_EVO_MissionVillages) then 
 		{
-			aggression = aggression + 5;
+			aggression = aggression + 4;
 			if(aggression > 100 ) then {aggression = 100};
 		};
-		if(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress in BIS_EVO_MissionBigTowns) then 
+		if(_curTown in BIS_EVO_MissionBigTowns) then 
 		{
-			aggression = aggression + 15;
+			aggression = aggression + 8;
 			if(aggression > 100 ) then {aggression = 100};
 		};
-		if(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress in BIS_EVO_MilitaryObjectives) then 
+		if(_curTown in BIS_EVO_MilitaryObjectives) then 
 		{
 			aggression = aggression - 10;
 			if(aggression < 0 ) then {aggression = 0};

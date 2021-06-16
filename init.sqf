@@ -25,6 +25,14 @@ BIS_Effects_EH_Killed=compile preprocessFileLineNumbers "new_effects\killed.sqf"
 BIS_Effects_AirDestruction=compile preprocessFileLineNumbers "new_effects\AirDestruction.sqf";
 BIS_Effects_AirDestructionStage2=compile preprocessFileLineNumbers "new_effects\AirDestructionStage2.sqf";
 
+debugMessage = 
+{
+	if(editor == 1) then {
+		systemChat format ["%1",_this select 0];
+	};
+};
+
+
 BIS_Effects_globalEvent = 
 {
 	BIS_effects_gepv = _this;
@@ -288,12 +296,6 @@ buyCarList =
 for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 	buyCarList set [_loop,[(buyCarList select _loop) select 0, (buyCarList select _loop) select 1,0]];
 };
-
-	// _rand = 0 + round random (10);
-	// systemChat str _rand;
-	// if(_rand >= 8 ) then {
-	// 	_carCount = 1;	
-	// };
 
 	buyTankList = 
 	[
@@ -593,11 +595,7 @@ for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
 	buyCarList set [_loop,[(buyCarList select _loop) select 0, (buyCarList select _loop) select 1,0]];
 };
 
-	// _rand = 0 + round random (10);
-	// systemChat str _rand;
-	// if(_rand >= 8 ) then {
-	// 	_carCount = 1;	
-	// };
+
 
 	buyTankList = 
 	[

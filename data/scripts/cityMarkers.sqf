@@ -1,7 +1,6 @@
 	private ["_objective","_currentTown","_unit","_unitM","_markerobj","_vec","_dispname","_airports"];
 	#define _enemyColor "ColorBrown"
 	#define _friendlyColor "ColorGreen"
-
 	{
 	_currentTown = BIS_EVO_MissionTowns select _forEachIndex;
 	_unit = (_currentTown);
@@ -65,8 +64,6 @@ if(EGG_EVO_LoadGame == 0) then { _handle = [] execVM "data\scripts\distrUnlockab
 updCityMarkers =
 {
 	private ["_objective","_currentTown","_unit","_unitM","_markerobj","_vec","_dispname"];
-	#define _enemyColor "ColorBrown"
-	#define _friendlyColor "ColorGreen"
 	{
 	_currentTown = BIS_EVO_MissionTowns select _forEachIndex;
 	_unit = (_currentTown);
@@ -143,8 +140,7 @@ updCityMarkers =
 updObjMarker = 
 {
 	private ["_objective","_currentTown","_unit","_unitM","_markerobj","_vec","_dispname"];
-	#define _enemyColor "ColorBrown"
-	#define _friendlyColor "ColorGreen"
+
 	_objective = _this select 0;
 
 	_currentTown = BIS_EVO_MissionTowns select _objective;

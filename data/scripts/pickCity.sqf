@@ -34,7 +34,6 @@ cityToAttack = -1;
 if(cityToAttack > -1) then {hint format ['Selected: %1', BIS_EVO_Townnames select 0];}
 	else { hint 'No selection.'};
 true;";
-
 while{visibleMap} do {sleep 0.04; "cityMarker" setMarkerDir (markerDir "cityMarker" + 1);};
 
 waitUntil{!visibleMap};

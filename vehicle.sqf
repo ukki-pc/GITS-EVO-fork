@@ -145,7 +145,7 @@ _vecmarkerb =
 	{
 		_mrktype = "plp_icon_helicopterCargo";
 		_markerobj5 = createMarker["MHQ",[getpos _unit select 0,getpos _unit select 1]];
-		_markerobj5 setMarkerColor "ColorGreen";
+		_markerobj5 setMarkerColor "ColorBlue";
 		_markerobj5 setMarkerType _mrktype;
 		_markerobj5 setMarkerText "MHQ";
 		_ismhq = true;
