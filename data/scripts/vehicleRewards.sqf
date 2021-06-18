@@ -30,7 +30,6 @@ _tier1Vehs =
 	"ou_ch_46e",
 	"ou_ch_53d",
 	"PRACS_CH53",
-	"PRACS_puma330_MG",
 	"PRACS_AB212"
 ];
 

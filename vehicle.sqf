@@ -144,10 +144,12 @@ _vecmarkerb =
 	if (typeof _unit == egg_evo_MHQ) then
 	{
 		_mrktype = "plp_icon_helicopterCargo";
-		_markerobj5 = createMarker["MHQ",[getpos _unit select 0,getpos _unit select 1]];
+		_markerobj5 = createMarker["mhqmark",[getpos _unit select 0,getpos _unit select 1]];
 		_markerobj5 setMarkerColor "ColorBlue";
 		_markerobj5 setMarkerType _mrktype;
 		_markerobj5 setMarkerText "MHQ";
+		MHQMarker = _markerobj5;
+		publicVariable "MHQMarker";
 		_ismhq = true;
 	} else
 	{

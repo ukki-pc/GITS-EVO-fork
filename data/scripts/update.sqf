@@ -45,7 +45,7 @@ player addEventHandler ["hit",
 
 [] call BIS_EVO_AssignTasks;
 //Event handler to reward points to laser wielding player
-BIS_EVO_lunit=objNull;
+BIS_EVO_lunit=player;
 "BIS_EVO_lunit" addPublicVariableEventHandler {if (currentWeapon player == "Laserdesignator") then 
 {
 	[_this select 0, _this select 1, player] execVM "data\scripts\laserrew.sqf"};

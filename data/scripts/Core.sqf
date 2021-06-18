@@ -967,7 +967,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 
 				if((inrepairzone or _plyDist < 200)) then
 					{
-						[_ap] execVM "data\scripts\storeVeh.sqf";
+						[player] execVM "data\scripts\storeVeh.sqf";
 						ctrlShow [674,false]; //Storeveh page
 						closeDialog 1;
 					}

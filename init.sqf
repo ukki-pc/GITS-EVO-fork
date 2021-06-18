@@ -74,6 +74,7 @@ skillfactor = ((1 + random 2)/10);
 Spymade = 0;
 EGG_hidetotal = 6;
 
+//editori
 editor = 1; publicVariable "editor";
 
 R3F_LOG_mutex_local_verrou = false;
@@ -962,13 +963,15 @@ missionNamespace setVariable ["HCExtHideStatsOnEnemySides", false];
 };
 
 RHQMarkers = [];
-
+MHQMarker = "";
 if(isServer) then {
 //MHQ SPAWNER
 MHQ = createVehicle [egg_evo_MHQ,  getposASL LKWWEST, [], 0, "NONE"];
-MHQ setVehicleInit "veh = [this, 10, 0, 0, FALSE, FALSE] execVM ""vehicle.sqf""";
+// MHQ setVehicleInit "veh = [this, 10, 0, 0, FALSE, FALSE] execVM ""vehicle.sqf""";
+_veh = [MHQ, 10, 0, 0, FALSE, FALSE] execVM "vehicle.sqf";
 MHQ setposASL  [getposASL LKWWEST select 0, getposASL LKWWEST select 1,19];
 MHQ setDir getDir LKWWEST;
+publicVariable "MHQ";
 };
 
 

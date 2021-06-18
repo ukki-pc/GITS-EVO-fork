@@ -1738,7 +1738,6 @@ class Mission
 			text="USS NIMITZ";
 			type="plp_icon_shipCarrierBig";
 			colorName="ColorBlue";
-			angle=-8.5481033;
 		};
 		class Item90
 		{
