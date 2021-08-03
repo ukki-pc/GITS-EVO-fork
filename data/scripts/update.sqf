@@ -1,21 +1,7 @@
-switch(owner player) do {
-case 0: 
-    {
-        BIS_EVO_EngZone = reng1;
-    };
-case 1: 
-    {
-        BIS_EVO_EngZone = reng2;
-    };
-case 2: 
-    {
-        BIS_EVO_EngZone = reng3;
-    };
-case 3: 
-    {
-        BIS_EVO_EngZone = reng4;
-    };
-};
+
+_plid = owner player;
+BIS_EVO_EngZone = BIS_EVO_rengZones select _plid;
+
 /*
 	if(player == enge1) then {BIS_EVO_EngZone = reng1};
 	if(player == enge2 ) then {BIS_EVO_EngZone = reng2};
@@ -37,7 +23,7 @@ Mpage =[true,false,false,false,false];
 // Event handler to know when a player was attacked by an enemy for healing.
 player addEventHandler ["hit", 
 {
-	if (side (_this select 1) == east) then 
+	if (side (_this select 1) == EGG_EVO_ENEMYFACTION) then 
 	{
 		BIS_EVO_fattack = true;
 	};

@@ -1364,39 +1364,18 @@ if (player hasWeapon "ItemRadio") then
 
 
 			//Vehicle is locked
-			if ((stored == 0 and !(_item in BIS_EVO_unlocks)or editor == 1)) then 
+			if ((stored == 0 and !(_item in BIS_EVO_unlocks) or editor == 1)) then 
 			{
 				if ((((money)) >= round mcost*EX_EVO_vehPriceMultiplier) or (editor == 1)) then 
 					{
 								if(inrepairzone and VehiclePlaced == 1) then 
 									{
 									_place = [_ap, _item] execVM "actions\static\makeVehicle.sqf";
-									}
-									else{
-											switch(_buySubPage) do
-											{
-												case 1:
-												{
-													buyCarList set [_index,[(buyCarList select _index) select 0,(buyCarList select _index) select 1,((buyCarList select _index) select 2)+1]];
-													publicVariable "buyCarList";
-												};
-												case 2:
-												{
-													buyTankList set [_index,[(buyTankList select _index) select 0,(buyTankList select _index) select 1,((buyTankList select _index) select 2)+1]];
-													publicVariable "buyTankList";	
-												};
-												case 3:
-												{
-													buyAirList set [_index,[(buyAirList select _index) select 0,(buyAirList select _index) select 1,((buyAirList select _index) select 2)+1]];
-													publicVariable "buyAirList";	
-												};
-												case 4:
-												{
-													buyStatList set [_index,[(buyStatList select _index) select 0,(buyStatList select _index) select 1,((buyStatList select _index) select 2)+1]];
-													publicVariable "buyStatList";
-												};
-											};
-										};
+									};
+									if(!inrepairzone or VehiclePlaced != 1) exitWith 
+									{
+										hint "You cannot buy from here!";
+									};
 	
 								// _pic = "img\support\lock_on_ca.paa";
 								// lbSetPicture [2000, _index, _pic];

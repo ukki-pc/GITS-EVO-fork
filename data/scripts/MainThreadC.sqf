@@ -8,6 +8,12 @@ EB_airload1=-1;
 EB_fieldRepair=-1;
 repaircooldown = 0;
 
+fnc_spotVeh = 
+{
+	_obj = cursorTarget;
+	if(side _obj == EGG_EVO_ENEMYFACTION) then {_tmp = [_obj] execVM "data\scripts\spotMark.sqf"};
+};
+
 //Takes vehicle classname and returns upgrade count
 fnc_countUpgrades = 
 {
@@ -91,6 +97,9 @@ fnc_countUpgrades =
  			 		{
  			 		};
  			 	};
+				_zone = (BIS_EVO_rengZones select (owner player));
+				_zone setVariable ["lvl",perkEngLVL];
+				publicVariable "_zone";
  			};
 
 			//Pilot perk
@@ -227,26 +236,57 @@ EGG_EVO_stationRepair =
 
 BIS_EVO_Repair = 
 {
+	canRefuel = false;
+	canRepair = false;
+	canAmmo = false;
+	if !(inrepairzone or inFarp) exitWith {};
 	_vec = (vehicle player);
 	_type = typeOf vehicle player;
+	if(inFarp) then //Calculate the current level of farp
+	{
+		_playerIn = objNull;
+		// _inZone = [position player select 0,position player select 1] nearObjects ["EmptyDetector", 50];
+		// if(_inZone!="") then {_farpLVL = _inZone getVariable ["lvl",0]};
+		{sleep 0.1;if(vehicle player in list _x)exitWith{_playerIn =_x}}forEach BIS_EVO_rengZones;
+		_farpLVL = _playerIn getVariable ["lvl",0];
+
+		if(_farpLVL > 0) then {canRefuel = true};
+		if(_farpLVL > 0) then {canRepair = true};
+		if(_farpLVL > 1) then {canAmmo = true};
+	};
+	if(inrepairzone) then
+	{
+		canRefuel = true;
+		canRepair = true;
+		canAmmo = true;
+	};
+
+	// _playerIn = "";
+	// {sleep 0.2;if(player in list _x)exitWith{_playerIn =_x}}forEach BIS_EVO_rengZones;
 //	hintsilent format["Type: %1",(_type)];
+
+	_interrupt = ((_vec != player) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and (local _vec));
+	_allowed = (((getDammage _vec > 0 and canRepair) or (fuel _vec < 0.99) and canRefuel) and !(_vec isKindOf "Man"));
+
 	if(getDammage _vec > 0 or fuel _vec < 0.99 and not (_vec isKindOf "Man") ) then
 	{
-		if((inrepairzone) and repaircooldown == 0 and (_vec != player) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and (local _vec)) then
+		if((inrepairzone or inFarp) and repaircooldown == 0 and _allowed) then
 		{
 			 titleText [localize "STR_M04t83", "PLAIN DOWN",0.3];//Servicing
-			 for [{_loop2=0}, {_loop2<1}, {_loop2=_loop2}] do
+			 while {_interrupt and _allowed} do
 			 {
-			    sleep 0.500;	    		    
-			    if (getDammage _vec > 0) then {_vec setDammage ((getDammage _vec)-0.0100);};
-			    if (Fuel _vec < 1) then {_vec setFuel ((Fuel _vec)+0.0200);};
+			    sleep 0.500;
+			    if (getDammage _vec > 0 and canRepair) then {_vec setDammage ((getDammage _vec)-0.0100);};
+			    if (Fuel _vec < 1 and canRefuel) then {_vec setFuel ((Fuel _vec)+0.0200);};
 			    if (getDammage _vec == 0 and Fuel _vec == 1) then {_loop2=1;};
-			    if(_vec != vehicle player or speed _vec < -2 or speed _vec > 2 or position _vec select 2 > 2.0) then {_loop2=1;titleText [localize "STR_M04t84", "PLAIN DOWN",0.3];};
-			    _dam = (getDammage _vec)*100;
+			    _interrupt = ((_vec != player) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and (local _vec));
+				if(!_interrupt) then {_loop2=1;titleText [localize "STR_M04t84", "PLAIN DOWN",0.3];};
+				_allowed = (((getDammage _vec > 0 and canRepair) or (fuel _vec < 0.99) and canRefuel) and !(_vec isKindOf "Man"));
+				_dam = (getDammage _vec)*100;
 			    _ful = (Fuel _vec)*100;
 			    hint format["Damage: %1\nFuel: %2",Round _dam,Round _ful];
 			};
-			_vec setVehicleAmmo 1;
+			if(canAmmo) then {_vec setVehicleAmmo 1};	
 			if (_vec isKindof "Helicopter") then
 			{
 				_vec removeMagazine "LaserBatteries";
@@ -436,14 +476,11 @@ BIS_EVO_CTime =
 */
 BIS_EVO_CityClear = 
 {
-	switch (BIS_EVO_MissionProgress) do
-	{
+
 	player sideChat format ["BIS_EVO_CityClear:%1",BIS_EVO_MissionProgress];
-	_currentcity = (BIS_EVO_MissionProgress-1);
 	_city = (BIS_EVO_Townnames select 0);
 	[West,"HQ"] SideChat format[localize "STR_M04t61",_city];//%1 IS CLEAR OF ENEMY, GREAT JOB MEN
-playSound "CityClear";
-	};
+	playSound "CityClear";
 	[] call BIS_EVO_AssignTasks;
 	_currentprog = BIS_EVO_MissionProgress;
 };
@@ -462,17 +499,56 @@ BIS_EVO_Surrender =
 	sleep 2;
 };
 
+BIS_EVO_locationActions =
+{
+	if(inrepairzone) exitWith {canRecruit = true; canFasttravel = true};
+
+if(recruitPlaces == 1 or recruitPlaces == 2 or recruitPlaces == 3) then
+{
+	_nearestPoint = [BIS_EVO_conqueredTowns, position player] call BIS_fnc_nearestPosition;
+	_objDist = player distance getMarkerPos _nearestPoint;
+
+	if(_objDist <= 100) then 
+	{					
+		canRecruit = true;
+		 canFasttravel = true
+	}
+	else{
+		canRecruit = false;
+		 canFasttravel = false
+	};
+}else {canRecruit = true};
+};
+
 BIS_EVO_UpdateUI =
 {
-	if(inrepairzone) then 
+	//Welcome to if hell
+	if(canRepair) then {4 cutRsc ["UIrep","PLAIN"];}
+	else{4 cutRsc ["Default","PLAIN"];};
+
+	if(canAmmo) then {5 cutRsc ["UIammo","PLAIN"];}
+	else{5 cutRsc ["Default","PLAIN"];};
+
+	if(canRefuel) then {7 cutRsc ["UIgasoline","PLAIN"];}
+	else{7 cutRsc ["Default","PLAIN"];};
+
+	if(canFasttravel) then {6 cutRsc ["UIfastTravel","PLAIN"];}
+	else{6 cutRsc ["Default","PLAIN"];};
+
+	if(canRecruit) then {8 cutRsc ["UIrecruit","PLAIN"];}
+	else{8 cutRsc ["Default","PLAIN"];};
+
+
+	/*
+	if(inrepairzone) exitWith 
 	{
 		4 cutRsc ["UIrep","PLAIN"];
 		5 cutRsc ["UIammo","PLAIN"];
 		6 cutRsc ["UIfastTravel","PLAIN"];
 		7 cutRsc ["UIgasoline","PLAIN"];
 		8 cutRsc ["UIrecruit","PLAIN"];
-	}
-	else
+	};
+	if(!inrepairzone) then
 	{
 		4 cutRsc ["Default","PLAIN"];
 		5 cutRsc ["Default","PLAIN"];
@@ -480,6 +556,7 @@ BIS_EVO_UpdateUI =
 		7 cutRsc ["Default","PLAIN"];
 		8 cutRsc ["Default","PLAIN"];
 	};
+	*/
 };
 
 //_base_west_surrender_array = west_surrender_array;
@@ -488,17 +565,19 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	//[] call BIS_EVO_CWeath;
 //	sleep 1.011;
 	inrepairzone = (vehicle player in list AirportIn and triggerActivated airportIn) or (vehicle player in list farp1 and triggerActivated farp1) or (vehicle player in list farp2 and triggerActivated farp2) or (vehicle player in list farp3 and triggerActivated farp3) or (vehicle player in list farp4 and triggerActivated farp4) or (vehicle player in list dock1) or (vehicle player in list LHDin);
-	//inrepairzone = (vehicle player in list reng1) or (vehicle player in list reng2) or (vehicle player in list reng3) or (vehicle player in list reng4);	
+	inFarp = (vehicle player in list reng1) or (vehicle player in list reng2) or (vehicle player in list reng3) or (vehicle player in list reng4);	
 	[] call BIS_EVO_Repair;
 //	[] call EGG_EVO_fieldRepair;
 	[] call EGG_EVO_stationRepair;
 	sleep 1.011;
 	if (money > _tscore and alive player) then {[] call BIS_EVO_Rank};
 	if (BIS_EVO_MissionProgress != _currentprog) then {[] call BIS_EVO_CityClear};
+	[] call	BIS_EVO_locationActions;
 	sleep 1.011;
 	//[] call BIS_EVO_CTime;
 	[] call BIS_EVO_UpdateUI;
 	sleep 1.011;
+	if(currentWeapon player in BIS_EVO_spottingWeapons and perkSniperLVL > 0) then {call fnc_spotVeh};
 	//[] call BIS_EVO_HPM; //DUNNO WHAT IS
 //	[] call BIS_EVO_Surrender;
 };

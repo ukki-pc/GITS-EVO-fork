@@ -28,7 +28,6 @@ _tier1Vehs =
 	"BAF_Merlin_HC3_D",
 	"yup_sh60f",
 	"ou_ch_46e",
-	"ou_ch_53d",
 	"PRACS_CH53",
 	"PRACS_AB212"
 ];

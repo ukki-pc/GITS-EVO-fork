@@ -226,6 +226,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		(units _pilot select 1) moveInGunner _heli0;
 		//[_unit, _string, _color, _markerType, _enableDir]
 		_sumark = [_heli0,"","ColorRed","plp_icon_helicopter",false] execVM "data\scripts\customMarker.sqf";
+		_heli0 addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\bury.sqf"}];
 		_wp = _pilot addWaypoint [_pos, 10];
 		_wp2 = _pilot addWaypoint [_posback, 10];
 		{_x setBehaviour "careless"} forEach (units _pilot);
@@ -347,6 +348,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 
 			_guardm = _array select 0;
 			_vec = _array select 1;
+			_vec addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\bury.sqf"}];
 			_sumark = [_vec,"Mec","ColorBlack"] execVM "data\scripts\customMarker.sqf";
 			[position _alist,_guardm,_objPos,_alist] call BIS_EVO_Erefway;
 			sleep 1;

@@ -21,9 +21,6 @@ enableItemsDropping = 0;
 //Arty and logistics
 #include "R3F_ARTY_AND_LOG\desc_include.h" 
 
-//Macros
-#include "macros.h"
-
 //describtion.ext for Lurchi's AC-130 Script
 //Dialog
 #include "LDL_ac130\Dialog\dialog.hpp"

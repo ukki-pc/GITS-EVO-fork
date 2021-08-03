@@ -196,6 +196,13 @@ BIS_EVO_Erec =
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
 		Sleep 0.6;
 	};
+
+
+//Ship defence
+	if((BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) in BIS_EVO_CoastalTowns) then 
+	{
+
+	};
 	
 //Radio defence
 	if(_inf > 11) then

@@ -57,7 +57,6 @@ Contact & Bugreport: cwadensten@gmail.com
 
 if (!isServer) exitWith {};
 //waituntil {(EGG_sinit==1)};
-
 // Define variables
 _unit = _this select 0;
 _delay = if (count _this > 1) then {_this select 1} else {30};
@@ -137,7 +136,9 @@ _markername = _unitname;
 
 _vecmarkerb = 
 {
+	private ["_markername","_markerobj5","_name","_need"];
 	_unit = _this select 0;
+	_name = _this select 1;
 //	hint format["name: %1",_unitname];
 
 //MHQ
@@ -148,8 +149,6 @@ _vecmarkerb =
 		_markerobj5 setMarkerColor "ColorBlue";
 		_markerobj5 setMarkerType _mrktype;
 		_markerobj5 setMarkerText "MHQ";
-		MHQMarker = _markerobj5;
-		publicVariable "MHQMarker";
 		_ismhq = true;
 	} else
 	{
@@ -199,7 +198,7 @@ while {_run} do
 			_timeout = time + _deserted;
 			sleep 0.1;
 //EGG adding
-			[_unit] call _vecmarkerb;
+			[_unit, _name] call _vecmarkerb;
 		 	waitUntil {( (_timeout < time) or (! alive _unit) or ({alive _x} count crew _unit > 0) )};
 //EGG adding
 			if !(isNil _markerobj5) then
@@ -257,7 +256,7 @@ while {_run} do
 			_dead = false;
 
 	//EGG adding
-			[_unit] call _vecmarkerb;
+			[_unit, _name] call _vecmarkerb;
 			// Check respawn amount
 			if !(_noend) then {_rounds = _rounds + 1};
 			if ((_rounds == _respawns) and !(_noend)) then {_run = false;};
@@ -311,7 +310,7 @@ while {_run} do
 		_dead = false;
 
 //EGG adding
-		[MHQ] call _vecmarkerb;
+		[MHQ,_name] call _vecmarkerb;
 		// Check respawn amount
 		if !(_noend) then {_rounds = _rounds + 1};
 		if ((_rounds == _respawns) and !(_noend)) then {_run = false;};
@@ -324,7 +323,7 @@ while {_run} do
 //add a marker for stationary empty vehicle without _deserted>0
 	if ( (_unit distance _position > 10) and (getDammage _unit < 0.51) and (Fuel _unit > 0.2) and ({alive _x} count crew _unit <1) and (_deserted==0) and (isNil _markerobj5) )then 
 	{
-		[_unit] call _vecmarkerb;
+		[_unit,_name] call _vecmarkerb;
 	};
 //check if vehicle is healthy and occupied
 	if ( (_unit distance _position > 10) and (getDammage _unit < 0.8) and (Fuel _unit > 0.2) and ({alive _x} count crew _unit >0) and !(isNil _markerobj5) and (!(typeof _unit == egg_evo_MHQ)) )then 
@@ -334,7 +333,7 @@ while {_run} do
 
 	if ( (typeof _unit == egg_evo_MHQ)and (isNil _markerobj5) ) then
 	{
-		[_unit] call _vecmarkerb;
+		[_unit,_name] call _vecmarkerb;
 	};
 	if ( (typeof _unit == egg_evo_MHQ)and !(isNil _markerobj5) ) then
 	{

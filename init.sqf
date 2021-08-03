@@ -1,8 +1,8 @@
 enableEnvironment true;
 //creating center east/ setting relations
-
+//Macros
+#include "macros.h"
 //
-
 //rug_dsai settings [EAST, WEST, GUER, CIV, sideEnemy]
 RUG_DSAI_SIDES = ["RUG_DSAIArab","RUG_DSAI","RUG_DSAIArab","RUG_DSAIArab","RUG_DSAIArab"];
 
@@ -79,7 +79,6 @@ editor = 1; publicVariable "editor";
 
 R3F_LOG_mutex_local_verrou = false;
 
-
 spawntype = param1;
 helicopterhitch = param2;
 EVOhour = paramsArray select 2;
@@ -154,7 +153,7 @@ if (editor == 1) then
 	EGG_EVO_FactionParam = 1;
 	EGG_EVO_LoadGame = 0;
 	BIS_EVO_vehRespawnCount = 2;
-	hint "DEBUG MODE ON | Version 0.6";
+	["DEBUG MODE ON | Version 0.6"] dm;
 };
 
 basebeam = 2;
@@ -176,17 +175,16 @@ if (spawntype == 2) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" 
 	BIS_EVO_MissionVillages = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11","mobj12","mobj2","mobj13","mobj14","mobj15","mobj16","mobj17","mobj18","mobj19","mobj20","mobj21","mobj22","mobj23","mobj24","mobj25","mobj26","mobj26"];// Each mission objectives town marker.
 	BIS_EVO_MissionBigTowns = ["mobjB1","mobjB2","mobjB3","mobjB4","mobjB5","mobjB6"];
 	BIS_EVO_MilitaryObjectives = ["mobjC1","mobjC2","mobjc3","mobjC4","mobjC5","mobjC6","mobjC7","mobjC8","mobjC9","mobjC10","mobjC11"];
-	BIS_EVO_CoastalTowns = ["mobj11","mobj4","mobj3","mobj5","mobjB2","mobj12","mobj9"];
+	BIS_EVO_CoastalTowns = ["mobj11","mobj4","mobj3","mobj5","mobjB2","mobj12","mobj9","mobjC6"];
 	BIS_EVO_MissionTowns = BIS_EVO_MissionTowns + BIS_EVO_MissionVillages + BIS_EVO_MissionBigTowns +BIS_EVO_MilitaryObjectives;
 
 //These are filled as you conquer them, additionally you can set towns conquered as default
 BIS_EVO_conqueredTowns = [];
+BIS_EVO_rengZones = [reng1,reng2,reng3,reng4];
 
 	//IF new game selected start the game without hesitation
 	if(EGG_EVO_LoadGame == 0) then {gameBegin = 1}
 	else{hint "Load game selected please paste the saved data into the console"};
-
-
 
 	EGG_EVO_PLAYERFACTION = nil;
 	EGG_EVO_ENEMYFACTION = nil;
@@ -679,19 +677,19 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	["UH60M_MEV_EP1",10],									// Blackhawk (MMG)
 	["CH_47F_EP1",10],							// Chinook
 	["BAF_Merlin_HC3_D",10],							// Chinook
-	["UH60M_EP1",10],							// Blackhawk (GAT)						
+	["UH60M_EP1",10],							// Blackhawk (GAT)					
+	["OFrP_Puma_DE_Pirate",25],		
 	["PRACS_AB212_CAS",30],									// Blackhawk (MMG)
 	["ibr_as350_armed",30],								// Viper
 	["UH1Y",50],
 	["kiowa",60],
 	["Mi171Sh_rockets_CZ_EP1",80],				// Mi-17 (Rockets)
-	["DAF_Cougar_Gunship",80],				// Mi-17 (Rockets)
 	["AW159_Lynx_BAF",80],						// Wildcat
 	["PRACS_RAH6",100],							// Littlebird (Armed)	
 	["yup_SH60B",90],
 	["FRL_UH60M_MR",120],	
 	["PRACS_AH1S",190],								// Cobra
-	["ffaa_famet_tigre",190],
+	["OFrP_Tiger_HAD_CE",190],
 	["AH1Z",190],								// Cobra                                                                                                                                                           
 	["AH64D",200],								// Apache (AT)
 	/*---Planes---*/
@@ -762,34 +760,15 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 	];
 };
 
-
-EGG_EVO_allAmbs = ["TK_WarfareBUAVterminal_Base_EP1","BAF_Offroad_D","EB_LR_Supply_D_BAFX","RE_landrover6x6_BAF"];
+EGG_EVO_allAmbs = ["Land_A_tent","BAF_Offroad_D","EB_LR_Supply_D_BAFX","RE_landrover6x6_BAF"];
 
 BIS_EVO_GlobalSleep = 0.1; // Global sleep is used after spawning a unit.
 // Sub mission conditions
-BIS_EVO_MissionProgress = -1; // counts towns captured, when it hits 11 , mission is over.
+BIS_EVO_MissionProgress = -1; 
 BIS_EVO_Onmission=false; 
 BIS_EVO_sobj1=false;
-//BIS_EVO_radios = [radio1]; // Each radio in each town
 reinforcements=false;
 reinforceRange = 2600;
-
-
-// CHANGE LATER??
-BIS_EVO_MissionTowns2 = 
-[
-	["mobj1",false],
-	["mobj2",false],
-	["mobj3",false],
-	["mobj4",false],
-	["mobj5",false],
-	["mobj6",false],
-	["mobj7",false],
-	["mobj8",false],
-	["mobj9",false],
-	["mobj10",false],
-	["mobj11",false]
-];
 
 constructList = 
 [
@@ -840,7 +819,7 @@ BIS_EVO_vdist=viewparam;                          // clients saved view distance
 BIS_EVO_avdist=viewparam;    			   // clients saved air vehicle view distance
 //adding variable to set terrain grid and store it for each player
 BIS_EVO_grid=grasslevel;    			   // clients saved terrain option
-BIS_EVO_gdate = [2007,7,4,EVOhour,59];        // Current date and time
+BIS_EVO_gdate = [2007,13,8,EVOhour,59];        // Current date and time
 
 BIS_EVO_lives=500;				   // Amount of deaths allowed in a game before it ends when paarm is active
 BIS_EVO_PlayerSkill = 0.0;
@@ -963,12 +942,17 @@ missionNamespace setVariable ["HCExtHideStatsOnEnemySides", false];
 };
 
 RHQMarkers = [];
-MHQMarker = "";
+inFarp = false;
+canRefuel = false;
+canRepair = false;
+canAmmo = false;
+canFasttravel = false;
+canRecruit = false;
 if(isServer) then {
 //MHQ SPAWNER
 MHQ = createVehicle [egg_evo_MHQ,  getposASL LKWWEST, [], 0, "NONE"];
 // MHQ setVehicleInit "veh = [this, 10, 0, 0, FALSE, FALSE] execVM ""vehicle.sqf""";
-_veh = [MHQ, 10, 0, 0, FALSE, FALSE] execVM "vehicle.sqf";
+_veh = [MHQ] execVM "data\scripts\vehicleMHQ.sqf";
 MHQ setposASL  [getposASL LKWWEST select 0, getposASL LKWWEST select 1,19];
 MHQ setDir getDir LKWWEST;
 publicVariable "MHQ";
@@ -1170,6 +1154,8 @@ EGG_EVO_miscamwepsB = ["EB_Bo_GBU12","EB_Bo_FAB250","Bo_GBU12_LGB","Bo_GBU12_LGB
 EGG_EVO_LaserLauncher = ["EB_AT2_Launcher","BombLauncher","BombLauncherF35","BombLauncherA10","HellfireLauncher","GLT_GBU12_Launcher","GLT_AGM154_Launcher","GLT_GBU53_Launcher","GLT_FFARLauncher_laser","GLT_Ch29LauncherLaser"];
 
 BIS_EVO_aaweapons = ["M_Vikhr_AT","M_9M311_AA","M_R73_AA","M_Strela_AA","M_Igla_AA","M_Stinger_AA","M_Sidewinder_AA","M_Sidewinder_AA_F35","GLT_Sidewinder_AA","GLT_SidewinderX_AA","GLT_AIM120_AA","GLT_AIM7E_AA","GLT_AIM9M_AA","GLT_AIM9X_AA","GLT_AIM7_AA","GLT_AIM54_AA","GLT_R3_AA","GLT_R27_AA","GLT_R73_AA","GLT_R77_AA","GLT_R550_AA","IkaR_F14_AIM9_ir","IkaR_F14_AIM54_ir","RKTF15_AIM9","RKTF15_AIM120","ffaa_Mistral_AA"]; // All ammo that will set off a missile warning
+
+BIS_EVO_spottingWeapons = ["EB_TIscanner","LRTV_ACR","Laserdesignator","Binocular_Vector","Binocular"];
 
 //BIS_EVO_pallammo = ["pipebomb","Laserbatteries","HandGrenade_West","HandGrenade_West","30Rnd_556x45_Stanag","30Rnd_556x45_Stanag","30Rnd_556x45_Stanag","30Rnd_556x45_Stanag","7rnd_45ACP_1911","7rnd_45ACP_1911","7rnd_45ACP_1911","7rnd_45ACP_1911"];
 // The players default load out

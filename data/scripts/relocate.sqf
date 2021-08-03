@@ -12,6 +12,7 @@ travelCost = 0;
 travelMarker = objNull;
 
 BIS_EVO_LHDMarkers = ["LHD1Marker"];
+BIS_EVO_SHIPSPAWNS = ["ship1","ship2"];
 _lowRHQ = format ["%1amb",player];
 _vec =  (vehicle player);
 _isRHQ = _vec getVariable ["RHQ",false];
@@ -27,10 +28,10 @@ _rhqPositions = RHQMarkers;
 };
 */
 
-MHQMarker = "mhqmark";
+
 _rhqPositions = RHQMarkers;
 
-TeleportLocations = BIS_EVO_conqueredTowns + _rhqPositions + [MHQMarker] + BIS_EVO_LHDMarkers;
+TeleportLocations = BIS_EVO_conqueredTowns + _rhqPositions + ["mhqmark"] + BIS_EVO_LHDMarkers + BIS_EVO_SHIPSPAWNS;
 
 _nearestPoint = [TeleportLocations, position player] call BIS_fnc_nearestPosition;
 
@@ -84,7 +85,7 @@ deleteMarker "markerRelo";
 if(cityToTransfer < 0) exitWith{  hint "Relocation cancelled!"};
 
 _tpLoc = teleportLocations select cityToTransfer;
-_isViableLoc = (_tpLoc in BIS_EVO_conqueredTowns or _tpLoc in BIS_EVO_LHDMarkers or _tpLoc in _rhqPositions or _tpLoc ==  "mhqmark");
+_isViableLoc = (_tpLoc in BIS_EVO_conqueredTowns or _tpLoc in BIS_EVO_LHDMarkers or _tpLoc in _rhqPositions or _tpLoc ==  "mhqmark" or _tpLoc in BIS_EVO_SHIPSPAWNS);
 _enoughMoney = (travelCost <= money);
 _traveAllowed = ((vehiclePlaced != 0) and !R3F_LOG_mutex_local_verrou and _enoughMoney and !(_vec isKindOf "Air") and !(_vec isKindOf "Ship"));
 _inVehicle = (vehicle player != player);
@@ -96,7 +97,15 @@ if(_isViableLoc and _traveAllowed) then
   {
       //MHQ TELEPORT
     if(_tpLoc ==  "mhqmark") exitWith {
-      [player] execVM "data\scripts\auswahlw.sqf";
+      [player,MHQ] execVM "data\scripts\auswahlw.sqf";
+    // systemChat format ["location: %1, MHQMarker: %2",_tpLoc,MHQMarker];  
+      };
+
+        if(_tpLoc in  BIS_EVO_SHIPSPAWNS) exitWith {
+          _ships = [bam,p72];
+         _i = BIS_EVO_SHIPSPAWNS find _tpLoc;
+         _svec = _ships select _i;
+      [player,_svec] execVM "data\scripts\auswahlw.sqf";
     // systemChat format ["location: %1, MHQMarker: %2",_tpLoc,MHQMarker];  
       };
 
@@ -110,9 +119,11 @@ if(_isViableLoc and _traveAllowed) then
   }
   else
   {
+    _crew = count crew vehicle player;
     if((_tpLoc in _rhqPositions) or (_tpLoc ==  "mhqmark") or (_isRHQ) or (_isMHQ)) exitWith {hint "Cannot Fast Travel There With a Vehicle"};
+    if(_crew > 1) exitWith {hint "You cannot fast travel with AI"};
     vehicle player setpos getMarkerPos (_tpLoc);
-    {vehicle _x setpos _tpLoc} forEach crew vehicle player;
+  //  {vehicle _x setpos _tpLoc} forEach crew vehicle player;
     if(_tpLoc in BIS_EVO_LHDMarkers) then 
     {
       //Player setposASL [getpos player select 0,getpos player select 1,18];

@@ -23,20 +23,13 @@ _sin = [] execVM "data\scripts\sinitS.sqf";
 Mthread = [] execVM "data\scripts\MainThread.sqf";
 _mgun = [] execVM "data\scripts\manVehicle.sqf";
 
+
 //FH is field hospital objct
 //wcam = fh addaction ["Save mission to clipboard", "actions\saveMission.sqf",0,1, false, true,"test2"];
 //wcam = hq addAction ["Start assault", "data\scripts\pickCity.sqf", [], -1, false, true, ""];
 
 
 //_reinf = [] execVM "data\scripts\reinforce.sqf";
-
-//_handle = [] execVM "data\scripts\makespetz.sqf";
- _handle = [] execVM "data\scripts\makesuB.sqf";
- _handle = [] execVM "data\scripts\makehindv.sqf";
- _handle = [] execVM "data\scripts\makesu.sqf";
- _handle = [] execVM "data\scripts\makeka.sqf";
- _handle = [] execVM "data\scripts\makehindp.sqf";
- _handle = [] execVM "data\scripts\makehip.sqf";
- //_handle = [] execVM "data\scripts\makeShip.sqf";
+_handle = [] execVM "data\scripts\activeReinforce.sqf";
 
 Sleep 10.0;
