@@ -79,11 +79,79 @@ _EVO_Clean =
 	deleteMarker _mark;
 };	
 */
+
+//Counts alive units in a vehicle
+countAliveCrew = 
+{
+	_crew = _this select 0;
+	_numAlive = 0;
+
+	{if(alive _x)then {_numAlive = _numAlive + 1}}forEach _crew;
+
+	_numAlive;
+};
+
 _EVO_timesync =
 {
 	BIS_EVO_gdate = date;
 	BIS_EVO_gdate_packed = str (BIS_EVO_gdate); publicvariable "BIS_EVO_gdate_packed";
 	_oldhour = (date select 3);
+};
+
+//Picks weighted random from fed array
+weightedRandomSimple = 
+{
+_numbers = _this select 0;
+_totalTable = [];
+_total = 0;
+_result = 0;
+
+	{
+		_total = _total + _x;
+		_totalTable set [_forEachIndex, _total];
+	}forEach _numbers;
+
+	_rnd = round(random(_total));
+	//Find random number which index it belongs to
+	{
+		if(_rnd <= _x) exitWith {_result = _forEachIndex};
+	}forEach _totalTable;
+
+	//systemChat format ["totalTable: %1. total: %2, result: %3",_totalTable,_total,_result];
+
+	_result;
+};
+
+fnc_waterPatrol = 
+{
+	private ["_wp1","_ship","_group","_midPos","_radius"];
+
+	#define minRange 700
+	#define maxRange 2000
+	#define shipWpLoc [_midPos, minRange, maxRange, 0, 2, 10,0] call BIS_fnc_findSafePos
+	#define initPos [0,0,0]
+
+	_group =  _this select 0;
+	_midPos = _this select 1;
+	_ship = _this select 2;
+
+	_wp1 = _group addWaypoint [initPos, 1];
+
+	while{[crew _ship] call countAliveCrew > 0} do
+	{
+		_wp1 setWaypointPosition [shipWpLoc,1];
+		waitUntil{sleep 5; ((_ship distance waypointPosition _wp1) < 200)};
+	};
+};
+
+chance = 
+{
+	_number = _this select 0;
+	_rnd = round (random(100));
+
+	//systemChat format ["got %1, generated %2",_number,_rnd];
+
+	_rnd <= _number;
 };
 
 for [{_loop=0}, {_loop<1}, {_loop=_loop}] do

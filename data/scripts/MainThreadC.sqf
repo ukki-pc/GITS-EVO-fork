@@ -559,6 +559,9 @@ BIS_EVO_UpdateUI =
 	*/
 };
 
+
+
+
 //_base_west_surrender_array = west_surrender_array;
 for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 {

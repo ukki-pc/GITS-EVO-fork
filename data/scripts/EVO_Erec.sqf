@@ -1,3 +1,4 @@
+
 BIS_EVO_Erec =
 {
 	#define easyTreshold 100
@@ -53,6 +54,25 @@ BIS_EVO_Erec =
 
 	_outpoints = [_pos1,_pos2,_pos3,_pos4];	
 	systemChat format ["Creating defense with %1: inf, %2: mec, %3: aastat, %4: stat", _inf,_mec,_statAA,_stat];
+
+	//Ship defence
+	if((BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) in BIS_EVO_CoastalTowns) then 
+	{
+		_rnd = [[8,7,4,10,20,2,8,10]] call weightedRandomSimple;
+		_vecT = EGG_EVO_ENEMYSHIPS select _rnd;
+
+		_pos = getMarkerPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
+		_shipPos =  [_pos, 700, 1400, 0, 2, 10,0] call BIS_fnc_findSafePos;
+		_multp = [-1,1];
+
+		_array = [_vecT,_shipPos,(EGG_EVO_ENEMYFACTION),300,180,0] call BIS_EVO_CreateVehicle;
+		_grp = _array select 0;
+		_vec = _array select 1;
+
+		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
+
+	[_grp,_pos,_vec] spawn fnc_waterPatrol;
+	};
 
 	//Officer
 	_type = EGG_EVO_meofficer select 0;
@@ -196,13 +216,6 @@ BIS_EVO_Erec =
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
 		Sleep 0.6;
 	};
-
-
-//Ship defence
-	if((BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) in BIS_EVO_CoastalTowns) then 
-	{
-
-	};
 	
 //Radio defence
 	if(_inf > 11) then
@@ -244,7 +257,7 @@ BIS_EVO_Erec =
 	};
 
 	//Radio defence2
-	//player sideChat format ["Radio defence2:%1:%2",_i,_inf];
+	player sideChat format ["Radio defence2:%1:%2",_i,_inf];
 	if(_inf > 11) then
 	{
 		Sleep 0.6;

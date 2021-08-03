@@ -95,9 +95,77 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		deleteVehicle _ural;
 	};
 
+	BIS_EVO_SHIPSUPPORT = {
+
+		_rnd = [[8,7,4,10,20,2,8,10]] call weightedRandomSimple;
+		_vecT = EGG_EVO_ENEMYSHIPS select _rnd;
+
+		_targetPos = getMarkerPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
+		_startPoints = ["EnemyAir01","EnemyAir02","EnemyAir03","EnemyAir04","EnemyAir05","EnemyAir06","EnemyAir07","EnemyAir08"];
+		_startPos = "";
+		_targetMarker = "";
+		_dist = 5000;
+		_newDist = 0;
+		_count = ((count _startPoints)-1);
+		_startPoses = [];
+
+		//DETERMINE THE CLOSEST REINFORCE POINT
+		for [{_loop=0}, {_loop<count _startPoints}, {_loop=_loop+1}] do 
+		{
+			_targetMarker = _startPoints select _loop;
+			_newDist = _targetPos distance (getMarkerPos _targetMarker);
+			if(_newDist < _dist ) then {_startPoses = _startPoses + [_startPoints select _loop]; _dist = _newDist};
+		};
+
+		_rnd = round(random(count _startPoses-1));
+		_startPos = _startPoses select _rnd;
+
+
+		systemChat format ["Selected marker was: %1",_startPos];
+
+		/*
+		_allobj = BIS_EVO_CoastalTowns;
+		_reinforceTowns = [];
+
+		//Enemy Coastal towns reinforce
+		for [{_loop=0}, {_loop<count _allobj}, {_loop=_loop+1}] do 
+		{
+			//DETERMINE THE CLOSEST REINFORCE POINT
+			if !(_allobj select _loop == BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) then 
+			{
+				_targetMarker = _allobj select _loop;
+				_dist = getMarkerPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) distance getMarkerPos _targetMarker;
+
+				if(_dist <= reinforceRange) then 
+				{
+					_reinforceTowns = _reinforceTowns + [_allobj select _loop]; 
+				};
+			}
+			else 
+			{
+				//systemChat "Banned town... SKIPPING!";
+			};
+			sleep BIS_EVO_GlobalSleep;
+		};
+
+		_startPos = GetMarkerPos (_reinforceTowns select (round random (count _reinforceTowns-1)));
+		*/
+		_shipPos =  getMarkerPos _startPos;
+
+		_array = [_vecT,_shipPos,(EGG_EVO_ENEMYFACTION),300,180,0] call BIS_EVO_CreateVehicle;
+		_grp = _array select 0;
+		_vec = _array select 1;
+
+		_sumark = [_vec,"Rekatti","ColorRED","plp_icon_shipFrigate"] execVM "data\scripts\customMarker.sqf";
+
+		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
+
+		[_grp,_targetPos,_vec] spawn fnc_waterPatrol;
+	};
+
 	BIS_EVO_mKamazResupply =
 	{
-			private ["_Allspawns","_allobj","_wp","_alist","_radio","_unit","_guardm","_pos","_rng","_vec","_maxo","_spawns","_pos","_tag","_allvec","_rds","_cardir","_degrees","_dirdif","_array","_recy"]; 
+		private ["_Allspawns","_allobj","_wp","_alist","_radio","_unit","_guardm","_pos","_rng","_vec","_maxo","_spawns","_pos","_tag","_allvec","_rds","_cardir","_degrees","_dirdif","_array","_recy"]; 
 		_allobj = BIS_EVO_MissionTowns;
 		_alist = BIS_EVO_DetectEnemy;
 		_radio = radio1;
@@ -225,7 +293,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		(units _pilot select 0) moveInDriver _heli0;
 		(units _pilot select 1) moveInGunner _heli0;
 		//[_unit, _string, _color, _markerType, _enableDir]
-		_sumark = [_heli0,"","ColorRed","plp_icon_helicopter",false] execVM "data\scripts\customMarker.sqf";
+		_sumark = [_heli0,"","ColorRed","plp_icon_helicopterCargo",true] execVM "data\scripts\customMarker.sqf";
 		_heli0 addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\bury.sqf"}];
 		_wp = _pilot addWaypoint [_pos, 10];
 		_wp2 = _pilot addWaypoint [_posback, 10];
@@ -379,6 +447,8 @@ if ( (_curtownInf <= _basetownInf) and (reinforcements) ) then
 		(BIS_EVO_Infantry select BIS_EVO_MissionProgress) set [0, (_curtownInf*enemynumdiv)+6];
 	};
 
+
+
 	(BIS_EVO_Infantry select BIS_EVO_MissionProgress) set [0, (_curtownInf*enemynumdiv)+6];
 	sleep 1;
 };
@@ -391,5 +461,7 @@ if( (_curtownMec <= _basetownMec) and (reinforcements) ) then
 	[] spawn EGG_EVO_mecreinf;
 	(BIS_EVO_Mechanized select BIS_EVO_MissionProgress) set [0, (_curtownMec*enemynumdiv)+1];
 	sleep 1;
+
+	if(([15] call chance)) then {[] spawn BIS_EVO_SHIPSUPPORT};
 };
 sleep 1;

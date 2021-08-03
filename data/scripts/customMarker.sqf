@@ -22,7 +22,12 @@ _markerobj setMarkerSize [_scale,_scale];
 
 for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 {
-	if(_enableDir) then {_markerobj setMarkerDir (direction _unit)};
+	if(_enableDir) then 
+	{
+		_dir = direction _unit;
+		if(_dir < 180) then {_markerobj setMarkerType format ["%1R",_type]}
+		else{_markerobj setMarkerType _type};
+		};
 	if (not canmove _unit) exitwith {deleteMarker _markerobj};
 	_markerobj setMarkerPos [getpos _unit select 0,getpos _unit select 1];
 	sleep 5;
