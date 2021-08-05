@@ -19,4 +19,9 @@
 			BIS_EVO_Onmission = false;
     		_run = [] execVM "actions\saveMission.sqf"
     	}; 
+		case 19:
+    	{
+			BIS_EVO_Onmission = false;
+    		_run = [] execVM "actions\changeSpawnPoint.sqf"
+    	}; 
 };

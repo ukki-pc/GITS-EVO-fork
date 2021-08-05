@@ -95,6 +95,11 @@ if (_playerh < 1500) then
 	(FindDisplay 46) DisplaySetEventHandler ["keydown","if ((_this select 1) In actionKeys ""TeamSwitch"") then {a = createDialog 'evoUI';}"];
 };
 disableUserInput false;
+
+_player setPos getMarkerPos respawnPoint;
+
+if(respawnPoint == "Respawn_West") then {_player setPosASL[getpos _player select 0,getpos _player select 1, 18]};
+
 //Update money
 sleep 8;
 1 cutRsc ["DollarTitle","PLAIN"];

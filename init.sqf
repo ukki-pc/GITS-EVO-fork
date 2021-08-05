@@ -166,6 +166,7 @@ BIS_EVO_rank6 = (rankscore * 6);
 
 //Respawn settings
 spawntype = 2;
+respawnPoint = "Respawn_West";
 publicVariable "spawntype"; 
 if (spawntype == 2) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" select 0),(getMarkerPos "FahneLKW" select 1),18]};
 
@@ -1228,7 +1229,7 @@ EB_PLmissiles = ["EB_AIM9M_Launcher","EB_AIM120_Launcher","EB_AIM9X_Launcher","E
 GLT_bombs = ["GLT_GBU24_Launcher","GLT_GBU53_Launcher","GLT_GBU39_Launcher","GLT_KAB1500_Launcher"];
 GLT_missiles = ["GLT_AIM120_Launcher","GLT_AIM54_Launcher","GLT_R550_Launcher","GLT_AIM132_Launcher","GLT_METEOR_Launcher","GLT_AGM84_Launcher","GLT_AGM154A1_Launcher","GLT_AM39_Launcher","GLT_R3_Launcher","GLT_R27_Launcher","GLT_R77_Launcher","GLT_CH15S_Launcher","GLT_CH29T_Launcher","GLT_CH59_Launcher","GLT_CH31P_Launcher"];
 rksl_missiles= ["RKSL_iristLauncher","RKSL_BrimstoneLauncher","RKSL_ALARM_Launcher","RKSL_stormshadow_Launcher","RKSL_agm119mk3_Launcher"];
-extra_missiles = ["GLT_AM39_Launcher"];
+extra_missiles = ["GLT_AM39_Launcher","AGM86Launcher"];
 EB_turrets = ["M197","PRACS_OV1_LA1","PRACS_SE_552","M621","2A42","YakB","M230","M168","EB_GAU8","GAU8","GAU12","ZPL_20","GSh301","GSh302","GSh23L","GSh23L","SMAF_MF1_DEFA_553","EB_GAU22","EB_M61A1","GLT_M61A1","EB_GP9","EB_NR30","EB_N37"];
 extra_bombs = ["GLT_AGM154A_Launcher","GLT_AGM154A1_Launcher"];
 

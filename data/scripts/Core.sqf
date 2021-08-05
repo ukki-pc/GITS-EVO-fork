@@ -286,6 +286,7 @@ SupList = SupList +[[localize "STR_M04t106",localize "STR_M04t107",20,(EGG_EVO_A
 	SupList = SupList +[[localize "str_dn_ammocrate","Cost: 5 All the ammo you need",10,5,10,"data\sup01.paa",1]];
 	SupList = SupList +[["Vehicle ammo crate","Cost: 10 All the Vehicle ammo you need",10,10,10,"data\sup01.paa",25]];
 	SupList = SupList +[["Fuel barrels","Cost: 10 All the fuel you need",10,10,10,"data\sup01.paa",26]];
+//	SupList = SupList +[["Player Air Support","Control the plane you use",10,10,10,"data\sup01.paa",27]];
 	SupList = SupList +[[localize "strwfsmokegreen","Cost: 0 Mark a location with white/green smoke",10,0,3,"data\sup01.paa",9]];
 	SupList = SupList +[[localize "str_dn_bike"
 ,"Emergency transport",20,0,10,"data\sup01.paa",19]];
@@ -302,6 +303,7 @@ SupList = SupList +[[localize "STR_M04t106",localize "STR_M04t107",20,(EGG_EVO_A
 AssList = [];
 AssList = AssList +[["Relocate","Relocate to captured town or base.","data\offensive.paa",0,17]];
 AssList = AssList +[["Town Conquest","Capture objective from enemy control.","data\offensive.paa",0,16]];
+AssList = AssList +[["Change Spawnpoint","Pick a friendly location to spawn to.","data\offensive.paa",0,19]];
 AssList = AssList +[["Save Game","Save game for next session.","data\offensive.paa",0,18]];
 
 	if(_sco >= BIS_EVO_rank1) then 

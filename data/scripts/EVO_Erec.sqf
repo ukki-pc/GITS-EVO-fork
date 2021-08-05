@@ -77,7 +77,8 @@ BIS_EVO_Erec =
 	//Officer
 	_type = EGG_EVO_meofficer select 0;
 	_offGrp = createGroup (civilian);
-	_offobj = createVehicle [_type, _pos, [], 300, "NONE"];Sleep BIS_EVO_GlobalSleep;
+	_offPos =  [_pos, 50, 400, 0, 0, 10,0] call BIS_fnc_findSafePos;
+	_offobj = createVehicle [_type, _offPos, [], 300, "NONE"];Sleep BIS_EVO_GlobalSleep;
 	[_offobj] join _offGrp;
 	_offobj addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
 	_offobj setVehicleInit "Ocap = [this] execVM 'data\scripts\submit.sqf'";
@@ -105,6 +106,7 @@ BIS_EVO_Erec =
 		
 		_max = (count _allvecs)-1;
 		_vcl = createVehicle [(_allvecs select (round random _max)), _respawnpoint, [], 120, "NONE"];
+		_vcl setPos [_respawnpoint, 50, 400, 0, 0, 0.3,0] call BIS_fnc_findSafePos;
 		_vcl setdir random 359;	
 		_grp = createGroup (EGG_EVO_ENEMYFACTION);
 		_type = EGG_EVO_enemy1 select 0;
@@ -160,6 +162,7 @@ BIS_EVO_Erec =
 		_array = [_vecT,_pos,(EGG_EVO_ENEMYFACTION),300,180,0] call BIS_EVO_CreateVehicle;
 		_grp = _array select 0;
 		_vec = _array select 1;
+		_vec setPos [_pos, 50, 400, 0, 0, 0.3,0] call BIS_fnc_findSafePos;
 		_rds = (_vec nearRoads 20);
 		if(not Isnull (_rds select 0)) then
 		{
@@ -194,6 +197,7 @@ BIS_EVO_Erec =
 		_array = [_allvecs select (round random _max),_pos,(EGG_EVO_ENEMYFACTION),200,180,0] call BIS_EVO_CreateVehicle;
 		_grp = _array select 0;
 		_vec = _array select 1;
+		_vec setPos [_pos, 50, 400, 0, 0, 0.3,0] call BIS_fnc_findSafePos;
 		{_x addEventHandler  ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _grp);
 		{_x setSkill skillfactor+(random 0.2);_x setDir 180} forEach (units _grp);
 		{_x setBehaviour "combat"} forEach (units _grp);
@@ -209,6 +213,7 @@ BIS_EVO_Erec =
 		_array = [_allvecs select (round random _max),_pos,(EGG_EVO_ENEMYFACTION),200,180,0] call BIS_EVO_CreateVehicle;
 		_grp = _array select 0;
 		_vec = _array select 1;
+			_vec setPos [_pos, 50, 400, 0, 0, 0.3,0] call BIS_fnc_findSafePos;
 		{_x addEventHandler  ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _grp);
 		{_x setSkill skillfactor+(random 0.2);_x setDir 180} forEach (units _grp);
 		{_x setBehaviour "combat"} forEach (units _grp);
