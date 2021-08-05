@@ -25,6 +25,18 @@ BIS_Effects_EH_Killed=compile preprocessFileLineNumbers "new_effects\killed.sqf"
 BIS_Effects_AirDestruction=compile preprocessFileLineNumbers "new_effects\AirDestruction.sqf";
 BIS_Effects_AirDestructionStage2=compile preprocessFileLineNumbers "new_effects\AirDestructionStage2.sqf";
 
+//FINDS POSITION OF AN OBJECT OR A MARKER
+fnc_getAnyPosition = 
+{
+private ["_position","_return"];
+  _position = _this select 0;
+  _return = "";
+  if(typeName _position == "ARRAY") then { _position = _position select 0}; //IT's a marker duh
+  if(typeName _position == "STRING") then { _return = getMarkerPos _position}; //IT's a marker duh
+  if(typeName _position == "OBJECT") then { _return = [getPos _position select 0,getpos _position select 1,0]}; //IT's a objech duh
+  _return;
+};
+
 debugMessage = 
 {
 	if(editor == 1) then {
@@ -174,12 +186,67 @@ if (spawntype == 2) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" 
 
 	enableEnvironment true;
 
+
+
+
+
 	BIS_EVO_MissionTowns = [];
 	BIS_EVO_MissionVillages = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11","mobj12","mobj2","mobj13","mobj14","mobj15","mobj16","mobj17","mobj18","mobj19","mobj20","mobj21","mobj22","mobj23","mobj24","mobj25","mobj26","mobj26"];// Each mission objectives town marker.
 	BIS_EVO_MissionBigTowns = ["mobjB1","mobjB2","mobjB3","mobjB4","mobjB5","mobjB6"];
 	BIS_EVO_MilitaryObjectives = ["mobjC1","mobjC2","mobjc3","mobjC4","mobjC5","mobjC6","mobjC7","mobjC8","mobjC9","mobjC10","mobjC11"];
 	BIS_EVO_CoastalTowns = ["mobj11","mobj4","mobj3","mobj5","mobjB2","mobj12","mobj9","mobjC6"];
-	BIS_EVO_MissionTowns = BIS_EVO_MissionTowns + BIS_EVO_MissionVillages + BIS_EVO_MissionBigTowns +BIS_EVO_MilitaryObjectives;
+	//BIS_EVO_MissionTowns = BIS_EVO_MissionTowns + BIS_EVO_MissionVillages + BIS_EVO_MissionBigTowns +BIS_EVO_MilitaryObjectives;
+
+	BIS_EVO_MissionBigTowns = [];
+	BIS_EVO_MilitaryObjectives = [];
+	BIS_EVO_MissionVillages = [];
+	BIS_EVO_CoastalTowns = [];
+	BIS_EVO_MissionObjMarkers = [];
+	BIS_EVO_MissionTownNames = [];
+
+	//NEW TOWN GENERATION
+allObjs = nearestObjects [getpos cent, ["LocationLogic"], 12000];
+
+sleep 0.2;
+{
+//	BIS_EVO_MissionTowns = BIS_EVO_MissionTowns + [_x];
+	_townType =	_x getVariable "type";
+	_isCoastal = (_x getVariable "coastal");
+	_townName =	_x getVariable "name";
+	_isCoastal = !(isNil "_isCoastal"); //Not maybe necessary
+
+	// _unitm = format ["%1_marker", _x];
+	// _markerobj = createMarker[_unitm,[getPos _x select 0,getPos _x select 1]];
+	// _markerobj setMarkerType  "plp_icon_building";
+
+	switch (_townType)  do
+	{
+		case "city": 
+		{
+			BIS_EVO_MissionBigTowns = BIS_EVO_MissionBigTowns + [_x];
+		};
+		case "military": 
+		{
+			BIS_EVO_MilitaryObjectives = BIS_EVO_MilitaryObjectives + [_x];
+		};
+		case "town": 
+		{
+			BIS_EVO_MissionVillages = BIS_EVO_MissionVillages + [_x];
+		};
+	};
+
+	if(_isCoastal) then {BIS_EVO_CoastalTowns = BIS_EVO_CoastalTowns + [_x]};
+
+	BIS_EVO_MissionTowns = BIS_EVO_MissionTowns + [_x];
+	BIS_EVO_MissionTownNames = BIS_EVO_MissionTownNames + [_townName];
+
+} forEach allObjs;
+
+
+// systemChat str BIS_EVO_MissionBigTowns;
+// systemChat str BIS_EVO_MissionTowns;
+// systemChat str BIS_EVO_MissionVillages;
+
 
 //These are filled as you conquer them, additionally you can set towns conquered as default
 BIS_EVO_conqueredTowns = [];
@@ -1248,14 +1315,6 @@ EGG_missiles = EB_PLmissiles + extra_missiles  + EB_PLbombs +GLT_bombs + extra_b
 //EDITOR use
 //if playing in editor rem out the next line with a // and manually set param below instead
 
-/*
- _towns = nearestObjects [getpos cent, ["LocationLogicCity"], 10000];
-
-
-{
-	_townType =	_x getVariable "type";
-} forEach _towns;
-*/
 
 if ((helicopterhitch ==2) || (helicopterhitch ==3) ) then
 {

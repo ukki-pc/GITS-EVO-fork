@@ -965,7 +965,7 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 			if(_vec != MHQ and !_isRHQ) then 
 			{
 			_nearestMarker = [BIS_EVO_conqueredTowns, position player] call BIS_fnc_nearestPosition;
-			_plyDist = (getPos player) distance getMarkerPos _nearestMarker;
+			_plyDist = (getPos player) distance getPos _nearestMarker;
 
 				if((inrepairzone or _plyDist < 200)) then
 					{
@@ -1097,7 +1097,7 @@ BIS_EVO_ActButton =
 					case 1:
 					{
 						_nearestPoint = [BIS_EVO_conqueredTowns, position player] call BIS_fnc_nearestPosition;
-						_objDist = player distance getMarkerPos _nearestPoint;
+						_objDist = player distance getPos _nearestPoint;
 						if(inrepairzone or _objDist <= 100) then 
 						{					
 							if(_item != "ME") then {_rec = [_item] execVM "data\scripts\recruit.sqf";}
@@ -1112,7 +1112,7 @@ BIS_EVO_ActButton =
 					case 2:
 					{
 						_nearestPoint = [BIS_EVO_conqueredTowns, position player] call BIS_fnc_nearestPosition;
-						_objDist = player distance getMarkerPos _nearestPoint;
+						_objDist = player distance getPos _nearestPoint;
 						if(inrepairzone) then 
 						{					
 							if(_item != "ME") then {_rec = [_item] execVM "data\scripts\recruit.sqf";}
@@ -1136,7 +1136,7 @@ BIS_EVO_ActButton =
 					case 3:
 					{
 						_nearestPoint = [BIS_EVO_conqueredTowns, position player] call BIS_fnc_nearestPosition;
-						_objDist = player distance getMarkerPos _nearestPoint;
+						_objDist = player distance getPos _nearestPoint;
 
 						if(inrepairzone or _objDist <= 100) then 
 						{

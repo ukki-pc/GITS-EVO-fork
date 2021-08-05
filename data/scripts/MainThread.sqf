@@ -101,6 +101,7 @@ _EVO_timesync =
 //Picks weighted random from fed array
 weightedRandomSimple = 
 {
+private ["_numbers","_totalTable","_total","_result","_rnd"];
 _numbers = _this select 0;
 _totalTable = [];
 _total = 0;

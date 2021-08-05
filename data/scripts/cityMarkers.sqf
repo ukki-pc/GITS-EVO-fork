@@ -4,11 +4,13 @@
 	{
 	_currentTown = BIS_EVO_MissionTowns select _forEachIndex;
 	_unit = (_currentTown);
-	_airports = ["mobjC1","mobjC3","mobjC5","mobjC6"];
-	_unitm = format ["%1t", _unit];
-	_markerobj = createMarker[_unitm,[getMarkerPos _unit select 0,getMarkerPos _unit select 1]];
+	_airports = [objective_1];
+	_unitm = format ["%1_marker", _unit];
+	_markerobj = createMarker[_unitm,[getPos _unit select 0,getPos _unit select 1]];
+	BIS_EVO_MissionObjMarkers = BIS_EVO_MissionObjMarkers + [_unitm];
+
 	//TEST
-	BIS_EVO_conqueredTowns = ["mobjC2","mobj11"];
+	BIS_EVO_conqueredTowns = [objective_1];
 
 
 	//ENEMY TOWN
@@ -67,7 +69,7 @@ updCityMarkers =
 	{
 	_currentTown = BIS_EVO_MissionTowns select _forEachIndex;
 	_unit = (_currentTown);
-	_unitm = format ["%1t", _unit];
+	_unitm = format ["%1_marker", _unit];
 	_markerobj = _unitm;
 
 	//ENEMY TOWN
@@ -134,7 +136,6 @@ updCityMarkers =
 
 	}forEach BIS_EVO_MissionTowns;
 
-
 	publicVariable "BIS_EVO_unlocks";
 };
 
@@ -146,7 +147,7 @@ updObjMarker =
 
 	_currentTown = BIS_EVO_MissionTowns select _objective;
 	_unit = (_currentTown);
-	_unitm = format ["%1t", _unit];
+	_unitm = format ["%1_marker", _unit];
 	_markerobj = _unitm;
 
 	//ENEMY TOWN

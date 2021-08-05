@@ -56,7 +56,7 @@ _grp = group _player;
 
 
 _nearestPoint = [BIS_EVO_conqueredTowns, position _player] call BIS_fnc_nearestPosition;
-_objDist = _player distance getMarkerPos _nearestPoint;
+_objDist = _player distance getPos _nearestPoint;
 
 _pos = position _player;
 _unit = group _player createUnit [_unitype, [0,0,0], [], 0, "NONE"];Sleep BIS_EVO_GlobalSleep;

@@ -2,23 +2,23 @@
 _grp = _this select 0;
 _countflt = (count BIS_EVO_MissionTowns)-1; //= 11
 
-_wp = _grp addWaypoint [getMarkerpos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress), 100];//current town
+_wp = _grp addWaypoint [getPos(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress), 100];//current town
 
 _iflt=0;
 while {_iflt < 2} do 
 {
-	_wp = _grp addWaypoint [getMarkerpos (BIS_EVO_MissionTowns select (round random 4)), 100];//4 random towns
+	_wp = _grp addWaypoint [getPos (BIS_EVO_MissionTowns select (round random 4)), 100];//4 random towns
 	_iflt=_iflt+1;
 	Sleep 0.5;
 };
 while {_iflt < 4} do 
 {
-	_wp = _grp addWaypoint [getMarkerpos (BIS_EVO_MissionTowns select (round random _countflt)), 100];//4 random towns
+	_wp = _grp addWaypoint [getPos (BIS_EVO_MissionTowns select (round random _countflt)), 100];//4 random towns
 	_iflt=_iflt+1;
 	Sleep 0.5;
 };
 //adding to prevent sticking in sea or at spawnpoint
-_wp = _grp addWaypoint [getMarkerpos "airfmarker", 100];//main airbase
+_wp = _grp addWaypoint [getPos "airfmarker", 100];//main airbase
 [_grp, 6] setWaypointType "CYCLE";
 
 _wp1 = _grp addWaypoint [[0,0,0], 10];
@@ -35,7 +35,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	while {_i < _max} do 
 	{
 		_marker = (_allobj select _i);
-		_pos = getMarkerPos _marker;
+		_pos = getPos _marker;
 		if ((_pos select 0) != 0) then 
 		{
 			_currentobj = _currentobj + [_marker];
@@ -47,7 +47,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	_max = count _currentobj;
 	_r = round random (_max - 1);
 	_rand =  _currentobj select _r;
-	_pos = getMarkerPos _rand;
+	_pos = getPos _rand;
 	[_grp, 1] setWaypointPosition [_pos, 0];
 	_grp setSpeedMode "LIMITED";
 	if ((date select 3) < 4 or (date select 3) > 20) then

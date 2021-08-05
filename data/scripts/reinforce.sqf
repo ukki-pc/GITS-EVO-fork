@@ -14,6 +14,8 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 	_radio =radio1;
 	_alist = BIS_EVO_DetectEnemy;
 
+	_curTown = BIS_EVO_MissionTowns select BIS_EVO_MissionProgress;
+
 	_curtownInf = round(((BIS_EVO_InfantrySpawn)/enemynumdiv));
 	_basetownInf = round(((BIS_EVO_InfantryTarget))/enemynumdiv);
 	_curtownMec = round(((BIS_EVO_MechanizedSpawn))/enemynumdiv);
@@ -30,38 +32,22 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_pos2 = objNull;
 		_max = objnull;
 		_alist = BIS_EVO_DetectEnemy;
-		//_radio =radio1;
-		_objPos = getMarkerPos(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
-		_allobj = BIS_EVO_MissionTowns - BIS_EVO_conqueredTowns;
-		_reinforceTowns = [];
 
-		for [{_loop=0}, {_loop<count _allobj}, {_loop=_loop+1}] do 
-		{
-			//DETERMINE THE CLOSEST REINFORCE POINT
-			if !(_allobj select _loop == BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) then 
-			{
-				_targetMarker = _allobj select _loop;
-				_dist = getMarkerPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) distance getMarkerPos _targetMarker;
+		_curTown =  BIS_EVO_MissionTowns select BIS_EVO_MissionProgress;
+		_reinforceTowns = (synchronizedObjects (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress))-BIS_EVO_conqueredTowns;
 
-				if(_dist <= reinforceRange) then 
-				{
-					_reinforceTowns = _reinforceTowns + [_allobj select _loop]; 
-				};
-			}
-			else 
-			{
-				//systemChat "Banned town... SKIPPING!";
-			};
-		};
+		if(count _reinforceTowns < 1) exitWith{};
 
-		_spawns = (_reinforceTowns select (round random (count _reinforceTowns-1)));
-		_pos = GetMarkerPos _spawns;
+		_objPos = position _curTown;
+
+		_spawns = _reinforceTowns select (round (random (count _reinforceTowns-1)));
+		_pos = position _spawns;
 		_tag = "MEC";
 
 		_allunits = EGG_EVO_enemy1;
 		_max = count _allunits;
 		_guardr = createGroup (EGG_EVO_ENEMYFACTION);
-		_pos2 = GetMarkerPos (_reinforceTowns select (round random (count _reinforceTowns-1)));
+		_pos2 = position (_reinforceTowns select (round random (count _reinforceTowns-1)));
 		_allvecs = EGG_EVO_mevconvoyb;
 		_maxA = count _allvecs;
 		_ural = createVehicle [(_allvecs select (round random (_maxA - 1))), _pos2,[], 0, "NONE"];
@@ -80,7 +66,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		Sleep 0.2;
 		_unit = _guardr createUnit [(_allunits select round random (_max - 1)), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
 		Sleep 0.2;
-		_sumark = [_ural,"Ural","ColorBlack"] execVM "data\scripts\customMarker.sqf";
+		_sumark = [_ural,"Ural","ColorRed","plp_icon_truck",false,0.8] execVM "data\scripts\customMarker.sqf";
 		sleep 1;
 		[position _alist,_guardr,_objPos,_alist] call BIS_EVO_Erefway;
 		[_guardr, 1] setWaypointType "GETOUT";
@@ -100,7 +86,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_rnd = [[8,7,4,10,20,2,8,10]] call weightedRandomSimple;
 		_vecT = EGG_EVO_ENEMYSHIPS select _rnd;
 
-		_targetPos = getMarkerPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
+		_targetPos = getPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
 		_startPoints = ["EnemyAir01","EnemyAir02","EnemyAir03","EnemyAir04","EnemyAir05","EnemyAir06","EnemyAir07","EnemyAir08"];
 		_startPos = "";
 		_targetMarker = "";
@@ -119,37 +105,6 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 
 		_rnd = round(random(count _startPoses-1));
 		_startPos = _startPoses select _rnd;
-
-
-		systemChat format ["Selected marker was: %1",_startPos];
-
-		/*
-		_allobj = BIS_EVO_CoastalTowns;
-		_reinforceTowns = [];
-
-		//Enemy Coastal towns reinforce
-		for [{_loop=0}, {_loop<count _allobj}, {_loop=_loop+1}] do 
-		{
-			//DETERMINE THE CLOSEST REINFORCE POINT
-			if !(_allobj select _loop == BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) then 
-			{
-				_targetMarker = _allobj select _loop;
-				_dist = getMarkerPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) distance getMarkerPos _targetMarker;
-
-				if(_dist <= reinforceRange) then 
-				{
-					_reinforceTowns = _reinforceTowns + [_allobj select _loop]; 
-				};
-			}
-			else 
-			{
-				//systemChat "Banned town... SKIPPING!";
-			};
-			sleep BIS_EVO_GlobalSleep;
-		};
-
-		_startPos = GetMarkerPos (_reinforceTowns select (round random (count _reinforceTowns-1)));
-		*/
 		_shipPos =  getMarkerPos _startPos;
 
 		_array = [_vecT,_shipPos,(EGG_EVO_ENEMYFACTION),300,180,0] call BIS_EVO_CreateVehicle;
@@ -166,10 +121,8 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 	BIS_EVO_mKamazResupply =
 	{
 		private ["_Allspawns","_allobj","_wp","_alist","_radio","_unit","_guardm","_pos","_rng","_vec","_maxo","_spawns","_pos","_tag","_allvec","_rds","_cardir","_degrees","_dirdif","_array","_recy"]; 
-		_allobj = BIS_EVO_MissionTowns;
 		_alist = BIS_EVO_DetectEnemy;
 		_radio = radio1;
-		_objPos = getMarkerPos(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
 		_unit = objNull;
 		_guardm = grpNull;
 		_pos = objNull;
@@ -179,40 +132,18 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_dist = 0;
 		eResupplying = true;
 		
-		_allobj = BIS_EVO_MissionTowns - BIS_EVO_conqueredTowns;
-		_reinforceTowns = [];
+		_curTown =  BIS_EVO_MissionTowns select BIS_EVO_MissionProgress;
+		_reinforceTowns = (synchronizedObjects (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress))-BIS_EVO_conqueredTowns;
 
-		for [{_loop=0}, {_loop<count _allobj}, {_loop=_loop+1}] do 
-		{
-			//DETERMINE THE CLOSEST REINFORCE POINT
-			if !(_allobj select _loop == BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) then 
-			{
-				_targetMarker = _allobj select _loop;
-				_dist = getMarkerPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) distance getMarkerPos _targetMarker;
+		if(count _reinforceTowns < 1) exitWith{};
 
-				if(_dist <= reinforceRange) then 
-				{
-					_reinforceTowns = _reinforceTowns + [_allobj select _loop]; 
-				};
-			}
-			else 
-			{
-				//systemChat "Banned town... SKIPPING!";
-			};
-			sleep BIS_EVO_GlobalSleep;
-		};
-
-	//	systemChat format ["Reinforcement towns are: %1",_reinforceTowns];
-
-		_pos = GetMarkerPos (_reinforceTowns select (round random (count _reinforceTowns-1)));
+		_objPos = position _curTown;
+		_spawns = _reinforceTowns select (round (random (count _reinforceTowns-1)));
 		_tag = "MEC";
 
 		//Increasing aggression
 		_allvec = EGG_EVO_enemySupply;
 
-
-	if (count _reinforceTowns > 0) then 
-		{
 			//systemchat format ["Random number was: %1", _rng];
 			_maxo = (count _allvec)-1;	
 			_rds = [];
@@ -253,11 +184,6 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 			_recy = [objnull,_guardm] execVM "data\scripts\grecycle.sqf";
 			deleteVehicle _vec;
 			eResupplying = false;
-		}
-		else 
-		{
-			//systemChat "No nearby reinforcement cities";
-		};
 	};
 
 
@@ -274,7 +200,8 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_allunits2 = EGG_EVO_enemy1;
 		_max = count _allunits2;
 		_radio = radio1;
-		_objPos = getMarkerPos(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
+		_curTown =  BIS_EVO_MissionTowns select BIS_EVO_MissionProgress;
+		_objPos = position _curTown;
 		_pos = _objPos;
 		_posback = getmarkerpos "EnemyAir03";
 		_pilot = createGroup (EGG_EVO_ENEMYFACTION);
@@ -345,10 +272,10 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		#define easyTreshold 100
 		#define	hardTreshold 150
 		private ["_Allspawns","_allobj","_alist","_radio","_unit","_guardm","_pos","_rng","_vec","_maxo","_spawns","_pos","_tag","_allvec","_rds","_cardir","_degrees","_dirdif","_array","_recy"]; 
-		_allobj = BIS_EVO_MissionTowns;
 		_alist = BIS_EVO_DetectEnemy;
+		_curTown =  BIS_EVO_MissionTowns select BIS_EVO_MissionProgress;
 		_radio = radio1;
-		_objPos = getMarkerPos(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
+		_objPos = position _curTown;
 		_unit = objNull;
 		_guardm = grpNull;
 		_pos = objNull;
@@ -357,32 +284,13 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_nearestMarker = "";
 		_dist = 0;
 		
-		_allobj = BIS_EVO_MissionTowns - BIS_EVO_conqueredTowns;
-		_reinforceTowns = [];
 
-		for [{_loop=0}, {_loop<count _allobj}, {_loop=_loop+1}] do 
-		{
-			//DETERMINE THE CLOSEST REINFORCE POINT
-			if !(_allobj select _loop == BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) then 
-			{
-				_targetMarker = _allobj select _loop;
-				_dist = getMarkerPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) distance getMarkerPos _targetMarker;
+		_reinforceTowns = (synchronizedObjects (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress))-BIS_EVO_conqueredTowns;
 
-				if(_dist <= reinforceRange) then 
-				{
-					_reinforceTowns = _reinforceTowns + [_allobj select _loop]; 
-				};
-			}
-			else 
-			{
-				//systemChat "Banned town... SKIPPING!";
-			};
-			sleep BIS_EVO_GlobalSleep;
-		};
+		if(count _reinforceTowns < 1) exitWith{};
 
-	//	systemChat format ["Reinforcement towns are: %1",_reinforceTowns];
+		_pos = position (_reinforceTowns select (round (random (count _reinforceTowns-1))));
 
-		_pos = GetMarkerPos (_reinforceTowns select (round random (count _reinforceTowns-1)));
 		_tag = "MEC";
 		//Increasing aggression
 		_allvec = [];
@@ -400,38 +308,32 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		 	_allvec = EGG_EVO_MechMedium + EGG_EVO_MechHard; //mixed units reinforce
 		};
 
-	if (count _reinforceTowns > 0) then 
-		{
-			//systemchat format ["Random number was: %1", _rng];
-			_rds = [];
-			_rds = (_pos nearRoads 10);
-			waitUntil{count _rds > 0};
-			_cardir = (getdir (_rds select 0));
-			_degrees = [_pos,position _alist] call BIS_EVO_GetRelDir;
-			_dirdif = (_cardir-_degrees);
-			if((_dirdif > 89) or (_dirdif < -89)) then{_cardir=_cardir-180};	
-			_pos = position (_rds select 0);
-			_vecT = [_allvec] call fnc_pickRandom;
-			_array = [_vecT,_pos,(EGG_EVO_ENEMYFACTION),20,_cardir,0] call BIS_EVO_CreateVehicle;
 
-			_guardm = _array select 0;
-			_vec = _array select 1;
-			_vec addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\bury.sqf"}];
-			_sumark = [_vec,"Mec","ColorBlack"] execVM "data\scripts\customMarker.sqf";
-			[position _alist,_guardm,_objPos,_alist] call BIS_EVO_Erefway;
-			sleep 1;
-			[_guardm, 1] setWaypointCombatMode "RED";		
-			{_x addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guardm);
-			_guardm setFormation "COLUMN";
-			sleep 10;
-			if(isNull driver _vec  ) then {deleteVehicle _vec; {_x setDammage 1}forEach (units _guardm)};
-			//adding
-			_recy = [objnull,_guardm] execVM "data\scripts\grecycle.sqf";
-		}
-		else 
-		{
-			//systemChat "No nearby reinforcement cities";
-		};
+		//systemchat format ["Random number was: %1", _rng];
+		_rds = [];
+		_rds = (_pos nearRoads 10);
+		waitUntil{count _rds > 0};
+		_cardir = (getdir (_rds select 0));
+		_degrees = [_pos,position _alist] call BIS_EVO_GetRelDir;
+		_dirdif = (_cardir-_degrees);
+		if((_dirdif > 89) or (_dirdif < -89)) then{_cardir=_cardir-180};	
+		_pos = position (_rds select 0);
+		_vecT = [_allvec] call fnc_pickRandom;
+		_array = [_vecT,_pos,(EGG_EVO_ENEMYFACTION),20,_cardir,0] call BIS_EVO_CreateVehicle;
+
+		_guardm = _array select 0;
+		_vec = _array select 1;
+		_vec addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\bury.sqf"}];
+		_sumark = [_vec,"Mec","ColorBlack"] execVM "data\scripts\customMarker.sqf";
+		[position _alist,_guardm,_objPos,_alist] call BIS_EVO_Erefway;
+		sleep 1;
+		[_guardm, 1] setWaypointCombatMode "RED";		
+		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guardm);
+		_guardm setFormation "COLUMN";
+		sleep 10;
+		if(isNull driver _vec  ) then {deleteVehicle _vec; {_x setDammage 1}forEach (units _guardm)};
+		//adding
+		_recy = [objnull,_guardm] execVM "data\scripts\grecycle.sqf";
 	};
 
 
@@ -462,6 +364,6 @@ if( (_curtownMec <= _basetownMec) and (reinforcements) ) then
 	(BIS_EVO_Mechanized select BIS_EVO_MissionProgress) set [0, (_curtownMec*enemynumdiv)+1];
 	sleep 1;
 
-	if(([15] call chance)) then {[] spawn BIS_EVO_SHIPSUPPORT};
+	if(([15] call chance and _curTown in BIS_EVO_CoastalTowns)) then {[] spawn BIS_EVO_SHIPSUPPORT};
 };
 sleep 1;

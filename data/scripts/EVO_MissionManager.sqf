@@ -2,7 +2,7 @@ missionManager =
 	{
 	// City Setup
 	_mkr = (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
-	_pos = getMarkerPos _mkr;
+	_pos = getPos _mkr;
 
 	BIS_EVO_DetectEnemy = createTrigger ["EmptyDetector", _pos];
 	BIS_EVO_DetectEnemy setTriggerActivation [EGG_EVO_strENEMYFACTION, "PRESENT", true];
@@ -14,7 +14,7 @@ missionManager =
 	BIS_EVO_DetectFriendly setTriggerArea [600, 600, 0, true];
 	BIS_EVO_DetectFriendly setTriggerTimeout [2, 2, 2, true ];
 
-	BIS_EVO_MainObjective = createMarkerLocal ["MainObj", getMarkerPos _mkr];
+	BIS_EVO_MainObjective = createMarkerLocal ["MainObj", getPos _mkr];
 	BIS_EVO_MainObjective setMarkerColorLocal "ColorBlack";
 	BIS_EVO_MainObjective setMarkerAlpha 0.2;
 	BIS_EVO_MainObjective setMarkerShapeLocal "ELLIPSE";
@@ -67,7 +67,7 @@ missionManager =
 	while {BIS_EVO_MissionProgress != -1} do
 	{
 		_mkr = (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
-		_pos = getMarkerPos _mkr;
+		_pos = getPos _mkr;
 
 		BIS_EVO_DetectEnemy setpos _pos;
 		BIS_EVO_DetectFriendly setpos _pos;
@@ -90,6 +90,7 @@ missionManager =
 		
 		Sleep 10.0;
 		//_tempProgress = BIS_EVO_MissionProgress;
+
 	//testing reinforce - removed from sinit
 	reinfdelay = round (290-(aggression^1.14));
 

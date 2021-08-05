@@ -61,7 +61,7 @@ BIS_EVO_Erec =
 		_rnd = [[8,7,4,10,20,2,8,10]] call weightedRandomSimple;
 		_vecT = EGG_EVO_ENEMYSHIPS select _rnd;
 
-		_pos = getMarkerPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
+		_pos = getPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
 		_shipPos =  [_pos, 700, 1400, 0, 2, 10,0] call BIS_fnc_findSafePos;
 		_multp = [-1,1];
 

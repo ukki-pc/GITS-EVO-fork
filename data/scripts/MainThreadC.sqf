@@ -476,11 +476,10 @@ BIS_EVO_CTime =
 */
 BIS_EVO_CityClear = 
 {
-
 	player sideChat format ["BIS_EVO_CityClear:%1",BIS_EVO_MissionProgress];
-	_city = (BIS_EVO_Townnames select 0);
-	[West,"HQ"] SideChat format[localize "STR_M04t61",_city];//%1 IS CLEAR OF ENEMY, GREAT JOB MEN
-	playSound "CityClear";
+	//_city = (BIS_EVO_MissionTownNames select BIS_EVO_MissionTownNames );
+	//[West,"HQ"] SideChat format[localize "STR_M04t61",_city];//%1 IS CLEAR OF ENEMY, GREAT JOB MEN
+	//playSound "CityClear";
 	[] call BIS_EVO_AssignTasks;
 	_currentprog = BIS_EVO_MissionProgress;
 };
@@ -503,10 +502,11 @@ BIS_EVO_locationActions =
 {
 	if(inrepairzone) exitWith {canRecruit = true; canFasttravel = true};
 
+		if(count BIS_EVO_conqueredTowns == 0) exitWith {};
 if(recruitPlaces == 1 or recruitPlaces == 2 or recruitPlaces == 3) then
 {
 	_nearestPoint = [BIS_EVO_conqueredTowns, position player] call BIS_fnc_nearestPosition;
-	_objDist = player distance getMarkerPos _nearestPoint;
+	_objDist = player distance getPos _nearestPoint;
 
 	if(_objDist <= 100) then 
 	{					

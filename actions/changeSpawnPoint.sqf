@@ -22,9 +22,9 @@ onMapSingleClick "
 mapRefresh = true;
 _nearestMarker = [BIS_EVO_ConqueredTowns, _pos] call BIS_fnc_nearestPosition;
 cityToAttack = BIS_EVO_MissionTowns find _nearestMarker;
-_dist = _pos distance getMarkerPos _nearestMarker;
+_dist = _pos distance getPos _nearestMarker;
 
-if(_dist < 300) then {'cityMarker' setMarkerPos getMarkerPos _nearestMarker;}
+if(_dist < 300) then {'cityMarker' setMarkerPos getPos _nearestMarker;}
 else {
 deleteMarker 'cityMarker';
 cityToAttack = -1;

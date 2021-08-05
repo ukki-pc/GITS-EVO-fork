@@ -17,6 +17,7 @@ _lowRHQ = format ["%1amb",player];
 _vec =  (vehicle player);
 _isRHQ = _vec getVariable ["RHQ",false];
 _isMHQ = (_vec == MHQ);
+_mhqMark = ["mhqmark"];
 
 /*
 	_curLevel = perkOffLVL;
@@ -28,10 +29,9 @@ _rhqPositions = RHQMarkers;
 };
 */
 
-
 _rhqPositions = RHQMarkers;
 
-TeleportLocations = BIS_EVO_conqueredTowns + _rhqPositions + ["mhqmark"] + BIS_EVO_LHDMarkers + BIS_EVO_SHIPSPAWNS;
+TeleportLocations = BIS_EVO_conqueredTowns + _rhqPositions + _mhqMark + BIS_EVO_LHDMarkers + BIS_EVO_SHIPSPAWNS;
 
 _nearestPoint = [TeleportLocations, position player] call BIS_fnc_nearestPosition;
 
@@ -39,7 +39,7 @@ _maxDistance = 300;
 
 if(_nearestPoint in _rhqPositions) then {_maxDistance = 20;};
 
-if(position player distance getmarkerpos _nearestPoint > _maxDistance) exitwith{hint "Cannot transfer from here!"};
+if(position player distance ([_nearestPoint] call fnc_getAnyPosition)  > _maxDistance) exitwith{hint "Cannot transfer from here!"};
 
 openMap true;
 hint "Pick a location to transfer to";
@@ -53,17 +53,20 @@ onMapSingleClick "
 mapRefresh = true;
 _inVehicle = (vehicle player != player);
 _nearestMarker = [TeleportLocations, _pos] call BIS_fnc_nearestPosition;
+_markerPosition = [_nearestMarker] call fnc_getAnyPosition;
+
 cityToTransfer = TeleportLocations find _nearestMarker;
-_dist = _pos distance getMarkerPos _nearestMarker;
+_dist = _pos distance _markerPosition;
+
 travelCost = 0;
-_plyDist = (getPos player) distance getMarkerPos _nearestMarker;
+_plyDist = (getPos player) distance _markerPosition;
 
 if (_nearestMarker in BIS_EVO_MissionVillages and !_inVehicle) then {travelCost = round((_plyDist/1000))max 0 min 10;}
-else{travelCost = 0;};
+else{travelCost = 0};
 
 if (_nearestMarker in BIS_EVO_MissionVillages and _inVehicle) then {travelCost = round((_plyDist/1000)*2)max 0 min 10;};
 
-if(_dist < 300) then {'markerRelo' setMarkerPos getMarkerPos _nearestMarker; 'markerRelo' setMarkerAlpha 1;}
+if(_dist < 300) then {'markerRelo' setMarkerPos _markerPosition; 'markerRelo' setMarkerAlpha 1;}
 else
 {
   deleteMarker 'markerRelo';
@@ -78,14 +81,15 @@ if(cityToTransfer > -1) then
 };
 true;";
 
-
 waitUntil{!visibleMap};
 onMapSingleClick "";
 deleteMarker "markerRelo";
 if(cityToTransfer < 0) exitWith{  hint "Relocation cancelled!"};
 
 _tpLoc = teleportLocations select cityToTransfer;
-_isViableLoc = (_tpLoc in BIS_EVO_conqueredTowns or _tpLoc in BIS_EVO_LHDMarkers or _tpLoc in _rhqPositions or _tpLoc ==  "mhqmark" or _tpLoc in BIS_EVO_SHIPSPAWNS);
+_tpLocPos = [_tpLoc] call fnc_getAnyPosition;
+
+_isViableLoc = (_tpLoc in BIS_EVO_conqueredTowns or _tpLoc in BIS_EVO_LHDMarkers or _tpLoc in _rhqPositions or _tpLoc in  _mhqMark or _tpLoc in BIS_EVO_SHIPSPAWNS);
 _enoughMoney = (travelCost <= money);
 _traveAllowed = ((vehiclePlaced != 0) and !R3F_LOG_mutex_local_verrou and _enoughMoney and !(_vec isKindOf "Air") and !(_vec isKindOf "Ship"));
 _inVehicle = (vehicle player != player);
@@ -96,7 +100,7 @@ if(_isViableLoc and _traveAllowed) then
   if !(_inVehicle) then 
   {
       //MHQ TELEPORT
-    if(_tpLoc ==  "mhqmark") exitWith {
+    if(_tpLoc in _mhqMark) exitWith {
       [player,MHQ] execVM "data\scripts\auswahlw.sqf";
     // systemChat format ["location: %1, MHQMarker: %2",_tpLoc,MHQMarker];  
       };
@@ -109,7 +113,7 @@ if(_isViableLoc and _traveAllowed) then
     // systemChat format ["location: %1, MHQMarker: %2",_tpLoc,MHQMarker];  
       };
 
-    Player setpos getMarkerPos _tpLoc;
+    Player setpos _tpLocPos;
     if(_tpLoc in BIS_EVO_LHDMarkers) then{
       Player setposASL [getpos player select 0,getpos player select 1,18];
     };
@@ -120,14 +124,14 @@ if(_isViableLoc and _traveAllowed) then
   else
   {
     _crew = count crew vehicle player;
-    if((_tpLoc in _rhqPositions) or (_tpLoc ==  "mhqmark") or (_isRHQ) or (_isMHQ)) exitWith {hint "Cannot Fast Travel There With a Vehicle"};
+    if((_tpLoc in _rhqPositions) or (_tpLoc in _mhqMark) or (_isRHQ) or (_isMHQ)) exitWith {hint "Cannot Fast Travel There With a Vehicle"};
     if(_crew > 1) exitWith {hint "You cannot fast travel with AI"};
-    vehicle player setpos getMarkerPos (_tpLoc);
+    vehicle player setpos _tpLocPos;
   //  {vehicle _x setpos _tpLoc} forEach crew vehicle player;
     if(_tpLoc in BIS_EVO_LHDMarkers) then 
     {
       //Player setposASL [getpos player select 0,getpos player select 1,18];
-      vehicle player setpos getMarkerPos _tpLoc;{vehicle _x setpos getMarkerPos _tpLoc} forEach crew vehicle player;
+      vehicle player setpos _tpLocPos;{vehicle _x setpos _tpLocPos} forEach crew vehicle player;
       vehicle player setposASL [getpos vehicle player select 0,getpos vehicle player select 1,18];
     };
     _msg = format ["Travel costs: $%1",travelCost];
