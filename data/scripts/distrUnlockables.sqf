@@ -13,5 +13,3 @@ BIS_EVO_unlocks = [];
 } forEach _tempBases;
 publicVariable "BIS_EVO_unlocks";
 [] call updCityMarkers;
-
-//systemChat str BIS_EVO_unlocks;

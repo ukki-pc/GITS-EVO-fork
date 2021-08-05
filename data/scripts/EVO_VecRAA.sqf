@@ -14,8 +14,8 @@ _markerobj setMarkerBrush "Cross";
 _markerobj setMarkerSize [1200, 1200];
 for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 {
-	sleep 1;
-	if(not alive _vcl) then 
+	sleep 5;
+	if(not alive _vcl or BIS_EVO_MissionProgress == -1) then 
 	{	
 		deleteMarker _markerobj;
 		_loop =  1;

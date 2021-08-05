@@ -59,7 +59,7 @@
 	};
 }forEach BIS_EVO_MissionTowns;
 
-if(EGG_EVO_LoadGame == 0) then { _handle = [] execVM "data\scripts\distrUnlockables.sqf";};
+if(EGG_EVO_LoadGame == 0) then { _handle = [] execVM "data\scripts\distrUnlockables.sqf"};
 
 updCityMarkers =
 {
@@ -87,6 +87,7 @@ updCityMarkers =
 			if(_currentTown in BIS_EVO_MilitaryObjectives) then 
 			{
 				_objInd =	BIS_EVO_MilitaryObjectives  find (_currentTown);
+				_objInd = _objInd + (count BIS_EVO_MissionBigTowns-1);
 				_vec = BIS_EVO_unlocks select _objInd;
 				_dispname = [_vec] call fnc_getCfgName;
 				_markerobj setMarkerType  "plp_icon_storage1";
@@ -168,6 +169,7 @@ updObjMarker =
 		then 
 		{
 			_objInd = BIS_EVO_MissionTowns  find (_currentTown);
+			_objInd = _objInd + (count BIS_EVO_MissionBigTowns-1);
 			_vec = BIS_EVO_unlocks select _objInd;
 			if !(_vec in BIS_EVO_unlocked) then {BIS_EVO_unlocked = BIS_EVO_unlocked + [_vec]; publicVariable "BIS_EVO_unlocked"};
 			_markerobj setMarkerType  "plp_icon_storage1";

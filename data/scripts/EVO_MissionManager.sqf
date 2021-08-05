@@ -132,6 +132,7 @@ missionManager =
 		[BIS_EVO_MissionProgress] call updObjMarker;
 		hint "Town captured";
 		BIS_EVO_MissionProgress = -1;
+		deleteMarker BIS_EVO_MainObjective;
 		//BIS_EVO_MissionProgress = BIS_EVO_MissionProgress + 1;
 		publicVariable "BIS_EVO_MissionProgress";
 		//player globalchat format ["BIS_EVO_MissionProgress: %1",BIS_EVO_MissionProgress]; 

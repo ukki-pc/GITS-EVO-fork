@@ -168,6 +168,8 @@ BIS_EVO_rank6 = (rankscore * 6);
 spawntype = 2;
 respawnPoint = "Respawn_West";
 publicVariable "spawntype"; 
+
+
 if (spawntype == 2) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" select 0),(getMarkerPos "FahneLKW" select 1),18]};
 
 	enableEnvironment true;
@@ -1246,6 +1248,14 @@ EGG_missiles = EB_PLmissiles + extra_missiles  + EB_PLbombs +GLT_bombs + extra_b
 //EDITOR use
 //if playing in editor rem out the next line with a // and manually set param below instead
 
+/*
+ _towns = nearestObjects [getpos cent, ["LocationLogicCity"], 10000];
+
+
+{
+	_townType =	_x getVariable "type";
+} forEach _towns;
+*/
 
 if ((helicopterhitch ==2) || (helicopterhitch ==3) ) then
 {

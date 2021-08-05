@@ -1,5 +1,7 @@
-
 _vehicle = _this select 0;
+_player = _this select 1;
+
+if!(isPlayer _player) exitWith {};
 if(inrepairzone) then 
 {
 	_matches = 0;

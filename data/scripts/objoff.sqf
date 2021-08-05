@@ -4,9 +4,9 @@ _grp = group _off;
 
 	_mark = format["M%1",_off];
 	_search = createMarker [_mark, [-5000,-5000,0]];
-	_search setMarkerType "plp_icon_photo";
+	_search setMarkerType "plp_icon_star";
 	_search setMarkerText localize "STR_M04t47_0";//Capture Officer
-	_search setMarkerColor "ColorGreenAlpha";
+	_search setMarkerColor "ColorOrange";
 
 	_trgobj3 = createTrigger ["EmptyDetector", position _off];
 	_trgobj3 setTriggerActivation [EGG_EVO_strPLAYERFACTION, "PRESENT", true];
