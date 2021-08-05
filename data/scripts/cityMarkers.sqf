@@ -4,7 +4,7 @@
 	{
 	_currentTown = BIS_EVO_MissionTowns select _forEachIndex;
 	_unit = (_currentTown);
-	_airports = [objective_1];
+	//_airports = [objective_1];
 	_unitm = format ["%1_marker", _unit];
 	_markerobj = createMarker[_unitm,[getPos _unit select 0,getPos _unit select 1]];
 	BIS_EVO_MissionObjMarkers = BIS_EVO_MissionObjMarkers + [_unitm];
