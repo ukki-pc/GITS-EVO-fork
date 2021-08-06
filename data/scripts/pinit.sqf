@@ -30,6 +30,8 @@ _arm = [] execVM "data\scripts\EB_ARM.sqf";
 //_fog = [] execVM "data\scripts\fog.sqf";
 _cthread = [] execVM "data\scripts\MainThreadC.sqf";
 
+_mapF= [] execVM "data\scripts\mapFunctions.sqf";
+
 //CLIENT SIDED ATM
 //_sResp = [] execVM "data\scripts\strategicResponse.sqf"; //WIP
 

@@ -84,7 +84,7 @@ updCityMarkers =
 				_dispname = [_vec] call fnc_getCfgName;
 				_markerobj setMarkerType  "plp_icon_building";
 				_markerobj setMarkerColor _enemyColor;
-				_markerobj setMarkerText _dispname;
+			//	_markerobj setMarkerText _dispname;
 			};
 			if(_currentTown in BIS_EVO_MilitaryObjectives) then 
 			{
@@ -94,7 +94,7 @@ updCityMarkers =
 				_dispname = [_vec] call fnc_getCfgName;
 				_markerobj setMarkerType  "plp_icon_storage1";
 				_markerobj setMarkerColor _enemyColor;
-				_markerobj setMarkerText _dispname;
+			//	_markerobj setMarkerText _dispname;
 			};
 		}
 		//BIS_EVO_MilitaryObjectives
@@ -119,7 +119,7 @@ updCityMarkers =
 			if !(_vec in BIS_EVO_unlocked) then {BIS_EVO_unlocked = BIS_EVO_unlocked + [_vec]; publicVariable "BIS_EVO_unlocked"};
 			_dispname = [_vec] call fnc_getCfgName;
 			_markerobj setMarkerType  "plp_icon_building";
-			_markerobj setMarkerText _dispname;
+		//	_markerobj setMarkerText _dispname;
 		};
 		if(_currentTown in BIS_EVO_MilitaryObjectives)
 		then 
@@ -130,7 +130,7 @@ updCityMarkers =
 			if !(_vec in BIS_EVO_unlocked) then {BIS_EVO_unlocked = BIS_EVO_unlocked + [_vec]; publicVariable "BIS_EVO_unlocked"};
 			_dispname = [_vec] call fnc_getCfgName;
 			_markerobj setMarkerType  "plp_icon_storage1";
-			_markerobj setMarkerText _dispname;
+		//	_markerobj setMarkerText _dispname;
 		};
 	};
 
@@ -164,7 +164,7 @@ updObjMarker =
 			if !(_vec in BIS_EVO_unlocked) then {BIS_EVO_unlocked = BIS_EVO_unlocked + [_vec]; publicVariable "BIS_EVO_unlocked"};
 			_markerobj setMarkerType  "plp_icon_building";
 			_dispname = [_vec] call fnc_getCfgName;
-			_markerobj setMarkerText _dispname;
+		//	_markerobj setMarkerText _dispname;
 		};
 		if(_currentTown in BIS_EVO_MilitaryObjectives)
 		then 
@@ -175,7 +175,7 @@ updObjMarker =
 			if !(_vec in BIS_EVO_unlocked) then {BIS_EVO_unlocked = BIS_EVO_unlocked + [_vec]; publicVariable "BIS_EVO_unlocked"};
 			_markerobj setMarkerType  "plp_icon_storage1";
 			_dispname = [_vec] call fnc_getCfgName;
-			_markerobj setMarkerText _dispname;
+		//	_markerobj setMarkerText _dispname;
 		};
 	};
 	publicVariable "BIS_EVO_unlocks";

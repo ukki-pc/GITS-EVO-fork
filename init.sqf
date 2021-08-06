@@ -823,7 +823,7 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 };
 
 EGG_EVO_allAmbs = ["Land_A_tent","BAF_Offroad_D","EB_LR_Supply_D_BAFX","RE_landrover6x6_BAF"];
-
+BIS_EVO_frameDelay = 0.016; // 60FPS equals ~16ms 
 BIS_EVO_GlobalSleep = 0.1; // Global sleep is used after spawning a unit.
 // Sub mission conditions
 BIS_EVO_MissionProgress = -1; 
