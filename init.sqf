@@ -184,72 +184,8 @@ publicVariable "spawntype";
 
 if (spawntype == 2) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" select 0),(getMarkerPos "FahneLKW" select 1),18]};
 
-	enableEnvironment true;
+enableEnvironment true;
 
-
-
-
-
-	BIS_EVO_MissionTowns = [];
-	BIS_EVO_MissionVillages = ["mobj1","mobj2","mobj3","mobj4","mobj5","mobj6","mobj7","mobj8","mobj9","mobj10","mobj11","mobj12","mobj2","mobj13","mobj14","mobj15","mobj16","mobj17","mobj18","mobj19","mobj20","mobj21","mobj22","mobj23","mobj24","mobj25","mobj26","mobj26"];// Each mission objectives town marker.
-	BIS_EVO_MissionBigTowns = ["mobjB1","mobjB2","mobjB3","mobjB4","mobjB5","mobjB6"];
-	BIS_EVO_MilitaryObjectives = ["mobjC1","mobjC2","mobjc3","mobjC4","mobjC5","mobjC6","mobjC7","mobjC8","mobjC9","mobjC10","mobjC11"];
-	BIS_EVO_CoastalTowns = ["mobj11","mobj4","mobj3","mobj5","mobjB2","mobj12","mobj9","mobjC6"];
-	//BIS_EVO_MissionTowns = BIS_EVO_MissionTowns + BIS_EVO_MissionVillages + BIS_EVO_MissionBigTowns +BIS_EVO_MilitaryObjectives;
-
-	BIS_EVO_MissionBigTowns = [];
-	BIS_EVO_MilitaryObjectives = [];
-	BIS_EVO_MissionVillages = [];
-	BIS_EVO_CoastalTowns = [];
-	BIS_EVO_MissionObjMarkers = [];
-	BIS_EVO_MissionTownNames = [];
-
-	//NEW TOWN GENERATION
-allObjs = nearestObjects [getpos cent, ["LocationLogic"], 12000];
-
-sleep 0.2;
-{
-//	BIS_EVO_MissionTowns = BIS_EVO_MissionTowns + [_x];
-	_townType =	_x getVariable "type";
-	_isCoastal = (_x getVariable "coastal");
-	_townName =	_x getVariable "name";
-	_isCoastal = !(isNil "_isCoastal"); //Not maybe necessary
-
-	// _unitm = format ["%1_marker", _x];
-	// _markerobj = createMarker[_unitm,[getPos _x select 0,getPos _x select 1]];
-	// _markerobj setMarkerType  "plp_icon_building";
-
-	switch (_townType)  do
-	{
-		case "city": 
-		{
-			BIS_EVO_MissionBigTowns = BIS_EVO_MissionBigTowns + [_x];
-		};
-		case "military": 
-		{
-			BIS_EVO_MilitaryObjectives = BIS_EVO_MilitaryObjectives + [_x];
-		};
-		case "town": 
-		{
-			BIS_EVO_MissionVillages = BIS_EVO_MissionVillages + [_x];
-		};
-	};
-
-	if(_isCoastal) then {BIS_EVO_CoastalTowns = BIS_EVO_CoastalTowns + [_x]};
-
-	BIS_EVO_MissionTowns = BIS_EVO_MissionTowns + [_x];
-	BIS_EVO_MissionTownNames = BIS_EVO_MissionTownNames + [_townName];
-
-} forEach allObjs;
-
-
-// systemChat str BIS_EVO_MissionBigTowns;
-// systemChat str BIS_EVO_MissionTowns;
-// systemChat str BIS_EVO_MissionVillages;
-
-
-//These are filled as you conquer them, additionally you can set towns conquered as default
-BIS_EVO_conqueredTowns = [];
 BIS_EVO_rengZones = [reng1,reng2,reng3,reng4];
 
 	//IF new game selected start the game without hesitation
@@ -791,6 +727,7 @@ for [{_loop=0}, {_loop<count buyTankList}, {_loop=_loop+1}] do {
 		["M2HD_mini_TriPod_US_EP1",2],					// ap
 		["MK19_TriPod_US_EP1",6],							// Ap
 		["TOW_TriPod",10],							// AT
+		["69B",10],									
 		["Stinger_Pod_US_EP1",10],						// AA
 		["M252_US_EP1",10],								// AP
 		["Rbs70_ACR",10],								// AA
@@ -944,7 +881,7 @@ defenceReady = false; //Avoid certain events during objective population
 money = 20;
 playerRank = 0;
 perkPoints = 2;
-aggression = 0;
+aggression = 100;
 eResupplying = false;
 
 //List of vehicles that are unlocked through objective capture
@@ -1010,7 +947,57 @@ canRepair = false;
 canAmmo = false;
 canFasttravel = false;
 canRecruit = false;
+
+BIS_EVO_MissionTowns = [];
+BIS_EVO_MissionBigTowns = [];
+BIS_EVO_MilitaryObjectives = [];
+BIS_EVO_MissionVillages = [];
+BIS_EVO_CoastalTowns = [];
+BIS_EVO_MissionObjMarkers = [];
+BIS_EVO_MissionTownNames = [];
+BIS_EVO_MissionTownInfGarrisons = [];
+BIS_EVO_MissionTownVecGarrisons = [];
+BIS_EVO_conqueredTowns = [];
+
 if(isServer) then {
+
+//NEW TOWN GENERATION
+allObjs = nearestObjects [getpos cent, ["LocationLogic"], 12000];
+
+{
+	_townType =	_x getVariable "type";
+	_isCoastal = (_x getVariable "coastal");
+	_townName =	_x getVariable "name";
+	_isCoastal = !(isNil "_isCoastal"); //Not maybe necessary
+
+	switch (_townType)  do
+	{
+		case "city": 
+		{
+			BIS_EVO_MissionBigTowns set [_forEachIndex,_x];
+			BIS_EVO_MissionTownInfGarrisons set [_forEachIndex,250+round random(150)];
+			BIS_EVO_MissionTownVecGarrisons set [_forEachIndex,10+round random(13)];
+		};
+		case "military": 
+		{
+			BIS_EVO_MilitaryObjectives  set [_forEachIndex,_x];
+			BIS_EVO_MissionTownInfGarrisons set [_forEachIndex,100+round random(150)];
+			BIS_EVO_MissionTownVecGarrisons  set [_forEachIndex,20+round random(20)];
+		};
+		case "town": 
+		{
+			BIS_EVO_MissionVillages set [_forEachIndex,_x];
+			BIS_EVO_MissionTownInfGarrisons set [_forEachIndex,100+round random(100)];
+			BIS_EVO_MissionTownVecGarrisons set [_forEachIndex,6+round random(11)];
+		};
+	};
+
+	if(_isCoastal) then {BIS_EVO_CoastalTowns set [_forEachIndex,_x]};
+
+	BIS_EVO_MissionTowns set [_forEachIndex,_x];
+	BIS_EVO_MissionTownNames set [_forEachIndex,_townName];
+} forEach allObjs;
+
 //MHQ SPAWNER
 MHQ = createVehicle [egg_evo_MHQ,  getposASL LKWWEST, [], 0, "NONE"];
 // MHQ setVehicleInit "veh = [this, 10, 0, 0, FALSE, FALSE] execVM ""vehicle.sqf""";
@@ -1020,7 +1007,16 @@ MHQ setDir getDir LKWWEST;
 publicVariable "MHQ";
 };
 
-
+publicVariable "BIS_EVO_MissionTowns";
+publicVariable "BIS_EVO_MissionBigTowns";
+publicVariable "BIS_EVO_MilitaryObjectives";
+publicVariable "BIS_EVO_MissionVillages";
+publicVariable "BIS_EVO_CoastalTowns";
+publicVariable "BIS_EVO_MissionObjMarkers";
+publicVariable "BIS_EVO_MissionTownNames";
+publicVariable "BIS_EVO_MissionTownInfGarrisons";
+publicVariable "BIS_EVO_MissionTownVecGarrisons";
+publicVariable "BIS_EVO_conqueredTowns";
 
 //High priority functions
 _rng = [] execVM "data\scripts\weightedRandom.sqf";
@@ -1208,7 +1204,9 @@ EGG_EVO_Trapweapons = ["uns_Tripwire1a","uns_Tripwire1a_2","uns_Tripwire1b","uns
 
 //all missiles, added missiles for hind at2 and havok missile and mig21 missile
 EGG_EVO_miscamwepsM = ["M_Toophan_AT","EB_M_AT3_AT","EB_M_AT9_AT","EB_M_AT9F_AT","PRACS_TK_AA8","EB_M_AT2_AT","M_Sidewinder_AA","M_Sidewinder_AA_F35","M_Strela_AA","M_Igla_AA","M_Stinger_AA","M_AT2_AT","M_AT6_AT","M_AT9_AT","M_AT5_AT","M_AT10_AT","M_AT11_AT","M_AT13_AT","M_TOW_AT","M_TOW2_AT","M_Hellfire_AT","M_Maverick_AT","M_Vikhr_AT","M_Ch29_AT","M_R73_AA","M_9M311_AA","GLT_AIM9M_AA","GLT_AIM9X_AA","GLT_AIM120_AA","GLT_AIM7_AA","GLT_AIM54_AA","GLT_R3_AA","GLT_R27_AA","GLT_R73_AA","GLT_R77_AA","GLT_R550_AA","IkaR_F14_AIM9_ir","IkaR_F14_AIM54_ir","RKTF15_AIM9","RKTF15_AIM120","ffaa_Mistral_AA","GLT_Sidewinder_AA","GLT_SidewinderX_AA","GLT_AIM7E_AA","GLT_Maverick_AG","GLT_Harpoon_LGM","GLT_AGM65_AG","GLT_AGM84_AG","GLT_AGM88_AG","GLT_AGM114_AG","GLT_CH15_AG","GLT_CH29L_AG","GLT_CH29T_AG","GLT_CH59_AG","GLT_CH31_AG","GLT_AM39_AG","GLT_AS4_AG","IkaR_F14_AGM65_ir","ffaa_spike_AT","RKTF4HarmRaila","RKTF4SparrowRaila","RKT_Kitchen","RKT_Ch29_AT","RKT_R27_AA","RKT_R73_AA","RKSL_LYNX_TOW_AT","M_AT9_Mi28","RKSL_brimstone_rack","RKSL_harpoon","rksl_agm119mk3","rksl_aim9m","rksl_aim132","rksl_irist","rksl_aim120","rksl_meteor","RKSL_stormshadow","RKSL_ALARM"];
+EGG_EVO_miscamwepM = EGG_EVO_miscamwepsM + ["GRAD","OFrP_155mm_Caesar","IRAN_NazeatLauncher","220mm_Launcher","ffaa_katiuska_launcher","PRACS_s213_BMS","M40A3","m107","M24","M4SPR","SVD","SVD_CAMO","ksvk","SMAW","Javelin","M1014","DMR","SidewinderLaucher_F35","BombLauncherF35"];
 
+BIS_EVO_camVehicles = ["69B","PRACS_M250_TEL","PRACS_M291_TEL","RM70_ACR","PRACS_M245_TEL","PRACS_MLRS"];
 //all airborne bombs
 EGG_EVO_miscamwepsB = ["EB_Bo_GBU12","EB_Bo_FAB250","Bo_GBU12_LGB","Bo_GBU12_LGB_F35","Bo_FAB_250","RKTF4BLUBomb","RKTF4BombRaila","Bo_kb500_LGB","Bo_fb250_FFB","RKSL_PAVE2_500","RKSL_PAVE4_500","RKSL_PAVE2_1000","RKSL_GP_500","RKSL_GP_500RET","RKSL_GP_1000","RKSL_GP_1000RET","GLT_FAB250_Bo","GLT_FAB500_Bo","GLT_MK81_Bo","GLT_MK82_Bo","GLT_MK82_Bo","GLT_MK84_Bo","GLT_AGM154_LGB","GLT_GBU12_LGB","GLT_GBU53_LGB","GLT_KAB250_LGB","GLT_KAB500_LGB","GLT_KAB1500_LGB","IkaR_F14_GBU12_ir","RKTF15E_GBU10Bomb","RKTF15E_mk82Bomb","RKTF15E_cbuBomb","RKTF15E_mk84Bomb"];
 

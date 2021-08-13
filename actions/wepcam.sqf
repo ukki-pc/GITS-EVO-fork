@@ -2,7 +2,7 @@ _ver = _this select 3;
 _vec = vehicle player;
 _vec removeaction wcam;
 
-if(not (_vec isKindOf "Air")) exitwith {};
+//if(not (_vec isKindOf "Air")) exitwith {};
 
 if(_ver == 0) then
 {

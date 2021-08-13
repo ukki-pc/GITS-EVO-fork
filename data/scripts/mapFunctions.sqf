@@ -4,7 +4,7 @@ fnc_mapScale =
 	#define minScale 0.01
 	#define maxScale 0.9
 	#define scaleMultip 0.04
-	allMarkers = BIS_EVO_MissionObjMarkers;
+	allMarkers = BIS_EVO_MissionObjMarkers + ["ship1","ship2"];
 	_mapCtrl = (findDisplay 12) displayCtrl 51;
 
 	while {visibleMap} do 
@@ -12,10 +12,17 @@ fnc_mapScale =
 		_scale = ctrlMapScale _mapCtrl;
 		//Scale  markers
 			if (_scale != OT_lastMapDrawScale) then 
-			{
+			{	
 				{
-					if (_scale > minScale) then { _x setMarkerSizeLocal [(0.01/(_scale*scaleMultip) max 0 min 1),	(0.01/(_scale*scaleMultip) max 0 min 1)];};
-					if (_scale > maxScale) then { _x setMarkerSizeLocal[0,0]; };
+						if("plp_icon_shipFrigate" == getMarkerType _x) then 
+					{	
+						if (_scale > minScale) then { _x setMarkerSizeLocal [(0.01/(_scale*scaleMultip) max 0.5 min 1),	(0.01/(_scale*scaleMultip) max 0.5 min 1)];};
+					}
+					else
+					{
+						if (_scale > minScale) then { _x setMarkerSizeLocal [(0.01/(_scale*scaleMultip) max 0 min 1),	(0.01/(_scale*scaleMultip) max 0 min 1)];};
+						if (_scale > maxScale) then { _x setMarkerSizeLocal[0,0]; }
+					};
 				} forEach allMarkers;
 			};
 			OT_lastMapDrawScale = _scale;

@@ -29,8 +29,11 @@ _pos = [0,0,0];
 _arm = [] execVM "data\scripts\EB_ARM.sqf";
 //_fog = [] execVM "data\scripts\fog.sqf";
 _cthread = [] execVM "data\scripts\MainThreadC.sqf";
+_marks = [] execVM "data\scripts\MarkerColors.sqf";
 
-_mapF= [] execVM "data\scripts\mapFunctions.sqf";
+
+//Alternating map marker sizes
+//_mapF= [] execVM "data\scripts\mapFunctions.sqf";
 
 //CLIENT SIDED ATM
 //_sResp = [] execVM "data\scripts\strategicResponse.sqf"; //WIP

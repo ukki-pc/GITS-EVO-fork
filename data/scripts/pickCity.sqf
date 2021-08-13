@@ -43,25 +43,24 @@ coastalTown = cityToAttackName in BIS_EVO_CoastalTowns;
   if(_x in BIS_EVO_conqueredTowns) exitWith{connectedTowns = true};
 }forEach syncTowns;
 
-if(_dist < 300 and !_friendlyCity and (connectedTowns or coastalTown)) then {'cityMarker' setMarkerPos getPos _nearestMarker;}
+if(_dist < 300 and !_friendlyCity) then {'cityMarker' setMarkerPos getPos _nearestMarker;}
 else {
 deleteMarker 'cityMarker';
 cityToAttack = -1;
 };
-if(cityToAttack > -1 and !_friendlyCity and (connectedTowns or coastalTown)) then {
-{deleteMarker _x} foreach reinfMarkers;
-
-
+if(cityToAttack > -1 and !_friendlyCity) then 
 {
-  _reinftownNames = _reinftownNames + [BIS_EVO_MissionTownNames select (BIS_EVO_MissionTowns find _x)];
-  _reinfMrkName = format ['%1_rmark',_x];
- _reinfMarker = createMarkerLocal [_reinfMrkName,[0,0,0]];
-  _reinfMrkName setMarkerPos getPos _x;
-  _reinfMarker setMarkerType 'selector_selectedFriendly';
-  _reinfMarker setMarkerColor 'ColorRed';
-  reinfMarkers = reinfMarkers + [_reinfMarker];
-} forEach reinftowns;
-
+{deleteMarker _x} foreach reinfMarkers;
+  {
+    _reinftownNames = _reinftownNames + [BIS_EVO_MissionTownNames select (BIS_EVO_MissionTowns find _x)];
+    _reinfMrkName = format ['%1_rmark',_x];
+  _reinfMarker = createMarkerLocal [_reinfMrkName,[0,0,0]];
+    _reinfMrkName setMarkerPos getPos _x;
+    _reinfMarker setMarkerType 'selector_selectedFriendly';
+    _reinfMarker setMarkerColor 'ColorRed';
+    reinfMarkers = reinfMarkers + [_reinfMarker];
+  } forEach reinftowns;
+  hint format ['%1\nConnections: %2\nInfantry Garrison: %3\nVehicle Garrison: %4\nCoast: %5\nCan Attack: %6',(BIS_EVO_MissionTownNames select cityToAttack),count reinftowns,BIS_EVO_MissionTownInfGarrisons select cityToAttack,BIS_EVO_MissionTownVecGarrisons select cityToAttack,coastalTown, (connectedTowns or coastalTown)];
 }
 	else { hint 'No selection.';
   

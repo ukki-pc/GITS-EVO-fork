@@ -5,11 +5,11 @@ _color = _this select 2;
 _type = _this select 3;
 _enableDir = _this select 4; // For top down vehicle markers
 _scale = _this select 5;
+_nameOverride = _this select 6; //If you want to specify the marker name
 
 
-_leader = gunner _unit;
-_group = group _leader;
 _unitm = format ["%1", _unit];
+if !(isNil "_nameOverride") then {_unitm = format ["%1",_nameOverride]};
 _markerobj = createMarker[_unitm,[getpos _unit select 0,getpos _unit select 1]];
 if(isNil "_type") then {_markerobj setMarkerType  "Dot"}
 else{_markerobj setMarkerType _type};
