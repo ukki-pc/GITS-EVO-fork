@@ -92,7 +92,7 @@ editor = 1; publicVariable "editor";
 R3F_LOG_mutex_local_verrou = false;
 
 spawntype = param1;
-helicopterhitch = param2;
+LHDCarrier = param2;
 EVOhour = paramsArray select 2;
 grasslevel = paramsArray select 3;
 if (grasslevel == 0) then {setTerrainGrid 50};
@@ -132,7 +132,8 @@ if (editor == 1) then
 {
 	onMapSingleClick "if (_alt) then {vehicle player setpos _pos;{vehicle _x setpos _pos} forEach _units}";
 	player allowDamage false;
-	spawntype = 2;
+	spawntype = 0;
+	LHDCarrier = 1;
 	helicopterhitch = 2;
 	EVOhour = 9;
 	grasslevel =1;
@@ -168,6 +169,7 @@ if (editor == 1) then
 	["DEBUG MODE ON | Version 0.6"] dm;
 };
 
+helicopterhitch = 2;
 basebeam = 2;
 BIS_EVO_rank1 = (rankscore * 1);
 BIS_EVO_rank2 = (rankscore * 2);
@@ -177,12 +179,14 @@ BIS_EVO_rank5 = (rankscore * 5);
 BIS_EVO_rank6 = (rankscore * 6);
 
 //Respawn settings
-spawntype = 2;
 respawnPoint = "Respawn_West";
-publicVariable "spawntype"; 
+publicVariable "spawntype";
+
+if(carrier) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" select 0),(getMarkerPos "FahneLKW" select 1),18];};
 
 
-if (spawntype == 2) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" select 0),(getMarkerPos "FahneLKW" select 1),18]};
+
+//if (spawntype == 1) then {"FahneLKW" setMarkerPos };
 
 enableEnvironment true;
 

@@ -7,15 +7,16 @@ if (isServer) then {
 	deletevehicle _LHDspawn;
 	_parts = 
 	[
-		"Land_LHD_house_1",
-		"Land_LHD_house_2",
-		"Land_LHD_elev_R",
-		"Land_LHD_1",
-		"Land_LHD_2",
-		"Land_LHD_3",
-		"Land_LHD_4",
-		"Land_LHD_5",
-		"Land_LHD_6"
+		// "Land_LHD_house_1",
+		// "Land_LHD_house_2",
+		// "Land_LHD_elev_R",
+		// "Land_LHD_1",
+		// "Land_LHD_2",
+		// "Land_LHD_3",
+		// "Land_LHD_4",
+		// "Land_LHD_5",
+		// "Land_LHD_6"
+		"JDG_carrier_Spawner"
 	];
 	{
 		_dummy = _x createvehicle _LHDspawnpoint;

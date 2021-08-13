@@ -771,15 +771,15 @@ class RscMisCam
 	};
 };
 
-titleParam1="Respawn type";
-valuesParam1[]={2,2,2};
-defvalueParam1=2;
-textsParam1[]={"Base only","Base only","Base only"};
+titleParam1="Hardcore Start";
+valuesParam1[]={0,1};
+defvalueParam1=0;
+textsParam1[]={"No","Yes"};
 
-titleParam2 = "Helicopter hitch and Arty System"; 
-valuesParam2[] = {0,1,2,3};
-defValueParam2 = 2; 
-textsParam2[] = {"Disabled","[R3F]Logistics","Mando Hitch & R3F","Mando Hitch"};
+titleParam2 = "Aircraft Carrier"; 
+valuesParam2[] = {0,1};
+defValueParam2 = 1; 
+textsParam2[] = {"No","Yes"};
 
 class Params
 {

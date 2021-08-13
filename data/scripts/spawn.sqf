@@ -39,10 +39,11 @@ player setSkill BIS_EVO_PlayerSkill;
 
 _player addEventHandler ["killed", {handle = [(_this select 0),(_this select 1)] execVM "data\scripts\killed.sqf"}];
 
-if(spawntype == 2) then 
+if(deathScorePenalty > 0) then 
 {
 	_player addEventHandler ["killed", {handle = [(_this select 0),(_this select 1)] execVM "data\scripts\rmScore.sqf"}];
 };
+
 Sleep 0.2;
 0 setFog 0.0;
 0 setOvercast 0.0;
