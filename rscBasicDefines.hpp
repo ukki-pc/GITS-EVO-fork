@@ -109,6 +109,15 @@
 #define TextSize_medium 			0.027 //23/768
 #define TextSize_large  			0.057 //44/768
 
+//Jambo defines
+#define UIbackGroundX -0.25
+#define UIbackGroundY 0
+#define UIbackGroundW 2
+#define UIbackGroundH 1
+
+#define UIList1W 0.5
+#define UIList1H 0.6
+
 //Definice z Coru
 //Standard static text.
 class RscSlider {

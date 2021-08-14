@@ -200,6 +200,24 @@ EGG_EVO_ENEMYFACTION = nil;
 EGG_EVO_strENEMYFACTION = nil;
 EGG_EVO_strPLAYERFACTION = nil;
 
+
+//Auto faction
+switch (side player) do 
+{
+	case east:
+	{
+		EGG_EVO_FactionParam = 0;
+	};
+	case west:
+	{
+		EGG_EVO_FactionParam = 1;
+	};
+	case resistance:
+	{
+		EGG_EVO_FactionParam = 2;
+	};
+};
+
 switch (EGG_EVO_FactionParam) do 
 {
 	case 0:
@@ -340,7 +358,7 @@ defenceReady = false; //Avoid certain events during objective population
 money = 20;
 playerRank = 0;
 perkPoints = 2;
-aggression = 100;
+aggression = 0;
 eResupplying = false;
 
 //List of vehicles that are unlocked through objective capture
@@ -681,9 +699,7 @@ BIS_EVO_spottingWeapons = ["EB_TIscanner","LRTV_ACR","Laserdesignator","Binocula
 //BIS_EVO_pweapons = ["BAF_L85A2_RIS_SUSAT","Colt1911","Laserdesignator","NVGoggles"]; 
 // The players default load out
 BIS_EVO_PlayerModel = "BAF_Soldier_W"; 
-	BIS_EVO_pallammo = ["pipebomb","LWS_Laserbatteries","HandGrenade_West","HandGrenade_West","30Rnd_556x45_G36SD","30Rnd_556x45_G36SD"];
 
-	BIS_EVO_pweapons = ["DM_CAMO_M4_CCO_IR_FG","Laserdesignator","EB_S10","EB_ItemSiphon"];
 
 
 

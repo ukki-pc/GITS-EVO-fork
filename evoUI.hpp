@@ -239,7 +239,7 @@ class evoUI
 			xcolumn2 = "0.25f";
 			xcolumn3 = "0.85f";		
 		};
-			class Available_items2: RscIGUIListBox//
+			class Available_items2: RscIGUIListBox
 		{
 			idc = 1995;
 			default = 1;
@@ -625,5 +625,92 @@ class evoUI
 			h = 0.18;
 			text = ;
 		};
+	};
+};
+
+class WeaponShopUI 
+{
+	idd = 177;
+	movingEnable = true;
+	enableSimulation = true;
+	onLoad = "initNakup = true;DlgClosed = false;[] execVM ""data\scripts\CoreWeps.sqf""";
+	//onLoad = "uiNamespace setVariable [""initNakup"", true];"uiNamespace setVariable [""DlgClosed"", false];[] execVM ""data\scripts\Core.sqf""";
+	__EXEC( _xSpacing = 0.0075;  _ySpacing = 0.01;)
+	__EXEC( _xInit = 12 * _xSpacing; _yInit = 18 * _ySpacing;)
+	__EXEC( _windowWidth = 101; _windowHeight = 64;)
+	__EXEC( _windowBorder = 1;)
+
+	class controlsBackground {
+		class Mainback : RscPicture 
+		{
+			idc = 1104;
+			x = 0.042;
+			y = 0.101;
+			w = 1.2549;
+			h = 0.836601;
+			text = "\ca\ui\data\igui_background_debriefing_ca.paa";
+		};	
+		class DesTitleMain : RscPicture  
+		{
+			idc = 101;
+			// x = 0.39;
+			// y = 0.2;
+			// w = 0.725;
+			// h = 0.42;
+		text = "\ca\ui\data\igui_background_debriefing_ca.paa";
+		colorText[] = {0.3, 0.3, 0.3, 0.6};
+		};
+		class ListbackMain : DesTitleMain  
+		{
+			idc = 101;
+			x = 0.0506555;
+			y = 0.2;
+			w = 0.4;
+			h = 0.6;
+			text = "\ca\ui\data\igui_background_debriefing_ca.paa";
+		};
+	};
+
+	class controls
+
+	{
+		class Available_items: RscIGUIListBox
+		{
+			idc = 4000;
+			default = 1;
+			x = 0.0506555;
+			y = 0.22;
+			w = 0.8;
+			h = 0.6;
+			//lineSpacing = 0;
+			onLBSelChanged = "[] call BIS_EVO_ListSelect";
+			onLBDblClick = "[] call BIS_EVO_ActButton";
+			rowHeight = 0.04;
+			soundSelect[] = {"\ca\ui\data\sound\mouse2", 0.09, 1};
+			maxHistoryDelay = 10;
+			canDrag = 0;
+			xcolumn1 = "0.1f";
+			xcolumn2 = "0.25f";
+			xcolumn3 = "0.85f";		
+		};
+
+		  class BMulti: RscIGUIShortcutButton // GLOBAL ACTIONS
+	      {
+			 idc = 8056;
+			x = 0.11;
+			y = 0.60;
+				//w = __EVAL(20 * _xSpacing);
+				//h = __EVAL(4 * _ySpacing);
+				//colorActive[] = CA_UI_green;
+				text = "Purchase";
+				onButtonClick = "[] call BIS_EVO_ActButton";	
+	      };
+		 class BGroup: BMulti
+	      {
+				idc = 659;
+				y = 0.805;
+				text = $STR_M04xt11;
+				onButtonClick = "lbSetCurSel[2000,0];Wpage = 0;[] call BIS_EVO_ListUpdate";
+	      };
 	};
 };

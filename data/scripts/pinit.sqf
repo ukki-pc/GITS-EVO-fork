@@ -39,7 +39,7 @@ _marks = [] execVM "data\scripts\MarkerColors.sqf";
 //_sResp = [] execVM "data\scripts\strategicResponse.sqf"; //WIP
 
 
-(FindDisplay 46) DisplaySetEventHandler ["keydown","if ((_this select 1) In actionKeys ""TeamSwitch"" and (isplayer driver vehicle player)) then {a = createDialog 'evoUI'}"];
+(FindDisplay 46) DisplaySetEventHandler ["keydown","if ((_this select 1) In actionKeys ""TeamSwitch"" ) then {a = createDialog 'evoUI'}"];
 _box = [0] call BIS_EVO_AmmoBox;
 _boxR = [0] call BIS_EVO_AmmoBoxR;
 //added to make markers show up on first spawn

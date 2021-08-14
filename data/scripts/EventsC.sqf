@@ -366,8 +366,9 @@ BIS_EVO_AmmoBoxR = // Creates and fills local rank based ammo box of Russian Wea
 
 	If (ranklock ==1 || ranklock == 3) then //russian 
 	{
-		/*
+		
 		deletevehicle ammobox6;ammobox6 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob6";ammobox6 setpos getmarkerpos "ammob6";[ammobox6] call _FillAmmoBoxR;
+		/*
 		deletevehicle ammobox7;ammobox7 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob7";ammobox7 setpos getmarkerpos "ammob7";[ammobox7] call _FillAmmoBoxR;
 		deletevehicle ammobox8;ammobox8 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob8";ammobox8 setpos getmarkerpos "ammob8";[ammobox8] call _FillAmmoBoxR;
 		deletevehicle ammobox9;ammobox9 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob9";ammobox9 setpos getmarkerpos "ammob9";[ammobox9] call _FillAmmoBoxR;
@@ -1269,8 +1270,11 @@ BIS_EVO_AmmoBox = // Creates and fills local rank based ammo boxes
 
 	If (ranklock ==1 || ranklock == 3) then //US weapons
 	{
-		/*
+	
 		deletevehicle ammobox1;ammobox1 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob1";ammobox1 setpos getmarkerpos "ammob1";[ammobox1] call _FillAmmoBoxU;
+	//	ammobox1 addAction ["Weapons Shop", "actions\wepshop.sqf",_this select 0];
+
+	/*
 		deletevehicle ammobox2;ammobox2 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob2";ammobox2 setpos getmarkerpos "ammob2";[ammobox2] call _FillAmmoBoxU;
 		deletevehicle ammobox3;ammobox3 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob3";ammobox3 setpos getmarkerpos "ammob3";[ammobox3] call _FillAmmoBoxU;
 		deletevehicle ammobox4;ammobox4 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob4";ammobox4 setpos getmarkerpos "ammob4";[ammobox4] call _FillAmmoBoxU;
@@ -1278,7 +1282,7 @@ BIS_EVO_AmmoBox = // Creates and fills local rank based ammo boxes
 	*/
 		deletevehicle ammobox11;ammobox11 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob11";ammobox11 SetPosASL [(getMarkerPos "HMS-GITS" select 0)+2,(getMarkerPos "HMS-GITS" select 1)+2, 18];[ammobox11] call _FillAmmoBoxU;
 //		deletevehicle ammobox11;ammobox11 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob11";ammobox11 SetPos getMarkerPos "HMS-GITS";[ammobox11] call _FillAmmoBoxU;
-		player reveal ammobox1
+		player reveal ammobox1;
 	} 
 	else //US weapons ranked
 	{

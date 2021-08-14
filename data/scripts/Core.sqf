@@ -1374,7 +1374,7 @@ if (player hasWeapon "ItemRadio") then
 									{
 									_place = [_ap, _item] execVM "actions\static\makeVehicle.sqf";
 									};
-									if(!inrepairzone or VehiclePlaced != 1) exitWith 
+									if(!inrepairzone) exitWith 
 									{
 										hint "You cannot buy from here!";
 									};
@@ -1977,7 +1977,7 @@ while {dialog} do
 	};
 	sleep 0.01;
 };
-(FindDisplay 46) DisplaySetEventHandler ["keydown","if ((_this select 1) In actionKeys ""TeamSwitch"" and (driver (vehicle player)) == player) then {a = createDialog 'evoUI'}"];
+(FindDisplay 46) DisplaySetEventHandler ["keydown","if ((_this select 1) In actionKeys ""TeamSwitch"" ) then {a = createDialog 'evoUI'}"];
 deleteMarkerLocal "btarg";
 [] call BIS_EVO_ResetClick;
 

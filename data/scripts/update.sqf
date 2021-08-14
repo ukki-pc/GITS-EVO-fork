@@ -19,6 +19,7 @@ BIS_EVO_EngZone = BIS_EVO_rengZones select _plid;
 
 Sleep 0.5;
 Mpage =[true,false,false,false,false];
+Wpage = 0;
 
 // Event handler to know when a player was attacked by an enemy for healing.
 player addEventHandler ["hit", 
