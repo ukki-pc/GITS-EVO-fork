@@ -6,10 +6,10 @@ EGG_EVO_strPLAYERFACTION = "RESISTANCE";
 _SideHQ = createCenter east;
 EGG_EVO_friendlyColor = "colorGreen";
 WEST setFriend [EAST, 0]; 
-WEST setFriend [RESISTANCE, 1];
+WEST setFriend [RESISTANCE, 0];
 EAST setFriend [WEST, 0];
 EAST setFriend [RESISTANCE, 0];
-RESISTANCE setFriend [WEST, 1];
+RESISTANCE setFriend [WEST, 0];
 RESISTANCE setFriend [EAST, 0];
 
 reng1 setTriggerActivation ["RESISTANCE", "PRESENT", false];
@@ -17,8 +17,8 @@ reng2 setTriggerActivation ["RESISTANCE", "PRESENT", false];
 reng3 setTriggerActivation ["RESISTANCE", "PRESENT", false];
 reng4 setTriggerActivation ["RESISTANCE", "PRESENT", false];
 
-BIS_EVO_pallammo = ["pipebomb","LWS_Laserbatteries","HandGrenade_West","HandGrenade_West","30Rnd_556x45_G36SD","30Rnd_556x45_G36SD"];
-BIS_EVO_pweapons = ["DM_CAMO_M4_CCO_IR_FG","Laserdesignator","EB_S10","EB_ItemSiphon"];
+BIS_EVO_pallammo = ["pipebomb","LWS_Laserbatteries","HandGrenade_West","HandGrenade_West","10x_303","10x_303","10x_303","10x_303","10x_303","10x_303"];
+BIS_EVO_pweapons = ["LeeEnfield","Laserdesignator","EB_S10","EB_ItemSiphon"];
 
 //Main men
 EGG_EVO_defenders= ["RU_Soldier_TL","RU_Soldier_SL","RU_Soldier_Medic","RU_Soldier","RU_Soldier2","RU_Soldier_AR","RU_Soldier_MG","RU_Soldier_AA","RU_Soldier_AT","RU_Soldier_LAT","RU_Soldier_HAT","RU_Soldier_GL","RU_Soldier_Sniper","RU_Soldier_SniperH","RU_Soldier_Spotter","RU_Soldier_Marksman"];
@@ -83,6 +83,9 @@ EGG_EVO_mfhq =["USMC_WarfareBFieldhHospital","CDF_WarfareBFieldhHospital","USMC_
 
 egg_evo_Amb = "TK_WarfareBUAVterminal_Base_EP1"; 
 egg_evo_MHQ = "PRACS_puma330_MG"; //PRACS_M113_AMB
+
+BIS_EVO_recruitables = ["TK_INS_Soldier_AR_EP1"];
+
 
 //////////////////////////////////////////////
 //EGG_EVO_defenders = ["PRACS_SNG_AT","PRACS_SNG_DMS","PRACS_SNG_SPR","PRACS_SNG","PRACS_SNG_ARM","PRACS_SNG_GNR","PRACS_SNG_MG","PRACS_SNG_MED","PRACS_SNG_O","PRACS_SNG_RTO","PRACS_SNG_AA"];

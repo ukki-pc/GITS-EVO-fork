@@ -3,7 +3,7 @@ EGG_EVO_PLAYERFACTION = east;
 EGG_EVO_ENEMYFACTION = west;
 EGG_EVO_strENEMYFACTION = "WEST";
 EGG_EVO_strPLAYERFACTION = "EAST";
-EGG_EVO_friendlyColor = "colorRed";
+EGG_EVO_friendlyColor = "colorBlack";
 _SideHQ = createCenter west;
 EAST setFriend [WEST, 0]; 
 EAST setFriend [RESISTANCE, 0]; 
@@ -11,6 +11,9 @@ WEST setFriend [EAST, 0];
 WEST setFriend [RESISTANCE, 1];
 RESISTANCE setFriend [WEST, 1];
 RESISTANCE setFriend [EAST, 0];
+
+egg_evo_Amb = "EB_BRDM2_HQ_TK";
+egg_evo_MHQ = "pook_brdm2M2_TKINS";
 
 reng1 setTriggerActivation ["EAST", "PRESENT", false];
 reng2 setTriggerActivation ["EAST", "PRESENT", false];
@@ -79,8 +82,7 @@ EGG_EVO_mehq = ["BMP2_HQ_TK_unfolded_EP1"];
 EGG_EVO_meflag = ["FlagCarrierTK_EP1"];
 EGG_EVO_mfhq =["USMC_WarfareBFieldhHospital","CDF_WarfareBFieldhHospital","USMC_WarfareBAircraftFactory","LAV25_HQ_unfolded","CDF_WarfareBBarracks"];// meeds taki
 
-egg_evo_Amb = "EB_BRDM2_HQ_TK"; 
-egg_evo_MHQ = "EB_BTR90_HQ_TK";
+BIS_EVO_recruitables = ["TK_INS_Soldier_AR_EP1"];
 
 buyCarList = 
 [
@@ -234,6 +236,7 @@ buyStatList =
 ["pook_sa20_static_tak",20],
 /*ARTY*/
 ["2b14_82mm_tk_ep1",10],
+["69B",20],		
 ["EB_D20_TK",50],		
 ["D30_TK_EP1",60]
 ];

@@ -437,19 +437,21 @@ AssList = AssList +[["Save Game","Save game for next session.","data\offensive.p
 	if (helpersparam == 2) then 
 	{
 		RecList = [];
-		RecList = [[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_EP1" >> "DisplayName"), "US_Delta_Force_EP1", "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", ["US_Delta_Force_EP1"] call _GetGuns]];
-		RecList = RecList+ [[getText (configFile >> "CfgVehicles" >> "US_Soldier_Crew_EP1" >> "DisplayName"), "US_Soldier_Crew_EP1", "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", ["US_Soldier_Crew_EP1"] call _GetGuns]];
+		{
+			RecList = [[getText (configFile >> "CfgVehicles" >> _x >> "DisplayName"), _x, "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", [_x] call _GetGuns]];
+			// RecList = RecList+ [[getText (configFile >> "CfgVehicles" >> "US_Soldier_Crew_EP1" >> "DisplayName"), "US_Soldier_Crew_EP1", "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", ["US_Soldier_Crew_EP1"] call _GetGuns]];
+			// RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_Medic_EP1" >> "DisplayName"), "US_Delta_Force_Medic_EP1", "\Ca\characters\data\Ico\i_med_ca.paa",["US_Delta_Force_Medic_EP1"] call _GetGuns]];
+			// RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_AT_EP1" >> "DisplayName"), "US_Soldier_AT_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa", ["US_Soldier_AT_EP1"] call _GetGuns]];
+			// RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_Pilot_EP1" >> "DisplayName"), "US_Soldier_Pilot_EP1", "\Ca\characters\data\portraits\combarhead_usmc_pilot_ca",["US_Soldier_Pilot_EP1"] call _GetGuns]];
+			// RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_MG_EP1" >> "DisplayName"), "US_Delta_Force_MG_EP1", "\Ca\weapons\data\Ico\i_mg_CA.paa",["US_Delta_Force_MG_EP1"] call _GetGuns]];
+			// RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_GL_EP1" >> "DisplayName"), "US_Soldier_GL_EP1", "\Ca\characters\data\Ico\i_sf_ca.paa", ["US_Soldier_GL_EP1"] call _GetGuns]];
+			// RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_AA_EP1" >> "DisplayName"), "US_Soldier_AA_EP1", "\Ca\weapons\data\Ico\i_aa_CA.paa",["US_Soldier_AA_EP1"] call _GetGuns]];
+			// RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_SniperH_EP1" >> "DisplayName"), "US_Soldier_SniperH_EP1", "\Ca\weapons\data\Ico\i_sniper_CA.paa",["US_Soldier_SniperH_EP1"] call _GetGuns]];
+			// RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "CZ_Soldier_AT_DES_EP1" >> "DisplayName"), "CZ_Soldier_AT_DES_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa", ["CZ_Soldier_AT_DES_EP1"] call _GetGuns]];
+			// RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "CZ_Special_Forces_MG_DES_EP1" >> "DisplayName"), "CZ_Special_Forces_MG_DES_EP1", "\Ca\weapons\data\Ico\i_mg_CA.paa",["CZ_Special_Forces_MG_DES_EP1"] call _GetGuns]];
+			// RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_HAT_EP1" >> "DisplayName"), "US_Soldier_HAT_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa",["US_Soldier_HAT_EP1"] call _GetGuns]];
+		} forEach BIS_EVO_recruitables;
 		RecList = RecList +[["Copy me","ME", "\Ca\characters\data\Ico\i_med_ca.paa",[player] call _GetMyGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_Medic_EP1" >> "DisplayName"), "US_Delta_Force_Medic_EP1", "\Ca\characters\data\Ico\i_med_ca.paa",["US_Delta_Force_Medic_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_AT_EP1" >> "DisplayName"), "US_Soldier_AT_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa", ["US_Soldier_AT_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_Pilot_EP1" >> "DisplayName"), "US_Soldier_Pilot_EP1", "\Ca\characters\data\portraits\combarhead_usmc_pilot_ca",["US_Soldier_Pilot_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_MG_EP1" >> "DisplayName"), "US_Delta_Force_MG_EP1", "\Ca\weapons\data\Ico\i_mg_CA.paa",["US_Delta_Force_MG_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_GL_EP1" >> "DisplayName"), "US_Soldier_GL_EP1", "\Ca\characters\data\Ico\i_sf_ca.paa", ["US_Soldier_GL_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_AA_EP1" >> "DisplayName"), "US_Soldier_AA_EP1", "\Ca\weapons\data\Ico\i_aa_CA.paa",["US_Soldier_AA_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_SniperH_EP1" >> "DisplayName"), "US_Soldier_SniperH_EP1", "\Ca\weapons\data\Ico\i_sniper_CA.paa",["US_Soldier_SniperH_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "CZ_Soldier_AT_DES_EP1" >> "DisplayName"), "CZ_Soldier_AT_DES_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa", ["CZ_Soldier_AT_DES_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "CZ_Special_Forces_MG_DES_EP1" >> "DisplayName"), "CZ_Special_Forces_MG_DES_EP1", "\Ca\weapons\data\Ico\i_mg_CA.paa",["CZ_Special_Forces_MG_DES_EP1"] call _GetGuns]];
-		RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_HAT_EP1" >> "DisplayName"), "US_Soldier_HAT_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa",["US_Soldier_HAT_EP1"] call _GetGuns]];
 	};
 
 /*

@@ -9,7 +9,7 @@
 	BIS_EVO_MissionObjMarkers = BIS_EVO_MissionObjMarkers + [_unitm];
 
 	//TEST
-	BIS_EVO_conqueredTowns = [objective_1];
+	//BIS_EVO_conqueredTowns = [objective_1];
 
 
 	//ENEMY TOWN

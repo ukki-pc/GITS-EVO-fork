@@ -21,17 +21,23 @@ hint "Pick a city to assault";
 mapclick = true;
 _cursorPos = [];
 onMapSingleClick "
-  attackMarker= createMarkerLocal ['cityMarker',[0,0,0]];
-                  syncTowns = false;
-                  attackMarker setMarkerColor 'ColorRed';
-                attackMarker setMarkerType 'selector_selectedEnemy';
-                connectedTOwns = false;
+attackMarker= createMarkerLocal ['cityMarker',[0,0,0]];
+syncTowns = false;
+attackMarker setMarkerColor 'ColorRed';
+attackMarker setMarkerType 'selector_selectedEnemy';
+connectedTOwns = false;
 
 mapRefresh = true;
 _nearestMarker = [BIS_EVO_MissionTowns, _pos] call BIS_fnc_nearestPosition;
+
+systemchat str _nearestMarker;
+
 cityToAttack = BIS_EVO_MissionTowns find _nearestMarker;
 cityToAttackName = BIS_EVO_MissionTowns select CityToAttack;
 _dist = _pos distance getPos _nearestMarker;
+
+systemchat str _dist;
+
 _friendlyCity = cityToAttackName in BIS_EVO_ConqueredTowns;
 {deleteMarker _x} foreach reinfMarkers;
 syncTowns = synchronizedObjects (BIS_EVO_MissionTowns select cityToAttack);
@@ -43,7 +49,7 @@ coastalTown = cityToAttackName in BIS_EVO_CoastalTowns;
   if(_x in BIS_EVO_conqueredTowns) exitWith{connectedTowns = true};
 }forEach syncTowns;
 
-if(_dist < 300 and !_friendlyCity) then {'cityMarker' setMarkerPos getPos _nearestMarker;}
+if(_dist < 600 and !_friendlyCity) then {'cityMarker' setMarkerPos getPos _nearestMarker;}
 else {
 deleteMarker 'cityMarker';
 cityToAttack = -1;
@@ -75,7 +81,7 @@ waitUntil{!visibleMap};
 onMapSingleClick "";
 deleteMarker "cityMarker";
 
-if(cityToAttack > -1 and !(cityToAttackName in BIS_EVO_conqueredTowns) and ((cityToAttackName in BIS_EVO_CoastalTowns) or connectedTowns)) then 
+if(cityToAttack > -1 and !(cityToAttackName in BIS_EVO_conqueredTowns)) then 
 {
   hint format ["Launching assault on %1!",BIS_EVO_MissionTownNames select cityToAttack];
   //BIS_EVO_MissionProgress = cityToAttack;

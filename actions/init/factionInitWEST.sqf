@@ -85,6 +85,9 @@ EGG_EVO_mfhq =["USMC_WarfareBFieldhHospital","CDF_WarfareBFieldhHospital","USMC_
 egg_evo_Amb = "TK_WarfareBUAVterminal_Base_EP1"; 
 egg_evo_MHQ = "PRACS_puma330_MG"; //PRACS_M113_AMB
 
+BIS_EVO_recruitables = ["TK_INS_Soldier_AR_EP1"];
+
+
 //////////////////////////////////////////////
 //EGG_EVO_defenders = ["PRACS_SNG_AT","PRACS_SNG_DMS","PRACS_SNG_SPR","PRACS_SNG","PRACS_SNG_ARM","PRACS_SNG_GNR","PRACS_SNG_MG","PRACS_SNG_MED","PRACS_SNG_O","PRACS_SNG_RTO","PRACS_SNG_AA"];
 //EGG_EVO_OfficerDefenders = ["PRACS_Marine_AT","PRACS_Marine","PRACS_Marine_MG","PRACS_Marine_AA","PRACS_Marine_GNR"];

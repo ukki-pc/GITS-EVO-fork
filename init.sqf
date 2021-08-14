@@ -434,7 +434,7 @@ BIS_EVO_MissionObjMarkers = [];
 BIS_EVO_MissionTownNames = [];
 BIS_EVO_MissionTownInfGarrisons = [];
 BIS_EVO_MissionTownVecGarrisons = [];
-BIS_EVO_conqueredTowns = [];
+BIS_EVO_conqueredTowns = [objective_26];
 
 if(isServer) then {
 
@@ -474,15 +474,6 @@ allObjs = nearestObjects [getpos cent, ["LocationLogic"], 12000];
 	BIS_EVO_MissionTowns set [_forEachIndex,_x];
 	BIS_EVO_MissionTownNames set [_forEachIndex,_townName];
 } forEach allObjs;
-
-//MHQ SPAWNER
-MHQ = createVehicle [egg_evo_MHQ,  getposASL LKWWEST, [], 0, "NONE"];
-// MHQ setVehicleInit "veh = [this, 10, 0, 0, FALSE, FALSE] execVM ""vehicle.sqf""";
-_veh = [MHQ] execVM "data\scripts\vehicleMHQ.sqf";
-MHQ setposASL  [getposASL LKWWEST select 0, getposASL LKWWEST select 1,19];
-MHQ setDir getDir LKWWEST;
-publicVariable "MHQ";
-};
 
 publicVariable "BIS_EVO_MissionTowns";
 publicVariable "BIS_EVO_MissionBigTowns";
@@ -699,8 +690,6 @@ BIS_EVO_spottingWeapons = ["EB_TIscanner","LRTV_ACR","Laserdesignator","Binocula
 //BIS_EVO_pweapons = ["BAF_L85A2_RIS_SUSAT","Colt1911","Laserdesignator","NVGoggles"]; 
 // The players default load out
 BIS_EVO_PlayerModel = "BAF_Soldier_W"; 
-
-
 
 
 //Tasks
@@ -1108,7 +1097,14 @@ EGG_sinit =1; publicVariable "EGG_sinit";
 if (isServer and not (local player)) exitWith {}; 
 
 // Large marker seen over occupied cities
-
+//MHQ SPAWNER
+MHQ = createVehicle [egg_evo_MHQ,  getposASL LKWWEST, [], 0, "NONE"];
+// MHQ setVehicleInit "veh = [this, 10, 0, 0, FALSE, FALSE] execVM ""vehicle.sqf""";
+_veh = [MHQ] execVM "data\scripts\vehicleMHQ.sqf";
+MHQ setposASL  [getposASL LKWWEST select 0, getposASL LKWWEST select 1,0];
+MHQ setDir getDir LKWWEST;
+publicVariable "MHQ";
+};
 
 // For jip, client waits for server to run update.sqf
 waitUntil {BIS_EVO_allvar_packed != ""};
