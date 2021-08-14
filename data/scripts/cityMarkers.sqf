@@ -1,6 +1,5 @@
 	private ["_objective","_currentTown","_unit","_unitM","_markerobj","_vec","_dispname","_airports"];
 	#define _enemyColor "ColorBrown"
-	#define _friendlyColor "ColorGreen"
 	{
 	_currentTown = BIS_EVO_MissionTowns select _forEachIndex;
 	_unit = (_currentTown);
@@ -42,7 +41,7 @@
 	else 
 	{
 		_markerobj setMarkerType  "plp_icon_house";
-		_markerobj setMarkerColor _friendlyColor;
+		_markerobj setMarkerColor EGG_EVO_friendlyColor;
 		_markerobj setMarkerSize [0.8,0.8];
 
 		if(_currentTown in BIS_EVO_MissionBigTowns)
@@ -108,7 +107,7 @@ updCityMarkers =
 	//FRIENDLY TOWN
 	else 
 	{
-		_markerobj setMarkerColor _friendlyColor;
+		_markerobj setMarkerColor EGG_EVO_friendlyColor;
 		_markerobj setMarkerType  "plp_icon_house";
 		
 		if(_currentTown in BIS_EVO_MissionBigTowns)
@@ -153,7 +152,7 @@ updObjMarker =
 	//ENEMY TOWN
 	if (_currentTown in BIS_EVO_conqueredTowns) then
 	{
-		_markerobj setMarkerColor _friendlyColor;
+		_markerobj setMarkerColor EGG_EVO_friendlyColor;
 		_markerobj setMarkerType  "plp_icon_house";
 
 		if(_currentTown in BIS_EVO_MissionBigTowns)
