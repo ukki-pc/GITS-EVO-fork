@@ -1,4 +1,5 @@
 
+#include "factionDefines.hpp"
 EGG_EVO_PLAYERFACTION = east;
 EGG_EVO_ENEMYFACTION = west;
 EGG_EVO_strENEMYFACTION = "WEST";
@@ -24,35 +25,35 @@ BIS_EVO_pallammo = ["pipebomb","LWS_Laserbatteries","HandGrenade_West","HandGren
 BIS_EVO_pweapons = ["RH_akms","Laserdesignator","EB_S10","EB_ItemSiphon"];
 
 //Main men
-EGG_EVO_enemy1= ["BAF_Soldier_AA_MTP","BAF_Soldier_AAA_MTP","BAF_Soldier_AAT_MTP","BAF_Soldier_AHAT_MTP","BAF_Soldier_AAR_MTP","BAF_Soldier_AMG_MTP","BAF_Soldier_AT_MTP","BAF_Soldier_HAT_MTP","BAF_Soldier_AR_MTP","BAF_Soldier_EN_MTP","BAF_Soldier_GL_MTP","BAF_Soldier_FAC_MTP","BAF_Soldier_MG_MTP","BAF_Soldier_scout_MTP","BAF_Soldier_Marksman_MTP","BAF_Soldier_Medic_MTP","BAF_Soldier_Officer_MTP","BAF_Soldier_MTP","BAF_ASoldier_MTP","BAF_Soldier_L_MTP","BAF_Soldier_N_MTP","BAF_Soldier_SL_MTP","BAF_Soldier_SniperN_MTP","BAF_Soldier_SniperH_MTP","BAF_Soldier_Sniper_MTP","BAF_Soldier_spotter_MTP","BAF_Soldier_spotterN_MTP","BAF_Soldier_TL_MTP"];
+EGG_EVO_enemy1= [ANA];
 EGG_EVO_enemy2 = EGG_EVO_enemy1;
 EGG_EVO_enemy3 = EGG_EVO_enemy1;
 EGG_EVO_enemy4 = EGG_EVO_enemy1;
 EGG_EVO_enemy5 = EGG_EVO_enemy1;
-EGG_EVO_defenders = ["PRACS_SNG_AT","PRACS_SNG_DMS","PRACS_SNG_SPR","PRACS_SNG","PRACS_SNG_ARM","PRACS_SNG_GNR","PRACS_SNG_MG","PRACS_SNG_MED","PRACS_SNG_O","PRACS_SNG_RTO","PRACS_SNG_AA"];
-EGG_EVO_OfficerDefenders = ["PRACS_Marine_AT","PRACS_Marine","PRACS_Marine_MG","PRACS_Marine_AA","PRACS_Marine_GNR"];
+EGG_EVO_defenders = [ANA];
+EGG_EVO_OfficerDefenders = [ANASF];
 EGG_EVO_ENEMYSHIPS = [];
 
-EGG_EVO_MechEasy = ["EB_M1114_Armored_D","PRACS_LAV_IFV","PRACS_LAV_MGS","PRACS_M113_FSV","PRACS_M113","PRACS_M113_IFV","PRACS_M113_M60","PRACS_LAV_ATGW","BAFX_Ridgeback_D","M1114_AGS_ACR","ibr_VAB_127","M1114_DSK_ACR","HMMWV_M1151_M2_CZ_DES_EP1","HMMWV_TOW_DES_EP1","M1126_ICV_M2_EP1","M1126_ICV_mk19_EP1","M1129_MC_EP1"];
-EGG_EVO_MechMedium = ["PRACS_LEO1A5","PRACS_M901_ITV","PRACS_M60A3","PRACS_M60A3_S2","ibr_VAB_Mephisto","M1128_MGS_EP1","M1135_ATGMV_EP1","EB_LAV25_D2","PRACS_FV107","M2A2_EP1","M2A3_EP1","BAF_FV510_D","PRACS_FV101"];
-EGG_EVO_MechHard = ["PRACS_LEO2A4","M1A1_US_DES_EP1","M1A2_US_TUSK_MG_EP1"];
+EGG_EVO_MechEasy = ["EB_M1114_Armored_D"];
+EGG_EVO_MechMedium = ["ibr_VAB_Mephisto"];
+EGG_EVO_MechHard = ["M1A2_US_TUSK_MG_EP1"];
 
 EGG_EVO_enemySupply = [];
 
 //THESE AA SPAWN ON TOWNS
-EGG_EVO_spAAeasy = ["HMMWV_Avenger","PRACS_LAV_SAM","PRACS_Sa6","PRACS_351_SAM","M6_EP1","PRACS_m48_chapparal"];
+EGG_EVO_spAAeasy = ["FAP_ZPU4","BofTruck"];
 EGG_EVO_spAAmedium = EGG_EVO_spAAeasy;
-EGG_EVO_spAAhard = ["PRACS_M163","PRACS_M302_SAM","PRACS_m48_chapparal","PRACS_M460_SAM"];
+EGG_EVO_spAAhard = [];
 
 EGG_EVO_mepilot = ["US_Soldier_Pilot_EP1"];
 EGG_EVO_meofficer = ["BAF_Soldier_Officer_MTP"];
 
 //statics
-EGG_EVO_statEnemy = [];
-EGG_EVO_statEnemyAA = ["Fort_Nest_M240","M2HD_mini_TriPod","M2StaticMG","DSHKM_CDF","DSHkM_Mini_TriPod_CDF","MK19_TriPod","AGS_CDF","2b14_82mm_CDF","M252","SPG9_CDF","M119","D30_CDF","TOW_TriPod","ZU23_CDF","PRACS_HAWK","PRACS_Type74AAgun","PRACS_M266AAgun"];
+EGG_EVO_statEnemy = [staticWest];
+EGG_EVO_statEnemyAA = [staticAAWEST];
 
 //Reinfocing infatry vehicles
-EGG_EVO_mevconvoyb = ["MTVR_DES_EP1","ibr_VAB","PRACS_M250"];
+EGG_EVO_mevconvoyb = ["MTVR_DES_EP1","PRACS_M250","SRA_Truck5tOpen","c1","s2"];
 
 //Reinforce paradrop vehicles
 EGG_EVO_mevair3 = ["CH_47F_EP1","UH60M_MEV_EP1","BAF_Merlin_HC3_D","UH60M_EP1","UH1Y","PRACS_puma330_MG","PRACS_CH53"]; //"ou_ch_46e","ou_ch_53d",

@@ -301,8 +301,7 @@ buyStatList =
 ["M2StaticMG_US_EP1",2],					// CUSTOM  ["PRACS_Type66_Gun","PRACS_M266AAgun","PRACS_Type74AAgun","PRACS_M101","PRACS_M1","PRACS_Regular_M2","PRACS_Regular_MK19","PRACS_Regular_TOW","PRACS_Regular_M252"];
 ["M2HD_mini_TriPod_US_EP1",2],					// ap
 ["MK19_TriPod_US_EP1",6],							// Ap
-["TOW_TriPod",10],							// AT
-["69B",10],									
+["TOW_TriPod",10],							// AT								
 ["Stinger_Pod_US_EP1",10],						// AA
 ["M252_US_EP1",10],								// AP
 ["Rbs70_ACR",10],								// AA

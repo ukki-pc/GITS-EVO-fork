@@ -30,7 +30,7 @@ _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 			_cstatA setPosASL [getPos _cstatA select 0, getPos _cstatA select 1, 18.5];
 		}
 		else {
-			_cstatA setPos [getPos _cstatA select 0, getPos _cstatA select 1, 0.5];
+			_cstatA setPos [getPos _cstatA select 0, getPos _cstatA select 1, 0];
 		};
 		_cstatA setVelocity [0, 0, 0];
 		

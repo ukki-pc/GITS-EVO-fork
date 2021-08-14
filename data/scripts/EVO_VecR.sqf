@@ -31,13 +31,15 @@ BIS_EVO_VecR =
 		};
 		*/
 
-
+		if(_vcl isKindOf "Air") then
+		{
 	
 			_warning = _vcl addEventHandler["IncomingMissile",{
 			
 				BIS_EVO_mtar = driver (_this select 0);
 				publicVariable "BIS_EVO_mtar";
 			}];
+		};
 	};
 	BIS_EVO_Frew = 
 	{

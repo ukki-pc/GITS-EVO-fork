@@ -30,13 +30,9 @@ connectedTOwns = false;
 mapRefresh = true;
 _nearestMarker = [BIS_EVO_MissionTowns, _pos] call BIS_fnc_nearestPosition;
 
-systemchat str _nearestMarker;
-
 cityToAttack = BIS_EVO_MissionTowns find _nearestMarker;
 cityToAttackName = BIS_EVO_MissionTowns select CityToAttack;
 _dist = _pos distance getPos _nearestMarker;
-
-systemchat str _dist;
 
 _friendlyCity = cityToAttackName in BIS_EVO_ConqueredTowns;
 {deleteMarker _x} foreach reinfMarkers;

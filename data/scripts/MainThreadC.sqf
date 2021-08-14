@@ -276,7 +276,6 @@ BIS_EVO_Repair =
 		if((inrepairzone or inFarp) and repaircooldown == 0 and _allowed) then
 		{
 			 titleText [localize "STR_M04t83", "PLAIN DOWN",0.3];//Servicing
-			systemChat "WARNIGN";
 			 while {_interrupt and _allowed} do
 			 {
 			    sleep 0.500;
