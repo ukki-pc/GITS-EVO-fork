@@ -24,4 +24,9 @@ _mgun = [] execVM "data\scripts\manVehicle.sqf";
 
 _handle = [] execVM "data\scripts\activeReinforce.sqf";
 
+
+
+//DEBUG
+//_bmb = [] execVM "data\scripts\enemyAirstrike.sqf";
+
 Sleep 10.0;

@@ -30,7 +30,8 @@ class Mission
 		"re_armory",
 		"FFAA_patrullero_p72",
 		"FFAA_bam",
-		"PRACS_Troops"
+		"PRACS_Troops",
+		"opxmisc"
 	};
 	addOnsAuto[]=
 	{
@@ -41,6 +42,7 @@ class Mission
 		"PRACS_Troops",
 		"camisc3",
 		"CABuildings",
+		"opxmisc",
 		"camisc_e_wf",
 		"pracs_objects",
 		"camisc_e",
@@ -190,7 +192,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={10712.118,140.00978,7400.6162};
+					position[]={10718.919,139.98328,7381.812};
 					azimut=421.69556;
 					id=41;
 					side="EAST";
@@ -210,12 +212,11 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={10711.568,140.04605,7401.46};
+					position[]={10718.369,139.98328,7382.6558};
 					azimut=421.69601;
 					id=42;
 					side="EAST";
 					vehicle="TK_Soldier_Engineer_EP1";
-					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;
 					text="enge1";
@@ -231,11 +232,12 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={10709.745,140.06873,7401.9873};
+					position[]={10716.546,139.98328,7383.1831};
 					azimut=694.62402;
 					id=45;
 					side="WEST";
 					vehicle="US_Soldier_EP1";
+					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;
 					text="engw1";
@@ -250,7 +252,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={10710.512,140.08363,7402.334};
+					position[]={10717.313,139.98328,7383.5298};
 					azimut=331.16269;
 					id=46;
 					side="WEST";
@@ -1265,7 +1267,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={10708.573,140.11739,7403.1187};
+					position[]={10715.374,139.98328,7384.3149};
 					azimut=694.62402;
 					id=101;
 					side="GUER";
@@ -1284,7 +1286,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={10711.758,140.16464,7404.2183};
+					position[]={10718.559,139.98328,7385.4146};
 					azimut=694.62402;
 					id=102;
 					side="GUER";
@@ -1722,7 +1724,7 @@ class Mission
 		items=42;
 		class Item0
 		{
-			position[]={10711.81,140.01695,7400.7827};
+			position[]={10718.61,139.98328,7381.979};
 			name="Respawn_West";
 			markerType="RECTANGLE";
 			type="Tank";
@@ -2746,7 +2748,7 @@ class Mission
 		};
 		class Item42
 		{
-			position[]={10711.781,140.02487,7400.9673};
+			position[]={10718.582,139.98328,7382.1636};
 			a=5;
 			b=10;
 			angle=331.16199;
