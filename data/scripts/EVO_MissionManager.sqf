@@ -20,6 +20,8 @@ missionManager =
 	BIS_EVO_MainObjective setMarkerShapeLocal "ELLIPSE";
 	BIS_EVO_MainObjective setMarkerSizeLocal [reinforceRange, reinforceRange];
 
+	_bunkerType = "Land_fortified_nest_big_EP1";
+
 	reinforcementLoop = 
 	{
 		//Loop that calls reinforcements
@@ -78,10 +80,22 @@ missionManager =
 		BIS_EVO_InfantrySpawn = 24 + round (aggression*0.7);
 		BIS_EVO_MechanizedSpawn = 4 + round (aggression*0.2);
 
-		
-
 		radio1 setPos [(_pos select 0) + random(200) - random(200),(_pos select 1) + random(200) - random(200), 0];
 		radio1 setDammage 0;
+
+		//TODO Bunker system
+
+		/*
+		bunker = createVehicle [_bunkerType,  [0,0,0], [], 0, "NONE"];
+		bunker setPos [(_pos select 0) + random(100) - random(100),(_pos select 1) + random(100) - random(100), 0];
+
+		_mrktype = "Depot";
+		_markerobj5 = createMarker["bunker",getpos bunker];
+		_markerobj5 setMarkerColor "ColorRed";
+		_markerobj5 setMarkerType _mrktype;
+		_markerobj5 setMarkerText "Bunker";
+*/
+
 		while{(surfaceIsWater position radio1)} do 
 		{
 			radio1 setPos [(_pos select 0) + random(200) - random(200),(_pos select 1) + random(200) - random(200), 0];
