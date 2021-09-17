@@ -1,4 +1,4 @@
-onLoadMission= XTRA E V O L U T I O N - U K v7;
+onLoadMission= GITS-EVO FORK;
 class Header
 {
  gameType = COOP;
@@ -33,7 +33,7 @@ class CfgRadio
 
 class CfgSounds
 {
-	sounds[] = {reload,hmark,miswarn,bash,kill,Fill,Siphon,Intro,Somalia_News,CityClear,Paycall,Goodjob,Rocket_Away,Incoming,incoming_Nuke,nblast,nsound,Explo_Large,Explo_Nuke,radzoneb,Recruitment,Resupply,MarkerSmoke,MortarBarrage,Airstrike,SmallArty,LargeArty,NapalmStrike,MortarDist,ArtyDist,ArtyDistLarge,SmokeScreenDist,MarkerSmokeDist};
+	sounds[] = {reload,hit1,hit2,hit3,miswarn,bash,kill,Fill,Siphon,Intro,Somalia_News,CityClear,Paycall,Goodjob,Rocket_Away,Incoming,incoming_Nuke,nblast,nsound,Explo_Large,Explo_Nuke,radzoneb,Recruitment,Resupply,MarkerSmoke,MortarBarrage,Airstrike,SmallArty,LargeArty,NapalmStrike,MortarDist,ArtyDist,ArtyDistLarge,SmokeScreenDist,MarkerSmokeDist,captureCP,lostCP};
 
 	class reload
 	{
@@ -41,15 +41,27 @@ class CfgSounds
 		sound[] = {"Sound\reload.ogg", db - 8, 1.0};
 		titles[] = {};
 	};
-	class hmark
+	class hit1
 	{
-		name = "hmark";
-		sound[] = {"Sound\hmark.ogg", db + 0, 1.0};
+		name = "hit1";
+		sound[] = {"Sound\hit1.ogg", db + 0, 1.0};
+		titles[] = {};
+	};
+		class hit2
+	{
+		name = "hit2";
+		sound[] = {"Sound\hit2.ogg", db + 0, 1.0};
+		titles[] = {};
+	};
+		class hit3
+	{
+		name = "hit3";
+		sound[] = {"Sound\hit3.ogg", db + 0, 1.0};
 		titles[] = {};
 	};
 	class miswarn
 	{
-		name = "hmark";
+		name = "miswarn";
 		sound[] = {"Sound\miswarn.ogg", db + 0, 1.0};
 		titles[] = {};
 	};
@@ -263,73 +275,18 @@ class CfgSounds
 		sound[] = {"Sound\MarkerSmokeDist.ogg", db+9, 1.0};
 		titles[] = {};
 	};
-	class Brian_Im_hit
+	class captureCP
 	{
-		name="Brian_Im_hit";
-		sound[]={"revive_sqf\sound\UNIV_v05.ogg",0.05,1.0};
+		name="CaptureCP";
+		sound[]={"Sound\CAPTURECP_WEST.ogg",db+9,1.0};
 		titles[]={};
 	};
-	class Brian_Im_bleeding
+	class lostCP
 	{
-		name="Brian_Im_bleeding";
-		sound[]={"revive_sqf\sound\UNIV_v06.ogg",0.05,1.0};
+		name="lostCP";
+		sound[]={"Sound\LOSTCP_WEST.ogg",db+9,1.0};
 		titles[]={};
 	};
-	class Brian_Medic
-	{
-		name="Brian_Medic";
-		sound[]={"revive_sqf\sound\UNIV_v07.ogg",0.05,1.0};
-		titles[]={};
-	};
-	class Brian_Bastards
-	{
-		name="Brian_Bastards";
-	        sound[]={"revive_sqf\sound\UNIV_v10.ogg",0.05,1.0};
-	        titles[]={};
-	};
-	class Brian_Shit_Man_down
-	{
-		name="Brian_Shit_Man_down";
-	        sound[]={"revive_sqf\sound\UNIV_v11.ogg",0.05,1.0};
-	        titles[]={};
-	};
-	class Brian_Oh_no
-	{
-		name="Brian_Oh_no";
-		sound[]={"revive_sqf\sound\UNIV_v18.ogg",0.05,1.0};
-		titles[]={};
-	};
-	class Brian_Fuck
-	{
-		name="Brian_Fuck";
-		sound[]={"sound\UNIV_v24.ogg",0.05,1.0};
-		titles[]={};
-	};
-	class Brian_Fuck_it
-	{
-		name="Brian_Fuck_it";
-		sound[]={"revive_sqf\sound\UNIV_v25.ogg",0.05,1.0};
-		titles[]={};
-	};
-	class Brian_Shit
-	{
-		name="Brian_Shit";
-		sound[]={"revive_sqf\sound\UNIV_v31.ogg",0.05,1.0};
-		titles[]={};
-	};
-	class Brian_Need_help
-	{
-		name="Brian_Need_help";
-		sound[]={"revive_sqf\sound\UNIV_v50.ogg",0.05,1.0};
-		titles[]={};
-	};
-	class Brian_A_little_help_here
-	{
-		name="Brian_A_little_help_here";
-		sound[]={"revive_sqf\sound\UNIV_v51.ogg",0.05,1.0};
-		titles[]={};
-	};
-
 	#include "LDL_ac130\Sounds\CfgSounds.hpp"
 };
 
@@ -431,30 +388,235 @@ class RscTitles
            onLoad = "uiNameSpace setVariable ['myUI_aggressionTitle', (_this select 0) displayCtrl 102];";
            class controls 
            { 
-                   class AgressionControl 
+			class AgressionControl 
+			{ 
+					idc = 102; 
+					type = VSoft; 
+					style = 0; 
+					x =  safeZoneX + safeZoneW - 0.2 * 3 / 4; 
+					y = safeZoneY + safeZoneH - 0.2; 
+					w = 0.5;
+					h = 0.09;
+					font = "Bitstream"; 
+					sizeEX = 0.09; 
+					colorBackground[] = {0,0,0,0}; 
+					colorText[] = {1,0.6,0.3,1}; 
+					text = "%"; 
+				}; 
+               }; 
+       	};
+class killfeedControlDefault
+{ 
+		idc = 116; 
+		type = VSoft; 
+		x =  safeZoneX + safeZoneW - 0.4 * 3 / 4; 
+		y = safeZoneY + safeZoneH - 0.2; 
+		w = 1;
+		h = 1;
+		font = "Bitstream"; 
+		sizeEX = 0.035; 
+		colorBackground[] = {0,0,0,0}; 
+        colorText[] = {0.5, 0.75, 0.5, 1};
+		 align = "CENTER";
+  		style = 0x02;
+		text = "terve"; 
+};
+	 class killFeed1 
+       { 
+           idd = 1562; 
+		   fadein = 0.2;
+           duration = 5;
+
+           onLoad = "uiNameSpace setVariable ['killfeed1', (_this select 0) displayCtrl 116];";
+           class controls 
+           { 
+                   class killfeedControl : killfeedControlDefault
                    { 
-                           idc = 102; 
+                           idc = 116; 
                            type = VSoft; 
-                           style = 0; 
-                           x =  safeZoneX + safeZoneW - 0.2 * 3 / 4; 
-                           y = safeZoneY + safeZoneH - 0.2; 
-          					w = 0.5;
-							h = 0.09;
-                           font = "Bitstream"; 
-                           sizeEX = 0.09; 
-                           colorBackground[] = {0,0,0,0}; 
-                           colorText[] = {1,0.6,0.3,1}; 
-                           text = "%"; 
+                       }; 
+               }; 
+       	};
+
+	 class killFeed2 : killFeed1
+       { 
+           idd = 1563; 
+           onLoad = "uiNameSpace setVariable ['killfeed2', (_this select 0) displayCtrl 117];";
+           class controls 
+           { 
+                   class killfeedControl : killfeedControlDefault
+                   { 
+                           idc = 117; 
+						 type = VSoft; 
+                       }; 
+               }; 
+       	};
+	class killFeed3 : killFeed1
+       { 
+           idd = 1564; 
+           onLoad = "uiNameSpace setVariable ['killfeed3', (_this select 0) displayCtrl 118];";
+           class controls 
+           { 
+                   class killfeedControl  : killfeedControlDefault
+                   { 
+                           idc = 118; 
+                       }; 
+               }; 
+       	};
+		class killFeed4 : killFeed1
+       { 
+           idd = 1565; 
+           onLoad = "uiNameSpace setVariable ['killfeed4', (_this select 0) displayCtrl 119];";
+           class controls 
+           { 
+                   class killfeedControl  : killfeedControlDefault
+                   { 
+                           idc = 119;
+                       }; 
+               }; 
+       	};
+		class killFeed5 : killFeed1
+       { 
+           idd = 1566; 
+           onLoad = "uiNameSpace setVariable ['killfeed5', (_this select 0) displayCtrl 120];";
+           class controls 
+           { 
+                   class killfeedControl : killfeedControlDefault
+                   { 
+                           idc = 120;
                        }; 
                }; 
        	}; 
+		class killFeed6 : killFeed1
+       { 
+           idd = 1567; 
+           onLoad = "uiNameSpace setVariable ['killfeed6', (_this select 0) displayCtrl 121];";
+           class controls 
+           { 
+                   class killfeedControl : killfeedControlDefault
+                   { 
+                           idc = 121;
+                       }; 
+               }; 
+       	}; 
+		class killFeed7 : killFeed1
+       { 
+           idd = 1568; 
+           onLoad = "uiNameSpace setVariable ['killfeed7', (_this select 0) displayCtrl 122];";
+           class controls 
+           { 
+                   class killfeedControl : killfeedControlDefault
+                   { 
+                           idc = 122;
+                       }; 
+               }; 
+       	}; 
+		class killFeed8 : killFeed1
+       { 
+           idd = 1569; 
+           onLoad = "uiNameSpace setVariable ['killfeed8', (_this select 0) displayCtrl 123];";
+           class controls 
+           { 
+                   class killfeedControl : killfeedControlDefault
+                   { 
+                           idc = 123;
+                       }; 
+               }; 
+       	}; 
+				class killFeed9 : killFeed1
+       { 
+           idd = 1570; 
+           onLoad = "uiNameSpace setVariable ['killfeed9', (_this select 0) displayCtrl 124];";
+           class controls 
+           { 
+            class killfeedControl : killfeedControlDefault
+             { 
+                           idc = 124;
+                       }; 
+               }; 
+       	}; 
+			class killfeed10 : killFeed1
+       { 
+           idd = 1571; 
+           onLoad = "uiNameSpace setVariable ['killfeed10', (_this select 0) displayCtrl 125];";
+           class controls 
+           { 
+                   class killfeedControl : killfeedControlDefault
+                   { 
+                           idc = 125;
+                    }; 
+            }; 
+       	}; 
+
+
+	class objectiveOnScreenControlDefault
+	{ 
+		type = 0; 
+		style = 48; 
+		x =  2; 
+		y = 2; 
+		w = 0.05;
+		h =  0.05;
+		font = "Bitstream"; 
+		sizeEX = 0.03; 
+		colorBackground[] = {0,0,0,0}; 
+		colorText[] = {1, 1, 1, 1};
+	};
+
+class screenobj1
+{ 
+		idd = 1572; 
+		onLoad = "uiNameSpace setVariable ['screenobj1', (_this select 0) displayCtrl 126];";
+		duration = 999999;
+
+		class controls 
+           { 
+                   class objectiveOnScreenControl : objectiveOnScreenControlDefault
+                   { 
+                        idc = 126;
+						text = "Data\flaga.paa";
+                	};
+            };
+};
+
+class screenobj2
+{ 
+		idd = 1573; 
+		onLoad = "uiNameSpace setVariable ['screenobj2', (_this select 0) displayCtrl 127];";
+		duration = 999999;
+
+		class controls 
+           { 
+                   class objectiveOnScreenControl : objectiveOnScreenControlDefault
+                   { 
+                        idc = 127;
+						text = "Data\flagb.paa";
+                	};
+            };
+};
+
+class screenobj3
+{ 
+		idd = 1574; 
+		onLoad = "uiNameSpace setVariable ['screenobj3', (_this select 0) displayCtrl 128];";
+		duration = 999999;
+
+		class controls 
+           { 
+                   class objectiveOnScreenControl : objectiveOnScreenControlDefault
+                   { 
+                        idc = 128;
+						text = "Data\flagc.paa";
+                	};
+            };
+};
 
 //Hitmarker
 class Hitmarker
 {
      idd = 1557;
-     	movingEnable = true;
-		duration=0.5;
+     	movingEnable = false;
+		duration=0.3;
 		fadein=0;
     onLoad = "uiNameSpace setVariable ['myUI_hitMarker', (_this select 0) displayCtrl 103];";
      class Controls
@@ -465,12 +627,12 @@ class Hitmarker
 	    	type = 0; 
 	    	style = 48; 
 			font = "Bitstream";
-			sizeEx = 0.023;
+			sizeEx = 0.043;
 			w = 0.04;
 			h = 0.04;
 			x = (safeZoneX + safeZoneW  * 1 / 2)-0.02; 
 			y = safeZoneY + safeZoneH  * 1 / 2-0.02;
-			text = "Data\hitmarkerR.paa";
+			text = "Data\hitmarker.paa";
 			colorBackground[] = {0, 0, 0, 0};
 			colorText[] = {0.9, 0.9, 0.9, 0.8}; //Last number is alpha
 		};
@@ -528,7 +690,6 @@ class UIammo : uiImages
             y = safeZoneY + safeZoneH - 0.5;
 			text = "Data\uiAmmoG.paa";
 			colorText[] = {0.9, 0.9, 0.9, 1}; //Last number is alpha
-
 		};
 	};
 };
@@ -595,7 +756,7 @@ class UIrecruit : uiImages
 		};
 	};
 };
-		
+	
 	class Evo
 	{
 		idd=-1;

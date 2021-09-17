@@ -1,27 +1,5 @@
-//Picks item at random array position, allows mixed 1d-2d arrays
-fnc_pickRandom = 
-{
-private ["_array","_count","_rnd","_object","_count","_isArray"];
-_array = _this select 0;
-_count = 0;
-_rnd = 0;
-_object = "";
-_count = count _array;
-_rnd = round(random((_count)-1));
-_object = _array select _rnd;
 
-_isArray = (typename _object == "ARRAY");
-	if(_isArray) then 
-	{
-		_count = count (_object);
-		_rnd = round(random((_count)-1));
-		_object = _object select _rnd;
-		_isArray = (typename _object =="ARRAY");
-	};
-_object;
-};
-
-_oldhour = param2;
+//_oldhour = param2;
 //_fogmovetime = 900; // 15 mins
 BIS_EVO_NoHumanLeader = [];
 _EVO_Weath =
@@ -95,7 +73,7 @@ _EVO_timesync =
 {
 	BIS_EVO_gdate = date;
 	BIS_EVO_gdate_packed = str (BIS_EVO_gdate); publicvariable "BIS_EVO_gdate_packed";
-	_oldhour = (date select 3);
+	//_oldhour = (date select 3);
 };
 
 //Picks weighted random from fed array
@@ -164,6 +142,6 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	//sleep 1.011;
 	//[] call _EVO_Clean;
 	sleep 1.011;
-	if (_oldhour != (date select 3)) then {[] call _EVO_timesync};
+//	if (_oldhour != (date select 3)) then {[] call _EVO_timesync};
 	_newtime = time - _time;	
 };

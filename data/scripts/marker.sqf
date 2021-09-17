@@ -17,7 +17,9 @@
 	//Player marker
 	while {(true)} do
 	{
-			for "_i" from 1 to 5 do
+		_allPlayers = call BIS_fnc_listPlayers;
+		_plyCount = count _allPlayers;
+			for "_i" from 1 to _plyCount+1 do
 			{
 				_obj = player;
 				_obj = [] call compile format ["engw%1",_i];

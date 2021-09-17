@@ -79,9 +79,9 @@ _spawne = [_heli] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 _spawne = [_heli1] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 _spawne = [_heli2] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 
-_heli addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
-_heli1 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
-_heli2 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+_heli addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
+_heli1 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
+_heli2 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
 
 _allunitsA = EGG_EVO_mecrew;
 _maxA = count _allunitsA;
@@ -110,7 +110,7 @@ _guard setCombatMode "RED";
 _guard setBehaviour "COMBAT";
 
 {_x addRating -2000;
-_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}]
+_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}]
 } forEach (units _guard);
 _recy = [_user,_guard] execVM "data\scripts\grecycle.sqf";
 _wp1 = _guard addWaypoint [_pos1, 10];

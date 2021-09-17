@@ -1,4 +1,5 @@
-_oldhour = date select 3;
+#include "macros.h"
+//_oldhour = date select 3;
 _tscore = 0;
 _rankmes = localize "STR_M04t82";
 _rankmes = _rankmes + "More perkpoints available!";
@@ -304,7 +305,6 @@ BIS_EVO_Repair =
 	};
 };
 
-
 BIS_EVO_HPM =
 {
 	if(not (alive vehicle player)) then
@@ -505,7 +505,20 @@ BIS_EVO_locationActions =
 {
 	if(inrepairzone) exitWith {canRecruit = true; canFasttravel = true};
 
-		if(count BIS_EVO_conqueredTowns == 0) exitWith {};
+	_nearRHQ = false;
+
+	if(count RHQMarkers > 0 or alive MHQ) then 
+	{
+		_positions = [];
+		{_positions = _positions + [getMarkerPos _x]}forEach RHQMarkers;
+		if(alive MHQ) then {_positions = _positions + [getPos MHQ]};
+		_nearestPoint = [_positions, position player] call BIS_fnc_nearestPosition;
+		_objDist = player distance _nearestPoint;
+		_nearRHQ = _objDist<rhqTeleportDistance;
+	};
+
+	if(_nearRHQ) exitWith {canFasttravel = true};
+
 if(recruitPlaces == 1 or recruitPlaces == 2 or recruitPlaces == 3) then
 {
 	_nearestPoint = [BIS_EVO_conqueredTowns, position player] call BIS_fnc_nearestPosition;
@@ -521,6 +534,8 @@ if(recruitPlaces == 1 or recruitPlaces == 2 or recruitPlaces == 3) then
 		 canFasttravel = false
 	};
 }else {canRecruit = true};
+
+
 };
 
 BIS_EVO_UpdateUI =
@@ -574,12 +589,13 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	inFarp = (vehicle player in list reng1) or (vehicle player in list reng2) or (vehicle player in list reng3) or (vehicle player in list reng4);	
 	[] call BIS_EVO_Repair;
 //	[] call EGG_EVO_fieldRepair;
-	[] call EGG_EVO_stationRepair;
+//	[] call EGG_EVO_stationRepair;
 	sleep 1.011;
 	if (money > _tscore and alive player) then {[] call BIS_EVO_Rank};
 	if (BIS_EVO_MissionProgress != _currentprog) then {[] call BIS_EVO_CityClear};
 	[] call	BIS_EVO_locationActions;
 	sleep 1.011;
+	BIS_EVO_frameDelay = 1/ceil(diag_fps);
 	//[] call BIS_EVO_CTime;
 	[] call BIS_EVO_UpdateUI;
 	sleep 1.011;

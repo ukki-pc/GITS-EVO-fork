@@ -366,24 +366,24 @@ BIS_EVO_AmmoBoxR = // Creates and fills local rank based ammo box of Russian Wea
 
 	If (ranklock ==1 || ranklock == 3) then //russian 
 	{
-		
-		deletevehicle ammobox6;ammobox6 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob6";ammobox6 setpos getmarkerpos "ammob6";[ammobox6] call _FillAmmoBoxR;
+		if(!isNil "ammobox6")then {deletevehicle ammobox6};
+		ammobox6 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob6";ammobox6 setpos getmarkerpos "ammob6";[ammobox6] call _FillAmmoBoxR;
 		/*
 		deletevehicle ammobox7;ammobox7 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob7";ammobox7 setpos getmarkerpos "ammob7";[ammobox7] call _FillAmmoBoxR;
 		deletevehicle ammobox8;ammobox8 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob8";ammobox8 setpos getmarkerpos "ammob8";[ammobox8] call _FillAmmoBoxR;
 		deletevehicle ammobox9;ammobox9 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob9";ammobox9 setpos getmarkerpos "ammob9";[ammobox9] call _FillAmmoBoxR;
 		*/
-		deletevehicle ammobox10;ammobox10 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob11";ammobox10 setposASL [(getMarkerPos "HMS-GITS" select 0),(getMarkerPos "HMS-GITS" select 1), 18];[ammobox10] call _FillAmmoBoxR;
+		// deletevehicle ammobox10;ammobox10 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob11";ammobox10 setposASL [(getMarkerPos "HMS-GITS" select 0),(getMarkerPos "HMS-GITS" select 1), 18];[ammobox10] call _FillAmmoBoxR;
 
 		player reveal ammobox6
 	} 
 	else //russian ranked
 	{
-		deletevehicle ammobox6;ammobox6 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob6";ammobox6 setpos getmarkerpos "ammob6";[ammobox6] call _FillAmmoBoxRR;
-		deletevehicle ammobox7;ammobox7 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob7";ammobox7 setpos getmarkerpos "ammob7";[ammobox7] call _FillAmmoBoxRR;
-		deletevehicle ammobox8;ammobox8 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob8";ammobox8 setpos getmarkerpos "ammob8";[ammobox8] call _FillAmmoBoxRR;
-		deletevehicle ammobox9;ammobox9 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob9";ammobox9 setpos getmarkerpos "ammob9";[ammobox9] call _FillAmmoBoxRR;
-		deletevehicle ammobox10;ammobox10 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob11";ammobox10 setposASL getmarkerpos "ammob11";[ammobox10] call _FillAmmoBoxR;
+		//deletevehicle ammobox6;ammobox6 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob6";ammobox6 setpos getmarkerpos "ammob6";[ammobox6] call _FillAmmoBoxRR;
+		// deletevehicle ammobox7;ammobox7 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob7";ammobox7 setpos getmarkerpos "ammob7";[ammobox7] call _FillAmmoBoxRR;
+		// deletevehicle ammobox8;ammobox8 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob8";ammobox8 setpos getmarkerpos "ammob8";[ammobox8] call _FillAmmoBoxRR;
+		// deletevehicle ammobox9;ammobox9 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob9";ammobox9 setpos getmarkerpos "ammob9";[ammobox9] call _FillAmmoBoxRR;
+		// deletevehicle ammobox10;ammobox10 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob11";ammobox10 setposASL getmarkerpos "ammob11";[ammobox10] call _FillAmmoBoxR;
 		player reveal ammobox6
 	};
 };
@@ -1271,7 +1271,8 @@ BIS_EVO_AmmoBox = // Creates and fills local rank based ammo boxes
 	If (ranklock ==1 || ranklock == 3) then //US weapons
 	{
 	
-		deletevehicle ammobox1;ammobox1 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob1";ammobox1 setpos getmarkerpos "ammob1";[ammobox1] call _FillAmmoBoxU;
+		if(!isNil "ammobox1")then {deletevehicle ammobox1};
+		ammobox1 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob1";ammobox1 setpos getmarkerpos "ammob1";[ammobox1] call _FillAmmoBoxU;
 	//	ammobox1 addAction ["Weapons Shop", "actions\wepshop.sqf",_this select 0];
 
 	/*
@@ -1280,20 +1281,20 @@ BIS_EVO_AmmoBox = // Creates and fills local rank based ammo boxes
 		deletevehicle ammobox4;ammobox4 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob4";ammobox4 setpos getmarkerpos "ammob4";[ammobox4] call _FillAmmoBoxU;
 		deletevehicle ammobox5;ammobox5 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob5";ammobox5 setpos getmarkerpos "ammob5";[ammobox5] call _FillAmmoBoxU;
 	*/
-		deletevehicle ammobox11;ammobox11 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob11";ammobox11 SetPosASL [(getMarkerPos "HMS-GITS" select 0)+2,(getMarkerPos "HMS-GITS" select 1)+2, 18];[ammobox11] call _FillAmmoBoxU;
+//		deletevehicle ammobox11;ammobox11 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob11";ammobox11 SetPosASL [(getMarkerPos "HMS-GITS" select 0)+2,(getMarkerPos "HMS-GITS" select 1)+2, 18];[ammobox11] call _FillAmmoBoxU;
 //		deletevehicle ammobox11;ammobox11 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob11";ammobox11 SetPos getMarkerPos "HMS-GITS";[ammobox11] call _FillAmmoBoxU;
 		player reveal ammobox1;
 	} 
 	else //US weapons ranked
 	{
-		deletevehicle ammobox1;ammobox1 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob1";ammobox1 setpos getmarkerpos "ammob1";[ammobox1] call _FillAmmoBoxUR;
-		deletevehicle ammobox2;ammobox2 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob2";ammobox2 setpos getmarkerpos "ammob2";[ammobox2] call _FillAmmoBoxUR;
-		deletevehicle ammobox3;ammobox3 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob3";ammobox3 setpos getmarkerpos "ammob3";[ammobox3] call _FillAmmoBoxUR;
-		deletevehicle ammobox4;ammobox4 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob4";ammobox4 setpos getmarkerpos "ammob4";[ammobox4] call _FillAmmoBoxUR;
-		deletevehicle ammobox5;ammobox5 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob5";ammobox5 setpos getmarkerpos "ammob5";[ammobox5] call _FillAmmoBoxUR;
-		deletevehicle ammobox11;ammobox11 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob11";ammobox11 SetPosASL [(getMarkerPos "HMS-GITS" select 0)+1,(getMarkerPos "HMS-GITS" select 1)+2, 18];[ammobox11] call _FillAmmoBoxUR;
+		//deletevehicle ammobox1;ammobox1 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob1";ammobox1 setpos getmarkerpos "ammob1";[ammobox1] call _FillAmmoBoxUR;
+		// deletevehicle ammobox2;ammobox2 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob2";ammobox2 setpos getmarkerpos "ammob2";[ammobox2] call _FillAmmoBoxUR;
+		// deletevehicle ammobox3;ammobox3 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob3";ammobox3 setpos getmarkerpos "ammob3";[ammobox3] call _FillAmmoBoxUR;
+		// deletevehicle ammobox4;ammobox4 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob4";ammobox4 setpos getmarkerpos "ammob4";[ammobox4] call _FillAmmoBoxUR;
+		// deletevehicle ammobox5;ammobox5 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob5";ammobox5 setpos getmarkerpos "ammob5";[ammobox5] call _FillAmmoBoxUR;
+		// deletevehicle ammobox11;ammobox11 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob11";ammobox11 SetPosASL [(getMarkerPos "HMS-GITS" select 0)+1,(getMarkerPos "HMS-GITS" select 1)+2, 18];[ammobox11] call _FillAmmoBoxUR;
 //		deletevehicle ammobox11;ammobox11 = "USVehicleBox" createVehicleLocal getmarkerpos "ammob11";ammobox11 SetPos getMarkerPos "HMS-GITS";[ammobox11] call _FillAmmoBoxUR;
-		player reveal ammobox1
+		player reveal ammobox1;
 	};
 };
 
@@ -1706,151 +1707,6 @@ BIS_EVO_AssignTasks =  // Assigns common main city objectives
 		BIS_EVO_Objective1 settaskstate "Created";
 		player setCurrentTask BIS_EVO_Objective1;
 	};
-/*
-	if(BIS_EVO_MissionProgress == 0 ) then
-	{
-		_MissionBriefingHUD = localize "STR_M04t58";//ASSAULT
-		//_MissionBriefingShort = "Lopatino";
-		//_MissionBriefingShort = localize "str_location_lopatino";
-		_MissionBriefingShort = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
-		_MissionBriefingLong = format[localize "STR_M04t59",_MissionBriefingShort];// Command has issued an order to launch a full scale assault on %1. The primary objective is to neutralize all enemy in the area. Secondary objectives are to disable their radio tower and capture any high ranking officers you find in the town.
-		BIS_EVO_Objective1 = player createSimpleTask ["obj1"];
-		BIS_EVO_Objective1 setSimpleTaskDescription [_MissionBriefingLong,_MissionBriefingShort,_MissionBriefingHUD];
-		BIS_EVO_Objective1 setSimpleTaskDestination GetMarkerPos "mobj1";
-		BIS_EVO_Objective1 settaskstate "Created";
-		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective0};
-	};
-	if(BIS_EVO_MissionProgress == 1) then
-	{
-		BIS_EVO_Objective1 settaskstate "Succeeded";
-//		_MissionBriefingShort = "Vybor";
-//		_MissionBriefingShort = localize "str_location_vybor";
-		_MissionBriefingShort = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
-		_MissionBriefingLong = format[localize "STR_M04t59",_MissionBriefingShort];
-		BIS_EVO_Objective2 = player createSimpleTask ["obj2"];
-		BIS_EVO_Objective2 setSimpleTaskDescription [_MissionBriefingLong,_MissionBriefingShort,_MissionBriefingHUD];
-		BIS_EVO_Objective2 setSimpleTaskDestination GetMarkerPos "mobj2";
-		BIS_EVO_Objective2 settaskstate "Created";
-		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective2};
-	};
-	if(BIS_EVO_MissionProgress == 2) then
-	{
-		BIS_EVO_Objective2 settaskstate "Succeeded";
-//		_MissionBriefingShort = "Grishino";
-//		_MissionBriefingShort = localize "str_location_grishino";
-		_MissionBriefingShort = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
-		_MissionBriefingLong = format[localize "STR_M04t59",_MissionBriefingShort];
-		BIS_EVO_Objective3 = player createSimpleTask ["obj3"];
-		BIS_EVO_Objective3 setSimpleTaskDescription [_MissionBriefingLong,_MissionBriefingShort,_MissionBriefingHUD];
-		BIS_EVO_Objective3 setSimpleTaskDestination GetMarkerPos "mobj3";
-		BIS_EVO_Objective3 settaskstate "Created";
-		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective3};
-	};
-	if(BIS_EVO_MissionProgress == 3) then
-	{
-		BIS_EVO_Objective3 settaskstate "Succeeded";
-//		_MissionBriefingShort = "Gvozdno";
-//		_MissionBriefingShort = localize "str_location_gvozdno";
-		_MissionBriefingShort = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
-		_MissionBriefingLong = format[localize "STR_M04t59",_MissionBriefingShort];
-		BIS_EVO_Objective4 = player createSimpleTask ["obj4"];
-		BIS_EVO_Objective4 setSimpleTaskDescription [_MissionBriefingLong,_MissionBriefingShort,_MissionBriefingHUD];
-		BIS_EVO_Objective4 setSimpleTaskDestination GetMarkerPos "mobj4";
-		BIS_EVO_Objective4 settaskstate "Created";
-		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective4};
-	};
-	if(BIS_EVO_MissionProgress == 4) then
-	{
-		BIS_EVO_Objective4 settaskstate "Succeeded";
-
-//		_MissionBriefingShort = "Krasnostav";
-//		_MissionBriefingShort = localize "str_location_krasnostav";
-		_MissionBriefingShort = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
-		_MissionBriefingLong = format[localize "STR_M04t59",_MissionBriefingShort];
-		BIS_EVO_Objective5 = player createSimpleTask ["obj5"];
-		BIS_EVO_Objective5 setSimpleTaskDescription [_MissionBriefingLong,_MissionBriefingShort,_MissionBriefingHUD];
-		BIS_EVO_Objective5 setSimpleTaskDestination GetMarkerPos "mobj5";
-		BIS_EVO_Objective5 settaskstate "Created";
-		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective5};
-	};
-	if(BIS_EVO_MissionProgress == 5) then
-	{
-		BIS_EVO_Objective5 settaskstate "Succeeded";
-//		_MissionBriefingShort = "Khelm";
-//		_MissionBriefingShort = localize "str_location_khelm";
-		_MissionBriefingShort = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
-		_MissionBriefingLong = format[localize "STR_M04t59",_MissionBriefingShort];
-		BIS_EVO_Objective6 = player createSimpleTask ["obj6"];
-		BIS_EVO_Objective6 setSimpleTaskDescription [_MissionBriefingLong,_MissionBriefingShort,_MissionBriefingHUD];
-		BIS_EVO_Objective6 setSimpleTaskDestination GetMarkerPos "mobj6";
-		BIS_EVO_Objective6 settaskstate "Created";
-		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective6};
-	};
-	if(BIS_EVO_MissionProgress == 6) then
-	{
-		BIS_EVO_Objective6 settaskstate "Succeeded";
-//		_MissionBriefingShort = "Berezino";
-//		_MissionBriefingShort = localize "str_location_berezino";
-		_MissionBriefingShort = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
-		_MissionBriefingLong = format[localize "STR_M04t59",_MissionBriefingShort];
-		BIS_EVO_Objective7 = player createSimpleTask ["obj7"];
-		BIS_EVO_Objective7 setSimpleTaskDescription [_MissionBriefingLong,_MissionBriefingShort,_MissionBriefingHUD];
-		BIS_EVO_Objective7 setSimpleTaskDestination GetMarkerPos "mobj7";
-		BIS_EVO_Objective7 settaskstate "Created";
-		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective7};
-	};
-	if(BIS_EVO_MissionProgress == 7) then
-	{
-		BIS_EVO_Objective7 settaskstate "Succeeded";
-//		_MissionBriefingShort = "Solnichniy";
-//		_MissionBriefingShort = localize "str_location_solnichniy";
-		_MissionBriefingShort = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
-		_MissionBriefingLong = format[localize "STR_M04t59",_MissionBriefingShort];
-		BIS_EVO_Objective8 = player createSimpleTask ["obj8"];
-		BIS_EVO_Objective8 setSimpleTaskDescription [_MissionBriefingLong,_MissionBriefingShort,_MissionBriefingHUD];
-		BIS_EVO_Objective8 setSimpleTaskDestination GetMarkerPos "mobj8";
-		BIS_EVO_Objective8 settaskstate "Created";
-		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective8};
-	};
-	if(BIS_EVO_MissionProgress == 8) then
-	{
-		BIS_EVO_Objective8 settaskstate "Succeeded";
-//		_MissionBriefingShort = "Kamyshovo";
-//		_MissionBriefingShort = localize "str_location_kamyshovo";
-		_MissionBriefingShort = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
-		_MissionBriefingLong = format[localize "STR_M04t59",_MissionBriefingShort];
-		BIS_EVO_Objective9 = player createSimpleTask ["obj9"];
-		BIS_EVO_Objective9 setSimpleTaskDescription [_MissionBriefingLong,_MissionBriefingShort,_MissionBriefingHUD];
-		BIS_EVO_Objective9 setSimpleTaskDestination GetMarkerPos "mobj9";
-		BIS_EVO_Objective9 settaskstate "Created";
-		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective9};
-	};
-	if(BIS_EVO_MissionProgress == 9) then
-	{
-		BIS_EVO_Objective9 settaskstate "Succeeded";
-//		_MissionBriefingShort = "Elektrozadovsk";
-//		_MissionBriefingShort = localize "str_location_elektrozavodsk";
-		_MissionBriefingShort = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
-		_MissionBriefingLong = format[localize "STR_M04t59",_MissionBriefingShort];
-		BIS_EVO_Objective10 = player createSimpleTask ["obj10"];
-		BIS_EVO_Objective10 setSimpleTaskDescription [_MissionBriefingLong,_MissionBriefingShort,_MissionBriefingHUD];
-		BIS_EVO_Objective10 setSimpleTaskDestination GetMarkerPos "mobj10";
-		BIS_EVO_Objective10 settaskstate "Created";
-		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective10};
-	};
-	if(BIS_EVO_MissionProgress == 10 ) then
-	{
-		BIS_EVO_Objective10 settaskstate "Succeeded";
-//		_MissionBriefingShort = "Chernogorsk";
-//		_MissionBriefingShort = localize "str_location_chernogorsk";
-		_MissionBriefingShort = (BIS_EVO_Townnames select BIS_EVO_MissionProgress);
-		_MissionBriefingLong = format[localize "STR_M04t59",_MissionBriefingShort];
-		BIS_EVO_Objective11 = player createSimpleTask ["obj11"];
-		BIS_EVO_Objective11 setSimpleTaskDescription [_MissionBriefingLong,_MissionBriefingShort,_MissionBriefingHUD];
-		BIS_EVO_Objective11 setSimpleTaskDestination GetMarkerPos "mobj11";
-		BIS_EVO_Objective11 settaskstate "Created";
-		if(not BIS_EVO_Onmission) then {player setCurrentTask BIS_EVO_Objective11};
-	};*/
 		if(BIS_EVO_MissionProgress == -1 ) then {
 		BIS_EVO_Objective1 settaskstate "Succeeded";
 		//	BIS_EVO_Objective1 settaskstate "Succeeded";

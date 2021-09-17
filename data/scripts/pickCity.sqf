@@ -36,7 +36,7 @@ _dist = _pos distance getPos _nearestMarker;
 
 _friendlyCity = cityToAttackName in BIS_EVO_ConqueredTowns;
 {deleteMarker _x} foreach reinfMarkers;
-syncTowns = synchronizedObjects (BIS_EVO_MissionTowns select cityToAttack);
+syncTowns =  [(BIS_EVO_MissionTowns select cityToAttack)] call fnc_get_synchronized_towns;
 reinftowns = syncTowns - BIS_EVO_ConqueredTowns;
 _reinftownNames = [];
 coastalTown = cityToAttackName in BIS_EVO_CoastalTowns;

@@ -9,7 +9,7 @@
 	BIS_EVO_MissionObjMarkers = BIS_EVO_MissionObjMarkers + [_unitm];
 
 	//TEST
-	//BIS_EVO_conqueredTowns = [objective_1];
+	BIS_EVO_conqueredTowns = [objective_49];
 
 
 	//ENEMY TOWN
@@ -80,7 +80,7 @@ updCityMarkers =
 			{
 				_objInd =	BIS_EVO_MissionBigTowns  find (_currentTown);
 				_vec = BIS_EVO_unlocks select _objInd;
-				_dispname = [_vec] call fnc_getCfgName;
+				_dispname = [_vec,"displayName"] call fnc_getCfgText;
 				_markerobj setMarkerType  "plp_icon_building";
 				_markerobj setMarkerColor _enemyColor;
 			//	_markerobj setMarkerText _dispname;
@@ -90,7 +90,7 @@ updCityMarkers =
 				_objInd =	BIS_EVO_MilitaryObjectives  find (_currentTown);
 				_objInd = _objInd + (count BIS_EVO_MissionBigTowns-1);
 				_vec = BIS_EVO_unlocks select _objInd;
-				_dispname = [_vec] call fnc_getCfgName;
+				_dispname = [_vec,"displayName"] call fnc_getCfgText;
 				_markerobj setMarkerType  "plp_icon_storage1";
 				_markerobj setMarkerColor _enemyColor;
 			//	_markerobj setMarkerText _dispname;
@@ -116,7 +116,7 @@ updCityMarkers =
 			_objInd = (BIS_EVO_MissionBigTowns + BIS_EVO_MilitaryObjectives )  find (_currentTown);
 			_vec = BIS_EVO_unlocks select _objInd;
 			if !(_vec in BIS_EVO_unlocked) then {BIS_EVO_unlocked = BIS_EVO_unlocked + [_vec]; publicVariable "BIS_EVO_unlocked"};
-			_dispname = [_vec] call fnc_getCfgName;
+			_dispname = [_vec,"displayName"] call fnc_getCfgText;
 			_markerobj setMarkerType  "plp_icon_building";
 		//	_markerobj setMarkerText _dispname;
 		};
@@ -127,7 +127,7 @@ updCityMarkers =
 			//_objInd = 
 			_vec = BIS_EVO_unlocks select _objInd;
 			if !(_vec in BIS_EVO_unlocked) then {BIS_EVO_unlocked = BIS_EVO_unlocked + [_vec]; publicVariable "BIS_EVO_unlocked"};
-			_dispname = [_vec] call fnc_getCfgName;
+			_dispname = [_vec,"displayName"] call fnc_getCfgText;
 			_markerobj setMarkerType  "plp_icon_storage1";
 		//	_markerobj setMarkerText _dispname;
 		};
@@ -162,7 +162,7 @@ updObjMarker =
 			_vec = BIS_EVO_unlocks select _objInd;
 			if !(_vec in BIS_EVO_unlocked) then {BIS_EVO_unlocked = BIS_EVO_unlocked + [_vec]; publicVariable "BIS_EVO_unlocked"};
 			_markerobj setMarkerType  "plp_icon_building";
-			_dispname = [_vec] call fnc_getCfgName;
+			_dispname = [_vec,"displayName"] call fnc_getCfgText;
 		//	_markerobj setMarkerText _dispname;
 		};
 		if(_currentTown in BIS_EVO_MilitaryObjectives)
@@ -173,7 +173,7 @@ updObjMarker =
 			_vec = BIS_EVO_unlocks select _objInd;
 			if !(_vec in BIS_EVO_unlocked) then {BIS_EVO_unlocked = BIS_EVO_unlocked + [_vec]; publicVariable "BIS_EVO_unlocked"};
 			_markerobj setMarkerType  "plp_icon_storage1";
-			_dispname = [_vec] call fnc_getCfgName;
+			_dispname = [_vec,"displayName"] call fnc_getCfgText;
 		//	_markerobj setMarkerText _dispname;
 		};
 	};

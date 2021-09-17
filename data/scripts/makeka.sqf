@@ -57,13 +57,13 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	_pilot setCombatMode "RED";
 
 	_handle = [_pilot] execVM "data\scripts\flightpath.sqf";
-	{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _pilot);
-	_heli addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
+	{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _pilot);
+	_heli addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 	_spawne = [_heli] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 //	_killh1 = [_heli,crew _heli] spawn {[_this select 0,_this select 1] call _killpilots};
 
 //
-	_heli1 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
+	_heli1 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 	_spawne = [_heli1] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 //	_killh1 = [_heli1,crew _heli1] spawn {[_this select 0,_this select 1] call _killpilots};
 

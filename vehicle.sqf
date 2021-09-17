@@ -185,7 +185,7 @@ _vecmarkerb =
 
 
 // Start monitoring the vehicle
-while {_run} do 
+while {sleep 1; _run} do 
 {	
 	sleep (2 + random 10);
       if ((getDammage _unit > 0.8) and ({alive _x} count crew _unit == 0)) then {_dead = true};

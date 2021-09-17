@@ -6,7 +6,7 @@ BIS_EVO_gRecy =
 	_spawned=false;
 	_leader = leader _grp;
 	_tmpleader = objnull;
-	{_x addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp)+_units;
+	{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp)+_units;
 	for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	{
 		if(_spawned) then 

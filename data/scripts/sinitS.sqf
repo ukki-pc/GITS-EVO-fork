@@ -30,7 +30,7 @@ if(EGG_EVO_LoadGame == 0) then
 		publicVariable "buyStatList";
 	*/
 
-		_clean = [] call cleanUpGenerator;
+	//	_clean = [] call cleanUpGenerator;
 };
 /*
 // Main vehicle init

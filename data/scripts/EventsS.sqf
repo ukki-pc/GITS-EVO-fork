@@ -13,8 +13,8 @@ BIS_EVO_Reward =
 {
    _usergroup = _this select 0;
    _reward = _this select 1;
-  	_msg = format ["%1$ rewarded",_reward];
-	["jed_msg", [_usergroup, _msg]] call CBA_fnc_whereLocalEvent;
+  	_msg = format ["Radio tower destruction"];
+	["fnc_hudMessage", [_usergroup, _msg,_reward]] call CBA_fnc_whereLocalEvent;
 	["jed_addMoney", [_usergroup, _reward]] call CBA_fnc_whereLocalEvent;
 };
 

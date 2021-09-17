@@ -20,7 +20,8 @@ if (_unit isKindOf "Man") then
 	{
 		if(!isPlayer _killer) then {_killer = leader _killer;};
 		_msg = format ["1$ for killing: %1",_dispname];
-		["jed_msg", [_killer, _msg]] call CBA_fnc_whereLocalEvent;
+		//["jed_msg", [_killer, _msg]] call CBA_fnc_whereLocalEvent;
+		[_msg] call fnc_hudMessage_handler;
 		["jed_addMoney", [_killer, 1]] call CBA_fnc_whereLocalEvent;
 	};
 	{_x setpos position _unit} forEach crew _unit;
@@ -35,7 +36,8 @@ if ( (_unit isKindOf "Car")) then
 	{
 		if(!isPlayer _killer) then {_killer = leader _killer;};
 		_msg = format ["2$ for destroying: %1",_dispname];
-		["jed_msg", [_killer, _msg]] call CBA_fnc_whereLocalEvent;
+		//["jed_msg", [_killer, _msg]] call CBA_fnc_whereLocalEvent;
+		[_msg] call fnc_hudMessage_handler;
 		["jed_addMoney", [_killer, 2]] call CBA_fnc_whereLocalEvent;
 	};
 	{_x setpos position _unit} forEach crew _unit;
@@ -49,7 +51,7 @@ if ( (_unit isKindOf "Plane")) then
 	{
 		if(!isPlayer _killer) then {_killer = leader _killer;};
 		_msg = format ["5$ for destroying: %1",_dispname];
-		["jed_msg", [_killer, _msg]] call CBA_fnc_whereLocalEvent;
+			[_msg] call fnc_hudMessage_handler;
 		["jed_addMoney", [_killer, 5]] call CBA_fnc_whereLocalEvent;
 	};
 	{_x setpos position _unit} forEach crew _unit;
@@ -63,7 +65,7 @@ if ( (_unit isKindOf "Helicopter")) then
 	{
 		if(!isPlayer _killer) then {_killer = leader _killer;};
 		_msg = format ["4$ for destroying: %1",_dispname];
-		["jed_msg", [_killer, _msg]] call CBA_fnc_whereLocalEvent;
+			[_msg] call fnc_hudMessage_handler;
 		["jed_addMoney", [_killer, 4]] call CBA_fnc_whereLocalEvent;
 	};
 	{_x setpos position _unit} forEach crew _unit;
@@ -77,7 +79,7 @@ if ( (_unit isKindOf "Tank")) then
 	{
 		if(!isPlayer _killer) then {_killer = leader _killer;};
 		_msg = format ["3$ for destroying: %1",_dispname];
-		["jed_msg", [_killer, _msg]] call CBA_fnc_whereLocalEvent;
+			[_msg] call fnc_hudMessage_handler;
 		["jed_addMoney", [_killer, 3]] call CBA_fnc_whereLocalEvent;
 	};
 	{_x setpos position _unit} forEach crew _unit;
@@ -92,7 +94,7 @@ if ( (_unit isKindOf "Ship")) then
 	{
 		if(!isPlayer _killer) then {_killer = leader _killer;};
 		_msg = format ["5$ for destroying: %1",_dispname];
-		["jed_msg", [_killer, _msg]] call CBA_fnc_whereLocalEvent;
+			[_msg] call fnc_hudMessage_handler;
 		["jed_addMoney", [_killer, 5]] call CBA_fnc_whereLocalEvent;
 	};
 	{_x setpos position _unit} forEach crew _unit;

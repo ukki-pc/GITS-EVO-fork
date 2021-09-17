@@ -22,9 +22,8 @@
 {
 	private["_truck"];
 	
-	while{true} do
+	while{sleep 1;	true} do
 	{
-		sleep 1;	
 		if(!isNull LDL_ac130_plane) then
 		{
 			_truck = nearestObject [LDL_ac130_plane, "MtvrReammo"];
@@ -106,9 +105,8 @@
 		_inPos;
 	};
 
-	while{true} do
+	while{sleep 0.2;true} do
 	{
-		sleep 0.2;
 		
 		_plane = vehicle player;
 		_var = (_plane getVariable "LDL_planeInUse");

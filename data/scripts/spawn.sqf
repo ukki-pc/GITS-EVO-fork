@@ -54,12 +54,22 @@ Sleep 0.2;
 
 
 
+
+
 //Initial player skills
 
 //Maybe
 if (perkOffLVL > 0) then { _actionId8 = player addAction ["GPS/INS Menu", "actions\GPSINS.sqf",[],0, false, true,"test2"]; _actionId8 = player addAction ["Deploy Recon HQ", "actions\ambtent.sqf",0,1, false, true,"test2"]};
 if (perkEngLVL > 0) then { _actionId8 = player addAction [localize "STR_M04t53", "data\scripts\etent.sqf",0,1, false, true,"test2"]};
-if ((perkparam == 1) and (gitsnades == 1)) then {_monitor = [] execVM "Actions\EB_resources_scripts\EB_fuelactions.sqf"};
+if ((perkparam == 1) and (gitsnades == 1)) then {
+
+	//Turned off because gives an error
+	//_monitor = [] execVM "Actions\EB_resources_scripts\EB_fuelactions.sqf"
+	
+};
+
+
+
 
 /*
 
@@ -99,25 +109,14 @@ disableUserInput false;
 
 _player setPos getMarkerPos respawnPoint;
 
+
+
 if(respawnPoint == "Respawn_West") then {_player setPosASL[getpos _player select 0,getpos _player select 1, 18]};
+
 
 //Update money
 sleep 8;
-1 cutRsc ["DollarTitle","PLAIN"];
+9 cutRsc ["DollarTitle","PLAIN"];
 (uiNameSpace getVariable "myUI_DollarTitle") ctrlSetText format ["$%1",money];
-2 cutRsc ["AggressionTitle","PLAIN"];
-(uiNameSpace getVariable "myUI_AggressionTitle") ctrlSetText format ["%2%1","%",aggression];
-
-
-
-
-/*
-disableSerialization;
-_display = uiNamespace getVariable "aggressionTitle";
-_ctrl = _display displayCtrl 102;
-_color = [1,0,0,1]; //Red
-_ctrl ctrlSetTextColor _color;
-*/
-
-//debug only!
-//if (score player == 0)  then {player addscore 1000};
+// 2 cutRsc ["AggressionTitle","PLAIN"];
+// (uiNameSpace getVariable "myUI_AggressionTitle") ctrlSetText format ["%2%1","%",aggression];

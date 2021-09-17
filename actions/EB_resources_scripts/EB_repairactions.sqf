@@ -68,7 +68,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 		EB_myCursorTarget removeAction EB_player_fillfuel; EB_player_fillfuel = -1;
 		EB_myCursorTarget removeAction EB_player_siphonfuel; EB_player_siphonfuel = -1;
 
-while {EB_player_repairAction >= 0} do	{
+while {BIS_EVO_FRameDelay; EB_player_repairAction >= 0} do	{
 	EB_myCursorTarget removeAction EB_player_repairAction;
 	EB_player_repairAction = EB_player_repairAction - 1;
 };

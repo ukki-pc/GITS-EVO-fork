@@ -1,3 +1,4 @@
+#include "macros.h"
 disableSerialization;
 closeDialog 0;
 private ["_player","_id","_map","_cursorPos","_rhqPositions","_lowRHQ","_vec","_isRHQ","_isMHQ","_nearestPoint", "_tpLoc","_isViableLoc","_enoughMoney","_travelAllowed","_inVehicle"];
@@ -35,9 +36,9 @@ TeleportLocations = BIS_EVO_conqueredTowns + _rhqPositions + _mhqMark + BIS_EVO_
 
 _nearestPoint = [TeleportLocations, position player] call BIS_fnc_nearestPosition;
 
-_maxDistance = 300;
+_maxDistance = townTeleportDistance;
 
-if(_nearestPoint in _rhqPositions) then {_maxDistance = 20;};
+if(_nearestPoint in _rhqPositions) then {_maxDistance = rhqTeleportDistance;};
 
 if(position player distance ([_nearestPoint] call fnc_getAnyPosition)  > _maxDistance) exitwith{hint "Cannot transfer from here!"};
 

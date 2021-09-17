@@ -1,5 +1,5 @@
 /**
- * Executé lors du clic sur le bouton "Calculer". Contrôle la saisie et lance la calcul de la solution de tir
+ * Executï¿½ lors du clic sur le bouton "Calculer". Contrï¿½le la saisie et lance la calcul de la solution de tir
  * 
  * Copyright (C) 2010 madbull ~R3F~
  * 
@@ -13,7 +13,7 @@ private ["_correction_add_drop", "_correction_left_right", "_correction_dir_cibl
 
 #include "dlg_constantes.h"
 
-// Récupération des entrées
+// Rï¿½cupï¿½ration des entrï¿½es
 _long_batterie = ctrlText R3F_ARTY_IDC_dlg_SM_position_batterie_valeur_long;
 _lat_batterie = ctrlText R3F_ARTY_IDC_dlg_SM_position_batterie_valeur_lat;
 _alt_batterie = ctrlText R3F_ARTY_IDC_dlg_SM_position_batterie_valeur_alt;
@@ -32,7 +32,7 @@ _table_correspondance_index_munition = uiNamespace getVariable "R3F_ARTY_table_c
 _dispersion = ctrlText R3F_ARTY_IDC_dlg_SM_info_tir_valeur_dispersion;
 _nb_tirs = ctrlText R3F_ARTY_IDC_dlg_SM_info_tir_valeur_nb_tirs;
 
-// Vérification des entrées
+// Vï¿½rification des entrï¿½es
 _entrees_valides = true;
 
 if (_long_batterie == "" || _lat_batterie == "" || _alt_batterie == "") then
@@ -84,7 +84,7 @@ if (_entrees_valides) then
 	
 	private ["_pos_canon", "_pos_cible", "_azimut", "_distance", "_vitesse_initiale", "_coef_frottement"];
 	
-	// Conversion des coordonnées long-lat en position [X, Y, Z] du jeu
+	// Conversion des coordonnï¿½es long-lat en position [X, Y, Z] du jeu
 	if (R3F_ARTY_CFG_hauteur_ile == -1) then
 	{
 		_pos_canon = [_long_batterie*10, _lat_batterie*10, 0];
@@ -106,14 +106,14 @@ if (_entrees_valides) then
 	// Calcul de la distance
 	_distance = _pos_cible distance _pos_canon;
 	
-	// Récupération des propriétés balistique de la munition
+	// Rï¿½cupï¿½ration des propriï¿½tï¿½s balistique de la munition
 	_vitesse_initiale = _table_correspondance_index_munition select _index_munition select 2;
 	_coef_frottement = _table_correspondance_index_munition select _index_munition select 3;
 	
 	private ["_tir_courbe_possible", "_tir_courbe_valeur_azimut", "_tir_courbe_valeur_azimut2", "_tir_courbe_valeur_elevation", "_tir_courbe_valeur_elevation2", "_tir_courbe_valeur_temps_vol"];
 	private ["_tir_tendu_possible", "_tir_tendu_valeur_azimut", "_tir_tendu_valeur_azimut2", "_tir_tendu_valeur_elevation", "_tir_tendu_valeur_elevation2", "_tir_tendu_valeur_temps_vol"];
 	
-	// Si la dispersion souhaitée est inférieure à 10m, on ne fera qu'un seul calcul, car la précision des munitions est déjà de cet ordre là
+	// Si la dispersion souhaitï¿½e est infï¿½rieure ï¿½ 10m, on ne fera qu'un seul calcul, car la prï¿½cision des munitions est dï¿½jï¿½ de cet ordre lï¿½
 	if (_dispersion <= 10) then
 	{
 		private ["_solution_tir"];
@@ -135,12 +135,12 @@ if (_entrees_valides) then
 		_tir_courbe_valeur_elevation2 = _solution_tir select 4;
 		_tir_courbe_valeur_temps_vol = _solution_tir select 5;
 	}
-	// Si une dispersion volontaire est souhaitée
+	// Si une dispersion volontaire est souhaitï¿½e
 	else
 	{
 		private ["_solution_tir_proche", "_solution_tir_loin", "_azimut_inf", "_azimut_sup"];
 		
-		// On va faire deux calculs d'élévation : en haut et en bas de la zone de dispersion
+		// On va faire deux calculs d'ï¿½lï¿½vation : en haut et en bas de la zone de dispersion
 		_solution_tir_proche = [_distance - (_dispersion/2), (_alt_cible - _alt_batterie), _vitesse_initiale, _coef_frottement, _dispersion/6] call R3F_ARTY_FNCT_calculer_elevation;
 		_solution_tir_loin = [_distance + (_dispersion/2), (_alt_cible - _alt_batterie), _vitesse_initiale, _coef_frottement, _dispersion/6] call R3F_ARTY_FNCT_calculer_elevation;
 		
@@ -208,7 +208,7 @@ if (_entrees_valides) then
 		ctrlSetText [R3F_ARTY_IDC_dlg_SM_tir_tendu_valeur_temps_vol, "-"];
 	};
 	
-	// Avertissement quand aucune solution trouvée (sinon on croit qu'il ne se passe rien ou que ça plante)
+	// Avertissement quand aucune solution trouvï¿½e (sinon on croit qu'il ne se passe rien ou que ï¿½a plante)
 	if !(_tir_courbe_possible || _tir_tendu_possible) then
 	{
 		player globalChat STR_R3F_ARTY_aucune_solution_trouvee;

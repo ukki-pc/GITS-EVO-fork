@@ -84,9 +84,9 @@ _spawne = [_heli] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 _spawne = [_heli1] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 _spawne = [_heli2] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 
-_heli addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
-_heli1 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
-_heli2 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+_heli addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
+_heli1 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
+_heli2 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
 
 _allunitsA = EGG_EVO_mecrew;
 _maxA = count _allunitsA;
@@ -110,7 +110,7 @@ while {_j <= _infcount} do
 	_j = _j+1;
 };
 
-{_x addEventHandler ["killed", {_x setCombatMode "RED";commandStop _x;handle = [_this select 0] execVM "data\scripts\bury.sqf"}]} forEach (units _guard);
+{_x addEventHandler ["killed", {_x setCombatMode "RED";commandStop _x;handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guard);
 
 if(_var == 10) then
 {

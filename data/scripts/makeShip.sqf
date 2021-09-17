@@ -57,8 +57,8 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	};
 		_shipCrewCount = count crew _ship;
 
-	{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"; sleep 0.3}]} forEach (units _crew);
-	_ship addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
+	{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"; sleep 0.3}]} forEach (units _crew);
+	_ship addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 	_spawne = [_ship] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 	_isWater= false;
 	sleep 1;

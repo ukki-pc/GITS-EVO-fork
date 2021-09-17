@@ -202,7 +202,7 @@ BIS_EVO_CreateVehicle =
 	[_vec] join _grp;
 	Sleep BIS_EVO_GlobalSleep;
 	_vec setdammage 0;
-	_vec addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
+	_vec addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 	_unattended = [_vec] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 	_returnarray = [_grp,_vec];
 	_returnarray;

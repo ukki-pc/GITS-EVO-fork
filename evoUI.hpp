@@ -277,28 +277,28 @@ class evoUI
 				y = 0.67;
 				text = $STR_M04t96;
 				//text = "Recruitment(L)";
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[true,false,false,false,false,false,0,false,false];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[true,false,false,false,false,false,0,false,false,false];[] call BIS_EVO_ListUpdate";
 	      };
 	      class BSupport: BRecruit
 	      {
 		 idc = 657;
 				y = 0.715;
 				text = $STR_M04t101;
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,true,false,false,false,false,0,false,false];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,true,false,false,false,false,0,false,false,false];[] call BIS_EVO_ListUpdate";
 	      };
 	      class BAssign: BRecruit
 	      {
 		 idc = 658;
 				y = 0.76;
 				text = "Actions";
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,true,false,false,false,0,false,false];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,true,false,false,false,0,false,false,false];[] call BIS_EVO_ListUpdate";
 	      };
 	      class BGroup: BRecruit
 	      {
 		 idc = 659;
 				y = 0.805;
 				text = $STR_M04xt11;
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,true,false,false,0,false,false];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,true,false,false,0,false,false,false];[] call BIS_EVO_ListUpdate";
 	      };
 		  
 		 class BUpgrades: RscIGUIShortcutButton
@@ -307,7 +307,7 @@ class evoUI
 		 		x = 0.29;
 				y = 0.863977;
 		 		text = "Perks";
-		 		onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,true,false];[] call BIS_EVO_ListUpdate";
+		 		onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,true,false,0,false];[] call BIS_EVO_ListUpdate";
 	       };
 		  
 	      class BOptions: RscIGUIShortcutButton
@@ -316,7 +316,7 @@ class evoUI
 				x = 0.47;
 				y = 0.863977;
 				text = $STR_M04t124;
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,true,false,0,false,false];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,true,false,0,false,false,0,false];[] call BIS_EVO_ListUpdate";
 	      };	      
 		class BVec: RscIGUIShortcutButton
 	      {
@@ -324,7 +324,7 @@ class evoUI
 				x = 0.29;
 				y = 0.863977;
 				text = "Vehicle menu";
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,true,1];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,true,1,false];[] call BIS_EVO_ListUpdate";
 	      };
 		class BPurchase: RscIGUIShortcutButton
 	      {
@@ -332,7 +332,7 @@ class evoUI
 				x = 0.11;
 				y = 0.863977;
 				text = "Vehicles";
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,1,false,false];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,1,false,false,0,false];[] call BIS_EVO_ListUpdate";
 	      };
 		  	class BPurchaseClose: RscIGUIShortcutButton
 	      {
@@ -340,7 +340,7 @@ class evoUI
 				x = 0.11;
 				y = 0.863977;
 				text = "Back";
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[true,false,false,false,false,false,0,false,false];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[true,false,false,false,false,false,0,false,false,0,false];[] call BIS_EVO_ListUpdate";
 	      };
 	      class Close: RscIGUIShortcutButton // Close
 	      {
@@ -363,7 +363,7 @@ class evoUI
 				y = 0.645;
 				text = "Cars";
 				//text = "Recruitment(L)";
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,1,false,false];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,1,false,false,0,false];[] call BIS_EVO_ListUpdate";
 	      };
 		 class BTurretM: RscIGUIShortcutButton
 	       {
@@ -372,7 +372,7 @@ class evoUI
 		 		y = 0.69;
 				text = "Turret";
 				//text = "Recruitment(L)";
-		 		onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,true,2];[] call BIS_EVO_ListUpdate";
+		 		onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,true,2,false];[] call BIS_EVO_ListUpdate";
 	       };
 		 class BMissileM: RscIGUIShortcutButton
 	       {
@@ -381,7 +381,7 @@ class evoUI
 		 		y = 0.735;
 		 		text = "Missiles";
 		 		//text = "Recruitment(L)";
-		 		onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,true,3];[] call BIS_EVO_ListUpdate";
+		 		onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,true,3,false];[] call BIS_EVO_ListUpdate";
 	       };
 		class BLoadouts: RscIGUIShortcutButton
 	      {
@@ -391,28 +391,28 @@ class evoUI
 				text = "Loadouts";
 				
 				//text = "Recruitment(L)";
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,true,1];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,true,1,false];[] call BIS_EVO_ListUpdate";
 	      };
 	      class Btank: BRecruit
 	      {
 		 idc = 665;
 				y = 0.69;
 				text = "Tanks";
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,2,false,false];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,2,false,false,0,false];[] call BIS_EVO_ListUpdate";
 	      };
 	      class Bair: BRecruit
 	      {
 		 idc = 666;
 				y = 0.735;
 				text = "Air";
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,3,false,false];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,3,false,false,0,false];[] call BIS_EVO_ListUpdate";
 	      };
 	      class Bstat: BRecruit
 	      {
 		 idc = 667;
 				y = 0.78;
 				text = "Static";
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,4,false,false];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,4,false,false,0,false];[] call BIS_EVO_ListUpdate";
 	      };
 		class Bspec: BRecruit
 	      {
@@ -420,7 +420,7 @@ class evoUI
 				y = 0.825;
 				x = 0.11;
 				text = "Special";
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,5,false,false];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,5,false,false,0,false];[] call BIS_EVO_ListUpdate";
 	      };
 		class Bstore: BRecruit
 	      {
@@ -428,7 +428,7 @@ class evoUI
 				y = 0.825;
 				x = 0.771248;
 				text = "Store vehicle";
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,6,false,false];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,6,false,false,0,false];[] call BIS_EVO_ListUpdate";
 	      };
 		class saveLoadout: BRecruit
 	      {
@@ -436,7 +436,7 @@ class evoUI
 				y = 0.825;
 				x = 0.771248;
 				text = "Save loadout";
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[true,false,false,false,false,false,7,false,false];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[true,false,false,false,false,false,7,false,false,0,false];[] call BIS_EVO_ListUpdate";
 	      };
 		class unflip: BRecruit
 	      {
@@ -444,7 +444,7 @@ class evoUI
 				y = 0.825;
 				x = 0.771248;
 				text = "Unflip vehicle";
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,8,false,false];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,8,false,false,0,false];[] call BIS_EVO_ListUpdate";
 	      };
 		class hitMark: BRecruit
 	      {
@@ -452,7 +452,7 @@ class evoUI
 				y = 0.825;
 				x = 0.771248;
 				text = "Hitmarker";
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,true,false,9,false,false];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,true,false,9,false,false,0,false];[] call BIS_EVO_ListUpdate";
 	      };
 		class vehUpg: BRecruit
 	      {
@@ -460,7 +460,7 @@ class evoUI
 				y = 0.825;
 				x = 0.47;
 				text = "Upgrade";
-	 			onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,true,4];[] call BIS_EVO_ListUpdate";
+	 			onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,true,4,false];[] call BIS_EVO_ListUpdate";
 	      };
 		class Construction: BRecruit
 	      {
@@ -713,4 +713,10 @@ class WeaponShopUI
 				onButtonClick = "lbSetCurSel[2000,0];Wpage = 0;[] call BIS_EVO_ListUpdate";
 	      };
 	};
+};
+
+
+class kfeed: RscTextSmall
+{
+	idc = 4001;
 };

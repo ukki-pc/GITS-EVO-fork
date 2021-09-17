@@ -116,10 +116,10 @@ _spawne = [_heli1] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 _spawne = [_heli2] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 _spawne = [_heli3] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 
-_heli addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
-_heli1 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
-_heli2 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
-_heli3 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+_heli addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
+_heli1 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
+_heli2 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
+_heli3 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
 
 //GROUP 1 = 21 UNARMED CIVS
 
@@ -138,7 +138,7 @@ while {_d <= _extrmguard} do
 	Sleep BIS_EVO_GlobalSleep;
 };
 
-{_x addEventHandler ["killed", {_x setCombatMode "RED";commandStop _x;handle = [_this select 0] execVM "data\scripts\bury.sqf"}]} forEach (units _guard);
+{_x addEventHandler ["killed", {_x setCombatMode "RED";commandStop _x;handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guard);
 
 //4 IN TRUCK
 	(units _guard select 0) assignAsDriver _heli;
@@ -203,7 +203,7 @@ while {_d <= _extrmguard} do
 };
 
 
-{_x addEventHandler ["killed", {_x setCombatMode "RED";commandStop _x;handle = [_this select 0] execVM "data\scripts\bury.sqf"}]} forEach (units _guarda);
+{_x addEventHandler ["killed", {_x setCombatMode "RED";commandStop _x;handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guarda);
 
 //GROUP 3 = LARGE GROUP OF 18 ARMED VILLAGERS 
 
@@ -228,7 +228,7 @@ while {_d <= _extrmguard} do
 	Sleep BIS_EVO_GlobalSleep;
 };
 
-{_x addEventHandler ["killed", {_x setCombatMode "RED";commandStop _x;handle = [_this select 0] execVM "data\scripts\bury.sqf"}]} forEach (units _guardb);
+{_x addEventHandler ["killed", {_x setCombatMode "RED";commandStop _x;handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guardb);
 
 _heli4 = createVehicle ["Land_Ind_TankSmall", _pos1, [], 25, "NONE"];
 _heli5 = createVehicle ["Land_Fire_barrel_burning", _pos1, [], 15, "NONE"];

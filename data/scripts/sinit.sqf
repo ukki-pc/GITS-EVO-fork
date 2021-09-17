@@ -20,7 +20,10 @@ _events = [] execVM "data\scripts\EVO_MissionManager.sqf";
 //added
 _sin = [] execVM "data\scripts\sinitS.sqf";
 Mthread = [] execVM "data\scripts\MainThread.sqf";
-_mgun = [] execVM "data\scripts\manVehicle.sqf";
+
+
+//DIsabled due to problems
+//_mgun = [] execVM "data\scripts\manVehicle.sqf";
 
 _handle = [] execVM "data\scripts\activeReinforce.sqf";
 

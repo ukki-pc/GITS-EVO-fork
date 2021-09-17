@@ -96,9 +96,9 @@ _starts = [_pos1,_pos2,_pos3];
 
 _pos = (_starts select (round random 2));
 
-_heli addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
-_heli1 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
-_heli2 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+_heli addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
+_heli1 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
+_heli2 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
 
 _allunitsC = EGG_EVO_mecrew;
 _maxC = count _allunitsC;
@@ -142,8 +142,8 @@ while {_d <= _dcounta} do
 	sleep 0.5;
 };
 
-{_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}]} forEach (units _guard);
-{_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}]} forEach (units _guardb);
+{_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guard);
+{_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guardb);
 _recy = [_user,_guard] execVM "data\scripts\grecycle.sqf";
 _recy = [_user,_guardb] execVM "data\scripts\grecycle.sqf";	
 

@@ -78,7 +78,7 @@ _d = 0;
 while {_d <= _dcounta} do 
 {
 	_unit = _pilot createUnit [_allunits select (round random _max), _pos, [], 2, "FORM"];
-	_unit addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+	_unit addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
 	[_unit] join _pilot;
 	_d = _d+1;
 	sleep 1;
@@ -90,14 +90,14 @@ _heli1 = createVehicle [(_allvecA select (round random _maxA)), _pos, [], 0, "NO
 _spawne = [_heli1] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 [_heli1] call BIS_EVO_Lock;
 _heli1 setFuel 0.0;
-_heli1 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+_heli1 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
 sleep 0.2;
 (units _pilot select 0) assignAsDriver _heli1;
 (units _pilot select 0) moveInDriver _heli1;
 sleep 0.2;
 (units _pilot select 1) assignAsGunner _heli1;
 (units _pilot select 1) moveInGunner _heli1;
-{commandStop _x;_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];_x commandFollow (leader _x)} forEach (units _pilot);
+{commandStop _x;_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];_x commandFollow (leader _x)} forEach (units _pilot);
 sleep 1.0;
 
 _allvecB = EGG_EVO_mfhq;

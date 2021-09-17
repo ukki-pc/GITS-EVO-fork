@@ -80,9 +80,9 @@ _spawne = [_heli1] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 _heli2 = createVehicle [(_allvecA select (round random _maxA)), _pos3, [], 0, "NONE"];[_heli2] call BIS_EVO_Lock;Sleep BIS_EVO_GlobalSleep;
 _spawne = [_heli2] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 
-_heli addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
-_heli1 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
-_heli2 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
+_heli addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
+_heli1 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
+_heli2 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 
 _allunitsA = EGG_EVO_meofficer;
 _maxA = (count _allunitsA)-1;
@@ -129,7 +129,7 @@ Sleep 0.2;
 _guardass setFormation "COLUMN";
 _guardass setSpeedMode "LIMITED";
 _guardass setBehaviour "SAFE";
-{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _guardass);
+{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guardass);
 _recy = [_user,_guardass] execVM "data\scripts\grecycle.sqf";
 
 _wp = _guardass addWaypoint [_targ, 10];

@@ -38,7 +38,6 @@ _marks = [] execVM "data\scripts\MarkerColors.sqf";
 //CLIENT SIDED ATM
 //_sResp = [] execVM "data\scripts\strategicResponse.sqf"; //WIP
 
-
 (FindDisplay 46) DisplaySetEventHandler ["keydown","if ((_this select 1) In actionKeys ""TeamSwitch"" ) then {a = createDialog 'evoUI'}"];
 _box = [0] call BIS_EVO_AmmoBox;
 _boxR = [0] call BIS_EVO_AmmoBoxR;
@@ -51,7 +50,4 @@ _boxR = [0] call BIS_EVO_AmmoBoxR;
 
 //spawn = player execVM "data\scripts\spawn.sqf";
 
-
-
-
-["init done"] dm;
+[] call fnc_hudMessage_handler;

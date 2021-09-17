@@ -6,7 +6,7 @@ _dist = 8;
 _zfactor = 0;
 _type = _stattype;
 _cstatA = objNull;
-_cstatA removeaction wcam;
+//_cstatA removeaction wcam;
 _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 
 

@@ -111,7 +111,7 @@ _hostage = _pilot createUnit [_allunitsA select (round random (_max - 1)), _pos1
 	removeallweapons _x;
 	_x setCaptive true;
 	commandStop _x;
-	_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}]
+	_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}]
 } forEach units _pilot;
 
 sleep 1.0;
@@ -127,7 +127,7 @@ _allunitsB = EGG_EVO_meofficer;
 _max = count _allunitsB;
 _allunitsB select (round random (_max - 1)) createUnit [_pos1, _mcsardga];Sleep BIS_EVO_GlobalSleep;
 _allunitsB select (round random (_max - 1)) createUnit [_pos1, _mcsardga];Sleep BIS_EVO_GlobalSleep;	
-{_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}]} forEach (units _mcsardga);
+{_x addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _mcsardga);
 sleep 1;
 
 //VEHICLES
@@ -143,31 +143,31 @@ _maxD = count _allvecD;
 
 _heli = createVehicle [(_allvecA select round random (_maxA - 1)), _pos2, [], 10, "NONE"];Sleep BIS_EVO_GlobalSleep;
 _spawne = [_heli] spawn {[_this select 0] call BIS_EVO_idelSVEC};
-_heli addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+_heli addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
 
 _heli1 = createVehicle [(_allvecB select round random (_maxB - 1)), _pos3, [], 10, "NONE"];Sleep BIS_EVO_GlobalSleep;
 _spawne = [_heli1] spawn {[_this select 0] call BIS_EVO_idelSVEC};
-_heli1 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+_heli1 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
 
 _heli2 = createVehicle [(_allvecC select round random (_maxC - 1)), _pos4, [], 10, "NONE"];Sleep BIS_EVO_GlobalSleep;
 _spawne = [_heli2] spawn {[_this select 0] call BIS_EVO_idelSVEC};
-_heli2 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+_heli2 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
 
 _heli3 = createVehicle [(_allvecD select round random (_maxD - 1)), _pos5, [], 10, "NONE"];Sleep BIS_EVO_GlobalSleep;
 _spawne = [_heli3] spawn {[_this select 0] call BIS_EVO_idelSVEC};
-_heli3 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+_heli3 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
 
 _heli4 = createVehicle [(EGG_EVO_meflag select 0), _pos1, [], 20, "NONE"];Sleep BIS_EVO_GlobalSleep;
 _spawne = [_heli4] spawn {[_this select 0] call BIS_EVO_idelSVEC};
-_heli4 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+_heli4 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
 
 _heli5 = createVehicle [(EGG_EVO_mehq select 0), _pos1, [], 20, "NONE"];Sleep BIS_EVO_GlobalSleep;
 _spawne = [_heli5] spawn {[_this select 0] call BIS_EVO_idelSVEC};
-_heli5 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+_heli5 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
 
 _heli6 = createVehicle ["Land_Fire_burning", _pos1, [], 10, "NONE"];Sleep BIS_EVO_GlobalSleep;
 _spawne = [_heli6] spawn {[_this select 0] call BIS_EVO_idelSVEC};
-_heli6 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+_heli6 addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
 
 // CREW INSURGENTS
 
@@ -183,7 +183,7 @@ _d = 0;
 while {_d <= _csardcounta} do 
 {
 	_unit = _mcsardgb createUnit [_allunitsJ select (round random _max), _pos, [], 6, "FORM"];
-	_unit addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+	_unit addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
 	[_unit] join _mcsardgb;
 	_d = _d+1;
 	sleep 1;
@@ -224,7 +224,7 @@ _d = 0;
 while {_d <= _csardcount} do 
 {
 	_unit = _mcsardgc createUnit [_allunitsK select (round random _max), _pos, [], 6, "FORM"];
-	_unit addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\bury.sqf"}];
+	_unit addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
 	[_unit] join _mcsardgc;
 	_d = _d+1;
 	sleep 1;

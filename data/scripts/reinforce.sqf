@@ -34,7 +34,8 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_alist = BIS_EVO_DetectEnemy;
 
 		_curTown =  BIS_EVO_MissionTowns select BIS_EVO_MissionProgress;
-		_reinforceTowns = (synchronizedObjects (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress))-BIS_EVO_conqueredTowns;
+		_reinforceTowns = [(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) ]call fnc_get_synchronized_towns;
+		_reinforceTowns = _reinforceTowns-BIS_EVO_conqueredTowns;
 
 		if(count _reinforceTowns < 1) exitWith{};
 
@@ -52,7 +53,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_maxA = count _allvecs;
 		_ural = createVehicle [(_allvecs select (round random (_maxA - 1))), _pos2,[], 0, "NONE"];
 		[_ural] call BIS_EVO_Lock;
-		_ural addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
+		_ural addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 		Sleep 0.2;
 		_unit = _guardr createUnit [(_allunits select (round random (_max - 1))), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsDriver _ural;_unit moveInDriver _ural;
 		Sleep 0.2;
@@ -70,7 +71,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		sleep 1;
 		[position _alist,_guardr,_objPos,_alist] call BIS_EVO_Erefway;
 		[_guardr, 1] setWaypointType "GETOUT";
-		{_x addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1 ] execVM "data\scripts\mobjbury.sqf"}]; _x addmagazine ["EB_molotov_mag",2];} forEach (units _guardr);	
+		{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1 ] execVM "data\scripts\mobjbury.sqf"}]; _x addmagazine ["EB_molotov_mag",2];} forEach (units _guardr);	
 		_recy = [objnull,_guardr] execVM "data\scripts\grecycle.sqf";
 		_guardr setFormation "COLUMN";
 		[_guardr, 1] setWaypointCombatMode "RED";	
@@ -113,7 +114,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 
 		_sumark = [_vec,"Rekatti","ColorRED","plp_icon_shipFrigate"] execVM "data\scripts\customMarker.sqf";
 
-		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
+		{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
 
 		[_grp,_targetPos,_vec] spawn fnc_waterPatrol;
 	};
@@ -133,7 +134,8 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		eResupplying = true;
 		
 		_curTown =  BIS_EVO_MissionTowns select BIS_EVO_MissionProgress;
-		_reinforceTowns = (synchronizedObjects (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress))-BIS_EVO_conqueredTowns;
+		_reinforceTowns = [(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress)] call fnc_get_synchronized_towns;
+		_reinforceTowns = _reinforceTowns-BIS_EVO_conqueredTowns;
 
 		if(count _reinforceTowns < 1) exitWith{};
 
@@ -164,7 +166,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 			_wp setWaypointType "GETOUT";
 			sleep 1;
 			[_guardm, 1] setWaypointCombatMode "RED";		
-			{_x addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guardm);
+			{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guardm);
 			_guardm setFormation "COLUMN";
 
 			waitUntil{sleep 5;_vec distance _objPos < 100;};
@@ -221,7 +223,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		(units _pilot select 1) moveInGunner _heli0;
 		//[_unit, _string, _color, _markerType, _enableDir]
 		_sumark = [_heli0,"","ColorRed","plp_icon_helicopterCargo",true] execVM "data\scripts\customMarker.sqf";
-		_heli0 addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\bury.sqf"}];
+		_heli0 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 		_wp = _pilot addWaypoint [_pos, 10];
 		_wp2 = _pilot addWaypoint [_posback, 10];
 		{_x setBehaviour "careless"} forEach (units _pilot);
@@ -242,7 +244,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 				_pos = position _heli0;
 				_unit = _para createUnit [_allunits2 select (round (random (_max - 1))), [0,0,0], [], 300, "NONE"];
 				_unit setSkill skillfactor+(random 0.2);
-				_unit addEventHandler ["killed", {handle = [_this select 0,"INF",_this select 1] execVM "data\scripts\mobjbury.sqf"}];
+				_unit addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 				[_unit] join _para;
 				_vec = createVehicle ["ParachuteWest", _pos, [], 20, 'NONE'];
 				_vec setpos [_pos select 0,_pos select 1,(_pos select 2)- 12];
@@ -285,7 +287,8 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_dist = 0;
 		
 
-		_reinforceTowns = (synchronizedObjects (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress))-BIS_EVO_conqueredTowns;
+		_reinforceTowns = [(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress)] call fnc_get_synchronized_towns;
+		_reinforceTowns = _reinforceTowns-BIS_EVO_conqueredTowns;
 
 		if(count _reinforceTowns < 1) exitWith{};
 
@@ -323,12 +326,11 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 
 		_guardm = _array select 0;
 		_vec = _array select 1;
-		_vec addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\bury.sqf"}];
 		_sumark = [_vec,"Mec","ColorBlack"] execVM "data\scripts\customMarker.sqf";
 		[position _alist,_guardm,_objPos,_alist] call BIS_EVO_Erefway;
 		sleep 1;
 		[_guardm, 1] setWaypointCombatMode "RED";		
-		{_x addEventHandler ["killed", {handle = [_this select 0,"MEC",_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guardm);
+		{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guardm);
 		_guardm setFormation "COLUMN";
 		sleep 10;
 		if(isNull driver _vec  ) then {deleteVehicle _vec; {_x setDammage 1}forEach (units _guardm)};
@@ -346,22 +348,22 @@ if ( (_curtownInf <= _basetownInf) and (reinforcements) ) then
 	if !(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress in BIS_EVO_MissionVillages) then 
 	{
 		[] spawn BIS_EVO_MI17support;
-		(BIS_EVO_Infantry select BIS_EVO_MissionProgress) set [0, (_curtownInf*enemynumdiv)+6];
+//		(BIS_EVO_Infantry select BIS_EVO_MissionProgress) set [0, (_curtownInf*enemynumdiv)+6];
 	};
 
 
 
-	(BIS_EVO_Infantry select BIS_EVO_MissionProgress) set [0, (_curtownInf*enemynumdiv)+6];
+//	(BIS_EVO_Infantry select BIS_EVO_MissionProgress) set [0, (_curtownInf*enemynumdiv)+6];
 	sleep 1;
 };
-	(BIS_EVO_Mechanized select BIS_EVO_MissionProgress) set [0,0];
+//	(BIS_EVO_Mechanized select BIS_EVO_MissionProgress) set [0,0];
 sleep 15;
 
 if( (_curtownMec <= _basetownMec) and (reinforcements) ) then 
 {
 //	systemChat "reinforcing mechanized";
 	[] spawn EGG_EVO_mecreinf;
-	(BIS_EVO_Mechanized select BIS_EVO_MissionProgress) set [0, (_curtownMec*enemynumdiv)+1];
+//	(BIS_EVO_Mechanized select BIS_EVO_MissionProgress) set [0, (_curtownMec*enemynumdiv)+1];
 	sleep 1;
 
 	if(([15] call chance and _curTown in BIS_EVO_CoastalTowns)) then {[] spawn BIS_EVO_SHIPSUPPORT};

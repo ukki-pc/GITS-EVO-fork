@@ -1,7 +1,7 @@
 enableEnvironment true;
 //creating center east/ setting relations
 //Macros
-#include "macros.h"
+#include "data\scripts\macros.h"
 //
 //rug_dsai settings [EAST, WEST, GUER, CIV, sideEnemy]
 RUG_DSAI_SIDES = ["RUG_DSAIArab","RUG_DSAI","RUG_DSAIArab","RUG_DSAIArab","RUG_DSAIArab"];
@@ -25,42 +25,8 @@ BIS_Effects_EH_Killed=compile preprocessFileLineNumbers "new_effects\killed.sqf"
 BIS_Effects_AirDestruction=compile preprocessFileLineNumbers "new_effects\AirDestruction.sqf";
 BIS_Effects_AirDestructionStage2=compile preprocessFileLineNumbers "new_effects\AirDestructionStage2.sqf";
 
-//FINDS POSITION OF AN OBJECT OR A MARKER
-fnc_getAnyPosition = 
-{
-private ["_position","_return"];
-  _position = _this select 0;
-  _return = "";
-  if(typeName _position == "ARRAY") then { _position = _position select 0}; //IT's a marker duh
-  if(typeName _position == "STRING") then { _return = getMarkerPos _position}; //IT's a marker duh
-  if(typeName _position == "OBJECT") then { _return = [getPos _position select 0,getpos _position select 1,0]}; //IT's a objech duh
-  _return;
-};
-
-debugMessage = 
-{
-	if(editor == 1) then {
-		systemChat format ["%1",_this select 0];
-	};
-};
-
-
-BIS_Effects_globalEvent = 
-{
-	BIS_effects_gepv = _this;
-	publicVariable "BIS_effects_gepv";
-     _this call BIS_Effects_startEvent;
-};
-
-fnc_getCfgName = 
-{
-	private ["_classname","_return","_name"];
-	_classname = _this select 0;
-	_return = "";
-	_name = getText(configFile >> "CfgVehicles" >> _classname >> "displayName");
-	if(!isNil "_name") then{_return = _name}else{_return = _classname};
-	_return;
-};
+_hudMsg = [] execVM "data\scripts\kill_feed.sqf";
+_functions = [] execVM "data\scripts\common_funcs.sqf";
 
 BIS_Effects_startEvent = 
 {
@@ -80,11 +46,53 @@ BIS_Effects_startEvent =
 		};
 	};
 };
-"BIS_effects_gepv" addPublicVariableEventHandler {(_this select 1) call BIS_Effects_startEvent;};
+"BIS_effects_gepv" addPublicVariableEventHandler {(_this select 1) call BIS_Effects_startEvent};
+
+
+
+messageQueue = [];
+#define delayTime 0.8
+//This runs in the background to execute hud messages
+fnc_hudMessage_handler = 
+{
+	while {BIS_EVO_frameDelay; true} do 
+	{
+		if(count messageQueue > 0) then 
+		{
+			_tempQueue = messageQueue;
+			messageQueue = [];
+			{
+				_msg = _x select 0;
+				_score = _x select 1;
+				[_msg,_score] call fnc_showhudMessage;
+				sleep delayTime;
+			} forEach _tempQueue;
+			_tempQueue = [];
+		};
+	};
+};
+
+//Broadcasts hud messages for players
+["fnc_hudMessage", {
+	private ["_player","_message","_score"];
+	_player = _this select 0;
+	_message = _this select 1;
+	_score = _this select 2;
+	if(isNil "_score") then {_score = 0};
+
+	if(name _player == name player) then 
+	{
+		messageQueue = messageQueue +  [[_message,_score]];
+	};
+}] call CBA_fnc_addLocalEventHandler;
 
 skillfactor = ((1 + random 2)/10);
 Spymade = 0;
 EGG_hidetotal = 6;
+
+currentControl = 1;
+activeControls = [];
+control = 2000;
 
 //editori
 editor = 1; publicVariable "editor";
@@ -146,10 +154,10 @@ if (editor == 1) then
 	gitsnades = 1;
 	ranklock = 3;
 	jailparam = 0;
-	rankscore = 50;
+	rankscore = 5000;
 	//adding	
 	helpersparam =2;
-
+deathScorePenalty = 0;
 	//"Free & Bases","Bases & Towns Free","Bases free & Towns cost","Costs everywhere"
 	recruitPlaces = 1;
 	perkparam = 1;
@@ -168,6 +176,7 @@ if (editor == 1) then
 	["DEBUG MODE ON | Version 0.6"] dm;
 };
 
+
 helicopterhitch = 2;
 basebeam = 2;
 BIS_EVO_rank1 = (rankscore * 1);
@@ -184,8 +193,78 @@ publicVariable "spawntype";
 if(carrier) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" select 0),(getMarkerPos "FahneLKW" select 1),18];};
 
 
+allBunkerControls = ["screenobj1","screenobj2","screenobj3"];
 
 //if (spawntype == 1) then {"FahneLKW" setMarkerPos };
+
+fnc_ctrlChangeColor = 
+{
+	_ctrlN = _this select 0;
+	_color = _this select 1;
+	_ctrl = (uiNamespace  getVariable _ctrlN);
+	_ctrl ctrlSetTextColor _color;
+	_ctrl ctrlCommit 0;
+};
+
+//Runs in the background to draw world object positions to ui elements on screen
+fnc_marker_screen = 
+{
+	#define layerStart 11
+	#define screenCtrlMaxDist 1600
+	_objects = _this select 0;
+	_clean = false;
+
+	_currentTownPos = getPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
+
+		{
+			_targetObject = _x select 0;
+			_ctrlName = allBunkerControls select _forEachIndex;
+			_layerN = layerStart + _forEachindex;
+			_layerN cutRsc [_ctrlName,"PLAIN"];
+			_objName = format ["Flag %1",_forEachIndex+1];
+			_ctrl = (uiNamespace  getVariable _ctrlName );
+			// _ctrl ctrlsetText _objName;
+			 _ctrl ctrlCommit 0;
+		}forEach _objects;
+
+	while{sleep BIS_EVO_frameDelay; BIS_EVO_MissionProgress != -1} do 
+	{
+		_draw = (!(visibleMap) and (player distance _currentTownPos < screenCtrlMaxDist));
+
+		if(_draw) then
+		{
+			{
+				_targetObject = _x select 0;
+				_ctrlName = allBunkerControls select _forEachIndex;
+				_ctrl = (uiNamespace  getVariable _ctrlName);
+				_screenPos = worldToScreen getPos _targetObject;
+				_ctrl ctrlSetPosition _screenPos;
+				_ctrl ctrlSetScale ((screenCtrlMaxDist-(player distance _targetObject))/screenCtrlMaxDist) min 1 max 0;
+				_ctrl ctrlCommit 0;
+			}forEach _objects;
+			_clean = true;
+		}
+		else 
+		{
+			if(_clean) then
+			{
+				{
+					_targetObject = _x select 0;
+					_ctrlName = allBunkerControls select _forEachIndex;
+					_ctrl = (uiNamespace  getVariable _ctrlName);
+					_ctrl ctrlSetPosition [2,2];
+					_ctrl ctrlCommit 0;
+					_clean = false;
+				}forEach _objects;
+			};
+		};
+	};
+
+	//Clean layers
+	{_layerN = layerStart + _forEachIndex; _layerN cutRsc ["Default","PLAIN"]}forEach _objects;
+};
+
+
 
 enableEnvironment true;
 
@@ -807,7 +886,7 @@ perkEngLVL = 0;
 //Bandage init
 [player,0.2,0.15,-1,true] execVM "data\scripts\cly_heal.sqf";
 
-//Client message
+//Systemchat message
 ["jed_msg", {
 	_player = _this select 0;
 	_msg = _this select 1;
@@ -815,6 +894,11 @@ perkEngLVL = 0;
 	{
 		systemChat format ["%1",_msg];
 	};
+}] call CBA_fnc_addLocalEventHandler;
+
+//global message
+["jed_SIDEmsg", {
+	player globalChat format ["%1",_this select 1];
 }] call CBA_fnc_addLocalEventHandler;
 
 //Client message
@@ -841,10 +925,12 @@ _objId = _this select 0;
 
 ["jed_hitMarker", {
 _killer = _this select 0;
+_hitmarks = ["hit1","hit2","hit3"];
 	if(name _killer == name player ) then 
 	{
 		3 cutRsc ["Hitmarker","PLAIN"];
-		playSound "hmark";
+		_sound = [_hitmarks] call fnc_pickRandom;
+		playSound _sound;
 	};
 }] call CBA_fnc_addLocalEventHandler;
 
@@ -911,7 +997,7 @@ EB_astring7 = format ["<t color='#f79b31'>" +"%1 SEAD"+ "</t>",aicon7];
 aicon8 = "<img image='img\support\cbu.paa' size='1.0' shadow='false' />";
 EB_astring8 = format ["<t color='#f79b31'>" +"%1 CBU"+ "</t>",aicon8];
 
-
+rucksack = "";
 //LurchiAc130
 //Check for Addon
 if (!(isClass(configFile>>"CfgPatches">>"LDL_ac130"))) then 
@@ -919,16 +1005,20 @@ if (!(isClass(configFile>>"CfgPatches">>"LDL_ac130"))) then
 	//No Addon detected
 	//Spawn LDL_init
 	LDL_init = compile preprocessFileLineNumbers "LDL_ac130\LDL_init.sqf";
+	LDL_plane_type = "";
+	LDL_ac130_plane = objNull;
 	[]spawn LDL_init;    
+
 }
 else
 {
 	//Addon detected.
 	//LDL_init = compile preprocessFileLineNumbers "LDL_ac130\LDL_init.sqf";
 	//[]spawn LDL_init;
+	//Wait for the init
+
 };
 
-//Wait for the init
 waitUntil {!isNil "LDL_initDone"};
 waitUntil {LDL_initDone};
 
@@ -1004,6 +1094,7 @@ if (isServer and not (local player)) exitWith {};
 
 // Large marker seen over occupied cities
 //MHQ SPAWNER
+
 MHQ = createVehicle [egg_evo_MHQ,  getposASL LKWWEST, [], 0, "NONE"];
 // MHQ setVehicleInit "veh = [this, 10, 0, 0, FALSE, FALSE] execVM ""vehicle.sqf""";
 _veh = [MHQ] execVM "data\scripts\vehicleMHQ.sqf";

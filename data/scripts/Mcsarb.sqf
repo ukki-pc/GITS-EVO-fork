@@ -98,7 +98,7 @@ _x setBehaviour "Careless";
 removeallweapons _x;
 _x setCaptive true;
 commandStop _x;
-_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]
+_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]
 } forEach units _pilot;
 
 sleep 1.0;
@@ -119,8 +119,8 @@ _allunits select (round random (_max - 1)) createUnit [_ppos, _guardb];Sleep BIS
 _allunits select (round random (_max - 1)) createUnit [_ppos, _guardb];Sleep BIS_EVO_GlobalSleep;
 _allunits select (round random (_max - 1)) createUnit [_ppos, _guardb];Sleep BIS_EVO_GlobalSleep;
 _allunits select (round random (_max - 1)) createUnit [_ppos, _guardb];Sleep BIS_EVO_GlobalSleep;
-{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _guard);
-{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}]} forEach (units _guardb);
+{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guard);
+{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _guardb);
 _wp1 = _guardb addWaypoint [_pos, 20];
 _wp2 = _guardb addWaypoint [_ppos, 20];
 _wp3 = _guardb addWaypoint [_pposb, 20];
@@ -135,11 +135,11 @@ _wp4 = _guard addWaypoint [_ppos, 10];
 [_guard, 4] setWaypointType "CYCLE";
 _guard setCurrentWaypoint [_guard, 2];
 {
-	_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
+	_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 } forEach (units _guard);
 
 {
-	_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\bury.sqf"}];
+	_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 } forEach (units _guardb);
 
 _recy = [_user,_pilot] execVM "data\scripts\grecycle.sqf";
