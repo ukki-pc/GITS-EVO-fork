@@ -547,7 +547,7 @@ class Mission
 					skill=0.60000002;
 					text="objective_14";
 					init="this setVariable [""type"",""city""]; this setVariable [""name"",""Dolores""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={63,65,75,98};
+					synchronizations[]={63,65,75,98,110};
 				};
 			};
 		};
@@ -1327,7 +1327,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=47;
+		items=48;
 		class Item0
 		{
 			position[]={18819.916,38.26318,13693.878};
@@ -1799,6 +1799,15 @@ class Mission
 			vehicle="NM_Tigr_kord_Camo";
 			leader=1;
 			skill=0.60000002;
+		};
+		class Item47
+		{
+			position[]={11530.718,32.030731,6192.8569};
+			id=110;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={64};
 		};
 	};
 	class Markers

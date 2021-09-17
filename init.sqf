@@ -51,30 +51,12 @@ BIS_Effects_startEvent =
 
 
 messageQueue = [];
-#define delayTime 0.8
-//This runs in the background to execute hud messages
-fnc_hudMessage_handler = 
-{
-	while {BIS_EVO_frameDelay; true} do 
-	{
-		if(count messageQueue > 0) then 
-		{
-			_tempQueue = messageQueue;
-			messageQueue = [];
-			{
-				_msg = _x select 0;
-				_score = _x select 1;
-				[_msg,_score] call fnc_showhudMessage;
-				sleep delayTime;
-			} forEach _tempQueue;
-			_tempQueue = [];
-		};
-	};
-};
+messageMutex = 0;
 
 //Broadcasts hud messages for players
 ["fnc_hudMessage", {
 	private ["_player","_message","_score"];
+	#define delayTime 0.8
 	_player = _this select 0;
 	_message = _this select 1;
 	_score = _this select 2;
@@ -82,7 +64,12 @@ fnc_hudMessage_handler =
 
 	if(name _player == name player) then 
 	{
-		messageQueue = messageQueue +  [[_message,_score]];
+		waitUntil {sleep BIS_EVO_frameDelay; messageMutex == 0};
+		[_message,_score] call fnc_showhudMessage;
+		sleep delayTime;
+		messageMutex == 0;
+		//messageQueue = messageQueue +  [[_message,_score]];
+		
 	};
 }] call CBA_fnc_addLocalEventHandler;
 
@@ -227,7 +214,7 @@ fnc_marker_screen =
 			 _ctrl ctrlCommit 0;
 		}forEach _objects;
 
-	while{sleep BIS_EVO_frameDelay; BIS_EVO_MissionProgress != -1} do 
+	while{sleep 0.016; BIS_EVO_MissionProgress != -1} do 
 	{
 		_draw = (!(visibleMap) and (player distance _currentTownPos < screenCtrlMaxDist));
 

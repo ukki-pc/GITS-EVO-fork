@@ -101,7 +101,6 @@ missionManager =
 			_distance = 0;
 			_farEnough = false;
 
-
 			while { count _roads > 0 or !_farEnough} do 
 			{
 				_bunkerPos = [_pos, 0, _bunkerRadiusMax, 3, 0, 0.25, 0] call BIS_fnc_findSafePos;
@@ -308,7 +307,7 @@ missionManager =
 	_count = (count BIS_EVO_MissionTowns);
 
 	Sleep 2.0;
-	while {BIS_EVO_MissionProgress != -1} do
+	while {sleep 1; BIS_EVO_MissionProgress != -1} do
 	{
 		_mkr = (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
 		_pos = getPos _mkr;

@@ -50,4 +50,4 @@ _boxR = [0] call BIS_EVO_AmmoBoxR;
 
 //spawn = player execVM "data\scripts\spawn.sqf";
 
-[] call fnc_hudMessage_handler;
+//[] call fnc_hudMessage_handler;

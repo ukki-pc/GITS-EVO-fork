@@ -113,6 +113,12 @@ _player setPos getMarkerPos respawnPoint;
 
 if(respawnPoint == "Respawn_West") then {_player setPosASL[getpos _player select 0,getpos _player select 1, 18]};
 
+_i= 0;
+
+for "_i" from 0 to 10 do 
+{
+	["fnc_hudMessage", [player, "Spawning",10]] call CBA_fnc_whereLocalEvent;
+};
 
 //Update money
 sleep 8;
