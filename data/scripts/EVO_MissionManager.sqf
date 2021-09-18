@@ -62,18 +62,19 @@ missionManager =
 	//Creates marker over bunkers
 	fnc_bunker_marker = 
 	{
-		private ["_bunker","_markerName","_mrkType","_bunkerMarker"];
+		private ["_bunker","_markerName","_mrkType","_bunkerMarker","_markerText"];
 		_bunker = _this select 0;
 		_markerName = _this select 1;
+		_markerText = _this select 2;
 
 		//Bunker marker
-		_mrktype = "Strongpoint";
+		_mrktype = "plp_icon_flag";
 		_bunkerMarker = createMarker[_markerName,getpos _bunker];
 		_bunkerMarker setMarkerColor "ColorRED";
 		_bunkerMarker setMarkerType _mrktype;
 		_controlName = allBunkerControls select (bunkers find _bunker);
 		[_controlName,[0.62, 0, 0, 1]] call fnc_ctrlChangeColor;
-		//_bunkerMarker setMarkerText "Bunker";
+		_bunkerMarker setMarkerText _markerText;
 	};
 
 	fnc_init_bunker = 
@@ -137,16 +138,23 @@ missionManager =
 
 	bunkerLoop = 
 	{
-	//	private ["_tickets","_cptString","_msg","_bunkerObject","_markerName","_bunkerOwner"];
+		private ["_tickets","_cptString","_msg","_bunkerObject","_markerName","_bunkerOwner","soundEnable"];
 		#define maxTickets 30
 		#define captureRadius 30
 		#define minTickets -30
 		#define minHeight -7
-
+		#define maxCaptureTick 240
+		#define tickRewawrd 20
+		#define neuterReward 100
+		#define captureReward 400
+		#define rewardingInterval 5
+		#define calculationInterval 1
+		
 		_bunkerObject = _this select 0;
 		_flags = _this select 1;
+		_markerText = _this select 2;
 		_markerName = format ["%1",_bunkerObject];
-		[_bunkerObject,_markerName] call fnc_bunker_marker;
+		[_bunkerObject,_markerName,_markerText] call fnc_bunker_marker;
 
 		_tickets = maxTickets;
 		_bunkerOwner = EGG_EVO_ENEMYFACTION;
@@ -154,17 +162,19 @@ missionManager =
 
 		_flag1 = _flags select 0;
 		_flag2 = _flags select 1;
+		soundEnable= true;
 
 		//capture state for friendly captures
 		_captured = false;
-		_capturingPlayers = [];
-
+		_neutralized = false;
+		_captureTick = maxCaptureTick; //Calculates time since player last captured this objective to avoid exploitation
 
 		//Loop that handles bunker
-		while{ BIS_EVO_MissionProgress != -1} do
+		while{sleep calculationInterval; BIS_EVO_MissionProgress != -1} do
 		{
 			_baseTickets = _tickets;
 			_capturingPlayers = [];
+			_reward = 0;
 			//Find captors near the bunker
 			{
 				if(alive _x) then 
@@ -192,32 +202,60 @@ missionManager =
 			} foreach ( nearestobjects [position _bunkerObject,["Land"],captureRadius]);
 
 			//Reward players for capturing
-			if(count _capturingPlayers > 0) then 
+			if(_baseTickets != _tickets) then //if no ticket change then no need for calculations
 			{
-				_ticketChange = _baseTickets - _tickets;
-				_totalChange = abs(_tickets - maxTickets);
-				_change = _totalChange/5;
-				_roundedChange = ceil(_change);
-
-				if(!_captured and (_change == _roundedChange) and _ticketChange > 0) then 
+				if(soundEnable) then 
 				{
+					soundEnable = false;
+					[_bunkerObject] spawn 
 					{
+						_source = _this select 0;
+						_audioLength = 6.6-calculationInterval;
+						_source say3d ["flag_loop",20];
+						sleep (_audioLength);
+						soundEnable = true;
+					};
+				};
+				
+				_ticketChange = _baseTickets - _tickets; //Calculate ticket change from this round
+				_totalChange = abs(_tickets - maxTickets); //Calculates total change from max to current
+				_change = _totalChange/rewardingInterval; //Calculates captured ticket count with interval
+				_roundedChange = ceil(_change); //Rounds the change to ceiling
+
+				//When player is capturing give reward
+				if(!_captured and (_change == _roundedChange) and _ticketChange > 0) then //Gives player money everytime the 5 ticket interval is reached
+				{
+						_reward = tickRewawrd;
 						_msg = format ["Capturing"];
-						["fnc_hudMessage", [_x, _msg,20]] spawn CBA_fnc_whereLocalEvent;
-						["jed_addMoney", [_x, 20]] call CBA_fnc_whereLocalEvent;
+					{
+						["fnc_hudMessage", [_x, _msg,_reward]] spawn CBA_fnc_whereLocalEvent;
+						["jed_addMoney", [_x, _reward]] call CBA_fnc_whereLocalEvent;
 					} forEach _capturingPlayers;
 				};
 
+				//When player fully captures give reward
 				if(_tickets == -maxTickets and !_captured) then 
 				{
+						_reward = floor(400*(_captureTick/240));
+						_msg = format ["Fully Captured"];
 					{
-						_msg = format ["Objective Capture"];
-						["fnc_hudMessage", [_x, _msg,400]] spawn CBA_fnc_whereLocalEvent;
-						["jed_addMoney", [_x, 400]] call CBA_fnc_whereLocalEvent;
+						["fnc_hudMessage", [_x, _msg,_reward]] spawn CBA_fnc_whereLocalEvent;
+						["jed_addMoney", [_x,_reward]] call CBA_fnc_whereLocalEvent;
+					} forEach _capturingPlayers;
+				};
+
+				//When player neturalizes give reward
+				if(_tickets < 0 and !_captured and !_neutralized) then 
+				{
+					_reward = neuterReward;
+						_msg = format ["Neutralization Bonus"];
+					{
+						["fnc_hudMessage", [_x, _msg,_reward]] spawn CBA_fnc_whereLocalEvent;
+						["jed_addMoney", [_x, _reward]] call CBA_fnc_whereLocalEvent;
 					} forEach _capturingPlayers;
 				};
 			};
-
+			//When enemy captures back a flag
 			if(_tickets >= 0 and _bunkerOwner == EGG_EVO_PLAYERFACTION) then 
 			{
 				_markerName setMarkerColor "ColorRed";
@@ -229,7 +267,10 @@ missionManager =
 				_msg = format ["Outpost is being overrun!"];
     			["jed_SIDEmsg", [player, _msg]] call CBA_fnc_whereLocalEvent;
 				_captured = false;
+				_neutralized = false;
 			};
+
+			//When player faction neturalizes a flag
 			if(_tickets < 0 and _bunkerOwner == EGG_EVO_ENEMYFACTION) then 
 			{
 				_markerName setMarkerColor "ColorWhite";	
@@ -237,7 +278,10 @@ missionManager =
 				[_controlName,[1, 1, 1, 1]] call fnc_ctrlChangeColor;
 				//_bunkerOwner = EGG_EVO_PLAYERFACTION;
 				//_bunkerObject setVariable ["OWNER", _bunkerOwner];
+				_neutralized = true;
 			};
+
+			//When player side fully captures a flag
 			if(_tickets == -maxTickets and !_captured) then 
 			{
 				_markerName setMarkerColor "ColorBlue";	
@@ -249,14 +293,17 @@ missionManager =
 				_msg = format ["Position clear and under control!"];
 				["jed_SIDEmsg", [player, _msg]] call CBA_fnc_whereLocalEvent;
 				_captured = true;
+				_captureTick = 0;
 			};
+
+			//Start ticking after capture
+			if(_captured and {_captureTick < maxCaptureTick}) then {_captureTick = (_captureTick + 1)};
 
 			//SET flags
 			_zPos1 = (((abs(minHeight))*(_tickets/maxTickets))-abs(minHeight)) min 0 max minHeight;
 			_zPos2 = (-((abs(minHeight))*(_tickets/maxTickets))-abs(minHeight)) min 0 max minHeight;
 			_flag1 setPos [position _flag1 select 0, position _flag1 select 1,_zPos1];
 			_flag2 setPos [position _flag2 select 0, position _flag2 select 1,_zPos2];
-			sleep 1;
 		};		
 	};
 
@@ -324,16 +371,28 @@ missionManager =
 		radio1 setPos [(_pos select 0) + random(200) - random(200),(_pos select 1) + random(200) - random(200), 0];
 		radio1 setDammage 0;
 
-		_bunkercount = 2;
+		_bunkercount = 3;
 
-		if((BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) in BIS_EVO_MissionBigTowns) then {_bunkercount = 3};
+		if((BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) in BIS_EVO_MissionBigTowns) then {_bunkercount = 4};
 
 
 		//Count if pre set bunkers are found
 		bunkers = [];
-		bunkers = bunkers + [BIS_EVO_MissionTowns select BIS_EVO_MissionProgress] call fnc_get_synchronized_bunkers;
+		preSetBunkers = [BIS_EVO_MissionTowns select BIS_EVO_MissionProgress] call fnc_get_synchronized_bunkers;
+		bunkers = preSetBunkers;
 
-		//TODO Bunker system feed count
+		//TODO leave only most apart bunkers
+		if(count bunkers > _bunkerCount) then 
+		{
+			_i = 0;
+			for "_i" from 1 to (count bunkers - _bunkercount) do 
+			{
+				_rnd =  [bunkers] call fnc_pickRandom;
+				bunkers = bunkers -[_rnd];
+				deleteVehicle _rnd; //Delete them as they do not serve any puprose anymore
+			};
+		};
+
 		if(count bunkers < _bunkerCount) then 
 		{
 			_newBunkers = [];
@@ -348,13 +407,13 @@ missionManager =
 		{_screenMarkers set [_forEachIndex,[_x]]}forEach bunkers;
 		[_screenMarkers] spawn fnc_marker_screen;
 
-		//[[bunkers select 0]] call fnc_marker_screen;
-
 		while{(surfaceIsWater position radio1)} do 
 		{
 			radio1 setPos [(_pos select 0) + random(200) - random(200),(_pos select 1) + random(200) - random(200), 0];
 		};
-		[_mkr,BIS_EVO_DetectEnemy,BIS_EVO_DetectFriendly,BIS_EVO_MissionProgress,radio1] call BIS_EVO_Erec;
+		_bunkerNames = ["Flag A","Flag B","Flag C","Flag D"];
+		{[_x,_flags select _forEachIndex,_bunkerNames select _forEachIndex] spawn bunkerLoop}forEach bunkers;
+		[_mkr,BIS_EVO_DetectEnemy,BIS_EVO_DetectFriendly,BIS_EVO_MissionProgress,radio1,bunkers] call BIS_EVO_Erec;
 		
 	//	Sleep 10.0;
 
@@ -362,9 +421,6 @@ missionManager =
 
 	reinforcements = true;
 	[] spawn reinforcementLoop;
-
-	{[_x,_flags select _forEachIndex] spawn bunkerLoop}forEach bunkers;
-
 
 		for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 		{

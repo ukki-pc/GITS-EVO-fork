@@ -7,6 +7,8 @@ BIS_EVO_Erec =
 	_list = _this select 1;
 	_disable = _this select 2;
 	_towncount = _this select 3;
+	_radio = _this select 4;
+	_flags = _this select 5;
 	_inf = 0; 
 	_mec = 0; 
 	_stat = 0; 
@@ -16,7 +18,6 @@ BIS_EVO_Erec =
 	_mec = round(BIS_EVO_MechanizedSpawn);
 	_statAA = ceil((BIS_EVO_MechanizedSpawn)/2);
 	_stat = ceil((BIS_EVO_MechanizedSpawn)/3);
-	_radio = _this select 4;
 	_newunits = [];
 	_rds = [];
 	_type = ""; 
@@ -27,14 +28,20 @@ BIS_EVO_Erec =
 	_rtobj = [_radio] execVM "data\scripts\rtobj.sqf";
 	_pos = position _list;
 
+
 	defenceReady = false;
 	private ["_rng","_allvec"]; 
+		
+		_pos1 = getpos (_flags select 0);
+		_pos2 = getpos (_flags select 1);
+		_pos3 = getpos (_flags select 2);
+		_pos4 = getpos (_flags select 3);
 
-		_pos1 = [(_pos select 0)+random(300),(_pos select 1),(_pos select 2)];
-		_pos2 = [(_pos select 0),(_pos select 1)+random(300),(_pos select 2)];
-		_pos3 = [(_pos select 0)-random(300),(_pos select 1),(_pos select 2)];
-		_pos4 = [(_pos select 0),(_pos select 1)-random(300),(_pos select 2)];
-
+		if(isNil "_pos1") then {_pos1 = [(_pos select 0)+random(300),(_pos select 1),(_pos select 2)]};
+		if(isNil "_pos2") then {_pos2 = [(_pos select 0),(_pos select 1)+random(300),(_pos select 2)]};
+		if(isNil "_pos3") then {_pos3 = [(_pos select 0)-random(300),(_pos select 1),(_pos select 2)]};
+		if(isNil "_pos4") then {_pos4 = [(_pos select 0),(_pos select 1)-random(300),(_pos select 2)]};
+		
 	//HIKI SECTION
 	while {surfaceIsWater _pos1} do 
 	{
@@ -52,7 +59,34 @@ BIS_EVO_Erec =
 		_pos4 = [(_pos select 0),(_pos select 1)-random(300),(_pos select 2)];
 	};
 
-	_outpoints = [_pos1,_pos2,_pos3,_pos4];	
+	outpoints = [_pos1,_pos2,_pos3,_pos4];	
+
+	/*
+	{
+		_markerName = format ["%1",_x];
+		_bunkerMarker = createMarker[_markerName,_x];
+		_bunkerMarker setMarkerColor "ColorBlack";
+		_bunkerMarker setMarkerType "Dot";
+	} forEach outpoints;
+*/
+
+
+	fnc_hikiMarker = 
+	{
+		_unit = _this select 0;
+		_color = _this select 1;
+
+		_markerName = format ["%1",_unit];
+		_bunkerMarker = createMarker[_markerName,getPos _unit];
+		_bunkerMarker setMarkerColor _color;
+		_bunkerMarker setMarkerType "Dot";
+
+		while{sleep 5; true} do 
+		{
+			_markerName setMarkerPos getPos _unit;
+		};
+	};
+
 	systemChat format ["Creating defense with %1: inf, %2: mec, %3: aastat, %4: stat", _inf,_mec,_statAA,_stat];
 
 	//Ship defence
@@ -63,7 +97,6 @@ BIS_EVO_Erec =
 
 		_pos = getPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
 		_shipPos =  [_pos, 700, 1400, 0, 2, 10,0] call BIS_fnc_findSafePos;
-		_multp = [-1,1];
 
 		_array = [_vecT,_shipPos,(EGG_EVO_ENEMYFACTION),300,180,0] call BIS_EVO_CreateVehicle;
 		_grp = _array select 0;
@@ -85,11 +118,11 @@ BIS_EVO_Erec =
 	_pobj = [_offobj] execVM "data\scripts\objoff.sqf";
 	processInitCommands;
 
-	// MANPAD ANTI-AIR defence
+	//SPAA SPAWNS at 100 meter radius from flag
 	_MakeAA =
 	{
 		Sleep 0.6;
-		_respawnpoint = _outpoints select _curpoint;
+		_respawnpoint = outpoints select curpoint;
 		
 		_allvecs = [];
 		//Increasing aggression
@@ -105,7 +138,7 @@ BIS_EVO_Erec =
 		};
 		
 		_max = (count _allvecs)-1;
-		_vcl = createVehicle [(_allvecs select (round random _max)), _respawnpoint, [], 120, "NONE"];
+		_vcl = createVehicle [(_allvecs select (round random _max)), _respawnpoint, [], 100, "NONE"];
 		_vcl setPos [_respawnpoint, 50, 400, 0, 0, 0.3,0] call BIS_fnc_findSafePos;
 		_vcl setdir random 359;	
 		_grp = createGroup (EGG_EVO_ENEMYFACTION);
@@ -121,13 +154,15 @@ BIS_EVO_Erec =
 		_unit2 moveInGunner _vcl;
 		_unit3 moveInDriver _vcl;
 		[_vcl] call BIS_EVO_Lock;
+		
 		_unattended = [_vcl] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 		
 		[_vcl] execVM "data\scripts\EVO_VecRAA.sqf";
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
-		_curpoint =_curpoint+1;
+
+		curpoint =curpoint+1;
 	};
-	_curpoint = 0;
+	curpoint = 0;
 	_AA=4;
 	while {_AA > 0} do 
 	{
@@ -175,10 +210,10 @@ BIS_EVO_Erec =
 		};
 		if(round(random 1) == 1) then
 		{	
-			_wp = _grp addWaypoint [(_outpoints select 0), 0];
-			_wp2 = _grp addWaypoint [(_outpoints select 1), 0];
-			_wp3 = _grp addWaypoint [(_outpoints select 2), 0];
-			_wp4 = _grp addWaypoint [(_outpoints select 3), 0];
+			_wp = _grp addWaypoint [(outpoints select 0), 0];
+			_wp2 = _grp addWaypoint [(outpoints select 1), 0];
+			_wp3 = _grp addWaypoint [(outpoints select 2), 0];
+			_wp4 = _grp addWaypoint [(outpoints select 3), 0];
 			[_grp, 4] setWaypointType "CYCLE";
 		};		
 		[_grp] call BIS_EVO_OrderSquad;

@@ -278,13 +278,19 @@ class CfgSounds
 	class captureCP
 	{
 		name="CaptureCP";
-		sound[]={"Sound\CAPTURECP_WEST.ogg",db+9,1.0};
+		sound[]={"Sound\CAPTURECP_WEST.ogg",db+5,1.0};
 		titles[]={};
 	};
 	class lostCP
 	{
 		name="lostCP";
-		sound[]={"Sound\LOSTCP_WEST.ogg",db+9,1.0};
+		sound[]={"Sound\LOSTCP_WEST.ogg",db+5,1.0};
+		titles[]={};
+	};
+	class flag_loop
+	{
+		name="flag_loop";
+		sound[]={"Sound\flag_loop.ogg",db+3,1.0};
 		titles[]={};
 	};
 	#include "LDL_ac130\Sounds\CfgSounds.hpp"
@@ -607,6 +613,22 @@ class screenobj3
                    { 
                         idc = 128;
 						text = "Data\flagc.paa";
+                	};
+            };
+};
+
+class screenobj4
+{ 
+		idd = 1575; 
+		onLoad = "uiNameSpace setVariable ['screenobj4', (_this select 0) displayCtrl 129];";
+		duration = 999999;
+
+		class controls 
+           { 
+                   class objectiveOnScreenControl : objectiveOnScreenControlDefault
+                   { 
+                        idc = 129;
+						text = "Data\flagd.paa";
                 	};
             };
 };

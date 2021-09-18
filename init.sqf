@@ -48,28 +48,47 @@ BIS_Effects_startEvent =
 };
 "BIS_effects_gepv" addPublicVariableEventHandler {(_this select 1) call BIS_Effects_startEvent};
 
-
-
-messageQueue = [];
 messageMutex = 0;
 
-//Broadcasts hud messages for players
-["fnc_hudMessage", {
-	private ["_player","_message","_score"];
+//Handles messages
+fnc_clientHudMessage = 
+{
 	#define delayTime 0.8
+	private ["_player","_message","_score"];
 	_player = _this select 0;
 	_message = _this select 1;
 	_score = _this select 2;
 	if(isNil "_score") then {_score = 0};
 
+	waitUntil {sleep BIS_EVO_frameDelay; messageMutex == 0};
+	messageMutex = 1;
+	[_message,_score] call fnc_showhudMessage;
+	sleep delayTime;
+	messageMutex = 0;
+};
+
+//Broadcasts hud messages for players
+["fnc_hudMessage", {
+	private ["_player","_message","_score"];
+	_player = _this select 0;
+	_message = _this select 1;
+	_score = _this select 2;
+
 	if(name _player == name player) then 
 	{
-		waitUntil {sleep BIS_EVO_frameDelay; messageMutex == 0};
-		[_message,_score] call fnc_showhudMessage;
-		sleep delayTime;
-		messageMutex == 0;
-		//messageQueue = messageQueue +  [[_message,_score]];
-		
+		[_player,_message,_score] spawn fnc_clientHudMessage;
+	};
+}] call CBA_fnc_addLocalEventHandler;
+
+//Broadcasts voices for players
+["fnc_playSound", {
+	private ["_player","_sound"];
+	_player = _this select 0;
+	_sound = _this select 1;
+
+	if(name _player == name player) then 
+	{
+		playSound _sound;
 	};
 }] call CBA_fnc_addLocalEventHandler;
 
@@ -126,6 +145,7 @@ if (editor == 1) then
 {
 	onMapSingleClick "if (_alt) then {vehicle player setpos _pos;{vehicle _x setpos _pos} forEach _units}";
 	player allowDamage false;
+	Param1 = 0;
 	spawntype = 0;
 	LHDCarrier = 1;
 	helicopterhitch = 2;
@@ -180,7 +200,7 @@ publicVariable "spawntype";
 if(carrier) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" select 0),(getMarkerPos "FahneLKW" select 1),18];};
 
 
-allBunkerControls = ["screenobj1","screenobj2","screenobj3"];
+allBunkerControls = ["screenobj1","screenobj2","screenobj3","screenobj4"];
 
 //if (spawntype == 1) then {"FahneLKW" setMarkerPos };
 

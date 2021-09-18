@@ -121,7 +121,7 @@ for "_i" from 0 to 10 do
 };
 
 //Update money
-sleep 8;
+//sleep 8;
 9 cutRsc ["DollarTitle","PLAIN"];
 (uiNameSpace getVariable "myUI_DollarTitle") ctrlSetText format ["$%1",money];
 // 2 cutRsc ["AggressionTitle","PLAIN"];
