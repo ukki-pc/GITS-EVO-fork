@@ -33,7 +33,7 @@ class CfgRadio
 
 class CfgSounds
 {
-	sounds[] = {reload,hit1,hit2,hit3,miswarn,bash,kill,Fill,Siphon,Intro,Somalia_News,CityClear,Paycall,Goodjob,Rocket_Away,Incoming,incoming_Nuke,nblast,nsound,Explo_Large,Explo_Nuke,radzoneb,Recruitment,Resupply,MarkerSmoke,MortarBarrage,Airstrike,SmallArty,LargeArty,NapalmStrike,MortarDist,ArtyDist,ArtyDistLarge,SmokeScreenDist,MarkerSmokeDist,captureCP,lostCP};
+	sounds[] = {reload,hit1,hit2,hit3,miswarn,bash,kill,Fill,Siphon,Intro,Somalia_News,CityClear,Paycall,Goodjob,Rocket_Away,Incoming,incoming_Nuke,nblast,nsound,Explo_Large,Explo_Nuke,radzoneb,Recruitment,Resupply,MarkerSmoke,MortarBarrage,Airstrike,SmallArty,LargeArty,NapalmStrike,MortarDist,ArtyDist,ArtyDistLarge,SmokeScreenDist,MarkerSmokeDist,captureCP,lostCP,isis_capture};
 
 	class reload
 	{
@@ -291,6 +291,12 @@ class CfgSounds
 	{
 		name="flag_loop";
 		sound[]={"Sound\flag_loop.ogg",db+3,1.0};
+		titles[]={};
+	};
+	class isis_capture
+	{
+		name="isis_capture";
+		sound[]={"Sound\isis_capture_short.ogg",db+10,1.0};
 		titles[]={};
 	};
 	#include "LDL_ac130\Sounds\CfgSounds.hpp"

@@ -155,19 +155,19 @@ buyCarList =
 ["PRACS_ATV",0],			// Hilux (Open)
 ["SRA_Truck5tOpen",0],
 ["LandRover_CZ_EP1",0],			// Hilux (Open)
-["LandRover_Special_CZ_EP1",2],				// Landrover (SF)
-["SUV_PMC",2],							// SUV
-["ArmoredSUV_PMC",8],						// SUV (GAT)
-["HMMWV_M1035_DES_EP1",5],								// HMMWV
-["HMMWV_M1151_M2_DES_EP1",10],							// HMMWV (HMG)
-["LandRover_Special_CZ_EP1",10],							// HMMWV (HMG)
-["BAF_Jackal2_L2A1_D",10],							// HMMWV (HMG)
-["HMMWV_M998_crows_MK19_DES_EP1",12],							// HMMWV (GMG)s
-["HMMWV_TOW_DES_EP1",15],							// HMMWV (AT)
-["HMMWV_Avenger_DES_EP1",25],						// HMMWV (AA)
-["SRA_Truck5tRepair",4],
-["MtvrRepair_DES_EP1",5],						// HMMWV (AA)
-["POOK_HEMTT_repair_us",8]						// HMMWV (AA)
+["LandRover_Special_CZ_EP1",200],				// Landrover (SF)
+["SUV_PMC",200],							// SUV
+["ArmoredSUV_PMC",800],						// SUV (GAT)
+["HMMWV_M1035_DES_EP1",500],								// HMMWV
+["HMMWV_M1151_M2_DES_EP1",1000],							// HMMWV (HMG)
+["LandRover_Special_CZ_EP1",1000],							// HMMWV (HMG)
+["BAF_Jackal2_L2A1_D",1000],							// HMMWV (HMG)
+["HMMWV_M998_crows_MK19_DES_EP1",1200],							// HMMWV (GMG)s
+["HMMWV_TOW_DES_EP1",1500],							// HMMWV (AT)
+["HMMWV_Avenger_DES_EP1",2500],						// HMMWV (AA)
+["SRA_Truck5tRepair",400],
+["MtvrRepair_DES_EP1",500],						// HMMWV (AA)
+["POOK_HEMTT_repair_us",800]						// HMMWV (AA)
 ];
 
 for [{_loop=0}, {_loop<count buyCarList}, {_loop=_loop+1}] do {
@@ -179,63 +179,63 @@ buyCarList set [_loop,[(buyCarList select _loop) select 0, (buyCarList select _l
 buyTankList = 
 [
 /*---APCs---*/
-["Dingo_DST_ACR",12],						// Dingo (MMG)
-["Dingo_GL_DST_ACR",12],					// Dingo (GMG) 
-["PRACS_M113_SA",15],					// Dingo (GMG)
-["PRACS_M113_SA_Mk19",17],					// Dingo (GMG)
-["FOX",17],							// BMP1
-["PRACS_M113_FSV",17],							// BMP1
-["PRACS_LAV_IFV",15],					// Dingo (GMG)
-["PRACS_LAV_MGS",17],					// Dingo (GMG)
-//["BVP1_TK_ACR",17],							// BMP1
-["FFAA_ET_VEC",17],
-["AAV_D",18],									// AAVP
-["EB_LAV25_D2",22],								// LAV
-["PRACS_LAV25",22],								// LAV
-["uns_Sheridan_de",22],							// Pandur
-["PRACS_LAV_SAM",23],							// Pandur
-["Pandur2_ACR",25],							// Pandur
-//["PRACS_BMP2",25],							// Pandur
-["PRACS_M901_ITV",25],							// Pandur
-["M1126_ICV_M2_EP1",15],					// Stryker (HMG)
-["M1126_ICV_mk19_EP1",16],					// Stryker (GMG)
-["M1128_MGS_EP1",25],						// Stryker (MGS)
-["PRACS_FV101",22],						// Stryker (MGS)
-["PRACS_FV107",25],						// Stryker (MGS)
-["M1135_ATGMV_EP1",30],						// Stryker (ATGM)
+["Dingo_DST_ACR",1200],						// Dingo (MMG)
+["Dingo_GL_DST_ACR",1200],					// Dingo (GMG) 
+["PRACS_M113_SA",1500],					// Dingo (GMG)
+["PRACS_M113_SA_Mk19",1700],					// Dingo (GMG)
+["FOX",1700],							// BMP1
+["PRACS_M113_FSV",1700],							// BMP1
+["PRACS_LAV_IFV",1500],					// Dingo (GMG)
+["PRACS_LAV_MGS",1700],					// Dingo (GMG)
+//["BVP1_TK_ACR",1700],							// BMP1
+["FFAA_ET_VEC",1700],
+["AAV_D",1800],									// AAVP
+["EB_LAV25_D2",2200],								// LAV
+["PRACS_LAV25",2200],								// LAV
+["uns_Sheridan_de",2200],							// Pandur
+["PRACS_LAV_SAM",2300],							// Pandur
+["Pandur2_ACR",2500],							// Pandur
+//["PRACS_BMP2",2500],							// Pandur
+["PRACS_M901_ITV",2500],							// Pandur
+["M1126_ICV_M2_EP1",1500],					// Stryker (HMG)
+["M1126_ICV_mk19_EP1",1600],					// Stryker (GMG)
+["M1128_MGS_EP1",2500],						// Stryker (MGS)
+["PRACS_FV101",2200],						// Stryker (MGS)
+["PRACS_FV107",2500],						// Stryker (MGS)
+["M1135_ATGMV_EP1",3000],						// Stryker (ATGM)
 /*---Tanks---*/
-["PRACS_M60A3",35],							// T72M
-["PRACS_M60A3_S2",40],							// T72M
-["PRACS_T72",40],							// T72M
-["PRACS_LEO1A5",40],							// T72M
-["M2A2_EP1",35],							// M2A2 (AT)
-["M6_EP1",40],								// M6 (AA)
-["M2A3_EP1",45],							// M2A3 (AT)
-["EB_M2A3_WH",50],
-["BAF_FV510_W",55],							// Warrior
-["PRACS_LEO2A4",52],							// T72M
+["PRACS_M60A3",3500],							// T72M
+["PRACS_M60A3_S2",4000],							// T72M
+["PRACS_T72",4000],							// T72M
+["PRACS_LEO1A5",4000],							// T72M
+["M2A2_EP1",3500],							// M2A2 (AT)
+["M6_EP1",4000],								// M6 (AA)
+["M2A3_EP1",4500],							// M2A3 (AT)
+["EB_M2A3_WH",5000],
+["BAF_FV510_W",5500],							// Warrior
+["PRACS_LEO2A4",5200],							// T72M
 //["M1A1_US_DES_EP1",55],								// M1A1
-["ffaa_et_Leopard",65],
-["EB_M1A2_US_D",65],						// M1A2
+["ffaa_et_Leopard",6500],
+["EB_M1A2_US_D",6500],						// M1A2
 //["M1A2_US_TUSK_MG_EP1",65],						// M1A2
-["EB_M1A3_TUSK_D",75],						// M1A2
+["EB_M1A3_TUSK_D",7500],						// M1A2
 /*---AA---*/
-["PRACS_Sa6",30],						// M1A2
-["PRACS_m48_chapparal",30],						// M1A2
-["PRACS_351_SAM",38],	
-["POOK_NASAMS_US",38],	
-["POOK_MEADS_US",38],	
-["PRACS_M163",40],						// M1A2
-["PRACS_M429_CRAM",40],	
-["PRACS_M302_SAM",50],	
-["PRACS_M460_SAM",50],	
+["PRACS_Sa6",3000],						// M1A2
+["PRACS_m48_chapparal",3000],						// M1A2
+["PRACS_351_SAM",3800],	
+["POOK_NASAMS_US",3800],	
+["POOK_MEADS_US",3800],	
+["PRACS_M163",4000],						// M1A2
+["PRACS_M429_CRAM",4000],	
+["PRACS_M302_SAM",5000],	
+["PRACS_M460_SAM",5000],	
 /*---Artillery---*/
-["PRACS_M250_TEL",140],	
-["PRACS_M291_TEL",150],	
+["PRACS_M250_TEL",14000],	
+["PRACS_M291_TEL",15000],	
 //	["GRAD_TK_EP1",160],						// GRAD
-["RM70_ACR",170],							// RM70
-["PRACS_M245_TEL",170],								// MLRS
-["PRACS_MLRS",180]								// MLRS
+["RM70_ACR",17000],							// RM70
+["PRACS_M245_TEL",17000],								// MLRS
+["PRACS_MLRS",18000]								// MLRS
 ];
 
 BIS_EVO_unlocks = [];
@@ -250,53 +250,53 @@ buyTankList set [_loop,[(buyTankList select _loop) select 0, (buyTankList select
 buyAirList = 
 [
 /*---Helicopters---*/
-["PRACS_puma330_MG",10],						// Mi-17
-["ou_ch_46e",10],						// Mi-17
-["PRACS_MH6J",10],							// Littlebird
-["PRACS_AH6J",20],							// Littlebird (Armed)
-["UH60M_MEV_EP1",10],									// Blackhawk (MMG)
-["CH_47F_EP1",10],							// Chinook
-["BAF_Merlin_HC3_D",10],							// Chinook
-["UH60M_EP1",10],							// Blackhawk (GAT)					
-["OFrP_Puma_DE_Pirate",25],		
-["PRACS_AB212_CAS",30],									// Blackhawk (MMG)
-["ibr_as350_armed",30],								// Viper
-["UH1Y",50],
-["kiowa",60],
-["Mi171Sh_rockets_CZ_EP1",80],				// Mi-17 (Rockets)
-["AW159_Lynx_BAF",80],						// Wildcat
-["PRACS_RAH6",100],							// Littlebird (Armed)	
-["yup_SH60B",90],
-["FRL_UH60M_MR",120],	
-["PRACS_AH1S",190],								// Cobra
-["OFrP_Tiger_HAD_CE",190],
-["AH1Z",190],								// Cobra                                                                                                                                                           
-["AH64D",200],								// Apache (AT)
+["PRACS_puma330_MG",1000],						// Mi-17
+["ou_ch_46e",1000],						// Mi-17
+["PRACS_MH6J",1000],							// Littlebird
+["PRACS_AH6J",2000],							// Littlebird (Armed)
+["UH60M_MEV_EP1",1000],									// Blackhawk (MMG)
+["CH_47F_EP1",1000],							// Chinook
+["BAF_Merlin_HC3_D",1000],							// Chinook
+["UH60M_EP1",1000],							// Blackhawk (GAT)					
+["OFrP_Puma_DE_Pirate",2500],		
+["PRACS_AB212_CAS",3000],									// Blackhawk (MMG)
+["ibr_as350_armed",3000],								// Viper
+["UH1Y",5000],
+["kiowa",6000],
+["Mi171Sh_rockets_CZ_EP1",8000],				// Mi-17 (Rockets)
+["AW159_Lynx_BAF",8000],						// Wildcat
+["PRACS_RAH6",10000],							// Littlebird (Armed)	
+["yup_SH60B",9000],
+["FRL_UH60M_MR",12000],	
+["PRACS_AH1S",19000],								// Cobra
+["OFrP_Tiger_HAD_CE",19000],
+["AH1Z",19000],								// Cobra                                                                                                                                                           
+["AH64D",20000],								// Apache (AT)
 /*---Planes---*/
-["ibr_tucano_lin",60],	
-["SMAF_MF1_AGRESSOR_DESERT",100],								// F35  
-["PRACS_Etendard",130],								// F35
-["uns_A1J_LBMB",130],		
-["Pracs_Mohawk",130],								// F35 
-["F117A",140],	
-["DAF_F5E_AGM2",140],
-["PRACS_Mirage3",140],								// F35
-["F4M_Des",140],	
-["PRACS_A4",160],								// F35
-//["PRACS_F16_PHSTRK",170],
-["14US_IA",160],								// F35
-["FRL_F16_MR",170],	
-["JS_JC_FA18E_USMC",170],	
-["F35B",170],								// F35
-//["PRACS_F15",170],								// F35
-["FRL_F15C_MR",170],	
-["FRL_A10_MR",170],								// A10 A7
-//["A7",180],								// AV8B
-["FRL_AV8B_MR",180],								// AV8B
-//["3lb_f22_sdb",180],								// AV8B
-["pook_EF2000_BAF_D_DEAD",185],								// AV8B
-["FRL_F111_D_MR",185]								// AV8B
-//["b1b_MK82_desert",185]
+["ibr_tucano_lin",6000],	
+["SMAF_MF1_AGRESSOR_DESERT",10000],								// F35  
+["PRACS_Etendard",13000],								// F35
+["uns_A1J_LBMB",13000],		
+["Pracs_Mohawk",13000],								// F35 
+["F117A",14000],	
+["DAF_F5E_AGM2",14000],
+["PRACS_Mirage3",14000],								// F35
+["F4M_Des",14000],	
+["PRACS_A4",16000],								// F35
+//["PRACS_F16_PHSTRK",17000],
+["14US_IA",16000],								// F35
+["FRL_F16_MR",17000],	
+["JS_JC_FA18E_USMC",17000],	
+["F35B",17000],								// F35
+//["PRACS_F15",17000],								// F35
+["FRL_F15C_MR",17000],	
+["FRL_A10_MR",17000],								// A10 A7
+//["A7",18000],								// AV8B
+["FRL_AV8B_MR",18000],								// AV8B
+//["3lb_f22_sdb",18000],								// AV8B
+["pook_EF2000_BAF_D_DEAD",18500],								// AV8B
+["FRL_F111_D_MR",18500]								// AV8B
+//["b1b_MK82_desert",18500]
 ];
 for [{_loop=0}, {_loop<count buyAirList}, {_loop=_loop+1}] do {
 buyAirList set [_loop,[(buyAirList select _loop) select 0, (buyAirList select _loop) select 1,0]];
@@ -305,20 +305,20 @@ buyAirList set [_loop,[(buyAirList select _loop) select 0, (buyAirList select _l
 buyStatList = 
 [
 /*---Statics---*/
-["M2StaticMG_US_EP1",2],					// CUSTOM  ["PRACS_Type66_Gun","PRACS_M266AAgun","PRACS_Type74AAgun","PRACS_M101","PRACS_M1","PRACS_Regular_M2","PRACS_Regular_MK19","PRACS_Regular_TOW","PRACS_Regular_M252"];
-["M2HD_mini_TriPod_US_EP1",2],					// ap
-["MK19_TriPod_US_EP1",6],							// Ap
-["TOW_TriPod",10],							// AT								
-["Stinger_Pod_US_EP1",10],						// AA
-["M252_US_EP1",10],								// AP
-["Rbs70_ACR",10],								// AA
-["sfp_rbs97",12],
-["PRACS_Type66_Gun",12],	
-["PRACS_M266AAgun",12],	
-["PRACS_Type74AAgun",12],		
-["PRACS_M101",12],	
-["PRACS_M1",12],						
-["M119_US_EP1",30]							// CUSTOM
+["M2StaticMG_US_EP1",200],					// CUSTOM  ["PRACS_Type66_Gun","PRACS_M266AAgun","PRACS_Type74AAgun","PRACS_M101","PRACS_M1","PRACS_Regular_M2","PRACS_Regular_MK19","PRACS_Regular_TOW","PRACS_Regular_M252"];
+["M2HD_mini_TriPod_US_EP1",200],					// ap
+["MK19_TriPod_US_EP1",600],							// Ap
+["TOW_TriPod",1000],							// AT								
+["Stinger_Pod_US_EP1",1000],						// AA
+["M252_US_EP1",1000],								// AP
+["Rbs70_ACR",1000],								// AA
+["sfp_rbs97",1200],
+["PRACS_Type66_Gun",1200],	
+["PRACS_M266AAgun",1200],	
+["PRACS_Type74AAgun",1200],		
+["PRACS_M101",1200],	
+["PRACS_M1",1200],						
+["M119_US_EP1",3000]							// CUSTOM
 ];
 
 for [{_loop=0}, {_loop<count buyStatList}, {_loop=_loop+1}] do 

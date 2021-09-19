@@ -1802,7 +1802,7 @@ class Mission
 		};
 		class Item47
 		{
-			position[]={11530.718,32.030731,6192.8569};
+			position[]={11540.408,31.89537,6196.2666};
 			id=110;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
@@ -1811,7 +1811,7 @@ class Mission
 		};
 		class Item48
 		{
-			position[]={11261.552,24.817429,6124.5952};
+			position[]={11271.346,24.68815,6116.2188};
 			id=111;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
@@ -1820,7 +1820,7 @@ class Mission
 		};
 		class Item49
 		{
-			position[]={11238.377,24.968176,5874.7271};
+			position[]={11223.406,25.004967,5881.6069};
 			id=112;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
@@ -1838,7 +1838,7 @@ class Mission
 		};
 		class Item51
 		{
-			position[]={11639.64,27.463152,5848.6533};
+			position[]={11642.598,27.707829,5840.2954};
 			id=114;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
@@ -1847,7 +1847,7 @@ class Mission
 		};
 		class Item52
 		{
-			position[]={11729.471,21.682617,6344.7666};
+			position[]={11727.005,21.698847,6346.8345};
 			id=115;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
@@ -1856,7 +1856,7 @@ class Mission
 		};
 		class Item53
 		{
-			position[]={11862.563,7.958899,6105.3853};
+			position[]={11863.91,7.958899,6114.895};
 			id=116;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
@@ -1865,7 +1865,7 @@ class Mission
 		};
 		class Item54
 		{
-			position[]={11476.372,27.234362,6323.2583};
+			position[]={11471.958,27.25181,6324.894};
 			id=117;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
