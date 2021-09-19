@@ -27,6 +27,7 @@ BIS_Effects_AirDestructionStage2=compile preprocessFileLineNumbers "new_effects\
 
 _hudMsg = [] execVM "data\scripts\kill_feed.sqf";
 _functions = [] execVM "data\scripts\common_funcs.sqf";
+_functionsC = [] execVM "data\scripts\client_funcs.sqf";
 
 BIS_Effects_startEvent = 
 {
@@ -918,7 +919,7 @@ _objId = _this select 0;
 	};
 }] call CBA_fnc_addEventHandler;
 
-//Get money from server
+//Add money to clients
 ["jed_addMoney", {
 	_player = _this select 0;
 	_amount = _this select 1;
@@ -932,12 +933,9 @@ _objId = _this select 0;
 
 ["jed_hitMarker", {
 _killer = _this select 0;
-_hitmarks = ["hit1","hit2","hit3"];
 	if(name _killer == name player ) then 
 	{
-		3 cutRsc ["Hitmarker","PLAIN"];
-		_sound = [_hitmarks] call fnc_pickRandom;
-		playSound _sound;
+		[] spawn fnc_hitMarker;
 	};
 }] call CBA_fnc_addLocalEventHandler;
 

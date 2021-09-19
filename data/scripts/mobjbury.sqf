@@ -30,7 +30,7 @@ if !(isNil "_tag") then
 };
 */
 
-if(isPlayer _killer and hitMarker) then {["jed_hitMarker", [_killer]] call CBA_fnc_whereLocalEvent};
+if(isPlayer _killer) then {["jed_hitMarker", [_killer]] call CBA_fnc_whereLocalEvent};
 
 if(isPlayer _killer or isPlayer leader _killer) then 
 		{	

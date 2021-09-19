@@ -52,10 +52,6 @@ Sleep 0.2;
 _playertype = typeOf (vehicle player);
 Sleep 0.2;
 
-
-
-
-
 //Initial player skills
 
 //Maybe
@@ -113,16 +109,22 @@ _player setPos getMarkerPos respawnPoint;
 
 if(respawnPoint == "Respawn_West") then {_player setPosASL[getpos _player select 0,getpos _player select 1, 18]};
 
-_i= 0;
 
-for "_i" from 0 to 10 do 
-{
-	["fnc_hudMessage", [player, "Spawning",10]] call CBA_fnc_whereLocalEvent;
-};
 
+	
 //Update money
 //sleep 8;
 9 cutRsc ["DollarTitle","PLAIN"];
 (uiNameSpace getVariable "myUI_DollarTitle") ctrlSetText format ["$%1",money];
 // 2 cutRsc ["AggressionTitle","PLAIN"];
 // (uiNameSpace getVariable "myUI_AggressionTitle") ctrlSetText format ["%2%1","%",aggression];
+
+
+
+_i= 0;
+for "_i" from 0 to 10 do 
+{
+	["fnc_hudMessage", [player, "Spawning",10]] call CBA_fnc_whereLocalEvent;
+	[] spawn fnc_hitMarker;
+	sleep 1;
+};
