@@ -677,7 +677,10 @@ class uiImages
 
 class uiHud
 {
+	font = "Bitstream";
 	x =  safeZoneX + safeZoneW - 0.185 * 3 / 4;
+	colorBackground[] = {0, 0, 0, 0};
+	sizeEx = 0.043;
 };
 
 //Repair UI
@@ -693,6 +696,7 @@ class UIrep : uiImages
             idc = 104; 
 	    	type = 0; 
 	    	style = 48;
+			
 			w = 0.07;
 			h = 0.1;
             y = safeZoneY + safeZoneH - 0.4;
@@ -1183,7 +1187,7 @@ class Params
       	title="New Game or Load";
 		values[]={0, 1};
 		texts[]={"New Game", "Load Game"};	
-		default = 1;
+		default = 0;
 	};
 };
 

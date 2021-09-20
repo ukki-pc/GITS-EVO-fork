@@ -37,13 +37,13 @@ BIS_EVO_FillInf =
 	_j = 0;
 	while {_j <= _infcount} do 
 	{
-		_nunit = (_allunits select (round random _max));
+		_nunit = [_allunits] call fnc_pickRandom;
 		_unit = _grp createUnit [_nunit, _lpos, [], 0, "FORM"];
 		_unit setSkill _grpskill;
 		_unit addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 		[_unit] join _grp;
 		_j = _j+1;
-		sleep 1;
+		sleep 0.4;
 	};
 	[_grp] call BIS_EVO_OrderSquad;
 };
@@ -81,7 +81,7 @@ BIS_EVO_FillInfDummy =
 		_unit = createVehicle [_allunits select (round random _max), _lpos, [], 10, "NONE"];
 		_spawned=_spawned+[_unit];
 		_j = _j+1;
-		sleep 1;
+		sleep 0.4;
 	};
 	_spawned
 };
@@ -113,7 +113,7 @@ BIS_EVO_InfDummyReplace =
 			_unit addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 			_newunits=_newunits+[_unit];
 		};
-		sleep 1;
+		sleep 0.4;
 		_j=_j+1;
 	};
 	_newunits
@@ -145,7 +145,7 @@ BIS_EVO_InfReDummy =
 			_unit addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 			_newunits=_newunits+[_unit];
 		};
-		sleep 1;
+		sleep 0.4;
 		_j=_j+1;
 	};
 	_newunits

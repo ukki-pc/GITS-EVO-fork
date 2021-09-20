@@ -49,50 +49,6 @@ BIS_Effects_startEvent =
 };
 "BIS_effects_gepv" addPublicVariableEventHandler {(_this select 1) call BIS_Effects_startEvent};
 
-messageMutex = 0;
-
-//Handles messages
-fnc_clientHudMessage = 
-{
-	#define delayTime 0.8
-	private ["_player","_message","_score"];
-	_player = _this select 0;
-	_message = _this select 1;
-	_score = _this select 2;
-	if(isNil "_score") then {_score = 0};
-
-	waitUntil {sleep BIS_EVO_frameDelay; messageMutex == 0};
-	messageMutex = 1;
-	[_message,_score] call fnc_showhudMessage;
-	sleep delayTime;
-	messageMutex = 0;
-};
-
-//Broadcasts hud messages for players
-["fnc_hudMessage", {
-	private ["_player","_message","_score"];
-	_player = _this select 0;
-	_message = _this select 1;
-	_score = _this select 2;
-
-	if(name _player == name player) then 
-	{
-		[_player,_message,_score] spawn fnc_clientHudMessage;
-	};
-}] call CBA_fnc_addLocalEventHandler;
-
-//Broadcasts voices for players
-["fnc_playSound", {
-	private ["_player","_sound"];
-	_player = _this select 0;
-	_sound = _this select 1;
-
-	if(name _player == name player) then 
-	{
-		playSound _sound;
-	};
-}] call CBA_fnc_addLocalEventHandler;
-
 skillfactor = ((1 + random 2)/10);
 Spymade = 0;
 EGG_hidetotal = 6;
@@ -106,8 +62,9 @@ editor = 1; publicVariable "editor";
 
 R3F_LOG_mutex_local_verrou = false;
 
+if(editor == 0) then {
 spawntype = param1;
-LHDCarrier = param2;
+LHDCarrier = paramsArray select 1;
 EVOhour = paramsArray select 2;
 grasslevel = paramsArray select 3;
 if (grasslevel == 0) then {setTerrainGrid 50};
@@ -137,10 +94,9 @@ EX_EVO_vehPriceMultiplier = paramsArray select 20;
 EVO_incomeFrequency = paramsArray select 21;
 EGG_EVO_FactionParam = paramsArray select 22;
 EGG_EVO_LoadGame = paramsArray select 23;
+};
 
 hitMarker = true;
-
-
 
 if (editor == 1) then
 {
@@ -181,7 +137,7 @@ deathScorePenalty = 0;
 	EGG_EVO_FactionParam = 0;
 	EGG_EVO_LoadGame = 0;
 	BIS_EVO_vehRespawnCount = 2;
-	["DEBUG MODE ON | Version 0.6"] dm;
+//	["DEBUG MODE ON | Version 0.6"] dm;
 };
 
 
@@ -198,81 +154,12 @@ BIS_EVO_rank6 = (rankscore * 6);
 respawnPoint = "Respawn_West";
 publicVariable "spawntype";
 
-if(carrier) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" select 0),(getMarkerPos "FahneLKW" select 1),18];};
+//if(carrier) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" select 0),(getMarkerPos "FahneLKW" select 1),18];};
 
 
 allBunkerControls = ["screenobj1","screenobj2","screenobj3","screenobj4"];
 
 //if (spawntype == 1) then {"FahneLKW" setMarkerPos };
-
-fnc_ctrlChangeColor = 
-{
-	_ctrlN = _this select 0;
-	_color = _this select 1;
-	_ctrl = (uiNamespace  getVariable _ctrlN);
-	_ctrl ctrlSetTextColor _color;
-	_ctrl ctrlCommit 0;
-};
-
-//Runs in the background to draw world object positions to ui elements on screen
-fnc_marker_screen = 
-{
-	#define layerStart 11
-	#define screenCtrlMaxDist 1600
-	_objects = _this select 0;
-	_clean = false;
-
-	_currentTownPos = getPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
-
-		{
-			_targetObject = _x select 0;
-			_ctrlName = allBunkerControls select _forEachIndex;
-			_layerN = layerStart + _forEachindex;
-			_layerN cutRsc [_ctrlName,"PLAIN"];
-			_objName = format ["Flag %1",_forEachIndex+1];
-			_ctrl = (uiNamespace  getVariable _ctrlName );
-			// _ctrl ctrlsetText _objName;
-			 _ctrl ctrlCommit 0;
-		}forEach _objects;
-
-	while{sleep 0.016; BIS_EVO_MissionProgress != -1} do 
-	{
-		_draw = (!(visibleMap) and (player distance _currentTownPos < screenCtrlMaxDist));
-
-		if(_draw) then
-		{
-			{
-				_targetObject = _x select 0;
-				_ctrlName = allBunkerControls select _forEachIndex;
-				_ctrl = (uiNamespace  getVariable _ctrlName);
-				_screenPos = worldToScreen getPos _targetObject;
-				_ctrl ctrlSetPosition _screenPos;
-				_ctrl ctrlSetScale ((screenCtrlMaxDist-(player distance _targetObject))/screenCtrlMaxDist) min 1 max 0;
-				_ctrl ctrlCommit 0;
-			}forEach _objects;
-			_clean = true;
-		}
-		else 
-		{
-			if(_clean) then
-			{
-				{
-					_targetObject = _x select 0;
-					_ctrlName = allBunkerControls select _forEachIndex;
-					_ctrl = (uiNamespace  getVariable _ctrlName);
-					_ctrl ctrlSetPosition [2,2];
-					_ctrl ctrlCommit 0;
-					_clean = false;
-				}forEach _objects;
-			};
-		};
-	};
-
-	//Clean layers
-	{_layerN = layerStart + _forEachIndex; _layerN cutRsc ["Default","PLAIN"]}forEach _objects;
-};
-
-
 
 enableEnvironment true;
 
@@ -562,20 +449,9 @@ allObjs = nearestObjects [getpos cent, ["LocationLogic"], 12000];
 	BIS_EVO_MissionTownNames set [_forEachIndex,_townName];
 } forEach allObjs;
 
-publicVariable "BIS_EVO_MissionTowns";
-publicVariable "BIS_EVO_MissionBigTowns";
-publicVariable "BIS_EVO_MilitaryObjectives";
-publicVariable "BIS_EVO_MissionVillages";
-publicVariable "BIS_EVO_CoastalTowns";
-publicVariable "BIS_EVO_MissionObjMarkers";
-publicVariable "BIS_EVO_MissionTownNames";
-publicVariable "BIS_EVO_MissionTownInfGarrisons";
-publicVariable "BIS_EVO_MissionTownVecGarrisons";
-publicVariable "BIS_EVO_conqueredTowns";
-
 //High priority functions
 _rng = [] execVM "data\scripts\weightedRandom.sqf";
-
+};
 
 // Detects empty enemy vehicles and deletes them.
 BIS_EVO_IdelSVEC = 
@@ -809,7 +685,7 @@ if (isServer) then
 	radio1 addEventHandler ["hit", {if((_this select 1) != BIS_EVO_latk) then {(_this select 0) setdamage 0}}];
 //blazes
 	onplayerconnected "
-//	plays = [_name] execVM ""data\scripts\selectplayer.sqf"";
+	plays = [_name] execVM ""data\scripts\selectplayer.sqf"";
 	update = [_name] execVM ""data\scripts\update.sqf"";
 	if (BIS_EVO_dunit == _name) then {BIS_EVO_dunit = ""none""};
 	";
@@ -889,82 +765,6 @@ perkPilotLVL = 0;
 perkSniperLVL = 0;
 perkEngLVL = 0;
 
-//Server side score addition
-   ["jed_addscore", {(_this select 0) addScore (_this select 1)}] call CBA_fnc_addEventHandler;
-//Bandage init
-[player,0.2,0.15,-1,true] execVM "data\scripts\cly_heal.sqf";
-
-//Systemchat message
-["jed_msg", {
-	_player = _this select 0;
-	_msg = _this select 1;
-	if(name _player == name player) then 
-	{
-		systemChat format ["%1",_msg];
-	};
-}] call CBA_fnc_addLocalEventHandler;
-
-//global message
-["jed_SIDEmsg", {
-	player globalChat format ["%1",_this select 1];
-}] call CBA_fnc_addLocalEventHandler;
-
-//Client message
-["jed_missionManager", {
-_objId = _this select 0;
-	if(isServer) then 
-	{
-		BIS_EVO_MissionProgress = _objId;
-       [] spawn missionManager;
-	};
-}] call CBA_fnc_addEventHandler;
-
-//Add money to clients
-["jed_addMoney", {
-	_player = _this select 0;
-	_amount = _this select 1;
-
-	if(name _player == name player and !(isNil "_amount")) then 
-	{
-		money = money + _amount;
-	["jed_updMoney", [_player]] call CBA_fnc_whereLocalEvent;
-	};
-}] call CBA_fnc_addLocalEventHandler;
-
-["jed_hitMarker", {
-_killer = _this select 0;
-	if(name _killer == name player ) then 
-	{
-		[] spawn fnc_hitMarker;
-	};
-}] call CBA_fnc_addLocalEventHandler;
-
-//Just update the money
-["jed_updMoney", {
-	_player = _this select 0;
-	if(name _player == name player) then 
-	{
-		(uiNameSpace getVariable "myUI_DollarTitle") ctrlSetText format ["$%1",money];
-	};
-}] call CBA_fnc_addLocalEventHandler;
-
-["jed_getMoney", {
-		_player = _this select 0;
-		_count = _this select 1;
-			if(name _player == name player) then 
-			{
-				bank set [_count,[_player,money]];
-				publicVariableServer "bank";
-			};
-}] call CBA_fnc_addLocalEventHandler;
-
-["jed_aggr", {
-	_player = _this select 0;
-	if(name _player == name player) then 
-	{
-		(uiNameSpace getVariable "myUI_AggressionTitle") ctrlSetText format ["%2%1","%",aggression];
-	};
-}] call CBA_fnc_addLocalEventHandler;
 
 //////////////////////////////////
 
@@ -974,11 +774,7 @@ _killer = _this select 0;
 
 _events = [] execVM "data\scripts\CityMarkers.sqf";
 
-
-	EGG_EVO_meflag = ["flag_mol"];
-
-
-
+EGG_EVO_meflag = ["flag_mol"];
 
 //Player unlocks
 buySpecialList =[];
@@ -1018,8 +814,8 @@ if (!(isClass(configFile>>"CfgPatches">>"LDL_ac130"))) then
 else
 {
 	//Addon detected.
-	//LDL_init = compile preprocessFileLineNumbers "LDL_ac130\LDL_init.sqf";
-	//[]spawn LDL_init;
+	LDL_init = compile preprocessFileLineNumbers "LDL_ac130\LDL_init.sqf";
+	[]spawn LDL_init;
 	//Wait for the init
 
 };
@@ -1089,13 +885,14 @@ if(EGG_EVO_LoadGame == 0) then
     _allPlayers = call BIS_fnc_listPlayers;
     {["jed_addscore", [_x, 10]] call CBA_fnc_globalEvent}forEach _allPlayers;
 };
+sleep 1;
 waitUntil{gameBegin == 1};
 publicVariable "gameBegin";
 
 EGG_sinit =1; publicVariable "EGG_sinit";
 
 
-if (isServer and not (local player)) exitWith {}; 
+if !(isServer) exitWith {}; 
 
 // Large marker seen over occupied cities
 //MHQ SPAWNER
@@ -1106,17 +903,29 @@ _veh = [MHQ] execVM "data\scripts\vehicleMHQ.sqf";
 MHQ setposASL  [getposASL LKWWEST select 0, getposASL LKWWEST select 1,0];
 MHQ setDir getDir LKWWEST;
 publicVariable "MHQ";
-};
+
 
 // For jip, client waits for server to run update.sqf
-waitUntil {BIS_EVO_allvar_packed != ""};
+//waitUntil {BIS_EVO_allvar_packed != ""};
 
-_temp = compile BIS_EVO_allvar_packed;
-_vars = call _temp;
-BIS_EVO_end = _vars select 0;
-BIS_EVO_MissionProgress = _vars select 1;
-BIS_EVO_lives = _vars select 2;
+// _temp = compile BIS_EVO_allvar_packed;
+// _vars = call _temp;
+// BIS_EVO_end = _vars select 0;
+// BIS_EVO_MissionProgress = _vars select 1;
+// BIS_EVO_lives = _vars select 2;
 //adding
 execVM "briefing.sqf";
 //titleCut ["","black faded", 0];
 player addEventHandler ["hit", {_this call compile preprocessFileLineNumbers "data\scripts\hit.sqf"}];
+
+publicVariable "BIS_EVO_MissionTowns";
+publicVariable "BIS_EVO_MissionBigTowns";
+publicVariable "BIS_EVO_MilitaryObjectives";
+publicVariable "BIS_EVO_MissionVillages";
+publicVariable "BIS_EVO_CoastalTowns";
+publicVariable "BIS_EVO_MissionObjMarkers";
+publicVariable "BIS_EVO_MissionTownNames";
+publicVariable "BIS_EVO_MissionTownInfGarrisons";
+publicVariable "BIS_EVO_MissionTownVecGarrisons";
+publicVariable "BIS_EVO_conqueredTowns";
+hint "reti";

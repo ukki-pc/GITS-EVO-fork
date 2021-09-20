@@ -7,13 +7,12 @@ BIS_EVO_Erec =
 	_list = _this select 1;
 	_disable = _this select 2;
 	_towncount = _this select 3;
-	_radio = _this select 4;
+	_radio = radio1;
 	_flags = _this select 5;
 	_inf = 0; 
 	_mec = 0; 
 	_stat = 0; 
 	_statAA = 0;
-	_radio = objNull; 
 	_inf = round(BIS_EVO_InfantrySpawn);
 	_mec = round(BIS_EVO_MechanizedSpawn);
 	_statAA = ceil((BIS_EVO_MechanizedSpawn)/2);
@@ -96,7 +95,7 @@ BIS_EVO_Erec =
 		_vecT = EGG_EVO_ENEMYSHIPS select _rnd;
 
 		_pos = getPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
-		_shipPos =  [_pos, 700, 1400, 0, 2, 10,0] call BIS_fnc_findSafePos;
+		_shipPos =  [_pos, 700, 1400, 0, 2, 10,0,[],_pos] call BIS_fnc_findSafePos;
 
 		_array = [_vecT,_shipPos,(EGG_EVO_ENEMYFACTION),300,180,0] call BIS_EVO_CreateVehicle;
 		_grp = _array select 0;
@@ -110,7 +109,7 @@ BIS_EVO_Erec =
 	//Officer
 	_type = EGG_EVO_meofficer select 0;
 	_offGrp = createGroup (civilian);
-	_offPos =  [_pos, 50, 400, 0, 0, 10,0] call BIS_fnc_findSafePos;
+	_offPos = [_pos, 1, 300,1,0,0.4,0,[],_pos] call BIS_fnc_findSafePos;
 	_offobj = createVehicle [_type, _offPos, [], 300, "NONE"];Sleep BIS_EVO_GlobalSleep;
 	[_offobj] join _offGrp;
 	_offobj addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
@@ -139,8 +138,9 @@ BIS_EVO_Erec =
 		
 		_max = (count _allvecs)-1;
 		_vcl = createVehicle [(_allvecs select (round random _max)), _respawnpoint, [], 100, "NONE"];
-		_vcl setPos [_respawnpoint, 50, 400, 0, 0, 0.3,0] call BIS_fnc_findSafePos;
-		_vcl setdir random 359;	
+		Sleep BIS_EVO_GlobalSleep;
+		_respawnpoint = [_respawnpoint, 1, 400,1,0,0.4,0,[],_respawnpoint] call BIS_fnc_findSafePos;
+	//	_vcl setdir round(random (360));	
 		_grp = createGroup (EGG_EVO_ENEMYFACTION);
 		_type = EGG_EVO_enemy1 select 0;
 		_unit1 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
@@ -159,7 +159,6 @@ BIS_EVO_Erec =
 		
 		[_vcl] execVM "data\scripts\EVO_VecRAA.sqf";
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
-
 		curpoint =curpoint+1;
 	};
 	curpoint = 0;
@@ -197,7 +196,6 @@ BIS_EVO_Erec =
 		_array = [_vecT,_pos,(EGG_EVO_ENEMYFACTION),300,180,0] call BIS_EVO_CreateVehicle;
 		_grp = _array select 0;
 		_vec = _array select 1;
-		_vec setPos [_pos, 50, 400, 0, 0, 0.3,0] call BIS_fnc_findSafePos;
 		_rds = (_vec nearRoads 20);
 		if(not Isnull (_rds select 0)) then
 		{
@@ -216,6 +214,7 @@ BIS_EVO_Erec =
 			_wp4 = _grp addWaypoint [(outpoints select 3), 0];
 			[_grp, 4] setWaypointType "CYCLE";
 		};		
+
 		[_grp] call BIS_EVO_OrderSquad;
 		_mec = _mec-1; //##9,8,7,6,5,4,3,2,1,0
 		Sleep 0.6;
@@ -232,7 +231,6 @@ BIS_EVO_Erec =
 		_array = [_allvecs select (round random _max),_pos,(EGG_EVO_ENEMYFACTION),200,180,0] call BIS_EVO_CreateVehicle;
 		_grp = _array select 0;
 		_vec = _array select 1;
-		_vec setPos [_pos, 50, 400, 0, 0, 0.3,0] call BIS_fnc_findSafePos;
 		{_x addEventHandler  ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
 		{_x setSkill skillfactor+(random 0.2);_x setDir 180} forEach (units _grp);
 		{_x setBehaviour "combat"} forEach (units _grp);
@@ -248,11 +246,11 @@ BIS_EVO_Erec =
 		_array = [_allvecs select (round random _max),_pos,(EGG_EVO_ENEMYFACTION),200,180,0] call BIS_EVO_CreateVehicle;
 		_grp = _array select 0;
 		_vec = _array select 1;
-			_vec setPos [_pos, 50, 400, 0, 0, 0.3,0] call BIS_fnc_findSafePos;
 		{_x addEventHandler  ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
 		{_x setSkill skillfactor+(random 0.2);_x setDir 180} forEach (units _grp);
 		{_x setBehaviour "combat"} forEach (units _grp);
 		_stat = _stat-1; //##4,3,2,1,0
+
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
 		Sleep 0.6;
 	};
@@ -270,6 +268,7 @@ BIS_EVO_Erec =
 		_wp3 = _grp addWaypoint [position _radio, 50];
 		_wp4 = _grp addWaypoint [position _radio, 50];
 		_wp5 = _grp addWaypoint [position _radio, 50];
+
 		[_grp, 5] setWaypointType "CYCLE";
 		[_grp] call BIS_EVO_FillInf;
 		_inf=_inf-12;
@@ -316,15 +315,17 @@ BIS_EVO_Erec =
 		_inf=_inf-12;
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
 	};
-
+systemChat format ["Pos:%1",_pos];
 //Spawn infantry
 
 	while {_inf > 0} do 
 	{
 		_grp = createGroup (EGG_EVO_ENEMYFACTION);
 		_type = EGG_EVO_enemy2 select 0;
-		_unit = _grp createUnit [_type, _pos, [], 300, "FORM"];Sleep BIS_EVO_GlobalSleep;
+		_unit = _grp createUnit [_type, _pos, [], 300, "FORM"];
+		Sleep BIS_EVO_GlobalSleep;
 		_rds = (_unit nearRoads 50);
+
 		if(count _rds > 0) then 
 		{
 			_unit setpos position (_rds select 0);
@@ -332,16 +333,18 @@ BIS_EVO_Erec =
 //		_unit setSkill skillfactor+(random 0.2);
 		_unit addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 		_posasl = getPosASL _unit;
+		
 		if ((_posasl select 2) < 1.0) then 
 		{
 			_unit setpos _pos;
 		};		
 		if(round(random 1) == 1) then
 		{
-			_wp = _grp addWaypoint [_pos, 400];
-			_wp2 = _grp addWaypoint [_pos, 400];
-			_wp3 = _grp addWaypoint [_pos, 400];
-			[_grp, 3] setWaypointType "CYCLE";
+			_wp = _grp addWaypoint [_flags select 0, 10];
+			_wp2 = _grp addWaypoint [_flags select 1, 10];
+			_wp3 = _grp addWaypoint [_flags select 2, 10];
+			_wp4 = _grp addWaypoint [_flags select 3, 10];
+			[_grp, 4] setWaypointType "CYCLE";
 		};
 		[_grp] call BIS_EVO_FillInf;
 		_inf = _inf-12; //##12 //##0
@@ -349,7 +352,7 @@ BIS_EVO_Erec =
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
 	};
 
-				systemChat "All created";
+systemChat "All created";
 defenceReady = true;
 
 

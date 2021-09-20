@@ -1040,11 +1040,11 @@ BIS_EVO_ListUpdate = {
                             closeDialog 1;
                             hint "Sending vehicle to base, cooldown 5min";
                         };
-                        Mpage = [false, false, false, false, false, true, 1, false, false, 0, false];
+                        Mpage = [false, false, false, false, false, true, 1, false, false, 0, false,false,false];
                     }
                     else {
                         hint "Cannot store this vehicle";
-                        Mpage = [false, false, false, false, false, true, 1, false, false, 0, false];
+                        Mpage = [false, false, false, false, false, true, 1, false, false, 0, false,false,false];
                         closeDialog 1;
                     };
                 };
@@ -1054,7 +1054,7 @@ BIS_EVO_ListUpdate = {
                         [_ap] execVM "data\scripts\unflip.sqf";
                         closeDialog 1;
                     };
-                    Mpage = [false, false, false, false, false, true, 1, false, false, 0, false];
+                    Mpage = [false, false, false, false, false, true, 1, false, false, 0, false,false,false];
                 };
             };
     };

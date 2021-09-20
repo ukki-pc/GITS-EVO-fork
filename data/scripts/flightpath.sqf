@@ -54,8 +54,8 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	{
 		_grp setBehaviour "CARELESS";
 		vehicle (units _grp select 0) action ["lightOn",vehicle (units _grp select 0)];
-	};
-	else;
+	}
+	else
 	{
 	};
 	(units _grp select 0) commandFollow (units _grp select 0);

@@ -3,9 +3,6 @@ closeDialog 0;
 sleep 0.3;
 
 if(BIS_EVO_MissionProgress > -1) exitWith {hint "Mission already in progress."};
-
-_player = _this select 0;
-_id = _this select 2;
 _map = objNull;
 attackMarker = objNull;
 reinfMarkers = [];
@@ -71,9 +68,9 @@ if(cityToAttack > -1 and !_friendlyCity) then
   reinfMarkers = [];
   };
 true;";
-while{visibleMap} do {sleep 0.04; "cityMarker" setMarkerDir (markerDir "cityMarker" + 1);};
+while{sleep BIS_EVO_frameDelay; visibleMap} do {"cityMarker" setMarkerDir (markerDir "cityMarker" + 1);};
 
-waitUntil{!visibleMap};
+waitUntil{sleep BIS_EVO_frameDelay; !visibleMap};
 onMapSingleClick "";
 deleteMarker "cityMarker";
 
@@ -83,6 +80,7 @@ if(cityToAttack > -1 and !(cityToAttackName in BIS_EVO_conqueredTowns)) then
   //BIS_EVO_MissionProgress = cityToAttack;
   //publicVariableServer "BIS_EVO_MissionProgress";
   ["jed_missionManager", [cityToAttack]] call CBA_fnc_globalEvent;
+  
   closeDialog 0;
 }
 else 

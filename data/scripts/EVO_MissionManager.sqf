@@ -1,5 +1,7 @@
+
 missionManager =	
 	{
+	#include "macros.h"
 	// City Setup
 	_mkr = (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
 	_pos = getPos _mkr;
@@ -73,13 +75,15 @@ missionManager =
 		_bunkerMarker setMarkerColor "ColorRED";
 		_bunkerMarker setMarkerType _mrktype;
 		_controlName = allBunkerControls select (bunkers find _bunker);
-		[_controlName,[0.62, 0, 0, 1]] call fnc_ctrlChangeColor;
+		{
+			["fnc_ctrlChangeColor", [_x, _controlName,[0.62, 0, 0, 1]]] call CBA_fnc_whereLocalEvent;
+		}forEach everyPlayer;
 		_bunkerMarker setMarkerText _markerText;
 	};
 
 	fnc_init_bunker = 
 	{
-		//private ["_bunkerTypes","_times","_mkr","_pos","_bunkers","_bunker","_roads","_bunkerPos"];
+		private ["_bunkerTypes","_times","_existingBunkers","_mkr","_nearestBunker","_pos","_bunkers","_bunkerRadiusMax","_roads","_distance","_farEnough","_bunker","_roads","_bunkerPos"];
 		_bunkerTypes = ["FlagPole_EP1"];
 		_times = _this select 0;
 		_existingBunkers = _this select 1;
@@ -94,42 +98,32 @@ missionManager =
 
 			_bunker = createVehicle [[_bunkerTypes] call fnc_pickRandom,  _pos, [], 0, "NONE"];
 			_roads = [];
-			_bunkerPos = [_pos, 0, _bunkerRadiusMax , 3, 0, 0.25, 0] call BIS_fnc_findSafePos;
+			_bunkerPos = [_pos, 1, _bunkerRadiusMax,1,0,0.4,0,[],_pos] call BIS_fnc_findSafePos;
 			_roads = _bunkerpos nearRoads 10;
-
 			_allbunkers = _bunkers + _existingBunkers;
 			_nearestBunker = [];
 			_distance = 0;
 			_farEnough = false;
 
-			while { count _roads > 0 or !_farEnough} do 
+			while {sleep BIS_EVO_frameDelay; count _roads > 0 or !_farEnough} do 
 			{
-				_bunkerPos = [_pos, 0, _bunkerRadiusMax, 3, 0, 0.25, 0] call BIS_fnc_findSafePos;
+				_bunkerPos = [_pos, 1, _bunkerRadiusMax,1,0,0.4,0,[],_pos] call BIS_fnc_findSafePos;
 				_roads = _bunkerpos nearRoads 10;
 					if(count _allbunkers > 0 ) then 
 					{
-						_nearestBunker = [_allbunkers,_bunkerPos] call BIS_fnc_nearestPosition;
+						_bunkerPos = [_pos, 1, _bunkerRadiusMax,1,0,0.4,0,[],_pos] call BIS_fnc_findSafePos;
+						_nearestBunker = [_allbunkers, _bunkerPos] call BIS_fnc_nearestPosition;
 						_distance = _bunkerPos distance _nearestBunker;
 						_farEnough = (_distance > _bunkerSpread) and (!surfaceIsWater _bunkerPos);
 						_bunkerRadiusMax = _bunkerRadiusMax + 1;
 					}
 					else {_farEnough = true}; //If no bunkers exist then there is no blacklist positions
-				sleep BIS_EVO_frameDelay;
 			};
-
-			_roads = _bunkerPos nearRoads 50;
-			
-			//Direction setter
-			if(count _roads > 0) then
-			{
-				_bunker setDir direction([_roads] call fnc_pickRandom);
-			};
-			
 
 			_bunker setPos _bunkerPos;
 			_bunkers = _bunkers + [_bunker];
 
-			sleep 1;
+			sleep BIS_EVO_GlobalSleep;
 		};
 		_bunkers;
 	};
@@ -138,7 +132,7 @@ missionManager =
 
 	bunkerLoop = 
 	{
-		private ["_tickets","_cptString","_msg","_bunkerObject","_markerName","_bunkerOwner","soundEnable"];
+	//	private ["_tickets","_bunkerObject","_markerName","_bunkerOwner","soundEnable"];
 		#define maxTickets 30
 		#define captureRadius 30
 		#define minTickets -30
@@ -155,6 +149,10 @@ missionManager =
 		_markerText = _this select 2;
 		_markerName = format ["%1",_bunkerObject];
 		[_bunkerObject,_markerName,_markerText] call fnc_bunker_marker;
+
+		_tbox = createVehicle ["USOrdnanceBox", getpos _bunkerObject, [], 10, "NONE"];
+		[_tbox] call BIS_EVO_DropBox;
+//		[_tbox] execVM "data\scripts\dropdel.sqf";
 
 		_tickets = maxTickets;
 		_bunkerOwner = EGG_EVO_ENEMYFACTION;
@@ -207,11 +205,14 @@ missionManager =
 				if(soundEnable) then 
 				{
 					soundEnable = false;
-					[_bunkerObject] spawn 
+					[_bunkerObject,_capturingPlayers] spawn 
 					{
 						_source = _this select 0;
 						_audioLength = 6.6-calculationInterval;
-						_source say3d ["flag_loop",20];
+						_capturingPlayers = _this select 1;
+						{
+							["fnc_say3d", [_x, _source,"flag_loop",20]] call CBA_fnc_whereLocalEvent;
+						}forEach _capturingPlayers;
 						sleep (_audioLength);
 						soundEnable = true;
 					};
@@ -260,12 +261,14 @@ missionManager =
 			{
 				_markerName setMarkerColor "ColorRed";
 				_controlName = allBunkerControls select (bunkers find _bunkerObject);
-				[_controlName,[0.62, 0, 0, 1]] call fnc_ctrlChangeColor;
 				_bunkerOwner = EGG_EVO_ENEMYFACTION;
 				_bunkerObject setVariable ["OWNER", _bunkerOwner];
-				playsound "lostCP";
-				_msg = format ["Outpost is being overrun!"];
-    			["jed_SIDEmsg", [player, _msg]] call CBA_fnc_whereLocalEvent;
+				{
+					["fnc_ctrlChangeColor", [_x, _controlName,[0.62, 0, 0, 1]]] call CBA_fnc_whereLocalEvent;
+					["fnc_playSound", [_x, "lostCP"]] call CBA_fnc_whereLocalEvent;
+					_msg = format ["Outpost is being overrun!"];
+					["jed_SIDEmsg", [_x, _msg]] call CBA_fnc_whereLocalEvent;
+				}forEach everyPlayer;
 				_captured = false;
 				_neutralized = false;
 			};
@@ -275,7 +278,9 @@ missionManager =
 			{
 				_markerName setMarkerColor "ColorWhite";	
 				_controlName = allBunkerControls select (bunkers find _bunkerObject);
-				[_controlName,[1, 1, 1, 1]] call fnc_ctrlChangeColor;
+				{
+					["fnc_ctrlChangeColor", [_x, _controlName,[1,1, 1, 1]]] call CBA_fnc_whereLocalEvent;
+				}forEach everyPlayer;
 				//_bunkerOwner = EGG_EVO_PLAYERFACTION;
 				//_bunkerObject setVariable ["OWNER", _bunkerOwner];
 				_neutralized = true;
@@ -286,12 +291,14 @@ missionManager =
 			{
 				_markerName setMarkerColor "ColorBlue";	
 				_controlName = allBunkerControls select (bunkers find _bunkerObject);
-				[_controlName,[0, 0, 0.62, 1]] call fnc_ctrlChangeColor;
 				_bunkerOwner = EGG_EVO_PLAYERFACTION;
 				_bunkerObject setVariable ["OWNER", _bunkerOwner];
-				playsound "captureCP";
-				_msg = format ["Position clear and under control!"];
-				["jed_SIDEmsg", [player, _msg]] call CBA_fnc_whereLocalEvent;
+					{
+						["fnc_ctrlChangeColor", [_x, _controlName,[0, 0, 0.62, 1]]] call CBA_fnc_whereLocalEvent;
+						["fnc_playSound", [_x, "captureCP"]] call CBA_fnc_whereLocalEvent;
+						_msg = format ["Position clear and under control!"];
+						["jed_SIDEmsg", [_x, _msg]] call CBA_fnc_whereLocalEvent;
+					}forEach everyPlayer;
 				_captured = true;
 				_captureTick = 0;
 			};
@@ -304,7 +311,11 @@ missionManager =
 			_zPos2 = (-((abs(minHeight))*(_tickets/maxTickets))-abs(minHeight)) min 0 max minHeight;
 			_flag1 setPos [position _flag1 select 0, position _flag1 select 1,_zPos1];
 			_flag2 setPos [position _flag2 select 0, position _flag2 select 1,_zPos2];
-		};		
+		};
+		deleteVehicle _flag1;
+		deleteVehicle _flag2;
+		deletevehicle _tbox;
+		deleteMarker _markerName;
 	};
 
 	reinforcementLoop = 
@@ -348,7 +359,7 @@ missionManager =
 			aggression = aggression - 10;
 			if(aggression < 0 ) then {aggression = 0};
 		};
-		["jed_aggr", [_x]] call CBA_fnc_whereLocalEvent;
+		//["jed_aggr", [_x]] call CBA_fnc_whereLocalEvent;
 	};
 
 	_count = (count BIS_EVO_MissionTowns);
@@ -405,7 +416,8 @@ missionManager =
 		_screenMarkers = [];
 
 		{_screenMarkers set [_forEachIndex,[_x]]}forEach bunkers;
-		[_screenMarkers] spawn fnc_marker_screen;
+
+		{["fnc_broadcastScreenMarkers", [_x,_screenMarkers]] call CBA_fnc_whereLocalEvent} forEach everyPlayer;
 
 		while{(surfaceIsWater position radio1)} do 
 		{

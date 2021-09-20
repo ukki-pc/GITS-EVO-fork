@@ -1,4 +1,5 @@
 
+#include "macros.h"
 // player spawn script
 if (not (local player)) exitwith {};
 _player = player;
@@ -105,8 +106,6 @@ disableUserInput false;
 
 _player setPos getMarkerPos respawnPoint;
 
-
-
 if(respawnPoint == "Respawn_West") then {_player setPosASL[getpos _player select 0,getpos _player select 1, 18]};
 
 
@@ -119,12 +118,22 @@ if(respawnPoint == "Respawn_West") then {_player setPosASL[getpos _player select
 // 2 cutRsc ["AggressionTitle","PLAIN"];
 // (uiNameSpace getVariable "myUI_AggressionTitle") ctrlSetText format ["%2%1","%",aggression];
 
-
-
-_i= 0;
-for "_i" from 0 to 10 do 
+/*
+if(isServer) then 
 {
-	["fnc_hudMessage", [player, "Spawning",10]] call CBA_fnc_whereLocalEvent;
-	[] spawn fnc_hitMarker;
-	sleep 1;
+_i= 0;
+	for "_i" from 1 to 2 do 
+	{
+		{
+			_msg = format ["terve %1",_x];
+			["fnc_hudMessage", [_x, _msg,10]] call CBA_fnc_whereLocalEvent;
+			["jed_hitMarker", [_x]] call CBA_fnc_whereLocalEvent;
+			["fnc_playSound", [_x, "captureCP"]] call CBA_fnc_whereLocalEvent;
+		}forEach everyPlayer;
+		sleep 1;
+	};
+				
+				// _msg = format ["Position clear and under control!"];
+				// ["jed_SIDEmsg", ["ALL", _msg]] call CBA_fnc_whereLocalEvent;
 };
+*/

@@ -14,11 +14,25 @@ travelMarker = objNull;
 
 BIS_EVO_LHDMarkers = ["LHD1Marker"];
 BIS_EVO_SHIPSPAWNS = ["ship1","ship2"];
+objectiveFlags = [];
+
 _lowRHQ = format ["%1amb",player];
 _vec =  (vehicle player);
 _isRHQ = _vec getVariable ["RHQ",false];
 _isMHQ = (_vec == MHQ);
 _mhqMark = ["mhqmark"];
+
+
+ { 
+  _markerName = format ["%1",_x];
+
+  if(_x  getVariable "OWNER" == EGG_EVO_PLAYERFACTION) then 
+   {
+      _flagMarkerName = format ["%1",_x];
+      objectiveFlags = objectiveFlags + [_flagMarkerName];
+    };
+
+ }forEach bunkers;
 
 /*
 	_curLevel = perkOffLVL;
@@ -32,7 +46,7 @@ _rhqPositions = RHQMarkers;
 
 _rhqPositions = RHQMarkers;
 
-TeleportLocations = BIS_EVO_conqueredTowns + _rhqPositions + _mhqMark + BIS_EVO_LHDMarkers + BIS_EVO_SHIPSPAWNS;
+TeleportLocations = BIS_EVO_conqueredTowns + _rhqPositions + _mhqMark + BIS_EVO_LHDMarkers + BIS_EVO_SHIPSPAWNS + objectiveFlags;
 
 _nearestPoint = [TeleportLocations, position player] call BIS_fnc_nearestPosition;
 
@@ -90,7 +104,7 @@ if(cityToTransfer < 0) exitWith{  hint "Relocation cancelled!"};
 _tpLoc = teleportLocations select cityToTransfer;
 _tpLocPos = [_tpLoc] call fnc_getAnyPosition;
 
-_isViableLoc = (_tpLoc in BIS_EVO_conqueredTowns or _tpLoc in BIS_EVO_LHDMarkers or _tpLoc in _rhqPositions or _tpLoc in  _mhqMark or _tpLoc in BIS_EVO_SHIPSPAWNS);
+_isViableLoc = (_tpLoc in BIS_EVO_conqueredTowns or _tpLoc in BIS_EVO_LHDMarkers or _tpLoc in _rhqPositions or _tpLoc in  _mhqMark or _tpLoc in BIS_EVO_SHIPSPAWNS or _tpLoc in objectiveFlags);
 _enoughMoney = (travelCost <= money);
 _traveAllowed = ((vehiclePlaced != 0) and !R3F_LOG_mutex_local_verrou and _enoughMoney and !(_vec isKindOf "Air") and !(_vec isKindOf "Ship"));
 _inVehicle = (vehicle player != player);

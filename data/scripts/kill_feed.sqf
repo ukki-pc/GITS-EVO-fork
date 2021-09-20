@@ -12,6 +12,7 @@ killFeedCleanup =
 // [control,message,targetValue]
 fnc_hudVal_smooth = 
 {
+    disableSerialization;
     private ["_ctrl","_msg","_value","_tempValue","_shownValue"];
     #define smoothingSpeed 0.1
     #define smoothingRange 50
