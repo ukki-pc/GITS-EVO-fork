@@ -71,16 +71,15 @@ _unitinit = if (count _this > 6) then {_this select 6} else {};
 _haveinit = if (count _this > 6) then {true} else {false};
 
 //Respawn count override
-_respawns = BIS_EVO_vehRespawnCount;
-
-
+if(isNil "BIS_EVO_vehRespawnCount") then {_respawns = -1}
+else {_respawns = BIS_EVO_vehRespawnCount};
+§
 _hasname = false;
 _unitname = vehicleVarName _unit;
 if (isNil _unitname) then {_hasname = false;} else {_hasname = true;};
 _noend = true;
 _run = true;
 _rounds = 0;
-_ismhq = false;
 
 if (_delay < 0) then {_delay = 0};
 if (_deserted < 0) then {_deserted = 0};
@@ -130,8 +129,7 @@ EGG_EVO_Frew =
 _name = getText(configFile >> "CfgVehicles" >> format["%1", _type] >> "displayName");
 _markerobj5 = "";
 
-//unique id from mission name added to each vehicle
-_markername = _unitname;
+
 //hint format["name: %1",_markername];
 
 _vecmarkerb = 
@@ -141,43 +139,33 @@ _vecmarkerb =
 	_name = _this select 1;
 //	hint format["name: %1",_unitname];
 
-//MHQ
-	if (typeof _unit == egg_evo_MHQ) then
+	if (not (_unit in list airportin)) then
 	{
-		_mrktype = "plp_icon_helicopterCargo";
-		_markerobj5 = createMarker["mhqmark",[getpos _unit select 0,getpos _unit select 1]];
+		_mrktype = "b_mech_inf";
+		if (_unit isKindOf "Car") then {_mrktype = "plp_icon_vehicle"};
+		if (_unit isKindOf "Tank") then {_mrktype = "plp_icon_tank"};
+		if (_unit isKindOf "Plane") then {_mrktype = "plp_icon_planeLight"};
+		//unique id from mission name added to each vehicle
+		_markername = vehicleVarname _unit;
+		_markerobj5 = createMarker[format ["%1",_markername],[getpos _unit select 0,getpos _unit select 1]];
 		_markerobj5 setMarkerColor "ColorBlue";
 		_markerobj5 setMarkerType _mrktype;
-		_markerobj5 setMarkerText "MHQ";
-		_ismhq = true;
-	} else
+		_markerobj5 setMarkerSize [0.8, 0.8];
+		if ( Fuel _unit ==0) then 
+		{
+			_need = localize "str_ep1_sentfuellow_1";
+			_markerobj5 setMarkerText format ["%1 %2",_name,_need];
+			// needs repair STR_M04t46
+		}else
+		{
+			_markerobj5 setMarkerText format ["%1", _name];
+		};
+	}
+	else
 	{
-		if (not (_unit in list airportin)) then
+		if ( !(isNil _markerobj5) ) then
 		{
-			_mrktype = "b_mech_inf";
-			if (_unit isKindOf "Car") then {_mrktype = "plp_icon_vehicle"};
-			if (_unit isKindOf "Tank") then {_mrktype = "plp_icon_tank"};
-			if (_unit isKindOf "Plane") then {_mrktype = "plp_icon_planeLight"};
-			_markerobj5 = createMarker[format ["%1",_markername],[getpos _unit select 0,getpos _unit select 1]];
-			_markerobj5 setMarkerColor "ColorBlue";
-			_markerobj5 setMarkerType _mrktype;
-			_markerobj5 setMarkerSize [0.8, 0.8];
-			if ( Fuel _unit ==0) then 
-			{
-				_need = localize "str_ep1_sentfuellow_1";
-				_markerobj5 setMarkerText format ["%1 %2",_name,_need];
-				// needs repair STR_M04t46
-			}else
-			{
-				_markerobj5 setMarkerText format ["%1", _name];
-			};
-		}
-		else
-		{
-			if ( !(isNil _markerobj5) and !(typeof _unit == egg_evo_MHQ) ) then
-			{
-				deleteMarker _markerobj5;
-			};
+			deleteMarker _markerobj5;
 		};
 	};
 };
@@ -213,7 +201,7 @@ while {sleep 1; _run} do
 
 // Respawn vehicle
 	_wet=0;
-      if (_dead and !_ismhq ) then 
+      if (_dead) then 
 	{	
 		_posasl = getPosASL _unit;
 		if (_posasl select 2 < 1.0) then 
@@ -266,58 +254,6 @@ while {sleep 1; _run} do
 		else {deleteMarker _markerobj5; _run = false;};
 	};
 
-
-// MHQ DED
-	_wet=0;
-      if (_dead and _ismhq) then 
-	{	
-		_posasl = getPosASL MHQ;
-		if (_posasl select 2 < 1.0) then 
-		{
-			_wet=1;
-		};
-		if (_nodelay) then {sleep 0.1; _nodelay = false;} else {sleep _delay;};
-		if ((_dynamic) and (_wet==0)) then {_position = getPosASL MHQ; _dir = getDir MHQ;};
-		if (_explode) then {_effect = "M_AT" createVehicle getPosASL MHQ; _effect setPosASL getPosASL MHQ; hint "dude";};
-		sleep 0.1;
-		deleteVehicle MHQ;
-//EGG adding
-		if !(isNil _markerobj5) then
-		{
-			deleteMarker _markerobj5;
-		};
-		sleep 2;
-		MHQ = _type createVehicle _position;
-		MHQ setPosASL _position;
-		MHQ setDir _dir;
-
-//EGG adding script to place statics and weapons into vehicle cargoes
-//		_cargoadd = [_unit] spawn "data\scripts\static_cargo.sqf";
-//		_cargoadd = [_unit] call EGG_EVO_static_cargo;
-//		sleep 1.0;
-//
-
-		if (_haveinit) then 
-		{
-			MHQ setVehicleInit format ["%1;", _unitinit];
-			processInitCommands;
-		};
-		if (_hasname) then 
-		{
-			MHQ setVehicleInit format ["%1 = this; this setVehicleVarName ""%1""",_unitname];
-			processInitCommands;
-		};
-		_dead = false;
-
-//EGG adding
-		[MHQ,_name] call _vecmarkerb;
-		// Check respawn amount
-		if !(_noend) then {_rounds = _rounds + 1};
-		if ((_rounds == _respawns) and !(_noend)) then {_run = false;};
-		WaitUntil{( (damage _unit == 0) or !(alive _unit) )};
-//		[_unit] call EGG_EVO_Frew;
-	};
-
 //manage live vehicles
 
 //add a marker for stationary empty vehicle without _deserted>0
@@ -326,23 +262,8 @@ while {sleep 1; _run} do
 		[_unit,_name] call _vecmarkerb;
 	};
 //check if vehicle is healthy and occupied
-	if ( (_unit distance _position > 10) and (getDammage _unit < 0.8) and (Fuel _unit > 0.2) and ({alive _x} count crew _unit >0) and !(isNil _markerobj5) and (!(typeof _unit == egg_evo_MHQ)) )then 
+	if ( (_unit distance _position > 10) and (getDammage _unit < 0.8) and (Fuel _unit > 0.2) and ({alive _x} count crew _unit >0) and !(isNil _markerobj5))then 
 	{
 		deleteMarker _markerobj5;
-	};
-
-	if ( (typeof _unit == egg_evo_MHQ)and (isNil _markerobj5) ) then
-	{
-		[_unit,_name] call _vecmarkerb;
-	};
-	if ( (typeof _unit == egg_evo_MHQ)and !(isNil _markerobj5) ) then
-	{
-		_posa = getposASL _unit;
-		"MHQ" setMarkerpos _posa;
-		if ((_posa select 2) < -2) then 
-		{
-			_unit setdammage 1; 
-			sleep 1;
-		};
 	};
 };

@@ -31,9 +31,6 @@ class Mission
 		"FFAA_patrullero_p72",
 		"FFAA_bam",
 		"PRACS_Troops",
-		"rhs_c_btr",
-		"rhs_c_bmd",
-		"rhs_c_bmp",
 		"EB_armour_opfor",
 		"Molatian_Army",
 		"bmp2_desert",
@@ -60,7 +57,6 @@ class Mission
 		"FFAA_patrullero_p72",
 		"FFAA_bam",
 		"EB_Ship",
-		"nm_tigr",
 		"smd_sahrani_a2"
 	};
 	randomSeed=8800876;
@@ -69,7 +65,7 @@ class Mission
 		briefingName="GITS1 Evolution RED Sahrani Inverted";
 		briefingDescription="www.gitsclan.co.uk";
 		startWeather=0.10000002;
-		forecastWeather=0.30000001;
+		forecastWeather=0.30000001;                                                                      
 		year=2010;
 		month=8;
 		day=7;
@@ -547,7 +543,7 @@ class Mission
 					skill=0.60000002;
 					text="objective_14";
 					init="this setVariable [""type"",""city""]; this setVariable [""name"",""Dolores""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={63,65,75,98,110,112,113,115,116,111,114,117};
+					synchronizations[]={63,65,75,98,104,106,107,109,110,105,108,111};
 				};
 			};
 		};
@@ -1327,7 +1323,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=55;
+		items=49;
 		class Item0
 		{
 			position[]={18819.916,38.26318,13693.878};
@@ -1748,61 +1744,61 @@ class Mission
 		};
 		class Item41
 		{
-			position[]={10629.755,163.89897,7479.2632};
+			position[]={11540.408,31.89537,6196.2666};
 			id=104;
 			side="EMPTY";
-			vehicle="NM_Tigr";
-			leader=1;
+			vehicle="FlagPole_EP1";
 			skill=0.60000002;
+			synchronizations[]={64};
 		};
 		class Item42
 		{
-			position[]={10634.088,162.82851,7479.7954};
+			position[]={11271.346,24.68815,6116.2188};
 			id=105;
 			side="EMPTY";
-			vehicle="NM_Tigr_ags30";
-			leader=1;
+			vehicle="FlagPole_EP1";
 			skill=0.60000002;
+			synchronizations[]={64};
 		};
 		class Item43
 		{
-			position[]={10638.762,161.5161,7479.9438};
+			position[]={11223.406,25.004967,5881.6069};
 			id=106;
 			side="EMPTY";
-			vehicle="NM_Tigr_kord";
-			leader=1;
+			vehicle="FlagPole_EP1";
 			skill=0.60000002;
+			synchronizations[]={64};
 		};
 		class Item44
 		{
-			position[]={10629.938,161.19859,7470.0303};
+			position[]={11612.713,8.7959347,5937.9971};
 			id=107;
 			side="EMPTY";
-			vehicle="NM_Tigr_Camo";
-			leader=1;
+			vehicle="FlagPole_EP1";
 			skill=0.60000002;
+			synchronizations[]={64};
 		};
 		class Item45
 		{
-			position[]={10634.175,160.19002,7469.856};
+			position[]={11642.598,27.707829,5840.2954};
 			id=108;
 			side="EMPTY";
-			vehicle="NM_Tigr_ags30_Camo";
-			leader=1;
+			vehicle="FlagPole_EP1";
 			skill=0.60000002;
+			synchronizations[]={64};
 		};
 		class Item46
 		{
-			position[]={10638.5,159.21933,7469.9014};
+			position[]={11727.005,21.698847,6346.8345};
 			id=109;
 			side="EMPTY";
-			vehicle="NM_Tigr_kord_Camo";
-			leader=1;
+			vehicle="FlagPole_EP1";
 			skill=0.60000002;
+			synchronizations[]={64};
 		};
 		class Item47
 		{
-			position[]={11540.408,31.89537,6196.2666};
+			position[]={11863.91,7.958899,6114.895};
 			id=110;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
@@ -1811,62 +1807,8 @@ class Mission
 		};
 		class Item48
 		{
-			position[]={11271.346,24.68815,6116.2188};
-			id=111;
-			side="EMPTY";
-			vehicle="FlagPole_EP1";
-			skill=0.60000002;
-			synchronizations[]={64};
-		};
-		class Item49
-		{
-			position[]={11223.406,25.004967,5881.6069};
-			id=112;
-			side="EMPTY";
-			vehicle="FlagPole_EP1";
-			skill=0.60000002;
-			synchronizations[]={64};
-		};
-		class Item50
-		{
-			position[]={11612.713,8.7959347,5937.9971};
-			id=113;
-			side="EMPTY";
-			vehicle="FlagPole_EP1";
-			skill=0.60000002;
-			synchronizations[]={64};
-		};
-		class Item51
-		{
-			position[]={11642.598,27.707829,5840.2954};
-			id=114;
-			side="EMPTY";
-			vehicle="FlagPole_EP1";
-			skill=0.60000002;
-			synchronizations[]={64};
-		};
-		class Item52
-		{
-			position[]={11727.005,21.698847,6346.8345};
-			id=115;
-			side="EMPTY";
-			vehicle="FlagPole_EP1";
-			skill=0.60000002;
-			synchronizations[]={64};
-		};
-		class Item53
-		{
-			position[]={11863.91,7.958899,6114.895};
-			id=116;
-			side="EMPTY";
-			vehicle="FlagPole_EP1";
-			skill=0.60000002;
-			synchronizations[]={64};
-		};
-		class Item54
-		{
 			position[]={11471.958,27.25181,6324.894};
-			id=117;
+			id=111;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
 			skill=0.60000002;
