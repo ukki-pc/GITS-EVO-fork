@@ -13,10 +13,6 @@ BIS_EVO_Erec =
 	_mec = 0; 
 	_stat = 0; 
 	_statAA = 0;
-	_inf = round(BIS_EVO_InfantrySpawn);
-	_mec = round(BIS_EVO_MechanizedSpawn);
-	_statAA = ceil((BIS_EVO_MechanizedSpawn)/2);
-	_stat = ceil((BIS_EVO_MechanizedSpawn)/3);
 	_newunits = [];
 	_rds = [];
 	_type = ""; 
@@ -27,6 +23,24 @@ BIS_EVO_Erec =
 	_rtobj = [_radio] execVM "data\scripts\rtobj.sqf";
 	_pos = position _list;
 
+
+
+	//EVALUATE player strategy
+	_aggressions = [AAaggr,TANKaggr,INFaggr,MECHaggr];
+	_total = 0;
+	{_total = _total + _x}forEach _aggressions;
+	_pied = [];
+	{_pied set [_forEachIndex, (_x/_total)]}forEach _aggressions;
+
+	systemChat format ["Aggression is %1",aggression];
+	systemChat format ["Pie is AA:%1, TANK:%3, INF:%4, MEC:%5",_pied select 0,_pied select 1, _pied select 2, _pied select 3];
+
+	_inf = ceil((BIS_EVO_InfantrySpawn+(BIS_EVO_InfantrySpawn*(_pied select 2)))); // 24 - 188
+	_mec = ceil((BIS_EVO_MechanizedSpawn+(BIS_EVO_MechanizedSpawn*(_pied select 3)))); // 4 - 48
+	_aa =  ceil((BIS_EVO_aaSpawn+(BIS_EVO_aaSpawn*(_pied select 0))));	// 2 - 24
+
+	_statAA = ceil((_mec)/2);
+	_stat = ceil((_mec)/3);
 
 	defenceReady = false;
 	private ["_rng","_allvec"]; 
@@ -60,15 +74,24 @@ BIS_EVO_Erec =
 
 	outpoints = [_pos1,_pos2,_pos3,_pos4];	
 
-	/*
+	//Handle defender ships
+	fnc_shipSpawn = 
 	{
-		_markerName = format ["%1",_x];
-		_bunkerMarker = createMarker[_markerName,_x];
-		_bunkerMarker setMarkerColor "ColorBlack";
-		_bunkerMarker setMarkerType "Dot";
-	} forEach outpoints;
-*/
+		private ["_rnd","_vecT","_pos","_shipPos","_array","_grp","_vec","handle"];
+		_rnd = [[8,7,4,10,20,2,8,10]] call weightedRandomSimple;
+		_vecT = EGG_EVO_ENEMYSHIPS select _rnd;
 
+		_pos = getPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
+		_shipPos =  [_pos, 700, 1400, 0, 2, 10,0,[],_pos] call BIS_fnc_findSafePos;
+
+		_array = [_vecT,_shipPos,(EGG_EVO_ENEMYFACTION),1,180,0] call BIS_EVO_CreateVehicle;
+		_grp = _array select 0;
+		_vec = _array select 1;
+
+		{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
+
+		[_grp,_pos,_vec] spawn fnc_waterPatrol;
+	};
 
 	fnc_hikiMarker = 
 	{
@@ -86,31 +109,25 @@ BIS_EVO_Erec =
 		};
 	};
 
-	systemChat format ["Creating defense with %1: inf, %2: mec, %3: aastat, %4: stat", _inf,_mec,_statAA,_stat];
+	systemChat format ["Creating defense with %1: inf, %2: mec, %3: aa, %4: stataa, %5: stat", _inf,_mec,_aa,_statAA,_stat];
 
+	
 	//Ship defence
 	if((BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) in BIS_EVO_CoastalTowns) then 
 	{
-		_rnd = [[8,7,4,10,20,2,8,10]] call weightedRandomSimple;
-		_vecT = EGG_EVO_ENEMYSHIPS select _rnd;
-
-		_pos = getPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
-		_shipPos =  [_pos, 700, 1400, 0, 2, 10,0,[],_pos] call BIS_fnc_findSafePos;
-
-		_array = [_vecT,_shipPos,(EGG_EVO_ENEMYFACTION),300,180,0] call BIS_EVO_CreateVehicle;
-		_grp = _array select 0;
-		_vec = _array select 1;
-
-		{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
-
-	[_grp,_pos,_vec] spawn fnc_waterPatrol;
+		_ships = (1+(aggression/10)) max 1 min 5;
+		for "_i" from 0 to _ships do 
+		{
+			[] spawn fnc_shipSpawn;
+			sleep 0.2;
+		};
 	};
 
 	//Officer
 	_type = EGG_EVO_meofficer select 0;
 	_offGrp = createGroup (civilian);
 	_offPos = [_pos, 1, 300,1,0,0.4,0,[],_pos] call BIS_fnc_findSafePos;
-	_offobj = createVehicle [_type, _offPos, [], 300, "NONE"];Sleep BIS_EVO_GlobalSleep;
+	_offobj = createVehicle [_type, _offPos, [], 1, "NONE"];Sleep BIS_EVO_GlobalSleep;
 	[_offobj] join _offGrp;
 	_offobj addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 	_offobj setVehicleInit "Ocap = [this] execVM 'data\scripts\submit.sqf'";
@@ -136,8 +153,8 @@ BIS_EVO_Erec =
 		 	_allvecs = EGG_EVO_spAAhard; //mixed units reinforce
 		};
 		
-		_max = (count _allvecs)-1;
-		_vcl = createVehicle [(_allvecs select (round random _max)), _respawnpoint, [], 100, "NONE"];
+		_vectype = [_allvecs] call fnc_pickRandom;
+		_vcl = createVehicle [_vectype, _respawnpoint, [], 100, "NONE"];
 		Sleep BIS_EVO_GlobalSleep;
 		_respawnpoint = [_respawnpoint, 1, 400,1,0,0.4,0,[],_respawnpoint] call BIS_fnc_findSafePos;
 	//	_vcl setdir round(random (360));	
@@ -162,7 +179,7 @@ BIS_EVO_Erec =
 		curpoint =curpoint+1;
 	};
 	curpoint = 0;
-	_AA=4;
+	
 	while {_AA > 0} do 
 	{
 		[] call _MakeAA;
@@ -226,9 +243,9 @@ BIS_EVO_Erec =
 	_i=0;
 	while {_statAA > 0} do 
 	{
-		_allvecs = EGG_EVO_statEnemyAA;
-		_max = (count _allvecs)-1;
-		_array = [_allvecs select (round random _max),_pos,(EGG_EVO_ENEMYFACTION),200,180,0] call BIS_EVO_CreateVehicle;
+		_stattype = [EGG_EVO_statEnemyAA] call fnc_pickRandom;
+		_posi = [_pos, 1, 300,1,0,0.4,0,[],_pos] call BIS_fnc_findSafePos;
+		_array = [_stattype,_posi,(EGG_EVO_ENEMYFACTION),0,180,0] call BIS_EVO_CreateVehicle;
 		_grp = _array select 0;
 		_vec = _array select 1;
 		{_x addEventHandler  ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
@@ -241,9 +258,9 @@ BIS_EVO_Erec =
 
 		while {_stat > 0} do 
 	{
-		_allvecs = EGG_EVO_statEnemy;
-		_max = (count _allvecs)-1;
-		_array = [_allvecs select (round random _max),_pos,(EGG_EVO_ENEMYFACTION),200,180,0] call BIS_EVO_CreateVehicle;
+		_stattype = [EGG_EVO_statEnemy] call fnc_pickRandom;
+		_posi = [_pos, 1, 300,1,0,0.4,0,[],_pos] call BIS_fnc_findSafePos;
+		_array = [_stattype,_posi,(EGG_EVO_ENEMYFACTION),0,180,0] call BIS_EVO_CreateVehicle;
 		_grp = _array select 0;
 		_vec = _array select 1;
 		{_x addEventHandler  ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
@@ -315,7 +332,7 @@ BIS_EVO_Erec =
 		_inf=_inf-12;
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
 	};
-systemChat format ["Pos:%1",_pos];
+
 //Spawn infantry
 
 	while {_inf > 0} do 

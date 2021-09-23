@@ -15,6 +15,7 @@ waitUntil{(!LDL_ac130_active)};
 
 LDL_ac130_active = true;
 LDL_plane_type = "UAV";
+LDL_gunner = player;
 
 if (typeName _input == "ARRAY") then
 {

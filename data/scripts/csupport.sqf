@@ -285,84 +285,86 @@ ColorYellow		//WMD
 		_tbox setVehicleInit "[this] call BIS_EVO_DropBox";
 		processInitCommands;	
 	};
-		case 27: //OWN airsupport
-		{
+	case 27: //OWN airsupport
+	{
 
-			#define flyHeight 600
-				_pos = objNull;
-				_unit = objNull;
-				_vec = objNull;
-				_heli0 = objnull;
-				_max = objnull;
-				_maxv = objnull;
-				_objPos = _bombzone;
-				_pos = _bombzone;
-				_posback = _bombzone;
-				_range = 3000;
-				_pilot = createGroup (west);
-				(EGG_EVO_mepilot select 0) createUnit [getmarkerpos "centerp", _pilot];Sleep BIS_EVO_GlobalSleep;
-				(EGG_EVO_mepilot select 0) createUnit [getmarkerpos "centerp", _pilot];Sleep BIS_EVO_GlobalSleep;
-				//(EGG_EVO_mepilot select 0) createUnit [getmarkerpos "centerp", _pilot];Sleep BIS_EVO_GlobalSleep;
-				_pos1 = [(_pos select 0)-_range -(random _range),(_pos select 1)+_range -(random _range),(700 + random 100)];
-				_pos2 = [(_pos select 0)+_range +(random _range),(_pos select 1)+_range -(random _range),(700 + random 100)];
-				_heli0 = createVehicle ["JS_FA18F",_pos1, [], 100, "NONE"];
-				_sumark = [_heli0,"Friendly Air","ColorBlue","plp_icon_planeAttack",true,0.6] execVM "data\scripts\customMarker.sqf";
-				//player moveInDriver _heli0;
-				_heli0 setVelocity [0,0,0];
-				_dir = [position _heli0, _objPos] call BIS_EVO_GetRelDir;
+		#define flyHeight 600
+			_pos = objNull;
+			_unit = objNull;
+			_vec = objNull;
+			_heli0 = objnull;
+			_max = objnull;
+			_maxv = objnull;
+			_objPos = _bombzone;
+			_pos = _bombzone;
+			_posback = _bombzone;
+			_range = 3000;
+			_pilot = createGroup (west);
+			(EGG_EVO_mepilot select 0) createUnit [getmarkerpos "centerp", _pilot];Sleep BIS_EVO_GlobalSleep;
+			(EGG_EVO_mepilot select 0) createUnit [getmarkerpos "centerp", _pilot];Sleep BIS_EVO_GlobalSleep;
+			//(EGG_EVO_mepilot select 0) createUnit [getmarkerpos "centerp", _pilot];Sleep BIS_EVO_GlobalSleep;
+			_pos1 = [(_pos select 0)-_range -(random _range),(_pos select 1)+_range -(random _range),(700 + random 100)];
+			_pos2 = [(_pos select 0)+_range +(random _range),(_pos select 1)+_range -(random _range),(700 + random 100)];
+			_heli0 = createVehicle ["JS_FA18F",_pos1, [], 100, "NONE"];
+			_sumark = [_heli0,"Friendly Air","ColorBlue","plp_icon_planeAttack",true,0.6] execVM "data\scripts\customMarker.sqf";
+			//player moveInDriver _heli0;
+			_heli0 setVelocity [0,0,0];
+			_dir = [position _heli0, _objPos] call BIS_EVO_GetRelDir;
 
-				_heli0 setPos [getpos (_x select 0), getpos (_x select 1), flyHeight];
-				_heli0 flyInHeight flyHeight;
+			_heli0 setPos [getpos (_x select 0), getpos (_x select 1), flyHeight];
+			_heli0 flyInHeight flyHeight;
 
-				(units _pilot select 0) setBehaviour "CARELESS";
-
-
-				_heli0 setdir _dir;
-				_vel = velocity _heli0;
-				_speed = 50;
-				_heli0 setVelocity [
-				(_vel select 0) + (sin _dir * _speed), 
-				(_vel select 1) + (cos _dir * _speed), 
-				100];
-
-				_heli0 engineon true;
-				(units _pilot select 0) assignAsDriver _heli0;
-				(units _pilot select 1) assignAsGunner _heli0;
-				(units _pilot select 0) moveInDriver _heli0;
-				(units _pilot select 1) moveInGunner _heli0;
-				_originalPly = player;
-
-				//Player is gunner
-				addSwitchableUnit (units _pilot select 1);
-				setPlayable (units _pilot select 1);
-				selectPlayer (units _pilot select 1);
-
-				addSwitchableUnit _originalPly;
-				setPlayable _originalPly;
-
-				_wp1 = _pilot addWaypoint [_bombzone, 0];
-				_timer = 120;
-
-				 while{_timer > 0} do
-				 {
-					 sleep 1;
-					_timer = _timer -1;
-					hintSilent format ["%1 seconds left", _timer];
-					if([crew _heli0] call countAliveCrew < 1) exitWith{};
-				 };
-
-				hint "Air Support ended";
+			(units _pilot select 0) setBehaviour "CARELESS";
 
 
-				selectPlayer _originalPly;
+			_heli0 setdir _dir;
+			_vel = velocity _heli0;
+			_speed = 50;
+			_heli0 setVelocity [
+			(_vel select 0) + (sin _dir * _speed), 
+			(_vel select 1) + (cos _dir * _speed), 
+			100];
+
+			_heli0 engineon true;
+			(units _pilot select 0) assignAsDriver _heli0;
+			(units _pilot select 1) assignAsGunner _heli0;
+			(units _pilot select 0) moveInDriver _heli0;
+			(units _pilot select 1) moveInGunner _heli0;
+			_originalPly = player;
+
+			//Player is gunner
+			addSwitchableUnit (units _pilot select 1);
+			setPlayable (units _pilot select 1);
+			selectPlayer (units _pilot select 1);
+
+			addSwitchableUnit _originalPly;
+			setPlayable _originalPly;
+
+			_wp1 = _pilot addWaypoint [_bombzone, 0];
+			_timer = 120;
+
+				while{_timer > 0} do
+				{
+					sleep 1;
+				_timer = _timer -1;
+				hintSilent format ["%1 seconds left", _timer];
+				if([crew _heli0] call countAliveCrew < 1) exitWith{};
+				};
+
+			hint "Air Support ended";
 
 
-				 deleteVehicle _heli0;
-				 {deleteVehicle _x }forEach units _pilot;
-				 deleteGroup _pilot;
+			selectPlayer _originalPly;
 
-		};
 
+				deleteVehicle _heli0;
+				{deleteVehicle _x }forEach units _pilot;
+				deleteGroup _pilot;
+	};
+	case 28: 
+	{
+		_cac = [] execVM "LDL_ac130\Actions\uav_action_map.sqf";
+	};
 };
 
 _i = _countdown;

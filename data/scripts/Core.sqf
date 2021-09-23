@@ -325,6 +325,10 @@ BIS_EVO_ListUpdate = {
     SupList = SupList + [
         ["Mortar barrage", "Cost: 5 Just perfect for Charlie in the Treeline!", 20, (EGG_EVO_Artycost * 2), 10, "data\sup01.paa", 23]
     ];
+    //new mortar barrage
+    SupList = SupList + [
+        ["UAV", "Cost: 5 Just perfect for Charlie in the Treeline!", 0, 0, 0, "data\sup01.paa", 28]
+    ];
 
     //missions
     AssList = [];

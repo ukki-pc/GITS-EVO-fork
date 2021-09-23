@@ -12,7 +12,10 @@ _rhqPositions = [];
 travelCost = 0;
 travelMarker = objNull;
 
-BIS_EVO_LHDMarkers = ["LHD1Marker"];
+BIS_EVO_LHDMarkers = [];
+
+if(carrier) then {BIS_EVO_LHDMarkers = ["LHD1Marker"];};
+
 BIS_EVO_SHIPSPAWNS = ["ship1","ship2"];
 objectiveFlags = [];
 

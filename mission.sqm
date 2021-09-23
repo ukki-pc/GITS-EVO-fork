@@ -34,7 +34,8 @@ class Mission
 		"EB_armour_opfor",
 		"Molatian_Army",
 		"bmp2_desert",
-		"nm_tigr"
+		"nm_tigr",
+		"jdg_carrier"
 	};
 	addOnsAuto[]=
 	{
@@ -43,6 +44,7 @@ class Mission
 		"ca_modules_clouds",
 		"cacharacters_e",
 		"PRACS_Troops",
+		"jdg_carrier",
 		"camisc3",
 		"CABuildings",
 		"camisc_e_wf",
@@ -65,7 +67,7 @@ class Mission
 		briefingName="GITS1 Evolution RED Sahrani Inverted";
 		briefingDescription="www.gitsclan.co.uk";
 		startWeather=0.10000002;
-		forecastWeather=0.30000001;                                                                      
+		forecastWeather=0.30000001;
 		year=2010;
 		month=8;
 		day=7;
@@ -74,7 +76,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=63;
+		items=64;
 		class Item0
 		{
 			side="LOGIC";
@@ -463,7 +465,7 @@ class Mission
 					skill=0.60000002;
 					text="objective_10";
 					init="this setVariable [""type"",""city""]; this setVariable [""name"",""Somato""]; ";
-					synchronizations[]={59,57,61,62};
+					synchronizations[]={59,57,61,62,112};
 				};
 			};
 		};
@@ -523,7 +525,7 @@ class Mission
 					skill=0.60000002;
 					text="objective_13";
 					init="this setVariable [""type"",""city""]; this setVariable [""name"",""Cayo""]; ";
-					synchronizations[]={61,73,64,74,72};
+					synchronizations[]={61,73,64,74,72,110,111};
 				};
 			};
 		};
@@ -543,7 +545,7 @@ class Mission
 					skill=0.60000002;
 					text="objective_14";
 					init="this setVariable [""type"",""city""]; this setVariable [""name"",""Dolores""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={63,65,75,98,104,106,107,109,110,105,108,111};
+					synchronizations[]={63,65,75,98,104,106,108,105,107,109};
 				};
 			};
 		};
@@ -703,7 +705,7 @@ class Mission
 					skill=0.60000002;
 					text="objective_22";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Arcadia""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={63};
+					synchronizations[]={63,113,114,115};
 				};
 			};
 		};
@@ -783,7 +785,7 @@ class Mission
 					skill=0.60000002;
 					text="objective_26";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Modesta""]; ";
-					synchronizations[]={67,77,78,97};
+					synchronizations[]={67,77,97};
 				};
 			};
 		};
@@ -823,7 +825,7 @@ class Mission
 					skill=0.60000002;
 					text="objective_28";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Everon""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={77,76,97};
+					synchronizations[]={77,97};
 				};
 			};
 		};
@@ -1179,7 +1181,7 @@ class Mission
 					skill=0.60000002;
 					text="objective_46";
 					init="this setVariable [""type"",""military""]; this setVariable [""name"",""Pico de Revolucion""];  this setVariable [""coastal"",true]; ";
-					synchronizations[]={70,100};
+					synchronizations[]={70};
 				};
 			};
 		};
@@ -1259,7 +1261,7 @@ class Mission
 					skill=0.60000002;
 					text="objective_39_1";
 					init="this setVariable [""type"",""military""]; this setVariable [""name"",""Pesadas""]; ";
-					synchronizations[]={85,70,88,96,82};
+					synchronizations[]={85,70,88,82};
 				};
 			};
 		};
@@ -1271,7 +1273,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={10715.374,139.98328,7384.3149};
+					position[]={10717.548,139.98328,7385.0669};
 					azimut=694.62402;
 					id=101;
 					side="GUER";
@@ -1320,10 +1322,30 @@ class Mission
 				};
 			};
 		};
+		class Item63
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={13075.614,18.274796,2850.0757};
+					azimut=-31.2358;
+					special="NONE";
+					id=116;
+					side="WEST";
+					vehicle="JDG_carrier_Spawner";
+					leader=1;
+					skill=0.60000002;
+					text="LHD";
+				};
+			};
+		};
 	};
 	class Vehicles
 	{
-		items=49;
+		items=53;
 		class Item0
 		{
 			position[]={18819.916,38.26318,13693.878};
@@ -1520,8 +1542,8 @@ class Mission
 		};
 		class Item19
 		{
-			presence=0;
-			position[]={13174.396,0.20656496,2943.2451};
+			presenceCondition="carrier";
+			position[]={13069.24,18.280062,2915.4448};
 			azimut=290.45001;
 			id=22;
 			side="EMPTY";
@@ -1700,7 +1722,7 @@ class Mission
 		};
 		class Item37
 		{
-			position[]={1526.8662,5.9272294,2434.728};
+			position[]={10740.54,139.97462,7378.584};
 			azimut=270;
 			id=48;
 			side="EMPTY";
@@ -1733,7 +1755,7 @@ class Mission
 		};
 		class Item40
 		{
-			presence=0;
+			presenceCondition="carrier";
 			position[]={13165.54,0.23612446,2748.0977};
 			azimut=290.45001;
 			id=51;
@@ -1771,7 +1793,7 @@ class Mission
 		};
 		class Item44
 		{
-			position[]={11612.713,8.7959347,5937.9971};
+			position[]={11642.598,27.707829,5840.2954};
 			id=107;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
@@ -1780,7 +1802,7 @@ class Mission
 		};
 		class Item45
 		{
-			position[]={11642.598,27.707829,5840.2954};
+			position[]={11727.005,21.698847,6346.8345};
 			id=108;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
@@ -1789,7 +1811,7 @@ class Mission
 		};
 		class Item46
 		{
-			position[]={11727.005,21.698847,6346.8345};
+			position[]={11471.958,27.25181,6324.894};
 			id=109;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
@@ -1798,21 +1820,57 @@ class Mission
 		};
 		class Item47
 		{
-			position[]={11863.91,7.958899,6114.895};
+			position[]={9346.7031,45.981857,5893.6831};
 			id=110;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
 			skill=0.60000002;
-			synchronizations[]={64};
+			synchronizations[]={63};
 		};
 		class Item48
 		{
-			position[]={11471.958,27.25181,6324.894};
+			position[]={9227.5908,58.339058,5896.1743};
 			id=111;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
 			skill=0.60000002;
-			synchronizations[]={64};
+			synchronizations[]={63};
+		};
+		class Item49
+		{
+			position[]={8945.7754,161.98238,8439.2939};
+			id=112;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={60};
+		};
+		class Item50
+		{
+			position[]={7646.2056,11.956541,6373.8408};
+			id=113;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={72};
+		};
+		class Item51
+		{
+			position[]={7664.4829,11.956541,6278.7114};
+			id=114;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={72};
+		};
+		class Item52
+		{
+			position[]={7480.5479,26.849314,6517.8765};
+			id=115;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={72};
 		};
 	};
 	class Markers
@@ -1820,7 +1878,7 @@ class Mission
 		items=43;
 		class Item0
 		{
-			position[]={10718.61,139.98328,7381.979};
+			position[]={10717.018,139.98328,7381.7563};
 			name="Respawn_West";
 			markerType="RECTANGLE";
 			type="Tank";
@@ -1831,7 +1889,7 @@ class Mission
 		};
 		class Item1
 		{
-			position[]={12926.821,18.316219,2960.8787};
+			position[]={10740.253,139.96104,7358.4248};
 			name="FahneLKW";
 			text="Respawn - HQ";
 			type="mil_dot";
@@ -1944,7 +2002,7 @@ class Mission
 		};
 		class Item13
 		{
-			position[]={12971.809,0.11333335,2954.5994};
+			position[]={13143.697,0.19638583,2799.3296};
 			name="ammob11";
 			type="plp_icon_ammunition_big";
 			colorName="ColorRed";
@@ -1952,7 +2010,7 @@ class Mission
 		};
 		class Item14
 		{
-			position[]={12949.273,18.287239,2935.6328};
+			position[]={13084.026,18.289824,2848.7834};
 			name="HMS-GITS";
 			type="Empty";
 			colorName="ColorBlue";
@@ -2146,7 +2204,7 @@ class Mission
 		};
 		class Item37
 		{
-			position[]={12932.691,18.308979,3002.3696};
+			position[]={13078.554,0.35076886,2845.4568};
 			name="LHD1Marker";
 			text="USS NIMITZ";
 			type="plp_icon_shipCarrierBig";
@@ -2154,7 +2212,7 @@ class Mission
 		};
 		class Item38
 		{
-			position[]={12901.734,18.326645,2899.9805};
+			position[]={13106.802,0.41955277,2746.9019};
 			name="bonusveh1";
 			type="Empty";
 			colorName="ColorPink";
@@ -2162,7 +2220,7 @@ class Mission
 		};
 		class Item39
 		{
-			position[]={13145.968,18.234745,2776.8018};
+			position[]={13151.787,0.11422119,2782.8284};
 			name="bonusveh2";
 			type="Empty";
 			colorName="ColorPink";
@@ -2170,7 +2228,7 @@ class Mission
 		};
 		class Item40
 		{
-			position[]={13108.242,18.242203,2840.9485};
+			position[]={13111.567,0.19989094,2848.0151};
 			name="bonusveh3";
 			type="Empty";
 			colorName="ColorPink";
@@ -2178,7 +2236,7 @@ class Mission
 		};
 		class Item41
 		{
-			position[]={13085.854,18.233788,2881.0767};
+			position[]={13087.931,0.24718681,2887.9333};
 			name="bonusveh4";
 			type="Empty";
 			colorName="ColorPink";
@@ -2371,9 +2429,10 @@ class Mission
 		};
 		class Item11
 		{
-			position[]={12928.056,0.43206787,2995.3557};
+			position[]={13075.953,18.274796,2849.1545};
 			a=60;
 			b=170;
+			angle=-31.875799;
 			rectangular=1;
 			activationBy="ANY";
 			repeating=1;
@@ -2840,7 +2899,7 @@ class Mission
 		};
 		class Item41
 		{
-			position[]={13003.485,0.48687062,2788.1599};
+			position[]={13075.492,18.274796,2850.5793};
 			a=0;
 			b=0;
 			angle=372.27899;
@@ -2855,10 +2914,9 @@ class Mission
 		};
 		class Item42
 		{
-			position[]={10718.582,139.98328,7382.1636};
+			position[]={10715.14,139.98328,7384.5703};
 			a=5;
 			b=10;
-			angle=331.16199;
 			rectangular=1;
 			activationBy="ANY";
 			interruptable=1;

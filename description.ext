@@ -386,10 +386,16 @@ class RscTitles
           					w = 0.5;
 							h = 0.09;
                            font = "Bitstream"; 
+
                            sizeEX = 0.09; 
                            colorBackground[] = {0,0,0,0}; 
                            colorText[] = {0.5, 0.75, 0.5, 1};
                            text = "0$";
+							class Attributes
+						   {
+								align = "right";
+								valign = "middle";
+						   };
                     }; 
         	}; 
        }; 

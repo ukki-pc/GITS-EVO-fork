@@ -150,9 +150,15 @@ missionManager =
 		_markerName = format ["%1",_bunkerObject];
 		[_bunkerObject,_markerName,_markerText] call fnc_bunker_marker;
 
-		_tbox = createVehicle ["USOrdnanceBox", getpos _bunkerObject, [], 10, "NONE"];
-		[_tbox] call BIS_EVO_DropBox;
-//		[_tbox] execVM "data\scripts\dropdel.sqf";
+		//Ammobox
+		_tbox = objnull;
+
+		//Is random sometimes
+		if(ceil random(3)>2) then 
+		{
+			_tbox = createVehicle ["USOrdnanceBox", getpos _bunkerObject, [], 10, "NONE"];
+			[_tbox] call BIS_EVO_DropBox;
+		};
 
 		_tickets = maxTickets;
 		_bunkerOwner = EGG_EVO_ENEMYFACTION;
@@ -378,6 +384,7 @@ missionManager =
 		//Calc some enemy power
 		BIS_EVO_InfantrySpawn = 24 + round (aggression*0.7);
 		BIS_EVO_MechanizedSpawn = 4 + round (aggression*0.2);
+		BIS_EVO_aaSpawn = 2 + round(aggression*0.1);
 
 		radio1 setPos [(_pos select 0) + random(200) - random(200),(_pos select 1) + random(200) - random(200), 0];
 		radio1 setDammage 0;
@@ -416,6 +423,8 @@ missionManager =
 		_screenMarkers = [];
 
 		{_screenMarkers set [_forEachIndex,[_x]]}forEach bunkers;
+
+		publicVariable "bunkers";
 
 		{["fnc_broadcastScreenMarkers", [_x,_screenMarkers]] call CBA_fnc_whereLocalEvent} forEach everyPlayer;
 

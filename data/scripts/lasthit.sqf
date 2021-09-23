@@ -9,7 +9,6 @@ systemChat str _assaulter;
 if(_victim != _assaulter) then 
 	{
 	systemChat format ["%1 was hit by %2",_victim,_assaulter];
-	hitRegister = [_victim,_assaulter];
 
-	hint str hitRegister;
+	//TODO ADD LAST HITTER TO THE VEHICLE VARIABLE
 };

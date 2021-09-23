@@ -1,7 +1,7 @@
 #define tier1unlock 0
-#define tier2unlock 2
-#define tier3unlock 4
-#define tier4unlock 6
+#define tier2unlock 0
+#define tier3unlock 0
+#define tier4unlock 0
 
 //Rewards players with spawned vehicles when certain criteria is met
 fnc_rndRewardVeh = 

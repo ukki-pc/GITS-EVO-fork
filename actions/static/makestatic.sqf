@@ -14,7 +14,7 @@ Items are as follows:
 9 Foxhole
 */
 
-private ["_who","_params","_statparam","_stattype","_statpos","_laction1","_laction2","_laction3","_zvector","_dist","_mkr_name","_marker2","_custom","_zfactor"];
+private ["_who","cstatA","foxhole","_params","_statparam","_stattype","_statpos","_laction1","_laction2","_laction3","_zvector","_dist","_mkr_name","_marker2","_custom","_zfactor"];
 
 //"foxhole","cstatA"
 
@@ -27,6 +27,11 @@ _custom = 0;
 _zfactor = 1;
 _scost = 2; //cost of statics
 _statparam = 0;
+_ladder = false;
+_helperObj = "Sign_arrow_down_large_EP1";
+
+_finalPos = [];
+_finalDir = 0;
 
 if (player in list AirportIn) exitWith {hint localize "STR_M04t88"};
 //you cannot call support in the base
@@ -70,12 +75,14 @@ switch (_stattype) do
 		_statparam = 1;
 		_custom = 1;
 		_zfactor = 0;
+		_ladder = true;
 	};
 	 case "Land_ladder": //Long ladder "Land_ladder"
 	{
 		_statparam = 1;
 		_custom = 1;
 		_zfactor = 0;
+		_ladder = true;
 	};
 	 case "MK19_TriPod_US_EP1": //Grenade Launcher Nest 
 	{
@@ -217,20 +224,23 @@ switch (_custom) do
 	{
 		if (alive foxhole) then {deletevehicle foxhole};
 		Foxholeplaced = 0;
-		foxhole = _stattype createVehicle [(getposATL _who select 0) + (sin(getdir _who) * _dist), (getposATL _who select 1) + (cos(getdir _who) * _dist)];
+		foxhole = _helperObj createVehicle [(getposATL _who select 0) + (sin(getdir _who) * _dist), (getposATL _who select 1) + (cos(getdir _who) * _dist)];
 		foxhole enableSimulation false;
 		_laction1 = _who addAction ["Drop Equipment","actions\static\foxhole_placed.sqf"];
 
-		WHILE {Foxholeplaced == 0} DO
+		WHILE {sleep BIS_EVO_Framedelay; Foxholeplaced == 0} DO
 		{
 		//	foxhole lock true;
 			_zvector = ((_who weaponDirection (primaryWeapon _who)) select 2) * 3;
-			foxhole setposATL [(getposATL _who select 0) + (sin(getdir _who) * _dist), (getposATL _who select 1) + (cos(getdir _who) * _dist), (getposATL _who select 2) + _zvector + _zfactor];
+			foxhole setposATL [(getposATL _who select 0) + (sin(getdir _who) * _dist), (getposATL _who select 1) + (cos(getdir _who) * _dist), (getposATL _who select 2) + _zvector + (_zfactor)*0.5];
 			if (_stattype == "Land_fort_bagfence_round") then 
 				{foxhole setDir (getDir _who)}
 			else
 				{foxhole setDir ((getDir _who) -180)};
-			sleep 0.05;
+
+
+			_finalPos = getPosASL foxhole;
+			_finalDir = direction _who;
 			//adding to fix rocket bug
 			if not(vehicle player == player) then 
 			{
@@ -240,36 +250,55 @@ switch (_custom) do
 			};
 		};
 		//foxhole lock false;
+		deleteVehicle foxhole;
+		player playMove "AinvPknlMstpSlayWrflDnon_medic";
+		sleep 8;
+		cstatA = createVehicle [_stattype, _finalPos, [], 0, "NONE"];
+		cstatA setPosASL _finalPos;
+		cstatA setDir _finalDir;
+	
 		foxhole enableSimulation true;
 		_who removeAction _laction1;
 		foxhole addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
-
+		0 spawn {sleep 1800; deleteVehicle foxHole};
 	};
 	 case 1: //Custom static based on class
 	{
 		if (alive cstatA) then {deletevehicle cstatA};
 		StaticAplaced = 0;
-		cstatA = _stattype createVehicle [(getposATL _who select 0) + (sin(getdir _who) * _dist), (getposATL _who select 1) + (cos(getdir _who) * _dist)];
+		cstatA = _helperObj createVehicle [(getposATL _who select 0) + (sin(getdir _who) * _dist), (getposATL _who select 1) + (cos(getdir _who) * _dist)];
 		_laction1 = _who addAction ["Drop Equipment","actions\static\staticA_placed.sqf"];
 
-		WHILE {StaticAplaced == 0} DO
+
+		WHILE {sleep BIS_EVO_FrameDelay; StaticAplaced == 0} DO
 		{
 			_zvector = ((_who weaponDirection (primaryWeapon _who)) select 2) * 3;
-			cstatA setposATL [(getposATL _who select 0) + (sin(getdir _who) * _dist), (getposATL _who select 1) + (cos(getdir _who) * _dist), (getposATL _who select 2) + _zvector + _zfactor];
-			cstatA setDir (getDir _who);
-			sleep 0.05;
+			cstatA setposATL [(getposATL _who select 0) + (sin(getdir _who) * _dist), (getposATL _who select 1) + (cos(getdir _who) * _dist), (getposATL _who select 2) + _zvector + (_zfactor)*0.5];
+
+			cstatA	lock true;
+
 //adding to fix rocket bug
 			if not(vehicle player == player) then 
 			{
 				deletevehicle cstatA;
 				StaticAplaced =1;
-				player setpos [(getpos _who select 0), (getpos_who select 1),0];
+				player setpos [(getpos _who select 0), (getpos _who select 1),0];
 			};
+			_finalPos = getPosASL cstatA;
+			_finalDir = direction _who;
 		};
 		_who removeAction _laction1;
+		deleteVehicle cstatA;
 
+			player playMove "AinvPknlMstpSlayWrflDnon_medic";
+			sleep 8;
+
+		cstatA = createVehicle [_stattype, _finalPos, [], 0, "NONE"];
+		cstatA setPosASL _finalPos;
+		cstatA setDir _finalDir;
+		0 spawn {sleep 1800; deleteVehicle cstatA};
 //enable ladder adjustment
-		if(_statparam == 0 || _statparam == 1) then
+		if(_statparam == 0 and _ladder || _statparam == 1 and _ladder) then
 		{
 			_laction2 = cstatA addAction ["Rotate ladder","actions\static\lad_switch.sqf",cstatA,1,false];
 			cstatA addAction ["Raise ladder","actions\static\lad_higher.sqf",0,1,false];
@@ -297,12 +326,11 @@ switch (_custom) do
 			_txtpassbody = format["+%1 %2",(-_scost),localize "STR_M04t0_5"];//points
 			["#0000FF",_txtpasshead,_txtpassbody] call BIS_EVO_Message;
 		};
-		cstatA addEventHandler ["killed", {handle = [_this select 0, _this select 1] execVM "data\scripts\mobjbury.sqf"}];
 	};
 
 	 case 3: //Exit because tried to call a static weapon without the correct weapon
 	{
-		exit
+	
 	};
 
 };

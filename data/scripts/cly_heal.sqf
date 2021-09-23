@@ -111,6 +111,9 @@ if (alive _caller) then {
 			_healee setHit ["legs",_caller getVariable "CLY_healdamage"];
 			_caller setVariable ["CLY_healings",(_caller getVariable "CLY_healings")-1,true];
 		};
+
+		["fnc_hudMessage", [_caller, "Healing",100]] call CBA_fnc_whereLocalEvent;
+		["jed_addMoney", [_caller, 100]] call CBA_fnc_whereLocalEvent;
 	//Interrupt healing
 	} else {
 		_caller setVariable ["CLY_healinterrupt",false];

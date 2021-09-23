@@ -1,5 +1,6 @@
 //Common functions for clients only
 
+allBunkerControls = ["screenobj1","screenobj2","screenobj3","screenobj4"];
 
 //Runs in the background to draw world object positions to ui elements on screen
 fnc_marker_screen = 
@@ -23,6 +24,7 @@ fnc_marker_screen =
 			 _ctrl ctrlCommit 0;
 		}forEach _objects;
 
+	disableSerialization;
 	while{sleep 0.016; BIS_EVO_MissionProgress != -1} do 
 	{
 		_draw = (!(visibleMap) and (player distance _currentTownPos < screenCtrlMaxDist));
@@ -81,6 +83,7 @@ fnc_clientHudMessage =
 
 //Broadcasts hud messages for players
 ["fnc_ctrlChangeColor", {
+	disableSerialization;
 	_ctrlN = _this select 1;
 	_color = _this select 2;
 	_ctrl = (uiNamespace  getVariable _ctrlN);
@@ -116,7 +119,7 @@ fnc_clientHudMessage =
 //Server side score addition
    ["jed_addscore", {(_this select 0) addScore (_this select 1)}] call CBA_fnc_addEventHandler;
 //Bandage init
-[player,0.2,0.15,-1,true] execVM "data\scripts\cly_heal.sqf";
+[player,0.2,0,-1,true] execVM "data\scripts\cly_heal.sqf";
 
 //Systemchat message
 ["jed_msg", {
@@ -172,11 +175,7 @@ _objId = _this select 0;
 
 //Just update the money
 ["jed_updMoney", {
-	_player = _this select 0;
-	if(name _player == name player) then 
-	{
-		(uiNameSpace getVariable "myUI_DollarTitle") ctrlSetText format ["$%1",money];
-	};
+	(uiNameSpace getVariable "myUI_DollarTitle") ctrlSetText format ["$%1",money];
 }] call CBA_fnc_addLocalEventHandler;
 
 ["jed_getMoney", {
@@ -199,6 +198,6 @@ _objId = _this select 0;
 
 ["fnc_broadcastScreenMarkers", {
     _screenMarkers = _this select 1;
-    systemChat str "broadcasting screen markers";
+
 	[_screenMarkers] spawn fnc_marker_screen;
 }] call CBA_fnc_addLocalEventHandler;

@@ -13,9 +13,16 @@ BIS_EVO_airspawnfreqa = 60; //longest sleep = easier
 BIS_EVO_airspawnfreqb = 45;
 BIS_EVO_airspawnfreqa = 30;// shortest sleep = harder
 
-//Counters for identifying player strategy
-EGG_EVO_airAggression = 0;
-EGG_EVO_groundAggression = 0;
+//AIR,AA,AT,ARTY,TANK,INF,MECH,SEA
+//strategicResponse = [0,0,0,0,0,0,0,0];
+aggression = 0;
+AIRaggr=100;
+AAaggr=1000;
+ATaggr=100;
+ARTYaggr=100;
+TANKaggr=100;
+INFaggr=100;
+MECHaggr=100;
 
 bank = [];
 
@@ -98,6 +105,16 @@ EGG_EVO_LoadGame = paramsArray select 23;
 
 hitMarker = true;
 
+Carrier = false;
+if !(isNull LHD) then {Carrier = true;
+"LHD1Marker" setMarkerPos getPos LHD;
+}
+else 
+{
+	deleteMarker "LHD1Marker";
+	deleteMarker "ammob11";
+};
+
 if (editor == 1) then
 {
 	onMapSingleClick "if (_alt) then {vehicle player setpos _pos;{vehicle _x setpos _pos} forEach _units}";
@@ -155,9 +172,6 @@ respawnPoint = "Respawn_West";
 publicVariable "spawntype";
 
 //if(carrier) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" select 0),(getMarkerPos "FahneLKW" select 1),18];};
-
-
-allBunkerControls = ["screenobj1","screenobj2","screenobj3","screenobj4"];
 
 //if (spawntype == 1) then {"FahneLKW" setMarkerPos };
 
@@ -262,7 +276,7 @@ BIS_EVO_Mechanized = [[8,8],[12,10],[16,14],[19,14],[19,14],[19,14],[19,14],[21,
 BIS_EVO_InfantrySpawn = 42;
 BIS_EVO_InfantryTarget = 40;
 
-BIS_EVO_MechanizedSpawn = 8;
+BIS_EVO_MechanizedSpawn = 4;
 BIS_EVO_MechanizedTarget = 8;
 
 BIS_EVO_vdist=viewparam;                          // clients saved view distance
@@ -329,10 +343,9 @@ BIS_EVO_Objective12 = taskNull; //
 
 defenceReady = false; //Avoid certain events during objective population
 
-money = 20;
+money = 2000;
 playerRank = 0;
 perkPoints = 2;
-aggression = 0;
 eResupplying = false;
 
 //List of vehicles that are unlocked through objective capture

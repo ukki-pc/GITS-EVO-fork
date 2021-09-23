@@ -73,7 +73,7 @@ _haveinit = if (count _this > 6) then {true} else {false};
 //Respawn count override
 if(isNil "BIS_EVO_vehRespawnCount") then {_respawns = -1}
 else {_respawns = BIS_EVO_vehRespawnCount};
-§
+
 _hasname = false;
 _unitname = vehicleVarName _unit;
 if (isNil _unitname) then {_hasname = false;} else {_hasname = true;};

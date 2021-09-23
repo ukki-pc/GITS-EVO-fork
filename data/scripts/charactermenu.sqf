@@ -21,6 +21,7 @@ deleteVehicle _ogObj;
 //create new unit with correct name for evo
 _model = _this select 0;
 _unit = player;
+_side = side player;
 _plyName = name player;
 _oldGroup = group player;
 _grpUnits = units _oldGroup;
@@ -30,10 +31,8 @@ _group = grpNull;
 _nname = format ["engw%1",(owner player)+1];
 _nunit = objNull;
 
-
 _group = createGroup EGG_EVO_PLAYERFACTION;
 _nunit = _group createUnit [_model,position player,[],0,"NONE"];
-
 
 
 //switch into new unit
@@ -43,7 +42,6 @@ selectPlayer _nunit;
 
 _nunit setVehicleInit format ["%1 = this; this setVehicleVarName ""%1""",_nname];
 processInitCommands;
-
 //delete old unit
 sleep 0.1;
 removeSwitchableUnit _unit;
@@ -58,7 +56,7 @@ _nunit join _oldGroup;
 };
 
 //move unit back to spawn location and initialise them
-_nunit = _this select 0;
+//_nunit = _this select 0;
 
 //markme = [_nunit] execVM "data\scripts\update.sqf";
 sleep 0.1;
