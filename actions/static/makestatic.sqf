@@ -224,7 +224,7 @@ switch (_custom) do
 	{
 		if (alive foxhole) then {deletevehicle foxhole};
 		Foxholeplaced = 0;
-		foxhole = _helperObj createVehicle [(getposATL _who select 0) + (sin(getdir _who) * _dist), (getposATL _who select 1) + (cos(getdir _who) * _dist)];
+		foxhole = _helperObj createVehicleLocal [(getposATL _who select 0) + (sin(getdir _who) * _dist), (getposATL _who select 1) + (cos(getdir _who) * _dist)];
 		foxhole enableSimulation false;
 		_laction1 = _who addAction ["Drop Equipment","actions\static\foxhole_placed.sqf"];
 
@@ -266,7 +266,7 @@ switch (_custom) do
 	{
 		if (alive cstatA) then {deletevehicle cstatA};
 		StaticAplaced = 0;
-		cstatA = _helperObj createVehicle [(getposATL _who select 0) + (sin(getdir _who) * _dist), (getposATL _who select 1) + (cos(getdir _who) * _dist)];
+		cstatA = _helperObj createVehicleLocal [(getposATL _who select 0) + (sin(getdir _who) * _dist), (getposATL _who select 1) + (cos(getdir _who) * _dist)];
 		_laction1 = _who addAction ["Drop Equipment","actions\static\staticA_placed.sqf"];
 
 

@@ -24,6 +24,8 @@ TANKaggr=100;
 INFaggr=100;
 MECHaggr=100;
 
+weaponsNamespace = [];
+
 bank = [];
 
 /////////////////Dwarden fixing fire in the sky bug
@@ -70,7 +72,7 @@ editor = 1; publicVariable "editor";
 R3F_LOG_mutex_local_verrou = false;
 
 if(editor == 0) then {
-spawntype = param1;
+hardcore = param1;
 LHDCarrier = paramsArray select 1;
 EVOhour = paramsArray select 2;
 grasslevel = paramsArray select 3;
@@ -120,7 +122,7 @@ if (editor == 1) then
 	onMapSingleClick "if (_alt) then {vehicle player setpos _pos;{vehicle _x setpos _pos} forEach _units}";
 	player allowDamage false;
 	Param1 = 0;
-	spawntype = 0;
+	hardcore = 0;
 	LHDCarrier = 1;
 	helicopterhitch = 2;
 	EVOhour = 9;
@@ -138,7 +140,7 @@ if (editor == 1) then
 	rankscore = 5000;
 	//adding	
 	helpersparam =2;
-deathScorePenalty = 0;
+	deathScorePenalty = 0;
 	//"Free & Bases","Bases & Towns Free","Bases free & Towns cost","Costs everywhere"
 	recruitPlaces = 1;
 	perkparam = 1;
@@ -169,11 +171,14 @@ BIS_EVO_rank6 = (rankscore * 6);
 
 //Respawn settings
 respawnPoint = "Respawn_West";
-publicVariable "spawntype";
+publicVariable "hardcore";
 
 //if(carrier) then {"Respawn_west" setMarkerPos [(getMarkerPos "FahneLKW" select 0),(getMarkerPos "FahneLKW" select 1),18];};
 
-//if (spawntype == 1) then {"FahneLKW" setMarkerPos };
+if (hardcore == 1) then 
+{
+
+};
 
 enableEnvironment true;
 
@@ -403,6 +408,12 @@ missionNamespace setVariable ["HCExtHideStatsOnEnemySides", false];
 
 [] execVM "HCfunc\HCrep\InitHC.sqf";
 };
+luatikko = "LENL119box" createVehicleLocal (getMarkerPos "ammob1");
+clearMagazineCargo luatikko; clearWeaponCargo luatikko;
+weaponBoxes = [luatikko];
+allMagazines = [];
+magazineBanList = ["EB_2000Rnd_762x51_NATO_Ball","EB_3000Rnd_762x51_NATO_Ball","EB_4200Rnd_762x51_NATO_Ball"];
+
 
 RHQMarkers = [];
 inFarp = false;
@@ -412,6 +423,7 @@ canAmmo = false;
 canFasttravel = false;
 canRecruit = false;
 
+startingTowns = [objective_49];
 BIS_EVO_MissionTowns = [];
 BIS_EVO_MissionBigTowns = [];
 BIS_EVO_MilitaryObjectives = [];
@@ -421,7 +433,8 @@ BIS_EVO_MissionObjMarkers = [];
 BIS_EVO_MissionTownNames = [];
 BIS_EVO_MissionTownInfGarrisons = [];
 BIS_EVO_MissionTownVecGarrisons = [];
-BIS_EVO_conqueredTowns = [objective_26];
+
+BIS_EVO_conqueredTowns = startingTowns; //Set starting town
 
 if(isServer) then {
 
@@ -941,4 +954,11 @@ publicVariable "BIS_EVO_MissionTownNames";
 publicVariable "BIS_EVO_MissionTownInfGarrisons";
 publicVariable "BIS_EVO_MissionTownVecGarrisons";
 publicVariable "BIS_EVO_conqueredTowns";
-hint "reti";
+
+sleep 10;
+
+_firstCity = objective_42;
+
+_cityNum=BIS_EVO_MissionTowns find _firstCity;
+
+  ["jed_missionManager", [_cityNum]] call CBA_fnc_globalEvent;

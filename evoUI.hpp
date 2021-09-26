@@ -309,6 +309,15 @@ class evoUI
 		 		text = "Perks";
 		 		onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,true,false,0,false];[] call BIS_EVO_ListUpdate";
 	       };
+
+		   	class BWeapons: RscIGUIShortcutButton
+	       {
+		  idc = 669;
+		 		x = 0.29;
+				y = 0.823977;
+		 		text = "Weapons";
+		 		onButtonClick = "closeDialog 1; createDialog 'WeaponshopUi';";
+	       };
 		  
 	      class BOptions: RscIGUIShortcutButton
 	      {
@@ -628,6 +637,10 @@ class evoUI
 	};
 };
 
+#define wepButCatX 0.5
+#define wepButCatY 0.15
+#define wepButPadding 0.05
+
 class WeaponShopUI 
 {
 	idd = 177;
@@ -640,7 +653,8 @@ class WeaponShopUI
 	__EXEC( _windowWidth = 101; _windowHeight = 64;)
 	__EXEC( _windowBorder = 1;)
 
-	class controlsBackground {
+	class controlsBackground 
+	{
 		class Mainback : RscPicture 
 		{
 			idc = 1104;
@@ -660,28 +674,29 @@ class WeaponShopUI
 		text = "\ca\ui\data\igui_background_debriefing_ca.paa";
 		colorText[] = {0.3, 0.3, 0.3, 0.6};
 		};
-		class ListbackMain : DesTitleMain  
+		class ListbackWeapon : DesTitleMain  
 		{
 			idc = 101;
 			x = 0.0506555;
-			y = 0.2;
-			w = 0.4;
-			h = 0.6;
+			y = 0.15;
+			w = 0.55;
+			h = 0.74;
 			text = "\ca\ui\data\igui_background_debriefing_ca.paa";
+			colorText[] = {0.5, 0.5, 0.5, 0.7};
 		};
 	};
 
 	class controls
 
 	{
-		class Available_items: RscIGUIListBox
+		class available_weapons: RscIGUIListBox
 		{
 			idc = 4000;
 			default = 1;
 			x = 0.0506555;
-			y = 0.22;
-			w = 0.8;
-			h = 0.6;
+			y = 0.185;
+			w = 0.438;
+			h = 0.64;
 			//lineSpacing = 0;
 			onLBSelChanged = "[] call BIS_EVO_ListSelect";
 			onLBDblClick = "[] call BIS_EVO_ActButton";
@@ -692,25 +707,101 @@ class WeaponShopUI
 			xcolumn1 = "0.1f";
 			xcolumn2 = "0.25f";
 			xcolumn3 = "0.85f";		
+			columns[] = {0.3, 0.6, 0.7}; 
 		};
 
-		  class BMulti: RscIGUIShortcutButton // GLOBAL ACTIONS
+		  class BMulti: RscIGUIShortcutButton 
 	      {
 			 idc = 8056;
-			x = 0.11;
-			y = 0.60;
-				//w = __EVAL(20 * _xSpacing);
-				//h = __EVAL(4 * _ySpacing);
-				//colorActive[] = CA_UI_green;
-				text = "Purchase";
-				onButtonClick = "[] call BIS_EVO_ActButton";	
+			x = wepButCatX;
+			y = wepButCatY;
+				text = "Assault Rifles";
+				onButtonClick = "lbSetCurSel[4000,0]; Wpage = 0;[] call BIS_EVO_ListUpdate";	
 	      };
-		 class BGroup: BMulti
+
+		class BMulti2: BMulti
 	      {
-				idc = 659;
-				y = 0.805;
-				text = $STR_M04xt11;
-				onButtonClick = "lbSetCurSel[2000,0];Wpage = 0;[] call BIS_EVO_ListUpdate";
+			x = wepButCatX;
+			y = wepButCatY+(wepButPadding*1);
+				text = "SMG";
+				onButtonClick = "lbSetCurSel[4000,0];Wpage = 1;[] call BIS_EVO_ListUpdate";	
+	      };
+		class BMulti3: BMulti
+	      {
+			x = wepButCatX;
+			y = wepButCatY+(wepButPadding*2);
+			text = "Shotguns";
+			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 2;[] call BIS_EVO_ListUpdate";		
+	      };
+		class BMulti4: BMulti
+	      {
+			x = wepButCatX;
+			y = wepButCatY+(wepButPadding*3);
+			text = "Pistols";
+			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 3;[] call BIS_EVO_ListUpdate";		
+	      };
+		  		class BMulti5: BMulti
+	      {
+			x = wepButCatX;
+			y = wepButCatY+(wepButPadding*4);
+			text = "Rifles";
+			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 4;[] call BIS_EVO_ListUpdate";	
+	      };
+		  		  		class BMulti6: BMulti
+	      {
+			x = wepButCatX;
+			y = wepButCatY+(wepButPadding*5);
+			text = "Launchers";
+			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 5;[] call BIS_EVO_ListUpdate";	
+	      };
+		class BMulti7: BMulti
+	      {
+			x = wepButCatX;
+			y = wepButCatY+(wepButPadding*6);
+			text = "Machine Guns";
+			onButtonClick = "lbSetCurSel[4000,0];Wpage = 6;[] call BIS_EVO_ListUpdate";		
+	      };
+		  	class BMulti8: BMulti
+	      {
+			x = wepButCatX;
+			y = wepButCatY+(wepButPadding*7);
+			text = "Misc";
+			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 7;[] call BIS_EVO_ListUpdate";		
+	      };
+		class weaponPreview : Vendor_Title
+		{
+			idc = 4003;
+			x = 0.72;
+			y = 0.625;
+			w = 0.035;
+			h = 0.035;
+			text = ;
+			colorText[] = {0.6, 0.839, 0.47, 0.55};
+		};
+		class wepMoney : RscText
+		{
+			idc = 2003;
+			x = 0.0506555;
+			y = 0.1;
+			w = 1;
+			h = __EVAL(3 * _ySpacing);
+			colorText[] = Color_White;
+			sizeEx = 0.03;
+			text = "Your money: 2000";
+		};
+		class WPClose: RscIGUIShortcutButton // Close
+	      {
+		 idc = 662;
+				//x = __EVAL(_xInit + (102 * _xSpacing));
+				//y = __EVAL(_yInit + (54 * _ySpacing));
+				x = 0.771248;
+				y = 0.863977;
+				//w = __EVAL(16 * _xSpacing);
+				//h = __EVAL(4 * _ySpacing);
+				//color[] = Color_Black;
+				//colorActive[] = CA_UI_green;
+				text = $STR_M04t136;
+				onButtonClick = "GetoutClick = true; BtnClick = true";
 	      };
 	};
 };

@@ -56,6 +56,11 @@
 			_markerobj setMarkerType  "plp_icon_storage1";
 			_markerobj setMarkerSize [1,1];
 		};
+		if(_currentTown in startingTowns) then 
+		{
+			_markerobj setMarkerType  "plp_icon_camp";
+			_markerobj setMarkerSize [1,1];
+		};
 	};
 }forEach BIS_EVO_MissionTowns;
 
@@ -115,7 +120,7 @@ updCityMarkers =
 			// _objInd = (BIS_EVO_MissionBigTowns + BIS_EVO_MilitaryObjectives )  find (_currentTown);
 			// _vec = BIS_EVO_unlocks select _objInd;
 			// if !(_vec in BIS_EVO_unlocked) then {BIS_EVO_unlocked = BIS_EVO_unlocked + [_vec]; publicVariable "BIS_EVO_unlocked"};
-			_dispname = [_vec,"displayName"] call fnc_getCfgText;
+			//_dispname = [_vec,"displayName"] call fnc_getCfgText;
 			_markerobj setMarkerType  "plp_icon_building";
 		};
 		if(_currentTown in BIS_EVO_MilitaryObjectives)
@@ -125,7 +130,7 @@ updCityMarkers =
 			// //_objInd = 
 			// _vec = BIS_EVO_unlocks select _objInd;
 			// if !(_vec in BIS_EVO_unlocked) then {BIS_EVO_unlocked = BIS_EVO_unlocked + [_vec]; publicVariable "BIS_EVO_unlocked"};
-			_dispname = [_vec,"displayName"] call fnc_getCfgText;
+			//_dispname = [_vec,"displayName"] call fnc_getCfgText;
 			_markerobj setMarkerType  "plp_icon_storage1";
 		};
 	};

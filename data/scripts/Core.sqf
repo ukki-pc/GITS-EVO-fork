@@ -1459,6 +1459,7 @@ BIS_EVO_ActButton = {
                 // lbSetPicture [2000, _index, _pic];
                 ctrlSetText[2001, Format["%1: %2", localize "STR_M04t132", 0]]; //Cost
                 ctrlSetText[2011, format["You bought: %1", getText(configFile >> "CfgVehicles" >> _item >> "displayName")]];
+                playSound "caching";
                 ["jed_addMoney", [_ap, (round - (mcost))]] call CBA_fnc_whereLocalEvent;
                 //player addscore round -(mcost*EX_EVO_vehPriceMultiplier);
                 ctrlSetText[2003, Format["%1: %2", localize "STR_M04t134", (money)]]; //Score
@@ -1837,8 +1838,8 @@ BIS_EVO_ListSelect = {
 
             ctrlSetText[2001, Format["%1: %2", localize "STR_M04t132", round(_itemPrice * EX_EVO_vehPriceMultiplier)]];
             _upgCount = [_itemClass] call fnc_countUpgrades;
-            _name = [_itemClass, "displayName"] call fnc_getCfgText;
-            _armor = [_itemClass, "armor"] call fnc_getCfgNumber;
+            _name = [_itemClass, "displayName","CfgVehicles"] call fnc_getCfgText;
+            _armor = [_itemClass, "armor","CfgVehicles"] call fnc_getCfgNumber;
             _text = format["Price: %2\nVariants available: %1\nArmor: %3", _upgCount, round(_itemPrice * EX_EVO_vehPriceMultiplier), _armor];
             ctrlSetText[2010, _name];
             ctrlSetText[2011, _text];

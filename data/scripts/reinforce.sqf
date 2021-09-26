@@ -188,7 +188,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 			eResupplying = false;
 	};
 
-
+/*
 	BIS_EVO_MI17support =
 	{	
 		private ["pos","_unit","_vec","_heli0","_max","_maxv","_alist","_allunits2","_allvecs2","_pilot","_para","_radio","_posback","_pos1","_pos2","_sumark","_wp","_wp2","_wpx2","_i","_recy"]; 
@@ -234,6 +234,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 
 		waitUntil {(_heli0 distance _pos) < (random 200) or not (canmove _heli0)};
 
+
 		if (canmove _heli0) then 
 		{
 			_para = createGroup (EGG_EVO_ENEMYFACTION);
@@ -268,6 +269,96 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		if (!isNull _unit) then {deleteVehicle _unit};
 		deleteGroup _pilot;
 	};
+*/
+
+	BIS_EVO_rappelSupport =
+	{	
+		private ["pos","_unit","_vec","_heli0","_max","_maxv","_alist","_allunits2","_allvecs2","_pilot","_para","_radio","_posback","_pos1","_pos2","_sumark","_wp","_wp2","_wpx2","_i","_recy"]; 
+		_pos = objNull;
+		_unit = objNull;
+		_vec = objNull;
+		_heli0 = objnull;
+		_max = objnull;
+		_maxv = objnull;
+		_alist = BIS_EVO_DetectEnemy;
+		_allunits2 = EGG_EVO_enemy1;
+		_max = count _allunits2;
+		_radio = radio1;
+		_curTown =  BIS_EVO_MissionTowns select BIS_EVO_MissionProgress;
+		_objPos = position _curTown;
+		_pos = _objPos;
+		_posback = getmarkerpos "EnemyAir03";
+		_pilot = createGroup (EGG_EVO_ENEMYFACTION);
+		(EGG_EVO_mepilot select 0) createUnit [getmarkerpos "centerp", _pilot];Sleep BIS_EVO_GlobalSleep;
+		(EGG_EVO_mepilot select 0) createUnit [getmarkerpos "centerp", _pilot];Sleep BIS_EVO_GlobalSleep;
+		_pos1 = [(_pos select 0)-2000 -(random 2000),(_pos select 1)+2000 -(random 3000),(200 + random 100)];
+		_pos2 = [(_pos select 0)+2000 +(random 2000),(_pos select 1)+2000 -(random 3000),(200 + random 100)];
+		_allvecs2 = EGG_EVO_rappelChoppers;
+		_maxv = count _allvecs2;
+		_heli0 = createVehicle [(_allvecs2 select round random (_maxv - 1)),_pos1, [], 500, "FLY"];Sleep BIS_EVO_GlobalSleep;
+		_heli0 setpos [getpos _heli0 select 0, getpos _heli0 select 1, 200];
+		_heli0 setdir (random 359);
+		_heli0 engineon true;
+		(units _pilot select 0) assignAsDriver _heli0;
+		(units _pilot select 1) assignAsGunner _heli0;
+		(units _pilot select 0) moveInDriver _heli0;
+		(units _pilot select 1) moveInGunner _heli0;
+		//[_unit, _string, _color, _markerType, _enableDir]
+		_sumark = [_heli0,"","ColorRed","plp_icon_helicopterCargo",true] execVM "data\scripts\customMarker.sqf";
+		_heli0 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
+		_wp = _pilot addWaypoint [_pos, 10];
+		{_x setBehaviour "careless"} forEach (units _pilot);
+
+		(driver _heli0) commandMove _pos;
+		(driver _heli0) doMove _pos;
+		_heli0 flyInHeight 35;
+
+			_para = createGroup (EGG_EVO_ENEMYFACTION);
+			_count = 5;
+			_i = 0;
+			while {_i <= _count} do 
+			{
+				_pos = position _heli0;
+				_unit = _para createUnit [_allunits2 select (round (random (_max - 1))), [0,0,0], [], 300, "NONE"];
+				_unit setSkill skillfactor+(random 0.2);
+				_unit addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
+				[_unit] join _para;
+				_unit moveInCargo _heli0;
+				sleep 0.7;
+				_i = _i + 1;
+			};
+
+	  waitUntil{sleep 1; ((getpos _heli0) distance (waypointPosition _wp) < 100) or (speed _heli0 < 10) or !(canMove _heli0)};
+
+	_heli0 flyInHeight 35;
+
+    if(!canMove _heli0) exitWith{};
+    nul = [_heli0, 1, 25,"data\scripts\gokys.sqf",30] execVM "fastRope\NORRN_fastRope_init.sqf";
+
+			{_x setBehaviour "combat"; _x addmagazine "EB_molotov_mag"} forEach (units _para);
+			[position _alist,_para,_objPos,_alist] call BIS_EVO_Erefway;
+//adding
+			_recy = [objnull,_para] execVM "data\scripts\grecycle.sqf";
+			// sleep 10;
+			// _wpx2 = _pilot addWaypoint [_posback, 20];
+			// [_pilot, 2] setWaypointType "MOVE";
+			// (driver _heli0) commandMove _posback;
+			// (driver _heli0) doMove _posback;
+
+    sleep 90;
+
+
+    _dist = (getpos _heli0) distance (waypointPosition _wp);
+
+    if(_dist < 300) then 
+    {
+		systemChat "I should kys";
+		_wp setWaypointPosition [[0,0],1];
+		_nul = [_heli0] execVM "data\scripts\gokys.sqf";
+		(driver _heli0) commandMove _pos;
+		(driver _heli0) doMove _pos;
+	};
+};
 	
 	EGG_EVO_mecreinf = 
 	{
@@ -338,7 +429,6 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_recy = [objnull,_guardm] execVM "data\scripts\grecycle.sqf";
 	};
 
-
 if ( (_curtownInf <= _basetownInf) and (reinforcements) ) then 
 {
 	_tag = "INF";	
@@ -347,7 +437,7 @@ if ( (_curtownInf <= _basetownInf) and (reinforcements) ) then
 	//No choppy choppies in villages
 	if !(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress in BIS_EVO_MissionVillages) then 
 	{
-		[] spawn BIS_EVO_MI17support;
+		[] spawn BIS_EVO_rappelSupport;
 //		(BIS_EVO_Infantry select BIS_EVO_MissionProgress) set [0, (_curtownInf*enemynumdiv)+6];
 	};
 

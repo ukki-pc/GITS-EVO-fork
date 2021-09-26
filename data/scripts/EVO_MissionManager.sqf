@@ -74,10 +74,12 @@ missionManager =
 		_bunkerMarker = createMarker[_markerName,getpos _bunker];
 		_bunkerMarker setMarkerColor "ColorRED";
 		_bunkerMarker setMarkerType _mrktype;
+
+		_allPlayers = everyPlayer;
 		_controlName = allBunkerControls select (bunkers find _bunker);
 		{
 			["fnc_ctrlChangeColor", [_x, _controlName,[0.62, 0, 0, 1]]] call CBA_fnc_whereLocalEvent;
-		}forEach everyPlayer;
+		}forEach _allPlayers;
 		_bunkerMarker setMarkerText _markerText;
 	};
 

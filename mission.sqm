@@ -87,7 +87,7 @@ class Mission
 				{
 					presenceCondition="false";
 					position[]={12880.606,0.31458616,2951.9631};
-					id=18;
+					id=16;
 					side="LOGIC";
 					vehicle="Logic";
 					leader=1;
@@ -105,7 +105,7 @@ class Mission
 				class Item0
 				{
 					position[]={1034.688,0.17136933,1399.8193};
-					id=19;
+					id=17;
 					side="LOGIC";
 					vehicle="Logic";
 					leader=1;
@@ -123,7 +123,7 @@ class Mission
 				class Item0
 				{
 					position[]={1824.2681,0.13919163,1367.2043};
-					id=20;
+					id=18;
 					side="LOGIC";
 					vehicle="Logic";
 					leader=1;
@@ -143,7 +143,7 @@ class Mission
 				{
 					presenceCondition="false";
 					position[]={1546.3949,0.31514353,1155.8997};
-					id=37;
+					id=35;
 					side="LOGIC";
 					vehicle="BIS_ARTY_Logic";
 					leader=1;
@@ -161,7 +161,7 @@ class Mission
 				class Item0
 				{
 					position[]={1674.2615,0.24772418,1155.8997};
-					id=38;
+					id=36;
 					side="LOGIC";
 					vehicle="FunctionsManager";
 					leader=1;
@@ -180,7 +180,7 @@ class Mission
 				class Item0
 				{
 					position[]={1134.7262,0.26931953,1165.2551};
-					id=39;
+					id=37;
 					side="LOGIC";
 					vehicle="BIS_clouds_Logic";
 					leader=1;
@@ -197,9 +197,9 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={10718.077,139.98328,7383.4536};
+					position[]={3007.4094,14.590175,2253.0476};
 					azimut=421.69556;
-					id=41;
+					id=39;
 					side="EAST";
 					vehicle="TK_Soldier_Engineer_EP1";
 					player="PLAY CDG";
@@ -217,9 +217,9 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={10718.369,139.98328,7382.6558};
+					position[]={3007.7004,14.606662,2252.2488};
 					azimut=421.69601;
-					id=42;
+					id=40;
 					side="EAST";
 					vehicle="TK_Soldier_Engineer_EP1";
 					player="PLAY CDG";
@@ -238,9 +238,9 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={10717.116,139.98328,7381.9341};
+					position[]={3006.4485,14.523405,2251.5281};
 					azimut=694.62402;
-					id=45;
+					id=43;
 					side="WEST";
 					vehicle="US_Soldier_EP1";
 					player="PLAYER COMMANDER";
@@ -258,9 +258,9 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={10717.313,139.98328,7383.5298};
+					position[]={3006.6458,14.566116,2253.1218};
 					azimut=331.16269;
-					id=46;
+					id=44;
 					side="WEST";
 					vehicle="US_Soldier_EP1";
 					player="PLAY CDG";
@@ -280,7 +280,7 @@ class Mission
 				class Item0
 				{
 					position[]={11446.122,0.67916644,10630.906};
-					id=47;
+					id=45;
 					side="LOGIC";
 					vehicle="Logic";
 					leader=1;
@@ -298,14 +298,14 @@ class Mission
 				class Item0
 				{
 					position[]={10575.813,122.9685,9553.7783};
-					id=52;
+					id=50;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective";
 					init="this setVariable [""type"",""city""]; this setVariable [""name"",""Paraiso""]; ";
-					synchronizations[]={54,53,59};
+					synchronizations[]={52,51,57};
 				};
 			};
 		};
@@ -318,14 +318,14 @@ class Mission
 				class Item0
 				{
 					position[]={9527.9424,139.98335,9974.7383};
-					id=53;
+					id=51;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_1";
 					init="this setVariable [""type"",""military""]; this setVariable [""name"",""Paraiso International Airport""]; ";
-					synchronizations[]={54,52,55,59};
+					synchronizations[]={52,50,53,57};
 				};
 			};
 		};
@@ -338,14 +338,14 @@ class Mission
 				class Item0
 				{
 					position[]={9697.8359,15.009979,11021.485};
-					id=54;
+					id=52;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_2";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Rashidah""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={55,52,53};
+					synchronizations[]={53,50,51};
 				};
 			};
 		};
@@ -357,15 +357,15 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={8301.4922,6.95755,9633.3096};
-					id=55;
+					position[]={8234.0361,6.957799,9645.6914};
+					id=53;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_3";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Playa de Palomas""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={54,57,53,56};
+					synchronizations[]={52,55,51,54};
 				};
 			};
 		};
@@ -378,14 +378,14 @@ class Mission
 				class Item0
 				{
 					position[]={7358.7266,4.8102865,8696.8076};
-					id=56;
+					id=54;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_6";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Cedras""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={58,57,55};
+					synchronizations[]={56,55,53};
 				};
 			};
 		};
@@ -398,14 +398,14 @@ class Mission
 				class Item0
 				{
 					position[]={8174.8789,10.661384,9011.8164};
-					id=57;
+					id=55;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_5";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Chantico""];";
-					synchronizations[]={55,56,60,62};
+					synchronizations[]={53,54,58,60};
 				};
 			};
 		};
@@ -417,15 +417,15 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={6858.1504,8.1411829,8093.3394};
-					id=58;
+					position[]={6851.916,7.9573522,8086.4829};
+					id=56;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_4";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Estrella""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={56};
+					synchronizations[]={54};
 				};
 			};
 		};
@@ -438,14 +438,14 @@ class Mission
 				class Item0
 				{
 					position[]={9808.1074,171.65894,8691.2695};
-					id=59;
+					id=57;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_9";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Yoro""]; ";
-					synchronizations[]={60,52,53};
+					synchronizations[]={58,50,51};
 				};
 			};
 		};
@@ -458,14 +458,14 @@ class Mission
 				class Item0
 				{
 					position[]={9114.166,163.96231,8307.9717};
-					id=60;
+					id=58;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_10";
 					init="this setVariable [""type"",""city""]; this setVariable [""name"",""Somato""]; ";
-					synchronizations[]={59,57,61,62,112};
+					synchronizations[]={57,55,59,60,110};
 				};
 			};
 		};
@@ -478,14 +478,14 @@ class Mission
 				class Item0
 				{
 					position[]={8906.6621,171.61206,7752.4727};
-					id=61;
+					id=59;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_11";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Gulan""]; ";
-					synchronizations[]={60,62,63};
+					synchronizations[]={58,60,61};
 				};
 			};
 		};
@@ -498,14 +498,14 @@ class Mission
 				class Item0
 				{
 					position[]={8150.8438,176.97188,7821.3105};
-					id=62;
+					id=60;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_12";
 					init="this setVariable [""type"",""military""]; this setVariable [""name"",""Shootin Range""]; ";
-					synchronizations[]={61,60,57};
+					synchronizations[]={59,58,55};
 				};
 			};
 		};
@@ -518,14 +518,14 @@ class Mission
 				class Item0
 				{
 					position[]={9326.6885,45.982105,5952.2588};
-					id=63;
+					id=61;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_13";
 					init="this setVariable [""type"",""city""]; this setVariable [""name"",""Cayo""]; ";
-					synchronizations[]={61,73,64,74,72,110,111};
+					synchronizations[]={59,71,62,72,70,108,109};
 				};
 			};
 		};
@@ -538,14 +538,14 @@ class Mission
 				class Item0
 				{
 					position[]={11463.038,23.649752,6125.666};
-					id=64;
+					id=62;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_14";
 					init="this setVariable [""type"",""city""]; this setVariable [""name"",""Dolores""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={63,65,75,98,104,106,108,105,107,109};
+					synchronizations[]={61,63,73,96,102,104,106,103,105,107};
 				};
 			};
 		};
@@ -558,14 +558,14 @@ class Mission
 				class Item0
 				{
 					position[]={12331.982,15.037748,7191.9067};
-					id=65;
+					id=63;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_15";
 					init="this setVariable [""type"",""city""]; this setVariable [""name"",""Ortego""]; ";
-					synchronizations[]={64,75,95};
+					synchronizations[]={62,73,93};
 				};
 			};
 		};
@@ -578,14 +578,14 @@ class Mission
 				class Item0
 				{
 					position[]={13050.505,19.963209,8848.4658};
-					id=66;
+					id=64;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_16";
 					init="this setVariable [""type"",""city""]; this setVariable [""name"",""West Corazol""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={67,75,95};
+					synchronizations[]={65,73,93};
 				};
 			};
 		};
@@ -598,14 +598,14 @@ class Mission
 				class Item0
 				{
 					position[]={13619.444,20.797934,9059.2861};
-					id=67;
+					id=65;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_17";
 					init="this setVariable [""type"",""city""]; this setVariable [""name"",""East Corazol""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={66,76,77,79,68};
+					synchronizations[]={64,74,75,77,66};
 				};
 			};
 		};
@@ -618,14 +618,14 @@ class Mission
 				class Item0
 				{
 					position[]={14393.038,39.639881,10806.866};
-					id=68;
+					id=66;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_18";
 					init="this setVariable [""type"",""city""]; this setVariable [""name"",""Obregan""]; ";
-					synchronizations[]={79,69,67};
+					synchronizations[]={77,67,65};
 				};
 			};
 		};
@@ -638,14 +638,14 @@ class Mission
 				class Item0
 				{
 					position[]={14309.199,39.941334,12470.519};
-					id=69;
+					id=67;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_19";
 					init="this setVariable [""type"",""city""]; this setVariable [""name"",""Bagango""]; ";
-					synchronizations[]={79,86,68,81};
+					synchronizations[]={77,84,66,79};
 				};
 			};
 		};
@@ -658,14 +658,14 @@ class Mission
 				class Item0
 				{
 					position[]={12494.438,179.99585,15012.326};
-					id=70;
+					id=68;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_20";
 					init="this setVariable [""type"",""city""]; this setVariable [""name"",""Eponia""]; ";
-					synchronizations[]={82,81,96,100};
+					synchronizations[]={80,79,94,98};
 				};
 			};
 		};
@@ -678,14 +678,14 @@ class Mission
 				class Item0
 				{
 					position[]={17265.574,13.447538,14234.188};
-					id=71;
+					id=69;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_21";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Masbete""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={86,87,99};
+					synchronizations[]={84,85,97};
 				};
 			};
 		};
@@ -698,14 +698,14 @@ class Mission
 				class Item0
 				{
 					position[]={7575.6133,11.956541,6379.6978};
-					id=72;
+					id=70;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_22";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Arcadia""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={63,113,114,115};
+					synchronizations[]={61,111,112,113};
 				};
 			};
 		};
@@ -718,14 +718,14 @@ class Mission
 				class Item0
 				{
 					position[]={9333.2334,22.628881,5163.4053};
-					id=73;
+					id=71;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_23";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Tiberia""]; ";
-					synchronizations[]={63,74};
+					synchronizations[]={61,72};
 				};
 			};
 		};
@@ -738,14 +738,14 @@ class Mission
 				class Item0
 				{
 					position[]={10748.195,9.9763441,4951.1738};
-					id=74;
+					id=72;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_24";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Iguana""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={63,73,98};
+					synchronizations[]={61,71,96};
 				};
 			};
 		};
@@ -758,14 +758,14 @@ class Mission
 				class Item0
 				{
 					position[]={13221.205,13.973274,6890.3945};
-					id=75;
+					id=73;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_25";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Geraldo""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={65,64,66};
+					synchronizations[]={63,62,64};
 				};
 			};
 		};
@@ -778,14 +778,14 @@ class Mission
 				class Item0
 				{
 					position[]={14342.498,55.746944,9469.4414};
-					id=76;
+					id=74;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_26";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Modesta""]; ";
-					synchronizations[]={67,77,97};
+					synchronizations[]={65,75,95};
 				};
 			};
 		};
@@ -798,14 +798,14 @@ class Mission
 				class Item0
 				{
 					position[]={14453.786,25.891384,8513};
-					id=77;
+					id=75;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_27";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Gaula""]; this setVariable [""coastal"",true];  ";
-					synchronizations[]={67,76,78};
+					synchronizations[]={65,74,76};
 				};
 			};
 		};
@@ -818,14 +818,14 @@ class Mission
 				class Item0
 				{
 					position[]={16492.553,12.22965,9318.7314};
-					id=78;
+					id=76;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_28";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Everon""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={77,97};
+					synchronizations[]={75,95};
 				};
 			};
 		};
@@ -838,14 +838,14 @@ class Mission
 				class Item0
 				{
 					position[]={13275.176,25.951698,11348.796};
-					id=79;
+					id=77;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_29";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Mercalillo""]; ";
-					synchronizations[]={68,67,69,80};
+					synchronizations[]={66,65,67,78};
 				};
 			};
 		};
@@ -858,14 +858,14 @@ class Mission
 				class Item0
 				{
 					position[]={10885.938,24.962967,12618.279};
-					id=80;
+					id=78;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_30";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Tlaloc""];  this setVariable [""coastal"",true]; ";
-					synchronizations[]={79,83};
+					synchronizations[]={77,81};
 				};
 			};
 		};
@@ -878,14 +878,14 @@ class Mission
 				class Item0
 				{
 					position[]={12561.646,178.09665,13408.107};
-					id=81;
+					id=79;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_31";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Carmen""]; ";
-					synchronizations[]={86,69,70,82};
+					synchronizations[]={84,67,68,80};
 				};
 			};
 		};
@@ -898,14 +898,14 @@ class Mission
 				class Item0
 				{
 					position[]={11837.82,229.68246,14371.297};
-					id=82;
+					id=80;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_32";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Tandag""]; ";
-					synchronizations[]={70,81,83,100};
+					synchronizations[]={68,79,81,98};
 				};
 			};
 		};
@@ -918,14 +918,14 @@ class Mission
 				class Item0
 				{
 					position[]={9772.7471,45.722149,14393.901};
-					id=83;
+					id=81;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_33";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Pacamac""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={80,82,84};
+					synchronizations[]={78,80,82};
 				};
 			};
 		};
@@ -938,14 +938,14 @@ class Mission
 				class Item0
 				{
 					position[]={7737.6572,23.332005,15808.24};
-					id=84;
+					id=82;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_34";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Hunapu""]; ";
-					synchronizations[]={83};
+					synchronizations[]={81};
 				};
 			};
 		};
@@ -958,14 +958,14 @@ class Mission
 				class Item0
 				{
 					position[]={10635.885,32.850719,16190.672};
-					id=85;
+					id=83;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_35";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Mataredo""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={88,89,100};
+					synchronizations[]={86,87,98};
 				};
 			};
 		};
@@ -978,14 +978,14 @@ class Mission
 				class Item0
 				{
 					position[]={15397.823,22.203922,13746.095};
-					id=86;
+					id=84;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_36";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Benoma""]; ";
-					synchronizations[]={69,71,81};
+					synchronizations[]={67,69,79};
 				};
 			};
 		};
@@ -998,14 +998,14 @@ class Mission
 				class Item0
 				{
 					position[]={18946.156,24.655659,13923.447};
-					id=87;
+					id=85;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_37";
 					init="this setVariable [""type"",""military""]; this setVariable [""name"",""Pita Military Town""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={71};
+					synchronizations[]={69};
 				};
 			};
 		};
@@ -1018,14 +1018,14 @@ class Mission
 				class Item0
 				{
 					position[]={12144.684,25.951839,17605.18};
-					id=88;
+					id=86;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_38";
 					init="this setVariable [""type"",""military""]; this setVariable [""name"",""Cabo Base Militar""]; ";
-					synchronizations[]={85,100};
+					synchronizations[]={83,98};
 				};
 			};
 		};
@@ -1038,14 +1038,14 @@ class Mission
 				class Item0
 				{
 					position[]={8185.6348,49.989311,17041.867};
-					id=89;
+					id=87;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_39";
 					init="this setVariable [""type"",""military""]; this setVariable [""name"",""Selva Base Militar""]; ";
-					synchronizations[]={85};
+					synchronizations[]={83};
 				};
 			};
 		};
@@ -1058,13 +1058,14 @@ class Mission
 				class Item0
 				{
 					position[]={4904.459,22.978231,15755.082};
-					id=90;
+					id=88;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_40";
 					init="this setVariable [""type"",""military""]; this setVariable [""name"",""Isla Del Vida East""]; this setVariable [""coastal"",true]; ";
+					synchronizations[]={118,120,119};
 				};
 			};
 		};
@@ -1077,13 +1078,14 @@ class Mission
 				class Item0
 				{
 					position[]={4450.9551,6.9491539,15545.413};
-					id=91;
+					id=89;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_41";
 					init="this setVariable [""type"",""military""]; this setVariable [""name"",""Isla Del Vida West""]; this setVariable [""coastal"",true]; ";
+					synchronizations[]={115,116,117};
 				};
 			};
 		};
@@ -1095,14 +1097,15 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={2884.1538,17.181379,2873.3591};
-					id=92;
+					position[]={2888.7925,17.26342,2871.9053};
+					id=90;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_42";
 					init="this setVariable [""type"",""military""]; this setVariable [""name"",""Rahmadi""]; this setVariable [""coastal"",true]; ";
+					synchronizations[]={123,122,121};
 				};
 			};
 		};
@@ -1115,7 +1118,7 @@ class Mission
 				class Item0
 				{
 					position[]={18073.492,8.6912584,18213.4};
-					id=93;
+					id=91;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
@@ -1134,14 +1137,14 @@ class Mission
 				class Item0
 				{
 					position[]={17710.379,65.191017,12401.097};
-					id=94;
+					id=92;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_44";
 					init="this setVariable [""type"",""military""]; this setVariable [""name"",""Tres Valles""]; ";
-					synchronizations[]={99};
+					synchronizations[]={97};
 				};
 			};
 		};
@@ -1154,14 +1157,14 @@ class Mission
 				class Item0
 				{
 					position[]={12364.499,31.990528,8484.2256};
-					id=95;
+					id=93;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_45";
 					init="this setVariable [""type"",""military""]; this setVariable [""name"",""Corazol Barracks""]; ";
-					synchronizations[]={66,65};
+					synchronizations[]={64,63};
 				};
 			};
 		};
@@ -1174,14 +1177,14 @@ class Mission
 				class Item0
 				{
 					position[]={13987.017,23.96928,16475.309};
-					id=96;
+					id=94;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_46";
 					init="this setVariable [""type"",""military""]; this setVariable [""name"",""Pico de Revolucion""];  this setVariable [""coastal"",true]; ";
-					synchronizations[]={70};
+					synchronizations[]={68};
 				};
 			};
 		};
@@ -1194,14 +1197,14 @@ class Mission
 				class Item0
 				{
 					position[]={15322.824,52.159306,9881.2539};
-					id=97;
+					id=95;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_47";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Valor""];";
-					synchronizations[]={76,78};
+					synchronizations[]={74,76};
 				};
 			};
 		};
@@ -1214,14 +1217,14 @@ class Mission
 				class Item0
 				{
 					position[]={11257.427,5.9689841,5258.7314};
-					id=98;
+					id=96;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_48";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Parato""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={74,64};
+					synchronizations[]={72,62};
 				};
 			};
 		};
@@ -1234,14 +1237,14 @@ class Mission
 				class Item0
 				{
 					position[]={17444.557,32.855934,13556.911};
-					id=99;
+					id=97;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_21_1";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Ixel""];";
-					synchronizations[]={71,94};
+					synchronizations[]={69,92};
 				};
 			};
 		};
@@ -1254,14 +1257,14 @@ class Mission
 				class Item0
 				{
 					position[]={11933.579,152.98817,15433.887};
-					id=100;
+					id=98;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_39_1";
 					init="this setVariable [""type"",""military""]; this setVariable [""name"",""Pesadas""]; ";
-					synchronizations[]={85,70,88,82};
+					synchronizations[]={83,68,86,80};
 				};
 			};
 		};
@@ -1273,9 +1276,9 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={10717.548,139.98328,7385.0669};
+					position[]={3006.8801,14.55431,2254.6609};
 					azimut=694.62402;
-					id=101;
+					id=99;
 					side="GUER";
 					vehicle="PRACS_MRegular";
 					leader=1;
@@ -1292,9 +1295,9 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={10718.559,139.98328,7385.4146};
+					position[]={3007.8899,14.567934,2255.0085};
 					azimut=694.62402;
-					id=102;
+					id=100;
 					side="GUER";
 					vehicle="PRACS_SNG";
 					leader=1;
@@ -1311,14 +1314,14 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={10728.593,139.98328,7376.1289};
-					id=103;
+					position[]={3004.9231,14.419874,2261.9729};
+					id=101;
 					side="LOGIC";
 					vehicle="LocationLogic";
 					leader=1;
 					skill=0.60000002;
 					text="objective_49";
-					init="this setVariable [""type"",""military""]; this setVariable [""name"",""Starting Base""];";
+					init="this setVariable [""type"",""camp""]; this setVariable [""name"",""Starting Base""];";
 				};
 			};
 		};
@@ -1330,10 +1333,11 @@ class Mission
 				items=1;
 				class Item0
 				{
+					presenceCondition="false";
 					position[]={13075.614,18.274796,2850.0757};
 					azimut=-31.2358;
 					special="NONE";
-					id=116;
+					id=114;
 					side="WEST";
 					vehicle="JDG_carrier_Spawner";
 					leader=1;
@@ -1345,7 +1349,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=53;
+		items=60;
 		class Item0
 		{
 			position[]={18819.916,38.26318,13693.878};
@@ -1387,7 +1391,7 @@ class Mission
 		};
 		class Item4
 		{
-			position[]={1617.1912,19.7384,2287.3723};
+			position[]={16899.033,22.55794,19676.713};
 			placement=200;
 			id=4;
 			side="EMPTY";
@@ -1422,7 +1426,7 @@ class Mission
 		};
 		class Item8
 		{
-			position[]={10740.05,139.97887,7358.2524};
+			position[]={2999.3914,14.421874,2222.075};
 			id=8;
 			side="EMPTY";
 			vehicle="HeliHEmpty";
@@ -1452,43 +1456,31 @@ class Mission
 		};
 		class Item11
 		{
-			position[]={9485.4717,139.98311,10077.342};
-			azimut=-4.0748162;
-			special="NONE";
-			id=11;
-			side="EMPTY";
-			vehicle="US_WarfareBFieldhHospital_Base_EP1";
-			leader=1;
-			skill=0.60000002;
-			init="this allowDamage false";
-		};
-		class Item12
-		{
 			position[]={9497.0664,139.98311,10090.225};
 			azimut=0.92515302;
-			id=12;
+			id=11;
 			side="EMPTY";
 			vehicle="US_WarfareBFieldhHospital_Base_EP1";
 			skill=0.60000002;
 			text="fh";
 			init="this allowDamage false";
 		};
-		class Item13
+		class Item12
 		{
-			position[]={10708.971,140.1248,7403.2915};
+			position[]={2998.302,14.33781,2272.8826};
 			azimut=537.68201;
-			id=13;
+			id=12;
 			side="EMPTY";
 			vehicle="Misc_Backpackheap_EP1";
 			skill=0.60000002;
 			text="Backpacks";
 			init="this allowDamage false;";
 		};
-		class Item14
+		class Item13
 		{
 			position[]={18793.561,42.803692,13727.248};
 			azimut=180;
-			id=14;
+			id=13;
 			side="EMPTY";
 			vehicle="HeliHEmpty";
 			leader=1;
@@ -1496,11 +1488,11 @@ class Mission
 			skill=0.60000002;
 			text="safty";
 		};
-		class Item15
+		class Item14
 		{
 			position[]={9282.6357,139.98311,10104.401};
 			azimut=0.92515308;
-			id=15;
+			id=14;
 			side="EMPTY";
 			vehicle="WarfareBDepot";
 			leader=1;
@@ -1508,102 +1500,110 @@ class Mission
 			skill=0.60000002;
 			init="this allowDamage false";
 		};
-		class Item16
-		{
-			position[]={9449.0215,139.98311,10053.141};
-			azimut=360.35159;
-			id=16;
-			side="EMPTY";
-			vehicle="US_WarfareBFieldhHospital_Base_EP1";
-			leader=1;
-			lock="UNLOCKED";
-			skill=0.60000002;
-			init="this allowDamage false";
-		};
-		class Item17
+		class Item15
 		{
 			position[]={18081.334,8.6912584,18195.08};
 			azimut=147.43358;
-			id=17;
+			id=15;
 			side="EMPTY";
 			vehicle="PRACS_Flag";
 			skill=0.60000002;
 		};
-		class Item18
+		class Item16
 		{
 			position[]={9450.4463,139.98311,10072.61};
 			azimut=340.35159;
-			id=21;
+			id=19;
 			side="EMPTY";
 			vehicle="PRACS_Flag";
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
 		};
-		class Item19
+		class Item17
 		{
 			presenceCondition="carrier";
 			position[]={13069.24,18.280062,2915.4448};
 			azimut=290.45001;
-			id=22;
+			id=20;
 			side="EMPTY";
 			vehicle="Stinger_Pod";
 			skill=0.60000002;
 			init="veh = [this, 600,600] execVM ""vehicle.sqf"";this setPosASL [position this select 0, position this select 1, 18]";
 		};
-		class Item20
+		class Item18
 		{
-			position[]={10725.404,139.98328,7359.1719};
+			position[]={2995.4465,14.302035,2253.9753};
 			azimut=356.42661;
-			id=23;
+			id=21;
 			side="EMPTY";
 			vehicle="MASH";
 			skill=0.60000002;
 			init="this allowDamage false";
 		};
-		class Item21
+		class Item19
 		{
 			position[]={13356.666,0.125342,2625.2126};
 			azimut=520.45038;
-			id=24;
+			id=22;
 			side="EMPTY";
 			vehicle="Land_Destroyer";
+			skill=0.60000002;
+			init="this setPosASL [position this select 0, position this select 1, 0];this setVectorUp [0,0,1]";
+		};
+		class Item20
+		{
+			position[]={12693.444,0.35257903,2997.5388};
+			azimut=520.45038;
+			id=23;
+			side="EMPTY";
+			vehicle="Land_Destroyer";
+			skill=0.60000002;
+			init="this setPosASL [position this select 0, position this select 1, 0];this setVectorUp [0,0,1]";
+		};
+		class Item21
+		{
+			position[]={13152.054,0.24892165,3372.0837};
+			azimut=520.45038;
+			id=24;
+			side="EMPTY";
+			vehicle="Land_Fregata";
 			skill=0.60000002;
 			init="this setPosASL [position this select 0, position this select 1, 0];this setVectorUp [0,0,1]";
 		};
 		class Item22
 		{
-			position[]={12693.444,0.35257903,2997.5388};
+			position[]={12860.18,0.32096934,2523.8284};
 			azimut=520.45038;
 			id=25;
 			side="EMPTY";
-			vehicle="Land_Destroyer";
+			vehicle="Land_Fregata";
 			skill=0.60000002;
 			init="this setPosASL [position this select 0, position this select 1, 0];this setVectorUp [0,0,1]";
 		};
 		class Item23
 		{
-			position[]={13152.054,0.24892165,3372.0837};
-			azimut=520.45038;
+			position[]={9425.6924,139.98311,10102.716};
 			id=26;
 			side="EMPTY";
-			vehicle="Land_Fregata";
+			vehicle="PRACS_AS";
+			leader=1;
+			lock="UNLOCKED";
 			skill=0.60000002;
-			init="this setPosASL [position this select 0, position this select 1, 0];this setVectorUp [0,0,1]";
+			init="this allowDamage false";
 		};
 		class Item24
 		{
-			position[]={12860.18,0.32096934,2523.8284};
-			azimut=520.45038;
+			position[]={2585.8469,13.883385,2661.1611};
+			azimut=87.773918;
 			id=27;
 			side="EMPTY";
-			vehicle="Land_Fregata";
+			vehicle="HeliH";
 			skill=0.60000002;
-			init="this setPosASL [position this select 0, position this select 1, 0];this setVectorUp [0,0,1]";
 		};
 		class Item25
 		{
-			position[]={9425.6924,139.98311,10102.716};
+			position[]={9396.7617,149.42233,10102.586};
 			id=28;
 			side="EMPTY";
 			vehicle="PRACS_AS";
@@ -1614,40 +1614,20 @@ class Mission
 		};
 		class Item26
 		{
-			position[]={2585.8469,13.883385,2661.1611};
-			azimut=87.773918;
+			position[]={9366.8164,149.44086,10102.411};
 			id=29;
 			side="EMPTY";
-			vehicle="HeliH";
+			vehicle="PRACS_AS";
+			leader=1;
+			lock="UNLOCKED";
 			skill=0.60000002;
+			init="this allowDamage false";
 		};
 		class Item27
 		{
-			position[]={9396.7617,149.42233,10102.586};
-			id=30;
-			side="EMPTY";
-			vehicle="PRACS_AS";
-			leader=1;
-			lock="UNLOCKED";
-			skill=0.60000002;
-			init="this allowDamage false";
-		};
-		class Item28
-		{
-			position[]={9366.8164,149.44086,10102.411};
-			id=31;
-			side="EMPTY";
-			vehicle="PRACS_AS";
-			leader=1;
-			lock="UNLOCKED";
-			skill=0.60000002;
-			init="this allowDamage false";
-		};
-		class Item29
-		{
 			position[]={9332.2754,151.81158,10102.047};
 			azimut=180;
-			id=32;
+			id=30;
 			side="EMPTY";
 			vehicle="PRACS_HAS_Heavy";
 			leader=1;
@@ -1655,9 +1635,25 @@ class Mission
 			skill=0.60000002;
 			init="this allowDamage false";
 		};
-		class Item30
+		class Item28
 		{
 			position[]={19172.902,11.97,14002.007};
+			id=31;
+			side="EMPTY";
+			vehicle="HeliH";
+			skill=0.60000002;
+		};
+		class Item29
+		{
+			position[]={19159.471,11.97,13987.556};
+			id=32;
+			side="EMPTY";
+			vehicle="HeliH";
+			skill=0.60000002;
+		};
+		class Item30
+		{
+			position[]={19171.723,11.97,13976.336};
 			id=33;
 			side="EMPTY";
 			vehicle="HeliH";
@@ -1665,54 +1661,38 @@ class Mission
 		};
 		class Item31
 		{
-			position[]={19159.471,11.97,13987.556};
-			id=34;
-			side="EMPTY";
-			vehicle="HeliH";
-			skill=0.60000002;
-		};
-		class Item32
-		{
-			position[]={19171.723,11.97,13976.336};
-			id=35;
-			side="EMPTY";
-			vehicle="HeliH";
-			skill=0.60000002;
-		};
-		class Item33
-		{
 			position[]={9451.8193,139.98311,10096.039};
 			azimut=150.92517;
-			id=36;
+			id=34;
 			side="EMPTY";
 			vehicle="Land_CamoNetVar_NATO_EP1";
 			skill=0.60000002;
 			init="this allowDamage false";
 		};
-		class Item34
+		class Item32
 		{
 			position[]={9442.1299,139.98311,10086.748};
 			azimut=270.53299;
-			id=40;
+			id=38;
 			side="EMPTY";
 			vehicle="M1130_HQ_unfolded_Base_EP1";
 			skill=0.60000002;
 			text="hq";
 			init="this allowDamage false";
 		};
-		class Item35
+		class Item33
 		{
 			position[]={19166.855,11.952834,13948.176};
-			id=43;
+			id=41;
 			side="EMPTY";
 			vehicle="MIS_ISIS_flag";
 			skill=0.60000002;
 		};
-		class Item36
+		class Item34
 		{
 			position[]={18074.314,8.6912584,18202.959};
 			azimut=304.80881;
-			id=44;
+			id=42;
 			side="EMPTY";
 			vehicle="Land_fortified_nest_big";
 			leader=1;
@@ -1720,157 +1700,238 @@ class Mission
 			skill=0.60000002;
 			init="this allowDamage false";
 		};
-		class Item37
+		class Item35
 		{
-			position[]={10740.54,139.97462,7378.584};
+			position[]={18199.973,21.026543,3084.9866};
 			azimut=270;
-			id=48;
+			id=46;
 			side="EMPTY";
 			vehicle="HMMWV_Terminal_EP1";
 			skill=0.60000002;
 			init="this addAction [""Call UAV"",""LDL_ac130\Actions\uav_action_map.sqf""];this addAction [""Call AC130 (AI)"", ""LDL_ac130\Actions\ac130_action_map_AI.sqf""];this addAction [""Call AC130"", ""LDL_ac130\Actions\ac130_action_map.sqf""];";
 		};
-		class Item38
+		class Item36
 		{
-			position[]={7250.5737,0.29500863,12157.83};
-			azimut=97.391403;
-			id=49;
+			position[]={4152.981,0.4171201,16695.441};
+			azimut=141.166;
+			id=47;
 			side="EMPTY";
 			vehicle="FFAA_patrullero_p72";
 			lock="UNLOCKED";
 			skill=0.60000002;
 			text="p72";
-			init="_shipmark2=[this,""P72"",""ColorBlue"",""plp_icon_shipFrigate"",false,1,""ship2""] execVM ""data\scripts\customMarker.sqf"";";
+			init="_shipmark2=[this,""P72"",""ColorBlue"",""plp_icon_shipFrigate"",false,1,""ship2""] execVM ""data\scripts\customMarker.sqf""; this allowDamage false;";
 		};
-		class Item39
+		class Item37
 		{
 			position[]={15994.027,0.23413222,6751.6289};
 			azimut=-52.4114;
-			id=50;
+			id=48;
 			side="EMPTY";
 			vehicle="FFAA_bam";
 			skill=0.60000002;
 			text="bam";
 			init="_shipmark1=[this,""B.A.M"",""ColorBlue"",""plp_icon_shipFrigate"",false,1,""ship1""] execVM ""data\scripts\customMarker.sqf"";";
 		};
-		class Item40
+		class Item38
 		{
 			presenceCondition="carrier";
 			position[]={13165.54,0.23612446,2748.0977};
 			azimut=290.45001;
-			id=51;
+			id=49;
 			side="EMPTY";
 			vehicle="EB_RIM7_pod_US";
 			skill=0.60000002;
 			init="veh = [this, 60, 60] execVM ""vehicle.sqf"";this setPosASL [position this select 0, position this select 1, 18]";
 		};
-		class Item41
+		class Item39
 		{
 			position[]={11540.408,31.89537,6196.2666};
+			id=102;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={62};
+		};
+		class Item40
+		{
+			position[]={11271.346,24.68815,6116.2188};
+			id=103;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={62};
+		};
+		class Item41
+		{
+			position[]={11223.406,25.004967,5881.6069};
 			id=104;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
 			skill=0.60000002;
-			synchronizations[]={64};
+			synchronizations[]={62};
 		};
 		class Item42
 		{
-			position[]={11271.346,24.68815,6116.2188};
+			position[]={11642.598,27.707829,5840.2954};
 			id=105;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
 			skill=0.60000002;
-			synchronizations[]={64};
+			synchronizations[]={62};
 		};
 		class Item43
 		{
-			position[]={11223.406,25.004967,5881.6069};
+			position[]={11727.005,21.698847,6346.8345};
 			id=106;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
 			skill=0.60000002;
-			synchronizations[]={64};
+			synchronizations[]={62};
 		};
 		class Item44
 		{
-			position[]={11642.598,27.707829,5840.2954};
+			position[]={11471.958,27.25181,6324.894};
 			id=107;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
 			skill=0.60000002;
-			synchronizations[]={64};
+			synchronizations[]={62};
 		};
 		class Item45
 		{
-			position[]={11727.005,21.698847,6346.8345};
+			position[]={9346.7031,45.981857,5893.6831};
 			id=108;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
 			skill=0.60000002;
-			synchronizations[]={64};
+			synchronizations[]={61};
 		};
 		class Item46
 		{
-			position[]={11471.958,27.25181,6324.894};
+			position[]={9227.5908,58.339058,5896.1743};
 			id=109;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
 			skill=0.60000002;
-			synchronizations[]={64};
+			synchronizations[]={61};
 		};
 		class Item47
 		{
-			position[]={9346.7031,45.981857,5893.6831};
+			position[]={8945.7754,161.98238,8439.2939};
 			id=110;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
 			skill=0.60000002;
-			synchronizations[]={63};
+			synchronizations[]={58};
 		};
 		class Item48
 		{
-			position[]={9227.5908,58.339058,5896.1743};
+			position[]={7646.2056,11.956541,6373.8408};
 			id=111;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
 			skill=0.60000002;
-			synchronizations[]={63};
+			synchronizations[]={70};
 		};
 		class Item49
 		{
-			position[]={8945.7754,161.98238,8439.2939};
+			position[]={7664.4829,11.956541,6278.7114};
 			id=112;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
 			skill=0.60000002;
-			synchronizations[]={60};
+			synchronizations[]={70};
 		};
 		class Item50
 		{
-			position[]={7646.2056,11.956541,6373.8408};
+			position[]={7480.5479,26.849314,6517.8765};
 			id=113;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
 			skill=0.60000002;
-			synchronizations[]={72};
+			synchronizations[]={70};
 		};
 		class Item51
 		{
-			position[]={7664.4829,11.956541,6278.7114};
-			id=114;
-			side="EMPTY";
-			vehicle="FlagPole_EP1";
-			skill=0.60000002;
-			synchronizations[]={72};
-		};
-		class Item52
-		{
-			position[]={7480.5479,26.849314,6517.8765};
+			position[]={4399.9517,30.957874,15810.964};
 			id=115;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
 			skill=0.60000002;
-			synchronizations[]={72};
+			synchronizations[]={89};
+		};
+		class Item52
+		{
+			position[]={4548.1338,30.95631,15289.849};
+			id=116;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={89};
+		};
+		class Item53
+		{
+			position[]={4424.563,6.9491539,15569.859};
+			id=117;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={89};
+		};
+		class Item54
+		{
+			position[]={4916.0356,56.95649,15487.567};
+			id=118;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={88};
+		};
+		class Item55
+		{
+			position[]={4946.2544,71.478012,16055.338};
+			id=119;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={88};
+		};
+		class Item56
+		{
+			position[]={4937.8701,24.694727,15762.728};
+			id=120;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={88};
+		};
+		class Item57
+		{
+			position[]={2605.3281,14.22162,2837.7917};
+			id=121;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={90};
+		};
+		class Item58
+		{
+			position[]={2909.2673,17.229727,2832.6416};
+			id=122;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={90};
+		};
+		class Item59
+		{
+			position[]={2909.8311,5.0120635,3065.155};
+			id=123;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={90};
 		};
 	};
 	class Markers
@@ -1878,7 +1939,7 @@ class Mission
 		items=43;
 		class Item0
 		{
-			position[]={10717.018,139.98328,7381.7563};
+			position[]={3006.3489,14.514322,2251.3484};
 			name="Respawn_West";
 			markerType="RECTANGLE";
 			type="Tank";
@@ -1889,7 +1950,7 @@ class Mission
 		};
 		class Item1
 		{
-			position[]={10740.253,139.96104,7358.4248};
+			position[]={2999.5945,14.42622,2222.2488};
 			name="FahneLKW";
 			text="Respawn - HQ";
 			type="mil_dot";
@@ -1904,7 +1965,7 @@ class Mission
 		};
 		class Item3
 		{
-			position[]={10713.337,140.2906,7408.1519};
+			position[]={3002.6692,14.375518,2277.7458};
 			name="ammob1";
 			type="plp_icon_rifle";
 			colorName="ColorBlue";
@@ -1953,7 +2014,7 @@ class Mission
 		};
 		class Item8
 		{
-			position[]={10713.453,140.3261,7410.9277};
+			position[]={3002.7844,14.353106,2280.5193};
 			name="ammob6";
 			type="plp_icon_rifle";
 			colorName="ColorRed";
@@ -2309,7 +2370,7 @@ class Mission
 		};
 		class Item3
 		{
-			position[]={10721.846,139.98328,7374.5};
+			position[]={3017.0305,15.154004,2253.6238};
 			a=70;
 			b=70;
 			activationBy="ANY";
@@ -2422,7 +2483,7 @@ class Mission
 			age="UNKNOWN";
 			text="farp4";
 			name="farp4";
-			expCond="""mobjC6"" in (missionNamespace getVariable ""BIS_EVO_conqueredTowns"")";
+			expCond="objective_42 in (missionNamespace getVariable ""BIS_EVO_conqueredTowns"")";
 			class Effects
 			{
 			};
@@ -2914,7 +2975,7 @@ class Mission
 		};
 		class Item42
 		{
-			position[]={10715.14,139.98328,7384.5703};
+			position[]={3004.4719,14.46739,2254.1628};
 			a=5;
 			b=10;
 			rectangular=1;
@@ -2929,7 +2990,7 @@ class Mission
 		};
 		class Item43
 		{
-			position[]={10639.91,161.67764,7481.3101};
+			position[]={2951.6511,20.955147,2307.2925};
 			a=20;
 			b=20;
 			rectangular=1;

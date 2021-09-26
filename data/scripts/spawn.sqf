@@ -106,11 +106,8 @@ disableUserInput false;
 
 _player setPos getMarkerPos respawnPoint;
 
-if(respawnPoint == "Respawn_West") then {_player setPosASL[getpos _player select 0,getpos _player select 1, 18]};
+if(respawnPoint == "Respawn_West") then {_player setPosASL[getpos _player select 0,getpos _player select 1, 0]};
 
-
-
-	
 //Update money
 //sleep 8;
 9 cutRsc ["DollarTitle","PLAIN"];

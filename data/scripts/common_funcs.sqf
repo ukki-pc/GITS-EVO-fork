@@ -89,14 +89,16 @@ BIS_Effects_globalEvent =
      _this call BIS_Effects_startEvent;
 };
 
-//INPUT [classname,cfgDataString] RETURN cfgString
+//INPUT [classname,cfgDataString,cfgFile] RETURN cfgString
+//Example ["rh_ak","displayName","CfgWeapons"]
 fnc_getCfgText = 
 {
-	private ["_classname","_return","_name","_data"];
+	private ["_classname","_return","_name","_data","_cfgFile"];
 	_classname = _this select 0;
 	_data = _this select 1;
+	_cfgFile = _this select 2;
 	_return = "";
-	_name = getText(configFile >> "CfgVehicles" >> _classname >> _data);
+	_name = getText(configFile >> _cfgFile >> _classname >> _data);
 	if(!isNil "_name") then{_return = _name}else{_return = _classname};
 	_return;
 };
@@ -104,11 +106,12 @@ fnc_getCfgText =
 //INPUT [classname, cfgDataString] RETURN cfgDataValue
 fnc_getCfgNumber = 
 {
-	private ["_classname","_return","_name","_data"];
+	private ["_classname","_return","_name","_data","_cfgFile"];
 	_classname = _this select 0;
 	_data = _this select 1;
+	_cfgFile = _this select 2;
 	_return = "";
-	_name = getNumber(configFile >> "CfgVehicles" >> _classname >> _data);
+	_name = getNumber(configFile >> _cfgFile >> _classname >> _data);
 	if(!isNil "_name") then{_return = _name}else{_return = _classname};
 	_return;
 };
