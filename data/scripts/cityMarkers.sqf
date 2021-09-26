@@ -8,6 +8,7 @@
 	_markerobj = createMarker[_unitm,[getPos _unit select 0,getPos _unit select 1]];
 	BIS_EVO_MissionObjMarkers = BIS_EVO_MissionObjMarkers + [_unitm];
 
+
 	//TEST
 	//BIS_EVO_conqueredTowns = [objective_49];
 

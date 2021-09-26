@@ -441,6 +441,7 @@ missionManager =
 	//	Sleep 10.0;
 
 	reinfdelay = round (290-(aggression^1.14));
+	reinfdelay = 60;
 
 	reinforcements = true;
 	[] spawn reinforcementLoop;

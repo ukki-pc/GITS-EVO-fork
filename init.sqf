@@ -414,6 +414,12 @@ weaponBoxes = [luatikko];
 allMagazines = [];
 magazineBanList = ["EB_2000Rnd_762x51_NATO_Ball","EB_3000Rnd_762x51_NATO_Ball","EB_4200Rnd_762x51_NATO_Ball"];
 
+capturedAirportIn = false;
+capturedFarp1 = true;
+capturedFarp2 = false;
+capturedFarp3 = false;
+capturedFarp4 = false;
+capturedDock1 = false;
 
 RHQMarkers = [];
 inFarp = false;
@@ -961,4 +967,4 @@ _firstCity = objective_42;
 
 _cityNum=BIS_EVO_MissionTowns find _firstCity;
 
-  ["jed_missionManager", [_cityNum]] call CBA_fnc_globalEvent;
+  ["jed_missionManager", [_cityNum]] spawn CBA_fnc_globalEvent;

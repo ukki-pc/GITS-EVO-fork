@@ -306,8 +306,10 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		//[_unit, _string, _color, _markerType, _enableDir]
 		_sumark = [_heli0,"","ColorRed","plp_icon_helicopterCargo",true] execVM "data\scripts\customMarker.sqf";
 		_heli0 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
-		_wp = _pilot addWaypoint [_pos, 10];
+		_wp = _pilot addWaypoint [_pos, 300];
 		{_x setBehaviour "careless"} forEach (units _pilot);
+
+		_pos = waypointPosition _wp;
 
 		(driver _heli0) commandMove _pos;
 		(driver _heli0) doMove _pos;
@@ -345,18 +347,15 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 			// (driver _heli0) commandMove _posback;
 			// (driver _heli0) doMove _posback;
 
-    sleep 90;
+    sleep 80;
 
 
     _dist = (getpos _heli0) distance (waypointPosition _wp);
 
     if(_dist < 300) then 
     {
-		systemChat "I should kys";
-		_wp setWaypointPosition [[0,0],1];
-		_nul = [_heli0] execVM "data\scripts\gokys.sqf";
-		(driver _heli0) commandMove _pos;
-		(driver _heli0) doMove _pos;
+		{deleteVehicle _x} forEach crew _heli0;
+		deleteVehicle _heli0;
 	};
 };
 	

@@ -329,6 +329,161 @@ for [{_loop=0}, {_loop<count buyStatList}, {_loop=_loop+1}] do
 buyStatList set [_loop,[(buyStatList select _loop) select 0, (buyStatList select _loop) select 1,0]];
 };
 
+
+enemyOfficers = [];
+enemyAts = [];
+enemyMgs = [];
+enemyRiflemen = [];
+enemyAamen = [];
+enemyAll = [];
+cheapMen = [];
+enemySpecops = ["TK_Special_Forces_TL_EP1","TK_Special_Forces_MG_EP1","TK_Special_Forces_EP1"];
+
+//Factions
+
+emnemyFaction = "ARL";
+
+//ARL
+if(emnemyFaction == "ARL") then 
+{
+	enemyOfficers = ["ibr_arl_officer"];
+	enemyAts = ["ibr_arl_at"];
+	enemyMgs = ["ibr_arl_mg"];
+	enemyRiflemen = ["ibr_arl_rif","ibr_arl_rif2"];
+	enemyAamen = ["ibr_arl_aa"];
+	enemyAll = enemyOfficers + enemyAts + enemyMgs + enemyRiflemen + enemyAamen + ["ibr_arl_medic"];
+	cheapMen = ["ibr_drg_man2","ibr_drg_man1","ibr_drg_man5","ibr_drg_man6","ibr_drg_man7","ibr_drg_man4"];
+};
+
+//AFRICAN Rebels
+if(emnemyFaction == "AR") then 
+{
+	enemyOfficers = ["ibr_rebel22"];
+	enemyAts = ["ibr_rebel83","ibr_rebel95"];
+	enemyMgs = ["ibr_rebel125"];
+	enemyRiflemen = ["ibr_rebel11","ibr_rebel44","ibr_rebel66"];
+	enemyAamen = ["ibr_rebel111"];
+	enemyAll = enemyOfficers + enemyAts + enemyMgs + enemyRiflemen + enemyAamen + ["ibr_rebel77"];
+	cheapMen = ["ibr_rebel22","ibr_rebel33","ibr_rebel44","ibr_rebel66","ibr_rebel77","ibr_rebel95","ibr_rebel83","ibr_rebel125","ibr_rebel125","ibr_rebel55"];
+};
+
+//ISIS
+if(emnemyFaction == "ISIS") then 
+{
+	enemyOfficers = ["MIS_ISIS_04_TWS"];
+	enemyAts = ["MIS_ISIS_04_AT"];
+	enemyMgs = ["MIS_ISIS_04_MG"];
+	enemyRiflemen = ["MIS_ISIS_04_Rif","ibr_rebel44","ibr_rebel66"];
+	enemyAamen = ["MIS_ISIS_04_AA"];
+	enemyAll = enemyOfficers + enemyAts + enemyMgs + enemyRiflemen + enemyAamen + ["MIS_ISIS_04_Med","MIS_ISIS_04_SVD","MIS_ISIS_03_Engineer"];
+	cheapMen = enemyAll;
+};
+
+//Russia desert
+if(emnemyFaction == "RUS_DE") then 
+{
+	enemyOfficers = ["RUS_Desert_Soldier_SL"];
+	enemyAts = ["RUS_Desert_Soldier_HAT","RUS_Desert_Soldier_LAT"];
+	enemyMgs = ["RUS_Desert_Soldier_MG"];
+	enemyRiflemen = ["RUS_Desert_Soldier"];
+	enemyAamen = [];
+	enemyAll = enemyOfficers + enemyAts + enemyMgs + enemyRiflemen + enemyAamen + ["RUS_Desert_Soldier_GL","RUS_Desert_Soldier_Marksman","RUS_Desert_Soldier_MD","RUS_Desert_Soldier_AU"];
+	cheapMen = enemyAll;
+};
+
+//Molatia
+if(emnemyFaction == "MOL") then 
+{
+	enemyOfficers = ["MOL_Officer"];
+	enemyAts = ["MOL_Soldier_AT"];
+	enemyMgs = ["MOL_Soldier_MG"];
+	enemyRiflemen = ["MOL_Soldier_Rifleman"];
+	enemyAamen = ["MOL_Soldier_AA"];
+	enemyAll = enemyOfficers + enemyAts + enemyMgs + enemyRiflemen + enemyAamen + ["MOL_Medic"];
+	cheapMen = enemyAll;
+	enemySpecops = ["MOL_Soldier_Commando"];
+};
+
+//Takistani militia
+if(emnemyFaction == "TAKINS") then 
+{
+	enemyOfficers = ["TK_INS_Soldier_TL_EP1"];
+	enemyAts = ["TK_INS_Soldier_AT_EP1",["TK_INS_Soldier_pook_MRO_A","TK_INS_Soldier_pook_RPG_chem"]];
+	enemyMgs = ["TK_INS_Soldier_MG_EP1","TK_INS_Soldier_AR_EP1"];
+	enemyRiflemen = ["TK_INS_Soldier_2_EP1","TK_INS_Soldier_EP1","TK_INS_Soldier_3_EP1","TK_INS_Soldier_4_EP1"];
+	enemyAamen = ["TK_INS_Soldier_AA_EP1"];
+	enemyAll = enemyOfficers + enemyAts + enemyMgs + enemyRiflemen + enemyAamen + ["TK_INS_Soldier_Sniper_EP1",["TK_INS_Soldier_pook_M79","TK_INS_Soldier_pook_GM94","TK_INS_Soldier_pook_GP25","TK_INS_Soldier_pook_RG6"]];
+	cheapMen = ["TK_INS_Soldier_3_EP1"];
+	enemySpecops = [];
+};
+
+//Takistani Army
+if(emnemyFaction == "TAK") then 
+{
+	enemyOfficers = ["TK_Soldier_SL_EP1"];
+	enemyAts = ["TK_Soldier_AT_EP1","TK_Soldier_LAT_EP1","TK_Soldier_AAT_EP1",["TK_Soldier_pook_RG6","TK_Soldier_pook_RPO_A","TK_Soldier_pook_RPG_chem","TK_Soldier_pook_MRO_A","TK_Soldier_pook_RPG_chem"]];
+	enemyMgs = ["TK_Soldier_MG_EP1","TK_Soldier_AMG_EP1"];
+	enemyRiflemen = ["TK_Soldier_EP1"];
+	enemyAamen = ["TK_Soldier_AA_EP1"];
+	enemyAll = enemyOfficers + enemyAts + enemyMgs + enemyRiflemen + enemyAamen + ["TK_Soldier_SniperH_EP1","TK_Soldier_Spotter_EP1","TK_Soldier_GL_EP1"];
+	cheapMen = ["TK_INS_Soldier_3_EP1"];
+	enemySpecops = ["TK_Special_Forces_TL_EP1","TK_Special_Forces_MG_EP1","TK_Special_Forces_EP1"];
+};
+
+//Chernarus Insurgents
+if(emnemyFaction == "INS") then 
+{
+	enemyOfficers = ["Ins_Soldier_CO"];
+	enemyAts = ["Ins_Soldier_AT"];
+	enemyMgs = ["Ins_Soldier_AR"];
+	enemyRiflemen = ["Ins_Soldier_1","Ins_Soldier_2"];
+	enemyAamen = ["Ins_Soldier_AA"];
+	enemyAll = enemyOfficers + enemyAts + enemyMgs + enemyRiflemen + enemyAamen + ["Ins_Soldier_GL"];
+	cheapMen = ["Ins_Worker2","Ins_Woodlander3","Ins_Villager3","Ins_Woodlander2","Ins_Woodlander1","Ins_Villager4"];
+	enemySpecops = ["TK_Special_Forces_TL_EP1","TK_Special_Forces_MG_EP1","TK_Special_Forces_EP1"];
+};
+
+//Russia
+if(emnemyFaction == "RUS") then 
+{
+	enemyOfficers = ["RU_Soldier_SL"];
+	enemyAts = ["RU_Soldier_AT","RU_Soldier_LAT"];
+	enemyMgs = ["RU_Soldier_MG","RU_Soldier_AR"];
+	enemyRiflemen = ["RU_Soldier"];
+	enemyAamen = ["RU_Soldier_AA"];
+	enemyAll = enemyOfficers + enemyAts + enemyMgs + enemyRiflemen + enemyAamen + ["RU_Soldier_GL","RU_Soldier_Marksman","RU_Soldier_Sniper","RU_Soldier_Spotter"];
+	cheapMen = enemyAll;
+	enemySpecops = ["RUS_Soldier_TL","RUS_Soldier_GL","RUS_Soldier_Marksman","RUS_Soldier3","RUS_Soldier1","RUS_Soldier2","MVD_Soldier_TL","MVD_Soldier_MG","MVD_Soldier_AT","MVD_Soldier_GL","MVD_Soldier_Sniper","MVD_Soldier_Marksman","MVD_Soldier_GL"];
+};
+
+//FFAA Terrorista
+if(emnemyFaction == "FFAA_TER") then 
+{
+	enemyOfficers = ["ffaa_terrorista_agf_Clerigo"];
+	enemyAts = ["ffaa_terrorista_agf_RPG","ffaa_terrorista_ham_RPG"];
+	enemyMgs = ["ffaa_terrorista_agf_PK","ffaa_terrorista_ham_PK"];
+	enemyRiflemen = ["ffaa_terrorista_agf_AK","ffaa_terrorista_ham_AK","ffaa_terrorista_ham_suicida"];
+	enemyAamen = ["ffaa_terrorista_agf_AA","ffaa_terrorista_ham_AA"];
+	enemyAll = enemyOfficers + enemyAts + enemyMgs + enemyRiflemen + enemyAamen + ["ffaa_terrorista_agf_SVD","ffaa_terrorista_ham_SVD"];
+	cheapMen = enemyAll;
+	enemySpecops = [];
+};
+
+//Middle Eastern Army
+if(emnemyFaction == "MEA") then 
+{
+	enemyOfficers = ["BB_OPFOR_Soldier_Officer","BB_OPFOR_Soldier_SL"];
+	enemyAts = ["BB_OPFOR_Soldier_AAT","BB_OPFOR_Soldier_HAT","BB_OPFOR_Soldier_LAT","BB_OPFOR_Soldier_AT"];
+	enemyMgs = ["BB_OPFOR_Soldier_AMG","BB_OPFOR_Soldier_AR","BB_OPFOR_Soldier_MG"];
+	enemyRiflemen = ["BB_OPFOR_Soldier","BB_OPFOR_Soldier_B","BB_OPFOR_Soldier_Night_1","BB_OPFOR_Soldier_Night_2","BB_OPFOR_Soldier_TWS"];
+	enemyAamen = ["BB_OPFOR_Soldier_AA"];
+	enemyAll = enemyOfficers + enemyAts + enemyMgs + enemyRiflemen + enemyAamen + ["BB_OPFOR_Soldier_Engineer","BB_OPFOR_Soldier_GL","BB_OPFOR_Soldier_Medic","BB_OPFOR_Soldier_Sniper_Night","BB_OPFOR_Soldier_SniperH","BB_OPFOR_Soldier_Sniper"];
+	cheapMen = enemyAll;
+	enemySpecops = [];
+};
+
+
+//All the weapons
 assaultRifles =["m8_compact", "RH_M4CMK", "RH_M4CMKAIM", "RH_M4CMKEOTECH", "RH_M4CMKACOG", "RH_ar10", "RH_ar10s", "RH_m16a3cs", "RH_m4a1r", "RH_m4a1eotech", "RH_m4sdeotech", "RH_m4acog", "RH_m4", "RH_m4sd", "RH_m4macog", "RH_M4sdaim_wdl", "RH_m4sbraim", "RH_M4CTSD_F", "RH_mk18", "RH_Mk18aim", "RH_mk18eot", "RH_Mk18acog", "RH_mk18sd", "RH_Mk18sdaim", "RH_Mk18sdeot", "RH_Mk18sdacog", "RH_Mk18gl", "RH_Mk18glaim", "RH_Mk18gleot", "RH_mk18glacog", "RH_SCARL_AIM", "RH_SCARL_MK4", "RH_SCARL_SD_DOC", "RH_SCARLB_SD_EOTECH", "RH_SCARH_MK4", "RH_SCARH_SPECTERDR", "RH_SCARH_SD_ACOG", "RH_m16a2gl", "RH_m16a3sgl", "RH_m16a4glacog", "RH_m16a4gleotech", "RH_m4gl", "RH_M4sdgleotech_wdl", "RH_m4sdglaim", "RH_m4sdglacog", "RH_M4CTSDGLACOG_F", "RH_M4CTSDGL_F", "RH_XM8DGL", "RH_SCARH_GL_EOTECH", "RH_SCARH_GL_SPECTERDR", "RH_SCARLB_SD_GL_AIM", "RH_SCARL_GL_EOTECH", "RH_SCARLB_GL_ACOG", "RH_XM8DSAW", "G36A_camo", "G36_C_SD_eotech", "m8_compact", "G36C_camo", "G36_C_SD_camo", "FN_FAL", "M16A2", "M4A1", "M4A1_AIM_SD_camo", "M4A1_Aim_camo", "G36C", "G36K", "m8_carbine", "m8_holo_sd", "m8_compact_pmc", "G36A_camo", "G36K_camo", "M4A3_CCO_EP1", "Scar_H_CQC_CCO", "Scar_H_CQC_CCO_SD", "Scar_L_CQC", "Scar_L_CQC_CCO_SD", "Scar_L_CQC_Holo", "Scar_L_STD_Holo", "Scar_L_STD_Mk4CQT", "SCAR_H_STD_TWS_SD", "BAF_L85A2_RIS_Holo", "M16A2GL", "M16A4_GL", "M16A4_ACG_GL", "M4A1_RCO_GL", "M4A1_HWS_GL_camo", "M4A1_HWS_GL_SD_Camo", "m8_carbineGL", "M4A3_RCO_GL_EP1", "SCAR_H_STD_EGLM_Spect", "SCAR_L_CQC_EGLM_Holo", "SCAR_L_STD_EGLM_RCO", "SCAR_L_STD_EGLM_TWS", "BAF_L85A2_UGL_ACOG", "BAF_L85A2_UGL_Holo", "BAF_L85A2_UGL_SUSAT", "M32_EP1", "M79_EP1", "Mk13_EP1", "BAF_L85A2_RIS_ACOG", "BAF_L85A2_RIS_CWS", "BAF_L85A2_RIS_SUSAT", "SCAR_H_LNG_Sniper", "SCAR_H_LNG_Sniper_SD", "FN_FAL_ANPVS4", "m16a4_acg", "m8_tws", "m8_tws_sd"];
 smgs = ["MP5SD","RH_fmg9", "RH_pp2000p", "RH_pdreot", "RH_PDW_AIM",  "RH_mac10p", "RH_tec9", "RH_muzi", "RH_mp5kp", "RH_mp7p", "RH_HK53aim", "RH_mp5a4rfx", "RH_mp5a5eot", "RH_mp5a5ris", "RH_mp5a5eodRFX", "RH_mp5sd6eot", "RH_mp5kpdw", "RH_P90i", "RH_P90isd", "RH_p90aim", "RH_p90sdaim", "RH_umpeot", "RH_ump", "RH_umpsd", "RH_umpaim", "RH_umpsdaim", "RH_krissRFX", "RH_kriss", "RH_krisssd", "RH_krisseot", "RH_krisssdeot", "RH_uzi", "RH_uzisd", "RH_tmp", "RH_tmpsd", "RH_tmpaim", "RH_tmpsdaim", "RH_pp2000eot", "RH_mp7eot", "RH_mp7sdeot", "RH_mp7aim", "RH_mp7sdaim", "UZI_EP1", "UZI_SD_EP1", "MP5A5", "MP5SD"];
 shotguns = ["M1014","AA_PMC"];

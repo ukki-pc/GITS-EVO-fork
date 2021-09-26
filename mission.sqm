@@ -2329,7 +2329,7 @@ class Mission
 			age="UNKNOWN";
 			text="airport";
 			name="AirportIn";
-			expCond="objective_1 in (missionNamespace getVariable ""BIS_EVO_conqueredTowns"")";
+			expCond="capturedAirportIn";
 			class Effects
 			{
 			};
@@ -2377,7 +2377,7 @@ class Mission
 			interruptable=1;
 			age="UNKNOWN";
 			name="farp1";
-			expCond="true";
+			expCond="capturedFarp1";
 			class Effects
 			{
 			};
@@ -2393,7 +2393,7 @@ class Mission
 			interruptable=1;
 			age="UNKNOWN";
 			name="farp2";
-			expCond="objective_37 in (missionNamespace getVariable ""BIS_EVO_conqueredTowns"")";
+			expCond="capturedFarp2";
 			class Effects
 			{
 			};
@@ -2409,7 +2409,7 @@ class Mission
 			interruptable=1;
 			age="UNKNOWN";
 			name="farp3";
-			expCond="""mobjC5"" in (missionNamespace getVariable ""BIS_EVO_conqueredTowns"")";
+			expCond="capturedFarp3";
 			class Effects
 			{
 			};
@@ -2424,7 +2424,7 @@ class Mission
 			interruptable=1;
 			age="UNKNOWN";
 			name="dock1";
-			expCond="""mobjB6"" in (missionNamespace getVariable ""BIS_EVO_conqueredTowns"")";
+			expCond="capturedDock1";
 			class Effects
 			{
 			};
@@ -2483,7 +2483,7 @@ class Mission
 			age="UNKNOWN";
 			text="farp4";
 			name="farp4";
-			expCond="objective_42 in (missionNamespace getVariable ""BIS_EVO_conqueredTowns"")";
+			expCond="capturedFarp4";
 			class Effects
 			{
 			};
@@ -2501,7 +2501,7 @@ class Mission
 			age="UNKNOWN";
 			text="LHDin";
 			name="LHDin";
-			expCond="true";
+			expCond="hasCarrier";
 			class Effects
 			{
 			};

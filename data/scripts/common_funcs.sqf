@@ -25,6 +25,16 @@ _isArray = (typename _object == "ARRAY");
 _object;
 };
 
+fnc_playerBases = 
+{
+	capturedAirportIn = (objective_1 in BIS_EVO_conqueredTowns);
+	capturedFarp1 = true;
+	capturedFarp2 = (objective_37 in BIS_EVO_conqueredTowns);
+	capturedFarp3 = (objective_43 in BIS_EVO_conqueredTowns);
+	capturedFarp4 = (objective_42 in BIS_EVO_conqueredTowns);
+	capturedDock1 = (objective_19 in BIS_EVO_conqueredTowns);
+};
+
 //INPUT object, RETURNS array of location objects
 fnc_get_synchronized_towns = 
 {
