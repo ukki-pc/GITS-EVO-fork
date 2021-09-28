@@ -4,9 +4,11 @@ BIS_EVO_FillInf =
 	_grp = _this select 0;
 	_lpos = position leader _grp;
 
-	_allunits = EGG_EVO_enemy1;
-	_rng = floor(random(aggression/20)+1);
+	_allunits = enemyAll;
 
+
+	_rng = floor(random(aggression/20)+1);
+	/*
 	switch (_rng) do
 	{
 		case 1: //rebels low skill
@@ -30,6 +32,7 @@ BIS_EVO_FillInf =
 				_allunits = EGG_EVO_enemy5;
 		};
 	};
+	*/
 
 	_grpskill = skillfactor+(_rng/10);
 	_max = (count _allunits)-1;
@@ -72,7 +75,7 @@ BIS_EVO_FillInfDummy =
 	_grp = _this select 0;
 	_lpos = position leader _grp;
 	_spawned = [];
-	_allunits = EGG_EVO_enemy1;	
+	_allunits = enemyRiflemen;	
 	_max = (count _allunits)-1;
 	_infcount = 11;
 	_j = 0;

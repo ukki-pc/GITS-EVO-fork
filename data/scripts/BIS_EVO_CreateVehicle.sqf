@@ -123,7 +123,7 @@ BIS_EVO_CreateVehicle =
 
 	_crewtype = getArray (configFile >> "CfgVehicles" >> _type >> "typicalCargo");
 
-	_crewtype = EGG_EVO_enemy1;
+	_crewtype = enemyRiflemen;
 	_maxc = (count _crewtype)-1;
 	_maxcrew = 0;
 

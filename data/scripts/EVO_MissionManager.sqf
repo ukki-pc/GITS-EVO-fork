@@ -189,6 +189,7 @@ missionManager =
 					{
 						case EGG_EVO_PLAYERFACTION: 
 						{
+							
 							_tickets = (_tickets -1) max minTickets min maxTickets;
 
 							//Reward every 5 secs when player is capturing objective
@@ -277,6 +278,8 @@ missionManager =
 					_msg = format ["Outpost is being overrun!"];
 					["jed_SIDEmsg", [_x, _msg]] call CBA_fnc_whereLocalEvent;
 				}forEach everyPlayer;
+				capturedFlags = capturedFlags - [_bunkerObject];
+				publicVariable "capturedFlags";
 				_captured = false;
 				_neutralized = false;
 			};
@@ -307,6 +310,8 @@ missionManager =
 						_msg = format ["Position clear and under control!"];
 						["jed_SIDEmsg", [_x, _msg]] call CBA_fnc_whereLocalEvent;
 					}forEach everyPlayer;
+				capturedFlags = capturedFlags + [_bunkerObject];
+				publicVariable "capturedFlags";
 				_captured = true;
 				_captureTick = 0;
 			};
@@ -441,7 +446,6 @@ missionManager =
 	//	Sleep 10.0;
 
 	reinfdelay = round (290-(aggression^1.14));
-	reinfdelay = 60;
 
 	reinforcements = true;
 	[] spawn reinforcementLoop;
@@ -496,6 +500,7 @@ missionManager =
 		[bunkers] call fnc_bunk_cleanup;
 		//BIS_EVO_MissionProgress = BIS_EVO_MissionProgress + 1;
 		publicVariable "BIS_EVO_MissionProgress";
+		[] call fnc_playerBases;
 		//player globalchat format ["BIS_EVO_MissionProgress: %1",BIS_EVO_MissionProgress]; 
 	};
 };

@@ -59,8 +59,8 @@ _allPlayers = call BIS_fnc_listPlayers;
 
 
 //GENERATE SAVE VALUES
-_clipboard = format ["cars=[%1];tanks=[%2];air=[%3];stat=[%4];players=%5;prog=%6;unlocks=%7;",_saveCars,_saveTanks,_saveAir,_saveStatic,bank,BIS_EVO_conqueredTowns,BIS_EVO_unlocks];
-_clipboard = _clipboard + format ["%1","[cars,tanks,air,stat,players,prog,unlocks] execVM ""actions\loadMission.sqf"";"];
+_clipboard = format ["cars=[%1];tanks=[%2];air=[%3];stat=[%4];players=%5;prog=%6;unlocks=%7;weapons=%8;",_saveCars,_saveTanks,_saveAir,_saveStatic,bank,BIS_EVO_conqueredTowns,BIS_EVO_unlocks,weaponsNamespace];
+_clipboard = _clipboard + format ["%1","[cars,tanks,air,stat,players,prog,unlocks,weapons] execVM ""actions\loadMission.sqf"";"];
 copyToClipboard _clipboard;
 
 hint "Saved to clipboard!";

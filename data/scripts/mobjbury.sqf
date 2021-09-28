@@ -33,7 +33,20 @@ if !(isNil "_tag") then
 };
 */
 //Give rewards for the kiler end evaluate reward
-if(isPlayer _killer) then {["jed_hitMarker", [_killer]] call CBA_fnc_whereLocalEvent};
+if(isPlayer _killer) then 
+{
+	["jed_hitMarker", [_killer]] call CBA_fnc_whereLocalEvent;
+	if(_killer isKindOf "Man") then 
+	{
+		_wp = currentWeapon _killer;
+
+		if(_wp in assaultRifles) exitWith {systemChat "Assaultrifle"};
+		if(_wp in smgs) exitWith {systemChat "SMG"};
+		if(_wp in mgs) exitWith {systemChat "MG"};
+		if(_wp in launchers) exitWith {systemChat "launcher"};
+		if(_wp in rifles) exitWith {systemChat "sniper"};
+	};
+};
 
 if(isPlayer _killer or isPlayer leader _killer) then 
 {	

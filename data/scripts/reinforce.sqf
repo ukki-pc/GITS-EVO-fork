@@ -45,7 +45,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_pos = position _spawns;
 		_tag = "MEC";
 
-		_allunits = EGG_EVO_enemy1;
+		_allunits = enemyRiflemen;
 		_max = count _allunits;
 		_guardr = createGroup (EGG_EVO_ENEMYFACTION);
 		_pos2 = position (_reinforceTowns select (round random (count _reinforceTowns-1)));
@@ -55,17 +55,17 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		[_ural] call BIS_EVO_Lock;
 		_ural addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 		Sleep 0.2;
-		_unit = _guardr createUnit [(_allunits select (round random (_max - 1))), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsDriver _ural;_unit moveInDriver _ural;
+		_unit = _guardr createUnit [[enemyAll] call fnc_pickRandom, _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsDriver _ural;_unit moveInDriver _ural;
 		Sleep 0.2;
-		_unit = _guardr createUnit [(_allunits select round random (_max - 1)), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
+		_unit = _guardr createUnit [[enemyAll] call fnc_pickRandom, _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
 		Sleep 0.2;
-		_unit = _guardr createUnit [(_allunits select round random (_max - 1)), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
+		_unit = _guardr createUnit [[enemyAll] call fnc_pickRandom, _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
 		Sleep 0.2;
-		_unit = _guardr createUnit [(_allunits select round random (_max - 1)), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
+		_unit = _guardr createUnit [[enemyAll] call fnc_pickRandom, _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
 		Sleep 0.2;
-		_unit = _guardr createUnit [(_allunits select round random (_max - 1)), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
+		_unit = _guardr createUnit [[enemyAll] call fnc_pickRandom, _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
 		Sleep 0.2;
-		_unit = _guardr createUnit [(_allunits select round random (_max - 1)), _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
+		_unit = _guardr createUnit [[enemyAll] call fnc_pickRandom, _pos2, [], 0, "NONE"];_unit setSkill skillfactor+(random 0.2);[_unit] join _guardr;_unit assignAsCargo _ural;_unit moveInCargo _ural;
 		Sleep 0.2;
 		_sumark = [_ural,"Ural","ColorRed","plp_icon_truck",false,0.8] execVM "data\scripts\customMarker.sqf";
 		sleep 1;
@@ -321,7 +321,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 			while {_i <= _count} do 
 			{
 				_pos = position _heli0;
-				_unit = _para createUnit [_allunits2 select (round (random (_max - 1))), [0,0,0], [], 300, "NONE"];
+				_unit = _para createUnit [[enemySpecops] call fnc_pickRandom, [0,0,0], [], 300, "NONE"];
 				_unit setSkill skillfactor+(random 0.2);
 				_unit addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 				[_unit] join _para;

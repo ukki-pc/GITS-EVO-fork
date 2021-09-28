@@ -3,8 +3,11 @@ _tankArray = _this select 1;
 _airArray = _this select 2;
 _statArray = _this select 3;
 _playerValues = _this select 4;
-_missionProgress = _this select 5;
+BIS_EVO_conqueredTowns = _this select 5;
 BIS_EVO_unlocks = _this select 6;
+weaponsNamespace = _this select 7;
+
+systemChat "asd";
 
 sleep 0.3;
 //Start adding vehicles into array
@@ -36,15 +39,12 @@ for [{_loop=0}, {_loop<count _statArray}, {_loop=_loop+1}] do
 publicVariable "buyStatList";
 sleep 0.3;
 //Start adding scores from array
-for [{_loop=0}, {_loop<count _playerValues}, {_loop=_loop+1}] do 
-{
-	((_playerValues select _loop)select 0) addscore ((_playerValues select _loop)select 1);
-};
 
 
 //SET MISSION PROGRESS
-BIS_EVO_conqueredTowns = _missionProgress;
-publicVariable "BIS_EVO_MissionProgress";
+//BIS_EVO_conqueredTowns = _capturedTowns;
+publicVariable "BIS_EVO_conqueredTowns";
+
 [] call updCityMarkers;
 sleep 0.3;
 hint "load success";

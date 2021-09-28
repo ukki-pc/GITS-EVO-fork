@@ -35,6 +35,28 @@ fnc_playerBases =
 	capturedDock1 = (objective_19 in BIS_EVO_conqueredTowns);
 };
 
+// [ARRAY_TO_INSERT_TO,DATA_TO_INSERT,INDEX_TO_INSERT_TO] RETURNS FULL ARRAY
+fnc_spliceToArray = 
+{
+	_sourceArray = _this select 0;
+	_data = _this select 1;
+	_spliceIndex = _this select 2;
+	_returnArray = [];
+
+	if(_spliceIndex >= count _sourceArray) then {_spliceIndex = count _sourceArray};
+
+	for [{_i = 0}, {_i < count _sourceArray+1 }, {_i = _i + 1}] do 
+	{
+		if(_i < _spliceIndex) then {_returnArray = _returnArray + [_sourceArray select _i]};
+		if(_i == _spliceIndex) then {_returnArray = _returnArray + _data};
+		if(_i > _spliceIndex) then {_returnArray = _returnArray + [_sourceArray select _i-1]};
+
+	};
+
+	_returnArray;
+};
+
+
 //INPUT object, RETURNS array of location objects
 fnc_get_synchronized_towns = 
 {

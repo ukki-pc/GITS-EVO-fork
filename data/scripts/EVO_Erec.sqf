@@ -159,7 +159,7 @@ BIS_EVO_Erec =
 		_respawnpoint = [_respawnpoint, 1, 400,1,0,0.4,0,[],_respawnpoint] call BIS_fnc_findSafePos;
 	//	_vcl setdir round(random (360));	
 		_grp = createGroup (EGG_EVO_ENEMYFACTION);
-		_type = EGG_EVO_enemy1 select 0;
+		_type = [enemyAamen] call fnc_pickRandom;
 		_unit1 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
 		_unit2 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
 		_unit3 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
@@ -276,7 +276,7 @@ BIS_EVO_Erec =
 	if(_inf > 11) then
 	{
 		_grp = createGroup (EGG_EVO_ENEMYFACTION);
-		_type = EGG_EVO_enemy2 select round (random (count EGG_EVO_enemy2-1));
+		_type = [enemyAll] call fnc_pickRandom;
 		_unit = _grp createUnit [_type, position _radio, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
 		_unit addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]; 
@@ -297,7 +297,7 @@ BIS_EVO_Erec =
 	{
 		Sleep 0.6;
 		_grp = createGroup (EGG_EVO_ENEMYFACTION);
-		_type = EGG_EVO_enemy3 select round (random (count EGG_EVO_enemy3-1));
+		_type = [enemyAll] call fnc_pickRandom;
 		_unit = _grp createUnit [_type, position _offobj, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
 		_unit addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];		
@@ -318,7 +318,7 @@ BIS_EVO_Erec =
 	{
 		Sleep 0.6;
 		_grp = createGroup (EGG_EVO_ENEMYFACTION);
-		_type = EGG_EVO_enemy2 select round (random (count EGG_EVO_enemy2-1));
+		_type = [enemyAll] call fnc_pickRandom;
 		_unit = _grp createUnit [_type, position _radio, [], 10, "FORM"];Sleep BIS_EVO_GlobalSleep;
 //		_unit setSkill skillfactor+(random 0.2);
 		_unit addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];

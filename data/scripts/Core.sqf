@@ -1180,7 +1180,7 @@ BIS_EVO_ActButton = {
                     case 1: {
                         _nearestPoint = [BIS_EVO_conqueredTowns, position player] call BIS_fnc_nearestPosition;
                         _objDist = player distance getPos _nearestPoint;
-                        if (inrepairzone or _objDist <= 100) then {
+                        if (canRecruit) then {
                             if (_item != "ME") then {
                                 _rec = [_item] execVM "data\scripts\recruit.sqf";
                             }

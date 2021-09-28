@@ -1381,7 +1381,7 @@ class Mission
 		};
 		class Item3
 		{
-			position[]={2584.2117,13.883385,2716.9656};
+			position[]={2582.0786,13.883385,2845.231};
 			azimut=267.7738;
 			id=3;
 			side="EMPTY";
@@ -1409,7 +1409,7 @@ class Mission
 		};
 		class Item6
 		{
-			position[]={2584.542,13.883385,2743.6338};
+			position[]={2582.4089,13.883385,2871.8992};
 			azimut=87.773903;
 			id=6;
 			side="EMPTY";
@@ -1594,7 +1594,7 @@ class Mission
 		};
 		class Item24
 		{
-			position[]={2585.8469,13.883385,2661.1611};
+			position[]={2583.7139,13.883385,2789.4265};
 			azimut=87.773918;
 			id=27;
 			side="EMPTY";
@@ -1926,7 +1926,7 @@ class Mission
 		};
 		class Item59
 		{
-			position[]={2909.8311,5.0120635,3065.155};
+			position[]={2901.7642,4.855866,3067.9724};
 			id=123;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
@@ -1993,7 +1993,7 @@ class Mission
 		};
 		class Item6
 		{
-			position[]={2580.8352,13.883385,2730.1021};
+			position[]={2578.7021,13.883385,2858.3674};
 			name="ammob4";
 			markerType="ELLIPSE";
 			type="Flag";
@@ -2042,7 +2042,7 @@ class Mission
 		};
 		class Item11
 		{
-			position[]={2582.9102,13.883385,2728.1829};
+			position[]={2580.7771,13.883385,2856.4482};
 			name="ammob9";
 			markerType="ELLIPSE";
 			type="Flag";

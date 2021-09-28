@@ -27,6 +27,7 @@ MECHaggr=100;
 weaponsNamespace = [];
 
 bank = [];
+capturedFlags = [];
 
 /////////////////Dwarden fixing fire in the sky bug
 
@@ -409,7 +410,7 @@ missionNamespace setVariable ["HCExtHideStatsOnEnemySides", false];
 [] execVM "HCfunc\HCrep\InitHC.sqf";
 };
 luatikko = "LENL119box" createVehicleLocal (getMarkerPos "ammob1");
-clearMagazineCargo luatikko; clearWeaponCargo luatikko;
+clearMagazineCargo luatikko; clearWeaponCargo luatikko; luatikko allowDamage false;
 weaponBoxes = [luatikko];
 allMagazines = [];
 magazineBanList = ["EB_2000Rnd_762x51_NATO_Ball","EB_3000Rnd_762x51_NATO_Ball","EB_4200Rnd_762x51_NATO_Ball"];
@@ -429,7 +430,6 @@ canAmmo = false;
 canFasttravel = false;
 canRecruit = false;
 
-startingTowns = [objective_49];
 BIS_EVO_MissionTowns = [];
 BIS_EVO_MissionBigTowns = [];
 BIS_EVO_MilitaryObjectives = [];
@@ -440,7 +440,7 @@ BIS_EVO_MissionTownNames = [];
 BIS_EVO_MissionTownInfGarrisons = [];
 BIS_EVO_MissionTownVecGarrisons = [];
 
-BIS_EVO_conqueredTowns = startingTowns; //Set starting town
+BIS_EVO_conqueredTowns = [objective_49]; //Set starting town
 
 if(isServer) then {
 
@@ -912,6 +912,17 @@ LDL_inGameActions =
 	true  //3: LDL-Systems: AC130 Pilot and AC130 Co-Pilot have the ability to start coop script (Multiplayer)
 ];
 //############################################################
+publicVariable "BIS_EVO_MissionTowns";
+publicVariable "BIS_EVO_MissionBigTowns";
+publicVariable "BIS_EVO_MilitaryObjectives";
+publicVariable "BIS_EVO_MissionVillages";
+publicVariable "BIS_EVO_CoastalTowns";
+publicVariable "BIS_EVO_MissionObjMarkers";
+publicVariable "BIS_EVO_MissionTownNames";
+publicVariable "BIS_EVO_MissionTownInfGarrisons";
+publicVariable "BIS_EVO_MissionTownVecGarrisons";
+publicVariable "BIS_EVO_conqueredTowns";
+
 if(EGG_EVO_LoadGame == 0) then 
 {
     _allPlayers = call BIS_fnc_listPlayers;
@@ -950,21 +961,17 @@ execVM "briefing.sqf";
 //titleCut ["","black faded", 0];
 player addEventHandler ["hit", {_this call compile preprocessFileLineNumbers "data\scripts\hit.sqf"}];
 
-publicVariable "BIS_EVO_MissionTowns";
-publicVariable "BIS_EVO_MissionBigTowns";
-publicVariable "BIS_EVO_MilitaryObjectives";
-publicVariable "BIS_EVO_MissionVillages";
-publicVariable "BIS_EVO_CoastalTowns";
-publicVariable "BIS_EVO_MissionObjMarkers";
-publicVariable "BIS_EVO_MissionTownNames";
-publicVariable "BIS_EVO_MissionTownInfGarrisons";
-publicVariable "BIS_EVO_MissionTownVecGarrisons";
-publicVariable "BIS_EVO_conqueredTowns";
 
 sleep 10;
-
+if(EGG_EVO_LoadGame == 0) then 
+{
 _firstCity = objective_42;
-
 _cityNum=BIS_EVO_MissionTowns find _firstCity;
-
   ["jed_missionManager", [_cityNum]] spawn CBA_fnc_globalEvent;
+  };
+
+
+
+
+
+[] call fnc_playerBases;

@@ -134,3 +134,32 @@ _i= 0;
 				// ["jed_SIDEmsg", ["ALL", _msg]] call CBA_fnc_whereLocalEvent;
 };
 */
+
+	//count assaultRifles;
+
+
+/*
+#define weaponArray miscs
+testbox = "LENL119box" createVehicleLocal position player;
+
+_missing = [];
+
+	for [{_loop=0}, {_loop<count weaponArray}, {_loop=_loop+1}] do
+	{
+		clearMagazineCargo testbox; 
+		clearWeaponCargo testbox;
+
+		testbox addWeaponCargo [(weaponArray select _loop),1];
+
+		sleep 0.1;
+
+		_weapon = ((getWeaponCargo testbox) select 0) select 0;
+
+		systemChat str _weapon;
+
+
+		if !(_weapon in weaponArray) then {_missing = _missing + [_weapon]};
+	};
+systemChat "done";
+copyToClipboard str _missing;
+*/

@@ -181,11 +181,9 @@ _objId = _this select 0;
 ["jed_getMoney", {
 		_player = _this select 0;
 		_count = _this select 1;
-			if(name _player == name player) then 
-			{
-				bank set [_count,[_player,money]];
-				publicVariableServer "bank";
-			};
+		bank set [_count,[name _player,money]];
+		publicVariableServer "bank";
+
 }] call CBA_fnc_addLocalEventHandler;
 
 ["jed_aggr", {

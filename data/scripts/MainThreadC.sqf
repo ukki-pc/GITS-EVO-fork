@@ -506,22 +506,11 @@ BIS_EVO_locationActions =
 	if(inrepairzone) exitWith {canRecruit = true; canFasttravel = true};
 
 	_nearPos = false;
-
 	_positions = [];
 
-	//Add CAPTURED bunker positions to the location array
-	if(BIS_EVO_MissionProgress != -1) then 
-	{
-		{
-			if(_x getVariable "owner" == EGG_EVO_PLAYERFACTION) then 
-			{
-				_positions = _positions + [getPos _x];
-			};
-		}forEach bunkers
-	};
 
 	//Add cities to the array
-	{_positions = _positions + [getPos _x]}forEach BIS_EVO_conqueredTowns;
+	_positions = BIS_EVO_conqueredTowns + capturedFlags;
 
 	//Add rhq locations to the array
 	{_positions = _positions + [getMarkerPos _x]}forEach RHQMarkers;
@@ -534,8 +523,11 @@ BIS_EVO_locationActions =
 
 	_objDist = player distance _nearestPoint;
 	_nearPos = _objDist<rhqTeleportDistance;
-	
-	if(_nearestPoint in BIS_EVO_conqueredTowns and _objdist < townTeleportDistance) exitWith {canFasttravel = true; canRecruit = true};
+
+	if(((_nearestPoint in capturedFlags)) and _objdist < 30) exitWith {canFasttravel = true; canRecruit = true};
+	if(((_nearestPoint in BIS_EVO_conqueredTowns)) and _objdist < townTeleportDistance) exitWith {canFasttravel = true; canRecruit = true};
+
+	canRecruit = false;
 
 	if(_nearPos) exitWith {canFasttravel = true};
 
