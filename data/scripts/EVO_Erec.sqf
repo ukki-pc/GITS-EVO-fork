@@ -291,7 +291,7 @@ BIS_EVO_Erec =
 		_inf=_inf-12;
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
 	};
-
+/*
 //Officer defence
 	if(_inf > 11) then
 	{
@@ -332,7 +332,7 @@ BIS_EVO_Erec =
 		_inf=_inf-12;
 		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
 	};
-
+*/
 //Spawn infantry
 
 	while {_inf > 0} do 

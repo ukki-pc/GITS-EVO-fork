@@ -607,11 +607,11 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	if (BIS_EVO_MissionProgress != _currentprog) then {[] call BIS_EVO_CityClear};
 	[] call	BIS_EVO_locationActions;
 	sleep 1.011;
-	BIS_EVO_frameDelay = 1/ceil(diag_fps);
 	//[] call BIS_EVO_CTime;
 	[] call BIS_EVO_UpdateUI;
 	sleep 1.011;
 	if(currentWeapon player in BIS_EVO_spottingWeapons and perkSniperLVL > 0) then {call fnc_spotVeh};
 	//[] call BIS_EVO_HPM; //DUNNO WHAT IS
+
 //	[] call BIS_EVO_Surrender;
 };

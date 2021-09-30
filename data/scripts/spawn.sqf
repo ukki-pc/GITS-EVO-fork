@@ -39,6 +39,7 @@ Sleep 0.2;
 player setSkill BIS_EVO_PlayerSkill;
 
 _player addEventHandler ["killed", {handle = [(_this select 0),(_this select 1)] execVM "data\scripts\killed.sqf"}];
+//_player addMPEventHandler  ["MPHit", {handle = [(_this select 0), (_this select 2)] execVM "data\scripts\handleDamage.sqf"}];
 
 if(deathScorePenalty > 0) then 
 {

@@ -24,6 +24,8 @@ TANKaggr=100;
 INFaggr=100;
 MECHaggr=100;
 
+BIS_EVO_frameDelay = 0.013;
+
 weaponsNamespace = [];
 
 bank = [];
@@ -121,7 +123,7 @@ else
 if (editor == 1) then
 {
 	onMapSingleClick "if (_alt) then {vehicle player setpos _pos;{vehicle _x setpos _pos} forEach _units}";
-	player allowDamage false;
+	//player allowDamage false;
 	Param1 = 0;
 	hardcore = 0;
 	LHDCarrier = 1;
@@ -441,6 +443,7 @@ BIS_EVO_MissionTownInfGarrisons = [];
 BIS_EVO_MissionTownVecGarrisons = [];
 
 BIS_EVO_conqueredTowns = [objective_49]; //Set starting town
+
 
 if(isServer) then {
 
@@ -961,11 +964,14 @@ execVM "briefing.sqf";
 //titleCut ["","black faded", 0];
 player addEventHandler ["hit", {_this call compile preprocessFileLineNumbers "data\scripts\hit.sqf"}];
 
+_enemyTowns = BIS_EVO_MissionTowns - BIS_EVO_conqueredTowns;
+
+ _nearestEnemyTown = [_enemyTowns, position player] call BIS_fnc_nearestPosition;
 
 sleep 10;
 if(EGG_EVO_LoadGame == 0) then 
 {
-_firstCity = objective_42;
+_firstCity = _nearestEnemyTown;
 _cityNum=BIS_EVO_MissionTowns find _firstCity;
   ["jed_missionManager", [_cityNum]] spawn CBA_fnc_globalEvent;
   };

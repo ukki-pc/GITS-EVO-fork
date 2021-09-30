@@ -44,7 +44,10 @@ if(isPlayer _killer) then
 		if(_wp in smgs) exitWith {systemChat "SMG"};
 		if(_wp in mgs) exitWith {systemChat "MG"};
 		if(_wp in launchers) exitWith {systemChat "launcher"};
-		if(_wp in rifles) exitWith {systemChat "sniper"};
+		if(_wp in rifles) exitWith 
+		{
+
+		};
 	};
 };
 

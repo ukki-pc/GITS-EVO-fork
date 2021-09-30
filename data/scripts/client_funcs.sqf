@@ -27,7 +27,7 @@ fnc_marker_screen =
 	disableSerialization;
 	while{sleep 0.016; BIS_EVO_MissionProgress != -1} do 
 	{
-		_draw = (!(visibleMap) and (player distance _currentTownPos < screenCtrlMaxDist));
+		_draw = !(visibleMap);
 
 		if(_draw) then
 		{
@@ -52,8 +52,8 @@ fnc_marker_screen =
 					_ctrl = (uiNamespace  getVariable _ctrlName);
 					_ctrl ctrlSetPosition [2,2];
 					_ctrl ctrlCommit 0;
-					_clean = false;
 				}forEach _objects;
+				_clean = false;
 			};
 		};
 	};

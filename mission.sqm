@@ -2316,7 +2316,7 @@ class Mission
 	};
 	class Sensors
 	{
-		items=44;
+		items=46;
 		class Item0
 		{
 			position[]={9819.8174,139.98311,10079.436};
@@ -2999,7 +2999,37 @@ class Mission
 			age="UNKNOWN";
 			name="classnamer";
 			expCond="true";
-			expActiv="vecs = []; {if !(_x in vecs) then {vecs = vecs + [typeof _x]}}forEach thislist; deleteVehicle this; if(count vecs > 0) then {copyToClipboard str vecs}; deleteVehicle this;";
+			expActiv="vecs = []; {if !(_x in vecs) then {vecs = vecs + [typeof _x]}}forEach thislist; deleteVehicle this; if(count vecs > 0) then {copyToClipboard str vecs}; deleteVehicle classnamer;";
+			class Effects
+			{
+			};
+		};
+		class Item44
+		{
+			position[]={10041.321,205.91931,7909.6709};
+			a=3500;
+			b=3500;
+			activationBy="ANY";
+			interruptable=1;
+			age="UNKNOWN";
+			name="classnamer_1";
+			expCond="true";
+			expActiv=" {if (_x isKindof ""LocationLogic"") then {BIS_EVO_conqueredTowns = BIS_EVO_conqueredTowns + [_x]}}forEach thislist;  [] call updCityMarkers; deleteVehicle classnamer_1;";
+			class Effects
+			{
+			};
+		};
+		class Item45
+		{
+			position[]={2947.3413,20.117483,2575.8191};
+			a=500;
+			b=500;
+			activationBy="ANY";
+			interruptable=1;
+			age="UNKNOWN";
+			name="classnamer_2";
+			expCond="true";
+			expActiv=" {if (_x isKindof ""LocationLogic"") then {BIS_EVO_conqueredTowns = BIS_EVO_conqueredTowns + [_x]}}forEach thislist;  [] call updCityMarkers; deleteVehicle classnamer_2;";
 			class Effects
 			{
 			};
