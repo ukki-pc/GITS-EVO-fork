@@ -411,11 +411,16 @@ missionNamespace setVariable ["HCExtHideStatsOnEnemySides", false];
 
 [] execVM "HCfunc\HCrep\InitHC.sqf";
 };
+
+allMagazines = ["pipebomb"];
+magazineBanList = ["EB_2000Rnd_762x51_NATO_Ball","EB_3000Rnd_762x51_NATO_Ball","EB_4200Rnd_762x51_NATO_Ball"];
+
 luatikko = "LENL119box" createVehicleLocal (getMarkerPos "ammob1");
 clearMagazineCargo luatikko; clearWeaponCargo luatikko; luatikko allowDamage false;
 weaponBoxes = [luatikko];
-allMagazines = [];
-magazineBanList = ["EB_2000Rnd_762x51_NATO_Ball","EB_3000Rnd_762x51_NATO_Ball","EB_4200Rnd_762x51_NATO_Ball"];
+{_handle = [_x] execVM "actions\refreshweps.sqf"}forEach weaponBoxes;
+
+
 
 capturedAirportIn = false;
 capturedFarp1 = true;
@@ -794,12 +799,16 @@ if ((helicopterhitch == 1) || (helicopterhitch == 2)) then
 	EB_twoseaterplanes = ["FRL_Su34_D_CAP","FRL_Su34_D_CAS","FRL_Su34_D_HCAS","FRL_Su34_D_EHCAS","FRL_Su34_D_AGM","FRL_Su34_D_MR","FRL_Su34_D_LBMB","FRL_Su34_D_BMB","FRL_Su34_D_HBMB","FRL_Su34_D_LGB","FRL_Su34_D_SEAD","Su34","uns_F4_CAP","uns_F4Navy_CAP","uns_F4_CAS","uns_A6_Intruder_ECM","JS_FA18F","IkaR_F14_AIM_54","IkaR_F14_AGM_65","uns_f105F_WW"];
 
 // Perks
-
-perkOffLVL = 0;
-perkPilotLVL = 0;
+perkSupLVL = 0;
+perkAssaultLVL = 0;
 perkSniperLVL = 0;
 perkEngLVL = 0;
 
+//Skillevels
+supSkill = 0;
+assaultSkill = 0;
+sniperSkill = 0;
+engSkill = 0;
 
 //////////////////////////////////
 

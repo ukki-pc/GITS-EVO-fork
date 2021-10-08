@@ -35,7 +35,10 @@ class Mission
 		"Molatian_Army",
 		"bmp2_desert",
 		"nm_tigr",
-		"jdg_carrier"
+		"jdg_carrier",
+		"opxmisc",
+		"cacharacters_acr",
+		"jsrs_distance"
 	};
 	addOnsAuto[]=
 	{
@@ -43,10 +46,12 @@ class Mission
 		"ca_modules_functions",
 		"ca_modules_clouds",
 		"cacharacters_e",
+		"cacharacters_acr",
 		"PRACS_Troops",
 		"jdg_carrier",
 		"camisc3",
 		"CABuildings",
+		"opxmisc",
 		"camisc_e_wf",
 		"pracs_objects",
 		"camisc_e",
@@ -198,11 +203,10 @@ class Mission
 				class Item0
 				{
 					position[]={3007.4094,14.590175,2253.0476};
-					azimut=421.69556;
+					azimut=421.69601;
 					id=39;
 					side="EAST";
 					vehicle="TK_Soldier_Engineer_EP1";
-					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
 					text="enge2";
@@ -238,11 +242,11 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={3006.4485,14.523405,2251.5281};
+					position[]={3006.3875,14.536283,2252.3398};
 					azimut=694.62402;
 					id=43;
 					side="WEST";
-					vehicle="US_Soldier_EP1";
+					vehicle="CZ_Soldier_Wdl_ACR";
 					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;
@@ -259,10 +263,10 @@ class Mission
 				class Item0
 				{
 					position[]={3006.6458,14.566116,2253.1218};
-					azimut=331.16269;
+					azimut=331.16299;
 					id=44;
 					side="WEST";
-					vehicle="US_Soldier_EP1";
+					vehicle="CZ_Soldier_805_Wdl_ACR";
 					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
@@ -725,7 +729,7 @@ class Mission
 					skill=0.60000002;
 					text="objective_23";
 					init="this setVariable [""type"",""town""]; this setVariable [""name"",""Tiberia""]; ";
-					synchronizations[]={61,72};
+					synchronizations[]={61,72,124,125,126};
 				};
 			};
 		};
@@ -1349,7 +1353,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=60;
+		items=63;
 		class Item0
 		{
 			position[]={18819.916,38.26318,13693.878};
@@ -1932,6 +1936,33 @@ class Mission
 			vehicle="FlagPole_EP1";
 			skill=0.60000002;
 			synchronizations[]={90};
+		};
+		class Item60
+		{
+			position[]={9241.6357,18.015654,5370.2114};
+			id=124;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={71};
+		};
+		class Item61
+		{
+			position[]={9379.1475,24.254921,5218.1172};
+			id=125;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={71};
+		};
+		class Item62
+		{
+			position[]={9386.9375,38.271194,5040.4805};
+			id=126;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={71};
 		};
 	};
 	class Markers
@@ -3007,8 +3038,8 @@ class Mission
 		class Item44
 		{
 			position[]={10041.321,205.91931,7909.6709};
-			a=3500;
-			b=3500;
+			a=3;
+			b=3;
 			activationBy="ANY";
 			interruptable=1;
 			age="UNKNOWN";
@@ -3022,8 +3053,8 @@ class Mission
 		class Item45
 		{
 			position[]={2947.3413,20.117483,2575.8191};
-			a=500;
-			b=500;
+			a=5;
+			b=5;
 			activationBy="ANY";
 			interruptable=1;
 			age="UNKNOWN";

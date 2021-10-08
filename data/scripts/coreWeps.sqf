@@ -3,7 +3,8 @@
 #define weaponPicture 4003
 #define ammoListBox 4004
 #define colorUnlocked [0, 1, 0, 1]
-#define colorLocked [1, 0, 0, 1]
+#define colorLocked [0.5, 0.5, 0.5, 1]
+#define colorDisabled [0.5, 0.5, 0.5, 1]
 
 disableSerialization;
 uiNamespace setVariable ["displayVendor", findDisplay 177];
@@ -13,7 +14,8 @@ uiNamespace setVariable ["ctrlListBox", (uiNamespace getVariable "displayVendor"
 //uiNamespace setVariable ["ctrlListBox", (uiNamespace getVariable "displayVendor") displayCtrl ammoListBox];
 uiNamespace setVariable["ctrlWeaponPreview", (uiNamespace getVariable "displayVendor") displayCtrl weaponPicture];
 
-allItems = [assaultRifles,smgs,shotguns,pistols,rifles,launchers,mgs,miscs];
+allItems = [assaultRifles,smgs,pistols,rifles,launchers,mgs,miscs];
+itemSkills = [assaultSkill,engSkill,100,sniperSkill,supSkill+engSkill,supSkill,100];
 
 Wpage = 0;
 
@@ -25,11 +27,21 @@ BIS_EVO_ListUpdate =
 	_picture = "";
 
 	_categoryItems = allItems select Wpage;
+	_totalItems = count _categoryItems;
+	_skillLevel = ((itemSkills select Wpage)+0.01) min _totalItems max 0;
+	_skillRequired = 0;
 
 	if (count _categoryItems > 0) then 
 	{
-		_size = 0;
+		for [{_i=0}, {_i<_totalItems}, {_i=_i+1}] do
 		{
+			_x = "";
+			_row = (_categoryItems select _i);
+			if(typeName _row == "ARRAY") then {_x = _row select 0; _skillRequired = _row select 1}
+			else {_x = _row};
+
+			if(_skillRequired > _skillLevel) exitWith {};
+
 			_item = [_x,"displayName","CfgWeapons"] call fnc_getCfgText;
 			
 			//If it's not weapon then its probs a magazine
@@ -40,14 +52,14 @@ BIS_EVO_ListUpdate =
 				if(_picture == "") then {_picture = getText(configFile >> "cfgMagazines" >> _x >> "picture");};
 			
 				lbadd [weaponListBox,_item];
-				lbSetData[weaponListBox,_size,_x]; //Might need remove loop too
-				lbSetPicture[weaponListBox, _size, _picture];
+				lbSetData[weaponListBox,_i,_x]; //Might need remove loop too
+				//lbSetValue[weaponListBox,_i,_skillRequired];
+				lbSetPicture[weaponListBox, _i, _picture];
 
-				if !(_x in weaponsNamespace) then { lbSetColor[weaponListBox, _size, colorLocked]}
-				else {lbSetColor[weaponListBox, _size, colorUnlocked]};
-				_size = _size + 1;
+				if !(_x in weaponsNamespace) then { lbSetColor[weaponListBox, _i, colorLocked]};
+				if (_x in weaponsNamespace) then { lbSetColor[weaponListBox, _i, colorUnlocked]};
 			};
-		} forEach _categoryItems;	
+		};	
 	};
 };	
 //Endlsts
@@ -55,12 +67,10 @@ BIS_EVO_ListUpdate =
 BIS_EVO_ActButton = 
 {
 	_index = lbCurSel weaponListBox;
-	_categoryItems = allItems select Wpage;
 	_item =  lbData [weaponListBox,_index];
-
 	if(_item != "") then
 	{
-		if !(_item in weaponsNamespace) then 
+		if (!(_item in weaponsNamespace)) then 
 		{
 			weaponsNamespace = weaponsNamespace + [_item];
 				_magazines = (getArray (configFile >> "CfgWeapons" >> _item >> "magazines"));

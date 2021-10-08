@@ -26,7 +26,7 @@ _markerobj setMarkerColorLocal "ColorKhaki";
 _markerobj setMarkerTextLocal "Recon HQ";
 
 //Friends can teleport when enough level
-if(perkOffLVL > 1) then {publicVariable "_markerobj";};
+if(perkSupLVL > 1) then {publicVariable "_markerobj";};
 
 waitUntil {sleep 5;alive _amb};
 

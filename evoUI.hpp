@@ -723,50 +723,43 @@ class WeaponShopUI
 	      {
 			x = wepButCatX;
 			y = wepButCatY+(wepButPadding*1);
-				text = "SMG";
+				text = "CQB";
 				onButtonClick = "lbSetCurSel[4000,0];Wpage = 1;[] call BIS_EVO_ListUpdate";	
-	      };
-		class BMulti3: BMulti
-	      {
-			x = wepButCatX;
-			y = wepButCatY+(wepButPadding*2);
-			text = "Shotguns";
-			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 2;[] call BIS_EVO_ListUpdate";		
 	      };
 		class BMulti4: BMulti
 	      {
 			x = wepButCatX;
-			y = wepButCatY+(wepButPadding*3);
+			y = wepButCatY+(wepButPadding*2);
 			text = "Pistols";
-			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 3;[] call BIS_EVO_ListUpdate";		
+			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 2;[] call BIS_EVO_ListUpdate";		
 	      };
 		  		class BMulti5: BMulti
 	      {
 			x = wepButCatX;
-			y = wepButCatY+(wepButPadding*4);
+			y = wepButCatY+(wepButPadding*3);
 			text = "Rifles";
-			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 4;[] call BIS_EVO_ListUpdate";	
+			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 3;[] call BIS_EVO_ListUpdate";	
 	      };
 		  		  		class BMulti6: BMulti
 	      {
 			x = wepButCatX;
-			y = wepButCatY+(wepButPadding*5);
+			y = wepButCatY+(wepButPadding*4);
 			text = "Launchers";
-			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 5;[] call BIS_EVO_ListUpdate";	
+			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 4;[] call BIS_EVO_ListUpdate";	
 	      };
 		class BMulti7: BMulti
 	      {
 			x = wepButCatX;
-			y = wepButCatY+(wepButPadding*6);
+			y = wepButCatY+(wepButPadding*5);
 			text = "Machine Guns";
-			onButtonClick = "lbSetCurSel[4000,0];Wpage = 6;[] call BIS_EVO_ListUpdate";		
+			onButtonClick = "lbSetCurSel[4000,0];Wpage = 5;[] call BIS_EVO_ListUpdate";		
 	      };
 		  	class BMulti8: BMulti
 	      {
 			x = wepButCatX;
-			y = wepButCatY+(wepButPadding*7);
+			y = wepButCatY+(wepButPadding*6);
 			text = "Misc";
-			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 7;[] call BIS_EVO_ListUpdate";		
+			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 6;[] call BIS_EVO_ListUpdate";		
 	      };
 		class weaponPreview : Vendor_Title
 		{

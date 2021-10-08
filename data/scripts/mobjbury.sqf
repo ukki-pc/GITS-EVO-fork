@@ -36,19 +36,17 @@ if !(isNil "_tag") then
 if(isPlayer _killer) then 
 {
 	["jed_hitMarker", [_killer]] call CBA_fnc_whereLocalEvent;
+	
 	if(_killer isKindOf "Man") then 
 	{
 		_wp = currentWeapon _killer;
 
-		if(_wp in assaultRifles) exitWith {systemChat "Assaultrifle"};
-		if(_wp in smgs) exitWith {systemChat "SMG"};
-		if(_wp in mgs) exitWith {systemChat "MG"};
-		if(_wp in launchers) exitWith {systemChat "launcher"};
-		if(_wp in rifles) exitWith 
-		{
+		//allItems = [assaultRifles,smgs,shotguns,pistols,rifles,launchers,mgs,miscs];
+		//itemSkills = [perkAssaultLVL,perkEngLVL,perkEngLVL,5,perkSniperLVL,perkEngLVL,perkSupLVL,5];
 
-		};
+		["jed_wpSkill", [_killer, _wp]] call CBA_fnc_whereLocalEvent;
 	};
+	
 };
 
 if(isPlayer _killer or isPlayer leader _killer) then 
@@ -102,7 +100,7 @@ if(isPlayer _killer or isPlayer leader _killer) then
 };
 
 	
-
+/*
 //Give data for strategic balance
 	if ( (vehicle _killer isKindOf "Car")) then
 	{
@@ -140,6 +138,6 @@ if(isPlayer _killer or isPlayer leader _killer) then
 		//Strike focus
 
 	};
-
+*/
 	sleep 310.0;
 	deleteVehicle _unit;

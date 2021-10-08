@@ -57,7 +57,7 @@ Sleep 0.2;
 //Initial player skills
 
 //Maybe
-if (perkOffLVL > 0) then { _actionId8 = player addAction ["GPS/INS Menu", "actions\GPSINS.sqf",[],0, false, true,"test2"]; _actionId8 = player addAction ["Deploy Recon HQ", "actions\ambtent.sqf",0,1, false, true,"test2"]};
+if (perkSupLVL > 0) then { _actionId8 = player addAction ["GPS/INS Menu", "actions\GPSINS.sqf",[],0, false, true,"test2"]; _actionId8 = player addAction ["Deploy Recon HQ", "actions\ambtent.sqf",0,1, false, true,"test2"]};
 if (perkEngLVL > 0) then { _actionId8 = player addAction [localize "STR_M04t53", "data\scripts\etent.sqf",0,1, false, true,"test2"]};
 if ((perkparam == 1) and (gitsnades == 1)) then {
 

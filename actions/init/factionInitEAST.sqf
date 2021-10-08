@@ -246,3 +246,18 @@ for [{_loop=0}, {_loop<count buyStatList}, {_loop=_loop+1}] do
 {
 	buyStatList set [_loop,[(buyStatList select _loop) select 0, (buyStatList select _loop) select 1,0]];
 };
+
+//All the weapons
+assaultRifles = ["AKS_74_U","AK_47_M","AK_47_S","Sa58P_EP1","Sa58V_CCO_EP1","Sa58V_EP1","AKS_74_GOSHAWK","AKS_74_NSPU","RH_asvalsp","AKS_74_pso","AK_107_pso","Sa58V_RCO_EP1","AK_74","AKS_74_kobra","RH_Rk95aim","AK_107_kobra","RH_akms","RH_ak103","RH_ak104k","RH_ak105sp","RH_AK107_1p29","RH_SCARAKBAIM","RH_SCARAKACOG","AK_74_GL","AK_107_GL_pso","AK_107_GL_kobra","AK_74_GL_kobra","RH_an94gl","RH_aks74upt","RH_aks74uptsp","RH_aks74uptk","RH_ak74mkgl","RH_aks74mglsp","RH_ak104gl","RH_ak105kgl","EB_DP28"];
+smgs = ["Sa61_EP1","RH_vz61","UZI_EP1","bizon","RH_bizon","RH_bizonsdk","RH_gr1sp","Saiga12K"];
+pistols = ["RH_tt33","RH_pm","RH_aps"];
+rifles = ["KPFS_Mosin_Nagant","KPFS_KarS","huntingrifle", "LeeEnfield","EB_svd","KPFS_Mosin_Nagant_PU","RH_asval","RH_SVU","RH_asvalk","RH_oc14sp","ksvk","EB_OSV96","SVD","SVD_CAMO","VSS_vintorez","SVD_des_EP1","SVD_NSPU_EP1"];
+mgs = ["PK","RPK_74","pecheneg","RH_rpk74m1p29"];
+launchers = ["RPG18","RPG7V","Igla","Strela","MetisLauncher"];
+miscs = ["PipeBomb","MineE","EB_v40gren","HandGrenade_West","IRStrobe","IR_Strobe_Marker","EB_TIGoggles","EB_TIscanner","EB_mk3a2gren","EB_m67gren","EB_m61gren","EB_m34gren","EB_m14gren","EB_m308gren","EB_mk40gren","EB_TIscanner","EB_TIGoggles","EB_MX991_r","Binocular","EB_S10","eb_ItemFuelcan","EB_MX991_g","EB_mkvFlarePistol","Laserdesignator","EB_m79p","EB_MX991_w"];
+
+assaultRifleCount = count assaultRifles;
+smgsCount = count smgs;
+riflesCount = count rifles;
+mgsCount = count mgs;
+launcherCount = count launchers;

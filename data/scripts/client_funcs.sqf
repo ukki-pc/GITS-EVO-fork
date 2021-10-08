@@ -81,6 +81,175 @@ fnc_clientHudMessage =
 	messageMutex = 0;
 };
 
+fnc_interpolate = 
+{
+	// https://www.desmos.com/calculator/tmeeconifi
+	_a = _this select 0;
+	_c = _this select 1;
+	_n = _this select 2;
+	_d = _n*(_c^-_a);
+	_ex = _this select 3;
+
+	_return = (_ex^(1-_d))*(_c^_d);
+
+	_return;
+};
+
+fnc_increaseWpSkill = 
+{
+	#define skillAddition 1
+	_skillCategory = _this select 0;
+
+	switch(_skillCategory) do
+	{
+		case 0:
+		{
+			assaultSkill = assaultSkill + skillAddition;
+		};
+		case 1:
+		{
+			engSkill = engSkill + skillAddition;
+		};
+		case 2:
+		{
+			sniperSkill = sniperSkill + skillAddition;
+		};
+		case 3:
+		{
+			supSkill = supSkill + skillAddition;
+		};
+		case 4:
+		{
+
+		};
+	};
+};
+
+//Takes vehicle classname and returns upgrade count
+fnc_countUpgrades = 
+{
+	private ["_vecType","_count","_y","_i"];
+	_vecType = _this select 0;
+	_count = 0;
+
+	for [{_y=0}, {_y< count vehUpgList}, {_y=_y+1}] do
+		{
+			for [{_i=0}, {_i< count (vehUpgList select _y)}, {_i=_i+1}] do
+			{
+				if((_vecType) in (vehUpgList select _y)) exitWith //if current vehicle is upgradeable or can be upgraded to
+				{
+					_count = count (vehUpgList select _y)/2;
+				};
+			};
+		};
+	_count;
+};
+
+//Adds perk abilities
+ setPerkLevel = 
+ {
+	_perk = _this select 0;
+	 switch (_perk) do
+	 {
+		 case 0:
+		{
+		//Support
+			switch (perkSupLVL) do
+			{
+					case 1:
+					{
+
+					};
+			};
+		};
+			
+		//Engineer perk
+		case 1: 
+		{
+			switch (perkEngLVL) do
+			{
+				case 1:
+				{
+					_actionId8 = player addAction [localize "STR_M04t53", "data\scripts\etent.sqf",0,1, false, true,"test2"];
+					BIS_EVO_PlayerModels = BIS_EVO_PlayerModels + BIS_EVO_EngModels;
+				};
+				case 2:
+				{ 
+
+				};
+				case 3:
+				{
+
+				};
+				case 4:
+				{
+				};
+			};
+			_zone = (BIS_EVO_rengZones select (owner player));
+			_zone setVariable ["lvl",perkEngLVL];
+			publicVariable "_zone";
+		};
+
+		//Assault perk
+		case 2:
+		{
+
+		switch (perkAssaultLVL) do
+			{
+				case 1:
+				{
+
+				};
+				case 2:
+				{	
+
+				};
+				case 3:
+				{
+
+				};
+			};
+
+		};
+
+		case 3:
+		{
+		//Sniper perk
+			switch (perkSniperLVL) do
+			{
+				case 1:
+				{
+					egg_evo_Amb = EGG_EVO_allAmbs select 0;
+					_actionId8 = player addAction ["Deploy Recon HQ", "actions\ambtent.sqf",0,1, false, true,"test2"];
+				};
+				case 2:
+				{
+					egg_evo_Amb = EGG_EVO_allAmbs select 1;
+				};
+				case 3:
+				{
+					egg_evo_Amb = EGG_EVO_allAmbs select 2;
+				};
+				case 4:
+				{
+					egg_evo_Amb = EGG_EVO_allAmbs select 3;
+				};
+			};
+			};
+ 		 };
+ };
+
+//Give weapon skill
+["jed_wpSkill", {
+	_wp = _this select 1;
+
+	if(_wp in AllassaultRifles) exitWith {[0] call fnc_increaseWpSkill};
+	if(_wp in allsmgs) exitWith {[1] call fnc_increaseWpSkill};
+	if(_wp in allmgs) exitWith {[3] call fnc_increaseWpSkill};
+	if(_wp in alllaunchers) exitWith {[4] call fnc_increaseWpSkill};
+	if(_wp in allrifles) exitWith {[2] call fnc_increaseWpSkill};
+}] call CBA_fnc_addLocalEventHandler;
+
 //Broadcasts hud messages for players
 ["fnc_ctrlChangeColor", {
 	disableSerialization;

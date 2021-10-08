@@ -1487,8 +1487,8 @@ BIS_EVO_ActButton = {
             switch (_index)
                 do {
                     case 0: {
-                        if (perkOffLVL < 4) then {
-                            perkOffLVL = perkOffLVL + 1;
+                        if (perkSupLVL < 4) then {
+                            perkSupLVL = perkSupLVL + 1;
                         }
                     };
                     case 1: {
@@ -1502,8 +1502,8 @@ BIS_EVO_ActButton = {
                         }
                     };
                     case 3: {
-                        if (perkPilotLVL < 4) then {
-                            perkPilotLVL = perkPilotLVL + 1;
+                        if (perkAssaultLVL < 4) then {
+                            perkAssaultLVL = perkAssaultLVL + 1;
                         }
                     };
                 };
@@ -1861,12 +1861,14 @@ BIS_EVO_ListSelect = {
 
         _i = 0;
         lbClear 2000;
-        //Officer
-        _name = "Officer";
+        //Support
+        _name = "Support";
         _maxLevel = 4;
-        _text = format["%1 %2/%3", _name, perkOffLVL, _maxLevel];
+        _text = format["%1 %2/%3", _name, perkSupLVL, _maxLevel];
         _index = lbAdd[2000, _text];
         ctrlSetText[2010, _name];
+        _pic = "data\support.paa";
+        lbSetPicture [2000,0,_pic];
 
         //Engineer Perk
         _maxLevel = 4;
@@ -1874,6 +1876,8 @@ BIS_EVO_ListSelect = {
         _text = format["%1 %2/%3", _name, perkEngLVL, _maxLevel];
         ctrlSetText[2010, _name];
         _index = lbAdd[2000, _text];
+        _pic = "data\engineer.paa";
+        lbSetPicture [2000,1,_pic];
 
         //Recon Perk
         _maxLevel = 4;
@@ -1881,25 +1885,29 @@ BIS_EVO_ListSelect = {
         _text = format["%1 %2/%3", _name, perkSniperLVL, _maxLevel];
         ctrlSetText[2010, _name];
         _index = lbAdd[2000, _text];
+         _pic = "data\recon.paa";
+        lbSetPicture [2000,2,_pic];
 
-        //Pilot Perk
-        _name = "Pilot";
+        //Assault Perk
+        _name = "Assault";
         _maxLevel = 4;
-        _text = format["%1 %2/%3", _name, perkPilotLVL, _maxLevel];
+        _text = format["%1 %2/%3", _name, perkAssaultLVL, _maxLevel];
         ctrlSetText[2010, _name];
         _index = lbAdd[2000, _text];
+        _pic = "data\assault.paa";
+        lbSetPicture [2000,3,_pic];
         ctrlSetText[2001, format["Perkpoints: %1", perkPoints]];
         switch (_x)
             do {
-                //Officer Perk
+                //Support Perk
                 case 0: {
-                    _name = "Officer";
+                    _name = "Support";
                     _description = "Can create static RECON HQ
                     improve vehicle
                     improve vehicle with supply
                     improve vehicle with supply ";
                     _maxLevel = 4;
-                    _text = format["%1 %2/%3", _name, perkOffLVL, _maxLevel];
+                    _text = format["%1 %2/%3", _name, perkSupLVL, _maxLevel];
                     ctrlSetText[2010, _name];
                     ctrlSetText[2011, _description];
                 };
@@ -1922,11 +1930,11 @@ BIS_EVO_ListSelect = {
                     ctrlSetText[2011, _description];
                 };
                 case 3: {
-                    //Pilot Perk
-                    _description = "paska pilot";
-                    _name = "Pilot";
+                    //Assault Perk
+                    _description = "paska assault";
+                    _name = "Assault";
                     _maxLevel = 4;
-                    _text = format["%1 %2/%3", _name, perkPilotLVL, _maxLevel];
+                    _text = format["%1 %2/%3", _name, perkAssaultLVL, _maxLevel];
 
                     ctrlSetText[2010, _name];
                     ctrlSetText[2011, _description];
