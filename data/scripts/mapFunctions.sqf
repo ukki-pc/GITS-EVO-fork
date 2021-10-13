@@ -3,11 +3,11 @@ fnc_mapScale =
 {
 	#define minScale 0.01
 	#define maxScale 0.9
-	#define scaleMultip 0.04
+	#define scaleMultip 0.03
 	allMarkers = BIS_EVO_MissionObjMarkers + ["ship1","ship2"];
 	_mapCtrl = (findDisplay 12) displayCtrl 51;
 
-	while {visibleMap} do 
+	while {	sleep BIS_EVO_frameDelay;visibleMap} do 
 		{
 		_scale = ctrlMapScale _mapCtrl;
 		//Scale  markers
@@ -26,11 +26,10 @@ fnc_mapScale =
 				} forEach allMarkers;
 			};
 			OT_lastMapDrawScale = _scale;
-			sleep BIS_EVO_frameDelay;
 		};
 };
 
-while {true} do 
+while {sleep BIS_EVO_GlobalSleep; true} do 
 {
 	waitUntil{sleep BIS_EVO_GlobalSleep; visibleMap};
 	[] call fnc_mapScale;

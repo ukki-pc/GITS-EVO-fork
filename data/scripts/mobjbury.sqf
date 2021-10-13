@@ -2,8 +2,10 @@
 private ["_unit","_tag","_curtownInf","_curtownMec","_lastHit","_killer","_msg","_reward"]; 
 _unit = _this select 0;
 _killer = _this select 1;
+_supKill = false;
 
 if(LDL_ac130_active and isnull _killer ) then {_killer = player};
+if((BIS_EVO_sup == player) and isnull _killer ) then {_killer = player; _supKill = true};
 
 
 
@@ -35,7 +37,7 @@ if !(isNil "_tag") then
 //Give rewards for the kiler end evaluate reward
 if(isPlayer _killer) then 
 {
-	["jed_hitMarker", [_killer]] call CBA_fnc_whereLocalEvent;
+	["sendToClient", [_killer,"hm"]] call CBA_fnc_whereLocalEvent;
 	
 	if(_killer isKindOf "Man") then 
 	{
@@ -47,6 +49,17 @@ if(isPlayer _killer) then
 		["jed_wpSkill", [_killer, _wp]] call CBA_fnc_whereLocalEvent;
 	};
 	
+};
+
+//Delete possible screen markers attached to this object
+if(_unit getVariable ["spotid",0] != 0) then 
+{
+	[_unit] spawn
+	{
+		[_this select 0,[0.4,0.4,0.4,1],5] call fnc_changeScreenmarker;
+		sleep 10;
+		[_this select 0] call fnc_deleteScreenmarker;
+	};
 };
 
 if(isPlayer _killer or isPlayer leader _killer) then 
@@ -89,14 +102,13 @@ if(isPlayer _killer or isPlayer leader _killer) then
 		//(!(isPlayer(gunner vehicle _killer)) and !(isPlayer (commander vehicle _killer))
 
 
-		_playerAssist = ( !(isplayer _killer) and (isPlayer (leader _killer)));
+		_playerAssist = ( !(isplayer _killer) and (isPlayer (leader _killer)) or _supKill);
 		_playerAssistDriver = ((isplayer (driver vehicle _killer))  and !(_killer isKindOf "Man") and !(_killer isKindof "Air"));
 
 		if (_playerAssist or _playerAssistDriver) then {_reward = round(_reward*0.7); _msg = "Assisted " + _msg; _killer = leader _killer;};
 
 
-	["fnc_hudMessage", [_killer, _msg,_reward]] call CBA_fnc_whereLocalEvent;
-	["jed_addMoney", [_killer, _reward]] call CBA_fnc_whereLocalEvent;
+	["sendToClient", [_killer,"hdm",[_msg,_reward]]] call CBA_fnc_whereLocalEvent;
 };
 
 	

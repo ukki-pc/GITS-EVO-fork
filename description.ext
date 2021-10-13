@@ -25,7 +25,6 @@ enableItemsDropping = 0;
 //Dialog
 #include "LDL_ac130\Dialog\dialog.hpp"
 
-
 #include "evoUI.hpp"
 class CfgRadio
 {
@@ -33,8 +32,14 @@ class CfgRadio
 
 class CfgSounds
 {
-	sounds[] = {reload,hit1,hit2,hit3,miswarn,bash,kill,Fill,Siphon,Intro,Somalia_News,CityClear,Paycall,Goodjob,Rocket_Away,Incoming,incoming_Nuke,nblast,nsound,Explo_Large,Explo_Nuke,radzoneb,Recruitment,Resupply,MarkerSmoke,MortarBarrage,Airstrike,SmallArty,LargeArty,NapalmStrike,MortarDist,ArtyDist,ArtyDistLarge,SmokeScreenDist,MarkerSmokeDist,captureCP,lostCP,isis_capture,caching};
+	sounds[] = {hudsound,reload,hit1,hit2,hit3,miswarn,bash,kill,Fill,Siphon,Intro,Somalia_News,CityClear,Paycall,Goodjob,Rocket_Away,Incoming,incoming_Nuke,nblast,nsound,Explo_Large,Explo_Nuke,radzoneb,Recruitment,Resupply,MarkerSmoke,MortarBarrage,Airstrike,SmallArty,LargeArty,NapalmStrike,MortarDist,ArtyDist,ArtyDistLarge,SmokeScreenDist,MarkerSmokeDist,captureCP,lostCP,isis_capture,caching};
 
+	class hudsound
+	{
+		name = "hudSound";
+		sound[] = {"Sound\hud_sound.ogg",db+0,1.0};
+		titles[] = {};
+	};
 	class reload
 	{
 		name = "reload";
@@ -379,29 +384,32 @@ class RscTitles
        { 
            idd = 1555; 
            duration = 999999; 
+		   fadein = 0;
+		   fadeout = 0;
            onLoad = "uiNameSpace setVariable ['myUI_DollarTitle', (_this select 0) displayCtrl 420];";
            class controls 
            { 
                    class DollarControl 
                    { 
                            idc = 420; 
-                           type = VSoft; 
+                           type = 13; 
                            style = 0; 
-                           x =  safeZoneX + safeZoneW - 0.2 * 3 / 4; 
+                           x =  safeZoneX + safeZoneW - 0.75 * 3 / 4; 
                            y = safeZoneY + safeZoneH - 0.1; 
-          					w = 0.5;
+							w = 0.5;
 							h = 0.09;
-                           font = "Bitstream"; 
+							font = "Zeppelin32";
+							color = "#e0d8a6";
+							align = "Right";
+							Valign = "Top";
+							shadow = 1;
+							size = 0.09;
 
                            sizeEX = 0.09; 
                            colorBackground[] = {0,0,0,0}; 
                            colorText[] = {0.5, 0.75, 0.5, 1};
-                           text = "0$";
-							class Attributes
-						   {
-								align = "right";
-								valign = "middle";
-						   };
+                           text = "$0";
+
                     }; 
         	}; 
        }; 
@@ -437,7 +445,7 @@ class killfeedControlDefault
 		y = safeZoneY + safeZoneH - 0.2; 
 		w = 1;
 		h = 1;
-		font = "Bitstream"; 
+		font = "Zeppelin32"; 
 		sizeEX = 0.035; 
 		colorBackground[] = {0,0,0,0}; 
         colorText[] = {0.5, 0.75, 0.5, 1};
@@ -457,7 +465,6 @@ class killfeedControlDefault
                    class killfeedControl : killfeedControlDefault
                    { 
                            idc = 116; 
-                           type = VSoft; 
                        }; 
                }; 
        	};
@@ -471,7 +478,6 @@ class killfeedControlDefault
                    class killfeedControl : killfeedControlDefault
                    { 
                            idc = 117; 
-						 type = VSoft; 
                        }; 
                }; 
        	};
@@ -651,6 +657,44 @@ class screenobj4
             };
 };
 
+class spotMarker
+{
+    idd = 1576;
+    onLoad = "uiNameSpace setVariable ['spotMarker', (_this select 0) displayCtrl 131];";
+	duration = 99999;
+
+     class Controls
+	{
+     	class spotMarkerControl : objectiveOnScreenControlDefault
+		{
+            idc = 131; 
+			text = "Data\spotMark.paa";
+			colorText[] = {0.9,0,0,0.7};
+			w = 0.02;
+			h =  0.02;
+		};
+	};
+};
+
+class spotMarkerSmall
+{
+    idd = 1577;
+    onLoad = "uiNameSpace setVariable ['spotMarkerSmall', (_this select 0) displayCtrl 132];";
+	duration = 99999;
+
+     class Controls
+	{
+     	class spotMarkerEmptyControl : objectiveOnScreenControlDefault
+		{
+            idc = 132; 
+			text = "Data\spotMark.paa";
+			colorText[] = {0.8,0.8,0.8,1};
+			w = 0.005;
+			h =  0.005;
+		};
+	};
+};
+
 //Hitmarker
 class Hitmarker
 {
@@ -801,6 +845,7 @@ class UIrecruit : uiImages
 		};
 	};
 };
+
 	
 	class Evo
 	{

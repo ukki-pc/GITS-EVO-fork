@@ -1,5 +1,5 @@
 
-#include "factionDefines.hpp"
+
 EGG_EVO_PLAYERFACTION = east;
 EGG_EVO_ENEMYFACTION = west;
 EGG_EVO_strENEMYFACTION = "WEST";

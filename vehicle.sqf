@@ -56,6 +56,7 @@ Contact & Bugreport: cwadensten@gmail.com
 //format is "veh = [_unit, _delay, _deserted, _respawns, _explode, _dynamic, _unitinit] execVM ""scripts\vehicle.sqf""";
 
 if (!isServer) exitWith {};
+if (isServer) exitWith {}; //LOL
 //waituntil {(EGG_sinit==1)};
 // Define variables
 _unit = _this select 0;

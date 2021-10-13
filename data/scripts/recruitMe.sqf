@@ -85,7 +85,6 @@ else
 
 _unit setdammage 0;
 _unit  addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\friendlybury.sqf"}];
-_vecprotect = [_unit] execVM "data\scripts\aivec.sqf";
 
 //[_unit] join _grp;
 //BIS_EVO_runit = _unit;

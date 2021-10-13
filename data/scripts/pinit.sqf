@@ -14,31 +14,28 @@ Sleep 1.0;
 _playertype = typeOf (vehicle player);
 Sleep 0.2;
 
-if (_playertype in EGG_EVO_PlayerMedic)  then 
-{
-	_med = player execVM "data\scripts\med.sqf";
-};
 plays = [] execVM "data\scripts\update.sqf";
 
 
 _pos = [0,0,0];
-
 
 //_events = [] execVM "data\scripts\EVO_Vecinit.sqf"; // Player vehicles rank restriction system
 //_rain = [] execVM "data\scripts\rain.sqf";
 _arm = [] execVM "data\scripts\EB_ARM.sqf";
 //_fog = [] execVM "data\scripts\fog.sqf";
 _cthread = [] execVM "data\scripts\MainThreadC.sqf";
-_marks = [] execVM "data\scripts\MarkerColors.sqf";
-
 
 //Alternating map marker sizes
 //_mapF= [] execVM "data\scripts\mapFunctions.sqf";
 
+//Bandage init
+[player,0.2,0,-1,true] execVM "data\scripts\cly_heal.sqf";
 
-(FindDisplay 46) DisplaySetEventHandler ["keydown","if ((_this select 1) In actionKeys ""TeamSwitch"" ) then {a = createDialog 'evoUI'}"];
-_box = [0] call BIS_EVO_AmmoBox;
-_boxR = [0] call BIS_EVO_AmmoBoxR;
+(FindDisplay 46) DisplayAddEventHandler ["keydown","if (!dialog and (_this select 1) In actionKeys ""TeamSwitch"" ) then { a = createDialog 'evoUI';}"];
+(FindDisplay 46) DisplayAddEventHandler ["keydown","if((_this select 1) == 15 ) then { if ( (missionNamespace getVariable 'perkSniperLVL' > 1) and vehicle player iskindof 'man') then {[] call fnc_spotVeh;}};"];
+
+// _box = [0] call BIS_EVO_AmmoBox;
+// _boxR = [0] call BIS_EVO_AmmoBoxR;
 //added to make markers show up on first spawn
 //player addweapon "ItemCompass";	
 //player addweapon "ItemGPS";
@@ -48,4 +45,3 @@ _boxR = [0] call BIS_EVO_AmmoBoxR;
 
 //spawn = player execVM "data\scripts\spawn.sqf";
 
-//[] call fnc_hudMessage_handler;

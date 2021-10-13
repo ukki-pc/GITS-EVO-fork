@@ -188,7 +188,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 			eResupplying = false;
 	};
 
-/*
+
 	BIS_EVO_MI17support =
 	{	
 		private ["pos","_unit","_vec","_heli0","_max","_maxv","_alist","_allunits2","_allvecs2","_pilot","_para","_radio","_posback","_pos1","_pos2","_sumark","_wp","_wp2","_wpx2","_i","_recy"]; 
@@ -199,8 +199,6 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_max = objnull;
 		_maxv = objnull;
 		_alist = BIS_EVO_DetectEnemy;
-		_allunits2 = EGG_EVO_enemy1;
-		_max = count _allunits2;
 		_radio = radio1;
 		_curTown =  BIS_EVO_MissionTowns select BIS_EVO_MissionProgress;
 		_objPos = position _curTown;
@@ -243,7 +241,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 			while {_i <= _count} do 
 			{
 				_pos = position _heli0;
-				_unit = _para createUnit [_allunits2 select (round (random (_max - 1))), [0,0,0], [], 300, "NONE"];
+				_unit = _para createUnit [[enemySpecops] call fnc_pickRandom, [0,0,0], [], 300, "NONE"];
 				_unit setSkill skillfactor+(random 0.2);
 				_unit addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
 				[_unit] join _para;
@@ -269,7 +267,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		if (!isNull _unit) then {deleteVehicle _unit};
 		deleteGroup _pilot;
 	};
-*/
+
 
 	BIS_EVO_rappelSupport =
 	{	
@@ -278,11 +276,6 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_unit = objNull;
 		_vec = objNull;
 		_heli0 = objnull;
-		_max = objnull;
-		_maxv = objnull;
-		_alist = BIS_EVO_DetectEnemy;
-		_allunits2 = EGG_EVO_enemy1;
-		_max = count _allunits2;
 		_radio = radio1;
 		_curTown =  BIS_EVO_MissionTowns select BIS_EVO_MissionProgress;
 		_objPos = position _curTown;
@@ -293,9 +286,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		(EGG_EVO_mepilot select 0) createUnit [getmarkerpos "centerp", _pilot];Sleep BIS_EVO_GlobalSleep;
 		_pos1 = [(_pos select 0)-2000 -(random 2000),(_pos select 1)+2000 -(random 3000),(200 + random 100)];
 		_pos2 = [(_pos select 0)+2000 +(random 2000),(_pos select 1)+2000 -(random 3000),(200 + random 100)];
-		_allvecs2 = EGG_EVO_rappelChoppers;
-		_maxv = count _allvecs2;
-		_heli0 = createVehicle [(_allvecs2 select round random (_maxv - 1)),_pos1, [], 500, "FLY"];Sleep BIS_EVO_GlobalSleep;
+		_heli0 = createVehicle [[EGG_EVO_rappelChoppers] call fnc_pickRandom,_pos1, [], 500, "FLY"];Sleep BIS_EVO_GlobalSleep;
 		_heli0 setpos [getpos _heli0 select 0, getpos _heli0 select 1, 200];
 		_heli0 setdir (random 359);
 		_heli0 engineon true;

@@ -49,7 +49,7 @@ _rhqPositions = RHQMarkers;
 
 _rhqPositions = RHQMarkers;
 
-TeleportLocations = BIS_EVO_conqueredTowns + _rhqPositions + _mhqMark + BIS_EVO_LHDMarkers + BIS_EVO_SHIPSPAWNS + objectiveFlags;
+TeleportLocations = BIS_EVO_conqueredTowns + _rhqPositions + _mhqMark + BIS_EVO_LHDMarkers + BIS_EVO_SHIPSPAWNS + objectiveFlags + [farp1];
 
 _nearestPoint = [TeleportLocations, position player] call BIS_fnc_nearestPosition;
 
@@ -132,12 +132,13 @@ if(_isViableLoc and _traveAllowed) then
       };
 
     Player setpos _tpLocPos;
+    call fnc_hideMarkers;
     if(_tpLoc in BIS_EVO_LHDMarkers) then{
       Player setposASL [getpos player select 0,getpos player select 1,18];
     };
     _msg = format ["Travel costs: $%1",travelCost];
-    ["jed_msg", [player, _msg]] call CBA_fnc_whereLocalEvent;
-		["jed_addMoney", [player, -travelCost]] call CBA_fnc_whereLocalEvent;
+    ["sendToClient", [player,"msg",["ss",_msg]]] call CBA_fnc_whereLocalEvent;
+    ["sendToClient",[player,"am",[-travelCost]]] call CBA_fnc_whereLocalEvent;
   }
   else
   {
@@ -145,16 +146,18 @@ if(_isViableLoc and _traveAllowed) then
     if((_tpLoc in _rhqPositions) or (_tpLoc in _mhqMark) or (_isRHQ) or (_isMHQ)) exitWith {hint "Cannot Fast Travel There With a Vehicle"};
     if(_crew > 1) exitWith {hint "You cannot fast travel with AI"};
     vehicle player setpos _tpLocPos;
+    call fnc_hideMarkers;
   //  {vehicle _x setpos _tpLoc} forEach crew vehicle player;
     if(_tpLoc in BIS_EVO_LHDMarkers) then 
     {
       //Player setposASL [getpos player select 0,getpos player select 1,18];
       vehicle player setpos _tpLocPos;{vehicle _x setpos _tpLocPos} forEach crew vehicle player;
       vehicle player setposASL [getpos vehicle player select 0,getpos vehicle player select 1,18];
+      call fnc_hideMarkers;
     };
     _msg = format ["Travel costs: $%1",travelCost];
-    ["jed_msg", [player, _msg]] call CBA_fnc_whereLocalEvent;
-		["jed_addMoney", [player, -travelCost]] call CBA_fnc_whereLocalEvent;
+    ["sendToClient", [player,"msg",["ss",_msg]]] call CBA_fnc_whereLocalEvent;
+		["sendToClient",[player,"am",[-travelCost]]] call CBA_fnc_whereLocalEvent;
   };
 }
 else{hint "Cannot fast travel"};

@@ -101,7 +101,7 @@ if ((_playertype in EGG_EVO_PlayerPilot) and (perkparam == 1) and (gitsnades == 
 _playerh = (getpos player) select 2;
 if (_playerh < 1500) then 
 {
-	(FindDisplay 46) DisplaySetEventHandler ["keydown","if ((_this select 1) In actionKeys ""TeamSwitch"") then {a = createDialog 'evoUI';}"];
+//	(FindDisplay 46) DisplaySetEventHandler ["keydown","if ((_this select 1) In actionKeys ""TeamSwitch"") then {a = createDialog 'evoUI';}"];
 };
 disableUserInput false;
 
@@ -112,7 +112,9 @@ if(respawnPoint == "Respawn_West") then {_player setPosASL[getpos _player select
 //Update money
 //sleep 8;
 9 cutRsc ["DollarTitle","PLAIN"];
-(uiNameSpace getVariable "myUI_DollarTitle") ctrlSetText format ["$%1",money];
+_text =  format["<t color='#7FBF70'  shadow=0 valign='top' align='right'>  %1$</t>", money];
+(uiNameSpace getVariable "myUI_DollarTitle") ctrlSetStructuredText parsetext format ["%1",_text];
+
 // 2 cutRsc ["AggressionTitle","PLAIN"];
 // (uiNameSpace getVariable "myUI_AggressionTitle") ctrlSetText format ["%2%1","%",aggression];
 
@@ -120,19 +122,14 @@ if(respawnPoint == "Respawn_West") then {_player setPosASL[getpos _player select
 if(isServer) then 
 {
 _i= 0;
-	for "_i" from 1 to 2 do 
+	for "_i" from 1 to 5 do 
 	{
 		{
-			_msg = format ["terve %1",_x];
-			["fnc_hudMessage", [_x, _msg,10]] call CBA_fnc_whereLocalEvent;
-			["jed_hitMarker", [_x]] call CBA_fnc_whereLocalEvent;
-			["fnc_playSound", [_x, "captureCP"]] call CBA_fnc_whereLocalEvent;
+			_msg = format ["terve %1",name _x];
+			["sendToClient", [_x,"msg",["gs",_msg]]] call CBA_fnc_whereLocalEvent;
 		}forEach everyPlayer;
 		sleep 1;
 	};
-				
-				// _msg = format ["Position clear and under control!"];
-				// ["jed_SIDEmsg", ["ALL", _msg]] call CBA_fnc_whereLocalEvent;
 };
 */
 

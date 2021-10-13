@@ -10,16 +10,3 @@
  _handle = [] execVM "data\scripts\makehindp.sqf";
  _handle = [] execVM "data\scripts\makehip.sqf";
  //_handle = [] execVM "data\scripts\makeShip.sqf";
-
-
-
-/*
-_allPlayers = call BIS_fnc_listPlayers; // RIP JIP
-while{true} do
-{
-
-
-sleep 3;
-};
-
-*/

@@ -16,6 +16,9 @@ _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 		_cstatA enableSimulation false;
 		_cstatA lock true;
 		_laction1 = _who addAction ["Place Vehicle","actions\static\vehiclePlaced.sqf"];
+		_inship = (((getpos player distance getpos bam) < 30) or ((getpos player distance getpos p72) < 30));
+
+		if(_inship) then {p72 enableSimulation false; bam enableSimulation false};
 
 			_cstatA attachTo [player, [
 				0,
@@ -33,9 +36,12 @@ _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 			_cstatA setPos [getPos _cstatA select 0, getPos _cstatA select 1, 0];
 		};
 		_cstatA setVelocity [0, 0, 0];
+
+		if(_inship) then {_cstatA setPosASL [getPos _cstatA select 0, getPos _cstatA select 1, 6]};
 		
 	detach _cstatA;
 	_cstatA enableSimulation true;
+	if(_inship) then {p72 enableSimulation true; bam enableSimulation true};
 	_who allowDamage true;
 	_cstatA addEventHandler ["GetIn",{_hndl = [_this select 0,_this select 1, _this select 2] execVM "data\scripts\upgNotif.sqf"}];
 	//Event handler to prevent repair whilst taking damage

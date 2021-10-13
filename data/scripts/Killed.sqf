@@ -20,7 +20,7 @@ if(not (isPlayer _killer) and side _killer == EGG_EVO_ENEMYFACTION) then
 	_txtpassbody = format[localize "STR_M04t87",name (leader _killer)];
 	["#FF0000",_txtpasshead,_txtpassbody] call BIS_EVO_Message;
 };
-
+call fnc_hideMarkers;
 if ((date select 3) < 4 or (date select 3) > 20) then {camUseNVG true} else {camUseNVG false};
 
 _camera = "camera" camCreate [(position _player select 0)-0.75, (position _player select 1)-0.75,(position _player select 2) + 0.5];

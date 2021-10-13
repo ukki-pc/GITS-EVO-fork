@@ -8,31 +8,6 @@ BIS_EVO_FillInf =
 
 
 	_rng = floor(random(aggression/20)+1);
-	/*
-	switch (_rng) do
-	{
-		case 1: //rebels low skill
-		{
-				_allunits = EGG_EVO_enemy1;
-		};
-		case 2: //insurgents fair skill
-		{
-				_allunits = EGG_EVO_enemy2;
-		};
-		case 3: //soldiers medium skill
-		{
-				_allunits = EGG_EVO_enemy3;
-		};
-		case 4: // MVD good skill
-		{
-				_allunits = EGG_EVO_enemy4;
-		};
-		case 5: // spetsnaz excellent skill
-		{
-				_allunits = EGG_EVO_enemy5;
-		};
-	};
-	*/
 
 	_grpskill = skillfactor+(_rng/10);
 	_max = (count _allunits)-1;

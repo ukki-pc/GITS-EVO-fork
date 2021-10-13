@@ -1,4 +1,0 @@
-	_dir = random 359;
-	player SetPos [(getMarkerPos "Marker_Farp_Alpha" select 0)-15*sin(_dir),(getMarkerPos "Marker_Farp_Alpha" select 1)-15*cos(_dir)];
-
-	exit

@@ -31,30 +31,9 @@ for [{_loop=0}, {_loop<count buyStatList}, {_loop=_loop+1}] do
 };
 
 _savePlayers = "";
-//SAVE SCORES
-/*
-_allPlayers = call BIS_fnc_listPlayers;
-_plyCount = count _allPlayers;
-
-for [{_loop=0}, {_loop< _plyCount}, {_loop=_loop+1}] do 
-{
-    _savePlayers = _savePlayers + format ["[%1,%2]",_allPlayers select _loop,score (_allPlayers select _loop)];
-
-    if(_loop <  _plyCount-1) then{
-        _savePlayers = _savePlayers + ",";
-    };
-};
-*/
-/*
-while {true} do {
-sleep EVO_incomeFrequency;
-_allPlayers = call BIS_fnc_listPlayers;
-{["jed_addscore", [_x, 1]] call CBA_fnc_globalEvent}forEach _allPlayers;
-};
-*/
 
 _allPlayers = call BIS_fnc_listPlayers;
-	{["jed_getMoney", [_x,_forEachIndex]] call CBA_fnc_whereLocalEvent;
+	{["sendToClient",_x,"gm",[_forEachIndex]] call CBA_fnc_whereLocalEvent;
 }forEach _allPlayers;
 
 

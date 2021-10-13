@@ -77,7 +77,7 @@ BIS_EVO_Erec =
 	//Handle defender ships
 	fnc_shipSpawn = 
 	{
-		private ["_rnd","_vecT","_pos","_shipPos","_array","_grp","_vec","handle"];
+		private ["_rnd","_vecT","_pos","_shipPos","_array","_grp","_vec","_handle"];
 		_rnd = [[8,7,4,10,20,2,8,10]] call weightedRandomSimple;
 		_vecT = EGG_EVO_ENEMYSHIPS select _rnd;
 
@@ -88,7 +88,7 @@ BIS_EVO_Erec =
 		_grp = _array select 0;
 		_vec = _array select 1;
 
-		{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
+		{_x addEventHandler ["killed", {_handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
 
 		[_grp,_pos,_vec] spawn fnc_waterPatrol;
 	};

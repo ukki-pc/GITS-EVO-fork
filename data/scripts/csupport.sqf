@@ -40,9 +40,9 @@ _bmark setMarkerShape "ICON";
 _bmark setMarkerType "Flag";
 _bmark setMarkerSize [1.0, 1.0];
 
-_bzone = createTrigger ["EmptyDetector", _bpos];
-_bzone setTriggerActivation ["ANY", "PRESENT", false];
-_bzone setTriggerArea [_size, _size, 0, true ];
+bzone = createTrigger ["EmptyDetector", _bpos];
+bzone setTriggerActivation ["ANY", "PRESENT", false];
+bzone setTriggerArea [_size, _size, 0, true ];
 
 _men = 0;
 _car = 0;
@@ -76,7 +76,8 @@ BIS_EVO_Nshock =
 
 BIS_EVO_CountDead = 
 {
-	_list = list _bzone;
+	_list = list bzone;
+	_score = 0;
 	if(count _list > 0) then
 	{
 		{
@@ -89,6 +90,7 @@ BIS_EVO_CountDead =
 
 		} forEach _list;
 	};
+	_score;
 };
 
 
@@ -420,14 +422,14 @@ switch (_ord) do
 		sleep 20.0;
 		_k = createVehicle ["Bo_GBU12_LGB",[(position _base select 0), (position _base select 1)-50,50], [], 0, "NONE"];
 		sleep 10;
-		[] call BIS_EVO_CountDead;
+		_score = [] call BIS_EVO_CountDead;
 	};
 	 case 3: //small arty
 	{
  //BIGPICKLE
        [-1, {_man = _this select 0; _man say "SmallArty";},[player]] call cba_fnc_globalExecute;	
 		sleep 15.0;
-		[] call BIS_EVO_CountDead;
+		_score = [] call BIS_EVO_CountDead;
 		_i = 0;
 		while {_i < 20} do {
 			_k = createVehicle ["Sh_105_HE",[(position _base select 0), (position _base select 1),50], [], _size, "NONE"];
@@ -446,14 +448,14 @@ switch (_ord) do
 			sleep 0.1;			
 		};
 		sleep 10;
-		[] call BIS_EVO_CountDead;		
+		_score = [] call BIS_EVO_CountDead;		
 		
 	};
 	 case 5: // large arty
 	{
 //BIGPICKLE
 		[-1, {_man = _this select 0; _man say "LargeArty";},[player]] call cba_fnc_globalExecute;	
-		[] call BIS_EVO_CountDead;
+		_score = [] call BIS_EVO_CountDead;
 		_i = 0;
 		while {_i < 40} do {
 			_k = createVehicle ["Sh_122_HE",[(position _base select 0), (position _base select 1),50], [], _size, "NONE"];
@@ -467,11 +469,11 @@ switch (_ord) do
 		_k = createVehicle ["GLT_GBU43",[(position _base select 0), (position _base select 1)-220,190], [], 0, "NONE"];
 		_k attachTo [_obj_para, [0,0,0]];
 		sleep 10.0;
-		[] call BIS_EVO_CountDead;
+		_score = [] call BIS_EVO_CountDead;
 */
        [-1, {_man = _this select 0; _man say "NapalmStrike";},[player]] call cba_fnc_globalExecute;	
 		sleep 5.0;
-		[] call BIS_EVO_CountDead;
+		_score = [] call BIS_EVO_CountDead;
 		_i = 0;
 		while {_i < 8} do {
 			_k = createVehicle ["Bo_GBU12_LGB",[(position _base select 0), (position _base select 1),50], [], _size, "NONE"];
@@ -481,7 +483,7 @@ switch (_ord) do
 	};
 	 case 7: //nuke
 	{
-		[] call BIS_EVO_CountDead;
+		_score = [] call BIS_EVO_CountDead;
 		[] exec "nuke\damage.sqs";
 /*
 		_objs = nearestObjects [_base, ["Man","Car","Tank","House","Strategic","NonStrategic"], 25];{if(not (_x isKindOf "Land_Antenna")) then {_x setdamage 1}} forEach _objs;
@@ -741,7 +743,7 @@ switch (_ord) do
 	{
 //BIGPICKLE
 		[-1, {_man = _this select 0; _man say "NapalmStrike";}, [player]] call cba_fnc_globalExecute;	   
-		[] call BIS_EVO_CountDead;
+		_score = [] call BIS_EVO_CountDead;
 		_bomb_types = ["Sh_122_HE","Sh_125_HE","Bo_FAB_250","Sh_105_HE","G_40mm_HE","Bo_Mk82","Sh_85_HE","GrenadeHand","SmokeShellPurple","SmokeShellOrange"];
 		_bomb_max = (count _bomb_types)-1;
 		_i=0;
@@ -773,7 +775,7 @@ switch (_ord) do
 		[-1, {_man = _this select 0; _man say "MortarBarrage"; }, [player]] call cba_fnc_globalExecute;	  
 //BIGPICKLE
 		sleep 21;			
-		[] call BIS_EVO_CountDead;
+		_score = [] call BIS_EVO_CountDead;
 		_i = 0;
 		while {_i < 2} do 
 		{
@@ -807,7 +809,7 @@ switch (_ord) do
 
 };
 
-deletevehicle _bzone;
+deletevehicle bzone;
 deletemarker _mark1;
 deletemarker _mark2;
 deletemarker _mark3;
@@ -852,6 +854,14 @@ if(_ord != 1 and _ord != 8 and _ord != 9 and _ord != 10 and _ord != 11 and _ord 
 	publicVariable "BIS_EVO_prewC";
 	publicVariable "BIS_EVO_punitC";
 };
+
+BIS_EVO_sup = objnull;
+BIS_EVO_sut = "";
+//sur = [_base] call BIS_EVO_GridRef;
+
+publicVariable "BIS_EVO_sut";
+//publicVariable "sur";
+publicVariable "BIS_EVO_sup";
 sleep 60;
 deletevehicle _base;
 

@@ -24,7 +24,7 @@ showCinemaBorder false;
 
 _oldSpeed = 0;
 	_camera camSetTarget _projectile;
-while{alive _projectile && alive _camera}do{
+while{sleep BIS_EVO_framdelay; alive _projectile && alive _camera}do{
 
 	_camera camSetRelPos _relPos;
 	_camera camSetFOV _fov;
@@ -33,7 +33,6 @@ while{alive _projectile && alive _camera}do{
 	"RadialBlur" ppEffectAdjust [0.02,0.02,0.1,0.1];
 	"RadialBlur" ppEffectCommit 0.01;
 	"RadialBlur" ppEffectEnable true;
-	sleep 0.016;
 	_pjSpeed = round(speed _projectile);
 	
 	if(_pjSpeed != _oldSpeed) then 

@@ -653,7 +653,8 @@ class WeaponShopUI
 	__EXEC( _windowWidth = 101; _windowHeight = 64;)
 	__EXEC( _windowBorder = 1;)
 
-	class controlsBackground 
+	class controls
+
 	{
 		class Mainback : RscPicture 
 		{
@@ -664,17 +665,8 @@ class WeaponShopUI
 			h = 0.836601;
 			text = "\ca\ui\data\igui_background_debriefing_ca.paa";
 		};	
-		class DesTitleMain : RscPicture  
-		{
-			idc = 101;
-			// x = 0.39;
-			// y = 0.2;
-			// w = 0.725;
-			// h = 0.42;
-		text = "\ca\ui\data\igui_background_debriefing_ca.paa";
-		colorText[] = {0.3, 0.3, 0.3, 0.6};
-		};
-		class ListbackWeapon : DesTitleMain  
+
+		class ListbackWeapon   : RscPicture 
 		{
 			idc = 101;
 			x = 0.0506555;
@@ -684,11 +676,6 @@ class WeaponShopUI
 			text = "\ca\ui\data\igui_background_debriefing_ca.paa";
 			colorText[] = {0.5, 0.5, 0.5, 0.7};
 		};
-	};
-
-	class controls
-
-	{
 		class available_weapons: RscIGUIListBox
 		{
 			idc = 4000;

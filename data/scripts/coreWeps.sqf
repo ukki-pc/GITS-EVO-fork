@@ -28,19 +28,13 @@ BIS_EVO_ListUpdate =
 
 	_categoryItems = allItems select Wpage;
 	_totalItems = count _categoryItems;
-	_skillLevel = ((itemSkills select Wpage)+0.01) min _totalItems max 0;
 	_skillRequired = 0;
 
 	if (count _categoryItems > 0) then 
 	{
 		for [{_i=0}, {_i<_totalItems}, {_i=_i+1}] do
 		{
-			_x = "";
-			_row = (_categoryItems select _i);
-			if(typeName _row == "ARRAY") then {_x = _row select 0; _skillRequired = _row select 1}
-			else {_x = _row};
-
-			if(_skillRequired > _skillLevel) exitWith {};
+			_x = _categoryItems select _i;
 
 			_item = [_x,"displayName","CfgWeapons"] call fnc_getCfgText;
 			
@@ -88,12 +82,6 @@ BIS_EVO_ActButton =
 			{_handle = [_x] execVM "actions\refreshweps.sqf"}forEach weaponBoxes;
 		};
 	};
-};
-
-BIS_EVO_ListSelect =
-{
-	_index = lbCurSel weaponListBox;
-	lbClear ammoListBox;
 };
 
 [] call BIS_EVO_ListUpdate;

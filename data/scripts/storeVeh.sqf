@@ -3,12 +3,16 @@ _player = _this select 0;
 _counter = 0;
 _i = 0;
 _veh = vehicle _player;
+
 _type = typeOf _veh;
+/*
 _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 // hint format ["%1, %2, %3",_player, _veh,_type];
 _checkVeh ="";
 // _countVehs = count buyCarList + count buyTankList + count buyCarList + buyStatList;
 _found = false;
+
+
 
 	for [{_loop=0}, {_loop < (count buyCarList)}, {_loop=_loop+1}] do 
 	{
@@ -88,22 +92,7 @@ _found = false;
 	 	};
 	 };
 
-	//	if(!_found) exitWith {hint "You cannot store this vehicle..."};
-	
-	
+
+*/
+storedVehicles = storedVehicles + [_type];
 deleteVehicle _veh;
-
-// //Check if already unlocked
-// for [{ _i = 0 }, { _i < (count buySpecialList) }, { _i = _i + 1 }] do
-// {
-// 	if(_type == (buySpecialList select _i) ) then {_counter = _counter +1;};
-// };
-
-// if(_counter == 0)then
-// {
-// 	_displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
-// 	_tempBuySpecialList =  [_type];
-// 	Sleep BIS_EVO_GlobalSleep;
-// 	buySpecialList = buySpecialList + _tempBuySpecialList; publicVariable "buySpecialList";
-// 	hint format ["You've unlocked: %1",_displayName];
-// };

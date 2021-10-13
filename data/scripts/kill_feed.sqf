@@ -32,6 +32,7 @@ fnc_hudVal_smooth =
         sleep BIS_EVO_frameDelay;
         _ctrl ctrlCommit 0;
     };
+    [_value] call fnc_addMoney;
 };
 
 fnc_showHudMessage = {
@@ -49,6 +50,8 @@ fnc_showHudMessage = {
 
     _uiString = format ["killfeed%1",currentControl];
    _currentLayer cutRsc [_uiString,"PLAIN"];
+
+   playSound "hudSound";
 
     {
         if (!isNil "_x") then 

@@ -14,13 +14,12 @@ _projectile = nearestObject [_unit,_type];
 		_markerobj5 setMarkerDirLocal (getDir _projectile)+180;
 
 
-while{alive _projectile}do
+while{sleep 1; alive _projectile}do
 {
-	if(visibleMap) then {
+	if(visibleMap) then 
+	{
 		_markerobj5	setMarkerPosLocal getPos _projectile;
-		}
-	else {sleep 0.5};
-	sleep 0.033;
+	}
 };
 
 deleteMarker _markerobj5;

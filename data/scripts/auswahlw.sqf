@@ -14,5 +14,6 @@ _targetVehicle = _this select 1;
 	player moveInGunner _targetVehicle;
 	player moveInCommander _targetVehicle;
 	player moveInCargo _targetVehicle;
+	call fnc_hideMarkers;
 
 //	player SetPosASL [(getMarkerPos "MHQ" select 0),(getMarkerPos "MHQ" select 1),(getMarkerPos "MHQ" select 2)];

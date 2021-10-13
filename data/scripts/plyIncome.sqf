@@ -24,12 +24,12 @@ while {sleep EVO_incomeFrequency; true} do
     _income = [] call countIncome;
 
         EVO_incomeFrequency = round(180+((_income^1.6)*0.001));
-        systemChat str EVO_incomeFrequency;
+        //systemChat str EVO_incomeFrequency;
 
     if(_income > 0) then 
     {
         _msg = format ["Income from cities: $%1",_income];
-            {["jed_msg", [_x, _msg]] call CBA_fnc_whereLocalEvent;
-            ["jed_addMoney", [_x, _income]] call CBA_fnc_whereLocalEvent}forEach _allPlayers;
+            {["sendToClient", [_x,"msg",["ss",_msg]]] call CBA_fnc_whereLocalEvent;
+            ["sendToClient",[_x,"am",[_income,false]]] call CBA_fnc_whereLocalEvent}forEach _allPlayers;
     };
 };

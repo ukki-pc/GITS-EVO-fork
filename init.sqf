@@ -24,12 +24,16 @@ TANKaggr=100;
 INFaggr=100;
 MECHaggr=100;
 
-BIS_EVO_frameDelay = 0.013;
-
+totalIncome = 0;
+spot=false;
 weaponsNamespace = [];
+
 
 bank = [];
 capturedFlags = [];
+
+spotId=250;
+spottedIds = [];
 
 /////////////////Dwarden fixing fire in the sky bug
 
@@ -109,6 +113,7 @@ EGG_EVO_LoadGame = paramsArray select 23;
 };
 
 hitMarker = true;
+lastBase = "";
 
 Carrier = false;
 if !(isNull LHD) then {Carrier = true;
@@ -196,41 +201,54 @@ EGG_EVO_ENEMYFACTION = nil;
 EGG_EVO_strENEMYFACTION = nil;
 EGG_EVO_strPLAYERFACTION = nil;
 
-
 //Auto faction
 switch (side player) do 
 {
 	case east:
 	{
 		EGG_EVO_FactionParam = 0;
+		enemyFlag = "FlagCarrierBLUFOR_EP1";
+		playerFlag = "FlagCarrierOPFOR_EP1";
+		enemyColor = [0, 0, 0.62, 1];
+		playercolor = [0.62, 0, 0, 1];
 	};
 	case west:
 	{
 		EGG_EVO_FactionParam = 1;
+		playerFlag = "FlagCarrierBLUFOR_EP1";
+		enemyFlag = "FlagCarrierOPFOR_EP1";
+		playercolor = [0, 0, 0.62, 1];
+		enemyColor = [0.62, 0, 0, 1];
 	};
 	case resistance:
 	{
 		EGG_EVO_FactionParam = 2;
+		playerFlag = "FlagCarrierBLUFOR_EP1";
+		enemyFlag = "FlagCarrierOPFOR_EP1";
 	};
 };
+
+neutralcolor = [1,1,1,1];
 
 switch (EGG_EVO_FactionParam) do 
 {
 	case 0:
 	{
-		fac = execVM "actions\init\factionInitEAST.sqf";
+		fac = execVM "data\scripts\factionInitEAST.sqf";
 	};
 	case 1:
 	{
-		fac = execVM "actions\init\factionInitWEST.sqf";
+		fac = execVM "data\scripts\factionInitWEST.sqf";
 	};
 	case 2:
 	{
-		fac = execVM "actions\init\factionInitRESISTANCE.sqf";
+		fac = execVM "data\scripts\factionInitRESISTANCE.sqf";
 	};
 };
 
-upgs = execVM "actions\init\vecUpgrades.sqf";
+baseOwner = "US_ED";
+
+upgs = execVM "data\scripts\vecUpgrades.sqf";
 
 EGG_EVO_allAmbs = ["Land_A_tent","BAF_Offroad_D","EB_LR_Supply_D_BAFX","RE_landrover6x6_BAF"];
 BIS_EVO_frameDelay = 0.016; // 60FPS equals ~16ms 
@@ -436,6 +454,8 @@ canRepair = false;
 canAmmo = false;
 canFasttravel = false;
 canRecruit = false;
+showMoney = false;
+
 
 BIS_EVO_MissionTowns = [];
 BIS_EVO_MissionBigTowns = [];
@@ -447,7 +467,12 @@ BIS_EVO_MissionTownNames = [];
 BIS_EVO_MissionTownInfGarrisons = [];
 BIS_EVO_MissionTownVecGarrisons = [];
 
-BIS_EVO_conqueredTowns = [objective_49]; //Set starting town
+startingTowns = [objective_1];
+
+BIS_EVO_conqueredTowns = startingTowns; //Set starting town
+
+BIS_EVO_cededCities = [];
+BIS_EVO_cededOwners = [];
 
 
 if(isServer) then {
@@ -490,7 +515,7 @@ allObjs = nearestObjects [getpos cent, ["LocationLogic"], 12000];
 } forEach allObjs;
 
 //High priority functions
-_rng = [] execVM "data\scripts\weightedRandom.sqf";
+//_rng = [] execVM "data\scripts\weightedRandom.sqf";
 };
 
 // Detects empty enemy vehicles and deletes them.
@@ -985,8 +1010,16 @@ _cityNum=BIS_EVO_MissionTowns find _firstCity;
   ["jed_missionManager", [_cityNum]] spawn CBA_fnc_globalEvent;
   };
 
-
-
-
-
 [] call fnc_playerBases;
+
+// 0 spawn 
+// {
+	
+// 	while {sleep 0.169; true} do 
+// 	{
+// 		systemChat str diag_fpsMin;
+// 	};
+	
+// };
+
+[] spawn fnc_marker_screen;

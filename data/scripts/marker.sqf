@@ -15,7 +15,7 @@
 
 
 	//Player marker
-	while {(true)} do
+	while {sleep 1; true} do
 	{
 		_allPlayers = call BIS_fnc_listPlayers;
 		_plyCount = count _allPlayers;
@@ -42,5 +42,4 @@
 					_marker setmarkerpos [0,0];
 				};
 			};
-	sleep 1;
 	};

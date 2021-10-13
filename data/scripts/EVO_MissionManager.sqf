@@ -64,7 +64,7 @@ missionManager =
 	//Creates marker over bunkers
 	fnc_bunker_marker = 
 	{
-		private ["_bunker","_markerName","_mrkType","_bunkerMarker","_markerText"];
+		private ["_bunker","_markerName","_mrkType","_bunkerMarker","_markerText","_controlName"];
 		_bunker = _this select 0;
 		_markerName = _this select 1;
 		_markerText = _this select 2;
@@ -78,7 +78,7 @@ missionManager =
 		_allPlayers = everyPlayer;
 		_controlName = allBunkerControls select (bunkers find _bunker);
 		{
-			["fnc_ctrlChangeColor", [_x, _controlName,[0.62, 0, 0, 1]]] call CBA_fnc_whereLocalEvent;
+			["sendToClient", [_x,"fnc_ctrlChangeColor",[_bunker,enemycolor]]] call CBA_fnc_whereLocalEvent;
 		}forEach _allPlayers;
 		_bunkerMarker setMarkerText _markerText;
 	};
@@ -220,7 +220,7 @@ missionManager =
 						_audioLength = 6.6-calculationInterval;
 						_capturingPlayers = _this select 1;
 						{
-							["fnc_say3d", [_x, _source,"flag_loop",20]] call CBA_fnc_whereLocalEvent;
+							["sendToClient", [_x, "s3",[_source,"flag_loop",20]]] call CBA_fnc_whereLocalEvent;
 						}forEach _capturingPlayers;
 						sleep (_audioLength);
 						soundEnable = true;
@@ -238,8 +238,7 @@ missionManager =
 						_reward = tickRewawrd;
 						_msg = format ["Capturing"];
 					{
-						["fnc_hudMessage", [_x, _msg,_reward]] spawn CBA_fnc_whereLocalEvent;
-						["jed_addMoney", [_x, _reward]] call CBA_fnc_whereLocalEvent;
+						["sendToClient", [_x,"hdm",[_msg,_reward]]] spawn CBA_fnc_whereLocalEvent;
 					} forEach _capturingPlayers;
 				};
 
@@ -249,8 +248,7 @@ missionManager =
 						_reward = floor(400*(_captureTick/240));
 						_msg = format ["Fully Captured"];
 					{
-						["fnc_hudMessage", [_x, _msg,_reward]] spawn CBA_fnc_whereLocalEvent;
-						["jed_addMoney", [_x,_reward]] call CBA_fnc_whereLocalEvent;
+						["sendToClient", [_x,"hdm",[_msg,_reward]]] spawn CBA_fnc_whereLocalEvent;
 					} forEach _capturingPlayers;
 				};
 
@@ -260,8 +258,7 @@ missionManager =
 					_reward = neuterReward;
 						_msg = format ["Neutralization Bonus"];
 					{
-						["fnc_hudMessage", [_x, _msg,_reward]] spawn CBA_fnc_whereLocalEvent;
-						["jed_addMoney", [_x, _reward]] call CBA_fnc_whereLocalEvent;
+						["sendToClient", [_x,"hdm",[_msg,_reward]]] spawn CBA_fnc_whereLocalEvent;
 					} forEach _capturingPlayers;
 				};
 			};
@@ -273,10 +270,10 @@ missionManager =
 				_bunkerOwner = EGG_EVO_ENEMYFACTION;
 				_bunkerObject setVariable ["OWNER", _bunkerOwner];
 				{
-					["fnc_ctrlChangeColor", [_x, _controlName,[0.62, 0, 0, 1]]] call CBA_fnc_whereLocalEvent;
-					["fnc_playSound", [_x, "lostCP"]] call CBA_fnc_whereLocalEvent;
+					["sendToClient", [_x,"fnc_ctrlChangeColor",[_bunkerObject,enemycolor]]] call CBA_fnc_whereLocalEvent;
+					["sendToClient", [_x,"ps",["lostCP"]]] call CBA_fnc_whereLocalEvent;
 					_msg = format ["Outpost is being overrun!"];
-					["jed_SIDEmsg", [_x, _msg]] call CBA_fnc_whereLocalEvent;
+					["sendToClient", [_x,"msg",["gs",_msg]]] call CBA_fnc_whereLocalEvent;
 				}forEach everyPlayer;
 				capturedFlags = capturedFlags - [_bunkerObject];
 				publicVariable "capturedFlags";
@@ -290,7 +287,7 @@ missionManager =
 				_markerName setMarkerColor "ColorWhite";	
 				_controlName = allBunkerControls select (bunkers find _bunkerObject);
 				{
-					["fnc_ctrlChangeColor", [_x, _controlName,[1,1, 1, 1]]] call CBA_fnc_whereLocalEvent;
+					["sendToClient", [_x,"fnc_ctrlChangeColor",[_bunkerObject,neutralcolor]]] call CBA_fnc_whereLocalEvent;
 				}forEach everyPlayer;
 				//_bunkerOwner = EGG_EVO_PLAYERFACTION;
 				//_bunkerObject setVariable ["OWNER", _bunkerOwner];
@@ -305,8 +302,8 @@ missionManager =
 				_bunkerOwner = EGG_EVO_PLAYERFACTION;
 				_bunkerObject setVariable ["OWNER", _bunkerOwner];
 					{
-						["fnc_ctrlChangeColor", [_x, _controlName,[0, 0, 0.62, 1]]] call CBA_fnc_whereLocalEvent;
-						["fnc_playSound", [_x, "captureCP"]] call CBA_fnc_whereLocalEvent;
+						["sendToClient", [_x,"fnc_ctrlChangeColor",[_bunkerObject,playercolor]]] call CBA_fnc_whereLocalEvent;
+						["sendToClient", [_x,"ps",["captureCP"]]] call CBA_fnc_whereLocalEvent;
 						_msg = format ["Position clear and under control!"];
 						["jed_SIDEmsg", [_x, _msg]] call CBA_fnc_whereLocalEvent;
 					}forEach everyPlayer;
@@ -433,7 +430,7 @@ missionManager =
 
 		publicVariable "bunkers";
 
-		{["fnc_broadcastScreenMarkers", [_x,_screenMarkers]] call CBA_fnc_whereLocalEvent} forEach everyPlayer;
+		{["sendToClient", [_x,"bf",[_screenMarkers]]] call CBA_fnc_whereLocalEvent} forEach everyPlayer;
 
 		while{(surfaceIsWater position radio1)} do 
 		{

@@ -1,3 +1,4 @@
+/*
 if(EGG_EVO_LoadGame == 0) then 
 {
 	//Selects random vehicles
@@ -7,7 +8,7 @@ if(EGG_EVO_LoadGame == 0) then
 		buyCarList set [_randomIndex,[(buyCarList select _randomIndex) select 0, (buyCarList select _randomIndex) select 1,((buyCarList select _randomIndex) select 2)+1]];
 	};
 	publicVariable "buyCarList";
-/*
+
 	//Selects random vehicles
 	for [{_loop=0}, {_loop<3}, {_loop=_loop+1}] do 
 	{
@@ -28,10 +29,11 @@ if(EGG_EVO_LoadGame == 0) then
 			buyStatList set [_randomIndex,[(buyStatList select _randomIndex) select 0, (buyStatList select _randomIndex) select 1,((buyStatList select _randomIndex) select 2)+1]];
 		};
 		publicVariable "buyStatList";
-	*/
+	
 
 	//	_clean = [] call cleanUpGenerator;
 };
+*/
 /*
 // Main vehicle init
 sleep 2.0;
