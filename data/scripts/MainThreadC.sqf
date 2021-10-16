@@ -9,23 +9,10 @@ EB_airload1=-1;
 EB_fieldRepair=-1;
 repaircooldown = 0;
 
-fnc_spotVeh = 
-{
-	//if( perkSniperLVL < 2)exitWith{systemChat "ha";};
-	_obj = cursorTarget;
-
-	if( side _obj == EGG_EVO_ENEMYFACTION) then {_tmp = [_obj] spawn fnc_spotEnemy};
-
-};
-
-
-
 BIS_EVO_CWeath =
 {
 	"rainmarkt" setMarkerPosLocal getMarkerPos "rainmark";
-	
 	"rainmarkt2" setMarkerPosLocal getMarkerPos "rainmark2";
-	
 	"rainmarkt3" setMarkerPosLocal getMarkerPos "rainmark3";
 
 //	"fogmarkt" setMarkerPosLocal getMarkerPos "fogmark";

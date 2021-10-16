@@ -137,8 +137,8 @@ if(_isViableLoc and _traveAllowed) then
       Player setposASL [getpos player select 0,getpos player select 1,18];
     };
     _msg = format ["Travel costs: $%1",travelCost];
-    ["sendToClient", [player,"msg",["ss",_msg]]] call CBA_fnc_whereLocalEvent;
-    ["sendToClient",[player,"am",[-travelCost]]] call CBA_fnc_whereLocalEvent;
+    ["sendToClient", [player,fnc_msg,["ss",_msg]]] call CBA_fnc_whereLocalEvent;
+    ["sendToClient",[player,fnc_changeMoney,[-travelCost]]] call CBA_fnc_whereLocalEvent;
   }
   else
   {
@@ -156,8 +156,8 @@ if(_isViableLoc and _traveAllowed) then
       call fnc_hideMarkers;
     };
     _msg = format ["Travel costs: $%1",travelCost];
-    ["sendToClient", [player,"msg",["ss",_msg]]] call CBA_fnc_whereLocalEvent;
-		["sendToClient",[player,"am",[-travelCost]]] call CBA_fnc_whereLocalEvent;
+    ["sendToClient", [player,fnc_msg,["ss",_msg]]] call CBA_fnc_whereLocalEvent;
+		["sendToClient",[player,fnc_changeMoney,[-travelCost]]] call CBA_fnc_whereLocalEvent;
   };
 }
 else{hint "Cannot fast travel"};

@@ -1,3 +1,4 @@
+#include "macros.h"
 // Clientside code for ordnance support
 _type = _this select 0;
 _size = _this select 1;
@@ -289,8 +290,6 @@ ColorYellow		//WMD
 	};
 	case 27: //OWN airsupport
 	{
-
-		#define flyHeight 600
 			_pos = objNull;
 			_unit = objNull;
 			_vec = objNull;

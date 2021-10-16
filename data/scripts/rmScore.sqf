@@ -7,9 +7,9 @@ _gcount = count units _grp;
 //Score deduction
 
 _removeScore = abs floor(money * deathScorePenalty)*-1;
-["sendToClient", [_player,"am",[_removeScore]]] call CBA_fnc_whereLocalEvent;
+["sendToClient", [_player,fnc_changeMoney,[_removeScore]]] call CBA_fnc_whereLocalEvent;
 _msg = format ["%1 score lost upon death.",abs(_removeScore)];
-["sendToClient", [_player,"msg",["ss",_msg]]] call CBA_fnc_whereLocalEvent;
+["sendToClient", [_player,fnc_msg,["ss",_msg]]] call CBA_fnc_whereLocalEvent;
 
 _player removeAllEventHandlers "Killed";
 hideBody _player;

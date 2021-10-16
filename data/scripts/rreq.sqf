@@ -3,6 +3,8 @@ _player = _this select 0;
 _unitype = _this select 1;
 _grp = group _player;
 
+systemChat "ha";
+
 _pos = position _player;
 _unit = group _player createUnit [_unitype, [0,0,0], [], 0, "NONE"];Sleep BIS_EVO_GlobalSleep;
 _lone = [_unit] execVM 'data\scripts\nohuman.sqf';

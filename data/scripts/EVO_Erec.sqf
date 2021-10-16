@@ -1,8 +1,7 @@
+#include "macros.h"
 
 BIS_EVO_Erec =
 {
-	#define easyTreshold 100
-	#define	hardTreshold 150
 	_placetag = _this select 0;
 	_list = _this select 1;
 	_disable = _this select 2;
@@ -22,7 +21,6 @@ BIS_EVO_Erec =
 	_c4 = [_radio] execVM "data\scripts\c4only.sqf";
 	_rtobj = [_radio] execVM "data\scripts\rtobj.sqf";
 	_pos = position _list;
-
 
 
 	//EVALUATE player strategy
@@ -77,8 +75,7 @@ BIS_EVO_Erec =
 	//Handle defender ships
 	fnc_shipSpawn = 
 	{
-		private ["_rnd","_vecT","_pos","_shipPos","_array","_grp","_vec","_handle"];
-		_rnd = [[8,7,4,10,20,2,8,10]] call weightedRandomSimple;
+		_rnd = [[8,7,4,10,10,20,18]] call weightedRandomSimple;
 		_vecT = EGG_EVO_ENEMYSHIPS select _rnd;
 
 		_pos = getPos (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
@@ -93,20 +90,18 @@ BIS_EVO_Erec =
 		[_grp,_pos,_vec] spawn fnc_waterPatrol;
 	};
 
+	//DEBUG juttu Unit color text
 	fnc_hikiMarker = 
 	{
 		_unit = _this select 0;
 		_color = _this select 1;
+		_text = _this select 2;
 
 		_markerName = format ["%1",_unit];
-		_bunkerMarker = createMarker[_markerName,getPos _unit];
-		_bunkerMarker setMarkerColor _color;
-		_bunkerMarker setMarkerType "Dot";
-
-		while{sleep 5; true} do 
-		{
-			_markerName setMarkerPos getPos _unit;
-		};
+		_bunkerMarker = createMarkerLocal[_markerName,getPos _unit];
+		_bunkerMarker setMarkerColorLocal _color;
+		_bunkerMarker setMarkerTypeLocal "Dot";
+		_bunkerMarker setMarkerTextLocal format ["%1",_text];
 	};
 
 	systemChat format ["Creating defense with %1: inf, %2: mec, %3: aa, %4: stataa, %5: stat", _inf,_mec,_aa,_statAA,_stat];
@@ -118,8 +113,8 @@ BIS_EVO_Erec =
 		_ships = (1+(aggression/10)) max 1 min 5;
 		for "_i" from 0 to _ships do 
 		{
-			[] spawn fnc_shipSpawn;
-			sleep 0.2;
+			[] call fnc_shipSpawn;
+			sleep 0.3;
 		};
 	};
 
@@ -148,28 +143,25 @@ BIS_EVO_Erec =
 		 {
 		 	_allvecs = EGG_EVO_spAAeasy; //mixed units reinforce
 		 };
-	 	if(_rng >= easyTreshold) then 
+		if(_rng >= easyTreshold and _rng < hardTreshold) then 
+		{
+		 	_allvecs = EGG_EVO_spAAmedium; //mixed units reinforce
+		};
+	 	if(_rng >= hardTreshold) then 
 		 {
 		 	_allvecs = EGG_EVO_spAAhard; //mixed units reinforce
 		};
 		
 		_vectype = [_allvecs] call fnc_pickRandom;
-		_vcl = createVehicle [_vectype, _respawnpoint, [], 100, "NONE"];
-		Sleep BIS_EVO_GlobalSleep;
 		_respawnpoint = [_respawnpoint, 1, 400,1,0,0.4,0,[],_respawnpoint] call BIS_fnc_findSafePos;
-	//	_vcl setdir round(random (360));	
-		_grp = createGroup (EGG_EVO_ENEMYFACTION);
-		_type = [enemyAamen] call fnc_pickRandom;
-		_unit1 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
-		_unit2 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
-		_unit3 = _grp createUnit [_type, _respawnpoint, [], 0, "FORM"];Sleep BIS_EVO_GlobalSleep;
-		[_unit1,_unit2,_unit3] join _grp;
+	//	_vcl setdir round(random (360));
+		_array = [_vectype,_respawnpoint,(EGG_EVO_ENEMYFACTION),0,random(360),0] call BIS_EVO_CreateVehicle;
+		_grp = _array select 0;
+		_vcl = _array select 1;
+		[_vcl,"ColorRed","AA"] call fnc_hikiMarker;
 		{_x setSkill skillfactor+(random 0.4);_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
 		_vcl addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
-		sleep 0.6;
-		_unit1 moveInCommander _vcl;
-		_unit2 moveInGunner _vcl;
-		_unit3 moveInDriver _vcl;
+
 		[_vcl] call BIS_EVO_Lock;
 		
 		_unattended = [_vcl] spawn {[_this select 0] call BIS_EVO_idelSVEC};
@@ -338,7 +330,7 @@ BIS_EVO_Erec =
 	while {_inf > 0} do 
 	{
 		_grp = createGroup (EGG_EVO_ENEMYFACTION);
-		_type = EGG_EVO_enemy2 select 0;
+		_type = [enemyOfficers] call fnc_pickRandom;
 		_unit = _grp createUnit [_type, _pos, [], 300, "FORM"];
 		Sleep BIS_EVO_GlobalSleep;
 		_rds = (_unit nearRoads 50);
@@ -357,10 +349,10 @@ BIS_EVO_Erec =
 		};		
 		if(round(random 1) == 1) then
 		{
-			_wp = _grp addWaypoint [_flags select 0, 10];
-			_wp2 = _grp addWaypoint [_flags select 1, 10];
-			_wp3 = _grp addWaypoint [_flags select 2, 10];
-			_wp4 = _grp addWaypoint [_flags select 3, 10];
+			_wp = _grp addWaypoint [outpoints select 0, 10];
+			_wp2 = _grp addWaypoint [outpoints select 1, 10];
+			_wp3 = _grp addWaypoint [outpoints select 2, 10];
+			_wp4 = _grp addWaypoint [outpoints select 3, 10];
 			[_grp, 4] setWaypointType "CYCLE";
 		};
 		[_grp] call BIS_EVO_FillInf;
@@ -393,8 +385,6 @@ while {_ied > 0} do
 	};
 */
 //adding reinforcements loop here
-
-
 };
 
 

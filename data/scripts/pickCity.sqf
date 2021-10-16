@@ -77,9 +77,8 @@ deleteMarker "cityMarker";
 if(cityToAttack > -1 and !(cityToAttackName in BIS_EVO_conqueredTowns)) then 
 {
   hint format ["Launching assault on %1!",BIS_EVO_MissionTownNames select cityToAttack];
-  //BIS_EVO_MissionProgress = cityToAttack;
-  //publicVariableServer "BIS_EVO_MissionProgress";
-  ["jed_missionManager", [cityToAttack]] call CBA_fnc_globalEvent;
+  BIS_EVO_MissionProgress = cityToAttack;
+  publicVariableServer "BIS_EVO_MissionProgress";
   
   closeDialog 0;
 }

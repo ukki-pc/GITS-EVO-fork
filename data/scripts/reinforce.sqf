@@ -1,6 +1,5 @@
+#include "macros.h"
 // resupplies towns with reinforcements
-
-
 private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","_tag","_type","_Allspawns","_wtime","_curtownInf","_basetownInf","_curtownMec","_basetownMec"]; 
 
 	_spawn = [0,0,0];
@@ -112,7 +111,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_grp = _array select 0;
 		_vec = _array select 1;
 
-		_sumark = [_vec,"Rekatti","ColorRED","plp_icon_shipFrigate"] execVM "data\scripts\customMarker.sqf";
+		_sumark = [_vec,"","ColorRED","plp_icon_shipFrigate"] execVM "data\scripts\customMarker.sqf";
 
 		{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
 
@@ -268,7 +267,6 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		deleteGroup _pilot;
 	};
 
-
 	BIS_EVO_rappelSupport =
 	{	
 		private ["pos","_unit","_vec","_heli0","_max","_maxv","_alist","_allunits2","_allvecs2","_pilot","_para","_radio","_posback","_pos1","_pos2","_sumark","_wp","_wp2","_wpx2","_i","_recy"]; 
@@ -277,6 +275,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		_vec = objNull;
 		_heli0 = objnull;
 		_radio = radio1;
+		_alist = BIS_EVO_DetectEnemy;
 		_curTown =  BIS_EVO_MissionTowns select BIS_EVO_MissionProgress;
 		_objPos = position _curTown;
 		_pos = _objPos;
@@ -297,6 +296,7 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 		//[_unit, _string, _color, _markerType, _enableDir]
 		_sumark = [_heli0,"","ColorRed","plp_icon_helicopterCargo",true] execVM "data\scripts\customMarker.sqf";
 		_heli0 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
+		_heli0 addMPEventHandler  ["MPHit", {handle = [(_this select 0),(_this select 1)] execVM "data\scripts\rememberHit.sqf"}];
 		_wp = _pilot addWaypoint [_pos, 300];
 		{_x setBehaviour "careless"} forEach (units _pilot);
 
@@ -321,14 +321,17 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
 				_i = _i + 1;
 			};
 
-	  waitUntil{sleep 1; ((getpos _heli0) distance (waypointPosition _wp) < 100) or (speed _heli0 < 10) or !(canMove _heli0)};
+	  waitUntil{sleep 2; ((getpos _heli0) distance (waypointPosition _wp) < 100) or (speed _heli0 < 10) or !(canMove _heli0)};
 
 	_heli0 flyInHeight 35;
 
     if(!canMove _heli0) exitWith{};
+
+	if(behaviour (units _pilot select 0)  != "CARELESS") then {systemChat "o he mad"; {doGetOut _X} forEach units _para; [_heli0] execVM "data\scripts\gokys.sqf"};
+
     nul = [_heli0, 1, 25,"data\scripts\gokys.sqf",30] execVM "fastRope\NORRN_fastRope_init.sqf";
 
-			{_x setBehaviour "combat"; _x addmagazine "EB_molotov_mag"} forEach (units _para);
+			//{_x setBehaviour "combat"; _x addmagazine "EB_molotov_mag"} forEach (units _para);
 			[position _alist,_para,_objPos,_alist] call BIS_EVO_Erefway;
 //adding
 			_recy = [objnull,_para] execVM "data\scripts\grecycle.sqf";
@@ -346,14 +349,12 @@ private ["_allvec","_allvecs","_allvecs2","_spawn","_spawns","_radio","_alist","
     if(_dist < 300) then 
     {
 		{deleteVehicle _x} forEach crew _heli0;
-		deleteVehicle _heli0;
+		 _heli0 setDammage 1;
 	};
 };
 	
 	EGG_EVO_mecreinf = 
 	{
-		#define easyTreshold 100
-		#define	hardTreshold 150
 		private ["_Allspawns","_allobj","_alist","_radio","_unit","_guardm","_pos","_rng","_vec","_maxo","_spawns","_pos","_tag","_allvec","_rds","_cardir","_degrees","_dirdif","_array","_recy"]; 
 		_alist = BIS_EVO_DetectEnemy;
 		_curTown =  BIS_EVO_MissionTowns select BIS_EVO_MissionProgress;
@@ -427,7 +428,14 @@ if ( (_curtownInf <= _basetownInf) and (reinforcements) ) then
 	//No choppy choppies in villages
 	if !(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress in BIS_EVO_MissionVillages) then 
 	{
-		[] spawn BIS_EVO_rappelSupport;
+		if([70]call chance) then 
+		{
+			[] spawn BIS_EVO_rappelSupport;
+		}
+		else
+		{
+			[] spawn BIS_EVO_MI17support;
+		};
 //		(BIS_EVO_Infantry select BIS_EVO_MissionProgress) set [0, (_curtownInf*enemynumdiv)+6];
 	};
 

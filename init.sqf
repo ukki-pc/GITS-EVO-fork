@@ -78,7 +78,7 @@ editor = 1; publicVariable "editor";
 
 R3F_LOG_mutex_local_verrou = false;
 
-if(editor == 0) then {
+if(isMultiplayer) then {
 hardcore = param1;
 LHDCarrier = paramsArray select 1;
 EVOhour = paramsArray select 2;
@@ -125,7 +125,7 @@ else
 	deleteMarker "ammob11";
 };
 
-if (editor == 1) then
+if (!isMultiplayer) then
 {
 	onMapSingleClick "if (_alt) then {vehicle player setpos _pos;{vehicle _x setpos _pos} forEach _units}";
 	//player allowDamage false;
@@ -164,9 +164,8 @@ if (editor == 1) then
 	EGG_EVO_FactionParam = 0;
 	EGG_EVO_LoadGame = 0;
 	BIS_EVO_vehRespawnCount = 2;
-//	["DEBUG MODE ON | Version 0.6"] dm;
+	player allowDamage false;
 };
-
 
 helicopterhitch = 2;
 basebeam = 2;
@@ -202,7 +201,7 @@ EGG_EVO_strENEMYFACTION = nil;
 EGG_EVO_strPLAYERFACTION = nil;
 
 //Auto faction
-switch (side player) do 
+switch (west) do 
 {
 	case east:
 	{
@@ -245,6 +244,9 @@ switch (EGG_EVO_FactionParam) do
 		fac = execVM "data\scripts\factionInitRESISTANCE.sqf";
 	};
 };
+
+//Holds the flags objects
+bunkers = [];
 
 baseOwner = "US_ED";
 
@@ -474,6 +476,7 @@ BIS_EVO_conqueredTowns = startingTowns; //Set starting town
 BIS_EVO_cededCities = [];
 BIS_EVO_cededOwners = [];
 
+[] spawn fnc_marker_screen;
 
 if(isServer) then {
 
@@ -538,6 +541,7 @@ BIS_EVO_IdelSVEC =
 	};
 };
 
+movingMarkers = [];
 
 EGG_problemcraft =  ["PRACS_TK_Su22","PRACS_TK_Su22_BMB","PRACS_TK_Su22_MSL","PRACS_TK_Su22_IND","PRACS_T K_Su22_STA","PRACS_TK_Su24Fencer","PRACS_TK_Su24Fencer_GBU","PRACS_TK_Su24Fencer_STK","PRACS_TK_MiG21"];
 
@@ -763,11 +767,6 @@ if (isServer) then
 	deleteMarker _mark;
 	[] execVM ""data\scripts\noplayermove.sqf"";
 	";
-
-//	waituntil {!isnil "bis_fnc_init"}; LHD1 call BIS_EW_fnc_createLHD;
-	[EGG_vecmods] execVM "data\scripts\makebase.sqf";
-	//Carrier spawn script
-//	[EGG_vecmods,18] execVM "data\scripts\makeLHD.sqf";
 };
 
 
@@ -949,16 +948,6 @@ LDL_inGameActions =
 	true  //3: LDL-Systems: AC130 Pilot and AC130 Co-Pilot have the ability to start coop script (Multiplayer)
 ];
 //############################################################
-publicVariable "BIS_EVO_MissionTowns";
-publicVariable "BIS_EVO_MissionBigTowns";
-publicVariable "BIS_EVO_MilitaryObjectives";
-publicVariable "BIS_EVO_MissionVillages";
-publicVariable "BIS_EVO_CoastalTowns";
-publicVariable "BIS_EVO_MissionObjMarkers";
-publicVariable "BIS_EVO_MissionTownNames";
-publicVariable "BIS_EVO_MissionTownInfGarrisons";
-publicVariable "BIS_EVO_MissionTownVecGarrisons";
-publicVariable "BIS_EVO_conqueredTowns";
 
 if(EGG_EVO_LoadGame == 0) then 
 {
@@ -973,7 +962,16 @@ EGG_sinit =1; publicVariable "EGG_sinit";
 
 
 if !(isServer) exitWith {}; 
-
+publicVariable "BIS_EVO_MissionTowns";
+publicVariable "BIS_EVO_MissionBigTowns";
+publicVariable "BIS_EVO_MilitaryObjectives";
+publicVariable "BIS_EVO_MissionVillages";
+publicVariable "BIS_EVO_CoastalTowns";
+publicVariable "BIS_EVO_MissionObjMarkers";
+publicVariable "BIS_EVO_MissionTownNames";
+publicVariable "BIS_EVO_MissionTownInfGarrisons";
+publicVariable "BIS_EVO_MissionTownVecGarrisons";
+publicVariable "BIS_EVO_conqueredTowns";
 // Large marker seen over occupied cities
 //MHQ SPAWNER
 
@@ -986,7 +984,7 @@ publicVariable "MHQ";
 
 
 // For jip, client waits for server to run update.sqf
-//waitUntil {BIS_EVO_allvar_packed != ""};
+waitUntil {BIS_EVO_allvar_packed != ""};
 
 // _temp = compile BIS_EVO_allvar_packed;
 // _vars = call _temp;
@@ -1007,8 +1005,8 @@ if(EGG_EVO_LoadGame == 0) then
 {
 _firstCity = _nearestEnemyTown;
 _cityNum=BIS_EVO_MissionTowns find _firstCity;
-  ["jed_missionManager", [_cityNum]] spawn CBA_fnc_globalEvent;
-  };
+[_cityNum] spawn fnc_missionManager;
+};
 
 [] call fnc_playerBases;
 
@@ -1021,5 +1019,3 @@ _cityNum=BIS_EVO_MissionTowns find _firstCity;
 // 	};
 	
 // };
-
-[] spawn fnc_marker_screen;

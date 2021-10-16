@@ -20,7 +20,7 @@
 
 	_vec setVariable ["spotid",_spotId];
 
-	screenMarkerBuffer = screenMarkerBuffer + [[_vec,(uiNamespace  getVariable "spotMarker" ),_spotId,"spotMarker",3,"data\spotMark.paa",enemyColor]];
+	screenMarkerBuffer = screenMarkerBuffer + [[_vec,_spotId,"spotMarker",3,"data\spotMark.paa",enemyColor]];
 	[] call fnc_marker_screenConsumeBuffer;
 
 	["Spotting",10] spawn fnc_clientHudMessage;
@@ -28,21 +28,7 @@
 
 	_stop = (alive _vec);
 
-	while {sleep 4; side _vec == EGG_EVO_ENEMYFACTION} do 
-	{
-
-
-	};
+	waituntil {sleep 4; side _vec != EGG_EVO_ENEMYFACTION};
 
 	if(alive _vec) then {[_vec,[0.4,0.4,0.4,1],5] call fnc_changeScreenmarker;};
 //	deleteMarker _markerobj6;
-
-/*
-	[_vec] call fnc_deleteScreenmarker;
-	screenMarkerBuffer = screenMarkerBuffer + [[_vec,(uiNamespace  getVariable "spotMarkerEmpty" ),_spotId,"spotMarkerEmpty",2.5]];
-	[] call fnc_marker_screenConsumeBuffer;
-
-	sleep 30;
-
-	[_vec] call fnc_deleteScreenmarker;
-	*/

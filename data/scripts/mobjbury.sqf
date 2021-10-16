@@ -1,3 +1,4 @@
+#include "macros.h"
 // Deletes dead Enemy
 private ["_unit","_tag","_curtownInf","_curtownMec","_lastHit","_killer","_msg","_reward"]; 
 _unit = _this select 0;
@@ -37,7 +38,7 @@ if !(isNil "_tag") then
 //Give rewards for the kiler end evaluate reward
 if(isPlayer _killer) then 
 {
-	["sendToClient", [_killer,"hm"]] call CBA_fnc_whereLocalEvent;
+	["sendToClient", [_killer,fnc_hitMark]] call CBA_fnc_whereLocalEvent;
 	
 	if(_killer isKindOf "Man") then 
 	{
@@ -56,10 +57,20 @@ if(_unit getVariable ["spotid",0] != 0) then
 {
 	[_unit] spawn
 	{
-		[_this select 0,[0.4,0.4,0.4,1],5] call fnc_changeScreenmarker;
-		sleep 10;
-		[_this select 0] call fnc_deleteScreenmarker;
+		{["sendToClient", [_x,fnc_handleKIll,[_this select 0]]] call CBA_fnc_whereLocalEvent}forEach everyPlayer; //Network kill
+		// {["sendToClient", [_x,fnc_changeScreenCtrl,[_this select 0,[0.4,0.4,0.4,1],5]]] call CBA_fnc_whereLocalEvent}forEach everyPlayer; //Network killer
+		// sleep 10;
+		// {["sendToClient", [_x,fnc_deleteScreenCtrl,[_this select 0]]] call CBA_fnc_whereLocalEvent}forEach everyPlayer; //Network killer
 	};
+};
+
+local _lastHit = false;
+
+//When you shoot something down
+if(_killer == driver _unit) then 
+{
+	_killer = _unit getVariable ["lastHit",objnull];
+	_lastHit = true;
 };
 
 if(isPlayer _killer or isPlayer leader _killer) then 
@@ -102,13 +113,13 @@ if(isPlayer _killer or isPlayer leader _killer) then
 		//(!(isPlayer(gunner vehicle _killer)) and !(isPlayer (commander vehicle _killer))
 
 
-		_playerAssist = ( !(isplayer _killer) and (isPlayer (leader _killer)) or _supKill);
+		_playerAssist = ( !(isplayer _killer) and (isPlayer (leader _killer)) or _supKill or _lastHit);
 		_playerAssistDriver = ((isplayer (driver vehicle _killer))  and !(_killer isKindOf "Man") and !(_killer isKindof "Air"));
 
 		if (_playerAssist or _playerAssistDriver) then {_reward = round(_reward*0.7); _msg = "Assisted " + _msg; _killer = leader _killer;};
 
 
-	["sendToClient", [_killer,"hdm",[_msg,_reward]]] call CBA_fnc_whereLocalEvent;
+	["sendToClient", [_killer,fnc_hudmessage,[_msg,_reward]]] call CBA_fnc_whereLocalEvent;
 };
 
 	

@@ -1,5 +1,5 @@
-	private ["_objective","_currentTown","_unit","_unitM","_markerobj","_vec","_dispname","_airports"];
-	#define _enemyColor "ColorBrown"
+	#include "macros.h"
+	//private ["_objective","_currentTown","_unit","_unitM","_markerobj","_vec","_dispname","_airports"];
 	{
 	_currentTown = BIS_EVO_MissionTowns select _forEachIndex;
 	_unit = (_currentTown);
@@ -21,12 +21,12 @@
 			if(_currentTown in BIS_EVO_MissionBigTowns) then 
 			{
 				_markerobj setMarkerType  "plp_icon_building";
-				_markerobj setMarkerColor _enemyColor;
+				_markerobj setMarkerColor enemyMarkerColor;
 			};
 			if(_currentTown in BIS_EVO_MilitaryObjectives) then 
 			{
 				_markerobj setMarkerType  "plp_icon_storage1";
-				_markerobj setMarkerColor _enemyColor;
+				_markerobj setMarkerColor enemyMarkerColor;
 				if((_currentTown) in _airports) then {_markerobj setMarkerType "plp_icon_hangarB";};
 			};
 		}
@@ -34,7 +34,7 @@
 		else
 		{
 			_markerobj setMarkerType  "plp_icon_house";
-			_markerobj setMarkerColor _enemyColor;
+			_markerobj setMarkerColor enemyMarkerColor;
 			_markerobj setMarkerSize [0.8,0.8];
 		};
 	}
@@ -90,7 +90,7 @@ updCityMarkers =
 				// _vec = BIS_EVO_unlocks select _objInd;
 				// _dispname = [_vec,"displayName"] call fnc_getCfgText;
 				_markerobj setMarkerType  "plp_icon_building";
-				_markerobj setMarkerColor _enemyColor;
+				_markerobj setMarkerColor enemyMarkerColor;
 			};
 			if(_currentTown in BIS_EVO_MilitaryObjectives) then 
 			{
@@ -99,14 +99,14 @@ updCityMarkers =
 				// _vec = BIS_EVO_unlocks select _objInd;
 				// _dispname = [_vec,"displayName"] call fnc_getCfgText;
 				_markerobj setMarkerType  "plp_icon_storage1";
-				_markerobj setMarkerColor _enemyColor;
+				_markerobj setMarkerColor enemyMarkerColor;
 			};
 		}
 		//BIS_EVO_MilitaryObjectives
 		else
 		{
 			_markerobj setMarkerType  "plp_icon_house";
-			_markerobj setMarkerColor _enemyColor;
+			_markerobj setMarkerColor enemyMarkerColor;
 		};
 	}
 	//FRIENDLY TOWN

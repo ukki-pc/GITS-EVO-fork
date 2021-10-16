@@ -1,5 +1,4 @@
 // player init
-
 EB_airfn1=-1;
 EB_airfn2=-1;
 EB_airfn3=-1;
@@ -15,8 +14,6 @@ _playertype = typeOf (vehicle player);
 Sleep 0.2;
 
 plays = [] execVM "data\scripts\update.sqf";
-
-
 _pos = [0,0,0];
 
 //_events = [] execVM "data\scripts\EVO_Vecinit.sqf"; // Player vehicles rank restriction system
@@ -27,13 +24,15 @@ _cthread = [] execVM "data\scripts\MainThreadC.sqf";
 
 //Alternating map marker sizes
 //_mapF= [] execVM "data\scripts\mapFunctions.sqf";
-
+waitUntil {!(isNull (findDisplay 46))};
 //Bandage init
 [player,0.2,0,-1,true] execVM "data\scripts\cly_heal.sqf";
 
 (FindDisplay 46) DisplayAddEventHandler ["keydown","if (!dialog and (_this select 1) In actionKeys ""TeamSwitch"" ) then { a = createDialog 'evoUI';}"];
-(FindDisplay 46) DisplayAddEventHandler ["keydown","if((_this select 1) == 15 ) then { if ( (missionNamespace getVariable 'perkSniperLVL' > 1) and vehicle player iskindof 'man') then {[] call fnc_spotVeh;}};"];
-
+(FindDisplay 46) DisplayAddEventHandler ["keydown","if ((_this select 1) In actionKeys 'showMap' and !visibleMap) then { hint 'nice'; [] spawn fnc_mapActions}"];
+(FindDisplay 46) DisplayAddEventHandler ["keydown","if((_this select 1) in actionKeys 'User16' ) then { if ( (missionNamespace getVariable 'perkSniperLVL' > -1) and vehicle player iskindof 'man') then {[cursorTarget,player] call fnc_spot}};"];
+reloading = false;
+menu = (findDisplay 46) displayAddEventHandler ["KeyDown", "if ((_this select 1) in actionKeys ""ReloadMagazine"") then {[] execVM 'actions\backpackreload.sqf'}"];
 // _box = [0] call BIS_EVO_AmmoBox;
 // _boxR = [0] call BIS_EVO_AmmoBoxR;
 //added to make markers show up on first spawn

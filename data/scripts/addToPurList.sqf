@@ -1,14 +1,14 @@
 // Sends destroyed vehicle back to the vehicle storage array
-private ["_vec","_checkVeh","_delay","_found"]; 
-_veh = _this select 0;
-_delay = _this select 1;
-_vec = typeof _veh;
+local _veh = _this select 0;
+local _delay = _this select 1;
+local _vec = typeof _veh;
 
 
-_displayName = getText(configFile >> "CfgVehicles" >> _vec >> "displayName");
+//_displayName = getText(configFile >> "CfgVehicles" >> _vec >> "displayName");
 	deletevehicle _veh;
 	sleep _delay;
-
+	storedVehicles = storedVehicles + [_vec];
+/*
 	for [{_loop=0}, {_loop < (count buyAirList)}, {_loop=_loop+1}] do 
 	{
 		_checkVeh =  ((buyAirList select _loop) select 0);	
@@ -53,4 +53,4 @@ _displayName = getText(configFile >> "CfgVehicles" >> _vec >> "displayName");
 			publicVariable "buyStatList";
 		};	
 	};
-
+*/

@@ -98,7 +98,7 @@ _turretarrayname = [""];
 	};
 };
 
-//	type,pos,side,radius,direction,velocity
+//INPUT	type,pos,side,radius,direction,velocity RETURN GRP,VEC
 BIS_EVO_CreateVehicle =
 {
 	Private["_type","_pos","_side","_radi","_dir","_vel","_grp","_returnarray","_vec","_crewtype","_maxc","_maxcrew","_newmaxcrew","_unit","_vtarray","_ctr","_n"];

@@ -24,7 +24,7 @@ showCinemaBorder false;
 
 _oldSpeed = 0;
 	_camera camSetTarget _projectile;
-while{sleep BIS_EVO_framdelay; alive _projectile && alive _camera}do{
+while{sleep BIS_EVO_framedelay; alive _projectile && alive _camera}do{
 
 	_camera camSetRelPos _relPos;
 	_camera camSetFOV _fov;

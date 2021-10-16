@@ -18,8 +18,8 @@ if (_unit isKindOf "Man") then
 	{
 		if(!isPlayer _killer) then {_killer = leader _killer;};
 		_msg = format ["-1$ penalty for killing: %1",_dispname];
-		["sendToClient", [_killer,"msg",["ss",_msg]]] call CBA_fnc_whereLocalEvent;
-		["sendToClient",[_killer,"am",[-1]]] call CBA_fnc_whereLocalEvent;
+		["sendToClient", [_killer,fnc_msg,["ss",_msg]]] call CBA_fnc_whereLocalEvent;
+		["sendToClient",[_killer,fnc_changeMoney,[-1]]] call CBA_fnc_whereLocalEvent;
 	};
 	{_x setpos position _unit} forEach crew _unit;
 	sleep 300.0;

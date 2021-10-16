@@ -49,17 +49,18 @@ _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 
 	if(_stattype isKindOf "Land") then 
 	{
+	_cstatA addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\playerVecKilled.sqf"}];
 	//format is "veh = [_unit, _delay, _deserted, _respawns, _explode, _dynamic, _unitinit] execVM ""scripts\vehicle.sqf""";
-	_cstatA setVehicleInit "veh = [this, 10, 0, 0, FALSE, TRUE,""this setDammage 0.8,this setFuel 0""] execVM ""vehicle.sqf""";
+	//_cstatA setVehicleInit "veh = [this, 10, 0, 0, FALSE, TRUE,""this setDammage 0.8,this setFuel 0""] execVM ""vehicle.sqf""";
 	processInitCommands;
 	};
 	if(_stattype isKindOf "Air") then 
 	{
 	_cstatA addEventHandler ["killed", {handle = [_this select 0,900] execVM "data\scripts\addToPurList.sqf"}];
-		if(_stattype in customPlanes) then 
-		{
+	//	if(_stattype in customPlanes) then 
+	//	{
 		//	_handle = [_cstatA] execVM "data\scripts\customLoadout.sqf";
-		};
+	//	};
 	processInitCommands;
 	};
 		_cstatA lock false;

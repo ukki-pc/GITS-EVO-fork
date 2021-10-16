@@ -1,18 +1,17 @@
-// Object, Direction, speed
+#include "macros.h"
 BIS_EVO_SetVelocityVector =
 {
     _object = _this select 0;
     _direction = _this select 1;
-    _speed = _this select 2;
+    _speed = round random (50);
     _rndDir = random (1)-random(1);
 
     _object setdir _direction;
     _vel = velocity _object;
-
-    _object setVelocity [
-    (_vel select 0) + ((sin _direction+_rndDir) * _speed),
-    (_vel select 1) + ((cos _direction+_rndDir) * _speed),
-    (_vel select 2)];
+     _object setVelocity [
+     (_vel select 0) + ((sin _direction+_rndDir) * _speed),
+        (_vel select 1) + ((cos _direction+_rndDir) * _speed),
+     (-150)];
 };
 
     _bombzone = position player;
@@ -30,14 +29,15 @@ BIS_EVO_SetVelocityVector =
     _objPos = _bombzone;
     _pos = getMarkerPos _closestMarker;
     _posback = _bombzone;
-    _pilot = createGroup (west);
+    _pilot = createGroup (EGG_EVO_ENEMYFACTION);
     (EGG_EVO_mepilot select 0) createUnit [getmarkerpos "centerp", _pilot];Sleep BIS_EVO_GlobalSleep;
     //(EGG_EVO_mepilot select 0) createUnit [getmarkerpos "centerp", _pilot];Sleep BIS_EVO_GlobalSleep;
     _pos1 = [(_pos select 0)-_range -(random _range),(_pos select 1)+_range -(random _range),(200 + random 100)];
     _pos2 = [(_pos select 0)+_range +(random _range),(_pos select 1)+_range -(random _range),(200 + random 100)];
     _vecT = [EGG_EVO_mevairb] call fnc_pickRandom;
     _heli0 = createVehicle [_vecT,_pos1, [], 100, "FLY"];
-    _sumark = [_heli0,"","ColorBlue","plp_icon_planeAttack",true,0.6] execVM "data\scripts\customMarker.sqf";
+    sleep 0.1;
+    _sumark = [_heli0,"",enemyMarkerColor,"plp_icon_planeAttack",true,0.6] execVM "data\scripts\customMarker.sqf";
     //player moveInDriver _heli0;
     _heli0 setVelocity [0,0,0];
     _dir = [position _heli0, _objPos] call BIS_EVO_GetRelDir;
@@ -57,41 +57,47 @@ BIS_EVO_SetVelocityVector =
     (units _pilot select 0) moveInDriver _heli0;
     (units _pilot select 1) moveInGunner _heli0;
 
+    //    [_heli0] execVM "data\scripts\camAny.sqf";
+
     _wp2 = _pilot addWaypoint [_posback, 10];
     {_x setBehaviour "careless"} forEach (units _pilot);
 
-    (driver _heli0) commandMove _pos;
-    (driver _heli0) doMove _pos;
+    (driver _heli0) commandMove _posback;
+    (driver _heli0) doMove _posback;
     _heli0 flyInHeight 150;
 
-    waitUntil {(_heli0 distance _posback) < (speed _heli0*2) or not (canmove _heli0)};
+    waitUntil {((_heli0 distance _posback) < 300) or not (canmove _heli0)};
 
+    if !(canMove _heli0) exitWith {    sleep 90;
+    {deleteVehicle _x} forEach ([_heli0] + crew _heli0);
+    if (!isNull _unit) then {deleteVehicle _unit};
+    deleteGroup _pilot;};
 
    // _bombs = ["EB_Bo_FAB500"];
-   _bombs = ["EB_CBU98_Launcher"];
+   _bombs = ["EB_Bo_FAB500"];
     if (canmove _heli0) then 
     {
-        _count = 5;
+        _count = 2;
         _i = 0;
         _bombT = [_bombs] call fnc_pickRandom;
         while {_i <= _count} do 
         {
-            //systemChat format ["bomb%1",_i];
-            //_vec = createVehicle ["ParachuteWest", _pos, [], 20, 'NONE'];
-
-            _bombT = createVehicle [_bombT,[(position _heli0 select 0), (position _heli0 select 1), (position _heli0 select 2)-1], [], 0, "NONE"];
-            [_bombT, getDir _heli0, 100] call BIS_EVO_SetVelocityVector;
-            //_k setDir getDir _heli0;
+            local _bombT = createVehicle [_bombT,[(position _heli0 select 0), (position _heli0 select 1), (position _heli0 select 2)-1], [], 0, "NONE"];
+            sleep 0.2;
+            [_bombT, getDir _heli0, speed _heli0] call BIS_EVO_SetVelocityVector;
             sleep 0.2;
             _i = _i + 1;
         };
     };
 
+   
+
 _wpx2 = _pilot addWaypoint [[0,0,0], 20];
 [_pilot, 2] setWaypointType "MOVE";
-    
-    [] call BIS_EVO_CountDead;
 
+sleep 10;
+
+ deleteVehicle _heli0;
     sleep 90;
     {deleteVehicle _x} forEach ([_heli0] + crew _heli0);
     if (!isNull _unit) then {deleteVehicle _unit};

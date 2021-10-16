@@ -29,7 +29,9 @@ while {sleep EVO_incomeFrequency; true} do
     if(_income > 0) then 
     {
         _msg = format ["Income from cities: $%1",_income];
-            {["sendToClient", [_x,"msg",["ss",_msg]]] call CBA_fnc_whereLocalEvent;
-            ["sendToClient",[_x,"am",[_income,false]]] call CBA_fnc_whereLocalEvent}forEach _allPlayers;
+        {
+            ["sendToClient", [_x,fnc_msg,["ss",_msg]]] call CBA_fnc_whereLocalEvent;
+            ["sendToClient",[_x,fnc_changeMoney,[_income,false]]] call CBA_fnc_whereLocalEvent;
+        }forEach _allPlayers;
     };
 };

@@ -1,5 +1,6 @@
 
 #include "factionDefines.h"
+#include "macros.h"
 
 //Common functions for clients only
 
@@ -17,12 +18,76 @@ fnc_getBaseOwner =
 	_return;
 };
 
+mappi = true;
+
+fnc_mapActions = 
+{
+	waitUntil{visibleMap}; 
+	while {visibleMap and mappi} do
+	{
+		{
+			_mrk = _x select 0;
+			_obj = _x select 1;
+			if (alive _obj) then 
+			{
+				_mrk setMarkerPosLocal position _obj;
+				if(getMarkerType _mrk == "plp_icon_planeAttack") then {_mrk setMarkerDirLocal getDir _obj} //Do rotations
+				else
+				{
+					if(getMarkerType _mrk == "plp_icon_helicopterCargo") then 
+					{
+						if(getDir _obj < 180) then {_mrk setMarkerTypeLocal format ["%1R",getMarkerType _mrk]}
+						else{_mrk setMarkerTypeLocal getMarkerType _mrk};
+					};
+				};
+				switch (side _obj) do
+				{
+					case west:
+					{
+						_mrk setMarkerColorLocal EGG_EVO_friendlyColor;	
+					};
+					case east:
+					{
+						_mrk setMarkerColorLocal enemyMarkerColor;	
+					};
+					case resistance:
+					{
+						_mrk setMarkerColorLocal "colorGreen";	
+					};
+					case civilian:
+					{
+						_mrk setMarkerColorLocal "colorWhite";
+					};
+				};
+			}
+			else{deleteMarkerLocal _mrk; movingMarkers = [movingMarkers,_forEachIndex] call BIS_fnc_removeIndex};
+			sleep BIS_EVO_frameDelay;
+		} forEach movingMarkers;
+		sleep 2;
+	};
+};
+
+fnc_spot = 
+{
+	//if( perkSniperLVL < 2)exitWith{systemChat "ha";};
+	local _obj = _this select 0;
+	if( side _obj == EGG_EVO_ENEMYFACTION and _obj getVariable ["spotid",0] == 0) then 
+	{
+		{
+			if(_x in units (group player)) then 
+			{
+				["sendToClient", [_x,fnc_doSpot,[_obj,_x == _this select 1]]] spawn CBA_fnc_whereLocalEvent;
+			};
+		}forEach everyPlayer;
+	};
+};
+
 fnc_spotEnemy = 
 {
-	_vec = _this select 0;
-	_vecType = typeOf _vec;
-
-	if(_vec getVariable ["spotid",0]!= 0) exitWith{};
+	local _vec = _this select 0;
+	if(isNil "_vec" or _vec getVariable ["spotid",0] != 0) exitWith{};
+	local _vecType = typeOf _vec;
+	local _spot = _this select 1;
 	
 /*
 	_mrktype = "b_mech_inf";
@@ -36,32 +101,28 @@ fnc_spotEnemy =
 
 */
 	spotId = spotId +1;
-	_spotId = spotId;
+	if(spotId > 350) then {spotId = 250};
+	local _spotId = spotId;
 
 	_vec setVariable ["spotid",_spotId];
 
-	screenMarkerBuffer = screenMarkerBuffer + [[_vec,(uiNamespace  getVariable "spotMarker" ),_spotId,"spotMarker",3,"data\spotMark.paa",enemyColor]];
+	screenMarkerBuffer = screenMarkerBuffer + [[_vec,_spotId,"spotMarker",3,"data\spotMark.paa",enemyColor]];
 	[] call fnc_marker_screenConsumeBuffer;
 
-	["Spotting",10] spawn fnc_clientHudMessage;
-	[10] call fnc_addMoney;
+	if(_spot) then
+	{
+		["Spotting",10] spawn fnc_clientHudMessage;
+	};
 
-	_stop = (alive _vec);
-
+	if !(_vecType isKindOf "Man") then 
+	{
 		waitUntil{sleep 4; side _vec != EGG_EVO_ENEMYFACTION};
-
-	if(alive _vec) then {[_vec,[0.4,0.4,0.4,1],5] call fnc_changeScreenmarker;};
+		if(alive _vec) then 
+		{
+			{["sendToClient", [_x,fnc_changeScreenCtrl,[_this select 0,[0.4,0.4,0.4,1],5]]] call CBA_fnc_whereLocalEvent}forEach everyPlayer;
+		};
+	};
 //	deleteMarker _markerobj6;
-
-/*
-	[_vec] call fnc_deleteScreenmarker;
-	screenMarkerBuffer = screenMarkerBuffer + [[_vec,(uiNamespace  getVariable "spotMarkerEmpty" ),_spotId,"spotMarkerEmpty",2.5]];
-	[] call fnc_marker_screenConsumeBuffer;
-
-	sleep 30;
-
-	[_vec] call fnc_deleteScreenmarker;
-	*/
 };
 
 //Insert [ELEMENT,ARRAY] RETURN parent index where element exists
@@ -93,15 +154,12 @@ screenMarkers = [];
 
 fnc_initFlagUi = 
 {
-	#define layerStart 11
 	_objects = _this select 0;
 	{
 		_targetObject = _x select 0;
-		_ctrlName = "screenobj1";
 		_pic = ["data\flaga.paa","data\flagb.paa","data\flagc.paa","data\flagd.paa"] select _forEachindex;
-		_layerN = layerStart + _forEachindex;
-		_ctrl = (uiNamespace  getVariable _ctrlName);
-		screenMarkerBuffer = screenMarkerBuffer + [[_targetObject,_ctrl,_layerN,_ctrlName,0,_pic,enemyColor,1]];
+		_layerN = flagLayerStart + _forEachindex;
+		screenMarkerBuffer = screenMarkerBuffer + [[_targetObject,_layerN,"screenobj1",0,_pic,enemyColor]];
 	}forEach _objects;
 
 	[] call fnc_marker_screenConsumeBuffer;
@@ -113,20 +171,17 @@ fnc_marker_screenConsumeBuffer =
 	disableSerialization;
 	{
 		_targetObject = _x select 0;
-		_ctrl = _x select 1;
-		_layerN = _x select 2;
-		_ctrlName = _x select 3;
-		_size = _x select 4;
+		_layerN = _x select 1;
+		_ctrlName = _x select 2;
+		_size = _x select 3;
 		if(isNil "_size") then {_size = 2};
-		_pic = _x select 5;
-		_color = _x select 6;
-		_scale = _x select 7;
+		_pic = _x select 4;
+		_color = _x select 5;
 		if(isNil "_color") then {_color = neutralcolor};
-		if(isNil "_scale") then {_scale = 1};
 		_layerN cutRsc [_ctrlName,"PLAIN"];
 		_ctrl = (uiNamespace  getVariable _ctrlName);
 		_ctrl ctrlCommit 0;
-		screenMarkers = screenmarkers + [[_targetObject,_ctrl,_layerN,_size,_pic,_color,_scale]];
+		screenMarkers = screenmarkers + [[_targetObject,_ctrl,_layerN,_size,_pic,_color]];
 	}forEach screenMarkerBuffer;
 
 	screenMarkerBuffer = [];
@@ -146,10 +201,9 @@ fnc_hideMarkers =
 fnc_marker_screen = 
 {
 	disableSerialization;
-	#define screenCtrlMaxDist 1600
 	_clean = false;
 
-	while{sleep 0.016; BIS_EVO_MissionProgress > -1} do 
+	while{sleep 0.016; alive player} do 
 	{
 		if !(visibleMap) then
 		{
@@ -159,7 +213,7 @@ fnc_marker_screen =
 				_obj = (screenMarkers select _i);
 				_targetObject = _obj select 0;
 				
-				if(isNull _targetObject) then {[_targetObject] call fnc_deleteScreenmarker; _size = _size -1}
+				if(_targetObject == objNull) then {[_targetObject] call fnc_deleteScreenmarker; _size = _size -1}
 				else 
 				{
 					_pos = getPos _targetObject;
@@ -169,7 +223,6 @@ fnc_marker_screen =
 					_ctrl = _obj select 1;
 					_ctrl ctrlsetText  (_obj select 4);
 					_ctrl ctrlSetTextColor  (_obj select 5);
-					_scale = _obj select 6;
 					_screenPos = worldToScreen [_pos select 0,_pos select 1, ((_pos select 2)+ (_obj select 3))];
 					_screenPos set [0,(_screenPos select 0)-0.006];
 					_ctrl ctrlSetPosition _screenPos;
@@ -250,7 +303,6 @@ messageMutex = 0;
 //Handles messages
 fnc_clientHudMessage = 
 {
-	#define delayTime 0.8
 	private ["_message","_score"];
 	_message = _this select 0;
 	_score = _this select 1;
@@ -279,7 +331,6 @@ fnc_interpolate =
 
 fnc_increaseWpSkill = 
 {
-	#define skillAddition 1
 	_skillCategory = _this select 0;
 
 	switch(_skillCategory) do
@@ -420,6 +471,19 @@ fnc_countUpgrades =
 	};
 };
 
+//Flags cleanup
+fnc_flag_cleanup = 
+{
+	//Remove markers
+	{
+		_markerName = format ["%1",_x];
+		deleteMarker _markerName;
+		[_x] call fnc_deleteScreenmarker;
+		deleteVehicle _x;
+	} forEach bunkers;
+	bunkers = [];
+};
+
 fnc_showMoney = 
 {
 	9 cutRsc ["DollarTitle","PLAIN"];
@@ -440,6 +504,14 @@ fnc_addMoney =
 	};
 };
 
+fnc_missionManager = 
+{
+	_objId = _this select 0;
+	BIS_EVO_MissionProgress = _objId;
+	publicVariable "BIS_EVO_MissionProgress";
+	[] spawn missionManager;
+};
+
 //Pick City broadcast
 ["jed_missionManager", {
 _objId = _this select 0;
@@ -455,7 +527,7 @@ _objId = _this select 0;
     };
 }] call CBA_fnc_addEventHandler;
 
-
+//Function hub
 ["sendToClient", 
 {
 	//private ["_type","_data","_name","_color","_message","_sound","_source","_sound","_dist","_msgType","_msg","_amount","_hitSounds","_count","_screenMarkers"];
@@ -463,14 +535,21 @@ _objId = _this select 0;
 
 	switch (_type) do
 	{
-		case "hm": //Hitmarker
+		case fnc_hitMark: //Hitmarker
 		{
 			local _hitSounds = ["hit1","hit2","hit3"];
 			3 cutRsc ["Hitmarker","PLAIN"];
 			local _sound = _hitSounds select round (random ((count _hitSounds)-1));
 			playSound _sound;
 		};
-		case "msg": //All Messages
+		case fnc_handleKIll: //Handle kill
+		{	
+			local _data = _this select 2;		
+			[_data select 0,[0.4,0.4,0.4,1],5] call fnc_changeScreenmarker;
+			sleep 10;
+			[_data select 0] call fnc_deleteScreenmarker;
+		};
+		case fnc_msg: //All Messages
 		{
 			local _data = _this select 2;
 			local _msgType = _data select 0;
@@ -478,7 +557,7 @@ _objId = _this select 0;
 			if(_msgType == "ss") exitWith {systemChat _msg};
 			if(_msgType == "gs") exitWith {player globalChat _msg};
 		};
-		case "am": //Add Money
+		case fnc_changeMoney: //Add Money
 		{
 			local _data = _this select 2;
 			local _amount = _data select 0;
@@ -486,27 +565,33 @@ _objId = _this select 0;
 			if(!isNil "_ranked") then {totalIncome = totalIncome + _amount};
 			[_amount] call fnc_addMoney;
 		};
-		case "fnc_ctrlChangeColor":
+		case fnc_changeScreenCtrl: //change screen marker
 		{	
 			local _data = _this select 2;		
 			local _name = _data select 0;
-			local _color = _data select 1;
-			[_name,_color,5] call fnc_changeScreenmarker;
+			local _value = _data select 1;
+			local _index = _data select 2;
+			[_name,_value,_index] call fnc_changeScreenmarker;
 		};
-		case "hdm": //Hud Message
+		case fnc_deleteScreenCtrl: //delete screen marker
+		{	
+			local _data = _this select 2;		
+			local _name = _data select 0;
+			[_name] call fnc_deleteScreenmarker;
+		};
+		case fnc_hudmessage: //Hud Message
 		{
 			local _data = _this select 2;
 			local _message = _data select 0;
 			local _amount = _data select 1;
 			[_message,_amount] spawn fnc_clientHudMessage;
 		};
-		case "ps": //Play Sound
+		case fnc_playSound: //Play Sound
 		{
 		    local _data = _this select 2;
-			local _sound = _data select 0;
-			playSound _sound;
+			playSound _data select 0;
 		};
-		case "s3":
+		case fnc_say3d: //Say 3d
 		{
 		    local _data = _this select 2;
 			local _source = _data select 0;
@@ -514,18 +599,32 @@ _objId = _this select 0;
 			local _dist = _data select 2;
 			_source say3d [_sound,_dist];
 		};
-		case "gm": //Get Money
+		case fnc_saveMoney: //Save Money
 		{
 			local _data = _this select 2;
 			local _count = _data select 0;
 			bank set [_count,[name player,money]];
 			publicVariable "bank";
 		};
-		case "bf": //Broadcast flags
+		case fnc_broadcastFlags: //Broadcast flags
 		{
 			local _data = _this select 2;
 			local _screenMarkers = _data select 0;
 			[_screenMarkers] call fnc_initFlagUi;
+		};
+		case fnc_cleanFlags: //Flag cleanup
+		{
+			[] call fnc_flag_cleanup;
+		};
+		case fnc_doSpot: //Spot
+		{
+			local _data = _this select 2;
+			[_data select 0,_data select 1] spawn fnc_spotEnemy;
+		};
+		case fnc_moveMarker: //Spot
+		{
+			local _data = _this select 2;
+			movingMarkers = movingMarkers + [[_data select 0,_data select 1]];
 		};
 	};
 }] call CBA_fnc_addLocalEventHandler;

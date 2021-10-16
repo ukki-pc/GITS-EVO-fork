@@ -1,5 +1,5 @@
 removeBackpack player;
-_rucktype = _this select 3;
+_rucktype = _this select 0;
 
 switch (_rucktype) do 
 {
@@ -277,8 +277,7 @@ switch (_rucktype) do
 	};
 
 };
-execVM "data\scripts\loadoutrecorder.sqf";
-hint "Weapons Saved";
+
 
 /*
 CZ_VestPouch_EP1 6

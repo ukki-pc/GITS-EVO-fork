@@ -36,8 +36,10 @@ class Mission
 		"nm_tigr",
 		"jdg_carrier",
 		"cacharacters_acr",
-		"jsrs_distance",
-		"norrn_dbo_fastrope"
+		"norrn_dbo_fastrope",
+		"pook_brdm2",
+		"JS_FA18",
+		"jsrs_distance"
 	};
 	addOnsAuto[]=
 	{
@@ -62,6 +64,7 @@ class Mission
 		"FFAA_patrullero_p72",
 		"FFAA_bam",
 		"EB_Ship",
+		"pook_brdm2",
 		"smd_sahrani_a2"
 	};
 	randomSeed=8800876;
@@ -200,11 +203,12 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={3007.4094,14.590175,2253.0476};
+					position[]={2263.8325,11.899017,2901.2458};
 					azimut=421.69601;
 					id=39;
 					side="EAST";
 					vehicle="TK_Soldier_Engineer_EP1";
+					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;
 					text="enge2";
@@ -219,7 +223,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={3007.7004,14.606662,2252.2488};
+					position[]={2264.1235,11.940164,2900.447};
 					azimut=421.69601;
 					id=40;
 					side="EAST";
@@ -240,12 +244,12 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={3006.3875,14.536283,2252.3398};
+					position[]={2262.8105,11.624478,2900.5381};
 					azimut=694.62402;
 					id=43;
 					side="WEST";
 					vehicle="CZ_Soldier_Wdl_ACR";
-					player="PLAYER COMMANDER";
+					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
 					text="engw1";
@@ -260,7 +264,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={3006.6458,14.566116,2253.1218};
+					position[]={2263.0688,11.716189,2901.3201};
 					azimut=331.16299;
 					id=44;
 					side="WEST";
@@ -1107,7 +1111,7 @@ class Mission
 					skill=0.60000002;
 					text="objective_42";
 					init="this setVariable [""type"",""military""]; this setVariable [""name"",""Rahmadi""]; this setVariable [""coastal"",true]; ";
-					synchronizations[]={122,121,120};
+					synchronizations[]={122,121,120,126};
 				};
 			};
 		};
@@ -1278,7 +1282,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={3006.8801,14.55431,2254.6609};
+					position[]={2263.3032,11.83008,2902.8591};
 					azimut=694.62402;
 					id=99;
 					side="GUER";
@@ -1297,7 +1301,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={3007.8899,14.567934,2255.0085};
+					position[]={2264.313,12.088319,2903.2068};
 					azimut=694.62402;
 					id=100;
 					side="GUER";
@@ -1331,7 +1335,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=63;
+		items=65;
 		class Item0
 		{
 			position[]={18819.916,38.26318,13693.878};
@@ -1408,7 +1412,7 @@ class Mission
 		};
 		class Item8
 		{
-			position[]={2999.3914,14.421874,2222.075};
+			position[]={2255.8147,10.879641,2870.2732};
 			id=8;
 			side="EMPTY";
 			vehicle="HeliHEmpty";
@@ -1449,7 +1453,7 @@ class Mission
 		};
 		class Item12
 		{
-			position[]={2998.302,14.33781,2272.8826};
+			position[]={2258.3208,10.740055,2913.6797};
 			azimut=537.68201;
 			id=12;
 			side="EMPTY";
@@ -1516,7 +1520,7 @@ class Mission
 		};
 		class Item18
 		{
-			position[]={2995.4465,14.302035,2253.9753};
+			position[]={2251.8699,9.5717211,2902.1736};
 			azimut=356.42661;
 			id=21;
 			side="EMPTY";
@@ -1895,7 +1899,7 @@ class Mission
 		};
 		class Item57
 		{
-			position[]={2605.3281,14.22162,2837.7917};
+			position[]={2601.293,13.962254,2843.4827};
 			id=120;
 			side="EMPTY";
 			vehicle="FlagPole_EP1";
@@ -1947,13 +1951,33 @@ class Mission
 			skill=0.60000002;
 			synchronizations[]={71};
 		};
+		class Item63
+		{
+			position[]={3142.9619,33.651463,2738.064};
+			id=126;
+			side="EMPTY";
+			vehicle="FlagPole_EP1";
+			skill=0.60000002;
+			synchronizations[]={90};
+		};
+		class Item64
+		{
+			position[]={2275.917,14.367941,2899.3518};
+			azimut=421.69601;
+			id=127;
+			side="EMPTY";
+			vehicle="pook_brdm2_sa9_GUE";
+			leader=1;
+			skill=0.60000002;
+			init="this addEventHandler [""killed"", {handle = [_this select 0] execVM ""data\scripts\playerVecKilled.sqf""}];";
+		};
 	};
 	class Markers
 	{
 		items=44;
 		class Item0
 		{
-			position[]={3006.3489,14.514322,2251.3484};
+			position[]={2262.772,11.55127,2899.5466};
 			name="Respawn_West";
 			markerType="RECTANGLE";
 			type="Tank";
@@ -1964,7 +1988,7 @@ class Mission
 		};
 		class Item1
 		{
-			position[]={2999.5945,14.42622,2222.2488};
+			position[]={2256.0178,10.917029,2870.447};
 			name="FahneLKW";
 			text="Respawn - HQ";
 			type="mil_dot";
@@ -1979,7 +2003,7 @@ class Mission
 		};
 		class Item3
 		{
-			position[]={3002.6692,14.375518,2277.7458};
+			position[]={2268.5442,12.62166,2907.0403};
 			name="ammob1";
 			type="plp_icon_rifle";
 			colorName="ColorBlue";
@@ -2028,7 +2052,7 @@ class Mission
 		};
 		class Item8
 		{
-			position[]={3002.7844,14.353106,2280.5193};
+			position[]={2268.6594,12.422995,2909.8137};
 			name="ammob6";
 			type="plp_icon_rifle";
 			colorName="ColorRed";
@@ -2329,7 +2353,7 @@ class Mission
 		};
 		class Item43
 		{
-			position[]={3004.3718,14.461732,2254.1553};
+			position[]={2260.7952,11.20193,2902.3535};
 			name="campmark";
 			text="Camp";
 			type="plp_icon_camp";
@@ -2338,7 +2362,7 @@ class Mission
 	};
 	class Sensors
 	{
-		items=45;
+		items=40;
 		class Item0
 		{
 			position[]={9819.8174,139.98311,10079.436};
@@ -2358,41 +2382,7 @@ class Mission
 		};
 		class Item1
 		{
-			position[]={1777.5122,0.56145275,656.21704};
-			a=1;
-			b=1;
-			rectangular=1;
-			activationBy="WEST";
-			repeating=1;
-			timeoutMin=3;
-			timeoutMid=3;
-			timeoutMax=3;
-			age="UNKNOWN";
-			name="BIS_EVO_ALLWEST";
-			class Effects
-			{
-			};
-		};
-		class Item2
-		{
-			position[]={1777.5421,0.91742444,653.5105};
-			a=1;
-			b=1;
-			rectangular=1;
-			activationBy="ANY";
-			repeating=1;
-			timeoutMin=3;
-			timeoutMid=3;
-			timeoutMax=3;
-			age="UNKNOWN";
-			name="BIS_EVO_ALL";
-			class Effects
-			{
-			};
-		};
-		class Item3
-		{
-			position[]={3004.739,14.462652,2253.1917};
+			position[]={2261.1624,11.25553,2901.3899};
 			a=70;
 			b=70;
 			activationBy="ANY";
@@ -2404,7 +2394,7 @@ class Mission
 			{
 			};
 		};
-		class Item4
+		class Item2
 		{
 			position[]={18952.57,14.663157,14186.416};
 			a=80;
@@ -2420,7 +2410,7 @@ class Mission
 			{
 			};
 		};
-		class Item5
+		class Item3
 		{
 			position[]={18083.85,8.6912584,18435.949};
 			a=550;
@@ -2436,7 +2426,7 @@ class Mission
 			{
 			};
 		};
-		class Item6
+		class Item4
 		{
 			position[]={14244.367,59.145863,11866.066};
 			a=70;
@@ -2451,11 +2441,11 @@ class Mission
 			{
 			};
 		};
-		class Item7
+		class Item5
 		{
 			position[]={3346.4167,0.32537889,6899.3188};
-			a=2000;
-			b=3000;
+			a=1;
+			b=1;
 			activationBy="WEST";
 			age="UNKNOWN";
 			text="rain";
@@ -2464,11 +2454,11 @@ class Mission
 			{
 			};
 		};
-		class Item8
+		class Item6
 		{
 			position[]={1397.6315,0.71000814,8253.2139};
-			a=2500;
-			b=1500;
+			a=1;
+			b=1;
 			angle=45;
 			activationBy="WEST";
 			age="UNKNOWN";
@@ -2478,11 +2468,11 @@ class Mission
 			{
 			};
 		};
-		class Item9
+		class Item7
 		{
 			position[]={2224.2703,0.50170141,8041.7598};
-			a=1000;
-			b=2500;
+			a=1;
+			b=1;
 			angle=45;
 			activationBy="WEST";
 			age="UNKNOWN";
@@ -2492,7 +2482,7 @@ class Mission
 			{
 			};
 		};
-		class Item10
+		class Item8
 		{
 			position[]={2550.1577,13.891395,2727.6201};
 			a=350;
@@ -2510,7 +2500,7 @@ class Mission
 			{
 			};
 		};
-		class Item11
+		class Item9
 		{
 			position[]={13075.953,18.274796,2849.1545};
 			a=60;
@@ -2528,7 +2518,7 @@ class Mission
 			{
 			};
 		};
-		class Item12
+		class Item10
 		{
 			position[]={1562.7914,0.40340954,949.36108};
 			timeoutMin=4;
@@ -2536,15 +2526,15 @@ class Mission
 			timeoutMax=4;
 			age="UNKNOWN";
 			text="ThEEnD";
-			expCond="BIS_EVO_MissionProgress == 111111111";
+			expCond="false";
 			expActiv="handle = [] execVM ""data\scripts\end.sqf""";
 			class Effects
 			{
 			};
 		};
-		class Item13
+		class Item11
 		{
-			position[]={1565.7367,0.16768807,838.98999};
+			position[]={1152.3525,0.24200705,227.81567};
 			a=10;
 			b=20;
 			angle=-137.276;
@@ -2558,9 +2548,9 @@ class Mission
 			{
 			};
 		};
-		class Item14
+		class Item12
 		{
-			position[]={1363.3141,0.33340266,741.88062};
+			position[]={1232.5349,0.14857611,679.98242};
 			a=10;
 			b=10;
 			rectangular=1;
@@ -2576,7 +2566,7 @@ class Mission
 			{
 			};
 		};
-		class Item15
+		class Item13
 		{
 			position[]={1662.9421,0.25558329,948.83179};
 			timeoutMin=4;
@@ -2590,9 +2580,9 @@ class Mission
 			{
 			};
 		};
-		class Item16
+		class Item14
 		{
-			position[]={1664.0476,0.46109629,837.94507};
+			position[]={1253.6304,0.39208537,274.24023};
 			a=10;
 			b=20;
 			angle=-137.276;
@@ -2600,16 +2590,16 @@ class Mission
 			repeating=1;
 			age="UNKNOWN";
 			text="vecmenu";
-			expCond="vehicle player != player and local player";
+			expCond="false";
 			expActiv="myvec = vehicle player;smenu = myvec addaction [localize ""STR_M04t51"", ""data\scripts\crew.sqf"",[2,2],1, false, true,""test2""];";
 			expDesactiv="myvec removeaction smenu";
 			class Effects
 			{
 			};
 		};
-		class Item17
+		class Item15
 		{
-			position[]={1254.9938,0.18419239,747.41187};
+			position[]={1311.1298,0.34073716,297.44727};
 			a=10;
 			b=10;
 			rectangular=1;
@@ -2620,16 +2610,16 @@ class Mission
 			interruptable=1;
 			age="UNKNOWN";
 			text="assignpoints";
-			name="assignpoints";
-			expCond="not isNull BIS_EVO_punit and isServer";
+			name="assignpoints1";
+			expCond="false";
 			expActiv="[BIS_EVO_punit,BIS_EVO_prew] call BIS_EVO_Reward;BIS_EVO_punit = objNull";
 			class Effects
 			{
 			};
 		};
-		class Item18
+		class Item16
 		{
-			position[]={1460.4674,0.35997835,654.29175};
+			position[]={1475.3784,0.30199176,283.26636};
 			a=10;
 			b=10;
 			rectangular=1;
@@ -2640,33 +2630,15 @@ class Mission
 			interruptable=1;
 			age="UNKNOWN";
 			text="RemoteRecruiter";
-			expCond="not (isNull BIS_EVO_runit) and isPlayer BIS_EVO_runit and isServer";
+			expCond="false";
 			expActiv="recruit = [BIS_EVO_runit,BIS_EVO_rtype] execVM ""data\scripts\rreq.sqf"";BIS_EVO_runit = objNull";
 			class Effects
 			{
 			};
 		};
-		class Item19
+		class Item17
 		{
-			position[]={1361.0875,0.18278342,661.32788};
-			a=10;
-			b=10;
-			rectangular=1;
-			repeating=1;
-			timeoutMin=1;
-			timeoutMid=1;
-			timeoutMax=1;
-			age="UNKNOWN";
-			text="MedicReward";
-			expCond="not (isNull BIS_EVO_mpoint) and local BIS_EVO_mpoint";
-			expActiv="[] call BIS_EVO_Mrew;BIS_EVO_mpoint = objNull";
-			class Effects
-			{
-			};
-		};
-		class Item20
-		{
-			position[]={1254.7789,0.41287246,653.15112};
+			position[]={1365.2965,0.2907885,312.82642};
 			a=10;
 			b=10;
 			rectangular=1;
@@ -2682,9 +2654,9 @@ class Mission
 			{
 			};
 		};
-		class Item21
+		class Item18
 		{
-			position[]={1762.2859,0.30684054,847.60327};
+			position[]={1243.0835,0.11724623,327.41284};
 			a=10;
 			b=10;
 			rectangular=1;
@@ -2700,7 +2672,7 @@ class Mission
 			{
 			};
 		};
-		class Item22
+		class Item19
 		{
 			position[]={1758.5867,0.40952766,949.08179};
 			type="END2";
@@ -2711,7 +2683,7 @@ class Mission
 			{
 			};
 		};
-		class Item23
+		class Item20
 		{
 			position[]={1017.4534,0.12725502,688.71655};
 			activationBy="WEST";
@@ -2722,7 +2694,7 @@ class Mission
 			{
 			};
 		};
-		class Item24
+		class Item21
 		{
 			position[]={1125.2496,0.262326,690.8064};
 			activationBy="EAST";
@@ -2733,7 +2705,7 @@ class Mission
 			{
 			};
 		};
-		class Item25
+		class Item22
 		{
 			position[]={1020.3766,0.25412858,791.93921};
 			activationBy="EAST";
@@ -2744,7 +2716,7 @@ class Mission
 			{
 			};
 		};
-		class Item26
+		class Item23
 		{
 			position[]={1125.4469,0.13942829,792.07397};
 			activationBy="EAST";
@@ -2755,9 +2727,9 @@ class Mission
 			{
 			};
 		};
-		class Item27
+		class Item24
 		{
-			position[]={1557.2953,0.2178587,650.1062};
+			position[]={1859.4727,0.22906178,275.44922};
 			a=10;
 			b=10;
 			rectangular=1;
@@ -2773,7 +2745,7 @@ class Mission
 			{
 			};
 		};
-		class Item28
+		class Item25
 		{
 			position[]={1360.5563,0.29696617,952.10327};
 			timeoutMin=1;
@@ -2789,7 +2761,7 @@ class Mission
 			{
 			};
 		};
-		class Item29
+		class Item26
 		{
 			position[]={1462.9518,0.17897278,946.39038};
 			timeoutMin=1;
@@ -2805,75 +2777,37 @@ class Mission
 			{
 			};
 		};
-		class Item30
+		class Item27
 		{
-			position[]={1657.0593,0.2335145,656.34448};
-			a=10;
-			b=10;
-			rectangular=1;
-			repeating=1;
-			timeoutMin=1;
-			timeoutMid=1;
-			timeoutMax=1;
-			interruptable=1;
-			age="UNKNOWN";
-			text="Laserrew";
-			name="Laserrew";
-			expCond="not isNull BLA_EVO_Laserunit and isServer";
-			expActiv="[BLA_EVO_Laserunit,BIS_EVO_lpoint] call BLA_EVO_RewardL;BLA_EVO_Laserunit = objNull";
-			class Effects
-			{
-			};
-		};
-		class Item31
-		{
-			position[]={1360.6637,0.08001174,844.90405};
+			position[]={1189.5743,0.014824785,315.81348};
 			repeating=1;
 			interruptable=1;
 			age="UNKNOWN";
 			text="chutefix";
-			expCond="typeOf (vehicle player) == ""ParachuteWest"" or typeOf (vehicle player) == ""ParachuteEast""";
+			expCond="false";
 			expDesactiv="player setpos [(getpos player select 0),(getpos player select 1),0];";
 			class Effects
 			{
 			};
 		};
-		class Item32
+		class Item28
 		{
-			position[]={1658.9812,0.27953288,750.74976};
-			a=10;
-			b=10;
-			rectangular=1;
-			repeating=1;
-			timeoutMin=1;
-			timeoutMid=1;
-			timeoutMax=1;
-			age="UNKNOWN";
-			text="IncomingMissile";
-			expCond="not (isNull BIS_EVO_mtar) and (BIS_EVO_mtar in vehicle player)";
-			expActiv="['#FF0000','WARNING!','Incoming projectile!'] call BIS_EVO_Message;BIS_EVO_mtar = objNull; playSound 'misWarn'";
-			class Effects
-			{
-			};
-		};
-		class Item33
-		{
-			position[]={1961.833,0.12077648,738.7395};
+			position[]={1998.6295,0.16107057,269.30835};
 			a=0;
 			b=0;
 			repeating=1;
 			age="UNKNOWN";
 			text="HALO";
-			expCond="(Player distance Fahne < 10 or Player distance Fahne2 < 10 or Player distance Fahne3 < 10 or Player distance Fahne4 < 10 or Player distance Fahne5 < 10 or Player distance Fahne6 < 15 or Player distance Fahne7 < 50)  ";
+			expCond="false";
 			expActiv="ID_BeamH = Player addAction [""~HALO"",""data\scripts\parajump.sqf""]";
 			expDesactiv="Player removeAction ID_BeamH";
 			class Effects
 			{
 			};
 		};
-		class Item34
+		class Item29
 		{
-			position[]={1332.5426,0.22728811,521.36206};
+			position[]={1755.1451,0.19957739,279.39673};
 			a=0;
 			b=0;
 			age="UNKNOWN";
@@ -2884,22 +2818,9 @@ class Mission
 			{
 			};
 		};
-		class Item35
+		class Item30
 		{
-			position[]={1122.4508,0.27172837,927.96069};
-			repeating=1;
-			interruptable=1;
-			age="UNKNOWN";
-			text="respawn player";
-			expCond="alive player and local player";
-			expActiv="spawn = player execVM ""data\scripts\spawn.sqf"";";
-			class Effects
-			{
-			};
-		};
-		class Item36
-		{
-			position[]={1254.9938,0.18419239,747.41187};
+			position[]={1288.3246,0.17404141,329.89966};
 			a=10;
 			b=10;
 			rectangular=1;
@@ -2911,15 +2832,15 @@ class Mission
 			age="UNKNOWN";
 			text="assignpoints";
 			name="assignpoints";
-			expCond="not isNull BIS_EVO_punitC and isServer";
+			expCond="false";
 			expActiv="[BIS_EVO_punitC,BIS_EVO_prewC] call BIS_EVO_RewardC;BIS_EVO_punitC = objNull";
 			class Effects
 			{
 			};
 		};
-		class Item37
+		class Item31
 		{
-			position[]={1211.7906,0.28540707,482.68823};
+			position[]={1642.1984,0.36633113,279.75};
 			a=0;
 			b=0;
 			activationBy="ALPHA";
@@ -2932,37 +2853,37 @@ class Mission
 			{
 			};
 		};
-		class Item38
+		class Item32
 		{
-			position[]={1106.4176,0.27060217,492.94409};
+			position[]={1527.905,0.011814885,279.97046};
 			a=0;
 			b=0;
 			repeating=1;
 			age="UNKNOWN";
 			text="Backpack Action";
-			expCond="Player distance Backpacks < 2 ";
+			expCond="false";
 			expActiv="Backpackmenu = Player addAction [(""<t color='#FF4040'>"" + ""Open Backpack Menu"" + ""</t>""),""data\scripts\BPmenu.sqf""];";
 			expDesactiv="Player removeAction Backpackmenu;Player removeAction packID0; Player removeAction packID1; Player removeAction packID2; Player removeAction packID3; Player removeAction packID4; Player removeAction packID5; Player removeAction packID6; Player removeAction packID7; Player removeAction packID8; player removeAction packID9; player removeAction packID10; player removeAction packID11; player removeAction packID12; player removeAction packID13; player removeAction packID14; player removeAction packID15; player removeAction packID16; player removeAction packID17; player removeAction packID18; player removeAction packID19; player removeAction packID20; player removeAction packID21";
 			class Effects
 			{
 			};
 		};
-		class Item39
+		class Item33
 		{
-			position[]={1953.437,0.33985922,653.37061};
+			position[]={1936.7114,0.055840224,260.87427};
 			a=0;
 			b=0;
 			repeating=1;
 			age="UNKNOWN";
 			text="Board";
-			expCond="Player distance Fahne8 < 50";
+			expCond="false";
 			expActiv="ID_Beaml = Player addAction [""~Board HMS GITS"",""data\scripts\gocarrier.sqs""]";
 			expDesactiv="Player removeAction ID_Beaml";
 			class Effects
 			{
 			};
 		};
-		class Item40
+		class Item34
 		{
 			position[]={13075.492,18.274796,2850.5793};
 			a=0;
@@ -2977,9 +2898,9 @@ class Mission
 			{
 			};
 		};
-		class Item41
+		class Item35
 		{
-			position[]={3004.5125,14.474895,2254.4265};
+			position[]={2260.9358,11.246154,2902.6248};
 			a=5;
 			b=10;
 			rectangular=1;
@@ -2992,9 +2913,9 @@ class Mission
 			{
 			};
 		};
-		class Item42
+		class Item36
 		{
-			position[]={2951.6511,20.955147,2307.2925};
+			position[]={2288.135,16.066761,2977.5977};
 			a=20;
 			b=20;
 			rectangular=1;
@@ -3008,7 +2929,7 @@ class Mission
 			{
 			};
 		};
-		class Item43
+		class Item37
 		{
 			position[]={10622.519,149.87834,8989.1641};
 			a=3;
@@ -3023,7 +2944,7 @@ class Mission
 			{
 			};
 		};
-		class Item44
+		class Item38
 		{
 			position[]={2947.3413,20.117483,2575.8191};
 			a=5;
@@ -3034,6 +2955,19 @@ class Mission
 			name="classnamer_2";
 			expCond="true";
 			expActiv=" {if (_x isKindof ""LocationLogic"") then {BIS_EVO_conqueredTowns = BIS_EVO_conqueredTowns + [_x]}}forEach thislist;  [] call updCityMarkers; deleteVehicle classnamer_2;";
+			class Effects
+			{
+			};
+		};
+		class Item39
+		{
+			position[]={1155.6981,0.12148929,895.97827};
+			repeating=1;
+			interruptable=1;
+			age="UNKNOWN";
+			text="respawn player";
+			expCond="alive player and local player";
+			expActiv="spawn = player execVM ""data\scripts\spawn.sqf"";";
 			class Effects
 			{
 			};

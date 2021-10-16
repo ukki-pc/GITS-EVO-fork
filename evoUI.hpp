@@ -641,6 +641,11 @@ class evoUI
 #define wepButCatY 0.15
 #define wepButPadding 0.05
 
+#define wScale 1
+#define mainBgX  0.042
+#define mainBgY  0.101
+
+
 class WeaponShopUI 
 {
 	idd = 177;
@@ -653,26 +658,42 @@ class WeaponShopUI
 	__EXEC( _windowWidth = 101; _windowHeight = 64;)
 	__EXEC( _windowBorder = 1;)
 
-	class controls
 
+	class controls
 	{
 		class Mainback : RscPicture 
 		{
 			idc = 1104;
-			x = 0.042;
-			y = 0.101;
-			w = 1.2549;
-			h = 0.836601;
+			x = mainBgX;
+			y = mainBgY;
+			w = 1.2549*wScale;
+			h = 0.836601*wScale;
+
+			// x = 0.042;
+			// y = 0.101;
+			// w = 1.2549*wScale;
+			// h = 0.836601*wScale;
+
 			text = "\ca\ui\data\igui_background_debriefing_ca.paa";
 		};	
 
 		class ListbackWeapon   : RscPicture 
 		{
 			idc = 101;
-			x = 0.0506555;
-			y = 0.15;
-			w = 0.55;
-			h = 0.74;
+			x = mainBgX+(0.007)*wScale;
+			y = mainBgY+(0.05)*wScale;
+			w = 0.55*wScale;
+			h = 0.74*wScale;
+			text = "\ca\ui\data\igui_background_debriefing_ca.paa";
+			colorText[] = {0.5, 0.5, 0.5, 0.7};
+		};
+		class ListbackMags  : RscPicture 
+		{
+			idc = 101;
+			x = mainBgX+(0.66)*wScale;
+			y = mainBgY+(0.04)*wScale;
+			w = 0.35*wScale;
+			h = 0.74*wScale;
 			text = "\ca\ui\data\igui_background_debriefing_ca.paa";
 			colorText[] = {0.5, 0.5, 0.5, 0.7};
 		};
@@ -681,13 +702,13 @@ class WeaponShopUI
 			idc = 4000;
 			default = 1;
 			x = 0.0506555;
-			y = 0.185;
-			w = 0.438;
-			h = 0.64;
+			y = 0.185*wScale;
+			w = 0.438*wScale;
+			h = 0.64*wScale;
 			//lineSpacing = 0;
-			onLBSelChanged = "[] call BIS_EVO_ListSelect";
+			onLBSelChanged = "[] call BIS_EVO_ListSelect;";
 			onLBDblClick = "[] call BIS_EVO_ActButton";
-			rowHeight = 0.04;
+			rowHeight = 0.055;
 			soundSelect[] = {"\ca\ui\data\sound\mouse2", 0.09, 1};
 			maxHistoryDelay = 10;
 			canDrag = 0;
@@ -697,56 +718,99 @@ class WeaponShopUI
 			columns[] = {0.3, 0.6, 0.7}; 
 		};
 
+		class available_mags: RscIGUIListBox
+		{
+			idc = 4002;
+			default = 1;
+			x = 0.7*wScale;
+			y = 0.15*wScale;
+			w = 0.27*wScale;
+			h = 0.64*wScale;
+			//lineSpacing = 0;
+			onLBSelChanged = "[] call BIS_EVO_ListSelect;";
+			onLBDblClick = "[] call BIS_EVO_ActButtonM";
+			rowHeight = 0.055;
+			soundSelect[] = {"\ca\ui\data\sound\mouse2", 0.09, 1};
+			maxHistoryDelay = 10;
+			canDrag = 0;
+			xcolumn1 = "0.1f";
+			xcolumn2 = "0.25f";
+			xcolumn3 = "0.85f";		
+			columns[] = {0.3, 0.6, 0.7}; 
+		};
+
+		class wepDesc : RscText
+		{
+			type = 13;
+			size = 0.03;
+			idc = 2019;
+			x = wepButCatX;
+			y =wepButCatY+(wepButPadding*8);
+			w = 1;
+			h = 1;
+			colorText[] = Color_White;
+			sizeEx = 0.03;
+			text = "Weapon info";
+		};
+
 		  class BMulti: RscIGUIShortcutButton 
 	      {
 			 idc = 8056;
 			x = wepButCatX;
 			y = wepButCatY;
 				text = "Assault Rifles";
-				onButtonClick = "lbSetCurSel[4000,0]; Wpage = 0;[] call BIS_EVO_ListUpdate";	
+				onButtonClick = "lbSetCurSel[4000,0]; Wpage = 0;[] call BIS_EVO_ListUpdate; lastSel = 0";	
 	      };
 
 		class BMulti2: BMulti
 	      {
+			  idc = 8057;
 			x = wepButCatX;
 			y = wepButCatY+(wepButPadding*1);
 				text = "CQB";
-				onButtonClick = "lbSetCurSel[4000,0];Wpage = 1;[] call BIS_EVO_ListUpdate";	
+				onButtonClick = "lbSetCurSel[4000,0];Wpage = 1;[] call BIS_EVO_ListUpdate; lastSel = 0";	
 	      };
 		class BMulti4: BMulti
 	      {
 			x = wepButCatX;
 			y = wepButCatY+(wepButPadding*2);
 			text = "Pistols";
-			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 2;[] call BIS_EVO_ListUpdate";		
+			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 2;[] call BIS_EVO_ListUpdate;lastSel = 0";		
 	      };
 		  		class BMulti5: BMulti
 	      {
 			x = wepButCatX;
 			y = wepButCatY+(wepButPadding*3);
 			text = "Rifles";
-			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 3;[] call BIS_EVO_ListUpdate";	
+			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 3;[] call BIS_EVO_ListUpdate;lastSel = 0";	
 	      };
 		  		  		class BMulti6: BMulti
 	      {
 			x = wepButCatX;
 			y = wepButCatY+(wepButPadding*4);
 			text = "Launchers";
-			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 4;[] call BIS_EVO_ListUpdate";	
+			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 4;[] call BIS_EVO_ListUpdate;lastSel = 0";	
 	      };
 		class BMulti7: BMulti
 	      {
 			x = wepButCatX;
 			y = wepButCatY+(wepButPadding*5);
 			text = "Machine Guns";
-			onButtonClick = "lbSetCurSel[4000,0];Wpage = 5;[] call BIS_EVO_ListUpdate";		
+			onButtonClick = "lbSetCurSel[4000,0];Wpage = 5;[] call BIS_EVO_ListUpdate;lastSel = 0";		
 	      };
-		  	class BMulti8: BMulti
+		class BMulti8: BMulti
 	      {
 			x = wepButCatX;
 			y = wepButCatY+(wepButPadding*6);
 			text = "Misc";
-			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 6;[] call BIS_EVO_ListUpdate";		
+			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 6;[] call BIS_EVO_ListUpdate;lastSel = 0";		
+	      };
+		class BMulti9: BMulti
+	      {
+			x = wepButCatX;
+			y = wepButCatY+(wepButPadding*7);
+			text = "Backpacks";
+			onButtonClick = "lbSetCurSel[4000,0]; Wpage = 7;[] call BIS_EVO_ListUpdate;lastSel = 0";		
 	      };
 		class weaponPreview : Vendor_Title
 		{
@@ -755,7 +819,7 @@ class WeaponShopUI
 			y = 0.625;
 			w = 0.035;
 			h = 0.035;
-			text = ;
+			text = "";
 			colorText[] = {0.6, 0.839, 0.47, 0.55};
 		};
 		class wepMoney : RscText

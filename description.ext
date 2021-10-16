@@ -32,8 +32,31 @@ class CfgRadio
 
 class CfgSounds
 {
-	sounds[] = {hudsound,reload,hit1,hit2,hit3,miswarn,bash,kill,Fill,Siphon,Intro,Somalia_News,CityClear,Paycall,Goodjob,Rocket_Away,Incoming,incoming_Nuke,nblast,nsound,Explo_Large,Explo_Nuke,radzoneb,Recruitment,Resupply,MarkerSmoke,MortarBarrage,Airstrike,SmallArty,LargeArty,NapalmStrike,MortarDist,ArtyDist,ArtyDistLarge,SmokeScreenDist,MarkerSmokeDist,captureCP,lostCP,isis_capture,caching};
-
+	sounds[] = {alarm,wepSelect,wepBuy,wepSell,hudsound,reload,hit1,hit2,hit3,miswarn,bash,kill,Fill,Siphon,Intro,Somalia_News,CityClear,Paycall,Goodjob,Rocket_Away,Incoming,incoming_Nuke,nblast,nsound,Explo_Large,Explo_Nuke,radzoneb,Recruitment,Resupply,MarkerSmoke,MortarBarrage,Airstrike,SmallArty,LargeArty,NapalmStrike,MortarDist,ArtyDist,ArtyDistLarge,SmokeScreenDist,MarkerSmokeDist,captureCP,lostCP,isis_capture,caching};
+	class alarm
+	{
+		name = "alarm";
+		sound[] = {"Sound\alarm.ogg",db-2,1.0};
+		titles[] = {};
+	};
+	class wepSelect
+	{
+		name = "wepSelect";
+		sound[] = {"Sound\wepSelect.ogg",db-2,1.0};
+		titles[] = {};
+	};
+	class wepBuy
+	{
+		name = "wepBuy";
+		sound[] = {"Sound\wepBuy.ogg",db+0,1.0};
+		titles[] = {};
+	};
+	class wepSell
+	{
+		name = "wepSell";
+		sound[] = {"Sound\wepSell.ogg",db+0,1.0};
+		titles[] = {};
+	};
 	class hudsound
 	{
 		name = "hudSound";
@@ -371,7 +394,7 @@ class RscTitles
 
 	titles[] =
 	{
-		"Default","DollarTitle","Hitmarker","UIrecruit","UIgasoline","UIfastTravel","LevelTitle","Evo","DesertHeader","Objective1","Objective2","Objective3"
+		"Default","DollarTitle","Hitmarker","UIrecruit","UIgasoline","UIfastTravel","LevelTitle","Evo"
 	};
 	class Default 
 	{
@@ -718,7 +741,8 @@ class Hitmarker
 			y = safeZoneY + safeZoneH  * 1 / 2-0.015;
 			text = "Data\hitmarkerw.paa";
 			colorBackground[] = {0, 0, 0, 0};
-			colorText[] = {0.4, 0.67, 0.28, 1}; //Last number is alpha
+			colorText[] = {0.67, 0.4, 0.28, 1};
+			//colorText[] = {0.4, 0.67, 0.28, 1}; //Last number is alpha
 			//Arma 2 UI green is 0,4 0,67 0,28
 		};
 	};
@@ -867,87 +891,6 @@ class UIrecruit : uiImages
 			text = "data\evo.paa";
 			sizeEx = 0.04;	
 			style=48;
-		};
-	};
-	class DesertHeader
-	{
-		idd=-1;
-		movingEnable = true;
-		duration=7;
-		fadein=2;
-		fadeout=2;
-		name = "DesertHeader";
-		controls[]=
-		{
-			Picture
-		};   		
-		class Picture : RscPicture
-		{
-			x = 0; 
-			y = 0; 
-			w = 1; 
-			h = 1;
-			text = "data\DesertHeader.paa";
-		};
-	};
-	class Objective1
-	{
-		idd=-1;
-		movingEnable = true;
-		duration=7;
-		fadein=2;
-		name = "Objective1";
-		controls[]=
-		{
-			Picture
-		};   		
-		class Picture : RscPicture
-		{
-			x = 0; 
-			y = 0; 
-			w = 1; 
-			h = 1;
-			text = "data\Objective1.paa";
-		};
-	};
-	class Objective2
-	{
-		idd=-1;
-		movingEnable = true;
-		duration=7;
-		fadein=2;
-		name = "Objective2";
-		controls[]=
-		{
-			Picture
-		};   		
-		class Picture : RscPicture
-		{
-			x = 0; 
-			y = 0; 
-			w = 1; 
-			h = 1;
-			text = "data\Objective2.paa";
-		};
-	};
-	class Objective3
-	{
-		idd=-1;
-		movingEnable = true;
-		duration=5;
-		fadein=2;
-		name = "Objective3";
-		controls[]=
-		{
-			Picture
-		};   		
-		class Picture : RscPicture
-		{
-			x = 0; 
-			y = 0; 
-			w = 1; 
-			h = 1;
-			text = "data\Objective3.paa";
 		};
 	};
 };
@@ -1110,9 +1053,9 @@ class Params
       {
       //paramsArray[10]
 		title = "Colonel Rank Points";
-		values[] = {20,30,40,50,60,80,90,100,150,200};
+		values[] = {2000,3000,4000,5000,6000,8000,9000,10000,15000,20000};
 		texts[] = {"120", "180", "240", "300", "360", "480", "540", "600", "900", "1200"};
-		default = 80;
+		default = 5000;
 	};
 
 	class Helpers

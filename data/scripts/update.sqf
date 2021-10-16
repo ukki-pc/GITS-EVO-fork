@@ -37,10 +37,10 @@ BIS_EVO_lunit=player;
 {
 	[_this select 0, _this select 1, player] execVM "data\scripts\laserrew.sqf"};
 };
-/*
+
+
 BIS_EVO_allvar = [BIS_EVO_end,BIS_EVO_MissionProgress,BIS_EVO_lives];
 BIS_EVO_allvar_packed = str (BIS_EVO_allvar);
 BIS_EVO_gdate_packed = str (BIS_EVO_gdate);
 publicVariable "BIS_EVO_gdate_packed";
 publicVariable "BIS_EVO_allvar_packed";
-*/

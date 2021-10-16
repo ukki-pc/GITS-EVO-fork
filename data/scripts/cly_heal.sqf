@@ -113,7 +113,7 @@ if (alive _caller) then {
 		};
 		if(_target != player) then 
 		{
-			["sendToClient", [_caller,"hdm",["Healing",100]]] call CBA_fnc_whereLocalEvent;
+			["sendToClient", [_caller,fnc_hudmessage,["Healing",100]]] call CBA_fnc_whereLocalEvent;
 		};
 	//Interrupt healing
 	} else {

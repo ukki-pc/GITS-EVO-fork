@@ -39,7 +39,8 @@ Sleep 0.2;
 player setSkill BIS_EVO_PlayerSkill;
 
 _player addEventHandler ["killed", {handle = [(_this select 0),(_this select 1)] execVM "data\scripts\killed.sqf"}];
-//_player addMPEventHandler  ["MPHit", {handle = [(_this select 0), (_this select 2)] execVM "data\scripts\handleDamage.sqf"}];
+_player addEventHandler ["FiredNear", {_hitter = _this select 1; if(side _hitter == EGG_EVO_ENEMYFACTION) then {[_this select 1,_this select 1] spawn fnc_spot}}];
+_player addMPEventHandler  ["MPHit", {handle = [(_this select 0), (_this select 2),(_this select 1)] execVM "data\scripts\handleDamage.sqf"}];
 
 if(deathScorePenalty > 0) then 
 {
@@ -126,7 +127,7 @@ _i= 0;
 	{
 		{
 			_msg = format ["terve %1",name _x];
-			["sendToClient", [_x,"msg",["gs",_msg]]] call CBA_fnc_whereLocalEvent;
+			["sendToClient", [_x,fnc_msg,["gs",_msg]]] call CBA_fnc_whereLocalEvent;
 		}forEach everyPlayer;
 		sleep 1;
 	};
@@ -161,3 +162,9 @@ _missing = [];
 systemChat "done";
 copyToClipboard str _missing;
 */
+
+_screenMarkers = [];
+{_screenMarkers set [_forEachIndex,[_x]]}forEach bunkers;
+[_screenMarkers] call fnc_initFlagUi;
+sleep 2;
+[] spawn fnc_marker_screen;

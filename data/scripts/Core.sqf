@@ -1,6 +1,4 @@
-#define colorUnlocked [0, 1, 0, 1]
-#define colorGreen [0.4, 0.67, 0.28, 1]
-#define colorLocked [0.5, 0.5, 0.5, 1]
+#include "macros.h"
 
 call fnc_showMoney;
 
@@ -1271,7 +1269,7 @@ BIS_EVO_ActButton = {
                                 else {
                                     _rec = [_item] execVM "data\scripts\recruitMe.sqf";
                                 };
-                                ["sendToClient",[player,"am",[-4]]] call CBA_fnc_whereLocalEvent;
+                                ["sendToClient",[player,fnc_changeMoney,[-4]]] call CBA_fnc_whereLocalEvent;
                             }
                             else {
                                 hint "Not enough money!";
@@ -1294,7 +1292,7 @@ BIS_EVO_ActButton = {
                                 else {
                                     _rec = [_item] execVM "data\scripts\recruitMe.sqf";
                                 };
-                               ["sendToClient",[player,"am",[-4]]] call CBA_fnc_whereLocalEvent;
+                               ["sendToClient",[player,fnc_changeMoney,[-4]]] call CBA_fnc_whereLocalEvent;
                             }
                             else {
                                 hint "Not enough money!";
@@ -1497,7 +1495,7 @@ BIS_EVO_ActButton = {
                 ctrlSetText[2001, Format["%1: %2", localize "STR_M04t132", 0]]; //Cost
                 ctrlSetText[2011, format["You bought: %1", getText(configFile >> "CfgVehicles" >> _item >> "displayName")]];
                 playSound "caching";
-                ["sendToClient",[_ap,"am",[(round - (mcost))]]] call CBA_fnc_whereLocalEvent;
+                ["sendToClient",[_ap,fnc_changeMoney,[(round - (mcost))]]] call CBA_fnc_whereLocalEvent;
                 //player addscore round -(mcost*EX_EVO_vehPriceMultiplier);
                 ctrlSetText[2003, Format["%1: %2", localize "STR_M04t134", (money)]]; //Score
                 [] call BIS_EVO_ListUpdate;
@@ -1582,7 +1580,7 @@ BIS_EVO_ActButton = {
 
                     if (money >= _price && inrepairzone && speed vehicle player < 4) then {
                         [_upgColumn select _priceIndex - 1] execVM "data\scripts\vehUpg.sqf";
-                        ["sendToClient", [player,"am",[-_price]]] call CBA_fnc_whereLocalEvent;
+                        ["sendToClient", [player,fnc_changeMoney,[-_price]]] call CBA_fnc_whereLocalEvent;
                         hint "Upgraded!";
                         closeDialog 1;
                         Mpage = [true, false, false, false, false, false, 0, false, false, 0, false];
