@@ -38,7 +38,6 @@ class Mission
 		"cacharacters_acr",
 		"norrn_dbo_fastrope",
 		"pook_brdm2",
-		"JS_FA18",
 		"jsrs_distance"
 	};
 	addOnsAuto[]=
@@ -208,7 +207,6 @@ class Mission
 					id=39;
 					side="EAST";
 					vehicle="TK_Soldier_Engineer_EP1";
-					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;
 					text="enge2";
@@ -249,7 +247,7 @@ class Mission
 					id=43;
 					side="WEST";
 					vehicle="CZ_Soldier_Wdl_ACR";
-					player="PLAY CDG";
+					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;
 					text="engw1";

@@ -68,6 +68,9 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 
 	_handle = [_pilot] execVM "data\scripts\flightpath.sqf";
 
+	[_heli,objNull,5000,3] spawn enhanchedAA;
+	[_heli1,objNull,5000,3] spawn enhanchedAA;
+
 	_checkmis = [_heli] execVM "data\scripts\restrict_sus.sqf";
 	_checkmis2 = [_heli1] execVM "data\scripts\restrict_sus.sqf";
 

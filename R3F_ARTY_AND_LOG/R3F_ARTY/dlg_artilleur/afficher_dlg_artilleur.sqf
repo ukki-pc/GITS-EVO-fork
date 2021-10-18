@@ -1,5 +1,5 @@
 /**
- * Ouvre la boîte de dialogue de l'artilleur et affiche en continu l'orientation du canon (azimut et élévation)
+ * Ouvre la boï¿½te de dialogue de l'artilleur et affiche en continu l'orientation du canon (azimut et ï¿½lï¿½vation)
  * 
  * Copyright (C) 2010 madbull ~R3F~
  * 
@@ -19,15 +19,15 @@ R3F_ARTY_fil_exec_affichage_dlg_artilleur = [] spawn
 		_piece = vehicle player;
 		_canon = weapons _piece select 0;
 		
-		// Récupération des control des champs de texte
+		// Rï¿½cupï¿½ration des control des champs de texte
 		#include "dlg_constantes.h"
 		
 		R3F_ARTY_dlg_artilleur_ouverte = 0;
 		
-		// Tant qu'il ne descend pas de la pièce ou ne ferme pas l'interface
+		// Tant qu'il ne descend pas de la piï¿½ce ou ne ferme pas l'interface
 		while {vehicle player == _piece} do
 		{
-			// Si il est en tireur, on met à jour les paramètres de la pièce
+			// Si il est en tireur, on met ï¿½ jour les paramï¿½tres de la piï¿½ce
 			if (gunner _piece == player && !isNil "R3F_ARTY_dlg_artilleur_ouverte") then
 			{
 				private ["_dlg_artilleur", "_dlg_chargeur", "_champ_azimut", "_champ_elevation"];
@@ -52,16 +52,16 @@ R3F_ARTY_fil_exec_affichage_dlg_artilleur = [] spawn
 				_champ_azimut = _dlg_artilleur displayCtrl R3F_ARTY_IDC_dlg_artilleur_valeur_azimut;
 				_champ_elevation = _dlg_artilleur displayCtrl R3F_ARTY_IDC_dlg_artilleur_valeur_elevation;
 				
-				// Calcul de l'azimut du canon avec une précision au centième
+				// Calcul de l'azimut du canon avec une prï¿½cision au centiï¿½me
 				_azimut = ((_piece weaponDirection _canon) select 0) atan2 ((_piece weaponDirection _canon) select 1);
 				_azimut = round (_azimut*100) / 100;
 				if (_azimut < 0) then {_azimut = _azimut + 360};
 				
-				// Calcul de l'élevation du canon avec une précision au centième
+				// Calcul de l'ï¿½levation du canon avec une prï¿½cision au centiï¿½me
 				_elevation = asin ((_piece weaponDirection _canon) select 2);
 				_elevation = round (_elevation*100) / 100;
 				
-				// Formatage de l'azimut à 2 décimales
+				// Formatage de l'azimut ï¿½ 2 dï¿½cimales
 				_str_azimut = str _azimut;
 				if (round (_azimut*100) mod 10 == 0) then {
 					if (round (_azimut*100) mod 100 == 0) then {
@@ -71,7 +71,7 @@ R3F_ARTY_fil_exec_affichage_dlg_artilleur = [] spawn
 					};
 				};
 				
-				// Formatage de l'élévation à 2 décimales
+				// Formatage de l'ï¿½lï¿½vation ï¿½ 2 dï¿½cimales
 				if (_elevation >= 0) then
 				{
 					_str_elevation = str _elevation;
@@ -97,7 +97,7 @@ R3F_ARTY_fil_exec_affichage_dlg_artilleur = [] spawn
 					_str_elevation = "-" + _str_elevation;
 				};
 				
-				// Affichage à l'écran des paramètres de la pièce
+				// Affichage ï¿½ l'ï¿½cran des paramï¿½tres de la piï¿½ce
 				_champ_azimut ctrlSetText _str_azimut;
 				_champ_elevation ctrlSetText _str_elevation;
 				

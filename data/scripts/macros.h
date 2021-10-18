@@ -68,3 +68,7 @@
 #define fnc_cleanFlags 11
 #define fnc_doSpot 12
 #define fnc_moveMarker 13
+
+//AIR COMBAT MACROS
+	#define maxZdiffDegrees 25
+	#define maxdirDegrees 30

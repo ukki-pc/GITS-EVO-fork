@@ -106,9 +106,9 @@ if (_playerh < 1500) then
 };
 disableUserInput false;
 
-_player setPos getMarkerPos respawnPoint;
+//_player setPos getMarkerPos respawnPoint;
 
-if(respawnPoint == "Respawn_West") then {_player setPosASL[getpos _player select 0,getpos _player select 1, 0]};
+//if(respawnPoint == "Respawn_West") then {_player setPosASL[getpos _player select 0,getpos _player select 1, 0]};
 
 //Update money
 //sleep 8;

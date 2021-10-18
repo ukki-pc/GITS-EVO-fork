@@ -57,6 +57,8 @@ BIS_EVO_SetVelocityVector =
     (units _pilot select 0) moveInDriver _heli0;
     (units _pilot select 1) moveInGunner _heli0;
 
+    selectWeapon
+
     //    [_heli0] execVM "data\scripts\camAny.sqf";
 
     _wp2 = _pilot addWaypoint [_posback, 10];

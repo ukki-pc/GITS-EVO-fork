@@ -128,9 +128,9 @@ fnc_spotEnemy =
 //Insert [ELEMENT,ARRAY] RETURN parent index where element exists
 fnc_find2d = 
 {
-	_item = _this select 0;
-	_targetArray = _this select 1;
-	_return = _targetArray find _item;
+	local _item = _this select 0;
+	local _targetArray = _this select 1;
+	local _return = _targetArray find _item;
 
 	if(_return == -1) then 
 	{
@@ -361,9 +361,8 @@ fnc_increaseWpSkill =
 //Takes vehicle classname and returns upgrade count
 fnc_countUpgrades = 
 {
-	private ["_vecType","_count","_y","_i"];
-	_vecType = _this select 0;
-	_count = 0;
+	local _vecType = _this select 0;
+	local _count = 0;
 
 	for [{_y=0}, {_y< count vehUpgList}, {_y=_y+1}] do
 		{
@@ -589,7 +588,7 @@ _objId = _this select 0;
 		case fnc_playSound: //Play Sound
 		{
 		    local _data = _this select 2;
-			playSound _data select 0;
+			playSound (_data select 0);
 		};
 		case fnc_say3d: //Say 3d
 		{

@@ -12,8 +12,7 @@ uiNamespace setVariable["displayVendor", (uiNamespace getVariable "BMulti") disp
 
 
 
-allItems = [assaultRifles,smgs,pistols,rifles,launchers,mgs,miscs];
-itemSkills = [assaultSkill,engSkill,100,sniperSkill,supSkill+engSkill,supSkill,100];
+//itemSkills = [assaultSkill,engSkill,100,sniperSkill,supSkill+engSkill,supSkill,100];
 
 Wpage = 0;
 lastSel = 0;
@@ -21,6 +20,7 @@ lastSel = 0;
 //Generates list of items
 BIS_EVO_ListUpdate = 
 {	
+	local _allItems = [assaultRifles,smgs,pistols,rifles,launchers,mgs,miscs];
 	local _sel = _this select 0;
 	lbClear weaponListBox;
 	lbClear magListBox;
@@ -28,7 +28,7 @@ BIS_EVO_ListUpdate =
 	_picture = "";
 	_backpacks = ["Empty Pack","5.56 CQC Pack","7.62 CQC Pack","Grenadier Pack","Stealth MP5 pack","ENG Satchels","ENG Mines","AT M136", "AT SMAW","AT MAAWS","AT NLAW","AT Javelin","AT Dragon","Marksman DMR Pack","Sniper M24-M40 Pack","Sniper M24-M40 Pack", "Marksman M110 Pack","Sniper LRR Pack","AA Stinger Pack","Sniper M107-AS50 Pack","MG M240 Pack","MG SAW Pack"];
 	
-	_categoryItems = allItems select Wpage;
+	_categoryItems = _allItems select Wpage;
 	_totalItems = count _categoryItems;
 	_skillRequired = 0;
 
@@ -182,4 +182,4 @@ BIS_EVO_ListSelect =
 	lastSel = _wepSel;
 };
 
-[] call BIS_EVO_ListUpdate;
+[0] call BIS_EVO_ListUpdate;

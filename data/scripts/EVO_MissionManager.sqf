@@ -219,8 +219,24 @@ bunkerLoop =
 				} forEach _capturingPlayers;
 			};
 		};
+		
+		//When enemy faction neturalizes a flag
+		if(_neutralized and _tickets >= 0 and _bunkerOwner == EGG_EVO_PLAYERFACTION) then 
+		{
+			_markerName setMarkerColor "ColorWhite";	
+			_controlName = allBunkerControls select (bunkers find _bunkerObject);
+
+			{
+				["sendToClient", [_x,fnc_changeScreenCtrl,[_bunkerObject,neutralcolor,5]]] call CBA_fnc_whereLocalEvent; //Broadcast color change
+				["sendToClient", [_x,fnc_playSound,["neutralizedcp_west"]]] call CBA_fnc_whereLocalEvent;
+				_msg = format ["Outpost is being overrun!"];
+				["sendToClient", [_x,fnc_msg,["gs",_msg]]] call CBA_fnc_whereLocalEvent;
+			}forEach everyPlayer;
+			_neutralized = false;
+		};
+
 		//When enemy captures back a flag
-		if(_tickets >= 0 and _bunkerOwner == EGG_EVO_PLAYERFACTION) then 
+		if(_tickets == maxTickets and _bunkerOwner == EGG_EVO_PLAYERFACTION) then 
 		{
 			_markerName setMarkerColor "ColorRed";
 			_controlName = allBunkerControls select (bunkers find _bunkerObject);
@@ -422,13 +438,10 @@ missionManager =
 	reinfdelay = round (290-(aggression^1.14));
 	reinforcements = true;
 	[] spawn reinforcementLoop;
-
+	
 	[_mkr] spawn 
 	{
-		waitUntil
-		{
-			{sleep 2; _x in list BIS_EVO_DetectFriendly and EGG_EVO_ENEMYFACTION knowsAbout _x > 3.5} forEach everyPlayer;
-		};
+		waitUntil{sleep 1; defendAlarm};
 		{["sendToClient", [_x, fnc_say3d,[_this select 0,"alarm",2000]]] call CBA_fnc_whereLocalEvent} forEach everyPlayer;
 	};
 

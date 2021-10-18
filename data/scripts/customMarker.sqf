@@ -6,7 +6,7 @@ local _color = _this select 2;
 local _type = _this select 3;
 local _enableDir = _this select 4; // For top down vehicle markers
 local _scale = _this select 5;
-local _nameOverride = _this select 6; //If you want to specify the marker name
+_nameOverride = _this select 6; //If you want to specify the marker name
 
 local _unitm = format ["%1", _unit];
 if !(isNil "_nameOverride") then {_unitm = format ["%1",_nameOverride]};

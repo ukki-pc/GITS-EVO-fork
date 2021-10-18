@@ -33,12 +33,14 @@ if( (inrepairzone) and (speed _vec > -2) and (speed _vec < 2) and (position _vec
 	{_vec addMagazine _x} forEach _mags;
 	{_vec addWeapon _x} forEach _weapons;
 
-		_vec selectWeapon (_weapons select _inteksi2);
+		_vec selectWeapon (_weapons select _inteksi2); 
 }
 else {
   hint "Must be stationary at base!";
 };
 };
+
+
 
 //Arms vehicle with weapons
 armWeapon = {

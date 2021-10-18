@@ -201,7 +201,7 @@ EGG_EVO_strENEMYFACTION = nil;
 EGG_EVO_strPLAYERFACTION = nil;
 
 //Auto faction
-switch (west) do 
+switch (side player) do 
 {
 	case east:
 	{
@@ -542,7 +542,7 @@ BIS_EVO_IdelSVEC =
 };
 
 movingMarkers = [];
-
+defendAlarm = false;
 EGG_problemcraft =  ["PRACS_TK_Su22","PRACS_TK_Su22_BMB","PRACS_TK_Su22_MSL","PRACS_TK_Su22_IND","PRACS_T K_Su22_STA","PRACS_TK_Su24Fencer","PRACS_TK_Su24Fencer_GBU","PRACS_TK_Su24Fencer_STK","PRACS_TK_MiG21"];
 
 //Planes with custom loadout
@@ -723,9 +723,12 @@ BIS_EVO_spottingWeapons = ["EB_TIscanner","LRTV_ACR","Laserdesignator","Binocula
 // The players default load out
 BIS_EVO_PlayerModel = "BAF_Soldier_W"; 
 
+Detections = []; //Radar detections
+radars = [];
+
 
 //Tasks
-
+"-1" objstatus "Active";
 "0" objstatus "Active";
 "1" objstatus "Active";
 "2" objstatus "Active";

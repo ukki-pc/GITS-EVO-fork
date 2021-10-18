@@ -125,12 +125,11 @@ BIS_EVO_Repair =
 			 while {_interrupt and _allowed} do
 			 {
 			    sleep 0.500;
-			    if (getDammage _vec > 0 and canRepair) then {_vec setDammage ((getDammage _vec)-0.0100);};
-			    if (Fuel _vec < 1 and canRefuel) then {_vec setFuel ((Fuel _vec)+0.0200);};
-			    if (getDammage _vec == 0 and Fuel _vec == 1) then {_loop2=1;};
+			    if (getDammage _vec > 0 and canRepair) then {_vec setDammage ((getDammage _vec)-0.0100)};
+			    if (Fuel _vec < 1 and canRefuel) then {_vec setFuel ((Fuel _vec)+0.0200)};
 			    _interrupt = ((_vec != player) and (speed _vec > -2) and (speed _vec < 2) and (position _vec select 2 < 2.0) and (local _vec));
-				if(!_interrupt) then {_loop2=1;titleText [localize "STR_M04t84", "PLAIN DOWN",0.3];};
-				_allowed = (((getDammage _vec > 0 and canRepair) or (fuel _vec < 0.99) and canRefuel) and !(_vec isKindOf "Man") and speed _vec < 2 and (getPos _vec select 2) < 2);
+				if(!_interrupt) then {titleText [localize "STR_M04t84", "PLAIN DOWN",0.3]};
+				_allowed = (((getDammage _vec > 0 and canRepair)  or (fuel _vec < 0.99) and canRefuel) and !(_vec isKindOf "Man") and speed _vec < 2 and (getPos _vec select 2) < 2);
 				_dam = (getDammage _vec)*100;
 			    _ful = (Fuel _vec)*100;
 			    hint format["Damage: %1\nFuel: %2",Round _dam,Round _ful];
