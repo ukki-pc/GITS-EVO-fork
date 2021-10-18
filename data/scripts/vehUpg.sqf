@@ -32,7 +32,6 @@ player moveInDriver _new;
 		};
 	processInitCommands;
 	};
-		[_new,_newType,"",position _new] spawn BIS_EVO_VecR;
 	
 	if(_new isKindOf "Air") then {
 		wcam = _new addaction ["Weapon Camera On", "actions\wepcam.sqf",0,1, false, true,"test2"];

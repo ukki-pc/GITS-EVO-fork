@@ -231,6 +231,42 @@ BIS_EVO_Erec =
 		{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
 	};
 
+	if(true) then 
+	{
+		//CREATE S-300
+		_posi = [_pos, 1, 1000,1,0,0.4,0,[],_pos] call BIS_fnc_findSafePos;
+		_array = ["pook_30N6E_RU",_posi,(EGG_EVO_ENEMYFACTION),0,180,0] call BIS_EVO_CreateVehicle;
+		_grp = _array select 0;
+		_vec = _array select 1;
+		{_x addEventHandler  ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
+		{_x setSkill skillfactor+(random 0.2);_x setDir 180} forEach (units _grp);
+		{_x setBehaviour "combat"} forEach (units _grp);
+//		_statAA = _statAA-1; //##4,3,2,1,0
+		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
+		_vec setFuel 0;
+		_sumark = [_vec,"",enemyMarkerColor,"plp_icon_sam",false,0.7] execVM "data\scripts\customMarker.sqf";
+		[_vec] execVM "data\scripts\radar.sqf";
+		Sleep 0.6;
+	};
+
+	if(true) then 
+	{
+
+		//CREATE S-300
+		_posi = [_pos, 1, 1000,1,0,0.4,0,[],_pos] call BIS_fnc_findSafePos;
+		_array = ["pook_SA20_static_RU",_posi,(EGG_EVO_ENEMYFACTION),0,180,0] call BIS_EVO_CreateVehicle;
+		_grp = _array select 0;
+		_vec = _array select 1;
+		{_x addEventHandler  ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _grp);
+		{_x setSkill skillfactor+(random 0.2);_x setDir 180} forEach (units _grp);
+		{_x setBehaviour "combat"} forEach (units _grp);
+//		_statAA = _statAA-1; //##4,3,2,1,0
+		_recy = [objnull,_grp] execVM "data\scripts\grecycle.sqf";
+		_sumark = [_vec,"",enemyMarkerColor,"plp_icon_sam",false,0.7] execVM "data\scripts\customMarker.sqf";
+		[_vec,objNull,5000,3] spawn enhanchedAA;
+		Sleep 0.6;
+	};
+
 // Static AA
 	_i=0;
 	while {_statAA > 0} do 

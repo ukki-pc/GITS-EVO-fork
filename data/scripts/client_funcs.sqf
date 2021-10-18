@@ -207,30 +207,19 @@ fnc_marker_screen =
 	{
 		if !(visibleMap) then
 		{
-			_size = count screenMarkers;
-			for [{_i = 0}, {_i < _size}, {_i = _i}] do 
 			{
-				_obj = (screenMarkers select _i);
-				_targetObject = _obj select 0;
-				
-				if(_targetObject == objNull) then {[_targetObject] call fnc_deleteScreenmarker; _size = _size -1}
-				else 
-				{
-					_pos = getPos _targetObject;
-					
-					if((_pos distance getPos player) > screenCtrlMaxDist) exitWith {_i = _i+1};
-
-					_ctrl = _obj select 1;
-					_ctrl ctrlsetText  (_obj select 4);
-					_ctrl ctrlSetTextColor  (_obj select 5);
-					_screenPos = worldToScreen [_pos select 0,_pos select 1, ((_pos select 2)+ (_obj select 3))];
+				if(_x select 0 == objNull) exitWith {[_x select 0] call fnc_deleteScreenmarker};
+					_pos = getPos (_x select 0);
+					// if((_pos distance getPos player) > screenCtrlMaxDist) exitWith {};
+					_x select 1 ctrlsetText  (_x select 4);
+					_x select 1 ctrlSetTextColor  (_x select 5);
+					_screenPos = worldToScreen [_pos select 0,_pos select 1, ((_pos select 2)+ (_x select 3))];
 					_screenPos set [0,(_screenPos select 0)-0.006];
-					_ctrl ctrlSetPosition _screenPos;
-					_ctrl ctrlSetScale ((screenCtrlMaxDist-(player distance _targetObject))/screenCtrlMaxDist);
-					_ctrl ctrlCommit 0;
-					_i = _i +1;
-				};
-			};
+					_x select 1 ctrlSetPosition _screenPos;
+					_x select 1 ctrlSetScale ((screenCtrlMaxDist-(player distance ( _x select 0)))/screenCtrlMaxDist);
+					_x select 1 ctrlCommit 0;
+
+			} forEach screenMarkers;
 			_clean = true;
 		}
 		else  //When hide markers

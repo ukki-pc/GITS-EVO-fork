@@ -86,6 +86,10 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	_checkmis3 = [_heli2] execVM "data\scripts\restrict_sus.sqf";
 
 	sleep 1.0;
+
+	[_heli,objNull,5000,3] spawn enhanchedAA;
+	[_heli1,objNull,5000,3] spawn enhanchedAA;
+	[_heli2,objNull,5000,3] spawn enhanchedAA;
 /*
 	waitUntil {(not (alive _heli) AND not (alive _heli1) AND not (alive _heli2)) or (isNull (driver _heli) AND isNull (driver _heli1) AND isNull (driver _heli2))};
 	if (alive _heli) then {_heli setdammage 1};

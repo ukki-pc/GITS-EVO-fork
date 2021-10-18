@@ -4,6 +4,8 @@ local _delay = _this select 1;
 local _vec = typeof _veh;
 
 
+if(_veh isKindOf "Plane") then {Enemyplanes = Enemyplanes - [_veh]};
+
 //_displayName = getText(configFile >> "CfgVehicles" >> _vec >> "displayName");
 	deletevehicle _veh;
 	sleep _delay;

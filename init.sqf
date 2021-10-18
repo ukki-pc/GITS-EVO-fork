@@ -35,6 +35,7 @@ capturedFlags = [];
 spotId=250;
 spottedIds = [];
 
+
 /////////////////Dwarden fixing fire in the sky bug
 
 BIS_Effects_EH_Killed=compile preprocessFileLineNumbers "new_effects\killed.sqf";
@@ -167,7 +168,7 @@ if (!isMultiplayer) then
 	player allowDamage false;
 };
 
-helicopterhitch = 2;
+helicopterhitch = 0;
 basebeam = 2;
 BIS_EVO_rank1 = (rankscore * 1);
 BIS_EVO_rank2 = (rankscore * 2);
@@ -408,7 +409,7 @@ BIS_EVO_Lock =
 
 
 //HIGH COMMAND MODULE
-EGG_highCommand = 1;
+EGG_highCommand = 0;
 if (EGG_highCommand == 1) then {
 //High command extensions stuff
 
@@ -711,7 +712,7 @@ BIS_EVO_camVehicles = ["69B","PRACS_M250_TEL","PRACS_M291_TEL","RM70_ACR","PRACS
 EGG_EVO_miscamwepsB = ["EB_Bo_GBU12","EB_Bo_FAB250","Bo_GBU12_LGB","Bo_GBU12_LGB_F35","Bo_FAB_250","RKTF4BLUBomb","RKTF4BombRaila","Bo_kb500_LGB","Bo_fb250_FFB","RKSL_PAVE2_500","RKSL_PAVE4_500","RKSL_PAVE2_1000","RKSL_GP_500","RKSL_GP_500RET","RKSL_GP_1000","RKSL_GP_1000RET","GLT_FAB250_Bo","GLT_FAB500_Bo","GLT_MK81_Bo","GLT_MK82_Bo","GLT_MK82_Bo","GLT_MK84_Bo","GLT_AGM154_LGB","GLT_GBU12_LGB","GLT_GBU53_LGB","GLT_KAB250_LGB","GLT_KAB500_LGB","GLT_KAB1500_LGB","IkaR_F14_GBU12_ir","RKTF15E_GBU10Bomb","RKTF15E_mk82Bomb","RKTF15E_cbuBomb","RKTF15E_mk84Bomb"];
 
 //all laser guided weapons
-EGG_EVO_LaserLauncher = ["EB_AT2_Launcher","BombLauncher","BombLauncherF35","BombLauncherA10","HellfireLauncher","GLT_GBU12_Launcher","GLT_AGM154_Launcher","GLT_GBU53_Launcher","GLT_FFARLauncher_laser","GLT_Ch29LauncherLaser"];
+//EGG_EVO_LaserLauncher = ["EB_AT2_Launcher","BombLauncher","BombLauncherF35","BombLauncherA10","HellfireLauncher","GLT_GBU12_Launcher","GLT_AGM154_Launcher","GLT_GBU53_Launcher","GLT_FFARLauncher_laser","GLT_Ch29LauncherLaser"];
 
 BIS_EVO_aaweapons = ["M_Vikhr_AT","M_9M311_AA","M_R73_AA","M_Strela_AA","M_Igla_AA","M_Stinger_AA","M_Sidewinder_AA","M_Sidewinder_AA_F35","GLT_Sidewinder_AA","GLT_SidewinderX_AA","GLT_AIM120_AA","GLT_AIM7E_AA","GLT_AIM9M_AA","GLT_AIM9X_AA","GLT_AIM7_AA","GLT_AIM54_AA","GLT_R3_AA","GLT_R27_AA","GLT_R73_AA","GLT_R77_AA","GLT_R550_AA","IkaR_F14_AIM9_ir","IkaR_F14_AIM54_ir","RKTF15_AIM9","RKTF15_AIM120","ffaa_Mistral_AA"]; // All ammo that will set off a missile warning
 
@@ -725,6 +726,7 @@ BIS_EVO_PlayerModel = "BAF_Soldier_W";
 
 Detections = []; //Radar detections
 radars = [];
+Enemyplanes = [];
 
 
 //Tasks
@@ -743,7 +745,7 @@ radars = [];
 "11" objstatus "Active";
 "12" objstatus "Active";
 
-setDate BIS_EVO_gdate;
+//setDate BIS_EVO_gdate;
 _base = [] execVM "data\scripts\BIS_EVO_GetRelDir.sqf";
 _spawnv = [] execVM "data\scripts\BIS_EVO_CreateVehicle.sqf";
 
@@ -1012,13 +1014,3 @@ _cityNum=BIS_EVO_MissionTowns find _firstCity;
 };
 
 [] call fnc_playerBases;
-
-// 0 spawn 
-// {
-	
-// 	while {sleep 0.169; true} do 
-// 	{
-// 		systemChat str diag_fpsMin;
-// 	};
-	
-// };

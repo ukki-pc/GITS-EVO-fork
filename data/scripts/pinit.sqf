@@ -1,3 +1,25 @@
+/*
+0 spawn 
+{
+#define seconds 3540
+#define hours 12
+#define sleeptime 0.1
+//1 Sec
+#define skip 0.000277
+
+	setDate [2020, 1, 7, 6, 0]; 
+	for "_h" from 1 to hours do 
+	{
+		for "_s" from 1 to seconds do
+		{
+			_start = diag_tickTime;
+			skipTime skip;
+			sleep sleeptime;
+			_difft = _difft + (diag_tickTime - _start);
+		};
+	};
+};
+*/
 // player init
 EB_airfn1=-1;
 EB_airfn2=-1;
@@ -16,7 +38,6 @@ Sleep 0.2;
 plays = [] execVM "data\scripts\update.sqf";
 _pos = [0,0,0];
 
-//_events = [] execVM "data\scripts\EVO_Vecinit.sqf"; // Player vehicles rank restriction system
 //_rain = [] execVM "data\scripts\rain.sqf";
 _arm = [] execVM "data\scripts\EB_ARM.sqf";
 //_fog = [] execVM "data\scripts\fog.sqf";
@@ -43,4 +64,3 @@ menu = (findDisplay 46) displayAddEventHandler ["KeyDown", "if ((_this select 1)
 //player addweapon "ItemWatch";
 
 //spawn = player execVM "data\scripts\spawn.sqf";
-

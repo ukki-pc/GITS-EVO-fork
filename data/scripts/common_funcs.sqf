@@ -91,7 +91,7 @@ while {alive _attacker} do
         {
             _target = assignedTarget _attacker;
             if(isNull _target) then { _target = (leader _grp) getVariable ["target",objnull]};
-            {if(alive _x) then{_target = _x}} forEach radarDetections;
+            {if(alive _x) then{_target = _x}} forEach detections;
             if(!alive _attacker) exitWith {systemChat "dead before even started"};
             _seekTarget =  isnull _target;
         };
@@ -112,7 +112,7 @@ while {alive _attacker} do
             {
                 _dirToTarget = [getpos _attacker,getpos _target] call BIS_EVO_GetRelDir;
                     //THx r3f
-                _azimut = ((_attacker weaponDirection  currentWeapon _attacker) select 0) atan2 ((_attacker weaponDirection currentWeapon _attacker) select 1);;
+                _azimut = ((_attacker weaponDirection  currentWeapon _attacker) select 0) atan2 ((_attacker weaponDirection currentWeapon _attacker) select 1);
                 _azimut = round (_azimut*100) / 100;
                 if (_azimut < 0) then {_azimut = _azimut + 360};
                 _diff = abs(_azimut - _dirToTarget);
