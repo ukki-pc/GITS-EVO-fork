@@ -57,6 +57,8 @@ _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 	if(_stattype isKindOf "Air") then 
 	{
 	_cstatA addEventHandler ["killed", {handle = [_this select 0,900] execVM "data\scripts\addToPurList.sqf"}];
+
+	if(_cstatA isKindOf "Plane") then {Enemyplanes = Enemyplanes + [_cstatA]};
 	//	if(_stattype in customPlanes) then 
 	//	{
 		//	_handle = [_cstatA] execVM "data\scripts\customLoadout.sqf";
@@ -65,7 +67,6 @@ _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 	};
 		_cstatA lock false;
 		_who removeAction _laction1;
-		[_cstatA,_type,"",position _cstatA] spawn BIS_EVO_VecR;
 	
 	if(_stattype isKindOf "Air" or (_stattype in BIS_EVO_camVehicles)) then {
 		wcam = _cstatA addaction ["Weapon Camera On", "actions\wepcam.sqf",0,1, false, true,"test2"];
