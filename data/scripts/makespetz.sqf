@@ -165,11 +165,11 @@ sleep 0.2;
 (units _spetz select 21) moveInCargo _heli3; 
 
 */
-{_x addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}]} forEach (units _spetz);
-_heli addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
-// _heli1 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
-// _heli2 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
-// _heli3 addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
+{_x addEventHandler ["killed", {[_this select 0,_this select 1] spawn mobjBury}]} forEach (units _spetz);
+_heli addEventHandler ["killed", {[_this select 0,_this select 1] spawn mobjBury}];
+// _heli1 addEventHandler ["killed", {[_this select 0,_this select 1] spawn mobjBury}];
+// _heli2 addEventHandler ["killed", {[_this select 0,_this select 1] spawn mobjBury}];
+// _heli3 addEventHandler ["killed", {[_this select 0,_this select 1] spawn mobjBury}];
 
 _recy = [objnull,_spetz] execVM "data\scripts\grecycle.sqf";
 

@@ -3,26 +3,32 @@
 
 //Picks item at random array position, allows mixed 1d-2d arrays
 //INSERT ARRAY OR ARRAYS, RETURNS RANDOM INDEX FROM RANDOM ARRAY
+
+
+//Returns random object or string from any dimension
 fnc_pickRandom = 
 {
-private ["_array","_count","_rnd","_object","_count","_isArray"];
-_array = _this select 0;
-_count = 0;
-_rnd = 0;
-_object = "";
-_count = count _array;
-_rnd = round(random((_count)-1));
-_object = _array select _rnd;
+    local _object = _this select 0;
 
-_isArray = (typename _object == "ARRAY");
-	if(_isArray) then 
-	{
-		_count = count (_object);
-		_rnd = round(random((_count)-1));
-		_object = _object select _rnd;
-		_isArray = (typename _object =="ARRAY");
-	};
+    while{typename _object == "ARRAY"} do 
+    {
+        _object = _object select (round(random((count _object)-1)));
+    };
+
+    if (isNil "_object") exitWith{systemChat "error in random"; ""};
+
 _object;
+};
+
+//Returns random vehicle class which exists
+fnc_pickvehicle = 
+{
+    local _vec = "";
+    while{ !(isClass(configFile >> "CfgVehicles" >> _vec)) } do
+    {
+        _vec = [_this select 0] call fnc_pickRandom;
+    };
+    _vec;
 };
 
 fnc_playerBases = 
@@ -92,13 +98,15 @@ while {alive _attacker} do
             _target = assignedTarget _attacker;
             if(isNull _target) then { _target = (leader _grp) getVariable ["target",objnull]};
             {if(alive _x) then{_target = _x}} forEach detections;
-            if(!alive _attacker) exitWith {systemChat "dead before even started"};
+            if(!alive _attacker) exitWith {
+               //systemChat "dead before even started";
+            };
             _seekTarget =  isnull _target;
         };
         (leader _grp) setVariable ["target",_target];
     };
 
-    systemChat "acquired target";
+    // systemChat "acquired target";
 
     _attacker selectWeapon (_compatWeps select (round random(count _compatWeps-1)));
 
@@ -133,7 +141,7 @@ while {alive _attacker} do
                         {
                             if(_attacker ammo _x > 0) exitWith 
                             {
-                                systemChat "shoots";
+                                //systemChat "shoots";
                                 
                                 _attacker selectWeapon _x;
                                 _attacker fireAtTarget [_target,_x];
@@ -145,14 +153,34 @@ while {alive _attacker} do
             }
             else {sleep 2};
         if(_attacker knowsAbout _target > 0) then {_visual = true};
-        if(_attacker knowsAbout _target == 0 and _visual) exitWith {systemChat "Lost him"};
+        if(_attacker knowsAbout _target == 0 and _visual) exitWith {
+           // systemChat "Lost him";
+        };
     };
-    if(!alive _target) then {systemChat "ye he dead"};
-    if(!alive _attacker) then {systemChat "ye me dead"};
+    if(!alive _target) then 
+    {
+     //   systemChat "ye he dead";
+    };
+    if(!alive _attacker) then {
+      //  systemChat "ye me dead";
+        };
     (leader _grp) setVariable ["target",objNull];
     _target = objnull;
 };
 };
+
+fnc_countItems = 
+{
+    local _array = this select 0;
+    local _item = _this select 1;
+    local _return = 0;
+
+    {if(_x == _item) then {_return = _return + 1}} forEach _array;
+
+    _return;
+};
+
+
 // [ARRAY_TO_INSERT_TO,DATA_TO_INSERT,INDEX_TO_INSERT_TO] RETURNS FULL ARRAY
 fnc_spliceToArray = 
 {
@@ -194,6 +222,23 @@ fnc_get_synchronized_towns =
 	_synTowns;
 };
 
+fnc_distributeWeapons = 
+{
+    local _unit = _this select 0;
+    removeAllWeapons _unit;
+    local _wep = [rucheaps] call fnc_pickRandom;
+    local _mag = ([(getArray (configFile >> "CfgWeapons" >> _wep >> "magazines"))] call fnc_pickRandom);
+    _unit addWeapon _wep;
+    _unit addMagazine _mag;
+    _unit addMagazine _mag;
+    _unit addMagazine _mag;
+    _unit addMagazine _mag;
+    _unit addMagazine _mag;
+    
+    local _name = (gettext (configFile >> "CfgWeapons" >> _wep >> "Displayname"));
+    systemChat format ["%1 distributed",_name];
+};
+
 //INPUT object, return array of bunker objects
 fnc_get_synchronized_bunkers = 
 {
@@ -231,6 +276,104 @@ debugMessage =
 	if(editor == 1) then {
 		systemChat format ["%1",_this select 0];
 	};
+};
+
+//Sets object to ASL height INSERT: [OBJECT , HEIGHT]
+fnc_setObjHeight =
+{
+    local _object = _this select 0;
+    local _zPos = _this select 1;
+    local _newPos = getPosAsl _object;
+    _newPos set [2,_zPos];
+    _object setPosASL _newPos;
+};
+
+//INPUT [sourcePos,sourceDir,xOffset,yOffset,distance]
+fnc_relativePosition =
+{
+    local _srcPos = _this select 0;
+    local _srcDir = _this select 1;
+    local _xOffet = _this select 2;
+    local _yOffset = _this select 3;
+    local _distance = _this select 4;
+    local _height = _this select 5;
+
+    
+
+    local _testX = (_distance*cos(_srcDir)+(_srcPos select 0)-_xOffet);
+    local _testY = ((_distance)*sin(_srcDir)+(_srcPos select 1)-_yOffset);
+
+    if(isNil "_height") exitWith {[_testX,_testY]};
+    [_testX,_testY,_height];
+};
+
+fnc_createCarrier = 
+{
+    _carrierType = _this select 0;
+    _carrierPos = _this select 1;
+    _LHDdir = _this select 2;
+    // Original LHD placement script by ArMaTeC
+    //Maybe add more carriers in the future?
+    if (isServer) then {
+        _LHDspawnpoint = [_carrierPos select 0,_carrierPos select 1, 0];
+        switch (_carrierType) do
+        {
+        
+            case "LHD":
+            {
+                deckHeight = LHDDECK;
+                _parts = 
+                [
+                    "Land_LHD_house_1",
+                    "Land_LHD_house_2",
+                    "Land_LHD_elev_R",
+                    "Land_LHD_1",
+                    "Land_LHD_2",
+                    "Land_LHD_3",
+                    "Land_LHD_4",
+                    "Land_LHD_5",
+                    "Land_LHD_6"
+                    //"JDG_carrier_Spawner"
+                ];
+                {
+                    _dummy = _x createvehicle _LHDspawnpoint;
+                    _dummy setdir _LHDdir;
+                    _dummy setpos _LHDspawnpoint;
+                } foreach _parts;
+            };
+            case "nimitz":
+            {
+                deckHeight = NIMITZDECK;
+                 _parts = 
+                [
+                    // "Land_LHD_house_1",
+                    // "Land_LHD_house_2",
+                    // "Land_LHD_elev_R",
+                    // "Land_LHD_1",
+                    // "Land_LHD_2",
+                    // "Land_LHD_3",
+                    // "Land_LHD_4",
+                    // "Land_LHD_5",
+                    // "Land_LHD_6"
+                    
+                ];
+                    _dummy = "JDG_carrier_Spawner" createvehicle _LHDspawnpoint;
+                    _dummy setdir _LHDdir;
+                    _dummy setpos _LHDspawnpoint;
+
+            };
+       
+         };
+    };
+    true;
+};
+
+fnc_reveal = 
+{
+    local _target = _this select 0;
+    local _enemies = _this select 1;
+
+    {_x reveal _target} forEach _enemies;
 };
 
 BIS_Effects_globalEvent = 

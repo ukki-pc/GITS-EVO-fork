@@ -1,4 +1,4 @@
-	
+disableSerialization;	
 //Sends player to a specific vehicle
 _targetPlayer = _this select 0;
 _targetVehicle = _this select 1;

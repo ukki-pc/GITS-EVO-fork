@@ -42,7 +42,7 @@ class CfgSounds
 	class alarm
 	{
 		name = "alarm";
-		sound[] = {"Sound\alarm.ogg",db-2,1.0};
+		sound[] = {"Sound\alarm.ogg",db+4,1.0};
 		titles[] = {};
 	};
 	class wepSelect

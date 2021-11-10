@@ -331,23 +331,9 @@ BIS_EVO_CityClear =
 	_currentprog = BIS_EVO_MissionProgress;
 };
 
-BIS_EVO_Surrender = 
-{
-	sleep 2;
-	if ((count west_surrender_array > count _base_west_surrender_array) || (count west_surrender_array < count _base_west_surrender_array)) then
-	{
-//		_surrender = player execvm "data\scripts\clientsoldieraddaction.sqf";
-		hint "surrender script called";
-		player execvm "data\scripts\clientsoldieraddaction.sqf";
-		sleep 5;
-		_base_west_surrender_array = west_surrender_array;
-	};
-	sleep 2;
-};
-
 BIS_EVO_locationActions =
 {
-	inrepairzone = (vehicle player in list AirportIn and triggerActivated airportIn) or (vehicle player in list farp1 and triggerActivated farp1) or (vehicle player in list farp2 and triggerActivated farp2) or (vehicle player in list farp3 and triggerActivated farp3) or (vehicle player in list farp4 and triggerActivated farp4) or (vehicle player in list dock1) or (vehicle player in list LHDin);
+	//inrepairzone = (vehicle player in list AirportIn and triggerActivated airportIn) or (vehicle player in list farp1 and triggerActivated farp1) or (vehicle player in list farp2 and triggerActivated farp2) or (vehicle player in list farp3 and triggerActivated farp3) or (vehicle player in list farp4 and triggerActivated farp4) or (vehicle player in list dock1) or (vehicle player in list LHDin);
 	if(inrepairzone) exitWith {canRecruit = true; canFasttravel = true; showMoney = true};
 
 	_nearPos = false;
@@ -361,13 +347,14 @@ BIS_EVO_locationActions =
 	{_positions = _positions + [getMarkerPos _x]}forEach RHQMarkers;
 
 	//Add mhq position to the array
-	if(alive MHQ) then {_positions = _positions + [getPos MHQ]};
+	if(alive MHQ) then {_positions = _positions + [MHQ]};
 
 	//Finds nearest object of all
 	_nearestPoint = [_positions, position player] call BIS_fnc_nearestPosition;
 
-	_objDist = player distance _nearestPoint;
-	_nearPos = _objDist<rhqTeleportDistance;
+	_objDist = _positions call fnc_getDistanceToNearestCity;
+
+	_nearPos = (_objDist<rhqTeleportDistance and _objdist != -1);
 
 	if(((_nearestPoint in capturedFlags)) and _objdist < 30) exitWith {canFasttravel = true; canRecruit = true; showMoney = true};
 	if(((_nearestPoint in BIS_EVO_conqueredTowns+[bam,p72])) and _objdist < townTeleportDistance) exitWith {canFasttravel = true; canRecruit = true; showMoney = true; inrepairzone = true;};
@@ -378,8 +365,7 @@ BIS_EVO_locationActions =
 
 if(recruitPlaces == 1 or recruitPlaces == 2 or recruitPlaces == 3) then
 {
-	_nearestPoint = [BIS_EVO_conqueredTowns, position player] call BIS_fnc_nearestPosition;
-	_objDist = player distance getPos _nearestPoint;
+	_objDist = player distance _nearestPoint;
 
 	if(_objDist <= 100) then 
 	{					
@@ -449,7 +435,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 {
 	//[] call BIS_EVO_CWeath;
 //	sleep 1.011;
-	inFarp = (vehicle player in list reng1) or (vehicle player in list reng2) or (vehicle player in list reng3) or (vehicle player in list reng4);	
+	//inFarp = (vehicle player in list reng1) or (vehicle player in list reng2) or (vehicle player in list reng3) or (vehicle player in list reng4);	
 	[] call BIS_EVO_Repair;
 //	[] call EGG_EVO_fieldRepair;
 //	[] call EGG_EVO_stationRepair;
@@ -464,5 +450,4 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
 	//if(currentWeapon player in BIS_EVO_spottingWeapons and perkSniperLVL > 0) then {call fnc_spotVeh};
 	//[] call BIS_EVO_HPM; //DUNNO WHAT IS
 	
-//	[] call BIS_EVO_Surrender;
 };

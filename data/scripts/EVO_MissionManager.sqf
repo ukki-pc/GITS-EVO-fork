@@ -58,7 +58,7 @@ fnc_init_bunker =
 	_bunkerTypes = ["FlagPole_EP1"];
 	_times = _this select 0;
 	_existingBunkers = _this select 1;
-	_mkr = (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
+	_mkr = currentTown;
 	_pos = getPos _mkr;
 	_bunkers = [];
 	_bunkerRadiusMax = 150;
@@ -209,7 +209,7 @@ bunkerLoop =
 				} forEach _capturingPlayers;
 			};
 
-			//When player neturalizes give reward
+			//When player neutralizes give reward
 			if(_tickets < 0 and !_captured and !_neutralized) then 
 			{
 				_reward = neuterReward;
@@ -220,8 +220,8 @@ bunkerLoop =
 			};
 		};
 		
-		//When enemy faction neturalizes a flag
-		if(_neutralized and _tickets >= 0 and _bunkerOwner == EGG_EVO_PLAYERFACTION) then 
+		//When enemy faction neutralizes a flag
+		if(!_neutralized and _tickets >= 0 and _bunkerOwner == EGG_EVO_PLAYERFACTION) then 
 		{
 			_markerName setMarkerColor "ColorWhite";	
 			_controlName = allBunkerControls select (bunkers find _bunkerObject);
@@ -232,11 +232,13 @@ bunkerLoop =
 				_msg = format ["Outpost is being overrun!"];
 				["sendToClient", [_x,fnc_msg,["gs",_msg]]] call CBA_fnc_whereLocalEvent;
 			}forEach everyPlayer;
-			_neutralized = false;
+			capturedFlags = capturedFlags - [_bunkerObject];
+			publicVariable "capturedFlags";
+			_neutralized = true;
 		};
 
 		//When enemy captures back a flag
-		if(_tickets == maxTickets and _bunkerOwner == EGG_EVO_PLAYERFACTION) then 
+		if(_neutralized and _tickets == maxTickets and _bunkerOwner == EGG_EVO_PLAYERFACTION) then 
 		{
 			_markerName setMarkerColor "ColorRed";
 			_controlName = allBunkerControls select (bunkers find _bunkerObject);
@@ -248,14 +250,15 @@ bunkerLoop =
 				_msg = format ["Outpost is being overrun!"];
 				["sendToClient", [_x,fnc_msg,["gs",_msg]]] call CBA_fnc_whereLocalEvent;
 			}forEach everyPlayer;
-			capturedFlags = capturedFlags - [_bunkerObject];
-			publicVariable "capturedFlags";
+
+			if !(_bunkerObject in enemyFlags) then {enemyFlags = enemyFlags + [_bunkerObject]};
+
 			_captured = false;
 			_neutralized = false;
 		};
 
-		//When player faction neturalizes a flag
-		if(_tickets < 0 and _bunkerOwner == EGG_EVO_ENEMYFACTION) then 
+		//When player faction neutralizes a flag
+		if(!_neutralized and _tickets < 0 and _bunkerOwner == EGG_EVO_ENEMYFACTION) then 
 		{
 			_markerName setMarkerColor "ColorWhite";	
 			_controlName = allBunkerControls select (bunkers find _bunkerObject);
@@ -265,10 +268,11 @@ bunkerLoop =
 			//_bunkerOwner = EGG_EVO_PLAYERFACTION;
 			//_bunkerObject setVariable ["OWNER", _bunkerOwner];
 			_neutralized = true;
+			if !(_bunkerObject in enemyFlags) then {enemyFlags = enemyFlags - [_bunkerObject]};
 		};
 
 		//When player side fully captures a flag
-		if(_tickets == -maxTickets and !_captured) then 
+		if(_neutralized and _tickets == -maxTickets and !_captured) then 
 		{
 			_markerName setMarkerColor "ColorBlue";	
 			_controlName = allBunkerControls select (bunkers find _bunkerObject);
@@ -282,6 +286,7 @@ bunkerLoop =
 				}forEach everyPlayer;
 			capturedFlags = capturedFlags + [_bunkerObject];
 			publicVariable "capturedFlags";
+			_neutralized = false;
 			_captured = true;
 			_captureTick = 0;
 		};
@@ -310,12 +315,7 @@ reinforcementLoop =
 			for [{_slploop=0}, {_slploop<reinfdelay}, {_slploop=_slploop+1}] do
 			{
 				sleep 1;
-				if ( !(reinforcements)) then {_slploop=reinfdelay; _rloop = 1;};
-				//check every minute
-				if(_slploop != 0 and _slploop mod 60 == 0) then { 
-					//Problem
-				//	_hook = [] spawn manGunner
-					};
+				if ( !(reinforcements)) then {_slploop=reinfdelay; _rloop = 1};
 			};
 			if ( !(reinforcements)) exitWith {_rloop=1};
 			_reinf = [] execVM "data\scripts\reinforce.sqf";
@@ -326,7 +326,7 @@ reinforcementLoop =
 changeAggression = 
 {
 private ["_curTown"];
-_curTown = BIS_EVO_MissionTowns select BIS_EVO_MissionProgress;
+_curTown = currentTown;
 	if(_curTown in BIS_EVO_MissionVillages) then 
 	{
 		aggression = aggression + 4;
@@ -348,7 +348,7 @@ _curTown = BIS_EVO_MissionTowns select BIS_EVO_MissionProgress;
 missionManager =	
 	{
 	// City Setup
-	_mkr = (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
+	_mkr = currentTown;
 	_pos = getPos _mkr;
 
 	BIS_EVO_DetectEnemy = createTrigger ["EmptyDetector", _pos];
@@ -370,7 +370,7 @@ missionManager =
 	Sleep 2.0;
 	while {sleep 1; BIS_EVO_MissionProgress != -1} do
 	{
-		_mkr = (BIS_EVO_MissionTowns select BIS_EVO_MissionProgress);
+		_mkr = currentTown;
 		_pos = getPos _mkr;
 
 		BIS_EVO_DetectEnemy setpos _pos;
@@ -388,12 +388,12 @@ missionManager =
 
 		_bunkercount = 3;
 
-		if((BIS_EVO_MissionTowns select BIS_EVO_MissionProgress) in BIS_EVO_MissionBigTowns) then {_bunkercount = 4};
+		if(currentTown in BIS_EVO_MissionBigTowns) then {_bunkercount = 4};
 
 
 		//Count if pre set bunkers are found
 		bunkers = [];
-		preSetBunkers = [BIS_EVO_MissionTowns select BIS_EVO_MissionProgress] call fnc_get_synchronized_bunkers;
+		preSetBunkers = [currentTown] call fnc_get_synchronized_bunkers;
 		bunkers = preSetBunkers;
 
 		//TODO leave only most apart bunkers
@@ -435,42 +435,90 @@ missionManager =
 		
 	//	Sleep 10.0;
 
-	reinfdelay = round (290-(aggression^1.14));
-	reinforcements = true;
-	[] spawn reinforcementLoop;
-	
 	[_mkr] spawn 
 	{
-		waitUntil{sleep 1; defendAlarm};
-		{["sendToClient", [_x, fnc_say3d,[_this select 0,"alarm",2000]]] call CBA_fnc_whereLocalEvent} forEach everyPlayer;
-	};
+		_allDefenderGroups = [];
+		{if(side _x == EGG_EVO_ENEMYFACTION and !(group _x in _allDefenderGroups)) then {_allDefenderGroups = _allDefenderGroups + [group _x]}} forEach list BIS_EVO_DetectEnemy;
 
-		for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
-		{
-	//adding
 
-			//Check if all outposts are captured
-		_capturedBunkers = 0;
+		_players = everyPlayer;
+
+		while {sleep 2; !defendAlarm} do 
 		{
 			
-				if(_x  getVariable "OWNER" == EGG_EVO_PLAYERFACTION) then {_capturedBunkers = _capturedBunkers + 1};
-		}forEach bunkers;
+			_detectionCount = 0;
+			for "_i" from 0 to count (_allDefenderGroups)-1 do 
+			{
+				_grp = _allDefenderGroups select _i;
 
-		_captured = _capturedBunkers == count bunkers;
+				{if(alive leader _grp and behaviour leader _grp == "combat") then 
+				{
+					_detectionCount = _detectionCount + 1;
+				}} forEach _players;
+				sleep 0.1;
+			};
+
+			//systemChat str _detectionCount;
+			
+			if(_detectionCount > 2) then {defendAlarm = true};
+		};
+	};
+
+		waitUntil{sleep 1; (defendAlarm or !alive radio1)}; 
+
+		if(alive radio1) then 
+		{
+			systemChat "Alarm set";
+				0 spawn 
+				{
+					for "_i" from 1 to alarmSoundTimes do 
+					{
+						if(alive radio1) then {{["sendToClient", [_x, fnc_say3d,[radio1,"alarm",3000]]] call CBA_fnc_whereLocalEvent} forEach everyPlayer;}
+						else {_i = alarmSoundTimes};
+					sleep 30;
+					};
+				};
+			
+			reinforcements = true;
+			reinfdelay = round (290-(aggression^1.14));
+			[] spawn reinforcementLoop;
+		}
+		else 
+		{
+			0 spawn 
+			{
+				sleep 1200;
+				reinfdelay = round (290-(aggression^1.14));
+				[] spawn reinforcementLoop;
+			};
+		};
+
+	
+
+		
+		//Objective capture loop
+		for [{_loop=0}, {_loop<1}, {_loop=_loop}] do
+		{
+			_captured = count enemyFlags == 0;
 
 			if (_captured) then 
 			{
+				_listObjects = list BIS_EVO_DetectEnemy;
 				reinforcements = false;
-				if ("Man" countType list BIS_EVO_DetectEnemy <= 4) then
+				if ("Man" countType _listObjects <= 4) then
 				{
-					if ("Tank" countType list BIS_EVO_DetectEnemy  == 0) then
+					if ("Tank" countType _listObjects  == 0) then
 					{
-						if("Car" countType list BIS_EVO_DetectEnemy == 0) then
+						if("Car" countType _listObjects == 0) then
 						{
-							if ("Land" countType list BIS_EVO_DetectFriendly > 0) then{_loop=1};
+							if ("Land" countType _listObjects > 0) then{_loop=1};
 						};
 					};
 				};
+			}
+			else 
+			{
+				reinforcements = true;
 			};
 		//	if(_tempProgress!=BIS_EVO_MissionProgress)then{_loop=1};
 		
@@ -485,7 +533,7 @@ missionManager =
 
 	//	[] call aggressionEvaluation;
 
-		BIS_EVO_conqueredTowns = BIS_EVO_conqueredTowns + [BIS_EVO_MissionTowns select BIS_EVO_MissionProgress];
+		BIS_EVO_conqueredTowns = BIS_EVO_conqueredTowns + [currentTown];
 
 		publicVariable "BIS_EVO_conqueredTowns";
 		[BIS_EVO_MissionProgress] call updObjMarker;

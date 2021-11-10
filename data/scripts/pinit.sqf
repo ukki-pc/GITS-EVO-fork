@@ -29,6 +29,9 @@ EB_airfn5=-1;
 EB_airfn6=-1;
 EB_airfn7=-1;
 
+
+waitUntil{gameBegin == 1};
+
 _cevents = [] execVM "data\scripts\EventsC.sqf"; // Common player events
 Sleep 1.0;
 // Special conditions for medics and engineers
@@ -50,7 +53,7 @@ waitUntil {!(isNull (findDisplay 46))};
 [player,0.2,0,-1,true] execVM "data\scripts\cly_heal.sqf";
 
 (FindDisplay 46) DisplayAddEventHandler ["keydown","if (!dialog and (_this select 1) In actionKeys ""TeamSwitch"" ) then { a = createDialog 'evoUI';}"];
-(FindDisplay 46) DisplayAddEventHandler ["keydown","if ((_this select 1) In actionKeys 'showMap' and !visibleMap) then { hint 'nice'; [] spawn fnc_mapActions}"];
+(FindDisplay 46) DisplayAddEventHandler ["keydown","if ((_this select 1) In actionKeys 'showMap' and !visibleMap) then { [] spawn fnc_mapActions}"];
 (FindDisplay 46) DisplayAddEventHandler ["keydown","if((_this select 1) in actionKeys 'User16' ) then { if ( (missionNamespace getVariable 'perkSniperLVL' > -1) and vehicle player iskindof 'man') then {[cursorTarget,player] call fnc_spot}};"];
 reloading = false;
 menu = (findDisplay 46) displayAddEventHandler ["KeyDown", "if ((_this select 1) in actionKeys ""ReloadMagazine"") then {[] execVM 'actions\backpackreload.sqf'}"];
@@ -64,3 +67,5 @@ menu = (findDisplay 46) displayAddEventHandler ["KeyDown", "if ((_this select 1)
 //player addweapon "ItemWatch";
 
 //spawn = player execVM "data\scripts\spawn.sqf";
+
+[] spawn fnc_marker_screen;

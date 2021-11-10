@@ -1,6 +1,5 @@
 #include "macros.h"
 // Deletes dead Enemy
-private ["_unit","_tag","_curtownInf","_curtownMec","_lastHit","_killer","_msg","_reward"]; 
 _unit = _this select 0;
 _killer = _this select 1;
 _supKill = false;
@@ -67,10 +66,11 @@ if(_unit getVariable ["spotid",0] != 0) then
 local _lastHit = false;
 
 //When you shoot something down
-if(_killer == driver _unit) then 
+if(_killer == driver _unit or _killer == objNull) then 
 {
 	_killer = _unit getVariable ["lastHit",objnull];
-	_lastHit = true;
+
+	if(!isNull _killer) then {_lastHit = true};
 };
 
 if(isPlayer _killer or isPlayer leader _killer) then 

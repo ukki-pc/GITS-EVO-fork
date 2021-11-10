@@ -1,3 +1,4 @@
+disableSerialization;
 // run on player at death.
 _player = _this select 0;
 _killer = _this select 1;

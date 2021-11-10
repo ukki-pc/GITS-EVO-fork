@@ -9,6 +9,7 @@ if(_ammo == 0) then
     _bpCounts = (getMagazineCargo _bp) select 1;
     _allMags = (getArray (configFile >> "CfgWeapons" >> currentWeapon player >> "magazines"));
     _similar = [[_allMags,_bpMags]] call fnc_getSimiliarIndexes;
+    if(count _similar == 0) exitWith {};
     _mag = [_similar] call fnc_pickRandom;
     _index = (_bpMags) find _mag;
     if(_index > -1) then 

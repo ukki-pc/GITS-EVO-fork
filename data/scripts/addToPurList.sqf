@@ -6,10 +6,12 @@ local _vec = typeof _veh;
 
 if(_veh isKindOf "Plane") then {Enemyplanes = Enemyplanes - [_veh]};
 
-//_displayName = getText(configFile >> "CfgVehicles" >> _vec >> "displayName");
-	deletevehicle _veh;
-	sleep _delay;
-	storedVehicles = storedVehicles + [_vec];
+sleep _delay;
+_displayName = getText(configFile >> "CfgVehicles" >> _vec >> "displayName");
+systemChat format ["%1 is now ready in vehicle pool!",_displayName];
+deletevehicle _veh;
+	
+storedVehicles = storedVehicles + [_vec];
 /*
 	for [{_loop=0}, {_loop < (count buyAirList)}, {_loop=_loop+1}] do 
 	{

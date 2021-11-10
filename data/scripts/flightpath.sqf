@@ -2,7 +2,7 @@
 _grp = _this select 0;
 _countflt = (count BIS_EVO_MissionTowns)-1; //= 11
 
-_wp = _grp addWaypoint [getPos(BIS_EVO_MissionTowns select BIS_EVO_MissionProgress), 100];//current town
+_wp = _grp addWaypoint [getPos currentTown, 100];//current town
 
 _iflt=0;
 while {_iflt < 2} do 

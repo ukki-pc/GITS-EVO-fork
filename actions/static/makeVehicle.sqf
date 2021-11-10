@@ -30,7 +30,7 @@ _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 
 		//Careful placement while in carrier
 		if(player in list LHDin) then {
-			_cstatA setPosASL [getPos _cstatA select 0, getPos _cstatA select 1, 18.5];
+			_cstatA setPosASL [getPos _cstatA select 0, getPos _cstatA select 1, deckHeight];
 		}
 		else {
 			_cstatA setPos [getPos _cstatA select 0, getPos _cstatA select 1, 0];

@@ -259,7 +259,7 @@ switch (_custom) do
 	
 		foxhole enableSimulation true;
 		_who removeAction _laction1;
-		foxhole addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
+		foxhole addEventHandler ["killed", {[_this select 0,_this select 1] spawn mobjBury}];
 		0 spawn {sleep 1800; deleteVehicle foxHole};
 	};
 	 case 1: //Custom static based on class

@@ -101,7 +101,7 @@ _turretarrayname = [""];
 //INPUT	type,pos,side,radius,direction,velocity RETURN GRP,VEC
 BIS_EVO_CreateVehicle =
 {
-	Private["_type","_pos","_side","_radi","_dir","_vel","_grp","_returnarray","_vec","_crewtype","_maxc","_maxcrew","_newmaxcrew","_unit","_vtarray","_ctr","_n"];
+//	Private["_type","_pos","_side","_radi","_dir","_vel","_grp","_returnarray","_vec","_crewtype","_maxc","_maxcrew","_newmaxcrew","_unit","_vtarray","_ctr","_n"];
 
 	_type = _this select 0;
 	_pos = _this select 1;
@@ -112,14 +112,25 @@ BIS_EVO_CreateVehicle =
 	_grp = creategroup _side;
 	_returnarray = [];
 
-	if (_type == "") exitwith {};
-
 	_vec = createVehicle [_type, _pos, [], _radi, "NONE"];
 
-	_vec setDir _dir;
+	Sleep BIS_EVO_GlobalSleep;
+
+	if(_dir != 0) then 
+	{
+		_dir = _dir;
+		_vec setDir _dir;
+		_vec setPos getPos _vec;
+		if(_vel != 0) then 
+		{
+			_vec setVelocity [(sin _dir*_vel),(cos _dir*_vel),0];
+		};
+	};
 	_vec engineOn true;	
-	_vec setVelocity [(sin _dir*_vel),(cos _dir*_vel),0];
-	Sleep BIS_EVO_GlobalSleep*3;
+	
+	
+	Sleep BIS_EVO_GlobalSleep;
+	
 
 	_crewtype = getArray (configFile >> "CfgVehicles" >> _type >> "typicalCargo");
 
@@ -202,7 +213,7 @@ BIS_EVO_CreateVehicle =
 	[_vec] join _grp;
 	Sleep BIS_EVO_GlobalSleep;
 	_vec setdammage 0;
-	_vec addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
+	_vec addEventHandler ["killed", {[_this select 0,_this select 1] spawn mobjBury}];
 	_unattended = [_vec] spawn {[_this select 0] call BIS_EVO_idelSVEC};
 	_returnarray = [_grp,_vec];
 	_returnarray;

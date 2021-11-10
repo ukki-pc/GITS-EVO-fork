@@ -6,18 +6,6 @@
 
 allBunkerControls = ["screenobj1","screenobj2","screenobj3","screenobj4"];
 
-fnc_getBaseOwner = 
-{
-	_return = "US_DE";
-	if(count BIS_EVO_ConqueredTowns == 0) exitWith {_return};
-	_nearestObj = [BIS_EVO_ConqueredTowns+[farp1], position player] call BIS_fnc_nearestPosition;
-	
-
-	if(_nearestObj in BIS_EVO_cededCities) then {_return = BIS_EVO_cededOwners select (BIS_EVO_cededCities find _nearestObj)};
-
-	_return;
-};
-
 mappi = true;
 
 fnc_mapActions = 
@@ -287,6 +275,12 @@ fnc_getSimiliarIndexes =
     _return;
 };
 
+fnc_getDistanceToNearestCity = 
+{
+	local _nearestPoint = [_this, position player] call BIS_fnc_nearestPosition;
+	if(count _this > 0 ) then {local _objDist = player distance getPos _nearestPoint; _objDist}
+	else {-1};
+};
 
 messageMutex = 0;
 //Handles messages
@@ -496,6 +490,8 @@ fnc_missionManager =
 {
 	_objId = _this select 0;
 	BIS_EVO_MissionProgress = _objId;
+	currentTown = BIS_EVO_MissionTowns select BIS_EVO_MissionProgress;
+	airports = airports - [currentTown];
 	publicVariable "BIS_EVO_MissionProgress";
 	[] spawn missionManager;
 };

@@ -57,8 +57,6 @@ BIS_EVO_SetVelocityVector =
     (units _pilot select 0) moveInDriver _heli0;
     (units _pilot select 1) moveInGunner _heli0;
 
-    selectWeapon
-
     //    [_heli0] execVM "data\scripts\camAny.sqf";
 
     _wp2 = _pilot addWaypoint [_posback, 10];
@@ -82,12 +80,10 @@ BIS_EVO_SetVelocityVector =
         _count = 2;
         _i = 0;
         _bombT = [_bombs] call fnc_pickRandom;
-        while {_i <= _count} do 
+        while {sleep 0.2; _i <= _count} do 
         {
             local _bombT = createVehicle [_bombT,[(position _heli0 select 0), (position _heli0 select 1), (position _heli0 select 2)-1], [], 0, "NONE"];
-            sleep 0.2;
             [_bombT, getDir _heli0, speed _heli0] call BIS_EVO_SetVelocityVector;
-            sleep 0.2;
             _i = _i + 1;
         };
     };

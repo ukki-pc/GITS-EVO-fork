@@ -1,7 +1,3 @@
-#include "macros.h"
-
-call fnc_showMoney;
-
 disableSerialization;
 
 uiNamespace setVariable["displayVendor", findDisplay 100];
@@ -33,7 +29,6 @@ uiNamespace setVariable["vehMenuBtn", (uiNamespace getVariable "displayVendor") 
 uiNamespace setVariable["vehUpgTur1", (uiNamespace getVariable "displayVendor") displayCtrl 671];
 uiNamespace setVariable["vehUpgMis1", (uiNamespace getVariable "displayVendor") displayCtrl 672];
 uiNamespace setVariable["vehLoadout", (uiNamespace getVariable "displayVendor") displayCtrl 673];
-uiNamespace setVariable["storeVeh", (uiNamespace getVariable "displayVendor") displayCtrl 674];
 uiNamespace setVariable["saveLoadout", (uiNamespace getVariable "displayVendor") displayCtrl 675];
 uiNamespace setVariable["unflipVeh", (uiNamespace getVariable "displayVendor") displayCtrl 676];
 uiNamespace setVariable["hitMark", (uiNamespace getVariable "displayVendor") displayCtrl 677];
@@ -91,7 +86,6 @@ ctrlShow[668, false];
 ctrlShow[671, false]; //Turret page
 ctrlShow[672, false]; //Weapon page
 ctrlShow[673, false]; //Loadout page
-ctrlShow[674, false]; //Storeveh btn
 ctrlShow[675, true]; //Loadout btn
 ctrlShow[676, false]; //Unflip btn
 ctrlShow[677, false]; //Hitmark btn
@@ -129,7 +123,9 @@ onMapSingleClick {
     setMarkerPos _pos;
     bplace = true
 };
-//(FindDisplay 46) DisplayAddEventHandler["keydown", "if ((_this select 1) In actionKeys ""TeamSwitch"") then {closeDialog 0}"];
+
+(FindDisplay 46) DisplaySetEventHandler["keydown", "if ((_this select 1) In actionKeys ""TeamSwitch"") then {closeDialog 0}"];
+
 mrole = "";
 mrank = 0;
 mcost = 0;
@@ -138,15 +134,13 @@ mtime = 0;
 mord = 0;
 upgIndex = -1;
 
-allBuySubPages = [buyCarList, buyTankList, buyAirList, buyStatList, buySpecialList];
 // Lists
 BIS_EVO_ListUpdate = {
     SupList = [];
     RecList = [];
     AssList = [];
     GrpList = [];
-        
-  
+
     /*
     	_infantry = [[],["USMC_Soldier","USMC_Soldier_Medic","USMC_Soldier_LAT"],["USMC_Soldier_MG","USMC_Soldier_GL"],["USMC_Soldier_AA","USMC_SoldierS_Sniper"],["USMC_Soldier_AT","USMC_Soldier_AR"],[],["USMC_Soldier_HAT"]];
 
@@ -157,41 +151,6 @@ BIS_EVO_ListUpdate = {
     _rank = 0;
     _newstring = "";
     _rank = playerRank;
-
-          [[] call fnc_getBaseOwner] call fnc_evalFaction;
-        sleep 0.1;
-
-    _assemblelist = {
-        _list = _this select 0;
-        _newstring = "";
-        _count = _rank;
-        _i = 0;
-        while {
-            _i <= _count
-        }
-        do {
-            _units = (_list select _i);
-            _arraycount = count _units;
-            if (_arraycount > 0) then {
-                while {
-                    _arraycount > 0
-                }
-                do {
-                    _unit = _units select _arraycount - 1;
-                    _uname = getText(configFile >> "CfgVehicles" >> _unit >> "DisplayName");
-                    _picture = getText(configFile >> "CfgVehicles" >> _unit >> "portrait");
-                    _guns = format["%1 %2", (getArray(configFile >> "CfgVehicles" >> _unit >> "weapons")) select 0, (getArray(configFile >> "CfgVehicles" >> _unit >> "weapons")) select 1];
-                    _guns = [_unit] call _GetGuns;
-                    _picture = "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca";
-                    RecList = RecList + [
-                        [_uname, _unit, _picture, _guns]
-                    ];
-                    _arraycount = _arraycount - 1;
-                };
-            };
-            _i = _i + 1;
-        };
-    };
 
     _txtmessage = "";
     _GetGuns = {
@@ -283,15 +242,6 @@ BIS_EVO_ListUpdate = {
 
     //RECRUIT
 
-    if (helpersparam == 1) then {
-        RecList = [
-            [getText(configFile >> "CfgVehicles" >> "US_Delta_Force_EP1" >> "DisplayName"), "US_Delta_Force_EP1", "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", ["US_Delta_Force_EP1"] call _GetGuns]
-        ];
-        RecList = RecList + [
-            [getText(configFile >> "CfgVehicles" >> "US_Delta_Force_Medic_EP1" >> "DisplayName"), "US_Delta_Force_Medic_EP1", "\Ca\characters\data\Ico\i_med_ca.paa", ["US_Delta_Force_Medic_EP1"] call _GetGuns]
-        ];
-    };
-
     /* developing parameter for artillery cost based on:
     EGG_EVO_Artycost = paramsArray select 14;
     values[] = {1,2,3,4,5,6,7,8,9,10,1000};
@@ -351,22 +301,9 @@ BIS_EVO_ListUpdate = {
         ["Save Game", "Save game for next session.", "data\offensive.paa", 0, 18]
     ];
 
-    AssList = AssList + [
-        ["Invite France", "Cede objective to France", "data\offensive.paa", 0, 20, "FR"]
-    ];
-
     if (_sco >= BIS_EVO_rank1) then {
         mrank = BIS_EVO_rank1;
 
-        //recruit
-        if (helpersparam == 1) then {
-            RecList = RecList + [
-                [getText(configFile >> "CfgVehicles" >> "US_Soldier_AT_EP1" >> "DisplayName"), "US_Soldier_AT_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa", ["US_Soldier_AT_EP1"] call _GetGuns]
-            ];
-            RecList = RecList + [
-                [getText(configFile >> "CfgVehicles" >> "US_Soldier_Pilot_EP1" >> "DisplayName"), "US_Soldier_Pilot_EP1", "\Ca\characters\data\portraits\combarhead_usmc_pilot_ca", ["US_Soldier_Pilot_EP1"] call _GetGuns]
-            ];
-        };
         //support
         SupList = SupList + [
             [localize "str_dn_30rnd_105mmsmoke_m119", "Cost: 3 Ideal for masking your movement", 20, 3, 5, "data\sup01.paa", 11]
@@ -389,16 +326,6 @@ BIS_EVO_ListUpdate = {
     if (_sco >= BIS_EVO_rank2) then {
         mrank = BIS_EVO_rank2;
 
-        //recruit
-        if (helpersparam == 1) then {
-            RecList = RecList + [
-                [getText(configFile >> "CfgVehicles" >> "US_Delta_Force_MG_EP1" >> "DisplayName"), "US_Delta_Force_MG_EP1", "\Ca\weapons\data\Ico\i_mg_CA.paa", ["US_Delta_Force_MG_EP1"] call _GetGuns]
-            ];
-            RecList = RecList + [
-                [getText(configFile >> "CfgVehicles" >> "US_Soldier_GL_EP1" >> "DisplayName"), "US_Soldier_GL_EP1", "\Ca\characters\data\Ico\i_sf_ca.paa", ["US_Soldier_GL_EP1"] call _GetGuns]
-            ];
-        };
-
         //support
         SupList = SupList + [
             [localize "str_dn_staticmgweapon", "Cost: 5 Ideal for defending an area against enemy troops", 20, 5, 10, "data\sup01.paa", 12]
@@ -413,18 +340,6 @@ BIS_EVO_ListUpdate = {
     if (_sco >= BIS_EVO_rank3) then {
         mrank = BIS_EVO_rank3;
 
-        //recruit
-        if (helpersparam == 1) then {
-            RecList = RecList + [
-                [getText(configFile >> "CfgVehicles" >> "US_Soldier_AA_EP1" >> "DisplayName"), "US_Soldier_AA_EP1", "\Ca\weapons\data\Ico\i_aa_CA.paa", ["US_Soldier_AA_EP1"] call _GetGuns]
-            ];
-            RecList = RecList + [
-                [getText(configFile >> "CfgVehicles" >> "US_Soldier_SniperH_EP1" >> "DisplayName"), "US_Soldier_SniperH_EP1", "\Ca\weapons\data\Ico\i_sniper_CA.paa", ["US_Soldier_SniperH_EP1"] call _GetGuns]
-            ];
-        };
-
-        //support
-
         SupList = SupList + [
             [localize "str_dn_staticgrenadelauncher", "Cost: 15 Ideal for bombarding enemy troops", 20, 15, 10, "data\sup01.paa", 13]
         ];
@@ -438,16 +353,6 @@ BIS_EVO_ListUpdate = {
     };
     if (_sco >= BIS_EVO_rank4) then {
         mrank = BIS_EVO_rank4;
-
-        //recruit
-        if (helpersparam == 1) then {
-            RecList = RecList + [
-                [getText(configFile >> "CfgVehicles" >> "CZ_Soldier_AT_DES_EP1" >> "DisplayName"), "CZ_Soldier_AT_DES_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa", ["CZ_Soldier_AT_DES_EP1"] call _GetGuns]
-            ];
-            RecList = RecList + [
-                [getText(configFile >> "CfgVehicles" >> "CZ_Special_Forces_MG_DES_EP1" >> "DisplayName"), "CZ_Special_Forces_MG_DES_EP1", "\Ca\weapons\data\Ico\i_mg_CA.paa", ["CZ_Special_Forces_MG_DES_EP1"] call _GetGuns]
-            ];
-        };
 
         //support	
         SupList = SupList + [
@@ -488,13 +393,6 @@ BIS_EVO_ListUpdate = {
     if (_sco >= BIS_EVO_rank6) then {
         mrank = BIS_EVO_rank6;
 
-        //recruit
-        if (helpersparam == 1) then {
-            RecList = RecList + [
-                [getText(configFile >> "CfgVehicles" >> "US_Soldier_HAT_EP1" >> "DisplayName"), "US_Soldier_HAT_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa", ["US_Soldier_HAT_EP1"] call _GetGuns]
-            ];
-        };
-
         //support
         //rank 6
         SupList = SupList + [
@@ -529,9 +427,7 @@ BIS_EVO_ListUpdate = {
     if (helpersparam == 2) then {
         RecList = []; 
         {
-            RecList = RecList + [
-                [getText(configFile >> "CfgVehicles" >> _x >> "DisplayName"), _x, "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", [_x] call _GetGuns]
-            ];
+            RecList = RecList + [[getText(configFile >> "CfgVehicles" >> _x >> "DisplayName"), _x, "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", [_x] call _GetGuns]];
             // RecList = RecList+ [[getText (configFile >> "CfgVehicles" >> "US_Soldier_Crew_EP1" >> "DisplayName"), "US_Soldier_Crew_EP1", "\Ca\characters\data\portraits\comBarHead_usmc_soldier_ca", ["US_Soldier_Crew_EP1"] call _GetGuns]];
             // RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Delta_Force_Medic_EP1" >> "DisplayName"), "US_Delta_Force_Medic_EP1", "\Ca\characters\data\Ico\i_med_ca.paa",["US_Delta_Force_Medic_EP1"] call _GetGuns]];
             // RecList = RecList +[[getText (configFile >> "CfgVehicles" >> "US_Soldier_AT_EP1" >> "DisplayName"), "US_Soldier_AT_EP1", "\Ca\weapons\data\Ico\i_at_CA.paa", ["US_Soldier_AT_EP1"] call _GetGuns]];
@@ -591,37 +487,15 @@ BIS_EVO_ListUpdate = {
         ctrlShow[672, false]; //Missile page
         ctrlShow[678, true]; //Upg btn
         ctrlShow[673, false]; //Loadout page
-        ctrlShow[674, false]; //Storeveh page
         ctrlShow[676, false]; //Unflip btn
 
         lbClear 2000;
-        _i = 0;
-        if (player distance backPacks > 4) then {
 
-            while {
-                _i < count RecList
-            }
-            do {
-                _name = (RecList select _i) select 0;
-                _pic = (RecList select _i) select 2;
-                _index = lbAdd[2000, _name];
-                _index = lbSetPicture[2000, _i, _pic];
-                _i = _i + 1;
-            };
+        {
+            lbadd[2000,(_x select 0)];
+            lbSetPicture[2000, _forEachIndex,_x select 2];
         }
-        else {
-            while {
-                _i < count BIS_EVO_PlayerModels
-            }
-            do {
-                _name = ((BIS_EVO_PlayerModels) select _i);
-                _dispname = getText(configFile >> "cfgVehicles" >> _name >> "displayName");
-                //_pic = (RecList select _i) select 2;
-                _index = lbAdd[2000, _dispname];
-                //_index = lbSetPicture [2000, _i, _pic];
-                _i = _i + 1;
-            };
-        };
+        forEach reclist;
     };
     if (_suppage) then {
         //
@@ -782,7 +656,6 @@ BIS_EVO_ListUpdate = {
         ctrlShow[1995, true]; //2nd list
 
         lbClear 2000;
-        
 
         switch (_vecSubPage)
             do {
@@ -925,14 +798,6 @@ BIS_EVO_ListUpdate = {
         ctrlShow[675, false];
         //ctrlSetText [2012,format["Cooldown: %1 seconds.",buyCoolDown]];
 
-        if (vehicle player != player) then {
-            ctrlShow[674, true]; //Storeveh page
-        }
-        else {
-            ctrlShow[676, true]; //Unflip btn
-        };
-        //
-
         _i = 0;
         lbClear 2000;
 
@@ -940,17 +805,19 @@ BIS_EVO_ListUpdate = {
             do {
                 case 1: {
                     _name = "";
-                    while {_i < count buyCarList}
+                    while {
+                        _i < count buyCarList
+                    }
                     do {
                         _pic = "";
                         _name = ((buyCarList select _i) select 0);
-                        _stored = _name in storedVehicles;
+                        _stored = ((buyCarList select _i) select 2);
                         _displayName = getText(configFile >> "CfgVehicles" >> _name >> "displayName");
-                        _salesString = format["%1", _displayName]; 
+                        _salesString = format["[%1] %2 ", _stored, _displayName];
                         _index = lbAdd[2000, _salesString];
-                        _index = lbSetColor[2000,_i,colorGreen];
-                       
-                        if(!_stored) then {_index = lbSetColor[2000,_i,colorLocked]};
+
+                        //Locked vehicles are red, otherwise white
+
                         if (_name in BIS_EVO_unlockables and!(_name in BIS_EVO_unlocked)) then {
                             _index = lbSetColor[2000, _i, [1, 0, 0, 0.5]];
                         };
@@ -967,11 +834,10 @@ BIS_EVO_ListUpdate = {
                         _pic = "";
                         _unlock = ((buyTankList select _i) select 2);
                         _name = ((buyTankList select _i) select 0);
-                        _stored = _name in storedVehicles;
+                        _stored = ((buyTankList select _i) select 2);
                         _displayName = getText(configFile >> "CfgVehicles" >> _name >> "displayName");
-                        _salesString = format["%1",_displayName];
+                        _salesString = format["[%1] %2", _stored, _displayName];
                         _index = lbAdd[2000, _salesString];
-                        if(!_stored) then {_index = lbSetColor[2000,_i,colorLocked]};
                         if (_name in BIS_EVO_unlockables and!(_name in BIS_EVO_unlocked)) then {
                             _index = lbSetColor[2000, _i, [1, 0, 0, 0.5]];
                         };
@@ -988,11 +854,10 @@ BIS_EVO_ListUpdate = {
                         _unlock = ((buyAirList select _i) select 2);
                         _name = ((buyAirList select _i) select 0);
                         _displayName = getText(configFile >> "CfgVehicles" >> _name >> "displayName");
-                        _stored = _name in storedVehicles;
+                        _stored = ((buyAirList select _i) select 2);
                         _displayName = getText(configFile >> "CfgVehicles" >> _name >> "displayName");
-                        _salesString = format["%1", _displayName];
+                        _salesString = format["[%1] %2", _stored, _displayName];
                         _index = lbAdd[2000, _salesString];
-                        if(!_stored) then {_index = lbSetColor[2000,_i,colorLocked]};
                         if (_name in BIS_EVO_unlockables and!(_name in BIS_EVO_unlocked)) then {
                             _index = lbSetColor[2000, _i, [1, 0, 0, 0.5]];
                         };
@@ -1008,11 +873,10 @@ BIS_EVO_ListUpdate = {
                         _pic = "";
                         _name = ((buyStatList select _i) select 0);
                         _displayName = getText(configFile >> "CfgVehicles" >> _name >> "displayName");
-                        _stored = _name in storedVehicles;
+                        _stored = ((buyStatList select _i) select 2);
                         _displayName = getText(configFile >> "CfgVehicles" >> _name >> "displayName");
-                        _salesString = format["%1", _displayName];
+                        _salesString = format["[%1] %2", _stored, _displayName];
                         _index = lbAdd[2000, _salesString];
-                       if(!_stored) then {_index = lbSetColor[2000,_i,colorLocked]};
                         if (_name in BIS_EVO_unlockables and!(_name in BIS_EVO_unlocked)) then {
                             _index = lbSetColor[2000, _i, [1, 0, 0, 0.5]];
                         };
@@ -1028,11 +892,10 @@ BIS_EVO_ListUpdate = {
                         _pic = "";
                         _name = ((buySpecialList select _i) select 0);
                         _displayName = getText(configFile >> "CfgVehicles" >> _name >> "displayName");
-                       _stored = _name in storedVehicles;
+                        _stored = ((buySpecialList select _i) select 1);
                         _displayName = getText(configFile >> "CfgVehicles" >> _name >> "displayName");
-                        _salesString = format["%1", _displayName];
+                        _salesString = format["[%1] %2", _stored, _displayName];
                         _index = lbAdd[2000, _salesString];
-                        if(!_stored) then {_index = lbSetColor[2000,_i,colorLocked]};
                         if (_name in BIS_EVO_unlockables and!(_name in BIS_EVO_unlocked)) then {
                             _index = lbSetColor[2000, _i, [1, 0, 0, 0.5]];
                         };
@@ -1049,12 +912,11 @@ BIS_EVO_ListUpdate = {
 
                         if ((inrepairzone or _plyDist < 200)) then {
                             [player] execVM "data\scripts\storeVeh.sqf";
-                            ctrlShow[674, false]; //Storeveh page
+
                             closeDialog 1;
                         }
                         else {
                             [_vec, 300] execVM "data\scripts\addToPurList.sqf";
-                            ctrlShow[674, false]; //Storeveh page
                             closeDialog 1;
                             hint "Sending vehicle to base, cooldown 5min";
                         };
@@ -1101,48 +963,6 @@ BIS_EVO_ListUpdate = {
         };
     };
 
-    if(_perkPage) then 
-    {
-          _i = 0;
-        lbClear 2000;
-        //Support
-        _name = "Support";
-        _maxLevel = 4;
-        _text = format["%1 %2/%3", _name, perkSupLVL, _maxLevel];
-        _index = lbAdd[2000, _text];
-        ctrlSetText[2010, _name];
-        _pic = "data\support.paa";
-        lbSetPicture [2000,0,_pic];
-
-        //Engineer Perk
-        _maxLevel = 4;
-        _name = "Engineer";
-        _text = format["%1 %2/%3", _name, perkEngLVL, _maxLevel];
-        ctrlSetText[2010, _name];
-        _index = lbAdd[2000, _text];
-        _pic = "data\engineer.paa";
-        lbSetPicture [2000,1,_pic];
-
-        //Recon Perk
-        _maxLevel = 4;
-        _name = "Recon";
-        _text = format["%1 %2/%3", _name, perkSniperLVL, _maxLevel];
-        ctrlSetText[2010, _name];
-        _index = lbAdd[2000, _text];
-         _pic = "data\recon.paa";
-        lbSetPicture [2000,2,_pic];
-
-        //Assault Perk
-        _name = "Assault";
-        _maxLevel = 4;
-        _text = format["%1 %2/%3", _name, perkAssaultLVL, _maxLevel];
-        ctrlSetText[2010, _name];
-        _index = lbAdd[2000, _text];
-        _pic = "data\assault.paa";
-        lbSetPicture [2000,3,_pic];
-        ctrlSetText[2001, format["Perkpoints: %1", perkPoints]];
-    };
-
 };
 //Endlsts
 
@@ -1168,6 +988,7 @@ BIS_EVO_ActButton = {
 
         _item = ((RecList select _index) select 1);
 
+
         /*
         		if(score player < BIS_EVO_rank1 and helpersparam != 2 ) then 
         		{
@@ -1181,135 +1002,62 @@ BIS_EVO_ActButton = {
         _ainum = 0;
         _ap = player;
         _i = 0;
-        _infCost = 100;
+        _infCost = 200;
+        while { _i < _count }do 
+        {
+            _ap = (units _grp select _i);
+            if (not(isPlayer _ap)) then {
+                _ainum = _ainum + 1;
+            };
+            _i = _i + 1;
+        };
 
-        if (player distance backPacks > 4) then {
-            _item = ((RecList select _index) select 1);
-            while {
-                _i < _count
+        if (playerRank < 1 and helpersparam != 2 and _ainum >= 1) exitwith {
+            ctrlSetText[2011, localize "STR_M04t99"]
+        };
+        if (playerRank < 2 and helpersparam != 2 and _ainum >= 2) exitwith {
+            ctrlSetText[2011, localize "STR_M04t99"]
+        };
+        if (playerRank < 3 and helpersparam != 2 and _ainum >= 3) exitwith {
+            ctrlSetText[2011, localize "STR_M04t99"]
+        };
+        if (playerRank < 4 and helpersparam != 2 and _ainum >= 4) exitwith {
+            ctrlSetText[2011, localize "STR_M04t99"]
+        };
+        if (playerRank < 5 and helpersparam != 2 and _ainum >= 5) exitwith {
+            ctrlSetText[2011, localize "STR_M04t99"]
+        };
+        if (playerRank < 6 and helpersparam != 2 and _ainum >= 6) exitwith {
+            ctrlSetText[2011, localize "STR_M04t99"]
+        };
+        if (playerRank >= 6 and helpersparam != 2 and _ainum >= 7) exitwith {
+            ctrlSetText[2011, localize "STR_M04t99"]
+        };
+        if (helpersparam == 2 and _ainum >= 8) exitwith {
+            ctrlSetText[2011, localize "STR_M04t99"]
+        };
+
+        _objDist = BIS_EVO_conqueredTowns call fnc_getDistanceToNearestCity;
+
+        if (inrepairzone or _objDist <= 100 and _objdist != -1) then 
+        {
+        if (money >= _infCost) then {
+            if (_item != "ME") then {
+                _rec = [_item] execVM "data\scripts\recruit.sqf";
             }
-            do {
-                _ap = (units _grp select _i);
-                if (not(isPlayer _ap)) then {
-                    _ainum = _ainum + 1;
-                };
-                _i = _i + 1;
+            else {
+                _rec = [_item] execVM "data\scripts\recruitMe.sqf";
             };
-
-            if (playerRank < 1 and helpersparam != 2 and _ainum >= 4) exitwith {
-                ctrlSetText[2011, localize "STR_M04t99"]
-            };
-            if (playerRank < 2 and helpersparam != 2 and _ainum >= 5) exitwith {
-                ctrlSetText[2011, localize "STR_M04t99"]
-            };
-            if (playerRank < 3 and helpersparam != 2 and _ainum >= 6) exitwith {
-                ctrlSetText[2011, localize "STR_M04t99"]
-            };
-            if (playerRank < 4 and helpersparam != 2 and _ainum >= 7) exitwith {
-                ctrlSetText[2011, localize "STR_M04t99"]
-            };
-            if (playerRank < 5 and helpersparam != 2 and _ainum >= 8) exitwith {
-                ctrlSetText[2011, localize "STR_M04t99"]
-            };
-            if (playerRank < 6 and helpersparam != 2 and _ainum >= 9) exitwith {
-                ctrlSetText[2011, localize "STR_M04t99"]
-            };
-            if (playerRank >= 6 and helpersparam != 2 and _ainum >= 10) exitwith {
-                ctrlSetText[2011, localize "STR_M04t99"]
-            };
-            if (helpersparam == 2 and _ainum >= 11) exitwith {
-                ctrlSetText[2011, localize "STR_M04t99"]
-            };
-
-            switch (recruitPlaces)
-                do {
-                    //Free everywhere
-                    case 0: {
-                        if (_item != "ME") then {
-                            _rec = [_item] execVM "data\scripts\recruit.sqf";
-                        }
-                        else {
-                            _rec = [_item] execVM "data\scripts\recruitMe.sqf";
-                        };
-                    };
-                    //Free at friendly locations
-                    case 1: {
-                        _nearestPoint = [BIS_EVO_conqueredTowns, position player] call BIS_fnc_nearestPosition;
-                        _objDist = player distance getPos _nearestPoint;
-                        if (canRecruit) then {
-                            if (_item != "ME") then {
-                                _rec = [_item] execVM "data\scripts\recruit.sqf";
-                            }
-                            else {
-                                _rec = [_item] execVM "data\scripts\recruitMe.sqf";
-                            };
-                        }
-                        else {
-                            hint "Cannot recruit outside of base or town!";
-                            closeDialog 1;
-                        };
-                    };
-                    //Free only at bases
-                    case 2: {
-                        _nearestPoint = [BIS_EVO_conqueredTowns, position player] call BIS_fnc_nearestPosition;
-                        _objDist = player distance getPos _nearestPoint;
-                        if (inrepairzone) then {
-                            if (_item != "ME") then {
-                                _rec = [_item] execVM "data\scripts\recruit.sqf";
-                            }
-                            else {
-                                _rec = [_item] execVM "data\scripts\recruitMe.sqf";
-                            };
-                        };
-                        if (_objDist < 100 and!inrepairzone) then {
-                            if (money >= _infCost) then {
-                                if (_item != "ME") then {
-                                    _rec = [_item] execVM "data\scripts\recruit.sqf";
-                                }
-                                else {
-                                    _rec = [_item] execVM "data\scripts\recruitMe.sqf";
-                                };
-                                ["sendToClient",[player,fnc_changeMoney,[-4]]] call CBA_fnc_whereLocalEvent;
-                            }
-                            else {
-                                hint "Not enough money!";
-                            };
-                        };
-                        if (_objDist >= 100 and!inrepairzone) then {
-                            hint "Cannot recruit outside of base or town!";
-                            closeDialog 1;
-                        };
-                    };
-                    case 3: {
-                        _nearestPoint = [BIS_EVO_conqueredTowns, position player] call BIS_fnc_nearestPosition;
-                        _objDist = player distance getPos _nearestPoint;
-
-                        if (inrepairzone or _objDist <= 100) then {
-                            if (money >= _infCost) then {
-                                if (_item != "ME") then {
-                                    _rec = [_item] execVM "data\scripts\recruit.sqf";
-                                }
-                                else {
-                                    _rec = [_item] execVM "data\scripts\recruitMe.sqf";
-                                };
-                               ["sendToClient",[player,fnc_changeMoney,[-4]]] call CBA_fnc_whereLocalEvent;
-                            }
-                            else {
-                                hint "Not enough money!";
-                            };
-                        }
-                        else {
-                            hint "Cannot recruit outside of base or town!";
-                            closeDialog 1;
-                        };
-                    };
-                };
+            ["jed_addMoney", [player, -4]] call CBA_fnc_whereLocalEvent;
         }
         else {
-            _item = (BIS_EVO_PlayerModels select _index);
-            _rec = [_item] execVM "data\scripts\charactermenu.sqf";
+            hint "Not enough money!";
         };
-        //		};
+        }
+        else {
+        hint "Cannot recruit outside of base or town!";
+        closeDialog 1;
+        };
     };
 
     if (_suppage) then {
@@ -1382,12 +1130,10 @@ BIS_EVO_ActButton = {
         ctrlShow[2208, false];
         _boun = (AssList select _index) select 3;
         _type = (AssList select _index) select 4;
-        _extra = (AssList select _index) select 5;
-        if(isNil "_extra" ) then {_extra = ""};
         if (BIS_EVO_Onmission) then {
             BIS_EVO_Onmission = false
         } else {
-            _launch = [player, _type, _boun,_extra] execVM "data\scripts\selectmis.sqf";
+            _launch = [player, _type, _boun] execVM "data\scripts\selectmis.sqf";
             BIS_EVO_Onmission = true
         };
         [] execVM "data\scripts\fcnListboxClk.sqf";
@@ -1447,41 +1193,64 @@ BIS_EVO_ActButton = {
                 case 1: {
                     mcost = round(((buyCarList select _index) select 1) * EX_EVO_vehPriceMultiplier);
                     _item = ((buyCarList select _index) select 0);
-                    stored = _item in storedVehicles;
+                    stored = ((buyCarList select _index) select 2);
 
                 };
                 case 2: {
                     mcost = round(((buyTankList select _index) select 1) * EX_EVO_vehPriceMultiplier);
                     _item = ((buyTankList select _index) select 0);
-                    stored = _item in storedVehicles;
+                    stored = ((buyTankList select _index) select 2);
                 };
                 case 3: {
                     mcost = round(((buyAirList select _index) select 1) * EX_EVO_vehPriceMultiplier);
                     _item = ((buyAirList select _index) select 0);
-                   stored = _item in storedVehicles;
+                    stored = ((buyAirList select _index) select 2);
                 };
                 case 4: {
                     mcost = round(((buyStatList select _index) select 1) * EX_EVO_vehPriceMultiplier);
                     _item = ((buyStatList select _index) select 0);
-                    stored = _item in storedVehicles;
+                    stored = ((buyStatList select _index) select 2);
                 };
                 case 5: {
                     _item = (buySpecialList select _index) select 0;
-                    stored = _item in storedVehicles;
+                    stored = ((buySpecialList select _index) select 1);
                 };
             };
 
-            if (stored) then {
+            if (stored > 0) then {
                 if (inrepairzone and VehiclePlaced == 1 and vehicle _ap == player) then {
                     VehiclePlaced = 0;
-                        storedVehicles = [storedVehicles,storedVehicles find _item] call BIS_fnc_removeIndex;
+                    switch (_buySubPage)
+                        do {
+                            case 1: {
+                                buyCarList set [_index, [(buyCarList select _index) select 0, (buyCarList select _index) select 1, ((buyCarList select _index) select 2) - 1]];
+                                publicVariable "buyCarList";
+                            };
+                            case 2: {
+                                buyTankList set [_index, [(buyTankList select _index) select 0, (buyTankList select _index) select 1, ((buyTankList select _index) select 2) - 1]];
+                                publicVariable "buyTankList";
+                            };
+                            case 3: {
+                                buyAirList set [_index, [(buyAirList select _index) select 0, (buyAirList select _index) select 1, ((buyAirList select _index) select 2) - 1]];
+                                publicVariable "buyAirList";
+                            };
+                            case 4: {
+                                buyStatList set [_index, [(buyStatList select _index) select 0, (buyStatList select _index) select 1, ((buyStatList select _index) select 2) - 1]];
+                                publicVariable "buyStatList";
+                            };
+                            case 5: {
+                                buySpecialList set [_index, [(buySpecialList select _index) select 0, ((buySpecialList select _index) select 1) - 1]];
+                                publicVariable "buySpecialList";
+                            };
+                        };
+
                         _place = [_ap, _item] execVM "actions\static\makeVehicle.sqf";
                     closeDialog 1;
                 };
             };
 
         //Vehicle is locked
-        if ((!stored and !(_item in BIS_EVO_unlocks) or editor == 1)) then {
+        if ((stored == 0 and!(_item in BIS_EVO_unlocks) or editor == 1)) then {
             if ((((money)) >= round mcost) or(editor == 1)) then {
                 if (inrepairzone and VehiclePlaced == 1) then {
                     _place = [_ap, _item] execVM "actions\static\makeVehicle.sqf";
@@ -1495,7 +1264,7 @@ BIS_EVO_ActButton = {
                 ctrlSetText[2001, Format["%1: %2", localize "STR_M04t132", 0]]; //Cost
                 ctrlSetText[2011, format["You bought: %1", getText(configFile >> "CfgVehicles" >> _item >> "displayName")]];
                 playSound "caching";
-                ["sendToClient",[_ap,fnc_changeMoney,[(round - (mcost))]]] call CBA_fnc_whereLocalEvent;
+                ["jed_addMoney", [_ap, (round - (mcost))]] call CBA_fnc_whereLocalEvent;
                 //player addscore round -(mcost*EX_EVO_vehPriceMultiplier);
                 ctrlSetText[2003, Format["%1: %2", localize "STR_M04t134", (money)]]; //Score
                 [] call BIS_EVO_ListUpdate;
@@ -1580,7 +1349,7 @@ BIS_EVO_ActButton = {
 
                     if (money >= _price && inrepairzone && speed vehicle player < 4) then {
                         [_upgColumn select _priceIndex - 1] execVM "data\scripts\vehUpg.sqf";
-                        ["sendToClient", [player,fnc_changeMoney,[-_price]]] call CBA_fnc_whereLocalEvent;
+                        ["jed_addMoney", [player, -_price]] call CBA_fnc_whereLocalEvent;
                         hint "Upgraded!";
                         closeDialog 1;
                         Mpage = [true, false, false, false, false, false, 0, false, false, 0, false];
@@ -1848,40 +1617,6 @@ BIS_EVO_ListSelect = {
             Mpage = [false, false, false, false, true, false, 0, false, false, 0, false];
         };
     };
-    if (_buypage) then {
-        //
-        ctrlShow[6057, false];
-        ctrlShow[6058, false];
-        ctrlShow[6059, false];
-        ctrlShow[2203, false];
-        ctrlShow[2204, false];
-        ctrlShow[2205, false];
-        ctrlShow[2206, false];
-        ctrlShow[2207, false];
-        ctrlShow[2208, false];
-
-        with uiNamespace do {
-            ctrlBut1 ctrlSetText "Select";
-        };
-
-        _allItems = allBuySubPages select _buySubPage - 1;
-
-        if (count _allItems > 0) then {
-            _itemData = _allItems select _x;
-            _itemClass = _itemData select 0;
-            _itemPrice = _itemData select 1;
-
-            ctrlSetText[2001, Format["%1: %2", localize "STR_M04t132", round(_itemPrice * EX_EVO_vehPriceMultiplier)]];
-            _upgCount = [_itemClass] call fnc_countUpgrades;
-            _name = [_itemClass, "displayName","CfgVehicles"] call fnc_getCfgText;
-            _armor = [_itemClass, "armor","CfgVehicles"] call fnc_getCfgNumber;
-            _text = format["Price: %2\nVariants available: %1\nArmor: %3", _upgCount, round(_itemPrice * EX_EVO_vehPriceMultiplier), _armor];
-            ctrlSetText[2010, _name];
-            ctrlSetText[2011, _text];
-            _picture = getText(configFile >> "cfgVehicles" >> _itemClass >> "picture");
-            ctrlSetText[2005, _picture];
-        };
-    };
     if (_perkPage) then {
         //
         ctrlShow[6057, false];
@@ -1894,6 +1629,44 @@ BIS_EVO_ListSelect = {
         ctrlShow[2207, false];
         ctrlShow[2208, false];
 
+        _i = 0;
+        lbClear 2000;
+        //Support
+        _name = "Support";
+        _maxLevel = 4;
+        _text = format["%1 %2/%3", _name, perkSupLVL, _maxLevel];
+        _index = lbAdd[2000, _text];
+        ctrlSetText[2010, _name];
+        _pic = "data\support.paa";
+        lbSetPicture [2000,0,_pic];
+
+        //Engineer Perk
+        _maxLevel = 4;
+        _name = "Engineer";
+        _text = format["%1 %2/%3", _name, perkEngLVL, _maxLevel];
+        ctrlSetText[2010, _name];
+        _index = lbAdd[2000, _text];
+        _pic = "data\engineer.paa";
+        lbSetPicture [2000,1,_pic];
+
+        //Recon Perk
+        _maxLevel = 4;
+        _name = "Recon";
+        _text = format["%1 %2/%3", _name, perkSniperLVL, _maxLevel];
+        ctrlSetText[2010, _name];
+        _index = lbAdd[2000, _text];
+         _pic = "data\recon.paa";
+        lbSetPicture [2000,2,_pic];
+
+        //Assault Perk
+        _name = "Assault";
+        _maxLevel = 4;
+        _text = format["%1 %2/%3", _name, perkAssaultLVL, _maxLevel];
+        ctrlSetText[2010, _name];
+        _index = lbAdd[2000, _text];
+        _pic = "data\assault.paa";
+        lbSetPicture [2000,3,_pic];
+        ctrlSetText[2001, format["Perkpoints: %1", perkPoints]];
         switch (_x)
             do {
                 //Support Perk
@@ -2012,7 +1785,8 @@ do {
     };
     sleep 0.01;
 };
-//(FindDisplay 46) DisplayAddEventHandler["keydown", "if ((_this select 1) In actionKeys ""TeamSwitch"" ) then {a = createDialog 'evoUI'}"];
+(FindDisplay 46)
+DisplaySetEventHandler["keydown", "if ((_this select 1) In actionKeys ""TeamSwitch"" ) then {a = createDialog 'evoUI'}"];
 deleteMarkerLocal "btarg";
 [] call BIS_EVO_ResetClick;
 

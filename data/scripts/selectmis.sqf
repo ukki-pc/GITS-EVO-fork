@@ -25,9 +25,4 @@
 			BIS_EVO_Onmission = false;
     		_run = [] execVM "actions\changeSpawnPoint.sqf"
     	}; 
-		case 20:
-    	{
-			BIS_EVO_Onmission = false;
-    		_run = [_extra] execVM "actions\cedeObjective.sqf"
-    	}; 
 };

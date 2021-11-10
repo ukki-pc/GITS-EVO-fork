@@ -1,10 +1,10 @@
 /**
- * Execute une mission de tir reçu pour une IA locale à la machine actuelle
+ * Execute une mission de tir reï¿½u pour une IA locale ï¿½ la machine actuelle
  * 
- * @param 0 le nom de l'émetteur de l'ordre
- * @param 1 l'IA devant éxecuter la mission de tir
+ * @param 0 le nom de l'ï¿½metteur de l'ordre
+ * @param 1 l'IA devant ï¿½xecuter la mission de tir
  * @param 2 azimut du tir
- * @param 3 élévation du tir
+ * @param 3 ï¿½lï¿½vation du tir
  * @param 4 indice de la munition dans la table de correspondance
  * 
  * Copyright (C) 2010 madbull ~R3F~
@@ -35,16 +35,16 @@ if (_poursuivre) then
 	_ordres_tirs = _ordres_tirs + [_this];
 	_tireur setVariable ["R3F_ARTY_mission_tir_IA_ordres_recus", + _ordres_tirs, false];
 	
-	// Si l'accès à l'exécution de mission de tir est vérouillé, on laisse le fil d'exécution en cours l'exécuter
+	// Si l'accï¿½s ï¿½ l'exï¿½cution de mission de tir est vï¿½rouillï¿½, on laisse le fil d'exï¿½cution en cours l'exï¿½cuter
 	_tir_en_cours = _tireur getVariable "R3F_ARTY_mission_tir_IA_tir_en_cours";
 	if (isNil "_tir_en_cours") then {_tir_en_cours = false;};
 	
 	if (!_tir_en_cours) then
 	{
-		// On vérouille l'accès à l'exécution de missions de tir pour l'IA
+		// On vï¿½rouille l'accï¿½s ï¿½ l'exï¿½cution de missions de tir pour l'IA
 		_tireur setVariable ["R3F_ARTY_mission_tir_IA_tir_en_cours", true, false];
 		
-		// On lance le fil d'exécution qui va traiter toute la file d'attente
+		// On lance le fil d'exï¿½cution qui va traiter toute la file d'attente
 		[_tireur, _piece] spawn
 		{
 			private ["_tireur", "_piece", "_azimut_precedent", "_elevation_precedent"];
@@ -79,7 +79,7 @@ if (_poursuivre) then
 				_elevation = _ordre select 3 + random 0.05;
 				_chargeur_demande = _ordre select 4;
 				
-				// La munition demandée est-elle compatible avec la pièce ?
+				// La munition demandï¿½e est-elle compatible avec la piï¿½ce ?
 				_idx_type_piece = -1;
 				for [{_i = 0}, {_i < count R3F_ARTY_CFG_pieces_artillerie}, {_i = _i+1}] do
 				{
@@ -156,7 +156,7 @@ if (_poursuivre) then
 						];
 					};
 					
-					// Charger la bonne munition si besoin et si un PC est à proximité
+					// Charger la bonne munition si besoin et si un PC est ï¿½ proximitï¿½
 					_mun_ok = true;
 					if (_piece ammo (weapons _piece select 0) == 0 ||
 						(_chargeur_actuel select 0) != (_chargeur_demande select 0) ||
@@ -201,11 +201,11 @@ if (_poursuivre) then
 					if (_mun_ok) then
 					{
 						_tireur lookAt _pos_regard;
-						// Si on change de zone de tir, on passe du temps à viser, sinon c'est rapide
+						// Si on change de zone de tir, on passe du temps ï¿½ viser, sinon c'est rapide
 						if (abs (_azimut_precedent - _azimut) < 1.5 && abs (_elevation_precedent - _elevation) < 1.5) then
 						{sleep (0.25 + random 0.5);} else {sleep (6 + random 3);};
 						
-						// Vérification que l'IA est bien prête à tirer
+						// Vï¿½rification que l'IA est bien prï¿½te ï¿½ tirer
 						// TODO re-implement for v1.6
 						_tir_possible = true;
 						/*_tir_possible = false;
@@ -258,7 +258,7 @@ if (_poursuivre) then
 					
 					if (local _tireur && gunner _piece == _tireur && alive _tireur && alive _piece) then
 					{
-						// Recharger si la pièce est à court du munition et qu'un un PC est à proximité
+						// Recharger si la piï¿½ce est ï¿½ court du munition et qu'un un PC est ï¿½ proximitï¿½
 						if (_piece ammo (weapons _piece select 0) <= 1) then
 						{
 							if (count nearestObjects [_piece, ["SatPhone"], 100] > 0) then
@@ -304,7 +304,7 @@ if (_poursuivre) then
 				
 				if (local _tireur && gunner _piece == _tireur && alive _tireur && alive _piece) then
 				{
-					// On marque l'ordre comme exécuté
+					// On marque l'ordre comme exï¿½cutï¿½
 					_ordres_tirs = + (_tireur getVariable "R3F_ARTY_mission_tir_IA_ordres_recus");
 					_ordres_tirs set [_index_premier_ordre, []];
 					_tireur setVariable ["R3F_ARTY_mission_tir_IA_ordres_recus", + _ordres_tirs, false];
@@ -317,7 +317,7 @@ if (_poursuivre) then
 				_tireur enableAI "AUTOTARGET";
 				_tireur enableAI "MOVE";
 				
-				// On dévérouille l'accès à l'exécution de missions de tir pour l'IA
+				// On dï¿½vï¿½rouille l'accï¿½s ï¿½ l'exï¿½cution de missions de tir pour l'IA
 				_tireur setVariable ["R3F_ARTY_mission_tir_IA_tir_en_cours", false, false];
 			};
 		};

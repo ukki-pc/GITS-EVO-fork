@@ -54,8 +54,8 @@ ebox = "USBasicAmmunitionBox" createVehicle _pos3;
 //ebox = "TKVehicleBox_EP1" createVehicle _pos3;
 
 BIS_EVO_EngZone setpos _pos;
-etent addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
-ebox addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
+etent addEventHandler ["killed", {[_this select 0,_this select 1] spawn mobjBury}];
+ebox addEventHandler ["killed", {[_this select 0,_this select 1] spawn mobjBury}];
 
 _mssg = format["%1's FARP",(name player)];
 _medmark = createMarker [_mark, _pos];

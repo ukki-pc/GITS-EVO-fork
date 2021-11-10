@@ -150,7 +150,6 @@ BIS_EVO_ListSelect =
 	local _count = 0;
 
 	if(_isMag) then {_mag = _weapon};
-
 	if(!_isBackPack) then 
 	{	
 		_ammo =  (getText (configFile >> "CfgMagazines" >> _mag >> "ammo"));

@@ -333,7 +333,7 @@ class evoUI
 				x = 0.29;
 				y = 0.863977;
 				text = "Vehicle menu";
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,false,0,false,true,1,false];[] call BIS_EVO_ListUpdate";
+				onButtonClick = "closeDialog 1; createDialog 'missileShopUi'; [] call BIS_EVO_ListUpdate";
 	      };
 		class BPurchase: RscIGUIShortcutButton
 	      {
@@ -431,14 +431,7 @@ class evoUI
 				text = "Special";
 				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,5,false,false,0,false];[] call BIS_EVO_ListUpdate";
 	      };
-		class Bstore: BRecruit
-	      {
-		 idc = 674;
-				y = 0.825;
-				x = 0.771248;
-				text = "Store vehicle";
-				onButtonClick = "lbSetCurSel[2000,0];Mpage =[false,false,false,false,false,true,6,false,false,0,false];[] call BIS_EVO_ListUpdate";
-	      };
+		
 		class saveLoadout: BRecruit
 	      {
 		 idc = 675;
@@ -1059,7 +1052,234 @@ class vehicleShopUi
 				//color[] = Color_Black;
 				//colorActive[] = CA_UI_green;
 				text = $STR_M04t136;
-				onButtonClick = "GetoutClick = true; BtnClick = true";
+				onButtonClick = "closeDialog 1";
+	      };
+		  class Bstore: BMulti
+	      {
+				idc = 674;
+				y = 0.863977;
+				x = 0.071248;
+				text = "Store vehicle";
+				onButtonClick = "[player] execVM 'data\scripts\storeVeh.sqf'; closeDialog 1";
+	      };
+	};
+};
+
+class missileShopUi
+{
+	idd = 177;
+	movingEnable = true;
+	enableSimulation = true;
+	onLoad = "[] execVM 'data\scripts\CoreMissiles.sqf'; cpage = 0; ";
+	__EXEC( _xSpacing = 0.0075;  _ySpacing = 0.01;)
+	__EXEC( _xInit = 12 * _xSpacing; _yInit = 18 * _ySpacing;)
+	__EXEC( _windowWidth = 101; _windowHeight = 64;)
+	__EXEC( _windowBorder = 1;)
+
+	#define wepButCatX 0.5
+	#define wepButCatY 0.15
+	#define wepButPadding 0.05
+
+	#define wScale 1
+	#define mainBgX  0.042
+	#define mainBgY  0.101
+
+
+	class controls
+	{
+		class Mainback : RscPicture 
+		{
+			idc = 1104;
+			x = mainBgX;
+			y = mainBgY;
+			w = 1.2549*wScale;
+			h = 0.836601*wScale;
+
+			// x = 0.042;
+			// y = 0.101;
+			// w = 1.2549*wScale;
+			// h = 0.836601*wScale;
+
+			text = "\ca\ui\data\igui_background_debriefing_ca.paa";
+		};	
+
+		class ListbackWeapon   : RscPicture 
+		{
+			idc = 101;
+			x = mainBgX+(0.007)*wScale;
+			y = mainBgY+(0.05)*wScale;
+			w = 0.55*wScale;
+			h = 0.74*wScale;
+			text = "\ca\ui\data\igui_background_debriefing_ca.paa";
+			colorText[] = {0.5, 0.5, 0.5, 0.7};
+		};
+		class ListbackMags  : RscPicture 
+		{
+			idc = 101;
+			x = mainBgX+(0.66)*wScale;
+			y = mainBgY+(0.04)*wScale;
+			w = 0.35*wScale;
+			h = 0.74*wScale;
+			text = "\ca\ui\data\igui_background_debriefing_ca.paa";
+			colorText[] = {0.5, 0.5, 0.5, 0.7};
+		};
+		class available_weapons: RscIGUIListBox
+		{
+			idc = 4000;
+			default = 1;
+			x = 0.0506555;
+			y = 0.185*wScale;
+			w = 0.438*wScale;
+			h = 0.64*wScale;
+			//lineSpacing = 0;
+			onLBSelChanged = "[] call BIS_EVO_ListSelect;";
+			onLBDblClick = "[] call BIS_EVO_ActButton";
+			rowHeight = 0.055;
+			soundSelect[] = {"\ca\ui\data\sound\mouse2", 0.09, 1};
+			maxHistoryDelay = 10;
+			canDrag = 0;
+			xcolumn1 = "0.1f";
+			xcolumn2 = "0.25f";
+			xcolumn3 = "0.85f";		
+			columns[] = {0.3, 0.6, 0.7}; 
+		};
+
+		class available_mags: RscIGUIListBox
+		{
+			idc = 4002;
+			default = 1;
+			x = 0.7*wScale;
+			y = 0.15*wScale;
+			w = 0.27*wScale;
+			h = 0.64*wScale;
+			//lineSpacing = 0;
+			onLBSelChanged = "[] call BIS_EVO_ListSelect;";
+			onLBDblClick = "[] call BIS_EVO_ActButtonM";
+			rowHeight = 0.055;
+			soundSelect[] = {"\ca\ui\data\sound\mouse2", 0.09, 1};
+			maxHistoryDelay = 10;
+			canDrag = 0;
+			xcolumn1 = "0.1f";
+			xcolumn2 = "0.25f";
+			xcolumn3 = "0.85f";		
+			columns[] = {0.3, 0.6, 0.7}; 
+		};
+
+		class wepDesc : RscText
+		{
+			type = 13;
+			size = 0.03;
+			idc = 2019;
+			x = wepButCatX;
+			y =wepButCatY+(wepButPadding*8);
+			w = 1;
+			h = 1;
+			colorText[] = Color_White;
+			sizeEx = 0.03;
+			text = "Vehicle info";
+		};
+
+		  class BMulti: RscIGUIShortcutButton 
+	      {
+			 idc = 8056;
+			x = wepButCatX;
+			y = wepButCatY;
+				text = "Car";
+				onButtonClick = "lbSetCurSel[4000,0]; cpage = 0;[] call BIS_EVO_ListUpdate; lastSel = 0";	
+	      };
+
+		class BMulti2: BMulti
+	      {
+			  idc = 8057;
+			x = wepButCatX;
+			y = wepButCatY+(wepButPadding*1);
+				text = "APC";
+				onButtonClick = "lbSetCurSel[4000,0];cpage = 1;[] call BIS_EVO_ListUpdate; lastSel = 0";	
+	      };
+		class BMulti4: BMulti
+	      {
+			x = wepButCatX;
+			y = wepButCatY+(wepButPadding*2);
+			text = "Tank";
+			onButtonClick = "lbSetCurSel[4000,0]; cpage = 2;[] call BIS_EVO_ListUpdate;lastSel = 0";		
+	      };
+		  		class BMulti5: BMulti
+	      {
+			x = wepButCatX;
+			y = wepButCatY+(wepButPadding*3);
+			text = "Heli";
+			onButtonClick = "lbSetCurSel[4000,0]; cpage = 3;[] call BIS_EVO_ListUpdate;lastSel = 0";	
+	      };
+		  		  		class BMulti6: BMulti
+	      {
+			x = wepButCatX;
+			y = wepButCatY+(wepButPadding*4);
+			text = "Plane";
+			onButtonClick = "lbSetCurSel[4000,0]; cpage = 4;[] call BIS_EVO_ListUpdate;lastSel = 0";	
+	      };
+		class BMulti7: BMulti
+	      {
+			x = wepButCatX;
+			y = wepButCatY+(wepButPadding*5);
+			text = "Static";
+			onButtonClick = "lbSetCurSel[4000,0];cpage = 5;[] call BIS_EVO_ListUpdate;lastSel = 0";		
+	      };
+		// class BMulti8: BMulti
+	    //   {
+		// 	x = wepButCatX;
+		// 	y = wepButCatY+(wepButPadding*6);
+		// 	text = "Misc";
+		// 	onButtonClick = "lbSetCurSel[4000,0]; cpage = 6;[] call BIS_EVO_ListUpdate;lastSel = 0";		
+	    //   };
+		// class BMulti9: BMulti
+	    //   {
+		// 	x = wepButCatX;
+		// 	y = wepButCatY+(wepButPadding*7);
+		// 	text = "Backpacks";
+		// 	onButtonClick = "lbSetCurSel[4000,0]; cpage = 7;[] call BIS_EVO_ListUpdate;lastSel = 0";		
+	    //   };
+		class weaponPreview : Vendor_Title
+		{
+			idc = 4003;
+			x = 0.72;
+			y = 0.625;
+			w = 0.035;
+			h = 0.035;
+			text = "";
+			colorText[] = {0.6, 0.839, 0.47, 0.55};
+		};
+		class wepMoney : RscText
+		{
+			idc = 2003;
+			x = 0.0506555;
+			y = 0.1;
+			w = 1;
+			h = __EVAL(3 * _ySpacing);
+			colorText[] = Color_White;
+			sizeEx = 0.03;
+			text = "Your money: 2000";
+		};
+		class WPClose: RscIGUIShortcutButton // Close
+	      {
+		 idc = 662;
+				//x = __EVAL(_xInit + (102 * _xSpacing));
+				//y = __EVAL(_yInit + (54 * _ySpacing));
+				x = 0.771248;
+				y = 0.863977;
+				//w = __EVAL(16 * _xSpacing);
+				//h = __EVAL(4 * _ySpacing);
+				//color[] = Color_Black;
+				//colorActive[] = CA_UI_green;
+				text = $STR_M04t136;
+				onButtonClick = "closeDialog 1";
+	      };
+		  class Bstore: BMulti
+	      {
+				idc = 674;
+				y = 0.863977;
+				x = 0.071248;
+				text = "Store vehicle";
+				onButtonClick = "[player] execVM 'data\scripts\storeVeh.sqf'; closeDialog 1";
 	      };
 	};
 };

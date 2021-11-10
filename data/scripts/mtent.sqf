@@ -10,7 +10,7 @@ _mark = format["%1mash",(name player)];
 deleteMarker _mark;
 mtent = "Mash" createVehicle (position player);Sleep BIS_EVO_GlobalSleep;
 
-mtent addEventHandler ["killed", {handle = [_this select 0] execVM "data\scripts\mobjbury.sqf"}];
+mtent addEventHandler ["killed", {[_this select 0,_this select 1] spawn mobjBury}];
 
 _pos = position mtent;
 _mssg = format["%1's MASH",(name player)];

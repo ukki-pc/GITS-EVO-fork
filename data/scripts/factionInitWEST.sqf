@@ -1,4 +1,5 @@
 #include "factionDefines.h"
+#include "macros.h"
 
 EGG_EVO_PLAYERFACTION = west;
 EGG_EVO_ENEMYFACTION = east;
@@ -33,7 +34,7 @@ _VODNIKS = ["EB_GAZ_Vodnik_TK","EB_GAZ_Vodnik_HMG_TK"];
 
 EGG_EVO_ENEMYSHIPS = ["sc9_nanuchka","sc9_missileboat_opf","sc9_gunboat_opf","ibr_gunboat_arl","IRAN_MissileBoat","IRAN_PatrolBoat"]; //"GNTKrivak", sc9_ships1_frigate_opf
 
-EGG_EVO_mevlight = ["BTR40_MG_TK_INS_EP1","pracs_TK_type63","pracs_TK_mtlb_apc","BTR40_TK_INS_EP1"];
+EGG_EVO_mevlight = ["BTR40_MG_TK_INS_EP1","pracs_TK_type63","pracs_TK_mtlb_apc","BTR40_TK_INS_EP1","LoBo_BTR152"];
 EGG_EVO_MechEasy = [_BRDMS] + [_TIGRS] + [_UAZS] + [_LANDROVERS] + [_VODNIKS] + [EGG_EVO_mevlight];
 EGG_EVO_MechMedium =["T72_TK_EP1","pook_btrMWS_tak","AP_BTR80_D_CAMO","AP_BTR82A_DES","eb_btr90_tk","vil_t62m","ch_t72_desert","ch_t72_2_desert","pook_btr2a42_tak","VIL_BMP1_TKS","EB_BMP3_TK","sa_bmd_1_iraq","BMP2_TK_EP1","pook_brdm2at2_tak","T55_TK_EP1","T34_TK_EP1","UAZ_AGS30_TK_EP1","BTR60_TK_EP1","Ural_ZU23_TK_EP1","M113_TK_EP1","BMP2_HQ_TK_EP1"];
 EGG_EVO_MechHard = ["T90","pracs_tk_t80b"];
@@ -56,7 +57,8 @@ EGG_EVO_statEnemyAA = ["Igla_AA_pod_TK_EP1","POOK_zpu4_tak","pracs_tk_sa2","sfp_
 EGG_EVO_mevconvoyb = ["V3S_TK_EP1","V3S_Open_TK_EP1","vilas_uaz451","pracs_TK_mtlb_apc","LIN_KamazOpen","ARL_Kamaz3","FgS_ZIL131_3","FgS_ZIL131_4","c1vrs","c2vrs"];
 
 //Reinforce paradroppers
-EGG_EVO_mevair3 = ["An2_TK_EP1","Mi17_TK_EP1","Mi24_D_TK_EP1","UH1H_TK_EP1"]; //"ou_ch_46e","ou_ch_53d",
+EGG_EVO_mevair3 = ["Mi17_TK_EP1","Mi24_D_TK_EP1","UH1H_TK_EP1"]; //"ou_ch_46e","ou_ch_53d",
+EGG_EVO_paradropPlanes = EparadropPlanes;
 
 //Rappeling vehicles, make sure to add compatibility in animateRope.sqf
 EGG_EVO_rappelChoppers = ["FRL_Mi8_MT_RUS"];
@@ -67,9 +69,11 @@ EGG_EVO_eastheli1 = ["ibr_gazelle_armed","FRL_Mi17_1_TAK","UH1H_TK_EP1"];//makeh
 EGG_EVO_spetzHeli = ["UH60M_EP1"];
 
 //makehindp
-EGG_EVO_EnemyHeli2 = ["UH1H_TK_EP1","ibr_gazelle_armed","FRL_Mi17_1_TAK","FRL_Mi17_TAK","FRL_Mi17_TVK_TAK","FRL_Mi17_TVK_TAK_AGM","FRL_Mi17_TVK_TAK_MR","FRL_Mi17_TVK_TAK_BMB","FRL_Mi24D_TK_CAP","FRL_Mi24D_TK_CAS","FRL_Mi24D_TK_HCAS","FRL_Mi24D_TK_AGM","FRL_Mi24D_TK_MR","FRL_Mi24D_TK_BMB","FRL_Mi24D_TK_LRCAS","FRL_Mi24D_TK_SEAD"];//makehip
+
+EGG_EVO_helicopters = ["UH1H_TK_EP1","ibr_gazelle_armed","paf_mi24_a_RUFAB250",hips,hinds];
+EGG_EVO_EnemyHeli2 = [];//makehip
 //makeka
-EGG_EVO_EnemyHeli3 = ["FRL_Mi8_AMTSh_RUS","FRL_Mi8_AMTSh_RUS_HCAS","FRL_Mi8_AMTSh_AGM","FRL_Mi8_AMTSh_MR","FRL_Mi8_AMTSh_BMB","FRL_Mi8_MTV3_RUS","FRL_Mi8_MTV3_RUS_HCAS","FRL_Mi8_MTV3_RUS_AGM","FRL_Mi8_MTV3_RUS_MR","FRL_Mi8_MTV3_RUS_BMB","FRL_Mi24V_TK_CAP","FRL_Mi24V_TK_CAS","FRL_Mi24V_TK_HCAS","FRL_Mi24V_TK_AGM","FRL_Mi24V_TK_MR","FRL_Mi24V_TK_BMB","FRL_Mi24V_TK_LRCAS","FRL_Mi24V_TK_SEAD","FRL_Mi24P_TK_CAP","FRL_Mi24P_TK_CAS","FRL_Mi24P_TK_HCAS","FRL_Mi24P_TK_AGM","FRL_Mi24P_TK_MR","FRL_Mi24P_TK_BMB","FRL_Mi24P_TK_LRCAS","FRL_Mi24P_TK_SEAD"];
+EGG_EVO_EnemyHeli3 = [];
 
 //hindv
 EGG_EVO_mevaira = EGG_EVO_eastheli1+EGG_EVO_EnemyHeli2+EGG_EVO_EnemyHeli3;//hindv
@@ -88,8 +92,6 @@ EGG_EVO_mfhq = ["USMC_WarfareBFieldhHospital","CDF_WarfareBFieldhHospital","USMC
 
 egg_evo_Amb = "TK_WarfareBUAVterminal_Base_EP1"; 
 egg_evo_MHQ = "PRACS_puma330_MG"; //PRACS_M113_AMB
-
-BIS_EVO_recruitables = [];
 
 
 //////////////////////////////////////////////
@@ -145,178 +147,174 @@ BIS_EVO_PlayerModels = [
 "PRACS_Recon2",
 "PRACS_RedBrigade",
 "PRACS_RedBrigade_O_D"];
+
 buyCarList = [];
 buyTankList = [];
 buyAirList = [];
 buyStatList = [];
+BIS_EVO_unlocks = [];
+BIS_EVO_unlocked = [];
 
-fnc_evalFaction = 
-{
-	_faction = _this select 0;
-	if (_faction == lastBase) exitWith{};
-	if(_faction == "US_DE") then 
-	{
-		BIS_EVO_recruitables = ["US_Soldier_Crew_EP1","US_Soldier_EP1"];
-		buyCarList = 
-		[
-			/*---Military cars---*/
-			["PRACS_ATV",0],			// Hilux (Open)
-			["SRA_Truck5tOpen",0],
-			["LandRover_CZ_EP1",0],			// Hilux (Open)
-			["LandRover_Special_CZ_EP1",200],				// Landrover (SF)
-			["SUV_PMC",200],							// SUV
-			["ArmoredSUV_PMC",800],						// SUV (GAT)
-			["HMMWV_M1035_DES_EP1",500],								// HMMWV
-			["HMMWV_M1151_M2_DES_EP1",1000],							// HMMWV (HMG)
-			["LandRover_Special_CZ_EP1",1000],							// HMMWV (HMG)
-			["BAF_Jackal2_L2A1_D",1000],							// HMMWV (HMG)
-			["HMMWV_M998_crows_MK19_DES_EP1",1200],							// HMMWV (GMG)s
-			["HMMWV_TOW_DES_EP1",1500],							// HMMWV (AT)
-			["HMMWV_Avenger_DES_EP1",2500],						// HMMWV (AA)
-			["SRA_Truck5tRepair",400],
-			["MtvrRepair_DES_EP1",500],						// HMMWV (AA)
-			["POOK_HEMTT_repair_us",800]						// HMMWV (AA)
-		];
+BIS_EVO_recruitables = ["US_Soldier_EP1","US_Soldier_Crew_EP1"];
 
-		buyTankList = 
-		[
-		/*---APCs---*/
-		["Dingo_DST_ACR",1200],						// Dingo (MMG)
-		["Dingo_GL_DST_ACR",1200],					// Dingo (GMG) 
-		["PRACS_M113_SA",1500],					// Dingo (GMG)
-		["PRACS_M113_SA_Mk19",1700],					// Dingo (GMG)
-		["FOX",1700],							// BMP1
-		["PRACS_M113_FSV",1700],							// BMP1
-		["PRACS_LAV_IFV",1500],					// Dingo (GMG)
-		["PRACS_LAV_MGS",1700],					// Dingo (GMG)
-		//["BVP1_TK_ACR",1700],							// BMP1
-		//["FFAA_ET_VEC",1700],
-		["AAV_D",1800],									// AAVP
-		["EB_LAV25_D2",2200],								// LAV
-		["PRACS_LAV25",2200],								// LAV
-		//["uns_Sheridan_de",2200],							// Pandur
-		["PRACS_LAV_SAM",2300],							// Pandur
-		["Pandur2_ACR",2500],							// Pandur
-		//["PRACS_BMP2",2500],							// Pandur
-		["PRACS_M901_ITV",2500],							// Pandur
-		["M1126_ICV_M2_EP1",1500],					// Stryker (HMG)
-		["M1126_ICV_mk19_EP1",1600],					// Stryker (GMG)
-		["M1128_MGS_EP1",2500],						// Stryker (MGS)
-		["PRACS_FV101",2200],						// Stryker (MGS)
-		["PRACS_FV107",2500],						// Stryker (MGS)
-		["M1135_ATGMV_EP1",3000],						// Stryker (ATGM)
-		/*---Tanks---*/
-		// ["PRACS_M60A3",3500],							// T72M
-		["PRACS_M60A3_S2",4000],							// T72M
-		["PRACS_T72",4000],							// T72M
-		["PRACS_LEO1A5",4000],							// T72M
-		["M2A2_EP1",3500],							// M2A2 (AT)
-		["M6_EP1",4000],								// M6 (AA)
-		["M2A3_EP1",4500],							// M2A3 (AT)
-		["EB_M2A3_WH",5000],
-		["BAF_FV510_W",5500],							// Warrior
-		["PRACS_LEO2A4",5200],							// T72M
-		//["M1A1_US_DES_EP1",55],								// M1A1
-		//["ffaa_et_Leopard",6500],
-		["EB_M1A2_US_D",6500],						// M1A2
-		//["M1A2_US_TUSK_MG_EP1",65],						// M1A2
-		["EB_M1A3_TUSK_D",7500],						// M1A2
-		/*---AA---*/
-		["PRACS_Sa6",3000],						// M1A2
-		["PRACS_m48_chapparal",3000],						// M1A2
-		["PRACS_351_SAM",3800],	
-		["POOK_NASAMS_US",3800],	
-		["POOK_MEADS_US",3800],	
-		["PRACS_M163",4000],						// M1A2
-		["PRACS_M429_CRAM",4000],	
-		["PRACS_M302_SAM",5000],	
-		["PRACS_M460_SAM",5000],	
-		/*---Artillery---*/
-		["PRACS_M250_TEL",14000],	
-		["PRACS_M291_TEL",15000],	
-		//	["GRAD_TK_EP1",160],						// GRAD
-		["RM70_ACR",17000],							// RM70
-		["PRACS_M245_TEL",17000],								// MLRS
-		["PRACS_MLRS",18000]								// MLRS
-		];
+buyCarList = 
+[
+	/*---Military cars---*/
+	["PRACS_ATV",0],			// Hilux (Open)
+	["SRA_Truck5tOpen",0],
+	["LandRover_CZ_EP1",0],			// Hilux (Open)
+	["LandRover_Special_CZ_EP1",200],				// Landrover (SF)
+	["SUV_PMC",200],							// SUV
+	["ArmoredSUV_PMC",800],						// SUV (GAT)
+	["HMMWV_M1035_DES_EP1",500],								// HMMWV
+	["HMMWV_M1151_M2_DES_EP1",1000],							// HMMWV (HMG)
+	["LandRover_Special_CZ_EP1",1000],							// HMMWV (HMG)
+	["BAF_Jackal2_L2A1_D",1000],							// HMMWV (HMG)
+	["HMMWV_M998_crows_MK19_DES_EP1",1200],							// HMMWV (GMG)s
+	["HMMWV_TOW_DES_EP1",1500],							// HMMWV (AT)
+	["HMMWV_Avenger_DES_EP1",2500],						// HMMWV (AA)
+	["SRA_Truck5tRepair",400],
+	["MtvrRepair_DES_EP1",500],						// HMMWV (AA)
+	["POOK_HEMTT_repair_us",800]						// HMMWV (AA)
+];
 
-		BIS_EVO_unlocks = [];
-		BIS_EVO_unlocked = [];
+buyTankList = 
+[
+/*---APCs---*/
+["Dingo_DST_ACR",1200],						// Dingo (MMG)
+["Dingo_GL_DST_ACR",1200],					// Dingo (GMG) 
+["PRACS_M113_SA",1500],					// Dingo (GMG)
+["PRACS_M113_SA_Mk19",1700],					// Dingo (GMG)
+["FOX",1700],							// BMP1
+["PRACS_M113_FSV",1700],							// BMP1
+["PRACS_LAV_IFV",1500],					// Dingo (GMG)
+["PRACS_LAV_MGS",1700],					// Dingo (GMG)
+//["BVP1_TK_ACR",1700],							// BMP1
+//["FFAA_ET_VEC",1700],
+["AAV_D",1800],									// AAVP
+["EB_LAV25_D2",2200],								// LAV
+["PRACS_LAV25",2200],								// LAV
+//["uns_Sheridan_de",2200],							// Pandur
+["PRACS_LAV_SAM",2300],							// Pandur
+["Pandur2_ACR",2500],							// Pandur
+//["PRACS_BMP2",2500],							// Pandur
+["PRACS_M901_ITV",2500],							// Pandur
+["M1126_ICV_M2_EP1",1500],					// Stryker (HMG)
+["M1126_ICV_mk19_EP1",1600],					// Stryker (GMG)
+["M1128_MGS_EP1",2500],						// Stryker (MGS)
+["PRACS_FV101",2200],						// Stryker (MGS)
+["PRACS_FV107",2500],						// Stryker (MGS)
+["M1135_ATGMV_EP1",3000],						// Stryker (ATGM)
+/*---Tanks---*/
+// ["PRACS_M60A3",3500],							// T72M
+["PRACS_M60A3_S2",4000],							// T72M
+["PRACS_T72",4000],							// T72M
+["PRACS_LEO1A5",4000],							// T72M
+["M2A2_EP1",3500],							// M2A2 (AT)
+["M6_EP1",4000],								// M6 (AA)
+["M2A3_EP1",4500],							// M2A3 (AT)
+["EB_M2A3_WH",5000],
+["BAF_FV510_W",5500],							// Warrior
+["PRACS_LEO2A4",5200],							// T72M
+//["M1A1_US_DES_EP1",55],								// M1A1
+//["ffaa_et_Leopard",6500],
+["EB_M1A2_US_D",6500],						// M1A2
+//["M1A2_US_TUSK_MG_EP1",65],						// M1A2
+["EB_M1A3_TUSK_D",7500],						// M1A2
+/*---AA---*/
+["PRACS_Sa6",3000],						// M1A2
+["PRACS_m48_chapparal",3000],						// M1A2
+["PRACS_351_SAM",3800],	
+["POOK_NASAMS_US",3800],	
+["POOK_MEADS_US",3800],	
+["PRACS_M163",4000],						// M1A2
+["PRACS_M429_CRAM",4000],	
+["PRACS_M302_SAM",5000],	
+["PRACS_M460_SAM",5000],	
+/*---Artillery---*/
+["PRACS_M250_TEL",14000],	
+["PRACS_M291_TEL",15000],	
+//	["GRAD_TK_EP1",160],						// GRAD
+["RM70_ACR",17000],							// RM70
+["PRACS_M245_TEL",17000],								// MLRS
+["PRACS_MLRS",18000]								// MLRS
+];
 
-		buyAirList = 
-		[
-			/*---Helicopters---*/
-			["PRACS_puma330_MG",1000],						// Mi-17
-			["ou_ch_46e",1000],						// Mi-17
-			["PRACS_MH6J",1000],							// Littlebird
-			["PRACS_AH6J",2000],							// Littlebird (Armed)
-			["UH60M_MEV_EP1",1000],									// Blackhawk (MMG)
-			["CH_47F_EP1",1000],							// Chinook
-			["BAF_Merlin_HC3_D",1000],							// Chinook
-			["UH60M_EP1",1000],							// Blackhawk (GAT)					
-			["OFrP_Puma_DE_Pirate",2500],		
-			["PRACS_AB212_CAS",3000],									// Blackhawk (MMG)
-			["ibr_as350_armed",3000],								// Viper
-			["UH1Y",5000],
-			["kiowa",6000],
-			["Mi171Sh_rockets_CZ_EP1",8000],				// Mi-17 (Rockets)
-			["AW159_Lynx_BAF",8000],						// Wildcat
-			["PRACS_RAH6",10000],							// Littlebird (Armed)	
-			["yup_SH60B",9000],
-			["FRL_UH60M_MR",12000],	
-			["PRACS_AH1S",19000],								// Cobra
-			["OFrP_Tiger_HAD_CE",19000],
-			["AH1Z",19000],								// Cobra                                                                                                                                                           
-			["AH64D",20000],								// Apache (AT)
-			/*---Planes---*/
-			["ibr_tucano_lin",6000],	
-			["SMAF_MF1_AGRESSOR_DESERT",10000],								// F35  
-			["PRACS_Etendard",13000],								// F35
-		//	["uns_A1J_LBMB",13000],		
-			["Pracs_Mohawk",13000],								// F35 
-			["F117A",14000],	
-			["DAF_F5E_AGM2",14000],
-			["PRACS_Mirage3",14000],								// F35
-			["F4M_Des",14000],	
-			["PRACS_A4",16000],								// F35
-			//["PRACS_F16_PHSTRK",17000],
-			["14US_IA",16000],								// F35
-			["FRL_F16_MR",17000],	
-			["JS_JC_FA18E_USMC",17000],	
-			["F35B",17000],								// F35
-			//["PRACS_F15",17000],								// F35
-			["FRL_F15C_MR",17000],	
-			["FRL_A10_MR",17000],								// A10 A7
-			//["A7",18000],								// AV8B
-			["FRL_AV8B_MR",18000],								// AV8B
-			//["3lb_f22_sdb",18000],								// AV8B
-			["pook_EF2000_BAF_D_DEAD",18500],								// AV8B
-			["FRL_F111_D_MR",18500]								// AV8B
-			//["b1b_MK82_desert",18500]
-		];
+buyAirList = 
+[
+	/*---Helicopters---*/
+	["PRACS_puma330_MG",1000],						// Mi-17
+	["ou_ch_46e",1000],						// Mi-17
+	["PRACS_MH6J",1000],							// Littlebird
+	["PRACS_AH6J",2000],							// Littlebird (Armed)
+	["UH60M_MEV_EP1",1000],									// Blackhawk (MMG)
+	["CH_47F_EP1",1000],							// Chinook
+	["BAF_Merlin_HC3_D",1000],							// Chinook
+	["UH60M_EP1",1000],							// Blackhawk (GAT)					
+	["OFrP_Puma_DE_Pirate",2500],		
+	["PRACS_AB212_CAS",3000],									// Blackhawk (MMG)
+	["ibr_as350_armed",3000],								// Viper
+	["UH1Y",5000],
+	["kiowa",6000],
+	["Mi171Sh_rockets_CZ_EP1",8000],				// Mi-17 (Rockets)
+	["AW159_Lynx_BAF",8000],						// Wildcat
+	["PRACS_RAH6",10000],							// Littlebird (Armed)	
+	["yup_SH60B",9000],
+	["FRL_UH60M_MR",12000],	
+	["PRACS_AH1S",19000],								// Cobra
+	["OFrP_Tiger_HAD_CE",19000],
+	["AH1Z",19000],								// Cobra                                                                                                                                                           
+	["AH64D",20000],								// Apache (AT)
+	/*---Planes---*/
+	["ibr_tucano_lin",6000],	
+	["SMAF_MF1_AGRESSOR_DESERT",10000],								// F35  
+	["PRACS_Etendard",13000],								// F35
+//	["uns_A1J_LBMB",13000],		
+	["Pracs_Mohawk",13000],								// F35 
+	["F117A",14000],	
+	["A319MPA",14000],
+	["DAF_F5E_AGM2",14000],
+	["PRACS_Mirage3",14000],								// F35
+	["F4M_Des",14000],	
+	["PRACS_A4",16000],								// F35
+	//["PRACS_F16_PHSTRK",17000],
+	["14US_IA",16000],								// F35
+	["FRL_F16_MR",17000],	
+	["JS_JC_FA18E_USMC",17000],	
+	["F35B",17000],								// F35
+	//["PRACS_F15",17000],								// F35
+	["FRL_F15C_MR",17000],	
+	["FRL_A10_MR",17000],								// A10 A7
+	//["A7",18000],								// AV8B
+	["FRL_AV8B_MR",18000],								// AV8B
+	//["3lb_f22_sdb",18000],								// AV8B
+	["pook_EF2000_BAF_D_DEAD",18500],								// AV8B
+	["FRL_F111_D_MR",18500]								// AV8B
+	//["b1b_MK82_desert",18500]
+];
 
-		buyStatList = 
-		[
-			/*---Statics---*/
-			["M2StaticMG_US_EP1",200],					// CUSTOM  ["PRACS_Type66_Gun","PRACS_M266AAgun","PRACS_Type74AAgun","PRACS_M101","PRACS_M1","PRACS_Regular_M2","PRACS_Regular_MK19","PRACS_Regular_TOW","PRACS_Regular_M252"];
-			["M2HD_mini_TriPod_US_EP1",200],					// ap
-			["MK19_TriPod_US_EP1",600],							// Ap
-			["TOW_TriPod",1000],							// AT								
-			["Stinger_Pod_US_EP1",1000],						// AA
-			["M252_US_EP1",1000],								// AP
-			["Rbs70_ACR",1000],								// AA
-			["sfp_rbs97",1200],
-			["PRACS_Type66_Gun",1200],	
-			["PRACS_M266AAgun",1200],	
-			["PRACS_Type74AAgun",1200],		
-			["PRACS_M101",1200],	
-			["PRACS_M1",1200],						
-			["M119_US_EP1",3000]							// CUSTOM
-		];
-	};
+buyStatList = 
+[
+	/*---Statics---*/
+	["M2StaticMG_US_EP1",200],					// CUSTOM  ["PRACS_Type66_Gun","PRACS_M266AAgun","PRACS_Type74AAgun","PRACS_M101","PRACS_M1","PRACS_Regular_M2","PRACS_Regular_MK19","PRACS_Regular_TOW","PRACS_Regular_M252"];
+	["M2HD_mini_TriPod_US_EP1",200],					// ap
+	["MK19_TriPod_US_EP1",600],							// Ap
+	["TOW_TriPod",1000],							// AT								
+	["Stinger_Pod_US_EP1",1000],						// AA
+	["M252_US_EP1",1000],								// AP
+	["Rbs70_ACR",1000],								// AA
+	["sfp_rbs97",1200],
+	["PRACS_Type66_Gun",1200],	
+	["PRACS_M266AAgun",1200],	
+	["PRACS_Type74AAgun",1200],		
+	["PRACS_M101",1200],	
+	["PRACS_M1",1200],						
+	["M119_US_EP1",3000]							// CUSTOM
+];
 
-	if(_faction == "FR") then 
-	{
+
+//FR
+/*
 		buyCarList = 
 		[
 			["OFrP_GBC180",0],
@@ -359,10 +357,23 @@ fnc_evalFaction =
 			["OFrP_Rafale_M1",0]
 		];
 		buyStatList = [];
-	};
+*/
 
-	lastBase = _faction;
-};
+EGG_EVO_AAirweapons = ["Stinger","Strela","Igla","uns_sa7","uns_sa7_loaded"];
+
+// All weapons that count for AT class static bonus
+EGG_EVO_ATweapons = ["Javelin","MetisLauncher","RPG18","SMAW","M136","RPG7V","FFAA_Armas_C90","FFAA_Armas_C100","ukf_law80launcher","VIL_RPG7V_PGO","VIL_RPG7d_PGO","VIL_RPG16","VILAS_RPG22","VILAS_RPG26","VIL_RPG29","VIL_RPO_A","M47Launcher_EP1","MAAWS","BAF_NLAW_Launcher","uns_m72","uns_rpg2","uns_rpg7"];
+
+// All weapons that count for MG class static bonus
+// All weapons that count for MG class static bonus updated RH OA
+EGG_EVO_MGweapons = ["M240","M249","PK","RPK_74","Pecheneg","MK_48","m8_SAW","MG36","MG36_camo","m240_scoped_EP1","M249_EP1","M249_m145_EP1","M249_TWS_EP1","M60A4_EP1","Mk_48_DES_EP1","BAF_L7A2_GPMG","BAF_L110A1_Aim","ukf_L86A2LSW_susat","ukf_gpmg","VIL_PKM_N","VIL_PKP","VIL_PK","VIL_RPK74M_N","VIL_RPK74M","VIL_RPK74","VIL_RPK","FFAA_Armas_MG3","FFAA_Armas_MG4","FFAA_Armas_Minimi","FFAA_Armas_MG4_acog","uns_bar","uns_m60","uns_m63a","uns_m60shorty","uns_rpd","uns_rpdsog","uns_rpk","RH_M249","RH_M249acog","RH_M249elcan","RH_M249p","RH_M249pelcan","RH_M249pacog","RH_Mk48mod1","RH_Mk48mod1acog","RH_Mk48mod1elcan","RH_M60E4_EOTECH","RH_MK43_ACOG","RH_MK43_ELCAN","RH_rpk47","RH_rpk74","RH_rpk74m","RH_rpk74m1p29"];
+
+// All weapons that count for GL class static bonus
+EGG_EVO_GLweapons = ["M16A2GL","M16A4_GL","M16A4_ACG_GL","M4A1_HWS_GL","M4A1_RCO_GL","M4A1_HWS_GL_camo","M4A1_HWS_GL_SD_Camo","m8_carbineGL","AK_74_GL","AK_107_GL_pso","AK_107_GL_kobra","BAF_L85A2_UGL_ACOG","BAF_L85A2_UGL_Holo","BAF_L85A2_UGL_SUSAT","AK_74_GL_kobra","M4A3_RCO_GL_EP1","Mk13_EP1","M32_EP1","M79_EP1","SCAR_L_CQC_EGLM_Holo","SCAR_L_STD_EGLM_RCO","SCAR_L_STD_EGLM_TWS","SCAR_H_STD_EGLM_Spect","FFAA_Armas_FN_fal_m203","FFAA_Armas_HKAG36","FFAA_Armas_HKAG36Acog","ukf_L85A2AG36_susat","VIL_AEK_GL","VIL_AK_74M_GP","VIL_AKS_74P_GP","VIL_AKS_74_GP","VIL_AKM_GL","VIL_Abakan_GP","VIL_Groza_GL","uns_ex41","uns_m203_20","uns_m203_30","uns_m79","RH_m4cgl","RH_m4glaim","RH_m4cglacog","RH_M4gleotech_wdl","RH_m4cgleotech","RH_m4sdgl","RH_m4ctsdglaim","RH_m4ctsdglacog","RH_M4sdgleotech_wdl","RH_m4ctsdgleotech","RH_m16a1gl","RH_m16a4glacog","RH_m16a4glaim","RH_m16a4gleotech","RH_hk416sgl","RH_hk416glaim","RH_hk416sdgl","RH_hk416sgleotech","RH_hk416sglacog","RH_ak102gl","RH_Scarl_gl","RH_Scarl_gl_aim","RH_Scarl_gl_acog","RH_Scarl_gl_eotech","RH_Scarl_sd_gl_aim","RH_Scarl_sd_gl_acog","RH_Scarl_sd_gl_eotech","RH_Scarh_gl","RH_Scarh_gl_aim","RH_Scarh_gl_acog","RH_Scarh_gl_eotech","RH_Scarh_sd_gl_aim","RH_Scarh_sd_gl_eotech","RH_ak47gl","RH_akmgl","RH_rk95ag","RH_rk95sdag","RH_an94gl","RH_aks74upt","RH_aks74uptsp","RH_aks74uptk","RH_ak74gl","RH_ak74kgl","RH_aks74gl","RH_aks74kgl","RH_oc14gl","RH_oc14glsp","RH_ak74mgl","RH_ak74mkgl","RH_ak74mglsp","RH_ak74mgl1p29","RH_aks74mgl","RH_aks74mkgl","RH_aks74mglsp","RH_aks74mgl1p29","RH_ak103gl","RH_ak103kgl","RH_ak103glsp","RH_ak103gl1p29","RH_aks74pgl","RH_aks74pkgl","RH_aks74pglsp","RH_aks74pgl1p29","RH_ak104gl","RH_ak104kgl","RH_ak104glsp","RH_ak104gl1p29","RH_ak105gl","RH_ak105kgl","RH_ak105glsp","RH_ak105gl1p29","RH_ak107gl","RH_ak107kgl","RH_ak107glsp","RH_ak107gl1p29","RH_hk417sgl","RH_hk417sglaim","RH_hk417sglacog","RH_hk417sgleotech","RH_acrgl","RH_acrglacog","RH_acrglaim","RH_acrgleotech","RH_mp5a5eodRFX","RH_M4CTSDGLACOG_F","RH_M4CTSDGL_F","RH_XM8DGL","RH_SCARH_GL_SPECTERDR","RH_SCARLB_SD_GL_AIM","RH_SCARLB_GL_ACOG","RH_Mk18glaeot","RH_mk18dcglacog","RH_m4gl","RH_m4sdglaim","RH_m4sdglacog","RH_m16a2gl","RH_m16a3sgl"];
+
+//All weapons that class as a tripwire or trap (requires uns_traps)
+EGG_EVO_Trapweapons = ["uns_Tripwire1a","uns_Tripwire1a_2","uns_Tripwire1b","uns_Tripwire1b_2","uns_Tripwire2a","uns_Tripwire2a_2","uns_Tripwire2b","uns_Tripwire2b_2","uns_m16apmine","uns_Punji1","uns_Punji1_b","uns_Punji2","uns_Punji2_b","uns_punji3","uns_artilleryround1a","uns_artilleryround1b","uns_artilleryround1c","uns_TripwireM49","uns_TripwireM49_2"];
+
 
 storedVehicles = [];
 
@@ -535,11 +546,6 @@ launchers = ["M136"];
 //mgs = ["PRACS_M60","PRACS_MAG58","PRACS_Mk48","PRACS_Mk48_SP","PRACS_Mk48_SD", "Mk_48_DES_EP1","BAF_L7A2_GPMG","RH_M249", "RH_M249acog", "RH_M249elcan", "RH_M249p", "RH_M249pacog", "RH_M249pelcan", "RH_Mk48mod1", "RH_Mk48mod1acog", "RH_Mk48mod1elcan", "RH_M60E4_EOTECH", "RH_MK43_ACOG", "RH_MK43_ELCAN", "MG36", "MG36_camo", "M249", "M249_m145_EP1", "M249_TWS_EP1", "M240", "m240_scoped_EP1", "M60A4_EP1", "BAF_L110A1_Aim", "Mk_48", "Mk_48_DES_EP1"];
 
 
-#define rusassaultRifles ["AKS_74_U","AK_47_M","AK_47_S","Sa58P_EP1","Sa58V_CCO_EP1","Sa58V_EP1","AKS_74_GOSHAWK","AKS_74_NSPU","RH_asvalsp","AKS_74_pso","AK_107_pso","Sa58V_RCO_EP1","AK_74","AKS_74_kobra","RH_Rk95aim","AK_107_kobra","RH_akms","RH_ak103","RH_ak104k","RH_ak105sp","RH_AK107_1p29","RH_SCARAKBAIM","RH_SCARAKACOG","AK_74_GL","AK_107_GL_pso","AK_107_GL_kobra","AK_74_GL_kobra","RH_an94gl","RH_aks74upt","RH_aks74uptsp","RH_aks74uptk","RH_ak74mkgl","RH_aks74mglsp","RH_ak104gl","RH_ak105kgl","EB_DP28"]
-#define russmgs ["Sa61_EP1","RH_vz61","UZI_EP1","bizon","RH_bizon","RH_bizonsdk","RH_gr1sp","Saiga12K"]
-#define rusrifles ["KPFS_Mosin_Nagant","KPFS_KarS","huntingrifle", "LeeEnfield","EB_svd","KPFS_Mosin_Nagant_PU","RH_asval","RH_SVU","RH_asvalk","RH_oc14sp","ksvk","EB_OSV96","SVD","SVD_CAMO","VSS_vintorez","SVD_des_EP1","SVD_NSPU_EP1"]
-#define rusmgs ["PK","RPK_74","pecheneg","RH_rpk74m1p29"]
-#define ruslaunchers ["RPG18","RPG7V","Igla","Strela","MetisLauncher"]
 
 // hups = [];
 // {hups = hups + [[_x,_forEachIndex]]}forEach launchers;

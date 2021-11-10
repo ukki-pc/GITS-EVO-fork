@@ -14,7 +14,7 @@ travelMarker = objNull;
 
 BIS_EVO_LHDMarkers = [];
 
-if(carrier) then {BIS_EVO_LHDMarkers = ["LHD1Marker"];};
+if(carrier) then {BIS_EVO_LHDMarkers = ["HMS-GITS"];};
 
 BIS_EVO_SHIPSPAWNS = ["ship1","ship2"];
 objectiveFlags = [];
@@ -62,7 +62,7 @@ if(position player distance ([_nearestPoint] call fnc_getAnyPosition)  > _maxDis
 openMap true;
 hint "Pick a location to transfer to";
 
-onMapSingleClick "
+onMapSingleClick quote;
   travelMarker= createMarkerLocal ['markerRelo',[0,0,0]];
                   travelMarker setMarkerColor 'ColorBrown';
                 travelMarker setMarkerType 'SELECT';
@@ -97,7 +97,7 @@ if(cityToTransfer > -1) then
 }
 	else { hint 'No selection.'
 };
-true;";
+true;quote;
 
 waitUntil{!visibleMap};
 onMapSingleClick "";

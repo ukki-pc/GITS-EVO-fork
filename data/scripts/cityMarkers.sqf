@@ -1,9 +1,8 @@
 	#include "macros.h"
-	//private ["_objective","_currentTown","_unit","_unitM","_markerobj","_vec","_dispname","_airports"];
 	{
 	_currentTown = BIS_EVO_MissionTowns select _forEachIndex;
 	_unit = (_currentTown);
-	_airports = [objective_1];
+
 	_unitm = format ["%1_marker", _unit];
 	_markerobj = createMarker[_unitm,[getPos _unit select 0,getPos _unit select 1]];
 	BIS_EVO_MissionObjMarkers = BIS_EVO_MissionObjMarkers + [_unitm];
@@ -27,7 +26,7 @@
 			{
 				_markerobj setMarkerType  "plp_icon_storage1";
 				_markerobj setMarkerColor enemyMarkerColor;
-				if((_currentTown) in _airports) then {_markerobj setMarkerType "plp_icon_hangarB";};
+				if((_currentTown) in airports) then {_markerobj setMarkerType "plp_icon_hangarB";};
 			};
 		}
 		//BIS_EVO_MilitaryObjectives

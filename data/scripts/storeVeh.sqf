@@ -1,7 +1,5 @@
 // Gib vehicle for unlock
 _player = _this select 0;
-_counter = 0;
-_i = 0;
 _veh = vehicle _player;
 
 _type = typeOf _veh;
@@ -95,4 +93,5 @@ _found = false;
 
 */
 storedVehicles = storedVehicles + [_type];
+hint "stored";
 deleteVehicle _veh;

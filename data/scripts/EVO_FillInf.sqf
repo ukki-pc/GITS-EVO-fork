@@ -18,10 +18,12 @@ BIS_EVO_FillInf =
 		_nunit = [_allunits] call fnc_pickRandom;
 		_unit = _grp createUnit [_nunit, _lpos, [], 0, "FORM"];
 		_unit setSkill _grpskill;
-		_unit addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
+		_unit addEventHandler ["killed", {[_this select 0,_this select 1] spawn mobjBury}];
 		[_unit] join _grp;
 		_j = _j+1;
-		sleep 0.4;
+		sleep 0.2;
+		if([(80-aggression) max 1] call chance) then {[_unit] call fnc_distributeWeapons};
+		sleep 0.2;
 	};
 	[_grp] call BIS_EVO_OrderSquad;
 };
@@ -88,7 +90,7 @@ BIS_EVO_InfDummyReplace =
 			_unit = _grp createUnit [_type, _pos, [], 0, "None"];
 			_unit setPos _pos;
 			_unit setDir _dir;
-			_unit addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
+			_unit addEventHandler ["killed", {[_this select 0,_this select 1] spawn mobjBury}];
 			_newunits=_newunits+[_unit];
 		};
 		sleep 0.4;
@@ -120,7 +122,7 @@ BIS_EVO_InfReDummy =
 			_unit = createVehicle [_type, _pos, [], 0, "NONE"];
 			_unit setPos _pos;
 			_unit setDir _dir;
-			_unit addEventHandler ["killed", {handle = [_this select 0,_this select 1] execVM "data\scripts\mobjbury.sqf"}];
+			_unit addEventHandler ["killed", {[_this select 0,_this select 1] spawn mobjBury}];
 			_newunits=_newunits+[_unit];
 		};
 		sleep 0.4;

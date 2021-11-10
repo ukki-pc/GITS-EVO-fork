@@ -14,7 +14,7 @@ cityToAttack = -1;
 connectedTowns = false;
 coastalTown = false;
 openMap true;
-hint "Pick a city to assault";
+hint "Pick an objective to start from";
 mapclick = true;
 _cursorPos = [];
 onMapSingleClick "
