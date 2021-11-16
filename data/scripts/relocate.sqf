@@ -122,7 +122,7 @@ if(_isViableLoc and _traveAllowed) then
       [player,MHQ] execVM "data\scripts\auswahlw.sqf";
     // systemChat format ["location: %1, MHQMarker: %2",_tpLoc,MHQMarker];  
       };
-
+    /*
         if(_tpLoc in  BIS_EVO_SHIPSPAWNS) exitWith {
           _ships = [bam,p72];
          _i = BIS_EVO_SHIPSPAWNS find _tpLoc;
@@ -130,7 +130,7 @@ if(_isViableLoc and _traveAllowed) then
       [player,_svec] execVM "data\scripts\auswahlw.sqf";
     // systemChat format ["location: %1, MHQMarker: %2",_tpLoc,MHQMarker];  
       };
-
+*/
     Player setpos _tpLocPos;
     call fnc_hideMarkers;
     if(_tpLoc in BIS_EVO_LHDMarkers) then{

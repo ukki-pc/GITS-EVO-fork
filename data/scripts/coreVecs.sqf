@@ -52,9 +52,8 @@ BIS_EVO_ActButtonM =
 	local _canBuy = (inrepairzone and vehicle player isKindOf "Man");
 
 	if(_canBuy) then {_nul = [player,_item] execVM "actions\static\makevehicle.sqf";closeDialog 1;}
-	else {hint "WTf"};
+	else {hint "Cant buy here!"};
 };
-
 
 BIS_EVO_ListSelect = 
 {
@@ -67,20 +66,21 @@ BIS_EVO_ListSelect =
 	_mag = lbData[magListBox,_magSel];
 	lbClear magListBox;
 
+	_carI = 0;
+	_priceI = 0;
+
 	_name = format["%1",(getText (configFile >> "CfgVehicles" >> _weapon >> "displayName"))];
 	_pic = format["%1",(getText (configFile >> "CfgVehicles" >> _weapon >> "picture"))];
-	_spd =  (getNumber (configFile >> "CfgVehicles" >> _mag >> "maxSpeed"));
+
+	_spd =  (getNumber (configFile >> "CfgVehicles" >> _weapon >> "maxSpeed"));
 	_dis =  format["Armor: %1",(getNumber (configFile >> "CfVehicles" >> _mag >> "Armor"))];
 	// _oz =  getNumber (configFile >> "CfgWeapons" >> _weapon >> "OpticsZoomMax");
 	// _cal = format["Area Damage: %1",(getNumber (configFile >> "CfgAmmo" >> _ammo >> "indirectHit"))];
 	//_spd =  format["Velocity: %1 m/s",(getNumber (configFile >> "CfgMagazines" >> _mag >> "initSpeed"))];
-	(uiNamespace getVariable "wepDesc") ctrlSetStructuredText parsetext format ["%1<br/>Speed: %2",_name,_spd];
-
-	_carI = 0;
-	_priceI = 0;
 
 	_magazines = vehUpgList select ([_weapon,vehUpgList] call fnc_find2d);
 
+	//Add select variant to top
 	if(isNil "_magazines") then 
 	{
 		lbadd [magListBox,_name];
@@ -93,6 +93,7 @@ BIS_EVO_ListSelect =
 		_priceI = 1;
 	};
 
+	//Add vehicle variants to the right side list
 	{
 		if (typename _x == "STRING") then 
 		{	
@@ -110,6 +111,8 @@ BIS_EVO_ListSelect =
 			_priceI + _priceI +1;
 		};
 	}forEach _magazines;
+
+	(uiNamespace getVariable "wepDesc") ctrlSetStructuredText parsetext format ["%1<br/>Price: %2<br/>Speed: %3",_name,_price,_spd];
 	lastSel = _wepSel;
 };
 

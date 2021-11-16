@@ -341,7 +341,8 @@ BIS_EVO_locationActions =
 
 
 	//Add cities to the array
-	_positions = BIS_EVO_conqueredTowns + capturedFlags + [bam,p72];
+	_positions = BIS_EVO_conqueredTowns + capturedFlags;
+	//_positions = _positions + + [bam,p72];
 
 	//Add rhq locations to the array
 	{_positions = _positions + [getMarkerPos _x]}forEach RHQMarkers;
@@ -357,7 +358,7 @@ BIS_EVO_locationActions =
 	_nearPos = (_objDist<rhqTeleportDistance and _objdist != -1);
 
 	if(((_nearestPoint in capturedFlags)) and _objdist < 30) exitWith {canFasttravel = true; canRecruit = true; showMoney = true};
-	if(((_nearestPoint in BIS_EVO_conqueredTowns+[bam,p72])) and _objdist < townTeleportDistance) exitWith {canFasttravel = true; canRecruit = true; showMoney = true; inrepairzone = true;};
+	if(((_nearestPoint in BIS_EVO_conqueredTowns)) and _objdist < townTeleportDistance) exitWith {canFasttravel = true; canRecruit = true; showMoney = true; inrepairzone = true;};
 
 	canRecruit = false;
 

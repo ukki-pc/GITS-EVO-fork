@@ -16,9 +16,12 @@ _displayName = getText(configFile >> "CfgVehicles" >> _type >> "displayName");
 		_cstatA enableSimulation false;
 		_cstatA lock true;
 		_laction1 = _who addAction ["Place Vehicle","actions\static\vehiclePlaced.sqf"];
+
+		/*
 		_inship = (((getpos player distance getpos bam) < 30) or ((getpos player distance getpos p72) < 30));
 
 		if(_inship) then {p72 enableSimulation false; bam enableSimulation false};
+		*/
 
 			_cstatA attachTo [player, [
 				0,
